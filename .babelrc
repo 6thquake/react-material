@@ -1,0 +1,115 @@
+{
+  "presets": ["./scripts/babel-preset", "stage-1", "react"],
+  "plugins": [
+    "transform-object-assign"
+  ],
+  "env": {
+    "coverage": {
+      "plugins": [
+        "istanbul",
+        [
+          "module-resolver",
+          {
+            "root": ["./"],
+            "alias": {
+              "react-material": "./packages/react-material/src"
+            }
+          }
+        ],
+      ]
+    },
+    "development": {
+      "sourceMaps": "both",
+      "plugins": [
+        "transform-flow-strip-types"
+      ]
+    },
+    "docs-development": {
+      "presets": [
+        "next/babel"
+      ],
+      "plugins": [
+        "preval",
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "@material-ui/docs": "./packages/material-ui-docs/src",
+              "docs": "./docs",
+              "react-material": "./packages/react-material/src",
+              "pages": "./pages"
+            }
+          }
+        ],
+        "transform-flow-strip-types"
+      ]
+    },
+    "docs-production": {
+      "presets": [
+        "next/babel"
+      ],
+      "plugins": [
+        "preval",
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "@material-ui/docs": "./packages/material-ui-docs/src",
+              "docs": "./docs",
+              "react-material": "./packages/react-material/src",
+              "pages": "./pages"
+            }
+          }
+        ],
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {"mode": "remove"}]
+      ]
+    },
+    "es": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {
+          "mode": "wrap",
+          "plugins": [
+            "babel-plugin-transform-flow-strip-types"
+          ]
+        }]
+      ]
+   },
+    "production": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {
+          "mode": "wrap",
+          "plugins": [
+            "babel-plugin-transform-flow-strip-types"
+          ]
+        }]
+      ]
+   },
+    "test": {
+      "sourceMaps": "both",
+      "plugins": [
+        "transform-flow-strip-types",
+        [
+          "module-resolver",
+          {
+            "root": ["./"],
+            "alias": {
+              "react-material": "./src"
+            }
+          }
+        ],
+      ]
+    }
+  }
+}

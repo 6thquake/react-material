@@ -1,0 +1,46 @@
+ .paginationDiv {
+     display: block;
+     margin-top: 20px;
+     color: #535353;
+     line-height: 29px;
+     text-align: center;
+     margin-right: 32px;
+ }
+ .paginationDiv span {
+     display: block;
+     float: right;
+     font-size: 16px;
+     margin-right: 20px;
+ }
+ .paginationDiv .flotRight{
+     float: right;
+ }
+ .paginationDiv .flotRight a {
+     width: 25px;
+     height: 30px;
+     padding: 0 10px;
+     text-decoration: none;
+     cursor: pointer;
+ }
+ .paginationDiv .next:before,
+ .paginationDiv .prev:before {
+     content: '<';
+     font-size: 16px;
+     font-weight: bold;
+ }
+ .paginationDiv .next:before {
+     content: '>';
+     font-size: 16px;
+     font-weight: bold;
+ }
+ .paginationDiv .disable.next,
+ .paginationDiv .prev.disable {
+     border-color: #e5e5e5;
+     cursor: no-drop;
+ }
+
+ .paginationDiv .disable.next:before,
+ .paginationDiv .prev.disable:before {
+     color: #a0a0a0;
+     border-color: #337ab7
+ }

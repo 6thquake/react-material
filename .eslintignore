@@ -1,0 +1,12 @@
+/.git
+/.next
+/coverage
+/docs/export
+/examples/create-react-app-with-flow/flow
+/examples/create-react-app-with-flow/flow-typed
+/examples/gatsby/public
+/flow
+/flow-typed
+/tmp
+build
+node_modules

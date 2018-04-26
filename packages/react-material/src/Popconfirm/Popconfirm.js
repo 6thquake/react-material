@@ -6,9 +6,13 @@ import Popover from 'material-ui/Popover';
 import PopoverContent from './content'
 
 const styles = theme => ({
+  box: {
+    display: 'inline-block'
+  },
   anchorElementBox: {
     padding: theme.spacing.unit,
     boxSizing: 'border-box',
+    display: 'inline-block'
   },
   contentBox: {
     
@@ -20,6 +24,17 @@ class RMpopConfirm extends React.Component {
     open: false,
     anchorReference: 'anchorEl',
   };
+
+  static defaultProps = {
+    anchorOrigin: {
+      vertical: 'top',
+      horizontal: 'center',
+    },
+    transformOrigin: {
+      vertical: 'bottom',
+      horizontal: 'center',
+    },
+  }
   anchorEl = null;
   anchorRef = React.createRef()
 
@@ -43,19 +58,19 @@ class RMpopConfirm extends React.Component {
   };
 
   confirm = () => {
-    this.props.confirm && this.props.confirm()
+    this.props.onConfirm && this.props.onConfirm()
     this.setState({
       open: false
     })
   }
   cancel = ()=>{
-    this.props.cancel && this.props.cancel()
+    this.props.onCancel && this.props.onCancel()
     this.setState({
       open: false
     })
   }
   render() {
-    const { classes, children, cancelText, confirmText, content} = this.props;
+    const { classes, children, cancelText, confirmText, content, ...other} = this.props;
     const {
       open,
       positionTop,
@@ -66,7 +81,7 @@ class RMpopConfirm extends React.Component {
 
     return (
       <div>
-        <div ref={this.anchorRef} onClick={this.handleClick}>
+        <div  className={classes.box} ref={this.anchorRef} onClick={this.handleClick}>
           <div></div>
           <div className={classes.anchorElementBox}>
             {children}
@@ -75,9 +90,10 @@ class RMpopConfirm extends React.Component {
         </div>
         
         <Popover
+          {...other}
           open={open}
           anchorEl={anchorEl}
-          anchorReference={anchorReference}
+          anchorReferencecode={anchorReference}
           anchorPosition={{ top: positionTop, left: positionLeft }}
           onClose={this.handleClose}
           anchorOrigin={this.props.anchorOrigin}

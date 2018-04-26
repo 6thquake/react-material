@@ -52,10 +52,10 @@ class PopOverContent extends Component {
 
         <div className={classes.footer}>
           <Button size='small' onClick={this.handleConfirm} color="primary" className={classes.button}>
-            {confirmText || ''}
+            {confirmText || 'ok'}
           </Button>
           <Button size='small' onClick={this.handleCancel} className={classes.button}>
-            {cancelText || ''}
+            {cancelText || 'cancel'}
           </Button>
 
         </div>

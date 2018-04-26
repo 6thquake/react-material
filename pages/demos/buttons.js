@@ -8,6 +8,20 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
+        'pages/demos/buttons/StatusButtons.js': {
+          js: require('docs/src/pages/demos/buttons/StatusButtons').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/StatusButtons'), 'utf8')
+`,
+        },
+        'pages/demos/buttons/GroupButtons.js': {
+          js: require('docs/src/pages/demos/buttons/GroupButtons').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/GroupButtons'), 'utf8')
+`,
+        },
         'pages/demos/buttons/FlatButtons.js': {
           js: require('docs/src/pages/demos/buttons/FlatButtons').default,
           raw: preval`

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
+import {Button} from 'react-material/Button';
 
 const styles = theme => ({
   button: {
@@ -24,6 +24,18 @@ function FlatButtons(props) {
       </Button>
       <Button color="secondary" className={classes.button}>
         Secondary
+      </Button>
+      <Button color="waring" className={classes.button}>
+        Waring
+      </Button>
+      <Button color="error" className={classes.button}>
+        Error
+      </Button>
+      <Button color="progress" className={classes.button}>
+        Progress
+      </Button>
+      <Button color="success" className={classes.button}>
+        Success
       </Button>
       <Button disabled className={classes.button}>
         Disabled

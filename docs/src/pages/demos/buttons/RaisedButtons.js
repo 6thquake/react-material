@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
+import { Button } from 'react-material/Button';
 
 const styles = theme => ({
   button: {
@@ -24,6 +24,18 @@ function RaisedButtons(props) {
       </Button>
       <Button variant="raised" color="secondary" className={classes.button}>
         Secondary
+      </Button>
+      <Button variant="raised" color="waring" className={classes.button}>
+        Waring
+      </Button>
+      <Button variant="raised" color="error" className={classes.button}>
+        Error
+      </Button>
+      <Button variant="raised" color="progress" className={classes.button}>
+        Progress
+      </Button>
+      <Button variant="raised" color="success" className={classes.button}>
+        Success
       </Button>
       <Button variant="raised" color="secondary" disabled className={classes.button}>
         Disabled

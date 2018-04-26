@@ -14,7 +14,11 @@ filename: /packages/material-ui/src/Button/Button.js
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children *</span> | <span class="prop-type">node |  | The content of the button. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
-| <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">onHandler</span> | <span class="prop-type">func |  | status button 触发的函数，函数返回一个promise实例 |
+| <span class="prop-name">statusButton</span> | <span class="prop-type">bool | <span class="prop-default">true</span> | 如果是false没有status button的样式 |
+| <span class="prop-name">position</span> | <span class="prop-type">enum:&nbsp;'vertical'&nbsp;&#124;<br>&nbsp;'horizontal'&nbsp;&#124;<br> | <span class="prop-default">horizontal</span> | group button里button横向排列还是纵向排列 |
+| <span class="prop-name">radio</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | group button里默认选中的button |
+| <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'&#124;<br>&nbsp;'success'&#124;<br>&nbsp;'waring'&#124;<br>&nbsp;'progress'&#124;<br>&nbsp;'error'<br> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |

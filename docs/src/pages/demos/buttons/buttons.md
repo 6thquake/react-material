@@ -10,11 +10,23 @@ Material buttons trigger an ink reaction on press.
 They may display text, imagery, or both.
 Flat buttons and raised buttons are the most commonly used types.
 
+## Status Buttons
+Status buttons 是触发一个方法的button，方法执行时button的状态不同。
+
+{{"demo": "pages/demos/buttons/StatusButtons.js"}}
+
+## Group Buttons
+Group buttons 是一组button，可以选中某个button。
+
+{{"demo": "pages/demos/buttons/GroupButtons.js"}}
+
+
 ## Flat Buttons
 
 Flat buttons are text-only buttons.
 They may be used in dialogs, toolbars, or inline.
 They do not lift, but fill with color on press.
+增加了waring、error、success、progress几种状态
 
 {{"demo": "pages/demos/buttons/FlatButtons.js"}}
 
@@ -22,6 +34,7 @@ They do not lift, but fill with color on press.
 
 Raised buttons are rectangular-shaped buttons.
 They may be used inline. They lift and display ink reactions on press.
+增加了waring、error、success、progress几种状态
 
 {{"demo": "pages/demos/buttons/RaisedButtons.js"}}
 

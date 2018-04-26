@@ -312,7 +312,8 @@ CreateButton.propTypes = {
 CreateButton.defaultProps = {
     color: 'default',
     variant: 'flat',
-    statusButton: true
+    statusButton: true,
+    radio:false
 };
 CreateButton.contextTypes = {
     resetActive: PropTypes.func

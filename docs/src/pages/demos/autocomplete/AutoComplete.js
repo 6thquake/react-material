@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AutoComplete from '../autoComponent/RMautoComplete'
+import AutoComplete from 'react-material/AutoComplete'
 
 const colors = [
     'Red',
@@ -11,7 +11,7 @@ const colors = [
     'Black',
     'White',
 ];
-export default class SelectFieldExampleSelectionRenderer extends Component {
+export default class AutoCompleteTest extends Component {
      state = {
         values:[],
         options: [

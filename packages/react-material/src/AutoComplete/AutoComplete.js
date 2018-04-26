@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import { MenuItem } from 'material-ui/Menu';
 import Chip from 'material-ui/Chip';
-import RMpagination from '../pagination/pagination'
+import Pagination from '../Pagination/Pagination'
 
 
 function renderInput(inputProps) {
@@ -53,16 +53,7 @@ renderSuggestion.propTypes = {
 };
 
 function getSuggestions(suggestions,inputValue) {
-    // let count = 0;
     return suggestions.filter(suggestion => {
-        // const keep =
-        //     (!inputValue || suggestion.label.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1) &&
-        //     count < 5;
-        //
-        // if (keep) {
-        //     count += 1;
-        // }
-
         return !inputValue || suggestion.label.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1;
     });
 }
@@ -159,7 +150,7 @@ class DownshiftMultiple extends React.Component {
                                         selectedItem: selectedItem2,
                                     }),
                                 )}
-                               <RMpagination
+                               <Pagination
                                    {...pageConfig}
                                    pageCallbackFn ={this.pageCallbackFn.bind(this)}
                                />
@@ -230,7 +221,7 @@ class DownshiftSingle extends React.Component {
                                         selectedItem,
                                     }),
                                 )}
-                                <RMpagination
+                                <Pagination
                                    {...pageConfig}
                                     pageCallbackFn ={this.pageCallbackFn.bind(this)}
                                 />

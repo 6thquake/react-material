@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import RMMessage from '../Message/RMMessage';
+import Message from '../Message/Message';
 const action = (
     <button color="secondary" size="small">
         lorem ipsum dolorem
@@ -23,11 +23,11 @@ export default class ProgressTest extends Component {
                     onClick={this.handleOpen}>
                     Open Modal
                 </button>
-                <RMMessage open={this.state.open}
+                <Message open={this.state.open}
                          onClose={this.handleClose}
                            anchorOrigin={{ vertical: 'top', horizontal: 'center'}}
                 ><div>it is a test</div>
-                </RMMessage>
+                </Message>
 
             </div>
 

@@ -20,7 +20,7 @@ const styles = theme => ({
         },
     }
 });
-class RMModal  extends Component {
+class Modal  extends Component {
     static propTypes = {
         /**
          * This is usually about modal open or close
@@ -80,4 +80,4 @@ class RMModal  extends Component {
         </Dialog>
     }
 }
-export default withStyles(styles)(RMModal);
+export default withStyles(styles)(Modal);

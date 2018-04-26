@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import RMselect from '../select/RMselect'
+import Select from '../Select/Select'
 
 export default class SelectFieldExampleSelectionRenderer extends Component {
   state = {
@@ -35,7 +35,7 @@ export default class SelectFieldExampleSelectionRenderer extends Component {
     }
   render() {
     return (
-      <RMselect
+      <Select
         multiple={true}
         value={this.state.values}
         options={this.state.options}
@@ -43,7 +43,7 @@ export default class SelectFieldExampleSelectionRenderer extends Component {
         placeholder="select one or more"
         selectCb={this.selectCb.bind(this)}
       >
-      </RMselect>
+      </Select>
     );
   }
 }

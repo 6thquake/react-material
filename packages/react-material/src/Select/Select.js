@@ -2,8 +2,8 @@ import React, {Component, Fragment} from 'react';
 import { findDOMNode } from 'react-dom';
 import Select from 'material-ui/Select';
 import Menu, { MenuItem } from 'material-ui/Menu';
-import RMpagination from '../pagination/pagination'
-import NATextField from './RMTextField'
+import Pagination from '../Pagination/Pagination'
+import RMTextField from './TextField'
 import Divider from 'material-ui/Divider';
 import Chip from 'material-ui/Chip';
 
@@ -98,18 +98,18 @@ export default class RMselect extends Component {
                     multiple? <div >{selected.map(value => <Chip key={value}  onDelete={this.handleDelete(value)} label={value} />)}</div>:selected
                 )}
             >
-                <NATextField
+                <RMTextField
                     autoFocus={true}
                     placeholder={placeholder}
                     onChange={this.textchange}
                 />
                 {this.menuItems(this.state.values)}
                 <Divider/>
-                <RMpagination
+                <Pagination
                     {...pageConfigPa}
                     pageCallbackFn={this.pageCallbackFn}
                 >
-                </RMpagination>
+                </Pagination>
             </Select>
         );
     }

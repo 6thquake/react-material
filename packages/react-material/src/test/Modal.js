@@ -1,7 +1,5 @@
 import React , {Component} from 'react';
-import RMModal from '../Modal/RMModal';
-import Slide from 'material-ui/transitions/Slide';
-
+import Modal from '../Modal/Modal';
 export default class ProgressTest extends Component {
     state = {
         open: false,
@@ -23,7 +21,7 @@ export default class ProgressTest extends Component {
                     onClick={this.handleOpen}>
                     Open Modal
                 </button>
-                <RMModal open={this.state.open}
+                <Modal open={this.state.open}
                          onClose={this.handleClose}
                          label={'this is a modal test'}
                          animation={'zoom'}
@@ -33,7 +31,7 @@ export default class ProgressTest extends Component {
                         fffsdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdf
                         dfdfdfdfdfdfdfdfdfdfdfdf
                     </div>
-                </RMModal>
+                </Modal>
             </div>
 
         );

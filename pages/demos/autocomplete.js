@@ -8,6 +8,13 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
+        'pages/demos/autocomplete/AutoComplete.js': {
+          js: require('docs/src/pages/demos/autocomplete/AutoComplete').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/autocomplete/AutoComplete'), 'utf8')
+`,
+        },
         'pages/demos/autocomplete/IntegrationDownshift.js': {
           js: require('docs/src/pages/demos/autocomplete/IntegrationDownshift').default,
           raw: preval`

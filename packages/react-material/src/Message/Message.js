@@ -9,7 +9,7 @@ const styles = theme => ({
         margin: theme.spacing.unit,
     }
 });
-class RMMessage  extends Component {
+class Message  extends Component {
     static propTypes = {
         /**
          * This is usually about message open or close
@@ -24,7 +24,7 @@ class RMMessage  extends Component {
          */
         action: PropTypes.element,
         /**
-         * The anchor of the RMMessage.
+         * The anchor of the Message.
          */
         anchorOrigin: PropTypes.object
     };
@@ -69,4 +69,4 @@ class RMMessage  extends Component {
         />
     }
 }
-export default withStyles(styles)(RMMessage);
+export default withStyles(styles)(Message);

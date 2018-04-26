@@ -25,7 +25,7 @@ const styles = theme => ({
         },
     }
 });
-class RMProgress  extends Component {
+class Progress  extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -89,13 +89,13 @@ class RMProgress  extends Component {
 
     }
 }
-RMProgress.propTypes = {
+Progress.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-RMProgress.defaultProps={
+Progress.defaultProps={
         completed:0,//进度百分比,当isPromise为false时props取
         error:false,//进度是否出错
         isPromise:false,//是否是根据promise模拟进度
         isFinish:false//当isPromise为true时，父组件传回完成，则progress完成
     };
-export default withStyles(styles)(RMProgress);
+export default withStyles(styles)(Progress);

@@ -8,6 +8,13 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
+        'pages/demos/selects/Select.js': {
+          js: require('docs/src/pages/demos/selects/Select').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/selects/Select'), 'utf8')
+`,
+        },
         'pages/demos/selects/SimpleSelect.js': {
           js: require('docs/src/pages/demos/selects/SimpleSelect').default,
           raw: preval`

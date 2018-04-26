@@ -1,11 +1,15 @@
 import React , {Component} from 'react';
-import RMProgress from '../Progress/RMProgress';
+import Progress from 'react-material/Progress';
 
 export default class ProgressTest extends Component {
-    state={
+  constructor(props){
+    super(props);
+    this.state={
       error:false,
       completed:0
     };
+  }
+
     componentDidMount() {
         this.timer = setInterval(this.progress, 500);
     }
@@ -25,16 +29,12 @@ export default class ProgressTest extends Component {
     };
     render() {
         return (
-            <div>
-              <br />
-              <br />
-              <RMProgress
-                  completed={this.state.completed}
-                  error={this.state.error}
-                  isPromise={true}
-                  isFinish={true}
-              />
-            </div>
+            <Progress
+                completed={this.state.completed}
+                error={this.state.error}
+                isPromise={true}
+                isFinish={false}
+            />
         );
     }
 }

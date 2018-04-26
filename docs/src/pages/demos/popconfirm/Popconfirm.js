@@ -1,74 +1,16 @@
-/*
-import React, { Component } from 'react';
-// import Popconfirm from 'react-material/Popconfirm'
-import Popconfirm from 'react-material/Popconfirm';
-import Button from 'material-ui/Button';
-
-class Test extends Component {
-
-
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  cancel = () => {
-    console.log('cancel')
-  }
-  confirm = () => {
-    console.log('ok')
-  }
-  render() {
-    const style = {}
-    return (
-      <div style={style}>
-        <Popconfirm
-          onCancel={this.cancel}    //cancel callback
-          onConfirm={this.confirm}  // confirm callback
-
-          cancelText={'cancel'}
-          confirmText={'ok'}
-          content={'Are you sure delete this task??'}
-          // location
-          anchorOrigin={{
-            vertical: 'center',
-            horizontal: 'right',
-          }}
-          transformOrigin={{
-            vertical: 'center',
-            horizontal: 'left',
-          }}
-        >
-          <div>
-            <Button variant="raised" color="secondary">
-              Click to open Popconfirm
-            </Button>
-          </div>
-        </Popconfirm>
-      </div>
-    );
-  }
-}
-
-export default Test;
-*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { FormControl, FormLabel, FormControlLabel } from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
+import { withStyles } from 'react-material/styles';
+import { FormControl, FormLabel, FormControlLabel } from 'react-material/Form';
+import Radio, { RadioGroup } from 'react-material/Radio';
+import Grid from 'react-material/Grid';
 import {Button} from 'react-material/Button';
-import Popover from 'material-ui/Popover';
+import Popover from 'react-material/Popover';
 import Popconfirm from 'react-material/Popconfirm';
 
 const styles = theme => ({
   box: {
     marginBottom: theme.spacing.unit * 6,
-  },
-  typography: {
-    margin: theme.spacing.unit * 2,
   },
 });
 

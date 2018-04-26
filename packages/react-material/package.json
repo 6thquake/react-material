@@ -1,19 +1,13 @@
 {
   "name": "react-material",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "private": false,
   "licenses": "MIT",
-  "main": "./src/index.js",
-  "module": "./src/index.es.js",
-  "files": [
-    "src",
-    "build"
-  ],
-  "maintainers": [
-    {
-      "lico": "lico.atom@gmail.com"
-    }
-  ],
+  "main": "index.js",
+  "module": "index.es.js",
+  "maintainers": [{
+    "lico": "lico.atom@gmail.com"
+  }],
   "pre-commit": [],
   "repository": {
     "type": "git",
@@ -28,11 +22,7 @@
     "build:umd:prod": "cross-env NODE_ENV=production webpack --config scripts/umd.webpack.config.js",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:umd:dev && yarn build:umd:prod && yarn build:copy-files",
-    "version": "yarn build && npm publish build --tag next",
-    "start": "react-scripts start",
-    "build2": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "deploy": "npm run build && npm publish build --tag latest"
   },
   "peerDependencies": {
     "react": "^15.3.0 || ^16.0.0",

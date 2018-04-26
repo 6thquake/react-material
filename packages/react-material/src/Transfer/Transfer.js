@@ -5,8 +5,7 @@ import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-
 import Checkbox from 'material-ui/Checkbox';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
-import {ChevronRight} from '@material-ui/icons';
-import {ChevronLeft} from '@material-ui/icons';
+import {ChevronRight,ChevronLeft,LastPage,FirstPage} from '@material-ui/icons';
 //<RMTransfer></RMTransfer>
 const styles = {
   root: {
@@ -79,6 +78,18 @@ class RMTransfer extends React.Component {
       rightChecked:[]});
     this.props.onChange(newData);
   };
+  transferAllToggle = position =>()=>{
+    const { left,right } = this.props; 
+    let _checked = position=='left'?left:position=='right'?right:'';
+    let _otherPos = position=='left'?'right':'left';
+    let aaa = this.subSet(this.props[position],_checked);
+    let newData = {};
+    newData[position] =aaa;
+    newData[_otherPos] = [].concat(this.props[_otherPos],_checked);
+    this.setState({leftChecked:[],
+      rightChecked:[]});
+    this.props.onChange(newData);
+  };
   handleToggle = (value,position) => () => {
     const { leftChecked,rightChecked } = this.state;
     let _checked = position=='left'?leftChecked:position=='right'?rightChecked:'';
@@ -111,11 +122,17 @@ class RMTransfer extends React.Component {
       <div className={classes.root}>
 
         <div className={classes.btngrp}>
+        <Button color="primary" onClick={this.transferAllToggle('left')}>
+              <LastPage />
+            </Button><br />
             <Button color="primary" onClick={this.transferToggle('left')}>
               <ChevronRight />
             </Button><br />
             <Button color="primary" onClick={this.transferToggle('right')}>
               <ChevronLeft />
+            </Button><br />
+            <Button color="primary" onClick={this.transferAllToggle('right')}>
+              <FirstPage />
             </Button>
         </div>
 
@@ -135,7 +152,7 @@ class RMTransfer extends React.Component {
                   tabIndex={-1}
                   disableRipple
                 />
-                <ListItemText primary={`Line item ${value.name + 1}`} />
+                <ListItemText primary={`${value.name}`} />
                 
               </ListItem>
             ))}
@@ -151,14 +168,13 @@ class RMTransfer extends React.Component {
                 dense
                 button
                 onClick={this.handleToggle(value,'right')}
-                
               >
                 <Checkbox
                   checked={this.state.rightChecked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
                 />
-                <ListItemText primary={`Line item ${value.name + 1}`} />
+                <ListItemText primary={`${value.name}`} />
                 
               </ListItem>
             ))}

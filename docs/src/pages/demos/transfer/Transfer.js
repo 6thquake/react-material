@@ -15,8 +15,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      right:[{name:'R1',id:'r1'},{name:'R2',id:'r2'},{name:'R3',id:'r3'}],
-      left:[{name:'L1',id:'l1'},{name:'L2',id:'l2'},{name:'L3',id:'l3'}]
+      right:[{name:'this is right one',id:'r1'},{name:'and this is right two',id:'r2'},{name:'right three is here',id:'r3'}],
+      left:[{name:'left one is left one ',id:'l1'},{name:'show the left two',id:'l2'},{name:'you get left three',id:'l3'}]
     };
   }
   changeListTest=data=>{

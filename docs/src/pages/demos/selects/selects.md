@@ -7,6 +7,13 @@ components: Select
 Select with pagination、filter
 
 {{"demo": "pages/demos/selects/Select.js"}}
+
+## CascadeSelect
+
+Select items by Cascading
+
+{{"demo": "pages/demos/selects/CascadeSelect.js"}}
+
 ## Simple Select
 
 Menus are positioned over their emitting elements such that the currently selected menu item appears on top of the emitting element.

@@ -13,9 +13,8 @@ For example, a refresh operation should display either a refresh bar or an activ
 **Determinate** indicators display how long an operation will take.
 
 **Indeterminate** indicators visualize an unspecified wait time.
-###  Progress with percentage 
-It can use with a promise status by imitate promise
-不知道为啥没显示，待改
+## Progress with percentage 
+It can use with a percentage and accept promise status by imitate promise
 
 {{"demo": "pages/demos/progress/Progress.js"}}
 ## Circular

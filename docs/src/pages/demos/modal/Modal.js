@@ -1,15 +1,30 @@
 import React , {Component} from 'react';
 import Modal  from 'react-material/Modal';
-import Button from 'material-ui/Button'
+import Button from 'material-ui/Button';
+import { withStyles } from 'react-material/styles';
 import  {DialogActions, DialogContent, DialogContentText,} from 'material-ui/Dialog';
-
+import { FormControl, FormLabel, FormControlLabel } from 'react-material/Form';
+import Radio, { RadioGroup } from 'react-material/Radio';
+import Grid from 'react-material/Grid';
+const styles = theme => ({
+  box: {
+    marginBottom: theme.spacing.unit * 6,
+  },
+});
  class ModalTest extends Component {
    constructor(props){
      super(props);
      this.state= {
        open: false,
+       animation:'zoom'
      };
    }
+   handleChange =(event, value) => {
+     console.log(value);
+     this.setState({
+       animation: value,
+     });
+   };
     handleOpen = () => {
         this.setState({ open: true });
     };
@@ -18,33 +33,54 @@ import  {DialogActions, DialogContent, DialogContentText,} from 'material-ui/Dia
         this.setState({ open: false });
     };
     render() {
+      const { classes } = this.props;
         return (
-            <div>
-                <Button onClick={this.handleOpen}>Open Modal</Button>
-                <Modal open={this.state.open}
-                         onClose={this.handleClose}
-                         label={'this is a modal test'}
-                         animation={'zoom'}
-                >
-                    <div>
-                      <DialogContent>
-                        <DialogContentText>
-                          Let Google help apps determine location. This means sending anonymous location data to
-                          Google, even when no apps are running.
-                        </DialogContentText>
-                      </DialogContent>
-                      <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
-                          Disagree
-                        </Button>
-                        <Button onClick={this.handleClose} color="primary" autoFocus>
-                          Agree
-                        </Button>
-                      </DialogActions>
-                    </div>
-                </Modal>
-            </div>
+          <div className={classes.box}>
+            <Button onClick={this.handleOpen}>Open Modal</Button>
+            <Modal open={this.state.open}
+                   onClose={this.handleClose}
+                   label={'this is a modal test'}
+                   animation={this.state.animation}
+            >
+              <div>
+                <DialogContent>
+                  <DialogContentText>
+                    Let Google help apps determine location. This means sending anonymous location data to
+                    Google, even when no apps are running.
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={this.handleClose} color="primary">
+                    Disagree
+                  </Button>
+                  <Button onClick={this.handleClose} color="primary" autoFocus>
+                    Agree
+                  </Button>
+                </DialogActions>
+              </div>
+            </Modal>
+            <Grid container spacing={16}>
+              <Grid item xs={12} sm={12}>
+                <FormControl component="fieldset">
+                  <FormLabel component="legend">open animation</FormLabel>
+                  <RadioGroup
+                    row
+                    aria-label="anchorOriginVertical"
+                    name="anchorOriginVertical"
+                    value={this.state.animation}
+                    onChange={this.handleChange}
+                  >
+                    <FormControlLabel value="slide" control={<Radio />} label="slide" />
+                    <FormControlLabel value="collapse" control={<Radio />} label="collapse" />
+                    <FormControlLabel value="fade" control={<Radio />} label="fade" />
+                    <FormControlLabel value="grow" control={<Radio />} label="grow" />
+                    <FormControlLabel value="zoom" control={<Radio />} label="zoom" />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
+            </Grid>
+          </div>
         );
     }
 }
-export default ModalTest;
+export default withStyles(styles)(ModalTest);

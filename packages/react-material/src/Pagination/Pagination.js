@@ -5,11 +5,11 @@ import { withStyles } from 'material-ui/styles';
 const styles = theme => ({
   paginationDiv: {
     display: 'block',
-    marginTop: '20px',
+    marginTop: '5px',
     color: '#535353',
     lineHeight: '29px',
     textAlign: 'center',
-    marginRight: '32px',
+    marginRight: '10px',
     '@global span':{
       display: 'block',
         float: 'right',
@@ -66,10 +66,6 @@ class Pagination extends Component {
      */
     total: PropTypes.number,
     /**
-     * This is total page of pagination
-     */
-    totalPage: PropTypes.number,
-    /**
      * This is call current page back to parent component
      */
     pageCallbackFn: PropTypes.func
@@ -78,7 +74,6 @@ class Pagination extends Component {
     currentPage: 1,
     pageSize: 5,
     total:1,
-    totalPage: 1,
     pageCallbackFn:function () {
       console.log('need callback function to getback currentpage')
     }
@@ -91,7 +86,8 @@ class Pagination extends Component {
         this.props.pageCallbackFn(this.props.currentPage)
     }
     createPage() {
-        const { classes, currentPage,pageSize,total,totalPage} = this.props;
+        const { classes, currentPage,pageSize,total} = this.props;
+        const totalPage = Math.ceil(total/pageSize);
         return <div className={classes.paginationDiv}>
                     <div className={classes.flotRight}>
                         <a className={classes.prev + ' '+(currentPage == 1? classes.disable : '')}
@@ -119,7 +115,8 @@ class Pagination extends Component {
     }
     // Next page
     nextPageHandeler() {
-        let {currentPage,totalPage} = this.props;
+        let {currentPage,total,pageSize} = this.props;
+        const totalPage = Math.ceil(total/pageSize);
         if (++currentPage > totalPage) {
             return false
         }

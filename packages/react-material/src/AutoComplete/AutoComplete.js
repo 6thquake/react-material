@@ -6,7 +6,8 @@ import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import { MenuItem } from 'material-ui/Menu';
 import Chip from 'material-ui/Chip';
-import Pagination from '../Pagination/Pagination'
+import Pagination from '../Pagination/Pagination';
+import Divider from 'material-ui/Divider';
 
 
 function renderInput(inputProps) {
@@ -150,6 +151,7 @@ class DownshiftMultiple extends React.Component {
                                         selectedItem: selectedItem2,
                                     }),
                                 )}
+                              <Divider/>
                                <Pagination
                                    {...pageConfig}
                                    pageCallbackFn ={this.pageCallbackFn.bind(this)}
@@ -221,6 +223,7 @@ class DownshiftSingle extends React.Component {
                                         selectedItem,
                                     }),
                                 )}
+                              <Divider/>
                                 <Pagination
                                    {...pageConfig}
                                     pageCallbackFn ={this.pageCallbackFn.bind(this)}
@@ -239,7 +242,6 @@ DownshiftSingle.propTypes = {
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        height: 250,
     },
     container: {
         flexGrow: 1,

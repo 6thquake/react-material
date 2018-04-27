@@ -6,8 +6,13 @@ import Pagination from '../Pagination/Pagination'
 import RMTextField from './TextField'
 import Divider from 'material-ui/Divider';
 import Chip from 'material-ui/Chip';
-
-export default class RMselect extends Component {
+import { withStyles } from 'material-ui/styles';
+const styles = theme => ({
+  selectMenu:{
+    maxWidth:'200px'
+  }
+});
+ class RMselect extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -99,6 +104,7 @@ export default class RMselect extends Component {
                 )}
             >
                 <RMTextField
+                    fullWidth={true}
                     autoFocus={true}
                     placeholder={placeholder}
                     onChange={this.textchange}
@@ -114,3 +120,4 @@ export default class RMselect extends Component {
         );
     }
 }
+export default withStyles(styles)(RMselect);

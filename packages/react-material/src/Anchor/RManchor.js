@@ -43,7 +43,7 @@ const styles = (theme) => ({
     borderRadius: '9px',
     border:'3px solid #108ee9',
     backgroundColor: '#fff',
-    left: -8.5,
+    left: -5.5,
     transition:' top .3s ease-in-out',
 
   }

@@ -9,7 +9,7 @@ A [typographic scale](https://material.google.com/style/typography.html#typograp
 
 ## General
 
-The *Roboto* font will **not** be automatically loaded by Material-UI.
+The *Roboto* font will **not** be automatically loaded by React-Material.
 The developer is responsible for loading all fonts used in their application.
 Roboto Font has a few easy ways to get started.
 
@@ -36,7 +36,7 @@ For more info check out the [typeface](https://github.com/KyleAMathews/typefaces
 ⚠️ Be careful when using this approach.
 Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff).
 Inlining all the font files can significantly increase the size of your bundle.
-Material-UI default typography configuration only relies on 300, 400 and 500 font weights.
+React-Material default typography configuration only relies on 300, 400 and 500 font weights.
 
 ## Component
 

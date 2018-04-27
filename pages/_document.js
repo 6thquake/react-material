@@ -49,8 +49,8 @@ class MyDocument extends Document {
           <style id="insertion-point-jss" />
           {/* Twitter */}
           <meta name="twitter:card" content="summary" />
-          <meta name="twitter:site" content="@MaterialUI" />
-          <meta name="twitter:title" content="Material-UI" />
+          <meta name="twitter:site" content="@React-Material" />
+          <meta name="twitter:title" content="React-Material" />
           <meta
             name="twitter:description"
             content="React Components that Implement Google's Material Design."
@@ -58,7 +58,7 @@ class MyDocument extends Document {
           <meta name="twitter:image" content="https://material-ui-next.com/static/brand.png" />
           {/* Facebook */}
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="Material-UI" />
+          <meta property="og:title" content="React-Material" />
           <meta
             property="og:description"
             content="React Components that Implement Google's Material Design."

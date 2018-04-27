@@ -1,6 +1,6 @@
 # Content Security Policy (CSP)
 
-Starting with JSS version 9.6.0, Material-UI supports Content Security Policy headers.
+Starting with JSS version 9.6.0, React-Material supports Content Security Policy headers.
 
 ## What is CSP and why is it useful?
 
@@ -18,7 +18,7 @@ You can read more about CSP [here](https://developer.mozilla.org/en-US/docs/Web/
 
 ## How does one implement CSP?
 
-In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add a server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
+In order to use CSP with React-Material (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add a server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
 
 
 A CSP nonce is a Base 64 encoded string. You can generate one like this:

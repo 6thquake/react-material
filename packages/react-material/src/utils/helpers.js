@@ -4,7 +4,7 @@ import warning from 'warning';
 
 export function capitalize(string) {
   if (process.env.NODE_ENV !== 'production' && typeof string !== 'string') {
-    throw new Error('Material-UI: capitalize(string) expects a string argument.');
+    throw new Error('React-Material: capitalize(string) expects a string argument.');
   }
 
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -51,7 +51,7 @@ export function createChainedFunction(...funcs: Array<any>) {
     (acc, func) => {
       warning(
         typeof func === 'function',
-        'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.',
+        'React-Material: invalid Argument Type, must only provide functions, undefined, or null.',
       );
 
       return function chainedFunction(...args) {

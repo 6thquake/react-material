@@ -18,7 +18,7 @@ const styles = {
 function ReactJss(props) {
   return (
     <div>
-      <Button>Material-UI</Button>
+      <Button>React-Material</Button>
       <Button className={props.classes.button}>react-jss</Button>
     </div>
   );

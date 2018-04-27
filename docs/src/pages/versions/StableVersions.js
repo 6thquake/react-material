@@ -7,7 +7,7 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Link from 'docs/src/modules/components/Link';
 
-const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases/tag/';
+const GITHUB_RELEASE_BASE_URL = 'http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tags';
 
 const styles = {
   root: {

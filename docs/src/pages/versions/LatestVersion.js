@@ -22,7 +22,7 @@ function LatestVersion(props) {
         <TableBody>
           <TableRow>
             <TableCell>
-              <Typography>v1-beta branch</Typography>
+              <Typography>0.0.4 beta branch</Typography>
             </TableCell>
             <TableCell>
               <Typography
@@ -30,7 +30,7 @@ function LatestVersion(props) {
                   <Link
                     {...props2}
                     variant="secondary"
-                    href="https://material-ui-next.netlify.com/"
+                    href="http://git.dev.sh.ctripcorp.com/sixthquake/react-material"
                   />
                 )}
               >
@@ -43,7 +43,7 @@ function LatestVersion(props) {
                   <Link
                     {...props2}
                     variant="secondary"
-                    href="https://github.com/mui-org/material-ui"
+                    href="http://git.dev.sh.ctripcorp.com/sixthquake/react-material"
                   />
                 )}
               >

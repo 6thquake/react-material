@@ -1,18 +1,18 @@
 # Installation
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/material-ui).
+React-Material is available as an [npm package](https://www.npmjs.com/package/material-ui).
 
 ## npm
 
 To install and save in your `package.json` dependencies, run:
 
 ```sh
-npm install material-ui@next
+npm install react-material@next
 ```
 
 ## Roboto Font
 
-Material-UI was designed with the [Roboto](http://www.google.com/fonts/specimen/Roboto)
+React-Material was designed with the [Roboto](http://www.google.com/fonts/specimen/Roboto)
 font in mind. So be sure to follow [these instructions](/style/typography#general).
 For instance, via Google Web Fonts:
 ```html

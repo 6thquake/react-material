@@ -1,6 +1,6 @@
 # API Design Approach
 
-We have learned a lot regarding how people use Material-UI.
+We have learned a lot regarding how people use React-Material.
 The 1.x.x rewrite allowed us to completely rethink our component API.
 
 > API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
@@ -121,7 +121,7 @@ type Props = {
 }
 ```
 
-The Material-UI components use a combination of the two approaches.
+The React-Material components use a combination of the two approaches.
 We enforce the following rule:
 - We use a *boolean* when the degrees of freedom required is **2**.
 - We use an *enum* when the degrees of freedom required is **> 2**.

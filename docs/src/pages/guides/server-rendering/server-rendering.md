@@ -4,9 +4,9 @@ The most common use case for server-side rendering is to handle the *initial ren
 When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client.
 From that point on, the client takes over rendering duties.
 
-## Material-UI on the Server
+## React-Material on the Server
 
-Material-UI was designed from the ground-up with the constraint of rendering on the Server, but it's up to you to make sure it's correctly integrated.
+React-Material was designed from the ground-up with the constraint of rendering on the Server, but it's up to you to make sure it's correctly integrated.
 It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker.
 To inject the style down to the client, we need to:
 
@@ -113,7 +113,7 @@ function renderFullPage(html, css) {
     <!doctype html>
     <html>
       <head>
-        <title>Material-UI</title>
+        <title>React-Material</title>
       </head>
       <body>
         <div id="root">${html}</div>

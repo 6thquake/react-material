@@ -175,11 +175,11 @@ class AppFrame extends React.Component {
                 )}
               </IconButton>
             </Tooltip>
-            <Tooltip id="appbar-github" title="Material-UI GitHub repo" enterDelay={300}>
+            <Tooltip id="appbar-github" title="React-Material GitHub repo" enterDelay={300}>
               <IconButton
                 component="a"
                 color="inherit"
-                href="https://github.com/mui-org/material-ui"
+                href="http://git.dev.sh.ctripcorp.com/sixthquake/react-material"
                 aria-labelledby="appbar-github"
               >
                 <Github />

@@ -9,13 +9,13 @@ For how-to questions and other non-issues, please use [StackOverflow](https://st
 
 We block the scroll as soon as a modal is opened.
 This prevents interacting with the background when the modal should be the only interactive content, however, removing the scrollbar can make your **fixed positioned elements** move.
-In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
+In this situation, you can apply a global `.mui-fixed` class name to tell React-Material to handle those elements.
 
 ## How can I disable the ripple effect on the whole app?
 
-The best solution at present is to write wrapping components for all the Material-UI components showing a ripple.
+The best solution at present is to write wrapping components for all the React-Material components showing a ripple.
 The ripple effect is exclusively coming from the `BaseButton` component.
-You can find the components using the BaseButton [here](https://github.com/mui-org/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
+You can find the components using the BaseButton [here](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
 Then, all you have to do is to provide the `disableRipple` property.
 
 ## Do I have to use JSS to style my app?
@@ -27,10 +27,10 @@ It's highly recommended:
 - It has a clean, consistent [API](http://cssinjs.org/json-api).
 - It supports a number of advanced features, either natively, or through [plugins](http://cssinjs.org/plugins/). 
 
-However perhaps you're adding some Material-UI components to an app that already uses another styling solution,
+However perhaps you're adding some React-Material components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the 
 [Style Library Interoperability](/guides/interoperability) section, 
-where we show how simple it is to restyle Material-UI components with alternative style libraries.
+where we show how simple it is to restyle React-Material components with alternative style libraries.
 
 ## When should I use inline-style vs `withStyles()`?
 
@@ -116,18 +116,18 @@ Usage:
 ## Why are the colors I am seeing different from what I see here?
 
 The documentation site is using a custom theme. Hence, the color palette is
-different from the default theme that Material-UI ships. Please refer to [this
+different from the default theme that React-Material ships. Please refer to [this
 page](/customization/themes) to learn about theme customization.
 
-## Material-UI is awesome. How can I support the project?
+## React-Material is awesome. How can I support the project?
 
-There are many ways to support Material-UI:
-- Improve [the documentation](https://github.com/mui-org/material-ui/tree/v1-beta/docs).
+There are many ways to support React-Material:
+- Improve [the documentation](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/v1-beta/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).
-- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui) or [issues marked as question](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.
+- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui) or [issues marked as question](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.
 
-If you use Material-UI in a commercial project and would like to support its continued development by becoming a **Sponsor**,
+If you use React-Material in a commercial project and would like to support its continued development by becoming a **Sponsor**,
 or in a side or hobby project and would like to become a backer, you can do so through [OpenCollective](https://opencollective.com/material-ui).
 
-All funds raised are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
+All funds raised are managed transparently, and Sponsors receive recognition in the README and on the React-Material home page.

@@ -1,6 +1,6 @@
 # eslint-plugin-material-ui
 
-Custom eslint rules for Material-UI
+Custom eslint rules for React-Material
 
 ## Supported Rules
 

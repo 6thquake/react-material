@@ -9,7 +9,7 @@ To promote greater consistency between apps, light and dark theme types are avai
 ## Theme provider
 
 If you wish to customize the theme, you need to use the `MuiThemeProvider` component in order to inject a theme into your application.
-However, this is optional; Material-UI components come with a default theme.
+However, this is optional; React-Material components come with a default theme.
 
 `MuiThemeProvider` relies on the context feature of React to pass the theme down to the components,
 so you need to make sure that `MuiThemeProvider` is a parent of the components you are trying to customize.
@@ -17,7 +17,7 @@ You can learn more about this in [the API section](#muithemeprovider).
 
 ## Theme configuration variables
 
-Changing the theme configuration variables is the most effective way to match Material-UI to your needs.
+Changing the theme configuration variables is the most effective way to match React-Material to your needs.
 The following sections cover the most important theme variables:
 
 - [Palette](#palette)
@@ -228,13 +228,13 @@ const theme = createMuiTheme({
 
 ### Typography - Font size
 
-Material-UI uses `rem` units for the font size.
+React-Material uses `rem` units for the font size.
 The browser `<html>` element default font size is `16px`, but browsers have an option to change this value,
 so `rem` units allow us to accommodate the user's settings, resulting in a much better user experience.
 Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
 for devices that can be vastly different in size and viewing distance.
 
-To change the font-size of Material-UI you can provide a `fontSize` property.
+To change the font-size of React-Material you can provide a `fontSize` property.
 The default value is `14px`.
 
 ```js
@@ -255,13 +255,13 @@ The computed font size by the browser follows this mathematical equation:
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 We provide a `htmlFontSize` theme property for this use case.
-It's telling Material-UI what's the font-size on the `<html>` element is.
+It's telling React-Material what's the font-size on the `<html>` element is.
 It's used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createMuiTheme({
   typography: {
-    // Tell Material-UI what's the font-size on the html element is.
+    // Tell React-Material what's the font-size on the html element is.
     htmlFontSize: 10,
   },
 });
@@ -284,7 +284,7 @@ You can check out the [default theme section](/customization/default-theme) to v
 
 ### Custom variables
 
-When using Material-UI's [styling solution](/customization/css-in-js) with your own components,
+When using React-Material's [styling solution](/customization/css-in-js) with your own components,
 you can also take advantage of the theme.
 It can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
@@ -294,14 +294,14 @@ For instance:
 ## Customizing all instances of a component type
 
 When the configuration variables aren't powerful enough, you can take advantage of the
-`overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM.
+`overrides` key of the `theme` to potentially change every single style injected by React-Material into the DOM.
 That's a really powerful feature.
 
 {{"demo": "pages/customization/themes/OverridesTheme.js"}}
 
 The list of these customization points for each component is documented under the **Component API** section.
 For instance, you can have a look at the [Button](/api/button#css-api).
-Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/v1-beta/packages/material-ui/src/Button/Button.js).
+Alternatively, you can always have a look at the [implementation](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/blob/v1-beta/packages/material-ui/src/Button/Button.js).
 
 ## Accessing the theme in a component
 

@@ -15,7 +15,7 @@ System icons are also used to represent common actions like trash, print, and sa
 and are commonly found in app bars, toolbars, buttons, and lists.
 Google has provided a set of [Material icons](https://material.io/icons/) that follow these guidelines.
 
-Material-UI provides two components to render system icons: `Icon` for rendering font icons, and `SvgIcon` for rendering SVG paths.
+React-Material provides two components to render system icons: `Icon` for rendering font icons, and `SvgIcon` for rendering SVG paths.
 
 ### Font Icons
 
@@ -47,7 +47,7 @@ The `SvgIcon` component takes an SVG `path` element as its child and converts it
 and allows the icon to be styled and respond to mouse events.
 
 The resulting icon can be used as is,
-or included as a child for other Material-UI components that use icons.
+or included as a child for other React-Material components that use icons.
 By default, an Icon will inherit the current text color.
 Optionally, you can set the icon color using one of the theme color properties: `secondary`, `action`, `contrast`, `disabled`, `error`, & `primary`.
 
@@ -74,5 +74,5 @@ Keep in mind that we `PascalCase` the names of the icons, for instance:
 
 Looking for even more SVG icons? There are a lot of projects out there,
 but we have found one that provides 2,000+ unofficial Material Design Icons: [https://materialdesignicons.com](https://materialdesignicons.com/).
-You can use the [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) integration project between this raw list of icons and Material-UI.
+You can use the [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) integration project between this raw list of icons and React-Material.
 

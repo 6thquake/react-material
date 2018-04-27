@@ -30,7 +30,7 @@ function CSSGrid(props) {
   return (
     <div>
       <Typography variant="subheading" gutterBottom>
-        Material-UI Grid:
+        React-Material Grid:
       </Typography>
       <Grid container spacing={24}>
         <Grid item xs={3}>

@@ -146,10 +146,10 @@ class Carbon extends React.Component {
         <div className={classes.root}>
           <div className={classes.ad}>
             <div className={classes.carbonads}>
-              <Typography gutterBottom>Like Material-UI?</Typography>
+              <Typography gutterBottom>Like React-Material?</Typography>
               <Typography gutterBottom>
                 {`If you don't mind tech-related ads, and want to support Open Source,
-                please whitelist Material-UI in your ad blocker.`}
+                please whitelist React-Material in your ad blocker.`}
               </Typography>
               <Typography>
                 Thank you!{' '}

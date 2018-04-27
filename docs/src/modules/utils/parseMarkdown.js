@@ -41,5 +41,5 @@ export function getContents(markdown) {
 export function getTitle(markdown) {
   const matches = markdown.match(titleRegExp);
 
-  return matches ? matches[1] : 'Material-UI';
+  return matches ? matches[1] : 'React-Material';
 }

@@ -1,12 +1,12 @@
 # CSS in JS
 
-Material-UI aims to provide strong foundations for building dynamic UIs.
+React-Material aims to provide strong foundations for building dynamic UIs.
 For the sake of simplicity, **we expose the internal styling solution to users**.
 You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability) all the other major solutions.
 
-## Material-UI's styling solution
+## React-Material's styling solution
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the
+In previous versions, React-Material has used LESS, then a custom inline-style solution to write the style of the
 components, but these approaches have proven to be limited. Most recently, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style)
 a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 We think that it's the future:
@@ -21,12 +21,12 @@ to inject an array of styles into the DOM as CSS, using JSS. Here's an example:
 
 ## JSS
 
-Material-UI's styling solution uses [JSS](https://github.com/cssinjs/jss) at its core.
+React-Material's styling solution uses [JSS](https://github.com/cssinjs/jss) at its core.
 It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JS to CSS compiler which works at runtime and server-side.
 It is about 8 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 
 If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
-The best place to start is by looking at the features that each [plugin](http://cssinjs.org/plugins) provides. Material-UI uses [few of them](#plugins).
+The best place to start is by looking at the features that each [plugin](http://cssinjs.org/plugins) provides. React-Material uses [few of them](#plugins).
 You can always add new plugins if needed with the [`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup) helper.
 
 If you wish to build your own instance of `jss` **and** support *rtl* make sure you also include the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
@@ -70,7 +70,7 @@ JSS relies on the concept of [class name generator](http://cssinjs.org/js-api/#g
 
 ### Global CSS
 
-We provide a custom implementation of the class name generator for Material-UI needs:
+We provide a custom implementation of the class name generator for React-Material needs:
 [`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator).
 As well as the option to make the class names **deterministic** with the `dangerouslyUseGlobalCSS` option. When turned on, the class names will look like this:
 
@@ -85,7 +85,7 @@ Global CSS is fragile by design.
 
 ## CSS injection order
 
-The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
+The CSS injected by React-Material to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
 
 You might, however, also want to override these styles, for example with styled-components.
 If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point) to handle this situation.
@@ -308,7 +308,7 @@ A function which returns a class name generator function.
 #### Arguments
 
 1. `options` (*Object* [optional]):
-  - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
+  - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the React-Material class names deterministic.
   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
 
 #### Returns

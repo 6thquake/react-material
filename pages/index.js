@@ -72,18 +72,18 @@ function PageHome(props) {
   return (
     <div className={classes.root}>
       <Head>
-        <title>Material-UI</title>
+        <title>React-Material</title>
       </Head>
       <div className={classes.hero}>
         <div className={classes.content}>
           <img
-            src="/static/images/material-ui-logo.svg"
-            alt="Material-UI Logo"
+            src="/static/images/logo.svg"
+            alt="React-Material Logo"
             className={classes.logo}
           />
           <div className={classes.text}>
             <Typography variant="display2" component="h1" color="inherit" gutterBottom>
-              {'Material-UI'}
+              {'React-Material'}
             </Typography>
             <Typography
               variant="headline"
@@ -91,7 +91,7 @@ function PageHome(props) {
               color="inherit"
               className={classes.headline}
             >
-              {"React components that implement Google's Material Design."}
+              {"React-Material components that implement Google's Material Design."}
             </Typography>
             <Button
               component={buttonProps => (

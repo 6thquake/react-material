@@ -13,7 +13,7 @@ const styles = theme => ({
 });
 
 const options = [
-  'Show some love to Material-UI',
+  'Show some love to React-Material',
   'Show all notification content',
   'Hide sensitive notification content',
   'Hide all notification content',

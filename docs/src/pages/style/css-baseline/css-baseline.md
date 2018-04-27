@@ -5,7 +5,7 @@ components: CssBaseline
 # CSS Baseline
 
 You might be familiar with [normalize.css](https://github.com/necolas/normalize.css), a collection of HTML element and attribute style-normalizations.
-Material-UI provides a `CssBaseline` component to kickstart an elegant, consistent, and simple baseline to build upon.
+React-Material provides a `CssBaseline` component to kickstart an elegant, consistent, and simple baseline to build upon.
 
 ```jsx
 import React from 'react';

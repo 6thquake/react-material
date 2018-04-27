@@ -1,7 +1,7 @@
 # Supported Components
 
 The following is a list of Material Design components & features.
-Those currently supported by Material-UI are **highlighted ✓**.
+Those currently supported by React-Material are **highlighted ✓**.
 
 While we strive to follow the guidelines where practical (applying
 common sense where guidelines contradict - a more common occurrence than
@@ -10,7 +10,7 @@ feature of every component, but rather to provide the building blocks to
 allow developers to create compelling user interfaces and experiences.
 
 If you wish to add support for a component or feature not highlighted
-here, please search for the relevant [GitHub Issue](https://github.com/mui-org/material-ui/issues), or create a new one
+here, please search for the relevant [GitHub Issue](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues), or create a new one
 to discuss the approach before submitting a PR.
 
 - **[App Bar](https://material.io/guidelines/layout/structure.html#structure-app-bar) ✓**

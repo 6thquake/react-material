@@ -2,27 +2,27 @@
 
 This is definitely one of the most challenging pages in the guide to write, but we do feel it’s important.
 Odds are, you’ve had problems you tried to solve and you’ve used another library to solve them.
-You’re here because you want to know if Material-UI can solve your specific problems better.
+You’re here because you want to know if React-Material can solve your specific problems better.
 That’s what we hope to answer for you here.
 
 We’d like your help keeping this document up-to-date because the JavaScript world moves fast!
 If you notice an inaccuracy or something that doesn’t seem quite right, please let us know by
-[opening an issue](https://github.com/mui-org/material-ui/issues/new?title=[docs]+Inaccuracy+in+comparison+guide).
+[opening an issue](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues/new?title=[docs]+Inaccuracy+in+comparison+guide).
 
 We cover the following libraries:
 
-- [Material-UI](#material-ui)
+- [React-Material](#material-ui)
 - [Material Design Lite (MDL)](#material-design-lite-mdl-)
 - [Material Components Web (MDC-web)](#material-components-web-mdc-web-)
 - [Materialize](#materialize)
 - [React Toolbox](#react-toolbox)
 
-## Material-UI
+## React-Material
 
 ![stars](https://img.shields.io/github/stars/mui-org/material-ui.svg?style=social&label=Stars)
 ![npm](https://img.shields.io/npm/dm/material-ui.svg)
 
-We'll try very hard to avoid bias, although as the core team, we obviously like Material-UI a lot ❤️.
+We'll try very hard to avoid bias, although as the core team, we obviously like React-Material a lot ❤️.
 There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it 😄.
 
 We do want to be fair and accurate though, so where other libraries offer significant advantages we try to list these as well.
@@ -52,7 +52,7 @@ here to stay, as they continue to invest in it.
 
 ### Frameworks and libraries
 
-Material-UI focuses exclusively on the React library, although, given that Preact supports the very same API,
+React-Material focuses exclusively on the React library, although, given that Preact supports the very same API,
 we hope to soon support it too. Supporting one framework allows us to do less but do it better.
 
 This comes in different flavors:
@@ -65,7 +65,7 @@ They list 3rd-party framework integration projects in the github [README](https:
 
 ### Styling solution
 
-[Material-UI carries a heavy legacy with styles](https://github.com/oliviertassinari/a-journey-toward-better-style).
+[React-Material carries a heavy legacy with styles](https://github.com/oliviertassinari/a-journey-toward-better-style).
 Our very first release was using LESS, but seeing the limitation of this solution,
 we quickly started looking into alternatives. Our first migration was towards using an inline-style solution.
 This was promising:
@@ -87,22 +87,22 @@ a technology we replaced for its limitations.
 
 Our vision is to provide an elegant implementation of the Material Design guidelines **and more**.
 
-> The Material Design guidelines are an incredible starting point, but they do not provide guidance on all aspects or needs of an application. In addition to the guideline-specific implementation, we want Material-UI to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines.
+> The Material Design guidelines are an incredible starting point, but they do not provide guidance on all aspects or needs of an application. In addition to the guideline-specific implementation, we want React-Material to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines.
 
 > *[An extract taken from the [vision section](/discover-more/vision/) of the documentation.]*
 
-We want to see businesses succeeding in taking advantage of Material-UI to ship an awesome UI to their users
-while having it match their brand, so we have invested a lot in the customization capabilities of Material-UI.
+We want to see businesses succeeding in taking advantage of React-Material to ship an awesome UI to their users
+while having it match their brand, so we have invested a lot in the customization capabilities of React-Material.
 
-The only goal of MDC-Web is to be a Material Design implementation for the web platform. **Nothing more, nothing less**. They will not consider making changes to the components - especially UX changes - that would facilitate additional flexibility at the cost of breaking with the core Material Design system, as that is a non-goal of the project. *[source](https://github.com/mui-org/material-ui/issues/6799#issuecomment-299925174)*
+The only goal of MDC-Web is to be a Material Design implementation for the web platform. **Nothing more, nothing less**. They will not consider making changes to the components - especially UX changes - that would facilitate additional flexibility at the cost of breaking with the core Material Design system, as that is a non-goal of the project. *[source](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues/6799#issuecomment-299925174)*
 
 ### Tests
 
 Both projects invest a lot in tests. At the time of writing, both projects have over 99% test coverage:
-- Material-UI has 1200+ unit tests running on Chrome 49, Firefox 45, Safari 10 and Edge 14.
+- React-Material has 1200+ unit tests running on Chrome 49, Firefox 45, Safari 10 and Edge 14.
 - MDC-web has 1200+ unit tests running on all the major browsers.
 
-Still, there is one thing that sets Material-UI apart and it's key:
+Still, there is one thing that sets React-Material apart and it's key:
 We have [hundreds of visual regression tests](https://www.argos-ci.com/mui-org/material-ui) when MDC-web doesn't have any.
 With visual regression tests, you don't have to make any trade-off:
 - You can spend less time making sure every contribution doesn't introduce unexpected regressions.
@@ -116,14 +116,14 @@ The **less** time you spend on a single contribution, the **more** contributions
 
 ### Browser support
 
-Materialize supports a wider range of browsers than Material-UI does, for instance,
+Materialize supports a wider range of browsers than React-Material does, for instance,
 they support IE 10 while [we only support IE 11](/getting-started/supported-platforms).
 Only supporting IE 11 allows us to take full advantage of the flexbox layout.
 IE 10 has many issues with flexbox.
 
 ### Styling solution
 
-Materialize uses SCSS, a styling architecture Material-UI moved away from 2 years ago.
+Materialize uses SCSS, a styling architecture React-Material moved away from 2 years ago.
 We explain why in the [MDC-web section](#styling-solution) above.
 
 ## React Toolbox
@@ -133,13 +133,13 @@ We explain why in the [MDC-web section](#styling-solution) above.
 
 ### Styling solution
 
-While both React Toolbox and Material-UI are betting on CSS-in-JS, we have taken a different trade-off.
-Material-UI has chosen **JSS** while React Toolbox started rewriting their library with **styled-components**. We picked JSS over styled-components for the following reason:
+While both React Toolbox and React-Material are betting on CSS-in-JS, we have taken a different trade-off.
+React-Material has chosen **JSS** while React Toolbox started rewriting their library with **styled-components**. We picked JSS over styled-components for the following reason:
 
 - JSS exposes a low-level API:
   - We are free to model it to our unique needs, which has allowed us to build one of the most advanced override and theming mechanism.
   - It's not coupled to React like `styled-components` is. It has the potential to reach any 3rd party JS frameworks and libraries. The parallels can be made with SCSS. SCSS is compatible with any JavaScript frameworks and libraries, helping it to get traction in the community.
 - JSS is [two times faster](https://github.com/A-gambit/CSS-IN-JS-Benchmarks/blob/master/RESULT.md) to mount components than style-components is, with all the optimization turned on.
 
-This is not to say that Material-UI is opinionated about how users write their styles.
+This is not to say that React-Material is opinionated about how users write their styles.
 You can use styled-components if you would like to do so.

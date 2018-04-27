@@ -1,9 +1,9 @@
 # Usage
 
-Material-UI components work in isolation.
+React-Material components work in isolation.
 **They are self-supporting**, and will inject, and only inject, the styles they need to display.
 They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/),
-although Material-UI does provide an optional [CssBaseline](/style/css-baseline) component.
+although React-Material does provide an optional [CssBaseline](/style/css-baseline) component.
 
 You can use any of the components as demonstrated in the documentation.
 Please refer to each component's [demo page](/demos/app-bar/) to see how they should be imported.

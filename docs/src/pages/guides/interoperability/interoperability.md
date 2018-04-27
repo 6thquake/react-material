@@ -1,6 +1,6 @@
 # Style Library Interoperability
 
-While it is simple to use the JSS based styling solution provided by Material-UI to style your application,
+While it is simple to use the JSS based styling solution provided by React-Material to style your application,
 it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries.
 
 This guide aims to document the most popular alternatives, but you should find that the principals
@@ -42,7 +42,7 @@ function RawCSSButton() {
   return (
     <div>
       <Button>
-        Material-UI
+        React-Material
       </Button>
       <Button className="button">
         Raw CSS
@@ -104,8 +104,8 @@ export default GlobalCSSButton;
 ![stars](https://img.shields.io/github/stars/cssinjs/react-jss.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
 
-Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
-We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
+React-Material's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
+We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from React-Material back to react-jss.
 
 {{"demo": "pages/guides/interoperability/ReactJss.js"}}
 
@@ -140,7 +140,7 @@ function CSSModulesButton() {
   return (
     <div>
       <Button>
-        Material-UI
+        React-Material
       </Button>
       <Button className={styles.button}>
         CSS Modules
@@ -178,7 +178,7 @@ function StyledComponentsButton() {
   return (
     <div>
       <Button>
-        Material-UI
+        React-Material
       </Button>
       <StyledButton>
         Styled Components
@@ -222,7 +222,7 @@ function StyledComponentsButton() {
   return (
     <div>
       <Button>
-        Material-UI
+        React-Material
       </Button>
       <StyledButton>
         Styled Components
@@ -268,7 +268,7 @@ const StyledButton = styled(({ color, ...other }) => (
 function StyledComponentsButton() {
   return (
     <div>
-      <Button>Material-UI</Button>
+      <Button>React-Material</Button>
       <StyledButton color="papayawhip">Styled Components</StyledButton>
     </div>
   );
@@ -284,7 +284,7 @@ export default StyledComponentsButton;
 ![stars](https://img.shields.io/github/stars/paypal/glamorous.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/glamorous.svg?)
 
-A clean way to apply styles to Material-UI components with glamorous It's just passing our component as a glamorous param. We're going to take the [raised button example](/demos/buttons/#raised-buttons) from Material-UI documentation and use glamorous to style it:
+A clean way to apply styles to React-Material components with glamorous It's just passing our component as a glamorous param. We're going to take the [raised button example](/demos/buttons/#raised-buttons) from React-Material documentation and use glamorous to style it:
 
 ```jsx
 import React from 'react';
@@ -305,7 +305,7 @@ function GlamorousButton() {
   return (
     <div>
       <Button>
-        Material-UI
+        React-Material
       </Button>
       <StyledButton>
         Glamorous
@@ -356,7 +356,7 @@ function GlamorButton() {
   return (
     <div>
       <Button>
-        Material-UI
+        React-Material
       </Button>
       <Button className={className}>
         Glamor

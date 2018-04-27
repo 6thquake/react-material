@@ -1,8 +1,8 @@
 # Showcase
 
-The following is a list of some of the public apps using Material-UI. Not all of them have their interface implemented using 100% Material-UI.
+The following is a list of some of the public apps using React-Material. Not all of them have their interface implemented using 100% React-Material.
 
-Want to add your app? Found an app that no longer works or no longer uses Material-UI? Please submit a pull request on [GitHub](https://github.com/mui-org/material-ui) to update this page!
+Want to add your app? Found an app that no longer works or no longer uses React-Material? Please submit a pull request on [GitHub](http://git.dev.sh.ctripcorp.com/sixthquake/react-material) to update this page!
 
 ## The list
 
@@ -57,7 +57,7 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
 
 ### 10. Builder Book
   Open source web app to write and host documentation or sell books.
-  Built with React, Material-UI, Next, Express, Mongoose, MongoDB.
+  Built with React, React-Material, Next, Express, Mongoose, MongoDB.
 
   homepage: https://builderbook.org/
 

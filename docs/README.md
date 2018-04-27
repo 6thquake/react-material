@@ -1,6 +1,6 @@
-# Material-UI docs
+# React-Material docs
 
-This is the documentation website of Material-UI.
+This is the documentation website of React-Material.
 
 To start the docs site in development mode, from the project root, run:
 
@@ -10,5 +10,5 @@ npm run docs:dev
 
 ## How can I add a new demo in the documentation?
 
-[You can follow this guide](https://github.com/mui-org/material-ui/blob/v1-beta/CONTRIBUTING.md)
-on how to get started contributing to Material-UI.
+[You can follow this guide](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/blob/v1-beta/CONTRIBUTING.md)
+on how to get started contributing to React-Material.

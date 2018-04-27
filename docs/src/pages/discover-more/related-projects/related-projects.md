@@ -1,19 +1,19 @@
 # Related projects
 
-Because the scope of problems Material-UI solves is limited, we try to play nicely with
+Because the scope of problems React-Material solves is limited, we try to play nicely with
 other libraries.
 We have built a carefully curated collection of libraries that worth giving a look.
 Feel free to submit a pull-request to add more projects; we will accept them if they match our criteria.
 
-## Material-UI Specific Projects
+## React-Material Specific Projects
 
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features.
-- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) A fuzzy-search component for React and Material-UI.
-- [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Components that implement Material Design date and time pickers for Material-UI.
-- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker) A TimePicker for Material-UI.
-- [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [mui-downshift](https://github.com/techniq/mui-downshift) Thin layer over paypal's downshift to use Material-UI visual components.
-- [Wertarbyte](https://next.mui.wertarbyte.com/) Wertarbyte are using Material-UI for many of their projects. This is a collection of complementary components they have built.
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for React-Material with paging, sorting, filtering, grouping and editing features.
+- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) A fuzzy-search component for React and React-Material.
+- [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Components that implement Material Design date and time pickers for React-Material.
+- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker) A TimePicker for React-Material.
+- [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for React-Material with filtering, sorting, search and more.
+- [mui-downshift](https://github.com/techniq/mui-downshift) Thin layer over paypal's downshift to use React-Material visual components.
+- [Wertarbyte](https://next.mui.wertarbyte.com/) Wertarbyte are using React-Material for many of their projects. This is a collection of complementary components they have built.
 
 ## Complementary Projects
 

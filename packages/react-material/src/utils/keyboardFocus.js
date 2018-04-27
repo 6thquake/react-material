@@ -11,10 +11,10 @@ const internal = {
 };
 
 export function detectKeyboardFocus(instance, element, callback, attempt = 1) {
-  warning(instance.keyboardFocusCheckTime, 'Material-UI: missing instance.keyboardFocusCheckTime');
+  warning(instance.keyboardFocusCheckTime, 'React-Material: missing instance.keyboardFocusCheckTime');
   warning(
     instance.keyboardFocusMaxCheckTimes,
-    'Material-UI: missing instance.keyboardFocusMaxCheckTimes',
+    'React-Material: missing instance.keyboardFocusMaxCheckTimes',
   );
 
   instance.keyboardFocusTimeout = setTimeout(() => {

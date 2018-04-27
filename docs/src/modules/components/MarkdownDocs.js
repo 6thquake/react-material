@@ -28,7 +28,7 @@ const styles = theme => ({
 });
 
 const demoRegexp = /^"demo": "(.*)"/;
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/v1-beta';
+const SOURCE_CODE_ROOT_URL = 'http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/v1-beta';
 
 function MarkdownDocs(props, context) {
   const { classes, demos, disableCarbon, markdown, markdownLocation: markdownLocationProp } = props;
@@ -54,7 +54,7 @@ function MarkdownDocs(props, context) {
   return (
     <AppContent className={classes.root}>
       <Head>
-        <title>{`${getTitle(markdown)} - Material-UI`}</title>
+        <title>{`${getTitle(markdown)} - React-Material`}</title>
       </Head>
       <div className={classes.header}>
         <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>

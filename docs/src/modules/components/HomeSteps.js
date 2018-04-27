@@ -69,7 +69,7 @@ function HomeSteps(props) {
         <div className={classes.stepBody}>
           <Typography variant="subheading" gutterBottom>
             {`
-            Install Material-UI's source files via npm.
+            Install React-Material's source files via npm.
             We take care of injecting the CSS needed.
             `}
           </Typography>
@@ -77,29 +77,18 @@ function HomeSteps(props) {
             className={classes.markdownElement}
             text={`
   \`\`\`sh
-  $ npm install material-ui@next
+  $ npm install react-material@next
   \`\`\`
                 `}
           />
           <Typography variant="subheading" gutterBottom>
-            {'or use a CDN.'}
+            {'or use yarn.'}
           </Typography>
           <MarkdownElement
             className={classes.markdownElement}
             text={`
-  \`\`\`html
-  <script src="https://unpkg.com/material-ui@next/umd/material-ui.production.min.js" crossorigin="anonymous"></script>
-  \`\`\`
-                `}
-          />
-          <Typography variant="subheading" gutterBottom>
-            {'Load the default Roboto font.'}
-          </Typography>
-          <MarkdownElement
-            className={classes.markdownElement}
-            text={`
-  \`\`\`html
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+  \`\`\`sh
+  $ yarn add react-material@next
   \`\`\`
                 `}
           />
@@ -120,14 +109,14 @@ function HomeSteps(props) {
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subheading" gutterBottom>
-            {'Material-UI components work in isolation. They are self-supporting.'}
+            {'React-Material components work in isolation. They are self-supporting.'}
           </Typography>
           <MarkdownElement
             className={classes.markdownElement}
             text={`
   \`\`\`jsx
   import React from 'react';
-  import Button from 'material-ui/Button';
+  import Button from 'react-material/Button';
 
   const App = () => (
     <Button variant="raised" color="primary">
@@ -154,8 +143,8 @@ function HomeSteps(props) {
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subheading" gutterBottom>
-            {`Take Material-UI to the next level with premium themes from
-              our official marketplace—all built on Material-UI.`}
+            {`Take React-Material to the next level with premium themes from
+              our official marketplace—all built on React-Material.`}
           </Typography>
           <Link prefetch href="/premium-themes">
             <img className={classes.img} alt="themes" src="/static/images/themes.png" />

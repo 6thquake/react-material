@@ -8,7 +8,7 @@
 
 #### "Palette"
 
-A palette is a collection of colors, i.e. hues and their shades. Material-UI provides all colors from the Material Design guidelines.
+A palette is a collection of colors, i.e. hues and their shades. React-Material provides all colors from the Material Design guidelines.
 
 #### "Hue" & "Shade"
 

@@ -23,7 +23,7 @@ const styles = {
 const themes = [
   {
     name: 'Material Dashboard Pro',
-    description: 'Material Dashboard Pro React is a Premium Material-UI Admin.',
+    description: 'Material Dashboard Pro React is a Premium React-Material Admin.',
     src: '/static/images/themes/creative-tim.png',
     price: '$59',
     category: 'Admin & Dashboard',
@@ -31,7 +31,7 @@ const themes = [
   },
   {
     name: 'Material Dashboard',
-    description: 'Material Dashboard React is a Free Material-UI Admin.',
+    description: 'Material Dashboard React is a Free React-Material Admin.',
     src: '/static/images/themes/creative-tim.png',
     price: 'FREE',
     category: 'Admin & Dashboard',

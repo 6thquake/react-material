@@ -7,7 +7,7 @@
 ### Breakpoints
 
 For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints.
-Material-UI uses a **simplified** implementation of the original [specification](https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints).
+React-Material uses a **simplified** implementation of the original [specification](https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints).
 
 Each breakpoint matches with a *fixed* screen width:
 - **xs**, extra-small: 0px or larger
@@ -26,11 +26,11 @@ for controlling the layout of your application through the [Grid](/layout/grid) 
 
 ## z-index
 
-Several Material-UI components utilize `z-index`, the CSS property that helps control layout by providing a third axis to arrange content.
-We utilize a default z-index scale in Material-UI that's been designed to properly layer drawers,
+Several React-Material components utilize `z-index`, the CSS property that helps control layout by providing a third axis to arrange content.
+We utilize a default z-index scale in React-Material that's been designed to properly layer drawers,
 modals, snackbars, tooltips, and more.
 
-[These values](https://github.com/mui-org/material-ui/blob/v1-beta/packages/material-ui/src/styles/zIndex.js) start at an arbitrary number, high and specific enough to ideally avoid conflicts.
+[These values](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/blob/v1-beta/packages/material-ui/src/styles/zIndex.js) start at an arbitrary number, high and specific enough to ideally avoid conflicts.
 
 - mobile stepper: 1000
 - app bar: 1100

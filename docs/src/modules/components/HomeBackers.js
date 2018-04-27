@@ -25,53 +25,39 @@ function HomeBackers(props) {
         <MarkdownElement
           className={classes.markdownElement}
           text={`
-<h2>Supporting Material-UI</h2>
+<h2>Supporting React-Material</h2>
 
-Material-UI is an MIT-licensed open source project.
+React-Material is an MIT-licensed open source project.
 It's an independent project with ongoing development made possible entirely
 thanks to the support of these awesome [backers](/discover-more/backers).
 
-<h3>Gold Sponsors</h3>
+<h3>Maintainers</h3>
 
-Gold Sponsors are those who have pledged $500/month and more to Material-UI.
-
-#### via [Patreon](https://www.patreon.com/oliviertassinari)
+#### via [Sixthquake](http://git.dev.sh.ctripcorp.com/sixthquake/react-material)
 
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="middle">
-        <a href="https://www.creative-tim.com?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank">
-          <img
-            width="126"
-            src="https://avatars1.githubusercontent.com/u/20172349?s=378"
-            alt="0"
-            title="Premium Themes"
-          >
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://bitsrc.io" rel="noopener" target="_blank">
-          <img
-            width="80"
-            src="https://avatars1.githubusercontent.com/u/24789812?s=180"
-            alt="1"
-            title="The fastest way to share code"
-          >
-        </a>
-      </td>
+
+      ${['liujc', 'jxzhuang', 'wgshao', 'honggc', 'wmhuang', 'liyn']
+        .map(
+          user =>
+            `<td align="center" valign="middle">
+              <a href="http://git.dev.sh.ctripcorp.com/u/${user}" rel="noopener" target="_blank">
+                <img
+                  width="80"
+                  src="https://www.ctripteam.com/avatar/${user}?_dc=0"
+                  alt="${user}"
+                  title="${user}"
+                >
+              </a>
+            </td>`  
+          )
+        .join('')}
     </tr>
   </tbody>
 </table>
 
-#### via [OpenCollective](https://opencollective.com/material-ui)
-
-${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-            .map(
-              num =>
-                `<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/website" rel="noopener" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/avatar.svg" alt="${num}" /></a>`,
-            )
-            .join('')}
 `}
         />
       </NoSSR>

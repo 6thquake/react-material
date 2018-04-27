@@ -1,6 +1,6 @@
 # Composition
 
-Material-UI tries to make composition as easy as possible.
+React-Material tries to make composition as easy as possible.
 
 ## Wrapping components
 
@@ -26,7 +26,7 @@ WrappedIcon.muiName = 'Icon';
 
 ## Component property
 
-Material-UI allows you to change the root node that will be rendered via a property called `component`.
+React-Material allows you to change the root node that will be rendered via a property called `component`.
 The component will render like this:
 
 ```js

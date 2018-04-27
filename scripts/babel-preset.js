@@ -1,7 +1,7 @@
 const ENV = process.env.BABEL_ENV;
 let config;
 
-// We release a ES version of Material-UI.
+// We release a ES version of React-Material.
 // It's something that matches the latest official supported features of JavaScript.
 // Nothing more (stage-1, etc), nothing less (require, etc).
 if (ENV === 'es') {

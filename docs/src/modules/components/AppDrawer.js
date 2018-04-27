@@ -101,7 +101,7 @@ function AppDrawer(props, context) {
         <div className={classes.toolbar}>
           <Link className={classes.title} href="/" onClick={onClose}>
             <Typography variant="title" color="inherit">
-              Material-UI
+              React-Material
             </Typography>
           </Link>
           {process.env.LIB_VERSION ? (

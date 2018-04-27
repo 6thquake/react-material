@@ -4,11 +4,11 @@ components: Collapse, Fade, Grow, Slide, Zoom
 
 # Transitions
 
-Material-UI provides a number of transitions that can be used to introduce some basic
+React-Material provides a number of transitions that can be used to introduce some basic
 [motion](https://material.io/guidelines/motion/material-motion.html)
 to your applications components.
 
-To better support server rendering Material-UI provides a `style` property
+To better support server rendering React-Material provides a `style` property
 to the children of some transition components (Fade, Grow, Zoom, Slide).
 The `style` property must be applied to the DOM for the animation to work as expected.
 

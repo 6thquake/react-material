@@ -1,6 +1,6 @@
 # Right-to-left
 
-To change the direction of Material-UI components you must follow the following steps:
+To change the direction of React-Material components you must follow the following steps:
 
 ## Steps
 
@@ -34,7 +34,7 @@ import { createGenerateClassName, jssPreset } from 'material-ui/styles';
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
-// Custom Material-UI class name generator.
+// Custom React-Material class name generator.
 const generateClassName = createGenerateClassName();
 
 function RTL(props) {

@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import Divider from 'material-ui/Divider'
-import A from '../RManchor'
+import Anchor from '../RManchor'
 export const styles = {
   tBox: {
     overflow: 'scroll',
@@ -16,20 +16,6 @@ export const styles = {
 }
 
 class RManchor extends React.Component {
-
-  state = {}
-
-  componentDidMount() {
-
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
-  }
-
-  componentWillUnmount() {
-
-  }
   target=null
   render() {
     const { classes } = this.props
@@ -51,27 +37,27 @@ class RManchor extends React.Component {
     const links = [
       {
         href: '#a1',
-        label: '#1dsdss'
+        label: 'test1'
       },
       {
         href: '#a2',
-        label: '#2ewrwrwe'
+        label: 'test2'
       },
       {
         href: '#a3',
-        label: '#3'
+        label: 'test3'
       },
       {
         href: '#a4',
-        label: '#4'
+        label: 'test4'
       },
       {
         href: '#a5',
-        label: '#5'
+        label: 'test5'
       },
       {
         href: '#a6',
-        label: '#6'
+        label: 'test6'
       }
     ]
 
@@ -82,11 +68,11 @@ class RManchor extends React.Component {
       
       <div>
         <Paper >
-        <A
+          <Anchor
           style = {style}
           container={'#t-box'} 
           links={links}
-        ></A>
+          ></AAnchor
         <p id='a11' style={p1}>
           <a style={a} href="#a1">1</a>
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
@@ -113,7 +99,7 @@ class RManchor extends React.Component {
       <div ref={(node) => { this.container = node; }} id={'t-box'} className={classes.tBox}>
           
         <p id='a1' style={p}>
-          <a style={a} href="#a1">1</a>
+          <a style={a} href="#a1">test1</a>
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
@@ -121,13 +107,13 @@ class RManchor extends React.Component {
         <Divider/>
         
         <p id='a2' style={p}>
-          <a style={a} href="#a2">2</a>
+          <a style={a} href="#a2">test2</a>
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
         </p>
         <p id='a3' style={p}>
-          <a style={a} href="#a3">3</a>
+          <a style={a} href="#a3">test3</a>
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
@@ -135,21 +121,21 @@ class RManchor extends React.Component {
         <Divider />
         
         <p id='a4' style={p}>
-          <a style={a} href="#a4">4</a>
+          <a style={a} href="#a4">test4</a>
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
         </p>
         <Divider/>
         <p id='a5' style={p}>
-          <a style={a} href="#a5">5</a>
+          <a style={a} href="#a5">test5</a>
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
         </p>
         <Divider />
         <p id='a6' style={p}>
-          <a style={a} href="#a6">6</a>
+          <a style={a} href="#a6">test6</a>
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
           The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
@@ -159,14 +145,6 @@ class RManchor extends React.Component {
       </div>
     )
   }
-}
-
-RManchor.propTypes = {
-
-}
-
-RManchor.defaultProps = {
-
 }
 
 export default withStyles(styles)(RManchor)

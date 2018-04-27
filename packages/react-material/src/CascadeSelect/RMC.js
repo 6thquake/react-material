@@ -104,7 +104,7 @@ class TextFields extends React.Component {
   setTextFieldValue = () => {
     let text = this.series.map((item, index) => {
       return item.text
-    }).join(' -> ')
+    }).join(' / ')
     this.setState({
       textFieldValue: text
     })

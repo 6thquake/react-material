@@ -1,0 +1,150 @@
+
+.rm-tooltip-inner {
+    max-width: 250px;
+    padding: 8px 10px;
+    color: #fff;
+    text-align: left;
+    text-decoration: none;
+    background-color: #373737;
+    border-radius: 6px;
+    box-shadow: 0 1px 6px hsla(0, 0%, 39%, .2);
+}
+
+.rm-tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.rm-tooltip-placement-top,
+.rm-tooltip-placement-topLeft,
+.rm-tooltip-placement-topRight {
+    padding: 5px 0 8px;
+}
+
+.rm-tooltip-placement-right,
+.rm-tooltip-placement-rightBottom,
+.rm-tooltip-placement-rightTop {
+    padding: 0 5px 0 8px;
+}
+
+.rm-tooltip-placement-bottom,
+.rm-tooltip-placement-bottomLeft,
+.rm-tooltip-placement-bottomRight {
+    padding: 8px 0 5px;
+}
+
+.rm-tooltip-placement-left,
+.rm-tooltip-placement-leftBottom,
+.rm-tooltip-placement-leftTop {
+    padding: 0 8px 0 5px;
+}
+
+.rm-tooltip-placement-top .rm-tooltip-arrow, 
+.rm-tooltip-placement-topLeft .rm-tooltip-arrow,
+ .rm-tooltip-placement-topRight .rm-tooltip-arrow {
+    bottom: 3px;
+    border-width: 5px 5px 0;
+    border-top-color: #373737;
+}
+
+.rm-tooltip-placement-right .rm-tooltip-arrow,
+.rm-tooltip-placement-rightBottom .rm-tooltip-arrow,
+.rm-tooltip-placement-rightTop .rm-tooltip-arrow {
+    left: 3px;
+    border-width: 5px 5px 5px 0;
+    border-right-color: #373737;
+}
+
+.rm-tooltip-placement-bottom .rm-tooltip-arrow,
+.rm-tooltip-placement-bottomLeft .rm-tooltip-arrow,
+.rm-tooltip-placement-bottomRight .rm-tooltip-arrow {
+    top: 3px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #373737;
+}
+
+.rm-tooltip-placement-left .rm-tooltip-arrow,
+.rm-tooltip-placement-leftBottom .rm-tooltip-arrow,
+.rm-tooltip-placement-leftTop .rm-tooltip-arrow {
+    right: 3px;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #373737;
+}
+
+
+
+.rm-tooltip-placement-topLeft .rm-tooltip-arrow {
+    left: 16px;
+}
+
+.rm-tooltip-placement-top .rm-tooltip-arrow {
+    left: 50%;
+    margin-left: -5px;
+}
+.rm-tooltip-placement-topRight .rm-tooltip-arrow {
+    right: 16px;
+}
+
+
+
+.rm-tooltip-placement-rightTop .rm-tooltip-arrow {
+    top: 8px;
+}
+
+.rm-tooltip-placement-right .rm-tooltip-arrow {
+    top: 50%;
+    margin-top: -5px;
+}
+
+.rm-tooltip-placement-rightBottom .rm-tooltip-arrow {
+    bottom: 8px;
+}
+
+
+
+.rm-tooltip-placement-bottomLeft .rm-tooltip-arrow {
+    left: 16px;
+}
+
+.rm-tooltip-placement-bottom .rm-tooltip-arrow {
+    left: 50%;
+    margin-left: -5px;
+}
+
+.rm-tooltip-placement-bottomRight .rm-tooltip-arrow {
+    right: 16px;
+}
+
+
+
+.rm-tooltip-placement-leftTop .rm-tooltip-arrow {
+    top: 8px;
+}
+
+.rm-tooltip-placement-left .rm-tooltip-arrow {
+    top: 50%;
+    margin-top: -5px;
+}
+
+.rm-tooltip-placement-leftBottom .rm-tooltip-arrow {
+    bottom: 8px;
+}
+
+
+
+.rm-tooltip {
+    position: absolute;
+    z-index: 1060;
+    display: block;
+    visibility: visible;
+    font-size: 12px;
+    line-height: 1.5;
+    opacity: .9;
+}
+
+.rm-tooltip-hidden {
+    display: none;
+}

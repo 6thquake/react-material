@@ -161,6 +161,9 @@
     "webpack-bundle-analyzer": "^2.9.1",
     "workbox-build": "^3.0.1"
   },
+  "optionalDependencies":{  
+    "fsevents":"*"
+  },
   "sideEffects": false,
   "nyc": {
     "include": [
@@ -173,7 +176,7 @@
     "instrument": false
   },
   "engines": {
-    "node": ">=6.11.0"
+    "node": ">=6.11.5"
   },
   "workspaces": [
     "packages/*"

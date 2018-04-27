@@ -1,17 +1,13 @@
 import React, {Component} from 'react';
 import AutoComplete from 'react-material/AutoComplete'
-
-const colors = [
-    'Red',
-    'Orange',
-    'Yellow',
-    'Green',
-    'Blue',
-    'Purple',
-    'Black',
-    'White',
-];
-export default class AutoCompleteTest extends Component {
+import { withStyles } from 'react-material/styles';
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    height: '250px'
+  },
+});
+class AutoCompleteTest extends Component {
      state = {
         values:[],
         options: [
@@ -58,10 +54,11 @@ export default class AutoCompleteTest extends Component {
         console.log('item',i);
     }
     render() {
+      const { classes } = this.props;
         return (
-            <div>
+            <div className={classes.root}>
                 <AutoComplete
-                    placeHold={'autoComplete single'}
+                    placeHold={'autoComplete single,please input a'}
                     dataSource={this.state.options}
                     multipleble={false}
                     paginationOpen={true}
@@ -69,7 +66,7 @@ export default class AutoCompleteTest extends Component {
                     autoCb={this.autoCb.bind(this)}
                 />
                 <AutoComplete
-                    placeHold={'autoComplete multipleble'}
+                    placeHold={'autoComplete multipleble,please input a'}
                     dataSource={this.state.options}
                     multipleble={true}
                     paginationOpen={true}
@@ -80,3 +77,4 @@ export default class AutoCompleteTest extends Component {
         );
     }
 }
+export default withStyles(styles)(AutoCompleteTest);

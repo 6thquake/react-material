@@ -3,13 +3,11 @@ components: Anchor
 ---
 
 # Anchor
+Hyperlinks to scroll on one page.
 
-[Dividers](https://material.io/guidelines/components/dividers.html) group and separate content within lists and page layouts. The divider is a thin rule, lightweight yet sufficient to distinguish content visually and spatially.
+# When To Use
 
-## List Dividers
-
-The divider renders as a `<hr>` by default.
-You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
+For displaying anchor hyperlinks on page and jumping between them.
 
 {{"demo": "pages/demos/anchor/Anchor.js"}}
 

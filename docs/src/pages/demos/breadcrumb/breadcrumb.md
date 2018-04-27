@@ -4,6 +4,6 @@ components: Breadcrumb
 
 # Breadcrumb
 
-The [Breadcrumb],is used for exchange data of two array.
+The [Breadcrumb],show your location of this site.
 
 {{"demo": "pages/demos/breadcrumb/Breadcrumb.js"}}

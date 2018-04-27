@@ -15,6 +15,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.breadcrumbNameMap = {
+      '/': {name:'home',icon:(<Home/>)},
       '/apps': {name:'Application List',icon:(<Home/>)},
       '/apps/1': {name:'Application1',icon:(<Grade/>)},
       '/apps/2': {name:'Application2',icon:(<Lock/>)},
@@ -28,8 +29,7 @@ class App extends React.Component {
   render() {
     return (
       <div >
-      2345
-      <Breadcrumb nameMap={this.breadcrumbNameMap} currUrl={this._url} showIcon={true}></Breadcrumb>
+      <Breadcrumb nameMap={this.breadcrumbNameMap} currUrl={this._url} showIcon={true} separator='>'></Breadcrumb>
       </div>
     );
   }

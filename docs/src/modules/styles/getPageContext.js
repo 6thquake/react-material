@@ -2,7 +2,7 @@
 
 import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
-import { createMuiTheme, createGenerateClassName, jssPreset } from 'material-ui/styles';
+import { createMuiTheme, createGenerateClassName, jssPreset } from 'react-material/styles';
 import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
 import { darken } from 'material-ui/styles/colorManipulator';

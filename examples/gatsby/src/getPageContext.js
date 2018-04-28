@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 
 import { SheetsRegistry } from 'jss';
-import { createMuiTheme, createGenerateClassName } from 'material-ui/styles';
+import { createMuiTheme, createGenerateClassName } from 'react-material/styles';
 import purple from 'material-ui/colors/purple';
 import green from 'material-ui/colors/green';
 

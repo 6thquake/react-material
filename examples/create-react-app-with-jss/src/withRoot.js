@@ -6,7 +6,7 @@ import {
   createMuiTheme,
   createGenerateClassName,
   jssPreset,
-} from 'material-ui/styles';
+} from 'react-material/styles';
 import purple from 'material-ui/colors/purple';
 import green from 'material-ui/colors/green';
 import CssBaseline from 'material-ui/CssBaseline';

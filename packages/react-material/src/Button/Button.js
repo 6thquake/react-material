@@ -11,7 +11,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import createPalette from 'material-ui/styles/createPalette';
 import pink from 'material-ui/colors/pink';
 import green from 'material-ui/colors/green';
 import orange from 'material-ui/colors/orange';
@@ -23,26 +22,6 @@ import Done from '@material-ui/icons/Done';
 import Replay from '@material-ui/icons/Replay';
 import {CircularProgress} from 'material-ui/Progress';
 const styles = theme => {
-    theme.palette = createPalette({
-        waring: {
-            main: pink['500'],
-            contrastText: theme.palette.primary.contrastText,
-            dark: pink['700'],
-            light: pink['300']
-        },
-        success: {
-            main: green['500'],
-            contrastText: theme.palette.primary.contrastText,
-            dark: green['700'],
-            light: green['300']
-        },
-        progress: {
-            main: orange['500'],
-            contrastText: theme.palette.primary.contrastText,
-            dark: orange['700'],
-            light: orange['300']
-        }
-    });
     const defaultStyle = {
         flat: {
             waring: {

@@ -1,7 +1,7 @@
 import {createMuiTheme} from 'material-ui/styles';
 import { pink, common, orange, green} from 'material-ui/colors';
 
-const newCreatTheme = function(theme){
+const newCreateTheme = function(theme){
 
   let  newDefaultPalette = {
     waring: {
@@ -27,4 +27,4 @@ const newCreatTheme = function(theme){
   return createMuiTheme(theme)
 }
 
-export default newCreatTheme
+export default newCreateTheme

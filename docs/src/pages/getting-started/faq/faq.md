@@ -122,7 +122,7 @@ page](/customization/themes) to learn about theme customization.
 ## React-Material is awesome. How can I support the project?
 
 There are many ways to support React-Material:
-- Improve [the documentation](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/v1-beta/docs).
+- Improve [the documentation](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).
 - Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui) or [issues marked as question](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.

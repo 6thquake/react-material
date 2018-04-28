@@ -25,7 +25,7 @@ This property accepts the following keys:
 - `action`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/v1-beta/packages/material-ui/src/ExpansionPanel/ExpansionPanelActions.js)
+and the [implementation of the component](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop/packages/material-ui/src/ExpansionPanel/ExpansionPanelActions.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented

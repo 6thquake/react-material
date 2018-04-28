@@ -7,6 +7,10 @@ components: Drawer, SwipeableDrawer
 The [Drawer](https://material.io/guidelines/patterns/navigation-drawer.html) slides in from the side.
 It is a common pattern found in Google apps and follows the keylines and metrics for lists.
 
+## Tree drawer
+
+{{"demo": "pages/demos/drawers/TreeDrawer.js", "hideEditButton": true}}
+
 ## Temporary drawer
 
 Temporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.

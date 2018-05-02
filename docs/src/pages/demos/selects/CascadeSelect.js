@@ -143,6 +143,8 @@ class Test extends Component {
           onChange={this.handleChange}
           label={'Cascade Select'}
           dataSource={this.state.cdata}
+          renderLabel='text'
+          separator='|'
         />
       </div>
     );

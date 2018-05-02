@@ -12,10 +12,32 @@ const styles = theme => ({
     flexWrap: 'wrap',
     flexDirection: 'column'
   },
+
+  inputBox: {
+    // display:'flex',
+    position: 'relative',
+    width: '100%',
+  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200,
+  },
+  arrowDown: {
+    // top: 'calc(50 % - 12px)',
+    bottom: 12,
+    right: 7,
+    color: 'rgba(0, 0, 0, 0.54)',
+    position: 'absolute',
+    pointerEvents: 'none',
+    fill: 'currentColor',
+    width: '1em',
+    height: '1em',
+    display:' inline - block',
+    fontSize: '24px',
+    transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    userSelect: 'none',
+    flexShrink: 0,
   },
   menuBox:{
     // width: 200,
@@ -38,7 +60,8 @@ class TextFields extends React.Component {
     open: false,
     opens: [true, false, false, false, false],
     data: [this.props.dataSource],
-    textFieldValue: ''
+    textFieldValue: '',
+    checkes:[-1, -1, -1, -1, -1],
   }
 
   handleChange = name => event => {
@@ -65,6 +88,7 @@ class TextFields extends React.Component {
     this.updateMenuData(next, level)
     this.updateNextMenu(e)
     this.setTextFieldValue()
+    this.checkChange(e)
     // 将信息传给父组件
     this.props.onChange && this.props.onChange(this.series)
   }
@@ -74,6 +98,19 @@ class TextFields extends React.Component {
     let { item, level, index } = e
     this.series.splice(level)
     this.series[level] = item[index]
+  }
+
+  checkChange(e) {
+    let {level, index } = e
+    let checkes = this.state.checkes
+    for (let i = level; i < checkes.length - 1; i++) {
+      checkes[i + 1] = -1
+    }
+    checkes[level] = index
+
+    this.setState({
+      checkes: checkes
+    })
   }
 
   updateMenuData = (next, level) => {
@@ -102,9 +139,10 @@ class TextFields extends React.Component {
   }
   // 
   setTextFieldValue = () => {
+    let separator = this.props.separator || '/'
     let text = this.series.map((item, index) => {
       return item.text
-    }).join(' / ')
+    }).join(` ${separator} `)
     this.setState({
       textFieldValue: text
     })
@@ -112,16 +150,19 @@ class TextFields extends React.Component {
 
   renderMenuItems() {
     let levels = [0, 1, 2, 3, 4]
-
+    let { children, renderLabel = 'label', renderValue = 'value'} = this.props
     let list = levels.map((item, index) => {
       return (
         <RMcascadeItem
-          children={this.props.children}
+          children={children}
           key={item}
           level={item}
           open={this.state.opens[item]}
           dataSource={this.state.data[item]}
           onChange={this.handelMenuChange}
+          checkedIndex={this.state.checkes[item]} 
+          renderLabel={renderLabel}
+          renderValue={renderValue}
         >
 
         </RMcascadeItem>
@@ -136,21 +177,26 @@ class TextFields extends React.Component {
     const t = <div className={classes.noData}>NO Data</div>
     return (
       <div className={classes.container}>
-        <TextField
-          onClick={this.handleInputClick}
-          id="select"
-          label={label}
-          className={classes.textField}
-          value={this.state.textFieldValue}
-          onChange={this.handleChange()}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
-          margin="normal"
-        >
-        </TextField>
+        <div className={classes.inputBox}>
+          <TextField
+            onClick={this.handleInputClick}
+            id="select"
+            label={label}
+            className={classes.textField}
+            value={this.state.textFieldValue}
+            onChange={this.handleChange()}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
+            margin="normal"
+          >
+          </TextField>
+          <svg className={classes.arrowDown} focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 10l5 5 5-5z"></path>
+          </svg>
+        </div>
         <Popover 
           anchorEl={anchorEl}
           anchorOrigin={{
@@ -177,6 +223,10 @@ class TextFields extends React.Component {
 
 TextFields.propTypes = {
   classes: PropTypes.object.isRequired,
+  separator: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  dataSource: PropTypes.array.isRequired,
+  renderLabel: PropTypes.string,
 };
 
 export default withStyles(styles)(TextFields);

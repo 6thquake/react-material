@@ -27,13 +27,13 @@ const styles = theme => ({
 class ListItemComposition  extends Component {
   constructor(props) {
     super(props);
-    this.state = { checkes: [], };
   }
 
   toMenuItem = (data, classes) => {
+    let {renderLabel = 'text', renderValue = 'value' } = this.props
     let list = data.map((item, index) => {
       let hasSub = item.subItems && item.subItems.length > 0
-      let checked = this.state.checkes[index]
+      let checked = this.props.checkedIndex === index
       return (
         <MenuItem 
           key = {index} 
@@ -41,7 +41,7 @@ class ListItemComposition  extends Component {
           onClick={this.handleItemClick(item, index)}
         >
           
-          <ListItemText classes={{ primary: classes.primary }} inset primary={item.text} />
+          <ListItemText classes={{ primary: classes.primary }} inset primary={item[renderLabel]} />
           {hasSub?(<ListItemIcon className={classes.icon}>
               <PlayArrow />
           </ListItemIcon>):''}
@@ -60,20 +60,7 @@ class ListItemComposition  extends Component {
       item: this.props.dataSource
     }
     this.props.onChange(info)
-    this.checkChange(index)
   }
-
-  checkChange(index) {
-    let checkes = this.state.checkes
-    for (let i = 0; i < checkes.length; i++) {
-      checkes[i] = false
-    }
-    checkes[index] = true
-    this.setState({
-      checkes: checkes
-    })
-  }
-
   render() {
     const { classes, dataSource, open} = this.props;
     let t = null

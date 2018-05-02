@@ -10,6 +10,7 @@ import shadows from './shadows';
 import transitions from './transitions';
 import zIndex from './zIndex';
 import spacing from './spacing';
+import { pink, common, orange, green } from 'material-ui/colors';
 
 function createMuiTheme(options: Object = {}) {
   const {
@@ -21,7 +22,27 @@ function createMuiTheme(options: Object = {}) {
     ...other
   } = options;
 
-  const palette = createPalette(paletteInput);
+  let newDefaultPalette = {
+    waring: {
+      main: pink['500'],
+      dark: pink['700'],
+      light: pink['300']
+    },
+    success: {
+      main: green['500'],
+      dark: green['700'],
+      light: green['300']
+    },
+    progress: {
+      main: orange['500'],
+      dark: orange['700'],
+      light: orange['300']
+    }
+  };
+  let newPalette = {
+    ...newDefaultPalette, ...paletteInput
+  }
+  const palette = createPalette(newPalette);
   const breakpoints = createBreakpoints(breakpointsInput);
 
   const muiTheme = {

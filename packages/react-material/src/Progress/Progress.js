@@ -72,7 +72,15 @@ class Progress  extends Component {
             this.timer = setInterval(this.progress,300);
         }
     }
-
+    componentWillReceiveProps(nextProps){
+        if(!nextProps.isFinish&&this.props.isPromise){
+          this.setState({ completed: 0});
+          if(this.timer){
+            clearInterval(this.timer);
+          }
+          this.timer = setInterval(this.progress,300);
+        }
+    }
     componentWillUnmount() {
         if(this.timer){
             clearInterval(this.timer);
@@ -88,8 +96,8 @@ class Progress  extends Component {
             clearInterval(this.timer);
             this.setState({ completed: 100});
         }else {
-            const diff = Math.floor((100-completed)/speed);
-            this.setState({ completed: completed + diff});
+          const diff = Math.floor((100-completed)/speed);
+          this.setState({ completed: completed + diff});
         }
     };
     render() {

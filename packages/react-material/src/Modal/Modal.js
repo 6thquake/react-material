@@ -1,7 +1,7 @@
 import React , {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Dialog, {DialogActions, DialogContent, DialogContentText, DialogTitle} from 'material-ui/Dialog';
+import Dialog, { DialogContent, DialogTitle} from 'material-ui/Dialog';
 import {Clear} from '@material-ui/icons';
 import {Fade,Slide,Collapse,Grow,Zoom} from 'material-ui/transitions';
 
@@ -40,35 +40,35 @@ class Modal  extends Component {
         label:'',
         animation:'fade'
     };
-    _transition(props) {
-        console.log(this.props);
+    _transition=props=>{
+      console.log(props);
         switch (this.props.animation){
             case 'fade':
-                return <Fade   {...props}/>;
+                return <Fade {...props}/>;
                 break;
             case 'slide':
-                return <Slide direction="up"  {...props}/>;
+                return <Slide direction="up" {...props}/>;
                 break;
             case 'collapse':
-                return <Collapse  {...props}/>;
+                return <Collapse {...props} />;
                 break;
             case 'grow':
                 return <Grow {...props}/>;
                 break;
             case 'zoom':
-                return <Zoom   {...props}/>;
+                return <Zoom  {...props}/>;
                 break;
             default:
-                return <Fade   {...props}/>;
+                return <Fade {...props}/>;
         }
-
     }
     render() {
-        const { classes,label,onClose,open} = this.props;
+        const { classes,label,onClose} = this.props;
         return <Dialog
-            transition={this._transition.bind(this)}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
+            transition={this._transition}
+            keepMounted
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description"
             {...this.props}
         >
             <DialogTitle className={classes.title} disableTypography={true} id="alert-dialog-title">

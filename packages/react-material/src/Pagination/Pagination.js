@@ -68,27 +68,40 @@ class Pagination extends Component {
     /**
      * This is call current page back to parent component
      */
-    pageCallbackFn: PropTypes.func
+    pageCallbackFn: PropTypes.func.isRequired
   };
   static defaultProps = {
     currentPage: 1,
     pageSize: 5,
-    total:1,
+    total:0,
     pageCallbackFn:function () {
       console.log('need callback function to getback currentpage')
     }
   };
-
+  constructor(props){
+    super(props);
+    this.state={
+      textOpen:true
+    }
+  }
     componentWillReceiveProps(nextProps){
        // console.log('nextProps',nextProps);
     }
     componentDidMount() {
+        console.log(this.div.clientWidth);
+        //分页的宽度小于200px时，只显示前后页按钮
+        if(this.div.clientWidth<250){
+          this.setState({
+            textOpen:false
+          })
+        }
         this.props.pageCallbackFn(this.props.currentPage)
     }
     createPage() {
         const { classes, currentPage,pageSize,total} = this.props;
+        const {textOpen}=this.state;
         const totalPage = Math.ceil(total/pageSize);
-        return <div className={classes.paginationDiv}>
+        return <div className={classes.paginationDiv} ref={(div) => this.div = div}>
                     <div className={classes.flotRight}>
                         <a className={classes.prev + ' '+(currentPage == 1? classes.disable : '')}
                            onClick={this.prePageHandeler.bind(this)}>
@@ -97,7 +110,7 @@ class Pagination extends Component {
                            onClick={this.nextPageHandeler.bind(this)}>
                         </a>
                     </div>
-                    <span>{total==0?total:(currentPage-1)*pageSize+1 }- {currentPage*pageSize>total?total:currentPage*pageSize} of {total}</span>
+                   {textOpen?<span>{total==0?total:(currentPage-1)*pageSize+1 }- {currentPage*pageSize>total?total:currentPage*pageSize} of {total}</span>:null}
                 </div>
     }
     pageClick(currentPage) {

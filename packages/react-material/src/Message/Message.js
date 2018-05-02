@@ -34,7 +34,7 @@ class Message  extends Component {
         action:null,
         anchorOrigin:{ vertical: 'bottom', horizontal: 'center'}
     };
-    _transition(props) {
+  _transition=props=>{
         switch (this.props.animation){
             case 'fade':
                 return <Fade   {...props}/>;
@@ -58,7 +58,7 @@ class Message  extends Component {
     render() {
         const { classes ,open,action,onClose,anchorOrigin} = this.props;
         return <Snackbar
-            transition={this._transition.bind(this)}
+            transition={this._transition}
             open={open}
             anchorOrigin={anchorOrigin}
             onClose={onClose}

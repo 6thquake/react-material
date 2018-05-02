@@ -13,31 +13,37 @@ class ProgressTest extends Component {
     super(props);
     this.state={
       error:false,
-      completed:0,
+      completed2:0,
       isFinish:false
     };
   }
+  timer1=null;
   componentDidMount (){
-    const self = this;
-    setTimeout(function () {
-      self.setState( {isFinish:true})
-    },5000)
+    this.promiseEst()
   }
     componentWillUnmount() {
         clearInterval(this.timer);
     }
-
+    promiseEst=()=>{
+      const self = this;
+      if(this.timer1){
+        clearInterval(this.timer);
+      }
+      this.timer1=setTimeout(function () {
+        self.setState( {isFinish:true})
+      },5000)
+    };
     timer = null;
     progress = () => {
-        const { completed } = this.state;
-        if (completed === 100) {
+        const { completed2 } = this.state;
+        if (completed2 === 100) {
             clearInterval(this.timer);
         } else {
             const diff = Math.random() * 10;
-            if(this.state.completed>50){
+            if(this.state.completed2>50){
               this.setState({ error: true});
             }else{
-              this.setState({ completed: Math.min(completed + diff, 100) });
+              this.setState({ completed2: Math.min(completed2 + diff, 100) });
             }
 
         }
@@ -45,14 +51,15 @@ class ProgressTest extends Component {
   reStartbase(){
     this.setState({
       error:false,
-      completed:0
+      completed2:0
     });
     this.timer = setInterval(this.progress, 500);
   };
   reStartpromise(){
-    // this.setState({
-    //   completed:0
-    // });
+    this.setState({
+      isFinish:false
+    });
+    this.promiseEst();
   };
     render() {
       const { classes } = this.props;
@@ -67,7 +74,7 @@ class ProgressTest extends Component {
             <br/>
             <Button onClick={this.reStartbase.bind(this)}>start progress with percentage</Button>
             <Progress
-              completed={this.state.completed}
+              completed={this.state.completed2}
               error={this.state.error}
               isPromise={false}
               isFinish={false}
@@ -75,9 +82,8 @@ class ProgressTest extends Component {
             <br/>
             <br/>
             <br/>
-            <Button  onClick={this.reStartpromise.bind(this)} >promise progress</Button>
+            <Button  onClick={this.reStartpromise.bind(this)} >restart promise progress</Button>
             <Progress
-              error={this.state.error}
               isPromise={true}
               isFinish={this.state.isFinish}
               estimatedTime={5}

@@ -70,7 +70,7 @@ class RMpopConfirm extends React.Component {
     })
   }
   render() {
-    const { classes, children, cancelText, confirmText, content, ...other} = this.props;
+    const { color, variant, type, size, classes, children, cancelText, confirmText, content, ...other} = this.props;
     const {
       open,
       positionTop,
@@ -106,6 +106,10 @@ class RMpopConfirm extends React.Component {
               cancelText={cancelText}
               confirmText = {confirmText}
               content = {content}
+              color={color}
+              variant={variant}
+              type={type}
+              size={size}
             >
 
             </PopoverContent>

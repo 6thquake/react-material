@@ -41,8 +41,12 @@ class PopOverContent extends Component {
     let {
       classes,
       content,
-      cancelText,
-      confirmText,
+      cancelText = 'cancel',
+      confirmText ='ok',
+      color ='primary', 
+      variant, 
+      type, 
+      size ='small',
     } = this.props
     return (
       <div className={classes.box}>
@@ -51,11 +55,11 @@ class PopOverContent extends Component {
         </div>
 
         <div className={classes.footer}>
-          <Button size='small' onClick={this.handleConfirm} color="primary" className={classes.button}>
-            {confirmText || 'ok'}
+          <Button type={type} size={size} onClick={this.handleConfirm} color={color} className={classes.button}>
+            {confirmText}
           </Button>
-          <Button size='small' onClick={this.handleCancel} className={classes.button}>
-            {cancelText || 'cancel'}
+          <Button size={size} onClick={this.handleCancel} className={classes.button}>
+            {cancelText}
           </Button>
 
         </div>

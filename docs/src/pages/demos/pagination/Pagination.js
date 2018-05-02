@@ -5,6 +5,7 @@ import { withStyles } from 'material-ui/styles';
 const styles = {
   root: {
     flexGrow: 1,
+    //width:'190px'
   },
 };
 class PaginationTest extends Component {

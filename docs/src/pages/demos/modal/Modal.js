@@ -29,16 +29,16 @@ const styles = theme => ({
         this.setState({ open: true });
     };
 
-    handleClose = () => {
+    handleClose(){
         this.setState({ open: false });
     };
     render() {
       const { classes } = this.props;
         return (
-          <div className={classes.box}>
+          <div>
             <Button onClick={this.handleOpen}>Open Modal</Button>
             <Modal open={this.state.open}
-                   onClose={this.handleClose}
+                   onClose={this.handleClose.bind(this)}
                    label={'this is a modal test'}
                    animation={this.state.animation}
             >
@@ -50,10 +50,10 @@ const styles = theme => ({
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={this.handleClose} color="primary">
+                  <Button onClick={this.handleClose.bind(this)} color="primary">
                     Disagree
                   </Button>
-                  <Button onClick={this.handleClose} color="primary" autoFocus>
+                  <Button onClick={this.handleClose.bind(this)} color="primary" autoFocus>
                     Agree
                   </Button>
                 </DialogActions>

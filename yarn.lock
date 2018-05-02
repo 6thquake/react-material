@@ -82,7 +82,15 @@
   version "1.0.0-beta.41"
   resolved "https://registry.yarnpkg.com/@material-ui/codemod/-/codemod-1.0.0-beta.41.tgz#243b2fc3527117a2f85a3178f4668ab4ac13ab83"
 
-"@material-ui/icons@^1.0.0-beta.35", "@material-ui/icons@^1.0.0-beta.43":
+"@material-ui/docs@^1.0.0-alpha.0":
+  version "1.0.0-alpha.0"
+  resolved "http://registry.npm.release.ctripcorp.com/@material-ui/docs/download/@material-ui/docs-1.0.0-alpha.0.tgz#9e3c1238c89c41157824bd038d08c141bbf43674"
+  dependencies:
+    marked "^0.3.12"
+    nprogress "^0.2.0"
+    prismjs "^1.8.4"
+
+"@material-ui/icons@^1.0.0-beta.43":
   version "1.0.0-beta.43"
   resolved "http://registry.npm.taobao.org/@material-ui/icons/download/@material-ui/icons-1.0.0-beta.43.tgz#38bba799a4e575de7eced4bd10a0afbd546e9b47"
   dependencies:
@@ -856,6 +864,13 @@ babel-plugin-check-es2015-constants@^6.22.0:
   resolved "http://registry.npm.release.ctripcorp.com/babel-plugin-check-es2015-constants/download/babel-plugin-check-es2015-constants-6.22.0.tgz#35157b101426fd2ffd3da3f75c7d1e91835bbf8a"
   dependencies:
     babel-runtime "^6.22.0"
+
+babel-plugin-css-modules-transform@^1.5.0:
+  version "1.5.0"
+  resolved "http://registry.npm.release.ctripcorp.com/babel-plugin-css-modules-transform/download/babel-plugin-css-modules-transform-1.5.0.tgz#89f81e4098a51310780179e5d95dcd14923c3258"
+  dependencies:
+    css-modules-require-hook "^4.0.6"
+    mkdirp "^0.5.1"
 
 babel-plugin-istanbul@^4.1.5:
   version "4.1.6"
@@ -1978,6 +1993,14 @@ chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.3.0, chalk@^2.3.2:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
+chalk@^2.4.1:
+  version "2.4.1"
+  resolved "http://registry.npm.release.ctripcorp.com/chalk/download/chalk-2.4.1.tgz#18c49ab16a037b6eb0152cc83e3471338215b66e"
+  dependencies:
+    ansi-styles "^3.2.1"
+    escape-string-regexp "^1.0.5"
+    supports-color "^5.3.0"
+
 change-emitter@^0.1.2:
   version "0.1.6"
   resolved "http://registry.npm.release.ctripcorp.com/change-emitter/download/change-emitter-0.1.6.tgz#e8b2fe3d7f1ab7d69a32199aff91ea6931409515"
@@ -2701,6 +2724,23 @@ css-loader@^0.28.11:
     postcss-modules-values "^1.3.0"
     postcss-value-parser "^3.3.0"
     source-list-map "^2.0.0"
+
+css-modules-require-hook@^4.0.6:
+  version "4.2.3"
+  resolved "http://registry.npm.release.ctripcorp.com/css-modules-require-hook/download/css-modules-require-hook-4.2.3.tgz#6792ca412b15e23e6f9be6a07dcef7f577ff904d"
+  dependencies:
+    debug "^2.2.0"
+    generic-names "^1.0.1"
+    glob-to-regexp "^0.3.0"
+    icss-replace-symbols "^1.0.2"
+    lodash "^4.3.0"
+    postcss "^6.0.1"
+    postcss-modules-extract-imports "^1.0.0"
+    postcss-modules-local-by-default "^1.0.1"
+    postcss-modules-resolve-imports "^1.3.0"
+    postcss-modules-scope "^1.0.0"
+    postcss-modules-values "^1.1.1"
+    seekout "^1.0.1"
 
 css-select@~1.2.0:
   version "1.2.0"
@@ -4337,6 +4377,12 @@ generate-object-property@^1.1.0:
   dependencies:
     is-property "^1.0.0"
 
+generic-names@^1.0.1:
+  version "1.0.3"
+  resolved "http://registry.npm.release.ctripcorp.com/generic-names/download/generic-names-1.0.3.tgz#2d786a121aee508876796939e8e3bff836c20917"
+  dependencies:
+    loader-utils "^0.2.16"
+
 get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "http://registry.npm.release.ctripcorp.com/get-caller-file/download/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
@@ -4938,7 +4984,7 @@ iconv-lite@^0.4.17, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   dependencies:
     safer-buffer "^2.1.0"
 
-icss-replace-symbols@^1.1.0:
+icss-replace-symbols@^1.0.2, icss-replace-symbols@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.release.ctripcorp.com/icss-replace-symbols/download/icss-replace-symbols-1.1.0.tgz#06ea6f83679a7749e386cfe1fe812ae5db223ded"
 
@@ -4947,6 +4993,12 @@ icss-utils@^2.1.0:
   resolved "http://registry.npm.release.ctripcorp.com/icss-utils/download/icss-utils-2.1.0.tgz#83f0a0ec378bf3246178b6c2ad9136f135b1c962"
   dependencies:
     postcss "^6.0.1"
+
+icss-utils@^3.0.1:
+  version "3.0.1"
+  resolved "http://registry.npm.release.ctripcorp.com/icss-utils/download/icss-utils-3.0.1.tgz#ee70d3ae8cac38c6be5ed91e851b27eed343ad0f"
+  dependencies:
+    postcss "^6.0.2"
 
 ieee754@^1.1.4:
   version "1.1.11"
@@ -6010,6 +6062,15 @@ loader-utils@1.1.0, loader-utils@^1.0.0, loader-utils@^1.0.2, loader-utils@^1.1.
     emojis-list "^2.0.0"
     json5 "^0.5.0"
 
+loader-utils@^0.2.16:
+  version "0.2.17"
+  resolved "http://registry.npm.release.ctripcorp.com/loader-utils/download/loader-utils-0.2.17.tgz#f86e6374d43205a6e6c60e9196f17c0299bfb348"
+  dependencies:
+    big.js "^3.1.3"
+    emojis-list "^2.0.0"
+    json5 "^0.5.0"
+    object-assign "^4.0.1"
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.release.ctripcorp.com/locate-path/download/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -6225,7 +6286,7 @@ marked@^0.3.12:
     buffers "~0.1.1"
     readable-stream "~1.0.0"
 
-material-ui@^1.0.0-beta.33, material-ui@^1.0.0-beta.42, material-ui@^1.0.0-beta.43:
+material-ui@^1.0.0-beta.42, material-ui@^1.0.0-beta.43:
   version "1.0.0-beta.43"
   resolved "http://registry.npm.taobao.org/material-ui/download/material-ui-1.0.0-beta.43.tgz#21074fd0ef5f1735a54060dbfd060e6d46fd5ef5"
   dependencies:
@@ -7580,27 +7641,41 @@ postcss-minify-selectors@^2.0.4:
     postcss "^5.0.14"
     postcss-selector-parser "^2.0.0"
 
+postcss-modules-extract-imports@^1.0.0:
+  version "1.1.0"
+  resolved "http://registry.npm.release.ctripcorp.com/postcss-modules-extract-imports/download/postcss-modules-extract-imports-1.1.0.tgz#b614c9720be6816eaee35fb3a5faa1dba6a05ddb"
+  dependencies:
+    postcss "^6.0.1"
+
 postcss-modules-extract-imports@^1.2.0:
   version "1.2.0"
   resolved "http://registry.npm.release.ctripcorp.com/postcss-modules-extract-imports/download/postcss-modules-extract-imports-1.2.0.tgz#66140ecece38ef06bf0d3e355d69bf59d141ea85"
   dependencies:
     postcss "^6.0.1"
 
-postcss-modules-local-by-default@^1.2.0:
+postcss-modules-local-by-default@^1.0.1, postcss-modules-local-by-default@^1.2.0:
   version "1.2.0"
   resolved "http://registry.npm.release.ctripcorp.com/postcss-modules-local-by-default/download/postcss-modules-local-by-default-1.2.0.tgz#f7d80c398c5a393fa7964466bd19500a7d61c069"
   dependencies:
     css-selector-tokenizer "^0.7.0"
     postcss "^6.0.1"
 
-postcss-modules-scope@^1.1.0:
+postcss-modules-resolve-imports@^1.3.0:
+  version "1.3.0"
+  resolved "http://registry.npm.release.ctripcorp.com/postcss-modules-resolve-imports/download/postcss-modules-resolve-imports-1.3.0.tgz#398d3000b95ae969420cdf4cd83fa8067f1c5eae"
+  dependencies:
+    css-selector-tokenizer "^0.7.0"
+    icss-utils "^3.0.1"
+    minimist "^1.2.0"
+
+postcss-modules-scope@^1.0.0, postcss-modules-scope@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.release.ctripcorp.com/postcss-modules-scope/download/postcss-modules-scope-1.1.0.tgz#d6ea64994c79f97b62a72b426fbe6056a194bb90"
   dependencies:
     css-selector-tokenizer "^0.7.0"
     postcss "^6.0.1"
 
-postcss-modules-values@^1.3.0:
+postcss-modules-values@^1.1.1, postcss-modules-values@^1.3.0:
   version "1.3.0"
   resolved "http://registry.npm.release.ctripcorp.com/postcss-modules-values/download/postcss-modules-values-1.3.0.tgz#ecffa9d7e192518389f42ad0e83f72aec456ea20"
   dependencies:
@@ -7703,6 +7778,14 @@ postcss@^6.0.1, postcss@^6.0.16, postcss@^6.0.21:
     chalk "^2.3.2"
     source-map "^0.6.1"
     supports-color "^5.3.0"
+
+postcss@^6.0.2:
+  version "6.0.22"
+  resolved "http://registry.npm.release.ctripcorp.com/postcss/download/postcss-6.0.22.tgz#e23b78314905c3b90cbd61702121e7a78848f2a3"
+  dependencies:
+    chalk "^2.4.1"
+    source-map "^0.6.1"
+    supports-color "^5.4.0"
 
 prelude-ls@~1.1.2:
   version "1.1.2"
@@ -8786,6 +8869,10 @@ section-iterator@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.release.ctripcorp.com/section-iterator/download/section-iterator-2.0.0.tgz#bf444d7afeeb94ad43c39ad2fb26151627ccba2a"
 
+seekout@^1.0.1:
+  version "1.0.2"
+  resolved "http://registry.npm.release.ctripcorp.com/seekout/download/seekout-1.0.2.tgz#09ba9f1bd5b46fbb134718eb19a68382cbb1b9c9"
+
 select@^1.1.2:
   version "1.1.2"
   resolved "http://registry.npm.release.ctripcorp.com/select/download/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
@@ -9444,7 +9531,7 @@ supports-color@^4.2.1:
   dependencies:
     has-flag "^2.0.0"
 
-supports-color@^5.1.0, supports-color@^5.3.0:
+supports-color@^5.1.0, supports-color@^5.3.0, supports-color@^5.4.0:
   version "5.4.0"
   resolved "http://registry.npm.release.ctripcorp.com/supports-color/download/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
   dependencies:

@@ -34,14 +34,14 @@
           "module-resolver",
           {
             "alias": {
-              "@material-ui/docs": "./packages/material-ui-docs/src",
               "docs": "./docs",
               "react-material": "./packages/react-material/src",
               "pages": "./pages"
             }
           }
         ],
-        "transform-flow-strip-types"
+        "transform-flow-strip-types",
+        "css-modules-transform"
       ]
     },
     "docs-production": {
@@ -54,7 +54,6 @@
           "module-resolver",
           {
             "alias": {
-              "@material-ui/docs": "./packages/material-ui-docs/src",
               "docs": "./docs",
               "react-material": "./packages/react-material/src",
               "pages": "./pages"
@@ -64,6 +63,7 @@
         "transform-react-constant-elements",
         "transform-dev-warning",
         "transform-runtime",
+        "css-modules-transform",
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
         ["transform-react-remove-prop-types", {"mode": "remove"}]
       ]
@@ -81,7 +81,7 @@
           ]
         }]
       ]
-   },
+    },
     "production": {
       "plugins": [
         "transform-react-constant-elements",
@@ -95,7 +95,7 @@
           ]
         }]
       ]
-   },
+    },
     "test": {
       "sourceMaps": "both",
       "plugins": [

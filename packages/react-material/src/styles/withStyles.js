@@ -7,12 +7,12 @@ import wrapDisplayName from 'recompose/wrapDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
 import { create } from 'jss';
 import * as ns from 'react-jss/lib/ns';
-import jssPreset from 'material-ui/styles/jssPreset';
+import jssPreset from './jssPreset';
 import createMuiTheme from './createMuiTheme';
-import themeListener from 'material-ui/styles/themeListener';
-import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
-import getStylesCreator from 'material-ui/styles/getStylesCreator';
-import getThemeProps from 'material-ui/styles/getThemeProps';
+import themeListener from './themeListener';
+import createGenerateClassName from './createGenerateClassName';
+import getStylesCreator from './getStylesCreator';
+import getThemeProps from './getThemeProps';
 
 // Default JSS instance.
 const jss = create(jssPreset());
@@ -238,9 +238,9 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
               renderedClasses[key] || this.disableStylesGeneration,
               [
                 `Material-UI: the key \`${key}\` ` +
-                `provided to the classes property is not implemented in ${getDisplayName(
-                  Component,
-                )}.`,
+                  `provided to the classes property is not implemented in ${getDisplayName(
+                    Component,
+                  )}.`,
                 `You can only override one of the following: ${Object.keys(renderedClasses).join(
                   ',',
                 )}`,
@@ -251,7 +251,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
               !classesProp[key] || typeof classesProp[key] === 'string',
               [
                 `Material-UI: the key \`${key}\` ` +
-                `provided to the classes property is not valid for ${getDisplayName(Component)}.`,
+                  `provided to the classes property is not valid for ${getDisplayName(Component)}.`,
                 `You need to provide a non empty string instead of: ${classesProp[key]}.`,
               ].join('\n'),
             );

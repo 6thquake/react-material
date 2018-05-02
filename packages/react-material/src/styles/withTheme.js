@@ -2,7 +2,7 @@ import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import createMuiTheme from './createMuiTheme';
-import themeListener from 'material-ui/styles/themeListener';
+import themeListener from './themeListener';
 
 let defaultTheme;
 

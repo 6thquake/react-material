@@ -1,7 +1,6 @@
 export default [
   {
-    name:'中国',onHandle:12,
-    open:true,
+    name:'中国',
     children:[
       {
         name:'山东',
@@ -11,7 +10,7 @@ export default [
             children:[
               {
                 name:'莒县',
-
+                open:true
               }
             ]
           },
@@ -22,7 +21,9 @@ export default [
       },
       {
         name:'上海',
-        before:()=>false,
+        beforeChildren:function () {
+          //子节点要不要显示
+        },
         children:[
           {
             name:'长宁',
@@ -31,7 +32,17 @@ export default [
                 name:'长宁支路'
               },
               {
-                name:'江苏路'
+               // id:'',
+                // level:'', //私有属性
+                name:'江苏路',
+                onClick:'http',
+                icon:'',      //icon
+                onHandle:'',
+                before:function () {
+                //当前节点要不要显示
+                },
+                style:'',
+                className:''
               }
             ]
           },

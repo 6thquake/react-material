@@ -1,219 +1,131 @@
 import React from 'react';
+import {TreeMenu} from 'react-material/Drawer';
+import data from './data';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import {withStyles} from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
-import Button from 'material-ui/Button';
-import ListSubheader from 'material-ui/List/ListSubheader';
-import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
-import Collapse from 'material-ui/transitions/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
-import data from './data';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import {MenuItem} from 'material-ui/Menu';
+import TextField from 'material-ui/TextField';
+import Typography from 'material-ui/Typography';
+import Divider from 'material-ui/Divider';
+
+const drawerWidth = 240;
 
 const styles = theme => ({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
   root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    flexGrow: 1,
   },
-  nested: {
-    paddingLeft: theme.spacing.unit * 4,
+  appFrame: {
+    height: 430,
+    zIndex: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+  },
+  appBar: {
+    width: `calc(100% - ${drawerWidth}px)`,
+  },
+  'appBar-left': {
+    marginLeft: drawerWidth,
+  },
+  'appBar-right': {
+    marginRight: drawerWidth,
+  },
+  drawerPaper: {
+    position: 'relative',
+    width: drawerWidth
+  },
+  docked:{
+    overflow:'scroll'
+  },
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit * 3,
   },
 });
 
-
-function getSideList(data) {
-  if (!data) return null;
-  return <List
-    component="nav">
-    {data.map((list, index) => (
-    <ListItem button key={index}>
-      <ListItemText inset primary={list.name}/>
-      {list.children}&&(<Collapse in={true} timeout="auto" key={Math.random()} unmountOnExit>
-      {getSideList(list.children)}
-    </Collapse>)
-    </ListItem>
-    ))}
-  </List>;
-
-  return <List
-    component="nav"
-  >
-    <ListItem button>
-      <ListItemText inset primary="Sent mail"/>
-    </ListItem>
-    <ListItem button>
-      <ListItemText inset primary="Drafts"/>
-    </ListItem>
-    <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-      <List component="div" disablePadding>
-        <ListItem button className={classes.nested}>
-          <ListItemIcon>
-            <StarBorder/>
-          </ListItemIcon>
-          <ListItemText inset primary="Starred"/>
-        </ListItem>
-        <ListItem button className={classes.nested}>
-          <ListItemIcon>
-            <StarBorder/>
-          </ListItemIcon>
-          <ListItemText inset primary="Starred"/>
-        </ListItem>
-        <ListItem button className={classes.nested}>
-          <ListItemIcon>
-            <StarBorder/>
-          </ListItemIcon>
-          <ListItemText inset primary="Starred"/>
-        </ListItem>
-        <ListItem button className={classes.nested}>
-          <ListItemIcon>
-            <StarBorder/>
-          </ListItemIcon>
-          <ListItemText inset primary="Starred"/>
-        </ListItem>
-      </List>
-    </Collapse>
-  </List>
-}
-
-class TemporaryDrawer extends React.Component {
-  handleClick = () => {
-    this.setState({open: !this.state.open});
-  };
+class PermanentDrawer extends React.Component {
   state = {
-    open: false,
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
+    anchor: 'left',
   };
 
-  toggleDrawer = (side, open) => () => {
+  handleChange = event => {
     this.setState({
-      [side]: open,
+      anchor: event.target.value,
     });
   };
 
   render() {
     const {classes} = this.props;
-
-    const sideList = (
-      <div className={classes.list}>
-        <List
-          component="nav"
-        >
-          <ListItem button>
-            <ListItemIcon>
-              <SendIcon/>
-            </ListItemIcon>
-            <ListItemText inset primary="Sent mail"/>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <DraftsIcon/>
-            </ListItemIcon>
-            <ListItemText inset primary="Drafts"/>
-          </ListItem>
-          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <StarBorder/>
-                </ListItemIcon>
-                <ListItemText inset primary="Starred"/>
-              </ListItem>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <StarBorder/>
-                </ListItemIcon>
-                <ListItemText inset primary="Starred"/>
-              </ListItem>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <StarBorder/>
-                </ListItemIcon>
-                <ListItemText inset primary="Starred"/>
-              </ListItem>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <StarBorder/>
-                </ListItemIcon>
-                <ListItemText inset primary="Starred"/>
-              </ListItem>
-            </List>
-          </Collapse>
-          <ListItem button onClick={this.handleClick}>
-            <ListItemIcon>
-              <InboxIcon/>
-            </ListItemIcon>
-            <ListItemText inset primary="Inbox"/>
-            {this.state.open ? <ExpandLess/> : <ExpandMore/>}
-          </ListItem>
-          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <StarBorder/>
-                </ListItemIcon>
-                <ListItemText inset primary="Starred"/>
-              </ListItem>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <StarBorder/>
-                </ListItemIcon>
-                <ListItemText inset primary="Starred"/>
-              </ListItem>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <StarBorder/>
-                </ListItemIcon>
-                <ListItemText inset primary="Starred"/>
-              </ListItem>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <StarBorder/>
-                </ListItemIcon>
-                <ListItemText inset primary="Starred"/>
-              </ListItem>
-            </List>
-          </Collapse>
-        </List>
-      </div>
+    const {anchor} = this.state;
+    const drawer = (
+      <Drawer
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+          docked: classes.docked,
+        }}
+        anchor={anchor}
+      >
+        <div className={classes.toolbar}/>
+        <Divider/>
+        <TreeMenu list={data}/>
+      </Drawer>
     );
 
+    let before = null;
+    let after = null;
+
+    if (anchor === 'left') {
+      before = drawer;
+    } else {
+      after = drawer;
+    }
+
     return (
-      <div>
-        <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
-        <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('left', true)}
-            onKeyDown={this.toggleDrawer('left', false)}
+      <div className={classes.root}>
+        <TextField
+          id="permanent-anchor"
+          select
+          label="Anchor"
+          value={anchor}
+          onChange={this.handleChange}
+          margin="normal"
+        >
+          <MenuItem value="left">left</MenuItem>
+          <MenuItem value="right">right</MenuItem>
+        </TextField>
+        <div className={classes.appFrame}>
+          <AppBar
+            position="absolute"
+            className={classNames(classes.appBar, classes[`appBar-${anchor}`])}
           >
-            {getSideList(data)}
-          </div>
-        </Drawer>
+            <Toolbar>
+              <Typography variant="title" color="inherit" noWrap>
+                Permanent drawer
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          {before}
+          <main className={classes.content}>
+            <div className={classes.toolbar}/>
+            <Typography>{'You think water moves fast? You should see ice.'}</Typography>
+          </main>
+          {after}
+        </div>
       </div>
     );
   }
 }
 
-TemporaryDrawer.propTypes = {
+PermanentDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TemporaryDrawer);
-
-
-
+export default withStyles(styles)(PermanentDrawer);

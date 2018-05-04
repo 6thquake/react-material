@@ -49,7 +49,7 @@ class AnchorPlayground extends React.Component {
           onCancel={this.cancel}    //cancel callback
           onConfirm={this.confirm}  // confirm callback
           cancelText={'cancel'}
-          confirmText={'ok'}
+          okText={'yes'}
           content={'Are you sure delete this task?'}
           anchorOrigin={{
             vertical: anchorOriginVertical,

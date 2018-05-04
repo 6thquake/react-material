@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Popover from 'material-ui/Popover';
 import PopoverContent from './content'
-
 const styles = theme => ({
   box: {
     display: 'inline-block'
@@ -70,7 +69,7 @@ class RMpopConfirm extends React.Component {
     })
   }
   render() {
-    const { color, variant, type, size, classes, children, cancelText, confirmText, content, ...other} = this.props;
+    const { color, variant, type, size, classes, children, cancelText, okText, content, ...other} = this.props;
     const {
       open,
       positionTop,
@@ -104,7 +103,7 @@ class RMpopConfirm extends React.Component {
               onCancel = {this.cancel}
               onConfirm = {this.confirm}
               cancelText={cancelText}
-              confirmText = {confirmText}
+              okText={okText}
               content = {content}
               color={color}
               variant={variant}

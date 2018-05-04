@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
-import {Button} from 'react-material/Button';
+import { withStyles } from 'react-material/styles';
+import { StatusButton } from 'react-material/Button';
 
 function handle() {
   return new Promise(function (resolve, reject) {
@@ -22,8 +22,8 @@ const styles = theme => ({
 function StatusButtons(props) {
   const {classes} = props;
   return (<div>
-    <Button color="primary" variant="raised" onHandler={handle} className={classes.button}>开始扩容</Button>
-    <Button color="primary"  onHandler={handle} className={classes.button}>开始扩容</Button>
+    <StatusButton color="primary" variant="raised" onHandler={handle} className={classes.button}>开始扩容</StatusButton>
+    <StatusButton color="primary"  onHandler={handle} className={classes.button}>开始扩容</StatusButton>
   </div>);
 }
 

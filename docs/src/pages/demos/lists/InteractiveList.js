@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from 'react-material/styles';
 import List, {
   ListItem,
   ListItemAvatar,
   ListItemIcon,
   ListItemSecondaryAction,
   ListItemText,
-} from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
-import IconButton from 'material-ui/IconButton';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
-import Checkbox from 'material-ui/Checkbox';
-import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
+} from 'react-material/List';
+import Avatar from 'react-material/Avatar';
+import IconButton from 'react-material/IconButton';
+import { FormGroup, FormControlLabel } from 'react-material/Form';
+import Checkbox from 'react-material/Checkbox';
+import Grid from 'react-material/Grid';
+import Typography from 'react-material/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 

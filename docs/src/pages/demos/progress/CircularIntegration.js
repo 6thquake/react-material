@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import { CircularProgress } from 'material-ui/Progress';
-import green from 'material-ui/colors/green';
-import Button from 'material-ui/Button';
+import { withStyles } from 'react-material/styles';
+import { CircularProgress } from 'react-material/Progress';
+import green from 'react-material/colors/green';
+import Button from 'react-material/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import SaveIcon from '@material-ui/icons/Save';
 

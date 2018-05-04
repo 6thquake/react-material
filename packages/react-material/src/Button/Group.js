@@ -62,13 +62,18 @@ class Group extends Component {
     }
 }
 
+
+
 Group.propTypes = {
     position: PropTypes.oneOf(['vertical', 'horizontal'])
 };
+
 Group.defaultProps = {
     position: 'horizontal'
 };
+
 Group.childContextTypes = {
     resetActive: PropTypes.func
 };
+
 export default withStyles(styles)(Group);

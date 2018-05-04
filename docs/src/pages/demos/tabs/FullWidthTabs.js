@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from 'react-material/styles';
 import SwipeableViews from 'react-swipeable-views';
-import AppBar from 'material-ui/AppBar';
-import Tabs, { Tab } from 'material-ui/Tabs';
-import Typography from 'material-ui/Typography';
+import AppBar from 'react-material/AppBar';
+import Tabs, { Tab } from 'react-material/Tabs';
+import Typography from 'react-material/Typography';
 
 function TabContainer({ children, dir }) {
   return (

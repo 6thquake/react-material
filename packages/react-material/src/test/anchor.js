@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import Divider from 'material-ui/Divider'
-import Anchor from '../RManchor'
+import Anchor from '../Anchor'
 export const styles = {
   tBox: {
     overflow: 'scroll',
@@ -15,7 +15,7 @@ export const styles = {
   },
 }
 
-class RManchor extends React.Component {
+class Anchor extends React.Component {
   target=null
   render() {
     const { classes } = this.props
@@ -147,4 +147,4 @@ class RManchor extends React.Component {
   }
 }
 
-export default withStyles(styles)(RManchor)
+export default withStyles(styles)(Anchor)

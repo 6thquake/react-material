@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import green from 'material-ui/colors/green';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
-import Switch from 'material-ui/Switch';
+import { withStyles } from 'react-material/styles';
+import green from 'react-material/colors/green';
+import { FormGroup, FormControlLabel } from 'react-material/Form';
+import Switch from 'react-material/Switch';
 
 const styles = {
   switchBase: {

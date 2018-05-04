@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MuiThemeProvider, createMuiTheme, withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import { MuiThemeProvider, createMuiTheme, withStyles } from 'react-material/styles';
+import Typography from 'react-material/Typography';
+import Button from 'react-material/Button';
 
 const styles = {
   root: {

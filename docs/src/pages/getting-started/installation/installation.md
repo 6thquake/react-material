@@ -1,6 +1,6 @@
 # Installation
 
-React-Material is available as an [npm package](https://www.npmjs.com/package/material-ui).
+React-Material is available as an [npm package](http://npm.release.ctripcorp.com/package/react-material).
 
 ## npm
 

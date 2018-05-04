@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'material-ui/Button';
+import Button from 'react-material/Button';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from 'react-material/styles';
 import Delete from '@material-ui/icons/Delete';
 import FileUpload from '@material-ui/icons/FileUpload';
 import KeyboardVoice from '@material-ui/icons/KeyboardVoice';
-import Icon from 'material-ui/Icon';
+import Icon from 'react-material/Icon';
 import Save from '@material-ui/icons/Save';
 
 const styles = theme => ({

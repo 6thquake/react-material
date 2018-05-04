@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Stepper, { Step, StepLabel } from 'material-ui/Stepper';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
+import { withStyles } from 'react-material/styles';
+import Stepper, { Step, StepLabel } from 'react-material/Stepper';
+import Button from 'react-material/Button';
+import Typography from 'react-material/Typography';
 
 const styles = theme => ({
   root: {

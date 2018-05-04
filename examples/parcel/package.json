@@ -7,7 +7,7 @@
     "babel-preset-env": "latest",
     "babel-preset-react": "latest",
     "babel-preset-stage-2": "latest",
-    "material-ui": "next",
+    "react-material": "next",
     "parcel-bundler": "latest",
     "prop-types": "latest",
     "react": "latest",

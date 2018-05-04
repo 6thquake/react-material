@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
+import Button from 'react-material/Button';
+import TextField from 'react-material/TextField';
 import Dialog, {
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from 'material-ui/Dialog';
+} from 'react-material/Dialog';
 
 export default class FormDialog extends React.Component {
   state = {

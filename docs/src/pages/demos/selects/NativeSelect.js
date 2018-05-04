@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Input, { InputLabel } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import Select from 'material-ui/Select';
+import { withStyles } from 'react-material/styles';
+import Input, { InputLabel } from 'react-material/Input';
+import { FormControl, FormHelperText } from 'react-material/Form';
+import Select from 'react-material/Select';
 
 const styles = theme => ({
   root: {

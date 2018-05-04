@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { CardMedia } from 'material-ui/Card';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
+import { withStyles } from 'react-material/styles';
+import { CardMedia } from 'react-material/Card';
+import Grid from 'react-material/Grid';
+import Paper from 'react-material/Paper';
+import Typography from 'react-material/Typography';
+import IconButton from 'react-material/IconButton';
 import Github from '@material-ui/docs/svgIcons/GitHub';
 import Twitter from '@material-ui/docs/svgIcons/Twitter';
 

@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import Dialog from 'material-ui/Dialog';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
-import Typography from 'material-ui/Typography';
+import { withStyles } from 'react-material/styles';
+import Button from 'react-material/Button';
+import Dialog from 'react-material/Dialog';
+import List, { ListItem, ListItemText } from 'react-material/List';
+import Divider from 'react-material/Divider';
+import AppBar from 'react-material/AppBar';
+import Toolbar from 'react-material/Toolbar';
+import IconButton from 'react-material/IconButton';
+import Typography from 'react-material/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import Slide from 'material-ui/transitions/Slide';
+import Slide from 'react-material/transitions/Slide';
 
 const styles = {
   appBar: {

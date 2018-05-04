@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import { FormControl } from 'material-ui/Form';
-import Select from 'material-ui/Select';
-import Button from 'material-ui/Button';
+import { withStyles } from 'react-material/styles';
+import { InputLabel } from 'react-material/Input';
+import { MenuItem } from 'react-material/Menu';
+import { FormControl } from 'react-material/Form';
+import Select from 'react-material/Select';
+import Button from 'react-material/Button';
 
 const styles = theme => ({
   button: {

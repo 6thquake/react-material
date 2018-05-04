@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import MobileStepper from 'material-ui/MobileStepper';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import { withStyles } from 'react-material/styles';
+import MobileStepper from 'react-material/MobileStepper';
+import Paper from 'react-material/Paper';
+import Typography from 'react-material/Typography';
+import Button from 'react-material/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 

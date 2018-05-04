@@ -6,7 +6,7 @@ import Checkbox from 'material-ui/Checkbox';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import {ChevronRight,ChevronLeft,LastPage,FirstPage} from '@material-ui/icons';
-//<RMTransfer></RMTransfer>
+
 const styles = {
   root:{
     color:'rgba(0,0,0,.45)',
@@ -53,6 +53,7 @@ class Item extends React.Component {
     return _jsx;
   }
 };
+
 class Breadcrumb extends React.Component {
   constructor(props) {
     super(props);

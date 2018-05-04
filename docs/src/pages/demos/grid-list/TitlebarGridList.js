@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import GridList, { GridListTile, GridListTileBar } from 'material-ui/GridList';
-import Subheader from 'material-ui/List/ListSubheader';
-import IconButton from 'material-ui/IconButton';
+import { withStyles } from 'react-material/styles';
+import GridList, { GridListTile, GridListTileBar } from 'react-material/GridList';
+import ListSubheader from 'react-material/List';
+import IconButton from 'react-material/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import tileData from './tileData';
 
@@ -48,7 +48,7 @@ function TitlebarGridList(props) {
     <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList}>
         <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <Subheader component="div">December</Subheader>
+          <ListSubheader component="div">December</ListSubheader>
         </GridListTile>
         {tileData.map(tile => (
           <GridListTile key={tile.img}>

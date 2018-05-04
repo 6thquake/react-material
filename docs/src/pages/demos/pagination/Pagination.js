@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import Pagination  from 'react-material/Pagination';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from 'react-material/styles';
 
 const styles = {
   root: {

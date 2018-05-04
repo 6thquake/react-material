@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from 'material-ui/Button';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import Fade from 'material-ui/transitions/Fade';
+import Button from 'react-material/Button';
+import Menu, { MenuItem } from 'react-material/Menu';
+import Fade from 'react-material/transitions/Fade';
 
 class FadeMenu extends React.Component {
   state = {

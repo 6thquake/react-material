@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import { withStyles } from 'material-ui/styles';
 import { Publish } from '@material-ui/icons'
 
-
-
 const styles = {
     rmBackTop: {
         zIndex: '10',

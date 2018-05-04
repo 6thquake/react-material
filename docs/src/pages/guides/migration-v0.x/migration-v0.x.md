@@ -36,8 +36,8 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
   then
 
   ```js
-  import FlatButton from 'material-ui/FlatButton'; // v0.x
-  import Button from 'material-ui-next/Button'; // v1.x
+  import FlatButton from 'react-material/FlatButton'; // v0.x
+  import Button from 'react-material-next/Button'; // v1.x
   ```
 
   If you can't use Yarn, we also provide a separate package for **NPM**.
@@ -52,8 +52,8 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
   then
 
   ```js
-  import FlatButton from 'material-ui/FlatButton'; // v0.x
-  import Button from 'material-ui-next/Button'; // v1.x
+  import FlatButton from 'react-material/FlatButton'; // v0.x
+  import Button from 'react-material-next/Button'; // v1.x
   ```
 
 2. Run [the migration helper](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop/packages/material-ui-codemod) on your project.
@@ -61,9 +61,9 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
 
   ```jsx
   import React from 'react';
-  import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'material-ui-next/styles';
-  import { MuiThemeProvider } from 'material-ui';
-  import getMuiTheme from 'material-ui/styles/getMuiTheme';
+  import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'react-material-next/styles';
+  import { MuiThemeProvider } from 'react-material';
+  import getMuiTheme from 'react-material/styles/getMuiTheme';
 
   const themeV1 = createMuiTheme({
     /* theme for v1 */
@@ -90,7 +90,7 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
 ### Autocomplete
 
 React-Material doesn't provide any high-level API for solving this problem.
-You're encouraged you to explore [the solutions the React community has built](https://material-ui-next.com/demos/autocomplete/).
+You're encouraged you to explore [the solutions the React community has built](/demos/autocomplete/).
 
 In the future, we will look into providing a simple component to solve the simple use cases: [#9997](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues/9997).
 
@@ -107,7 +107,7 @@ You can fix those issues with the following code.
 Apply it before all the other imports:
 
 ```js
-import SvgIcon from 'material-ui-next/SvgIcon';
+import SvgIcon from 'react-material-next/SvgIcon';
 
 // Tells `@material-ui/icons` to use `material-ui-next/SvgIcon` module
 // instead of `material-ui/SvgIcon`.
@@ -117,8 +117,8 @@ global.__MUI_SvgIcon__ = SvgIcon;
 ### Flat Button
 
 ```diff
--import FlatButton from 'material-ui/FlatButton';
-+import Button from 'material-ui-next/Button';
+-import FlatButton from 'react-material/FlatButton';
++import Button from 'react-material-next/Button';
 
 -<FlatButton />
 +<Button />
@@ -127,8 +127,8 @@ global.__MUI_SvgIcon__ = SvgIcon;
 ### Raised Button
 
 ```diff
--import RaisedButton from 'material-ui/RaisedButton';
-+import Button from 'material-ui-next/Button';
+-import RaisedButton from 'react-material/RaisedButton';
++import Button from 'react-material-next/Button';
 
 -<RaisedButton />
 +<Button variant="raised" />

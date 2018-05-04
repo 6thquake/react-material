@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import Input, { InputLabel } from 'material-ui/Input';
-import TextField from 'material-ui/TextField';
-import { FormControl } from 'material-ui/Form';
-import purple from 'material-ui/colors/purple';
-import green from 'material-ui/colors/green';
+import { withStyles, MuiThemeProvider, createMuiTheme } from 'react-material/styles';
+import Input, { InputLabel } from 'react-material/Input';
+import TextField from 'react-material/TextField';
+import { FormControl } from 'react-material/Form';
+import purple from 'react-material/colors/purple';
+import green from 'react-material/colors/green';
 
 const styles = theme => ({
   container: {

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
+import { withStyles } from 'react-material/styles';
+import Button from 'react-material/Button';
 import AddIcon from '@material-ui/icons/Add';
-import Icon from 'material-ui/Icon';
+import Icon from 'react-material/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = theme => ({

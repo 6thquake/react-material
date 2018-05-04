@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
+import { withStyles } from 'react-material/styles';
+import AppBar from 'react-material/AppBar';
+import Toolbar from 'react-material/Toolbar';
+import IconButton from 'react-material/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import Typography from 'react-material/Typography';
+import Button from 'react-material/Button';
 import AddIcon from '@material-ui/icons/Add';
-import Snackbar from 'material-ui/Snackbar';
+import Snackbar from 'react-material/Snackbar';
 
 const styles = theme => ({
   root: {

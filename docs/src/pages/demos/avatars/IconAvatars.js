@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import pink from 'material-ui/colors/pink';
-import green from 'material-ui/colors/green';
-import Avatar from 'material-ui/Avatar';
+import { withStyles } from 'react-material/styles';
+import pink from 'react-material/colors/pink';
+import green from 'react-material/colors/green';
+import Avatar from 'react-material/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import AssignmentIcon from '@material-ui/icons/Assignment';
@@ -28,7 +28,7 @@ const styles = {
   },
 };
 
-function IconAvatars(props) {
+function App(props) {
   const { classes } = props;
   return (
     <div className={classes.row}>
@@ -45,8 +45,8 @@ function IconAvatars(props) {
   );
 }
 
-IconAvatars.propTypes = {
+App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(IconAvatars);
+export default withStyles(styles)(App);

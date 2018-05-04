@@ -1,14 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import Button from 'react-material/Button';
+import Dialog, {
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from 'react-material/Dialog';
+import Typography from 'react-material/Typography';
+import { withStyles } from 'react-material/styles';
+import withRoot from '../withRoot';
 import classNames from 'classnames';
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
-import Typography from 'material-ui/Typography';
-import Divider from 'material-ui/Divider';
-import IconButton from 'material-ui/IconButton';
+import Drawer from 'react-material/Drawer';
+import AppBar from 'react-material/AppBar';
+import Toolbar from 'react-material/Toolbar';
+import List from 'react-material/List';
+import Typography from 'react-material/Typography';
+import Divider from 'react-material/Divider';
+import IconButton from 'react-material/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';

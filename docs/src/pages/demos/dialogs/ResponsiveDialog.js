@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'material-ui/Button';
+import Button from 'react-material/Button';
 import Dialog, {
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   withMobileDialog,
-} from 'material-ui/Dialog';
+} from 'react-material/Dialog';
 
 class ResponsiveDialog extends React.Component {
   state = {

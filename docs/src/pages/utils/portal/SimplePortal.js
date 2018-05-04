@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Portal from 'material-ui/Portal';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
-import { withStyles } from 'material-ui/styles';
+import Portal from 'react-material/Portal';
+import Button from 'react-material/Button';
+import Typography from 'react-material/Typography';
+import { withStyles } from 'react-material/styles';
 
 const styles = theme => ({
   alert: {

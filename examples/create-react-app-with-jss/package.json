@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "jss": "latest",
-    "material-ui": "next",
+    "react-material": "next",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",

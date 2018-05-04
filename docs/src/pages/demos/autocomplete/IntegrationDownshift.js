@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import Downshift from 'downshift';
-import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper';
-import { MenuItem } from 'material-ui/Menu';
-import Chip from 'material-ui/Chip';
+import { withStyles } from 'react-material/styles';
+import TextField from 'react-material/TextField';
+import Paper from 'react-material/Paper';
+import { MenuItem } from 'react-material/Menu';
+import Chip from 'react-material/Chip';
 
 const suggestions = [
   { label: 'Afghanistan' },

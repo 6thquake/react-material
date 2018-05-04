@@ -1,10 +1,10 @@
 import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
+import { withStyles } from 'react-material/styles';
+import Table, { TableBody, TableCell, TableRow } from 'react-material/Table';
+import Paper from 'react-material/Paper';
+import Typography from 'react-material/Typography';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = {

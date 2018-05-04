@@ -2,7 +2,7 @@
 
 Stuck on a particular problem? Check some of these common gotchas first.
 
-If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/callemall/material-ui).
+If you still can't find what you're looking for, you can ask the community in [ctrip team](https://www.ctripteam.com/group/front-end).
 For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
 
 ## Why do the fixed positioned elements move when a modal is opened?
@@ -124,10 +124,4 @@ page](/customization/themes) to learn about theme customization.
 There are many ways to support React-Material:
 - Improve [the documentation](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop/docs).
 - Help others to get started.
-- [Spread the word](https://twitter.com/MaterialUI).
-- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui) or [issues marked as question](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.
-
-If you use React-Material in a commercial project and would like to support its continued development by becoming a **Sponsor**,
-or in a side or hobby project and would like to become a backer, you can do so through [OpenCollective](https://opencollective.com/material-ui).
-
-All funds raised are managed transparently, and Sponsors receive recognition in the README and on the React-Material home page.
+- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/react-material) or [issues marked as question](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.

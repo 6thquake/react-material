@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from 'material-ui/Paper';
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
-import Avatar from 'material-ui/Avatar';
-import Typography from 'material-ui/Typography';
+import Paper from 'react-material/Paper';
+import { withStyles } from 'react-material/styles';
+import Grid from 'react-material/Grid';
+import Avatar from 'react-material/Avatar';
+import Typography from 'react-material/Typography';
 
 const styles = theme => ({
   root: {

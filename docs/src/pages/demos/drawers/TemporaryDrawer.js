@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
-import Button from 'material-ui/Button';
-import List from 'material-ui/List';
-import Divider from 'material-ui/Divider';
+import { withStyles } from 'react-material/styles';
+import Drawer from 'react-material/Drawer';
+import Button from 'react-material/Button';
+import List from 'react-material/List';
+import Divider from 'react-material/Divider';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const styles = {

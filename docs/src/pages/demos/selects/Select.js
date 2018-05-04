@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Select from 'react-material/Select'
-import { InputLabel } from 'material-ui/Input';
-import { withStyles } from 'material-ui/styles';
-import { FormControl } from 'material-ui/Form';
+import { AsynSelect } from 'react-material/Select'
+import { InputLabel } from 'react-material/Input';
+import { withStyles } from 'react-material/styles';
+import { FormControl } from 'react-material/Form';
 
 const styles = theme => ({
   root: {
@@ -17,7 +17,8 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2,
   },
 });
- class SelectTest extends Component {
+
+class App extends Component {
   state = {
     values:[],
       options: [
@@ -43,19 +44,21 @@ const styles = theme => ({
         '20',
     ],
     pagerConfig : {
-          pageSize: 5
+      pageSize: 5
     }
   };
-    selectCb(i){
-      console.log('event.target.value',i)
-    }
+
+  selectCb(i){
+    console.log('event.target.value', i)
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-native-simple">single select</InputLabel>
-          <Select
+          <AsynSelect
             multiple={false}
             value={this.state.values}
             options={this.state.options}
@@ -63,11 +66,11 @@ const styles = theme => ({
             placeholder="select one or more"
             selectCb={this.selectCb.bind(this)}
           >
-          </Select>
+          </AsynSelect>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-native-helper">Multiple select</InputLabel>
-          <Select
+          <AsynSelect
             multiple={true}
             value={this.state.values}
             options={this.state.options}
@@ -75,10 +78,10 @@ const styles = theme => ({
             placeholder="select one or more"
             selectCb={this.selectCb.bind(this)}
           >
-          </Select>
+          </AsynSelect>
         </FormControl>
       </div>
     );
   }
 }
-export default withStyles(styles)(SelectTest);
+export default withStyles(styles)(App);

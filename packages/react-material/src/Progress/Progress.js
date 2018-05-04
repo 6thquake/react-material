@@ -1,9 +1,9 @@
-import React , {Component} from 'react';
+import React , { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { LinearProgress} from 'material-ui/Progress';
-import {Done,HighlightOff} from '@material-ui/icons';
-import {red} from 'material-ui/colors';
+import { LinearProgress } from 'material-ui/Progress';
+import { Done, HighlightOff } from '@material-ui/icons';
+import { red } from 'material-ui/colors';
 
 const styles = theme => ({
     lineProgress: {
@@ -25,7 +25,8 @@ const styles = theme => ({
         },
     },
 });
-class Progress  extends Component {
+
+class Progress extends Component {
   static propTypes = {
     /**
      * 进度百分比,当isPromise为false时props取
@@ -52,6 +53,7 @@ class Progress  extends Component {
      */
     baseProgress: PropTypes.bool
   };
+
   static defaultProps = {
     completed: 0,
     error:false,
@@ -60,82 +62,86 @@ class Progress  extends Component {
     estimatedTime:2,
     baseProgress:false
   };
-    constructor(props){
-        super(props);
-        this.state={
-            completed:this.props.completed
-        }
-    }
+  
+  constructor(props){
+      super(props);
+      this.state={
+          completed:this.props.completed
+      }
+  }
 
-    componentDidMount() {
-        if(this.props.isPromise){
-            this.timer = setInterval(this.progress,300);
-        }
-    }
-    componentWillReceiveProps(nextProps){
-        if(!nextProps.isFinish&&this.props.isPromise){
-          this.setState({ completed: 0});
-          if(this.timer){
-            clearInterval(this.timer);
-          }
+  componentDidMount() {
+      if(this.props.isPromise){
           this.timer = setInterval(this.progress,300);
-        }
-    }
-    componentWillUnmount() {
+      }
+  }
+
+  componentWillReceiveProps(nextProps){
+      if(!nextProps.isFinish&&this.props.isPromise){
+        this.setState({ completed: 0});
         if(this.timer){
-            clearInterval(this.timer);
+          clearInterval(this.timer);
         }
-    }
+        this.timer = setInterval(this.progress,300);
+      }
+  }
 
-    timer = null;
+  componentWillUnmount() {
+      if(this.timer){
+          clearInterval(this.timer);
+      }
+  }
 
-    progress = () => {
-      const speed = this.props.estimatedTime>0?Math.ceil(this.props.estimatedTime):4;
-        const { completed } = this.state;
-        if(this.props.isFinish){
-            clearInterval(this.timer);
-            this.setState({ completed: 100});
-        }else {
-          const diff = Math.floor((100-completed)/speed);
-          this.setState({ completed: completed + diff});
-        }
-    };
-    render() {
-      if(this.props.baseProgress){
-        return (
-          <LinearProgress  {...this.props}/>
+  timer = null;
+
+  progress = () => {
+    const speed = this.props.estimatedTime>0?Math.ceil(this.props.estimatedTime):4;
+      const { completed } = this.state;
+      if(this.props.isFinish){
+          clearInterval(this.timer);
+          this.setState({ completed: 100});
+      }else {
+        const diff = Math.floor((100-completed)/speed);
+        this.setState({ completed: completed + diff});
+      }
+  };
+
+  render() {
+    if(this.props.baseProgress) {
+      return (
+        <LinearProgress  {...this.props}/>
+      );
+    } else {
+      if(this.props.isPromise){
+        const {classes} = this.props;
+        const {completed}=this.state;
+        return this.props.isFinish?null:(
+            <div>
+                <div>
+                    <LinearProgress  variant="buffer"  value={completed} valueBuffer={10} {...this.props}/>
+                </div>
+            </div>
         );
       }else {
-        if(this.props.isPromise){
-            const {classes} = this.props;
-            const {completed}=this.state;
-            return this.props.isFinish?null:(
-                <div>
-                    <div>
-                        <LinearProgress  variant="buffer"  value={completed} valueBuffer={10} {...this.props}/>
-                    </div>
+        const {completed,classes,error} = this.props;
+        const zcomplete = Math.floor(completed);
+        const finishOrError=(
+                (zcomplete===100?<Done className={classes.icon} color="primary"/>:
+                        (error?<HighlightOff className={classes.icon} color="error"/>:
+                                <span className={classes.nubProgress}>{zcomplete+'%'}</span>
+                        )
+                )
+        );
+        return (
+            <div>
+                <div className={classes.lineProgress}>
+                    <LinearProgress  variant="determinate" color={error?'secondary':'primary'}  value={completed} {...this.props}/>
                 </div>
-            );
-        }else {
-            const {completed,classes,error} = this.props;
-            const zcomplete = Math.floor(completed);
-            const finishOrError=(
-                    (zcomplete===100?<Done className={classes.icon} color="primary"/>:
-                            (error?<HighlightOff className={classes.icon} color="error"/>:
-                                    <span className={classes.nubProgress}>{zcomplete+'%'}</span>
-                            )
-                    )
-            );
-            return (
-                <div>
-                    <div className={classes.lineProgress}>
-                        <LinearProgress  variant="determinate" color={error?'secondary':'primary'}  value={completed} {...this.props}/>
-                    </div>
-                    {finishOrError}
-                </div>
-            );
-        }
+                {finishOrError}
+            </div>
+        );
       }
     }
+  }
 }
 export default withStyles(styles)(Progress);

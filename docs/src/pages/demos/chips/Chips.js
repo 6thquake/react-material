@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Avatar from 'material-ui/Avatar';
-import Chip from 'material-ui/Chip';
+import { withStyles } from 'react-material/styles';
+import Avatar from 'react-material/Avatar';
+import Chip from 'react-material/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 

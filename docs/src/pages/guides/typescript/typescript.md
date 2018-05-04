@@ -40,7 +40,7 @@ const DecoratedSFC = decorate<Props>(({ text, type, color, classes }) => (
 Class components are a little more cumbersome. Due to a [current limitation in TypeScript's decorator support](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles` can't be used as a class decorator. Instead, we decorate a class component like so:
 
 ```jsx
-import { WithStyles } from 'material-ui/styles';
+import { WithStyles } from 'react-material/styles';
 
 const DecoratedClass = decorate(
   class extends React.Component<Props & WithStyles<'root'>> {
@@ -59,7 +59,7 @@ const DecoratedClass = decorate(
 When your `props` are a union, Typescript needs you to explicitly tell it the type, by providing a generic `<Props>` parameter to `decorate`:
 
 ```jsx
-import { WithStyles } from 'material-ui/styles';
+import { WithStyles } from 'react-material/styles';
 
 interface Book {
   category: "book";
@@ -132,8 +132,8 @@ When adding custom properties to the `Theme`, you may continue to use it in a st
 The following example adds an `appDrawer` property that is merged into the one exported by `material-ui`:
 
 ```js
-import { Theme } from 'material-ui/styles/createMuiTheme';
-import { Breakpoint } from 'material-ui/styles/createBreakpoints';
+import { Theme } from 'react-material/styles/createMuiTheme';
+import { Breakpoint } from 'react-material/styles/createBreakpoints';
 
 declare module 'material-ui/styles/createMuiTheme' {
   interface Theme {
@@ -155,7 +155,7 @@ declare module 'material-ui/styles/createMuiTheme' {
 And a custom theme factory with additional defaulted options:
 
 ```js
-import createMuiTheme, { ThemeOptions } from 'material-ui/styles/createMuiTheme';
+import createMuiTheme, { ThemeOptions } from 'react-material/styles/createMuiTheme';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createMuiTheme({

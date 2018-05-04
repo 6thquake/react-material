@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Avatar from 'material-ui/Avatar';
-import deepOrange from 'material-ui/colors/deepOrange';
-import deepPurple from 'material-ui/colors/deepPurple';
+import { withStyles } from 'react-material/styles';
+import Avatar from 'react-material/Avatar';
+import deepOrange from 'react-material/colors/deepOrange';
+import deepPurple from 'react-material/colors/deepPurple';
 
 const styles = {
   avatar: {
@@ -25,7 +25,7 @@ const styles = {
   },
 };
 
-function LetterAvatars(props) {
+function App(props) {
   const { classes } = props;
   return (
     <div className={classes.row}>
@@ -36,8 +36,8 @@ function LetterAvatars(props) {
   );
 }
 
-LetterAvatars.propTypes = {
+App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LetterAvatars);
+export default withStyles(styles)(App);

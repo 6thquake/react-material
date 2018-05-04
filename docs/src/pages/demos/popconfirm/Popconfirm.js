@@ -4,7 +4,7 @@ import { withStyles } from 'react-material/styles';
 import { FormControl, FormLabel, FormControlLabel } from 'react-material/Form';
 import Radio, { RadioGroup } from 'react-material/Radio';
 import Grid from 'react-material/Grid';
-import {Button} from 'react-material/Button';
+import Button from 'react-material/Button';
 import Popover from 'react-material/Popover';
 import Popconfirm from 'react-material/Popconfirm';
 
@@ -14,7 +14,7 @@ const styles = theme => ({
   },
 });
 
-class AnchorPlayground extends React.Component {
+class App extends React.Component {
   state = {
     anchorOriginVertical: 'top',
     anchorOriginHorizontal: 'center',
@@ -31,9 +31,11 @@ class AnchorPlayground extends React.Component {
   cancel = () => {
     console.log('cancel');
   };
+  
   confirm = () => {
     console.log('ok');
   };
+
   render() {
     const { classes } = this.props;
     const {
@@ -68,7 +70,6 @@ class AnchorPlayground extends React.Component {
           </Button>
         </Popconfirm>
         <Grid container spacing={16}>          
-         
           <Grid item xs={12} sm={6}>
             <FormControl component="fieldset">
               <FormLabel component="legend">anchorOrigin.vertical</FormLabel>
@@ -137,8 +138,8 @@ class AnchorPlayground extends React.Component {
   }
 }
 
-AnchorPlayground.propTypes = {
+App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AnchorPlayground);
+export default withStyles(styles)(App);

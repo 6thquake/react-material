@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import { FormControl } from 'material-ui/Form';
-import { ListItemText } from 'material-ui/List';
-import Select from 'material-ui/Select';
-import Checkbox from 'material-ui/Checkbox';
-import Chip from 'material-ui/Chip';
+import { withStyles } from 'react-material/styles';
+import Input, { InputLabel } from 'react-material/Input';
+import { MenuItem } from 'react-material/Menu';
+import { FormControl } from 'react-material/Form';
+import { ListItemText } from 'react-material/List';
+import Select from 'react-material/Select';
+import Checkbox from 'react-material/Checkbox';
+import Chip from 'react-material/Chip';
 
 const styles = theme => ({
   root: {

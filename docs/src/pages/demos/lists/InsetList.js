@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import { withStyles } from 'react-material/styles';
+import List, { ListItem, ListItemIcon, ListItemText } from 'react-material/List';
 import StarIcon from '@material-ui/icons/Star';
 
 const styles = theme => ({

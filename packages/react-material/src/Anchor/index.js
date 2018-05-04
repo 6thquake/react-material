@@ -1,1 +1,2 @@
-export { default } from './RManchor';
+export { default } from './Anchor';
+export * from './Anchor';

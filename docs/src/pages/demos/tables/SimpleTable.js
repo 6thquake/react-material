@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
-import Paper from 'material-ui/Paper';
+import { withStyles } from 'react-material/styles';
+import Table, { TableBody, TableCell, TableHead, TableRow } from 'react-material/Table';
+import Paper from 'react-material/Paper';
 
 const styles = theme => ({
   root: {

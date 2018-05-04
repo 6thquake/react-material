@@ -2,8 +2,8 @@
 
 import { SheetsRegistry } from 'jss';
 import { createMuiTheme, createGenerateClassName } from 'react-material/styles';
-import purple from 'material-ui/colors/purple';
-import green from 'material-ui/colors/green';
+import purple from 'react-material/colors/purple';
+import green from 'react-material/colors/green';
 
 // A theme with custom primary and secondary color.
 // It's optional.

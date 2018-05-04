@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import Tabs, { Tab } from 'material-ui/Tabs';
+import { withStyles } from 'react-material/styles';
+import Paper from 'react-material/Paper';
+import Tabs, { Tab } from 'react-material/Tabs';
 
 const styles = {
   root: {

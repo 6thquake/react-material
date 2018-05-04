@@ -7,7 +7,7 @@ filename: /packages/material-ui/src/transitions/Zoom.js
 # Zoom
 
 The Zoom transition can be used for the floating variant of the
-[Button](https://material-ui-next.com/demos/buttons/#floating-action-buttons) component.
+[Button](/demos/buttons/#floating-action-buttons) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props

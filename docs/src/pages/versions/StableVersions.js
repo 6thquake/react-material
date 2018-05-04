@@ -1,13 +1,13 @@
 import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
+import { withStyles } from 'react-material/styles';
+import Table, { TableBody, TableCell, TableRow } from 'react-material/Table';
+import Paper from 'react-material/Paper';
+import Typography from 'react-material/Typography';
 import Link from 'docs/src/modules/components/Link';
 
-const GITHUB_RELEASE_BASE_URL = 'http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tags';
+const GITHUB_RELEASE_BASE_URL = 'http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tags/';
 
 const styles = {
   root: {
@@ -28,7 +28,7 @@ const styles = {
 //     if (!cacheVersions) {
 //       await pause(1e3); // Soften the pressure on the main thread.
 //       const result = await fetch(
-//         'https://raw.githubusercontent.com/mui-org/material-ui/v1-beta/docs/versions.json',
+//         '/docs/versions.json',
 //       );
 //       cacheVersions = await result.json();
 //     }
@@ -55,7 +55,7 @@ class StableVersions extends React.Component {
 
     const VERSIONS = [
       {
-        url: 'https://material-ui-next.com',
+        url: '/',
         semver: process.env.LIB_VERSION,
       },
     ];

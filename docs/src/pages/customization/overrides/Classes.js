@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
+import { withStyles } from 'react-material/styles';
+import Button from 'react-material/Button';
 
 const styles = {
   root: {

@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from 'material-ui/Button';
-import Snackbar from 'material-ui/Snackbar';
-import Fade from 'material-ui/transitions/Fade';
+import Button from 'react-material/Button';
+import Snackbar from 'react-material/Snackbar';
+import Fade from 'react-material/transitions/Fade';
 
 class FadeSnackbar extends React.Component {
   state = {

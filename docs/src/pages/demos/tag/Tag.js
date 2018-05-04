@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { Tag } from 'react-material/Tag';
+import Tag from 'react-material/Tag';
 
 
 class App extends React.Component {

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { FormControl, FormLabel, FormControlLabel } from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import Popover from 'material-ui/Popover';
-import Input, { InputLabel } from 'material-ui/Input';
+import { withStyles } from 'react-material/styles';
+import { FormControl, FormLabel, FormControlLabel } from 'react-material/Form';
+import Radio, { RadioGroup } from 'react-material/Radio';
+import Grid from 'react-material/Grid';
+import Typography from 'react-material/Typography';
+import Button from 'react-material/Button';
+import Popover from 'react-material/Popover';
+import Input, { InputLabel } from 'react-material/Input';
 
 const styles = theme => ({
   button: {

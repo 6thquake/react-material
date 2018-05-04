@@ -1,2 +1,4 @@
-export { default } from './RMC';
-export { default as RMcascadeItem } from './RMCI';
+export { default } from './CascadeSelect';
+export { default as CascadeOption } from './CascadeOption';
+export * from './CascadeSelect';
+export * from './CascadeOption';

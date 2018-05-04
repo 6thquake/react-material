@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import { FormControlLabel } from 'material-ui/Form';
+import { withStyles } from 'react-material/styles';
+import Button from 'react-material/Button';
+import List, { ListItem, ListItemText } from 'react-material/List';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'react-material/Dialog';
+import Radio, { RadioGroup } from 'react-material/Radio';
+import { FormControlLabel } from 'react-material/Form';
 
 const options = [
   'None',

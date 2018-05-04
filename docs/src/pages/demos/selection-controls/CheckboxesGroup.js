@@ -5,8 +5,8 @@ import {
   FormGroup,
   FormControlLabel,
   FormHelperText,
-} from 'material-ui/Form';
-import Checkbox from 'material-ui/Checkbox';
+} from 'react-material/Form';
+import Checkbox from 'react-material/Checkbox';
 
 class CheckboxesGroup extends React.Component {
   state = {

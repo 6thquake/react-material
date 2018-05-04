@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from 'material-ui/Button';
-import Menu, { MenuItem } from 'material-ui/Menu';
+import Button from 'react-material/Button';
+import Menu, { MenuItem } from 'react-material/Menu';
 
 class SimpleMenu extends React.Component {
   state = {

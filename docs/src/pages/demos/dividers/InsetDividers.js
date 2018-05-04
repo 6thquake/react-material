@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
+import { withStyles } from 'react-material/styles';
+import List, { ListItem, ListItemText } from 'react-material/List';
+import Avatar from 'react-material/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
-import Divider from 'material-ui/Divider';
+import Divider from 'react-material/Divider';
 
 const styles = theme => ({
   root: {

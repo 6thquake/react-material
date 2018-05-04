@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from 'react-material/styles';
 import List, {
   ListItem,
   ListItemIcon,
   ListItemSecondaryAction,
   ListItemText,
   ListSubheader,
-} from 'material-ui/List';
-import Switch from 'material-ui/Switch';
+} from 'react-material/List';
+import Switch from 'react-material/Switch';
 import WifiIcon from '@material-ui/icons/Wifi';
 import BluetoothIcon from '@material-ui/icons/Bluetooth';
 

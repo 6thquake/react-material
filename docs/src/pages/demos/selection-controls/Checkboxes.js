@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from 'material-ui/Checkbox';
+import Checkbox from 'react-material/Checkbox';
 
 class Checkboxes extends React.Component {
   state = {

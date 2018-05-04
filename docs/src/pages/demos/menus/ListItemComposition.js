@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MenuList, MenuItem } from 'material-ui/Menu';
-import Paper from 'material-ui/Paper';
-import { withStyles } from 'material-ui/styles';
-import { ListItemIcon, ListItemText } from 'material-ui/List';
+import { MenuList, MenuItem } from 'react-material/Menu';
+import Paper from 'react-material/Paper';
+import { withStyles } from 'react-material/styles';
+import { ListItemIcon, ListItemText } from 'react-material/List';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';

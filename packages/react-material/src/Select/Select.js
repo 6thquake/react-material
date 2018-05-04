@@ -12,7 +12,7 @@ const styles = theme => ({
     maxWidth:'200px'
   }
 });
- class RMselect extends Component {
+class AsynSelect extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -120,4 +120,4 @@ const styles = theme => ({
         );
     }
 }
-export default withStyles(styles)(RMselect);
+export default withStyles(styles)(AsynSelect);

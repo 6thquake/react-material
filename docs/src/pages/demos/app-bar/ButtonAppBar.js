@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
+import { withStyles } from 'react-material/styles';
+import AppBar from 'react-material/AppBar';
+import Toolbar from 'react-material/Toolbar';
+import Typography from 'react-material/Typography';
+import Button from 'react-material/Button';
+import IconButton from 'react-material/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = {

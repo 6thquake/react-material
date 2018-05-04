@@ -1,15 +1,15 @@
 // @flow
 
 import React from 'react';
-import Button from 'material-ui/Button';
+import Button from 'react-material/Button';
 import Dialog, {
   DialogTitle,
   DialogContent,
   DialogContentText,
   DialogActions,
-} from 'material-ui/Dialog';
-import Typography from 'material-ui/Typography';
-import { withStyles } from 'material-ui/styles';
+} from 'react-material/Dialog';
+import Typography from 'react-material/Typography';
+import { withStyles } from 'react-material/styles';
 import withRoot from '../withRoot';
 
 const styles = (theme: Object) => ({

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import * as colors from 'material-ui/colors';
+import { withStyles } from 'react-material/styles';
+import * as colors from 'react-material/colors';
 
 const mainColors = [
   'Red',

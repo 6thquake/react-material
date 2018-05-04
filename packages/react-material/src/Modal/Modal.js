@@ -20,7 +20,7 @@ const styles = theme => ({
         },
     }
 });
-class Modal  extends Component {
+class Modal extends Component {
     static propTypes = {
         /**
          * This is usually about modal open or close

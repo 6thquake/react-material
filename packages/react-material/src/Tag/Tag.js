@@ -79,8 +79,6 @@ const styles = {
     
 }
 
-
-
 class Tag extends Component {
     constructor(props) {
         super(props);

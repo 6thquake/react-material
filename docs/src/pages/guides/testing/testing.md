@@ -52,7 +52,7 @@ Please refer to the [API documentation of enzyme](http://airbnb.io/enzyme/docs/a
 #### Examples
 
 ```jsx
-import { createShallow } from 'material-ui/test-utils';
+import { createShallow } from 'react-material/test-utils';
 
 describe('<MyComponent />', () => {
   let shallow;
@@ -85,7 +85,7 @@ Please refer to the [enzyme API documentation](http://airbnb.io/enzyme/docs/api/
 #### Examples
 
 ```jsx
-import { createMount } from 'material-ui/test-utils';
+import { createMount } from 'react-material/test-utils';
 
 describe('<MyComponent />', () => {
   let mount;
@@ -122,7 +122,7 @@ Please refer to the [enzyme API documentation](http://airbnb.io/enzyme/docs/api/
 #### Examples
 
 ```jsx
-import { createRender } from 'material-ui/test-utils';
+import { createRender } from 'react-material/test-utils';
 
 describe('<MyComponent />', () => {
   let render;

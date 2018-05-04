@@ -68,8 +68,8 @@ We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`.
 import { renderToString } from 'react-dom/server'
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from 'material-ui/styles';
-import { green, red } from 'material-ui/colors';
+import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from 'react-material/styles';
+import { green, red } from 'react-material/colors';
 
 function handleRender(req, res) {
   // Create a sheetsRegistry instance.
@@ -134,8 +134,8 @@ Let's take a look at our client file:
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import { green, red } from 'material-ui/colors';
+import { MuiThemeProvider, createMuiTheme } from 'react-material/styles';
+import { green, red } from 'react-material/colors';
 import App from './App';
 
 class Main extends React.Component {

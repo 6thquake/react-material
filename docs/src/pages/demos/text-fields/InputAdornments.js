@@ -1,12 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import IconButton from 'material-ui/IconButton';
-import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import TextField from 'material-ui/TextField';
-import MenuItem from 'material-ui/Menu/MenuItem';
+import { withStyles } from 'react-material/styles';
+import IconButton from 'react-material/IconButton';
+import Input, { InputLabel, InputAdornment } from 'react-material/Input';
+import { FormControl, FormHelperText } from 'react-material/Form';
+import TextField from 'react-material/TextField';
+import { MenuItem } from 'react-material/Menu';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 

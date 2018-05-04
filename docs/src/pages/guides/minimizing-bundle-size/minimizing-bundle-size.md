@@ -22,14 +22,14 @@ You have couple of options to overcome this situation:
 You can import directly from `material-ui/` to avoid pulling in unused modules. For instance, instead of:
 
 ```js
-import { Button, TextField } from 'material-ui';
+import { Button, TextField } from 'react-material';
 ```
 
 use:
 
 ```js
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
+import Button from 'react-material/Button';
+import TextField from 'react-material/TextField';
 ```
 
 While importing directly in this manner doesn't use the exports in [`material-ui/index.js`](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/blob/develop/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
@@ -41,7 +41,7 @@ For instance, the `Tabs` component is a public module while `TabIndicator` is pr
 Another option is to keep using the shortened import like the following, but still have the size of the bundle optimized thanks to a **Babel plugin**:
 
 ```js
-import { Button, TextField } from 'material-ui';
+import { Button, TextField } from 'react-material';
 ```
 
 Pick one of the following plugins:

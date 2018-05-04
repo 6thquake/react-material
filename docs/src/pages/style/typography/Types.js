@@ -1,5 +1,5 @@
 import React from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from 'react-material/Typography';
 
 const style = {
   width: '100%',

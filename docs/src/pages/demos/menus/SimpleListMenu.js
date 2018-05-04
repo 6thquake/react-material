@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Menu, { MenuItem } from 'material-ui/Menu';
+import { withStyles } from 'react-material/styles';
+import List, { ListItem, ListItemText } from 'react-material/List';
+import Menu, { MenuItem } from 'react-material/Menu';
 
 const styles = theme => ({
   root: {

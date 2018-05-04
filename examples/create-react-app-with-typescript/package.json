@@ -5,7 +5,7 @@
   "dependencies": {
     "@types/react": "*",
     "@types/react-dom": "*",
-    "material-ui": "next",
+    "react-material": "next",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts-ts": "latest"

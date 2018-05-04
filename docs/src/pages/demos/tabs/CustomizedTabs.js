@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Tabs, { Tab } from 'material-ui/Tabs';
-import Typography from 'material-ui/Typography';
+import { withStyles } from 'react-material/styles';
+import Tabs, { Tab } from 'react-material/Tabs';
+import Typography from 'react-material/Typography';
 
 const styles = theme => ({
   root: {

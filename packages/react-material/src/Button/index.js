@@ -1,7 +1,10 @@
-
+import Button from 'material-ui/Button';
 import Group from './Group';
-import Button from './Button';
+
 Button.Group = Group;
 
-export { default as Button } from './Button';
-export { default as Group } from './Group';
+export { default } from 'material-ui/Button';
+export * from 'material-ui/Button';
+
+export { default as StatusButton } from './StatusButton';
+export * from './StatusButton';

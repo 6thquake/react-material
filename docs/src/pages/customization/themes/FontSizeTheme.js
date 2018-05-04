@@ -1,6 +1,6 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
+import { MuiThemeProvider, createMuiTheme } from 'react-material/styles';
+import Typography from 'react-material/Typography';
 
 const theme = createMuiTheme({
   typography: {

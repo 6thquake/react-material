@@ -2,9 +2,9 @@ import React from 'react';
 import url from 'url';
 import PropTypes from 'prop-types';
 import Inspector from 'react-inspector';
-import { withStyles, withTheme, createMuiTheme } from 'material-ui/styles';
-import { FormControlLabel } from 'material-ui/Form';
-import Switch from 'material-ui/Switch';
+import { withStyles, withTheme, createMuiTheme } from 'react-material/styles';
+import { FormControlLabel } from 'react-material/Form';
+import Switch from 'react-material/Switch';
 
 const styles = theme => ({
   root: {

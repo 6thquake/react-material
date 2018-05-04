@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { StarVote } from 'react-material/StarVote';
+import { withStyles } from 'react-material/styles';
+import StarVote from 'react-material/StarVote';
 
 class App extends React.Component {
     doSomething = (key) => {
@@ -16,11 +16,11 @@ class App extends React.Component {
                     <StarVote count={5} value={4} onChange={this.doSomething.bind(this)}> </StarVote>
                 </div>
                 <div>
-                     <div><span>half-star</span></div>
+                    <div><span>half-star</span></div>
                     <StarVote count={5} value={2.5} onChange={this.doSomething.bind(this)} allowHalf = {true}> </StarVote>
                 </div>
                 <div>
-                     <div><span>read only</span></div>
+                    <div><span>read only</span></div>
                     <StarVote count={5} value={3} onChange={this.doSomething.bind(this)} disabled = {true}> </StarVote>
                 </div>
             </div>

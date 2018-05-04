@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from 'react-material/styles';
 import AddIcon from '@material-ui/icons/Add';
-import Button from 'material-ui/Button';
+import Button from 'react-material/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from 'material-ui/IconButton';
-import Tooltip from 'material-ui/Tooltip';
+import IconButton from 'react-material/IconButton';
+import Tooltip from 'react-material/Tooltip';
 
 const styles = theme => ({
   fab: {

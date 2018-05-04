@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Modal from 'material-ui/Modal';
-import Button from 'material-ui/Button';
+import { withStyles } from 'react-material/styles';
+import Typography from 'react-material/Typography';
+import Modal from 'react-material/Modal';
+import Button from 'react-material/Button';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;

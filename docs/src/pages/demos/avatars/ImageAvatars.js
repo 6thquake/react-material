@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import Avatar from 'material-ui/Avatar';
+import { withStyles } from 'react-material/styles';
+import Avatar from 'react-material/Avatar';
 
 const styles = {
   row: {
@@ -18,7 +18,7 @@ const styles = {
   },
 };
 
-function ImageAvatars(props) {
+function App(props) {
   const { classes } = props;
   return (
     <div className={classes.row}>
@@ -32,8 +32,8 @@ function ImageAvatars(props) {
   );
 }
 
-ImageAvatars.propTypes = {
+App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ImageAvatars);
+export default withStyles(styles)(App);

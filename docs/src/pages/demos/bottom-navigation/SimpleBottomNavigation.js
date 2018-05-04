@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
+import { withStyles } from 'react-material/styles';
+import BottomNavigation, { BottomNavigationAction } from 'react-material/BottomNavigation';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-class SimpleBottomNavigation extends React.Component {
+class App extends React.Component {
   state = {
     value: 0,
   };
@@ -40,8 +40,8 @@ class SimpleBottomNavigation extends React.Component {
   }
 }
 
-SimpleBottomNavigation.propTypes = {
+App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleBottomNavigation);
+export default withStyles(styles)(App);

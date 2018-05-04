@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import CascadeSelect from 'react-material/CascadeSelect'
 
-
-class Test extends Component {
+class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -130,13 +129,13 @@ class Test extends Component {
         }
       ]
     };
-
   }
+
   handleChange = (e) => {
     console.log('change log', e)
   }
+  
   render() {
-
     return (
       <div>
         <CascadeSelect
@@ -151,4 +150,4 @@ class Test extends Component {
   }
 }
 
-export default Test;
+export default App;

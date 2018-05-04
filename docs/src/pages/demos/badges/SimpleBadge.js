@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Badge from 'material-ui/Badge';
-import IconButton from 'material-ui/IconButton';
+import { withStyles } from 'react-material/styles';
+import Badge from 'react-material/Badge';
+import IconButton from 'react-material/IconButton';
 import MailIcon from '@material-ui/icons/Mail';
-import AppBar from 'material-ui/AppBar';
-import Tabs, { Tab } from 'material-ui/Tabs';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import AppBar from 'react-material/AppBar';
+import Tabs, { Tab } from 'react-material/Tabs';
+import Typography from 'react-material/Typography';
+import Button from 'react-material/Button';
 
 const styles = theme => ({
   margin: {
@@ -18,7 +18,7 @@ const styles = theme => ({
   },
 });
 
-function SimpleBadge(props) {
+function App(props) {
   const { classes } = props;
   return (
     <div>
@@ -58,8 +58,8 @@ function SimpleBadge(props) {
   );
 }
 
-SimpleBadge.propTypes = {
+App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleBadge);
+export default withStyles(styles)(App);

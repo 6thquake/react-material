@@ -1,15 +1,8 @@
-
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import {Breadcrumb} from 'react-material/Breadcrumb';
-import {Home,Grade,Lock} from '@material-ui/icons';
-
-
-
-
-
+import { withStyles } from 'react-material/styles';
+import Breadcrumb from 'react-material/Breadcrumb';
+import { Home, Grade, Lock } from '@material-ui/icons';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,16 +16,14 @@ class App extends React.Component {
       '/apps/2/detail': {name:'Detail',icon:''},
     };
     this._url='/apps/2/detail';
-
   }
 
   render() {
     return (
-      <div >
-      <Breadcrumb nameMap={this.breadcrumbNameMap} currUrl={this._url} showIcon={true} separator='>'></Breadcrumb>
+      <div>
+        <Breadcrumb nameMap={this.breadcrumbNameMap} currUrl={this._url} showIcon={true} separator='>'></Breadcrumb>
       </div>
     );
   }
 }
 export default App;
-

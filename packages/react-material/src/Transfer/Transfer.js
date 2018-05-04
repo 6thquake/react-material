@@ -5,8 +5,9 @@ import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-
 import Checkbox from 'material-ui/Checkbox';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
-import {ChevronRight,ChevronLeft,LastPage,FirstPage} from '@material-ui/icons';
-//<RMTransfer></RMTransfer>
+import { ChevronRight, ChevronLeft, LastPage, FirstPage } from '@material-ui/icons';
+
+
 const styles = {
   root: {
     minWidth:'700px',
@@ -42,7 +43,8 @@ const styles = {
 
   }
 };
-class RMTransfer extends React.Component {
+
+class Transfer extends React.Component {
   constructor(props) {
     super(props);
   
@@ -51,6 +53,7 @@ class RMTransfer extends React.Component {
       rightChecked:[]
     };
   }
+
   //数组去重
   subSet = (arr1, arr2)=> {
     var set1 = new Set(arr1);
@@ -65,7 +68,8 @@ class RMTransfer extends React.Component {
     }
 
     return subset;
-};
+  };
+
   transferToggle = position =>()=>{
     const { leftChecked,rightChecked } = this.state; 
     let _checked = position=='left'?leftChecked:position=='right'?rightChecked:'';
@@ -78,6 +82,7 @@ class RMTransfer extends React.Component {
       rightChecked:[]});
     this.props.onChange(newData);
   };
+
   transferAllToggle = position =>()=>{
     const { left,right } = this.props; 
     let _checked = position=='left'?left:position=='right'?right:'';
@@ -90,6 +95,7 @@ class RMTransfer extends React.Component {
       rightChecked:[]});
     this.props.onChange(newData);
   };
+
   handleToggle = (value,position) => () => {
     const { leftChecked,rightChecked } = this.state;
     let _checked = position=='left'?leftChecked:position=='right'?rightChecked:'';
@@ -112,7 +118,6 @@ class RMTransfer extends React.Component {
         rightChecked: newChecked,
       });
     }
-    
   };
 
   render() {
@@ -120,20 +125,19 @@ class RMTransfer extends React.Component {
 
     return (
       <div className={classes.root}>
-
         <div className={classes.btngrp}>
-        <Button color="primary" onClick={this.transferAllToggle('left')}>
-              <LastPage />
-            </Button><br />
-            <Button color="primary" onClick={this.transferToggle('left')}>
-              <ChevronRight />
-            </Button><br />
-            <Button color="primary" onClick={this.transferToggle('right')}>
-              <ChevronLeft />
-            </Button><br />
-            <Button color="primary" onClick={this.transferAllToggle('right')}>
-              <FirstPage />
-            </Button>
+          <Button color="primary" onClick={this.transferAllToggle('left')}>
+            <LastPage />
+          </Button><br />
+          <Button color="primary" onClick={this.transferToggle('left')}>
+            <ChevronRight />
+          </Button><br />
+          <Button color="primary" onClick={this.transferToggle('right')}>
+            <ChevronLeft />
+          </Button><br />
+          <Button color="primary" onClick={this.transferAllToggle('right')}>
+            <FirstPage />
+          </Button>
         </div>
 
         <div className={classes.lists +' '+classes.leftLists}>
@@ -145,7 +149,6 @@ class RMTransfer extends React.Component {
                 dense
                 button
                 onClick={this.handleToggle(value,'left')}
-                
               >
                 <Checkbox
                   checked={this.state.leftChecked.indexOf(value) !== -1}
@@ -153,7 +156,6 @@ class RMTransfer extends React.Component {
                   disableRipple
                 />
                 <ListItemText primary={`${value.name}`} />
-                
               </ListItem>
             ))}
           </List>
@@ -186,4 +188,4 @@ class RMTransfer extends React.Component {
 }
 
 
-export default withStyles(styles)(RMTransfer);
+export default withStyles(styles)(Transfer);

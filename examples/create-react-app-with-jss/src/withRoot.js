@@ -7,9 +7,9 @@ import {
   createGenerateClassName,
   jssPreset,
 } from 'react-material/styles';
-import purple from 'material-ui/colors/purple';
-import green from 'material-ui/colors/green';
-import CssBaseline from 'material-ui/CssBaseline';
+import purple from 'react-material/colors/purple';
+import green from 'react-material/colors/green';
+import CssBaseline from 'react-material/CssBaseline';
 
 // A theme with custom primary and secondary color.
 // It's optional.

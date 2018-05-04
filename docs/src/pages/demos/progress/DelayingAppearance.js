@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Fade from 'material-ui/transitions/Fade';
-import Button from 'material-ui/Button';
-import { withStyles } from 'material-ui/styles';
-import { CircularProgress } from 'material-ui/Progress';
-import Typography from 'material-ui/Typography';
+import Fade from 'react-material/transitions/Fade';
+import Button from 'react-material/Button';
+import { withStyles } from 'react-material/styles';
+import { CircularProgress } from 'react-material/Progress';
+import Typography from 'react-material/Typography';
 
 const styles = theme => ({
   root: {

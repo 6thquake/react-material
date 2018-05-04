@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import AutoComplete from 'react-material/AutoComplete';
 import AutoCompleteTem from 'react-material/AutoCompleteTem'
 import { withStyles } from 'react-material/styles';
-import { MenuItem } from 'material-ui/Menu';
-import { ListItemText,ListItemIcon  } from 'material-ui/List';
+import { MenuItem } from 'react-material/Menu';
+import { ListItemText,ListItemIcon  } from 'react-material/List';
 import StarBorder from '@material-ui/icons/StarBorder';
 
 const styles = theme => ({
@@ -15,8 +15,8 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit * 4,
   },
 });
-class AutoCompleteTest extends Component {
-     state = {
+class App extends Component {
+  state = {
        selected:[],
         options: [
             { label: 'Afghanistan' },
@@ -59,7 +59,7 @@ class AutoCompleteTest extends Component {
           pageSize: 5,
           total:34,
         }
-    };
+  };
 
   handleChange(event,child) {
     this.setState({ selected:event.target.value.label});
@@ -67,57 +67,59 @@ class AutoCompleteTest extends Component {
   };
 
   autoCb(i){
-      console.log('item',i);
-      this.setState({   pageConfig:{
-        ...this.state.pageConfig,
-        currentPage:i
-      }});
-    };
-    inputChangeCb(i){
-      console.log('item',i);
-    }
-    render() {
-      const { classes } = this.props;
-      const { currentPage, pageSize, total}=this.state.pageConfig;
-        return (
-            <div className={classes.root}>
-              <AutoCompleteTem
-                placeHold={'new autoComplete'}
-                multiple ={false}
-                value={this.state.selected}
-                pageConfig={this.state.pageConfig}
-                pageChangeCb={this.autoCb.bind(this)}
-                inputChangeCb={this.inputChangeCb.bind(this)}
-                onChange={this.handleChange.bind(this)}
-              >
-                {this.state.options.slice(total==0?total:(currentPage-1)*pageSize+1,
-                  currentPage*pageSize>total?total:currentPage*pageSize).map(item => (
-                  <MenuItem key={item.label} value={item}>
-                    <ListItemIcon>
-                      <StarBorder />
-                    </ListItemIcon>
-                    <ListItemText primary={item.label} />
-                  </MenuItem>
-                ))}
-              </AutoCompleteTem>
-                <AutoComplete
-                    placeHold={'autoComplete single,please input a'}
-                    dataSource={this.state.options}
-                    multipleble={false}
-                    paginationOpen={true}
-                    pageConfig={this.state.pageConfig}
-                    autoCb={this.autoCb.bind(this)}
-                />
-                <AutoComplete
-                    placeHold={'autoComplete multipleble,please input a'}
-                    dataSource={this.state.options}
-                    multipleble={true}
-                    paginationOpen={true}
-                    pageConfig={this.state.pageConfig}
-                    autoCb={this.autoCb.bind(this)}
-                />
-            </div>
-        );
-    }
+    console.log('item',i);
+    this.setState({   pageConfig:{
+      ...this.state.pageConfig,
+      currentPage:i
+    }});
+  };
+
+  inputChangeCb(i){
+    console.log('item',i);
+  }
+
+  render() {
+    const { classes } = this.props;
+    const { currentPage, pageSize, total } = this.state.pageConfig;
+    return (
+      <div className={classes.root}>
+        <AutoCompleteTem
+          placeHold={'new autoComplete'}
+          multiple ={false}
+          value={this.state.selected}
+          pageConfig={this.state.pageConfig}
+          pageChangeCb={this.autoCb.bind(this)}
+          inputChangeCb={this.inputChangeCb.bind(this)}
+          onChange={this.handleChange.bind(this)}
+        >
+          {this.state.options.slice(total == 0 ? total : (currentPage - 1) * pageSize + 1,
+            currentPage * pageSize > total ? total : currentPage * pageSize).map(item => (
+            <MenuItem key={item.label} value={item}>
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary={item.label} />
+            </MenuItem>
+          ))}
+        </AutoCompleteTem>
+        <AutoComplete
+            placeHold={'autoComplete single,please input a'}
+            dataSource={this.state.options}
+            multipleble={false}
+            paginationOpen={true}
+            pageConfig={this.state.pageConfig}
+            autoCb={this.autoCb.bind(this)}
+        />
+        <AutoComplete
+            placeHold={'autoComplete multipleble,please input a'}
+            dataSource={this.state.options}
+            multipleble={true}
+            paginationOpen={true}
+            pageConfig={this.state.pageConfig}
+            autoCb={this.autoCb.bind(this)}
+        />
+      </div>
+    );
+  }
 }
-export default withStyles(styles)(AutoCompleteTest);
+export default withStyles(styles)(App);

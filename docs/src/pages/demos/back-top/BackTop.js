@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { BackTop } from 'react-material/BackTop';
-
+import { withStyles } from 'react-material/styles';
+import BackTop from 'react-material/BackTop';
 
 const style = {
     height: 40,
@@ -30,12 +29,11 @@ class App extends React.Component {
 
                 <p>默认按钮，向下滚动页面后，见右下角灰色按钮</p>
 
-
                 <BackTop visibilityHeight = {550} onChange={this.doSomething.bind(this)}>
                     <div style={style}>UP</div>
                 </BackTop>
-                <p> 自定义按钮，向下滚动页面后，见右下角蓝色按钮</p>
 
+                <p> 自定义按钮，向下滚动页面后，见右下角蓝色按钮</p>
             </div>
         );
     }

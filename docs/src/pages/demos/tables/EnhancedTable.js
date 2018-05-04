@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from 'react-material/styles';
 import Table, {
   TableBody,
   TableCell,
@@ -9,16 +9,16 @@ import Table, {
   TablePagination,
   TableRow,
   TableSortLabel,
-} from 'material-ui/Table';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Paper from 'material-ui/Paper';
-import Checkbox from 'material-ui/Checkbox';
-import IconButton from 'material-ui/IconButton';
-import Tooltip from 'material-ui/Tooltip';
+} from 'react-material/Table';
+import Toolbar from 'react-material/Toolbar';
+import Typography from 'react-material/Typography';
+import Paper from 'react-material/Paper';
+import Checkbox from 'react-material/Checkbox';
+import IconButton from 'react-material/IconButton';
+import Tooltip from 'react-material/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import { lighten } from 'material-ui/styles/colorManipulator';
+import { lighten } from 'react-material/styles/colorManipulator';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {

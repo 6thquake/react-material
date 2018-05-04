@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Input from 'material-ui/Input';
+import { withStyles } from 'react-material/styles';
+import Input from 'react-material/Input';
 
 const styles = theme => ({
   container: {

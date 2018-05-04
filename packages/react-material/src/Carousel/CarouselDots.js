@@ -70,7 +70,6 @@ class CarouselDots extends React.Component {
 
     return (
       <div ref='dot' className={classes.root}>
-
         {dots}
       </div>
     );

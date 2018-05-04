@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
+import {withLocale} from '../LocaleProvider'
 
 const styles = theme => ({
   box: {
@@ -41,14 +42,15 @@ class PopOverContent extends Component {
     let {
       classes,
       content,
-      cancelText = 'cancel',
-      confirmText ='ok',
+      cancelText,
+      okText,
       color ='primary', 
       variant, 
       type, 
       size ='small',
+      
     } = this.props
-    return (
+     return (
       <div className={classes.box}>
         <div className={classes.content}>
           {content}
@@ -56,7 +58,7 @@ class PopOverContent extends Component {
 
         <div className={classes.footer}>
           <Button type={type} size={size} onClick={this.handleConfirm} color={color} className={classes.button}>
-            {confirmText}
+            {okText}
           </Button>
           <Button size={size} onClick={this.handleCancel} className={classes.button}>
             {cancelText}
@@ -67,5 +69,5 @@ class PopOverContent extends Component {
     );
   }
 }
-
-export default withStyles(styles)(PopOverContent);
+const PopContent = withLocale(PopOverContent, 'Popconfirm')
+export default withStyles(styles)(PopContent);

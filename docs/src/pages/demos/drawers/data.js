@@ -7,96 +7,38 @@ import SendIcon from '@material-ui/icons/Send';
 import MailIcon from '@material-ui/icons/Mail';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReportIcon from '@material-ui/icons/Report';
+
 export default [
   {
-    name:'中国',
-    selected:true,
-    icon:<StarIcon />,
-    children:[
+    path: '/',
+    component: 'App',
+    icon: <StarIcon/>,
+    indexRoute: {component: 'Dashboard'},
+    childRoutes: [
       {
-        name:'山东',
-        selected:true,
-        icon:<InboxIcon />,
-        onHandle:()=>new Promise(function (resolve,reject) {
-          setTimeout(function () {
-            resolve('ok');
-            console.log(1)
-          },2000)
-        }),
-        children:[
-          {
-            name:'日照',
-            icon:<DraftsIcon />,
-            children:[
-              {
-                name:'莒县',
-                icon:<SendIcon />,
-                selected:true,
-              }
-            ]
-          },
-          {
-            name:'青岛',
-            icon:<MailIcon />
-          }
-        ]
+        path: 'about',
+        icon: <SendIcon/>,
+        component: 'About'
       },
       {
-        name:'上海',
-        icon:<ReportIcon />,
-        beforeChildren:function () {
-          //子节点要不要显示
-          return true;
-        },
-        children:[
+        path: 'inbox',
+        component: 'Inbox',
+        icon: <ReportIcon/>,
+        childRoutes: [
           {
-            name:'长宁',
+            path: '/messages/:id',
             icon:<MailIcon />,
-            children:[
-              {
-                name:'长宁支路',
-                icon:<InboxIcon />
-              },
-              {
-                // id:'',
-                // level:'', //私有属性
-                name:'江苏路',
-                icon:<InboxIcon />,
-                before:function () {
-                  //当前节点要不要显示
-                },
-              }
-            ]
+            component: 'Message'
           },
           {
-            name:'普陀',
-            icon:<InboxIcon />,
+            path: 'messages/:id',
+            component: 'DeleteIcon',
+            icon: <DeleteIcon/>,
+            onEnter: function (nextState, replaceState) {
+              replaceState(null, '/messages/' + nextState.params.id)
+            }
           }
         ]
-      }
-    ]
-  },
-  {
-    name:'美国',
-    icon:<DeleteIcon />,
-    children:[
-      {
-        name:'华盛顿',
-        icon:<MenuIcon />,
-        children:[
-          {
-            name:'华盛顿',
-            icon:<MenuIcon />
-          },
-          {
-            name:'纽约',
-            icon:<MenuIcon />
-          }
-        ]
-      },
-      {
-        name:'纽约',
-        icon:<MenuIcon />
       }
     ]
   }

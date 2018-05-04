@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
@@ -16,7 +15,19 @@ import {TreeMenu} from 'react-material/Drawer';
 import data from './data';
 
 const drawerWidth = 240;
-
+const defaultItemKeysMap =  {
+  name: 'name',
+  icon: 'icon',
+  children: 'children',
+  beforeChildren: 'beforeChildren',
+  before: 'before',
+  onClick: 'onClick',
+  onHandle: 'onHandle',
+  style: 'style',
+  className: 'className',
+  open: 'open',
+  selected: 'selected'
+};
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -135,11 +146,18 @@ class MiniDrawer extends React.Component {
             </IconButton>
           </div>
           <Divider/>
-          <TreeMenu list={data} />
+          <TreeMenu list={data}  itemKeysMap={
+            {
+              name:'component',
+              children:'childRoutes'
+            }
+          } />
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Typography noWrap>{'关键代码 <TreeMenu list={data} />'}</Typography>
+          <Typography noWrap>
+            xxx
+          </Typography>
         </main>
       </div>
     );
@@ -147,7 +165,7 @@ class MiniDrawer extends React.Component {
 }
 
 MiniDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
+  // classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 

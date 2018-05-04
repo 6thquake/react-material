@@ -6,7 +6,19 @@ import List, {ListItem, ListItemText, ListItemIcon} from '../List';
 import {createMuiTheme} from '../styles';
 import Collapse from '../transitions/Collapse';
 import classNames from 'classnames';
-
+const defaultItemKeysMap =  {
+  name: 'name',
+  icon: 'icon',
+  children: 'children',
+  beforeChildren: 'beforeChildren',
+  before: 'before',
+  onClick: 'onClick',
+  onHandle: 'onHandle',
+  style: 'style',
+  className: 'className',
+  open: 'open',
+  selected: 'selected'
+};
 const theme = createMuiTheme();
 const styles = theme => ({
   '@media (max-width: 600px)': {
@@ -198,7 +210,7 @@ class TreeMenu extends React.Component {
   getChildContext() {
     return {
       level: 0,
-      itemKeysMap: this.props.itemKeysMap,
+      itemKeysMap: {...defaultItemKeysMap,...this.props.itemKeysMap},
       inlineIndent: this.props.inlineIndent,
       // root:this
     }
@@ -245,19 +257,7 @@ TreeMenu.propTypes = {
 };
 TreeMenu.defaultProps = {
   inlineIndent: 3,
-  itemKeysMap: {
-    name: 'name',
-    icon: 'icon',
-    children: 'children',
-    beforeChildren: 'beforeChildren',
-    before: 'before',
-    onClick: 'onClick',
-    onHandle: 'onHandle',
-    style: 'style',
-    className: 'className',
-    open: 'open',
-    selected: 'selected'
-  }
+  itemKeysMap: defaultItemKeysMap
 };
 
 export default withStyles()(TreeMenu);

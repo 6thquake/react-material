@@ -8,6 +8,13 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
+        'pages/demos/drawers/TreeDrawer.js': {
+          js: require('docs/src/pages/demos/drawers/TreeDrawer').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/drawers/TreeDrawer'), 'utf8')
+`,
+        },
         'pages/demos/drawers/TemporaryDrawer.js': {
           js: require('docs/src/pages/demos/drawers/TemporaryDrawer').default,
           raw: preval`

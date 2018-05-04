@@ -2,8 +2,7 @@ import react, {Component} from 'react'
 import Popconfirm from 'react-material/Popconfirm'
 import { withStyles } from 'react-material/styles';
 
-// import {Button} from 'react-material/Button'
-import Button from 'material-ui/Button';
+import {Button} from 'react-material/Button'
 import { LocaleContext } from 'react-material/LocaleProvider'
 import zhCN from 'react-material/LocaleProvider/zh_CN'
 import zhTW from 'react-material/LocaleProvider/zh_TW'
@@ -26,7 +25,7 @@ class MyComponent extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      content: 'are you sure to close it',
+      content: 'are you sure to close it?',
       locale: enUS
     };
   }
@@ -56,9 +55,11 @@ class MyComponent extends Component {
             </Button>
           </Popconfirm>
           <div className={classes.label}>Change locale of components:</div>
-          <Button onClick={this.handleButtonClick('zhCN')} variant="raised" color="primary">中文</Button>
-          <Button onClick={this.handleButtonClick('enUS')} variant="raised" color="primary">EN</Button>
-          <Button onClick={this.handleButtonClick('zhTW')} variant="raised" color="primary">繁体中文</Button>
+          <ButtonGroup>
+            <Button onClick={this.handleButtonClick('zhCN')} variant="raised" color="primary">中文</Button>
+            <Button onClick={this.handleButtonClick('enUS')} radio={radio} variant="raised" color="primary">EN</Button>
+            <Button onClick={this.handleButtonClick('zhTW')} variant="raised" color="primary">繁体中文</Button>
+          </ButtonGroup>
         </LocaleContext.Provider>
 
         {/* without provider */}

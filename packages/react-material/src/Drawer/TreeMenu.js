@@ -1,16 +1,25 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from '../styles';
 import List, {ListItem, ListItemText, ListItemIcon} from '../List';
-
+import {createMuiTheme} from '../styles';
 import Collapse from '../transitions/Collapse';
+import classNames from 'classnames';
 
+const theme = createMuiTheme();
 const styles = theme => ({
-  nested: {
-    paddingLeft: theme.spacing.unit * 4,
+  '@media (max-width: 600px)': {
+    MuiListItemButton: {
+      paddingLeft: theme.spacing.unit * 2 + 'px !important',
+      paddingRight: theme.spacing.unit * 2 + 'px !important'
+    }
   },
+  '@global .selected': {
+    fontWeight: theme.typography.fontWeightMedium,
+    color: theme.palette.primary.main
+  }
 });
-
 
 class MenuList extends React.Component {
   static childContextTypes = {
@@ -41,10 +50,10 @@ class MenuList extends React.Component {
     const {list} = this.props;
     return list ? <List>
       {
-        list.map((item, index) =>
-          //用户自定的item
-          <Item key={index} {...this.itemKeyToProps(item)}/>
-        )
+        list.map((item, index) => {
+          const Component = withStyles(styles)(Item);
+          return <Component key={index} {...this.itemKeyToProps(item)}/>
+        })
       }
 
     </List> : null;
@@ -52,40 +61,65 @@ class MenuList extends React.Component {
 }
 
 MenuList.propTypes = {
-  list: PropTypes.object.isRequired
+  list: PropTypes.array.isRequired
 };
-// MenuList.defaultProps = {
-//   list: {}
-// }
+
 class Item extends React.Component {
   static contextTypes = {
     level: PropTypes.number,
-    inlineIndent: PropTypes.number
+    inlineIndent: PropTypes.number,
+    root:PropTypes.object
   }
   state = {
-    open: this.props.open
+    open: this.props.open,
+    selected: this.selected()
   }
-  handleClick = () => {
+  selected(selected = this.props.selected){
+    const {children, beforeChildren, before} = this.props;
+    if (!selected) return false;
+    if (children) {
+      //有子节点
+      if (!beforeChildren()) {
+        //不显示子节点
+        return true;
+      }
+    } else {
+      //无子节点
+      if (before()) {
+        //显示该节点
+        return true;
+      }
+    }
+  }
+
+  handleClick = (e) => {
     const {
       onClick,
       onHandle
     } = this.props;
-    if (onHandle instanceof Promise) {
-      if(this.handle !== 'pendding'){
-        onHandle.then(()=>{
+    if (this.handle !== 'pending') {
+      let result = onHandle();
+      if (result instanceof Promise || typeof result.then === 'function') {
+        this.handle = 'pending';
+        result.then(() => {
           this.handle = 'resolve';
-        },()=>{
+        }, () => {
           this.handle = 'reject';
-        }).catch(()=>{
+        }).catch(() => {
           this.handle = 'reject';
         });
       }
-    }else {
-      onHandle();
     }
     onClick();
+    // let root = ReactDOM.findDOMNode(this.context.root);
+    // let ele = root.getElementsByClassName('selected')[0];
+    // if(ele){
+    //   ele.className = ele.className.replace('selected','');
+    // }
+    // this.state.selected = this.selected(true);
     this.setState({open: !this.state.open});
-  };
+  }
+
 
   render() {
     const {
@@ -95,18 +129,27 @@ class Item extends React.Component {
       beforeChildren,
       before,
       style,
-      className
+      className: classNamePro,
+      classes,
     } = this.props;
+    const {selected} = this.state;
     const {
       level,
       inlineIndent
     } = this.context;
+    const className = classNames({
+      [classes.MuiListItemButton]: true
+    }, classNamePro);
+
     return before() ? <React.Fragment>
-      <ListItem button onClick={this.handleClick} className={className} style={{paddingLeft: level * inlineIndent,...style}}>
+      <ListItem onClick={this.handleClick}
+                className={className}
+                button
+                style={{paddingLeft: level * inlineIndent * theme.spacing.unit, ...style}}>
         {icon && <ListItemIcon>
           {icon}
         </ListItemIcon>}
-        <ListItemText primary={name}/>
+        <ListItemText  primary={name} />
       </ListItem>
       {beforeChildren() && children && <Collapse in={this.state.open} timeout="auto" unmountOnExit>
         <MenuList list={children}/>
@@ -116,6 +159,7 @@ class Item extends React.Component {
 }
 
 Item.propTypes = {
+  classes: PropTypes.object.isRequired,
   name: PropTypes.node,
   icon: PropTypes.element,
   children: PropTypes.array,
@@ -125,34 +169,46 @@ Item.propTypes = {
   onHandle: PropTypes.func,
   style: PropTypes.object,
   className: PropTypes.object,
-  open: PropTypes.bool
+  /**
+   * 是否打开
+   */
+  open: PropTypes.bool,
+  /**
+   * 是否被选中
+   */
+  selected: PropTypes.bool
 };
 Item.defaultProps = {
   open: false,
   before: () => true,
   beforeChildren: () => true,
-  onClick:()=>true,
-  onHandle:()=>true
+  onClick: () => true,
+  onHandle: () => true,
+  selected: false
 };
 
 class TreeMenu extends React.Component {
   static childContextTypes = {
     level: PropTypes.number,
     itemKeysMap: PropTypes.object,
-    inlineIndent: PropTypes.number
+    inlineIndent: PropTypes.number,
+    // root:PropTypes.object
   }
 
   getChildContext() {
     return {
       level: 0,
       itemKeysMap: this.props.itemKeysMap,
-      inlineIndent: this.props.inlineIndent
+      inlineIndent: this.props.inlineIndent,
+      // root:this
     }
   }
 
+
+
   render() {
     return (
-      <MenuList list={this.props.list}/>
+      <MenuList ref={e=>this.e=e} list={this.props.list}/>
     );
   }
 }
@@ -181,10 +237,14 @@ TreeMenu.propTypes = {
     style: PropTypes.string,
     className: PropTypes.string,
     open: PropTypes.string
-  })
+  }),
+  /**
+   * 选中的样式，class
+   */
+  selected: PropTypes.string
 };
 TreeMenu.defaultProps = {
-  inlineIndent: 10,
+  inlineIndent: 3,
   itemKeysMap: {
     name: 'name',
     icon: 'icon',
@@ -195,11 +255,12 @@ TreeMenu.defaultProps = {
     onHandle: 'onHandle',
     style: 'style',
     className: 'className',
-    open: 'open'
+    open: 'open',
+    selected: 'selected'
   }
 };
 
-export default withStyles(styles)(TreeMenu);
+export default withStyles()(TreeMenu);
 
 
 

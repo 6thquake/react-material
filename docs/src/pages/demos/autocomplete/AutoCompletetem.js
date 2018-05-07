@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
 import AutoComplete from 'react-material/AutoComplete';
 import { withStyles } from 'react-material/styles';
+import { MenuItem } from 'material-ui/Menu';
+import { ListItemText,ListItemIcon  } from 'material-ui/List';
+import StarBorder from '@material-ui/icons/StarBorder';
 import Typography from 'material-ui/Typography';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    minHeight: '250px',
-    // width:'300px'
+    height: '250px'
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
   },
 });
-const color=['green','red','white','orgin'];
 
 class AutoCompleteTest extends Component {
      state = {
-       selectedsingledstr:'red',
+       selectedmulit:['Aland Islands'],
        selectedsingled:'Afghanistan',
-       selectedmulit:['Afghanistan'],
         options: [
             { label: 'Afghanistan' },
             { label: 'Aland Islands' },
@@ -61,13 +61,11 @@ class AutoCompleteTest extends Component {
           total:34,
         }
     };
-  handleChangeSingle(event) {
+
+  handleChangeSingle(event,child) {
     this.setState({selectedsingled:event.target.value});
   };
-  handleChangeSinglestr(event) {
-    this.setState({selectedsingledstr:event.target.value});
-  };
-  handleChangemulit(event) {
+  handleChangemulit(event,child) {
     this.setState({selectedmulit:[...event.target.value]});
   };
 
@@ -87,46 +85,48 @@ class AutoCompleteTest extends Component {
       const { currentPage, pageSize, total}=this.state.pageConfig;
         return (
             <div className={classes.root}>
-              <br/>
-              <Typography>datasource object array and multiple select</Typography>
+
+              <Typography>multiple</Typography>
               <AutoComplete
                 placeHold={'new autoComplete'}
-                dataSource={this.state.options.slice(total==0?total:(currentPage-1)*pageSize+1,
-                  currentPage*pageSize>total?total:currentPage*pageSize)}
                 multiple ={true}
-                keyValue={['label','label']}
                 value={this.state.selectedmulit}
                 pageConfig={this.state.pageConfig}
                 pageChangeCb={this.autoCb.bind(this)}
                 inputChangeCb={this.inputChangeCb.bind(this)}
                 onChange={this.handleChangemulit.bind(this)}
-              />
+              >
+                {this.state.options.slice(total==0?total:(currentPage-1)*pageSize+1,
+                  currentPage*pageSize>total?total:currentPage*pageSize).map(item => (
+                  <MenuItem key={item.label} value={item.label}>
+                    <ListItemIcon>
+                      <StarBorder />
+                    </ListItemIcon>
+                    <ListItemText primary={item.label} />
+                  </MenuItem>
+                ))}
+              </AutoComplete>
               <br/>
-              <Typography>datasource object array and single select</Typography>
+              <Typography>single</Typography>
               <AutoComplete
                 placeHold={'new autoComplete'}
-                dataSource={this.state.options.slice(total==0?total:(currentPage-1)*pageSize+1,
-                  currentPage*pageSize>total?total:currentPage*pageSize)}
                 multiple ={false}
-                keyValue={['label','label']}
                 value={this.state.selectedsingled}
                 pageConfig={this.state.pageConfig}
                 pageChangeCb={this.autoCb.bind(this)}
                 inputChangeCb={this.inputChangeCb.bind(this)}
                 onChange={this.handleChangeSingle.bind(this)}
-              />
-              <br/>
-              <Typography>datasource simple array and single select</Typography>
-              <AutoComplete
-                placeHold={'new autoComplete'}
-                dataSource={color}
-                multiple ={false}
-                value={this.state.selectedsingledstr}
-                pageConfig={this.state.pageConfig}
-                pageChangeCb={this.autoCb.bind(this)}
-                inputChangeCb={this.inputChangeCb.bind(this)}
-                onChange={this.handleChangeSinglestr.bind(this)}
-              />
+              >
+                {this.state.options.slice(total==0?total:(currentPage-1)*pageSize+1,
+                  currentPage*pageSize>total?total:currentPage*pageSize).map(item => (
+                  <MenuItem key={item.label} value={item.label}>
+                    <ListItemIcon>
+                      <StarBorder />
+                    </ListItemIcon>
+                    <ListItemText primary={item.label} />
+                  </MenuItem>
+                ))}
+              </AutoComplete>
             </div>
         );
     }

@@ -8,9 +8,14 @@ React-Material doesn't provide any high-level API for solving this problem.
 We encourage people relying on the solutions the React community has built.
 ## AutoComplete with filter、pagination
 
-AutoComplete with filter、pagination
+Simple  AutoComplete with datasource
 
 {{"demo": "pages/demos/autocomplete/AutoComplete.js"}}
+
+AutoComplete of option with customer templete 
+
+{{"demo": "pages/demos/autocomplete/AutoCompletetem.js"}}
+
 ## downshift
 
 In the following example, we demonstrate how to use [downshift](https://github.com/paypal/downshift).

@@ -6,6 +6,8 @@ import List, {ListItem, ListItemText, ListItemIcon} from '../List';
 import {createMuiTheme} from '../styles';
 import Collapse from '../transitions/Collapse';
 import classNames from 'classnames';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 const defaultItemKeysMap =  {
   name: 'name',
   icon: 'icon',
@@ -103,6 +105,12 @@ class Item extends React.Component {
       }
     }
   }
+  isBranch(){
+    const {children, beforeChildren} = this.props;
+    if(children&&beforeChildren())
+      return true;
+    return false;
+  }
 
   handleClick = (e) => {
     const {
@@ -162,6 +170,7 @@ class Item extends React.Component {
           {icon}
         </ListItemIcon>}
         <ListItemText  primary={name} />
+        {this.isBranch()&&(this.state.open ? <ExpandLess /> : <ExpandMore />)}
       </ListItem>
       {beforeChildren() && children && <Collapse in={this.state.open} timeout="auto" unmountOnExit>
         <MenuList list={children}/>

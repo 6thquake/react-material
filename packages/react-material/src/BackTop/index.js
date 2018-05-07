@@ -1,2 +1,2 @@
-export { default } from './BackTop';
 export * from './BackTop';
+export { default } from './BackTop';

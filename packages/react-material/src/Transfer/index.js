@@ -1,2 +1,2 @@
-export { default } from './Transfer';
 export * from './Transfer';
+export { default } from './Transfer';

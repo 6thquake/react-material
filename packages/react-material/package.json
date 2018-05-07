@@ -1,13 +1,15 @@
 {
   "name": "react-material",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "licenses": "MIT",
   "main": "index.js",
   "module": "index.es.js",
-  "maintainers": [{
-    "lico": "lico.atom@gmail.com"
-  }],
+  "maintainers": [
+    {
+      "lico": "lico.atom@gmail.com"
+    }
+  ],
   "pre-commit": [],
   "repository": {
     "type": "git",
@@ -47,9 +49,13 @@
     "jss-vendor-prefixer": "^7.0.0",
     "keycode": "^2.1.9",
     "lodash": "^4.2.0",
-    "material-ui": "^1.0.0-beta.42",
+    "material-ui": "^1.0.0-beta.45",
     "normalize-scroll-left": "^0.1.2",
     "prop-types": "^15.6.0",
+    "react-addons-update": "^15.6.2",
+    "react-annotation": "^1.2.1",
+    "react-dnd": "^2.6.0",
+    "react-dnd-html5-backend": "^2.6.0",
     "react-event-listener": "^0.5.1",
     "react-jss": "^8.1.0",
     "react-lifecycles-compat": "^2.0.0",

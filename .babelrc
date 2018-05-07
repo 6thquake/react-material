@@ -62,7 +62,7 @@
         ],
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "transform-runtime",
+        ["transform-runtime", {"polyfill": false}],
         "css-modules-transform",
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
         ["transform-react-remove-prop-types", {"mode": "remove"}]
@@ -72,7 +72,7 @@
       "plugins": [
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "transform-runtime",
+        ["transform-runtime", {"polyfill": false}],
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
         ["transform-react-remove-prop-types", {
           "mode": "wrap",
@@ -86,7 +86,7 @@
       "plugins": [
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "transform-runtime",
+        ["transform-runtime", {"polyfill": false}],
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
         ["transform-react-remove-prop-types", {
           "mode": "wrap",

@@ -2,7 +2,7 @@
   "name": "react-material-workspace",
   "private": true,
   "author": "Sixquake Team",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "React-Material's workspace package",
   "keywords": [
     "react",
@@ -60,11 +60,12 @@
     "@material-ui/docs": "^1.0.0-alpha.0",
     "@material-ui/icons": "^1.0.0-beta.43",
     "@material-ui/lab": "^1.0.0-alpha.1",
-    "material-ui": "^1.0.0-beta.44",
+    "material-ui": "^1.0.0-beta.45",
     "react-addons-update": "^15.6.2",
     "react-annotation": "^1.2.1",
     "react-dnd": "^2.6.0",
-    "react-dnd-html5-backend": "^2.6.0"
+    "react-dnd-html5-backend": "^2.6.0",
+    "downshift": "^1.31.14"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.4",
@@ -97,7 +98,6 @@
     "cross-env": "^5.1.1",
     "cssnano": "^3.10.0",
     "doctrine": "^2.0.0",
-    "downshift": "^1.22.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.11.0",

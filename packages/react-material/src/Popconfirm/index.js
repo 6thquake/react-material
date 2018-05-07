@@ -1,2 +1,2 @@
-export { default } from './Popconfirm';
 export * from './Popconfirm';
+export { default } from './Popconfirm';

@@ -1,2 +1,2 @@
-export { default } from './StarVote';
 export * from './StarVote';
+export { default } from './StarVote';

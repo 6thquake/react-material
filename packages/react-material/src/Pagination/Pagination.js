@@ -64,7 +64,7 @@ class Pagination extends Component {
     /**
      * This is total count of pagination
      */
-    total: PropTypes.number,
+    total: PropTypes.number.isRequired,
     /**
      * This is call current page back to parent component
      */

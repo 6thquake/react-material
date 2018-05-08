@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
-
-
-export default class NATextField extends Component {
+import { withStyles } from 'material-ui/styles';
+const styles = theme => ({
+  root:{
+    width:'100%'
+  },
+  input:{
+    paddingLeft:'10px'
+  }
+});
+class NATextField extends Component {
     componentDidMount() {
         let _x = document.getElementById('menu-').getElementsByTagName('input')[0];
         _x.addEventListener("click", function(e){
@@ -10,11 +17,17 @@ export default class NATextField extends Component {
         });
     }
     render(){
-       const {placeholder,onChange}=this.props;
+       const {placeholder,onChange,classes}=this.props;
        return (<TextField
             autoFocus={true}
             placeholder={placeholder}
             onChange={onChange}
+            className={classes.root}
+            inputProps={{
+              className:classes.input
+            }
+            }
         />)
     }
 }
+export default withStyles(styles)(NATextField);

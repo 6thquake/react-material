@@ -4,10 +4,13 @@ components: Select
 # Selects
 ## Select with pagination、filter
 
-Select with pagination、filter
+Select of dataSource
 
 {{"demo": "pages/demos/selects/Select.js"}}
 
+Select of customer templete
+
+{{"demo": "pages/demos/selects/selectTem.js"}}
 ## CascadeSelect
 
 Select items by Cascading

@@ -15,6 +15,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/selects/Select'), 'utf8')
 `,
         },
+        'pages/demos/selects/selectTem.js': {
+          js: require('docs/src/pages/demos/selects/selectTem').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/selects/selectTem'), 'utf8')
+`,
+        },
         'pages/demos/selects/CascadeSelect.js': {
           js: require('docs/src/pages/demos/selects/CascadeSelect').default,
           raw: preval`

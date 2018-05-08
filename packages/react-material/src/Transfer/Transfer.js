@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
-
 import Checkbox from 'material-ui/Checkbox';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import { ChevronRight, ChevronLeft, LastPage, FirstPage } from '@material-ui/icons';
-
 
 
 const styles = {

@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {withStyles} from '../styles';
-import List, {ListItem, ListItemText, ListItemIcon} from '../List';
-import {createMuiTheme} from '../styles';
+import { withStyles, createMuiTheme } from '../styles';
+import List, { ListItem, ListItemText, ListItemIcon } from '../List';
 import Collapse from '../transitions/Collapse';
 import classNames from 'classnames';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+
 const defaultItemKeysMap =  {
   name: 'name',
   icon: 'icon',
@@ -199,6 +199,7 @@ Item.propTypes = {
    */
   selected: PropTypes.bool
 };
+
 Item.defaultProps = {
   open: false,
   before: () => true,
@@ -224,8 +225,6 @@ class TreeMenu extends React.Component {
       // root:this
     }
   }
-
-
 
   render() {
     return (
@@ -270,6 +269,3 @@ TreeMenu.defaultProps = {
 };
 
 export default withStyles()(TreeMenu);
-
-
-

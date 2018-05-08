@@ -16,7 +16,6 @@ const boxSource = {
 		const { id, left, top } = props
 		return { id, left, top }
 	},
-
 }
 
 // @DragSource(ItemTypes.BOX, boxSource, (connect, monitor) => ({

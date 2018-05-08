@@ -23,7 +23,6 @@ const boxTarget = {
 
 		component.moveBox(item.id, left, top)
 	},
-
 }
 
 // @DropTarget(ItemTypes.BOX, boxTarget, connect => {

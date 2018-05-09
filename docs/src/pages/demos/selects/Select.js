@@ -13,7 +13,8 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 300,
+    maxWidth: 300,
+    minWidth:120
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
@@ -110,7 +111,7 @@ class App extends Component {
     return (
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-native-simple">single select of simple array</InputLabel>
+          <InputLabel htmlFor="age-native-simple">single select of simple array and disabled</InputLabel>
           <AsynSelect
             multiple={false}
             value={this.state.singlevalue}
@@ -120,6 +121,7 @@ class App extends Component {
             selectCb={this.selectCb.bind(this)}
             pageChangeCb={this.autoCb.bind(this)}
             filterChangeCb={this.filterChangeCb.bind(this)}
+            disabled={true}
           >
           </AsynSelect>
         </FormControl>

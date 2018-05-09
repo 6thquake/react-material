@@ -10,11 +10,10 @@ import Chip from 'material-ui/Chip';
 import { withStyles } from 'material-ui/styles';
 const styles = theme => ({
   selectMenu:{
-    maxWidth:'300px',
     whiteSpace: 'pre-wrap',
   },
   root:{
-    width:'300px'
+    width:'100%'
   },
 });
 class AsynSelect extends Component {
@@ -47,6 +46,11 @@ class AsynSelect extends Component {
        * callback to parent component when  filter change
        */
       filterChangeCb : PropTypes.func,
+      /**
+       * decided select is disabled
+       */
+      disabled : PropTypes.bool,
+
     };
     static defaultProps = {
       selectCb:function () {
@@ -65,7 +69,8 @@ class AsynSelect extends Component {
       },
       placeHold:'please input something',
       multiple:false,
-      value:''
+      value:'',
+      disabled:false
     };
     constructor(props) {
         super(props);
@@ -141,7 +146,7 @@ class AsynSelect extends Component {
       }
     }
     render() {
-        const {pageConfig, placeholder, multiple,classes} = this.props;
+        const {pageConfig, placeholder, multiple,classes,disabled} = this.props;
         return (
             <Select
                 multiple={multiple}
@@ -155,11 +160,13 @@ class AsynSelect extends Component {
                     placeholder: placeholder,
 
                 }}
+                disabled={disabled}
                 renderValue={selected => (
                     multiple? <div className={classes.chips}>{
                       selected.map(value => <Chip key={value}  onDelete={this.handleDelete(value).bind(this)} label={value} />)}
                       </div>:selected
                 )}
+                {...this.props}
             >
                 <RMTextField
                     fullWidth={true}

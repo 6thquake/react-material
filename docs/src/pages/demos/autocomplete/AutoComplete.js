@@ -88,12 +88,13 @@ class AutoCompleteTest extends Component {
         return (
             <div className={classes.root}>
               <br/>
-              <Typography>datasource object array and multiple select</Typography>
+              <Typography>datasource object array and multiple select add disabled</Typography>
               <AutoComplete
                 placeHold={'new autoComplete'}
                 dataSource={this.state.options.slice(total==0?total:(currentPage-1)*pageSize+1,
                   currentPage*pageSize>total?total:currentPage*pageSize)}
                 multiple ={true}
+                disabled={true}
                 keyValue={['label','label']}
                 value={this.state.selectedmulit}
                 pageConfig={this.state.pageConfig}

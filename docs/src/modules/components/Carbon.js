@@ -94,6 +94,8 @@ class Carbon extends React.Component {
   };
 
   componentDidMount() {
+    return;
+    
     if (process.env.NODE_ENV !== 'production') {
       return;
     }

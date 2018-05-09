@@ -9,6 +9,10 @@ const {
 
 process.env.LIB_VERSION = pkg.version;
 
+require.extensions['.css'] = () => {
+  return;
+};
+
 module.exports = {
   webpack: config => {
     const plugins = config.plugins.concat([
@@ -43,7 +47,7 @@ module.exports = {
         }, {
           test: /\.(css|md)$/,
           loader: 'raw-loader',
-        }, ]),
+        }]),
       }),
     });
   },

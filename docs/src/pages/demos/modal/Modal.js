@@ -1,5 +1,5 @@
 import React , { Component } from 'react';
-import Modal2  from 'react-material/Modal';
+import Modal, { Modal2, ModalManager}  from 'react-material/Modal';
 import Button from 'react-material/Button';
 import { withStyles } from 'react-material/styles';
 import { DialogActions, DialogContent, DialogContentText } from 'react-material/Dialog';
@@ -16,7 +16,7 @@ const styles = theme => ({
 class App extends Component {
   constructor(props){
    super(props);
-   this.state= {
+   this.state = {
      open: false,
      animation:'zoom'
    };
@@ -39,10 +39,11 @@ class App extends Component {
 
   render() {
     const { classes } = this.props;
+    let { open, animation, ...other} = this.state;
     return (
       <div>
         <Button onClick={this.handleOpen}>Open Modal</Button>
-        <Modal2 open={this.state.open}
+        <Modal2 {...other} open={this.state.open}
                onClose={this.handleClose.bind(this)}
                label={'this is a modal test'}
                animation={this.state.animation}

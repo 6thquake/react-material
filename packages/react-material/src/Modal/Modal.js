@@ -1,9 +1,9 @@
 import React , {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Dialog, { DialogContent, DialogTitle} from 'material-ui/Dialog';
-import {Clear} from '@material-ui/icons';
-import {Fade,Slide,Collapse,Grow,Zoom} from 'material-ui/transitions';
+import Dialog, { DialogContent, DialogTitle } from 'material-ui/Dialog';
+import { Clear } from '@material-ui/icons';
+import { Fade, Slide, Collapse, Grow, Zoom } from 'material-ui/transitions';
 
 
 const styles = theme => ({
@@ -63,7 +63,7 @@ class Modal extends Component {
         }
     }
     render() {
-        const { classes,label,onClose} = this.props;
+        const { classes, label, onClose } = this.props;
         return <Dialog
             transition={this._transition}
             keepMounted
@@ -71,7 +71,7 @@ class Modal extends Component {
             aria-describedby="alert-dialog-slide-description"
             {...this.props}
         >
-            <DialogTitle className={classes.title} disableTypography={true} id="alert-dialog-title">
+            <DialogTitle className={classes.title} disableTypography={true}>
                 {label}<Clear className={classes.icon}  onClick={onClose}/>
             </DialogTitle>
             <DialogContent>

@@ -76,7 +76,11 @@ class AutoComplete extends Component {
     /**
      * 用于回显
      */
-    value : PropTypes.string
+    value : PropTypes.string,
+    /**
+     * decided autocomplete is disabled
+     */
+    disabled : PropTypes.bool,
   };
   static defaultProps = {
     inputChangeCb:function () {
@@ -95,6 +99,7 @@ class AutoComplete extends Component {
     onChange:function () {
       console.log("need cb function")
     },
+    disabled:false
   };
   constructor(){
     super();
@@ -113,6 +118,9 @@ class AutoComplete extends Component {
     this.props.inputChangeCb(event);
   };
   handleDelete = item =>event => {
+    if(this.props.disabled){
+      return;
+    }
     const value = [...this.props.value];
     value.splice(value.indexOf(item), 1);
     let target;
@@ -176,7 +184,7 @@ class AutoComplete extends Component {
     }
   }
   render() {
-    const {pageConfig,pageChangeCb,classes,placeHold ,children,multiple,value,dataSource,keyValue} = this.props;
+    const {pageConfig,pageChangeCb,classes,placeHold ,children,multiple,value,dataSource,keyValue,disabled} = this.props;
     const {open,inputValue} = this.state;
     let items;
     if(dataSource){
@@ -254,6 +262,7 @@ class AutoComplete extends Component {
           <div className={classes.container}>
             {multiple?
               <TextField
+                disabled={disabled}
               className={classes.textarea}
               onChange={this.handleChange.bind(this)}
               value={inputValue}
@@ -273,6 +282,7 @@ class AutoComplete extends Component {
                 placeholder: placeHold
               }}
             />: <TextField
+                disabled={disabled}
                 className={classes.textarea}
                 onChange={this.handleChange.bind(this)}
                 value={inputValue}

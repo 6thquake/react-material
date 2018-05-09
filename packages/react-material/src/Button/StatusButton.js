@@ -5,15 +5,18 @@ import pink from 'material-ui/colors/pink';
 import green from 'material-ui/colors/green';
 import orange from 'material-ui/colors/orange';
 import common from 'material-ui/colors/common';
-import {fade} from 'material-ui/styles/colorManipulator';
+import { fade } from 'material-ui/styles/colorManipulator';
 import Button from 'material-ui/Button';
 import classNames from 'classnames';
 import Done from '@material-ui/icons/Done';
 import Replay from '@material-ui/icons/Replay';
 import { CircularProgress } from 'material-ui/Progress';
+import addonRmTheme from '../styles/addonRmTheme';
 
 
 const styles = theme => {
+  theme = addonRmTheme(theme);
+
   const defaultStyle = {
     flat: {
       waring: {
@@ -229,21 +232,14 @@ class StatusButton extends Component {
         color: 'progress'
       });
       result.then((r) => {
-        if (r || r === undefined) {
-          this.status.status = 'success';
-          this.setState({
-            color: 'success'
-          });
-        } else {
-          this.status.status = 'false';
-          this.setState({
-            color: 'waring'
-          });
-        }
+        this.status.status = 'success';
+        this.setState({
+          color: 'success'
+        });
       }).catch(r => {
         this.status.status = 'false';
         this.setState({
-          color: 'waring'
+          color: 'error'
         });
       });
     }

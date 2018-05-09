@@ -149,6 +149,7 @@ class AsynSelect extends Component {
         const {pageConfig, placeholder, multiple,classes,disabled} = this.props;
         return (
             <Select
+                {...this.props}
                 multiple={multiple}
                 value={this.state.values}
                 onChange={this.handleChange.bind(this)}
@@ -166,7 +167,6 @@ class AsynSelect extends Component {
                       selected.map(value => <Chip key={value}  onDelete={this.handleDelete(value).bind(this)} label={value} />)}
                       </div>:selected
                 )}
-                {...this.props}
             >
                 <RMTextField
                     fullWidth={true}

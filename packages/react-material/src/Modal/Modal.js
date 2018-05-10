@@ -63,13 +63,13 @@ class Modal extends Component {
         }
     }
     render() {
-        const { classes, label, onClose } = this.props;
+        const { classes, label, onClose,...other} = this.props;
         return <Dialog
-            transition={this._transition}
+            TransitionComponent={this._transition}
             keepMounted
             aria-labelledby="alert-dialog-slide-title"
             aria-describedby="alert-dialog-slide-description"
-            {...this.props}
+            {...other}
         >
             <DialogTitle className={classes.title} disableTypography={true}>
                 {label}<Clear className={classes.icon}  onClick={onClose}/>

@@ -56,9 +56,9 @@ class Message  extends Component {
         }
     }
     render() {
-        const { classes ,open,action,onClose,anchorOrigin} = this.props;
+        const {open,action,onClose,anchorOrigin} = this.props;
         return <Snackbar
-            transition={this._transition}
+            TransitionComponent={this._transition}
             open={open}
             anchorOrigin={anchorOrigin}
             onClose={onClose}

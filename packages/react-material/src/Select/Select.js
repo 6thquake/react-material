@@ -146,10 +146,10 @@ class AsynSelect extends Component {
       }
     }
     render() {
-        const {pageConfig, placeholder, multiple,classes,disabled} = this.props;
+        const {pageConfig, placeholder, multiple,classes,disabled,...other} = this.props;
         return (
             <Select
-                {...this.props}
+                {...other}
                 multiple={multiple}
                 value={this.state.values}
                 onChange={this.handleChange.bind(this)}

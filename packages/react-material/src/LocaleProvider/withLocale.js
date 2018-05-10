@@ -1,6 +1,6 @@
 import deepmerge from 'deepmerge';
 import React from 'react';
-import LocaleContext from './LocaleContext'
+import {LocaleContext} from './LocaleContext'
 
 
 export default function withLocale(Component ,name) {
@@ -8,8 +8,8 @@ export default function withLocale(Component ,name) {
   return function LocaleComponent(props) {
     return (
       <LocaleContext.Consumer>
-        {(localeConfig) => {
-          const { locale, changeLocale } = localeConfig
+        {(locale) => {
+          const { changeLocale } = locale
           let mergeProps = deepmerge(props, locale[name])
           return <Component {...mergeProps} changeLocale={changeLocale} />
         }}

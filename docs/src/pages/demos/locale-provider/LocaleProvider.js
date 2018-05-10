@@ -2,7 +2,7 @@ import react, {Component} from 'react'
 import Popconfirm from 'react-material/Popconfirm'
 import { withStyles } from 'react-material/styles';
 import Button from 'react-material/Button'
-import { LocaleContext } from 'react-material/LocaleProvider'
+import { LocaleProvider } from 'react-material/LocaleProvider'
 import zhCN from 'react-material/LocaleProvider/zh_CN'
 import zhTW from 'react-material/LocaleProvider/zh_TW'
 import enUS from 'react-material/LocaleProvider/en_US'
@@ -44,10 +44,14 @@ class MyComponent extends Component {
       locale: this.state.locale,
       changeLocale: this.changeLocale
     }
+    let locale = {
+      ...this.state.locale,
+      changeLocale: this.changeLocale
+    }
     return (
       <div className={classes.box}>
         {/* with provider */}
-        <LocaleContext.Provider value={value}> 
+        <LocaleProvider locale={locale}> 
           <Popconfirm content={this.state.content}>
             <Button>
               open
@@ -59,7 +63,7 @@ class MyComponent extends Component {
             <Button onClick={this.handleButtonClick('enUS')} radio={radio} variant="raised" color="primary">EN</Button>
             <Button onClick={this.handleButtonClick('zhTW')} variant="raised" color="primary">繁体中文</Button>
           </ButtonGroup>
-        </LocaleContext.Provider>
+        </LocaleProvider>
 
         {/* without provider */}
         <Popconfirm content={this.state.content}>

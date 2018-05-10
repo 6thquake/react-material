@@ -1,2 +1,14 @@
-export{ default as withLocale } from './withLocale';
-export { default as LocaleContext } from './LocaleContext';
+import withLocale from './withLocale';
+import {
+  LocaleContext,
+  LocaleProvider
+} from './LocaleContext'
+
+
+export{
+  LocaleProvider,
+  LocaleContext,
+  withLocale
+}
+export default LocaleProvider
+

@@ -4,5 +4,6 @@ const locale = {
   changeLocale: ()=>{},
   locale: defaultLocal,
 }
+
 const LocaleContext = React.createContext(locale)
 export default LocaleContext

@@ -52,7 +52,7 @@ class MyComponent extends Component {
       <div className={classes.box}>
         {/* with provider */}
         <LocaleProvider locale={locale}> 
-          <Popconfirm content={this.state.content}>
+          <Popconfirm cancelText='cancel!' content={this.state.content}>
             <Button>
               open
             </Button>

@@ -9,7 +9,7 @@ const styles = theme => ({
     display: 'inline-block'
   },
   anchorElementBox: {
-    padding: theme.spacing.unit,
+    // padding: theme.spacing.unit,
     boxSizing: 'border-box',
     display: 'inline-block'
   },

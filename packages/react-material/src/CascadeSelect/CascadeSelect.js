@@ -4,6 +4,8 @@ import Popover from 'material-ui/Popover';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import CascadeOption from './CascadeOption'
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown'
+import {InputAdornment} from 'material-ui/Input';
 
 
 const styles = theme => ({
@@ -13,31 +15,13 @@ const styles = theme => ({
     flexDirection: 'column'
   },
 
-  inputBox: {
-    // display:'flex',
-    position: 'relative',
-    width: '100%',
-  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    minWidth: 200,
   },
   arrowDown: {
-    // top: 'calc(50 % - 12px)',
-    bottom: 12,
-    right: 7,
     color: 'rgba(0, 0, 0, 0.54)',
-    position: 'absolute',
-    pointerEvents: 'none',
-    fill: 'currentColor',
-    width: '1em',
-    height: '1em',
-    display:' inline - block',
-    fontSize: '24px',
-    transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    userSelect: 'none',
-    flexShrink: 0,
   },
   menuBox:{
     // width: 200,
@@ -46,7 +30,7 @@ const styles = theme => ({
   },
   noData:{
     padding: theme.spacing.unit,
-    width: 200,
+    minWidth: 200,
   }
 });
 
@@ -170,31 +154,34 @@ class CascadeSelect extends React.Component {
     return list
   }
   render() {
-    const { classes , label, dataSource} = this.props;
+    const { classes , label, dataSource, notFound , width} = this.props
     const { open, anchorEl} = this.state
     const hasData = dataSource && dataSource.length > 0
-    const t = <div className={classes.noData}>NO Data</div>
+    const t = <div className={classes.noData}>{notFound}</div>
     return (
       <div className={classes.container}>
         <div className={classes.inputBox}>
           <TextField
+            InputProps = {
+              {
+                endAdornment: ( <
+                  InputAdornment position = "end" >
+                    <ArrowDropDown className={classes.arrowDown}/ >
+                  </InputAdornment>
+                ),
+              }
+            }
+            style = {{width}}
+
             onClick={this.handleInputClick}
             id="select"
             label={label}
             className={classes.textField}
             value={this.state.textFieldValue}
             onChange={this.handleChange()}
-            SelectProps={{
-              MenuProps: {
-                className: classes.menu,
-              },
-            }}
             margin="normal"
           >
           </TextField>
-          <svg className={classes.arrowDown} focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7 10l5 5 5-5z"></path>
-          </svg>
         </div>
         <Popover 
           anchorEl={anchorEl}
@@ -226,6 +213,8 @@ CascadeSelect.propTypes = {
   onChange: PropTypes.func.isRequired,
   dataSource: PropTypes.array.isRequired,
   renderLabel: PropTypes.string,
-};
+  notFound: PropTypes.string,
+  width: PropTypes.number
+}
 
 export default withStyles(styles)(CascadeSelect);

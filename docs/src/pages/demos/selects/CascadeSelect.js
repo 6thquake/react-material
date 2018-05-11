@@ -8,7 +8,7 @@ class App extends Component {
       cdata: [
         {
           value: '1',
-          text: 'test1',
+          text: 'test1test1test1',
           subItems: [
             {
               value: '12',
@@ -16,7 +16,7 @@ class App extends Component {
               subItems: [
                 {
                   value: '13',
-                  text: 'test111',
+                  text: 'test111test111test111',
                 },
                 {
                   value: '112',
@@ -144,6 +144,7 @@ class App extends Component {
           dataSource={this.state.cdata}
           renderLabel='text'
           separator='|'
+          width={400}
         />
       </div>
     );

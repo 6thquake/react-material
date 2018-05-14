@@ -169,11 +169,34 @@ class AutoComplete extends Component {
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }else{
-      if(this.props.multiple){
-        this.setState({ open :false, inputValue:''});
-      }else{
-        this.setState({ open :false, inputValue:this.props.value});
-      }
+        const {onChange}=this.props;
+        if (onChange) {
+          let value;
+          let target;
+          if (event.target) {
+            target = event.target;
+          }
+          const selecttext = this.state.inputValue;
+          if(this.props.multiple){
+            value = Array.isArray(this.props.value) ? [...this.props.value] : [];
+            const itemIndex = value.indexOf(selecttext);
+            if (itemIndex === -1) {
+              if(selecttext){
+                value.push(selecttext);
+              }
+            }
+            this.setState({ open :false,inputValue:''});
+            }else {
+              value = selecttext;
+              this.setState({
+                open :false,
+                inputValue:value
+              });
+            }
+          event.persist();
+          event.target = { ...target, value };
+          onChange(event);
+        }
     }
   };
   componentDidMount () {

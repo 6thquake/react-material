@@ -8,7 +8,9 @@ import classNames from 'classnames';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
-const defaultItemKeysMap =  {
+import Menu from '@material-ui/icons/Menu';
+
+const defaultItemKeysMap = {
   name: 'name',
   icon: 'icon',
   children: 'children',
@@ -51,7 +53,7 @@ class MenuList extends React.Component {
   }
 
   itemKeyToProps(item) {
-    const {itemKeysMap} = this.context;
+    const { itemKeysMap } = this.context;
     let result = {};
     for (const key in itemKeysMap) {
       const resultKey = itemKeysMap[key];
@@ -61,12 +63,12 @@ class MenuList extends React.Component {
   }
 
   render() {
-    const {list} = this.props;
+    const { list } = this.props;
     return list ? <List>
       {
         list.map((item, index) => {
           const Component = withStyles(styles)(Item);
-          return <Component key={index} {...this.itemKeyToProps(item)}/>
+          return <Component key={index} {...this.itemKeyToProps(item)} />
         })
       }
 
@@ -82,14 +84,14 @@ class Item extends React.Component {
   static contextTypes = {
     level: PropTypes.number,
     inlineIndent: PropTypes.number,
-    root:PropTypes.object
+    root: PropTypes.object
   }
   state = {
     open: this.props.open,
     selected: this.selected()
   }
-  selected(selected = this.props.selected){
-    const {children, beforeChildren, before} = this.props;
+  selected(selected = this.props.selected) {
+    const { children, beforeChildren, before } = this.props;
     if (!selected) return false;
     if (children) {
       //有子节点
@@ -105,9 +107,9 @@ class Item extends React.Component {
       }
     }
   }
-  isBranch(){
-    const {children, beforeChildren} = this.props;
-    if(children&&beforeChildren())
+  isBranch() {
+    const { children, beforeChildren } = this.props;
+    if (children && beforeChildren())
       return true;
     return false;
   }
@@ -137,7 +139,7 @@ class Item extends React.Component {
     //   ele.className = ele.className.replace('selected','');
     // }
     // this.state.selected = this.selected(true);
-    this.setState({open: !this.state.open});
+    this.setState({ open: !this.state.open });
   }
 
 
@@ -152,7 +154,7 @@ class Item extends React.Component {
       className: classNamePro,
       classes,
     } = this.props;
-    const {selected} = this.state;
+    const { selected } = this.state;
     const {
       level,
       inlineIndent
@@ -163,17 +165,20 @@ class Item extends React.Component {
 
     return before() ? <React.Fragment>
       <ListItem onClick={this.handleClick}
-                className={className}
-                button
-                style={{paddingLeft: level * inlineIndent * theme.spacing.unit, ...style}}>
+        className={className}
+        button
+        style={{ paddingLeft: level * inlineIndent * theme.spacing.unit, ...style }}>
         {icon && <ListItemIcon>
           {icon}
         </ListItemIcon>}
-        <ListItemText  primary={name} />
-        {this.isBranch()&&(this.state.open ? <ExpandLess /> : <ExpandMore />)}
+        {!icon && !this.state.open && <ListItemIcon>
+          <Menu />
+        </ListItemIcon>}
+        <ListItemText primary={name} />
+        {this.isBranch() && (this.state.open ? <ExpandLess /> : <ExpandMore />)}
       </ListItem>
       {beforeChildren() && children && <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-        <MenuList list={children}/>
+        <MenuList list={children} />
       </Collapse>}
     </React.Fragment> : null;
   }
@@ -220,7 +225,7 @@ class TreeMenu extends React.Component {
   getChildContext() {
     return {
       level: 0,
-      itemKeysMap: {...defaultItemKeysMap,...this.props.itemKeysMap},
+      itemKeysMap: { ...defaultItemKeysMap, ...this.props.itemKeysMap },
       inlineIndent: this.props.inlineIndent,
       // root:this
     }
@@ -228,7 +233,7 @@ class TreeMenu extends React.Component {
 
   render() {
     return (
-      <MenuList ref={e=>this.e=e} list={this.props.list}/>
+      <MenuList ref={e => this.e = e} list={this.props.list} />
     );
   }
 }

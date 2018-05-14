@@ -8,6 +8,8 @@ import Checkbox from 'material-ui/Checkbox';
 
 const boxSource = {
 	beginDrag(props,monitor, component) {
+		//拖拽开始把水波层置为不显示
+		component.refs["listItem"].childNodes[0].childNodes[2].style.display='none';
 		const { direction, value } = props;
 		return {direction, value};
 		
@@ -25,7 +27,7 @@ class DLI extends React.Component {
 	render(){
 		const { connectDragSource,value,isChecked,toggleChecked,direction } = this.props;
 
-		return connectDragSource(<div>
+		return connectDragSource(<div><div  ref='listItem'>
 			<ListItem
                 key={value.id}
                 role={undefined}
@@ -40,12 +42,12 @@ class DLI extends React.Component {
                 />
                 <ListItemText primary={`${value.name}`} />
               </ListItem>
-			</div>);
+			</div></div>);
 	}
 }
 
 
-let DragListItem = DragSource('transfer', boxSource, (connect, monitor) => ({
+let DragListItem = DragSource('just-transfer', boxSource, (connect, monitor) => ({
 	connectDragSource: connect.dragSource(),
 	isDragging: monitor.isDragging(),
 	}))(DLI);

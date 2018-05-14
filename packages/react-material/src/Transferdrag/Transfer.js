@@ -102,30 +102,7 @@ class Transfer extends React.Component {
     this.props.onChange(newData);
   };
 
-  handleToggle = (value,position) => () => {
-    const { leftChecked,rightChecked } = this.state;
-    let _checked = position=='left'?leftChecked:position=='right'?rightChecked:'';
-
-    const currentIndex = _checked.indexOf(value);
-    const newChecked = [..._checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-    if(position=='left'){
-      this.setState({
-        leftChecked: newChecked,
-      });
-    }
-    if(position=='right'){
-      this.setState({
-        rightChecked: newChecked,
-      });
-    }
-  };
-  consoleTest = (value,position)=>{
+  handleToggle = (value,position)=>{
     const { leftChecked,rightChecked } = this.state;
     let _checked = position=='left'?leftChecked:position=='right'?rightChecked:'';
 
@@ -169,12 +146,12 @@ class Transfer extends React.Component {
         </div>
 
         <div className={classes.lists +' '+classes.leftLists}>
-          <MyDropList data={left} direction='left' checkedItem={this.state.leftChecked} toggleChecked={this.consoleTest} dragToggle={this.dragToggle}></MyDropList>
+          <MyDropList data={left} direction='left' checkedItem={this.state.leftChecked} toggleChecked={this.handleToggle} dragToggle={this.dragToggle}></MyDropList>
           
         </div>
         
         <div className={classes.lists +' '+classes.rightLists}>
-        <MyDropList data={right} direction='right' checkedItem={this.state.rightChecked} toggleChecked={this.consoleTest} dragToggle={this.dragToggle}></MyDropList>
+        <MyDropList data={right} direction='right' checkedItem={this.state.rightChecked} toggleChecked={this.handleToggle} dragToggle={this.dragToggle}></MyDropList>
           
         </div>
       </div>

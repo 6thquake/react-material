@@ -15,7 +15,6 @@ import Drawer from 'react-material/Drawer';
 import AppBar from 'react-material/AppBar';
 import Toolbar from 'react-material/Toolbar';
 import List from 'react-material/List';
-import Typography from 'react-material/Typography';
 import Divider from 'react-material/Divider';
 import IconButton from 'react-material/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';

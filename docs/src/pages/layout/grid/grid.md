@@ -16,6 +16,12 @@ The grid system is implemented with the `Grid` component:
 - Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
 
+## float grid
+
+a simple example
+
+{{"demo": "pages/layout/grid/RMgrid.js"}}
+
 ## Spacing
 
 The responsive grid focuses on consistent spacing widths, rather than column width.

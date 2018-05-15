@@ -8,6 +8,13 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
+        'pages/layout/grid/RMgrid.js': {
+          js: require('docs/src/pages/layout/grid/RMgrid.js').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/layout/grid/RMgrid'), 'utf8')
+`,
+        },
         'pages/layout/grid/SpacingGrid.js': {
           js: require('docs/src/pages/layout/grid/SpacingGrid').default,
           raw: preval`

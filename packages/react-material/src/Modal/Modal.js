@@ -69,6 +69,7 @@ class Modal extends Component {
             keepMounted
             aria-labelledby="alert-dialog-slide-title"
             aria-describedby="alert-dialog-slide-description"
+            {...classes}
             {...other}
         >
             <DialogTitle className={classes.title} disableTypography={true}>

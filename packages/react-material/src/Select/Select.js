@@ -154,6 +154,7 @@ class AsynSelect extends Component {
                 value={this.state.values}
                 onChange={this.handleChange.bind(this)}
                 classes={{
+                  ...classes,
                   root: classes.root,
                   selectMenu: classes.selectMenu,
                 }}

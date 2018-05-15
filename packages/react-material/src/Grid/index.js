@@ -1,2 +1,7 @@
-export * from 'material-ui/Grid';
-export { default } from 'material-ui/Grid';
+export { default } from './Grid'
+import Grid from '../RMgrid'
+import FlexGrid from 'material-ui/Grid'
+export {
+  Grid,
+  FlexGrid 
+}

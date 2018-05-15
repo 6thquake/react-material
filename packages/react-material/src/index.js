@@ -31,7 +31,14 @@ export {
   ExpansionPanelSummary,
 } from './ExpansionPanel';
 export { FormControl, FormGroup, FormLabel, FormHelperText, FormControlLabel } from './Form';
-export { default as Grid } from './Grid';
+export {
+  default as Grid, 
+  FlexGrid,
+  FloatGrid
+}
+from './Grid';
+
+
 export { default as GridList, GridListTile, GridListTileBar } from './GridList';
 export { default as Hidden } from './Hidden';
 export { default as Icon } from './Icon';

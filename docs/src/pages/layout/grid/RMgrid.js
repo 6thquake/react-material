@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import Paper from 'react-material/Paper';
-import { Grid } from 'react-material/Grid';
+import { FloatGrid as Grid } from 'react-material/Grid';
 const styles = theme => ({
   root: {
     flexGrow: 1,

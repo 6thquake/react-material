@@ -1,10 +1,11 @@
 import React from 'react'
 import Paper from 'react-material/Paper'
-
+import Grid from 'react-material/Grid'
 import PropTypes from 'prop-types'
 import { withStyles } from 'react-material/styles'
 import Divider from 'react-material/Divider'
 import Anchor from 'react-material/Anchor'
+
 export const styles = {
   tBox: {
     overflow: 'scroll',
@@ -12,6 +13,9 @@ export const styles = {
     height: 500,
     marginBottom: 100,
   },
+  sub: {
+    marginRight: 50
+  }
 }
 
 class App extends React.Component {
@@ -42,7 +46,30 @@ class App extends React.Component {
       },
       {
         href: '#a3',
-        label: '#3'
+        label: '#3',
+        children: [
+          {
+            href: '#sub31',
+            label: 'sub31',
+            children: [{
+              href: '#sub31',
+              label: 'sub31'
+            }, {
+              href: '#sub32',
+              label: 'sub32'
+            }, {
+              href: '#sub33',
+              label: 'sub33'
+            }, ]
+
+          }, {
+            href: '#sub32',
+            label: 'sub32'
+          }, {
+            href: '#sub33',
+            label: 'sub33'
+          },
+        ]
       },
       {
         href: '#a4',
@@ -62,7 +89,7 @@ class App extends React.Component {
       position: 'sticky',
       top: 100,
       right: '0',
-      width: 200
+      width: 260
     }
     return (
 
@@ -92,6 +119,28 @@ class App extends React.Component {
             The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
             The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
             The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
+            <Grid container className={classes.sub}>
+              <Grid item  xs={12}>
+                <a id='sub31' href="#sub31">sub31</a>
+                The TextField is a convenience wrapper<br/>
+                for the most common cases(80 % ).It cannot be all things to all people,<br/>
+                otherwise the API would grow out of control.
+              </Grid>
+              <Grid  item xs={12}>
+                <a id='sub32' href="#sub32">sub32</a>
+                The TextField is a convenience wrapper
+                for the most common cases(80 % ).It cannot be all things to all people,
+                otherwise the API would grow out of control.
+              </Grid>
+              <Grid item xs={12}>
+                <a id='sub33' href="#sub33">sub33</a>
+                The TextField is a convenience wrapper
+                for the most common cases(80 % ).It cannot be all things to all people,
+                otherwise the API would grow out of control.
+              </Grid>
+
+            </Grid>
+
           </p >
           <Divider />
 
@@ -112,9 +161,9 @@ class App extends React.Component {
             <p id="a6" style={p}>
               <a style={a} href="#a6">6</a>
               The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-            The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-            The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-          </p>
+              The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
+              The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
+            </p>
           <Divider />
         </Paper>
       </div>

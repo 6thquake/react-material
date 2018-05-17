@@ -105,11 +105,10 @@ class Anchor extends React.Component {
   }
 
   setLink = (link)=> {
-    
     var sel = link.href;
     let ele = document.querySelector(sel)
     let dh = ele ? this.getOffsetTop(ele, this.container) : 0
-    let rect = ele !== null ? ele.getBoundingClientRect() : 0
+    let rect = ele? ele.getBoundingClientRect() : 0
     // 这里确定了是否高亮某一个 link
     if (dh <= 150 && dh >= -rect.height / 2) {
       let activeLink = {
@@ -137,7 +136,6 @@ class Anchor extends React.Component {
   // 设置高亮 mask 的高度
   setMask = (target, wrapper) => {
     let h = this.getOffsetTop(target, wrapper)
-    
     this.setState({
       linkHigth: h,
     })

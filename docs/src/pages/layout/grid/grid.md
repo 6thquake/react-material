@@ -16,7 +16,7 @@ The grid system is implemented with the `Grid` component:
 - Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
 
-## float grid
+## Percentage grid
 
 a simple example
 

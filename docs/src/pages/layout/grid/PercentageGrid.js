@@ -15,17 +15,17 @@ const styles = theme => ({
   },
 });
 
-function FullWidthGrid(props) {
+function PercentageGridExample(props) {
   const { classes } = props;
   let links=[
     {
-      href: '#ow-it-works',
+      href: '#how-it-works',
       label: 'How-it-works'
     },
     // PercentageGrid grid
     {
-      href: '#percentagegrid-grid',
-      label: 'PercentageGrid grid'
+      href: '#percentage-grid',
+      label: 'Percentage grid'
     },
 
     {
@@ -194,8 +194,8 @@ function FullWidthGrid(props) {
   );
 }
 
-FullWidthGrid.propTypes = {
+PercentageGridExample.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FullWidthGrid);
+export default withStyles(styles)(PercentageGridExample);

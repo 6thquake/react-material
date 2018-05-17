@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Paper from 'material-ui/Paper'
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-
 import { withStyles } from 'material-ui/styles';
 
 const styles = (theme) => ({
@@ -10,49 +8,68 @@ const styles = (theme) => ({
     position: 'fixed',
     top: 10,
     minWidth: 100,
-    margin: 20
+    margin: 20,
+    display: 'flex',
+    overflow: 'hidden',
+    // zIndex: 900
   }, 
   anchorWrapper:{
-    borderLeft: '2px #ccc solid',
-    marginLeft:20,
     marginTop: 10,
     marginBottom: 10,
     paddingLeft: 10,
   },
-  active: {
-    color: '#108ee9'
-  },
-  anchorItem: {
+  
+  ul: {
     position: 'relative',
-    right: 10,
-    textDecoration:'none',
-    color:'black',
+    zIndex: 2
   },
-  itemBox:{
-    display: 'flex',
-    alignItems: 'center'
+  active: {
+    color:` ${theme.palette.primary.dark} !important`
+  },
+  wrapper: {
+    position: 'relative',
+    paddingRight: theme.spacing.unit * 40
+  },
+  activeMask: {
+    position: 'absolute',
+    backgroundColor: '#f3f3f3',
+    borderLeft: `2px solid ${theme.palette.primary.dark}`,
+    transition: 'all .2s ease',
+    zIndex: 1,
+    width: '100%',
+    right: 2,
+    height: 40,
   },
   link: {
-
+    display: 'flex',
+    height: 40,
+    alignItems: 'center',
+    'text-decoration':'none',
+    'color':'#333',
+    '&:selection': {
+      color: 'red'
+    },
+    minWidth: 300,
+    // overflow: 'hidden',
+    // 'text-overflow':'ellipsis',
+    // whiteSpace: 'nowrap',
   },
-  ball: {
-    position: 'absolute',
-    width: '9px',
-    height: '9px',
-    borderRadius: '9px',
-    border:'3px solid #108ee9',
-    backgroundColor: '#fff',
-    left: -5.5,
-    transition:' top .3s ease-in-out',
 
+  line: {
+    height: 'inherit',
+    backgroundColor: '#ccc',
+    marginLeft:20,
+    marginTop: 10,
+    marginBottom: 10,
+    paddingLeft: 2,
   }
 })
 
 const throttling = (fn, wait, maxTimelong) =>{
   wait = wait || 100
   maxTimelong = maxTimelong || 300
-  var timeout = null,
-    startTime = Date.now()
+  var timeout = null
+  var  startTime = Date.now()
 
   return function (e) {
     if (timeout !== null) clearTimeout(timeout)
@@ -69,35 +86,67 @@ const throttling = (fn, wait, maxTimelong) =>{
 class Anchor extends React.Component {
 
   state = {
-    activeLinkIndex: -1,
+    linkHigth: 10,
+    links: {}
   }
-
+  level = 0
   container = null
-
+  wrapper = null
   componentDidMount() {
     let sel = this.props.container 
     this.container = document.querySelector(sel) || window
     this.container.addEventListener('scroll', throttling(this.scrollHandle))
-    this.findLinktarget()
+    this.setLinks(this.props.links)
   }
 
   scrollHandle = (e) => {
-    this.findLinktarget()
+    let { links } = this.props
+    this.setLinks(links)
   }
 
-  findLinktarget(){
-    let array = this.props.links
-    for (var index = 0; index < array.length; index++) {
-      var sel = array[index].href;
-      let ele = document.querySelector(sel)
-      let dh = this.getOffsetTop(ele, this.container)
-      let rect = ele.getBoundingClientRect()
-      // 这里确定了是否高亮某一个 link
-      if(dh <= 150 && dh >= -rect.height / 2){
-        this.setState({
-          activeLinkIndex: index
-        })
+  setLink = (link)=> {
+    
+    var sel = link.href;
+    let ele = document.querySelector(sel)
+    let dh = ele ? this.getOffsetTop(ele, this.container) : 0
+    let rect = ele !== null ? ele.getBoundingClientRect() : 0
+    // 这里确定了是否高亮某一个 link
+    if (dh <= 150 && dh >= -rect.height / 2) {
+      let activeLink = {
+        [sel]: true
       }
+
+      let links = document.querySelectorAll('a')
+      let target = null
+      for( let link of links){
+        if(link.name === sel){
+          target =  link
+          break
+        }
+      }
+      this.setMask(target, this.wrapper)
+      this.setState({
+        links: activeLink
+      })
+    }
+    if(link.children){
+      this.setLinks(link.children)
+    }
+  }
+
+  // 设置高亮 mask 的高度
+  setMask = (target, wrapper) => {
+    let h = this.getOffsetTop(target, wrapper)
+    
+    this.setState({
+      linkHigth: h,
+    })
+  }
+
+  setLinks(links){
+    let array = links
+    for (var index = 0; index < array.length; index++) {
+      this.setLink(array[index])
     }
   }
 
@@ -112,42 +161,62 @@ class Anchor extends React.Component {
     return eleRectTop - containerRectTop
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    
-  }
-
-  componentWillUnmount() {
-    
-  }
-
   handleLinkClick = (index)=>(e) => {
+    let ele = e.target
+    let links = {
+      [ele.name]: true
+    }
+
+    this.setMask(ele, this.wrapper)
     this.setState({
-      activeLinkIndex: index
+      activeLinkIndex: index,
+      links: links
     })
   }
-  
+
+  renderItem = (link, index, children)=>{
+    let {
+      classes
+    } = this.props
+    let linkClass = this.state.links[link.href] ? `${classes.link} ${classes.active}` : classes.link
+    return (
+      <li key={index}>
+        <a 
+          name={link.href}
+          onClick={this.handleLinkClick(index)} 
+          className={linkClass} 
+          href={link.href}>{link.label}
+        </a>
+        {children && this.renderLinks(children)}
+      </li>
+    )
+  }
+  renderLink = (link, index) => {
+    return this.renderItem(link, index, link.children)
+  }
+  renderLinks = (links) => {
+    let {classes} = this.props
+    let result = links.map((link, index)=>{
+      return this.renderLink(link, index)
+    })
+    return <ul className={classes.ul}>{result}</ul>
+  }
+
   render() {
     const {classes , links, style} = this.props
+    const maskStyle  = {
+      top: this.state.linkHigth
+    }
     return (
       <Paper className={classes.box} style = {style}>
-        <div className={classes.anchorWrapper}>
-          {
-            links.map((link, index)=>{
-              return (
-                <a onClick={this.handleLinkClick(index)} key={index} href={link.href} className={classes.anchorItem}>
-
-                  <ListItem className={this.state.activeLinkIndex == index ? classes.active : ''}>
-                    <div className={classes.itemBox}>
-                      {(this.state.activeLinkIndex == index) && (<span className={classes.ball}></span>)}
-                      <div>
-                        {link.label}
-                      </div>
-                    </div>
-                  </ListItem>
-                </a>
-              )
-            })
-          }
+        <div className={classes.line}></div>
+        <div ref={(e)=>{this.wrapper= e}} className={classes.wrapper}>
+          <div className={classes.activeMask} style={maskStyle}></div>
+          <div className={classes.anchorWrapper}>
+            {
+              this.renderLinks(links)
+            }
+          </div>
         </div>
       </Paper>
     )
@@ -155,7 +224,9 @@ class Anchor extends React.Component {
 }
 
 Anchor.propTypes = {
-  
+  links: PropTypes.array.isRequired,
+  container: PropTypes.string,
+  style: PropTypes.object
 }
 
 Anchor.defaultProps = {
@@ -163,7 +234,8 @@ Anchor.defaultProps = {
     position: 'fixed',
     top: 10,
     minWidth: 100,
-    margin: 20
+    margin: 20,
+    zIndex: 900
   }
 }
 

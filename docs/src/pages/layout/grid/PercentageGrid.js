@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import Paper from 'react-material/Paper';
+import Anchor from 'react-material/Anchor';
 import { CompatibleGrid as Grid } from 'react-material/Grid';
 const styles = theme => ({
   root: {
@@ -16,10 +17,61 @@ const styles = theme => ({
 
 function FullWidthGrid(props) {
   const { classes } = props;
+  let links=[
+    {
+      href: '#ow-it-works',
+      label: 'How-it-works'
+    },
+    // PercentageGrid grid
+    {
+      href: '#percentagegrid-grid',
+      label: 'PercentageGrid grid'
+    },
+
+    {
+      href: '#spacing',
+      label: 'Spacing'
+    },
+    {
+      href: '#full-width-vs-centered',
+      label: 'Full-width-vs-centered'
+    },
+    {
+      href: '#interactive',
+      label: 'Interactive'
+    },
+    {
+      href: '#auto-layout',
+      label: 'Auto-layout'
+    },
+    {
+      href: '#css-grid-layout',
+      label: 'CSS Grid Layout'
+    },
+    {
+      href: '#limitations',
+      label: 'Limitations'
+    },
+    {
+      href: '#api',
+      label: 'API'
+    },
+  ]
+  let style = {
+    position: 'fixed',
+    top: 100,
+    right: '0',
+    width: 300,
+    zIndex: 900,
+  }
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={24}>
+      <Anchor
+          style={style}
+          links={links}
+        ></Anchor>
+      <Grid id='cnchor-box' container spacing={24}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>xs=12</Paper>
         </Grid>
@@ -113,7 +165,7 @@ function FullWidthGrid(props) {
       </Grid>
 
       <Grid container spacing={24}>
-        <Grid item xs={12}>
+        <Grid item xs={12} lg={6}>
           <Paper className={classes.paper}>xs=12</Paper>
         </Grid>
         <Grid item xs={12} sm={6}>

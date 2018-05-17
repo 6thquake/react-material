@@ -1,7 +1,10 @@
 export { default } from './Grid'
-import FloatGrid from '../RMgrid'
+
+import PercentageGrid from './PercentageGrid'
 import FlexGrid from 'material-ui/Grid'
 export {
-  FloatGrid,
-  FlexGrid 
+  PercentageGrid,
+  PercentageGrid as FloatGrid,
+  PercentageGrid as CompatibleGrid,
+  FlexGrid
 }

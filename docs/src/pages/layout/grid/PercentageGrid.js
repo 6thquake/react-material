@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import Paper from 'react-material/Paper';
-import { FloatGrid as Grid } from 'react-material/Grid';
+import { CompatibleGrid as Grid } from 'react-material/Grid';
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -134,7 +134,7 @@ function FullWidthGrid(props) {
         <Grid item xs={{span: 6, offset:2, push: 2}} sm={{span:3, offset: 3, push: 3}} >
             <Paper className={classes.paper}>size: object</Paper>
         </Grid>
-        <Grid item xs={6} sm={{span:3, pull:3}}  md={{span:9, push:3}}>
+        <Grid item xs={6} sm={{span:3, pull:3}} md={{span:9, push:3}}>
             <Paper className={classes.paper}>size: object</Paper>
         </Grid>         
       </Grid>

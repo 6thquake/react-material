@@ -1,10 +1,10 @@
 import react from 'react'
 import FlexGrid from 'material-ui/Grid'
-import RMgrid from '../RMgrid'
+import PercentageGrid from './PercentageGrid'
 
 function Grid(props){
   const {type, ...other} = props
-  const Component = type === 'float'? RMgrid : FlexGrid
+  const Component = (type === 'float' || type === 'percentage' || type === 'compatible')? PercentageGrid : FlexGrid
   return (
     <Component {...other}/>
   )

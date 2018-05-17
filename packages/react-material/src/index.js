@@ -34,7 +34,9 @@ export { FormControl, FormGroup, FormLabel, FormHelperText, FormControlLabel } f
 export {
   default as Grid, 
   FlexGrid,
-  FloatGrid
+  FloatGrid,
+  CompatibleGrid,
+  PercentageGrid
 }
 from './Grid';
 

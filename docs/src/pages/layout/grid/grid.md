@@ -20,7 +20,7 @@ The grid system is implemented with the `Grid` component:
 
 a simple example
 
-{{"demo": "pages/layout/grid/RMgrid.js"}}
+{{"demo": "pages/layout/grid/PercentageGrid.js"}}
 
 ## Spacing
 

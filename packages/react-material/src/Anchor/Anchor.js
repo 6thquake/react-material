@@ -1,11 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Paper from 'material-ui/Paper'
-import Button from 'material-ui/Button'
-import Typography from 'react-material/Typography';
-
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-
 import { withStyles } from 'material-ui/styles';
 
 const styles = (theme) => ({
@@ -15,14 +10,10 @@ const styles = (theme) => ({
     minWidth: 100,
     margin: 20,
     display: 'flex',
-    // flexDirection: ''
-    // alignItems: 'stretch'
-    overflow: 'hidden'
+    overflow: 'hidden',
+    // zIndex: 900
   }, 
   anchorWrapper:{
-
-    // borderLeft: '2px #ccc solid',
-    // marginLeft:20,
     marginTop: 10,
     marginBottom: 10,
     paddingLeft: 10,
@@ -33,7 +24,7 @@ const styles = (theme) => ({
     zIndex: 2
   },
   active: {
-    color: '#108ee9'
+    color:` ${theme.palette.primary.dark} !important`
   },
   wrapper: {
     position: 'relative',
@@ -42,29 +33,30 @@ const styles = (theme) => ({
   activeMask: {
     position: 'absolute',
     backgroundColor: '#f3f3f3',
-    borderLeft: '2px solid #009A61',
+    borderLeft: `2px solid ${theme.palette.primary.dark}`,
     transition: 'all .2s ease',
     zIndex: 1,
     width: '100%',
     right: 2,
     height: 40,
-    // opacity: 0.8
-  },
-  itemBox:{
-    display: 'flex',
-    alignItems: 'center'
   },
   link: {
     display: 'flex',
     height: 40,
-    alignItems: 'center'
+    alignItems: 'center',
+    'text-decoration':'none',
+    'color':'#333',
+    '&:selection': {
+      color: 'red'
+    },
+    minWidth: 300,
+    // overflow: 'hidden',
+    // 'text-overflow':'ellipsis',
+    // whiteSpace: 'nowrap',
   },
-  linkBox: {
-    paddingLeft: theme.spacing.unit 
-  },
+
   line: {
     height: 'inherit',
-    // width: '2px',
     backgroundColor: '#ccc',
     marginLeft:20,
     marginTop: 10,
@@ -94,38 +86,67 @@ const throttling = (fn, wait, maxTimelong) =>{
 class Anchor extends React.Component {
 
   state = {
-    activeLinkIndex: -1,
-    linkHigth: 0
+    linkHigth: 10,
+    links: {}
   }
   level = 0
   container = null
-  wrapper = 'wrapper'
+  wrapper = null
   componentDidMount() {
     let sel = this.props.container 
     this.container = document.querySelector(sel) || window
     this.container.addEventListener('scroll', throttling(this.scrollHandle))
-    this.findLinktarget()
+    this.setLinks(this.props.links)
   }
 
   scrollHandle = (e) => {
-    this.findLinktarget()
+    let { links } = this.props
+    this.setLinks(links)
   }
 
-  findLinktarget(){
-    let array = this.props.links
-    for (var index = 0; index < array.length; index++) {
-      var sel = array[index].href;
-      let ele = document.querySelector(sel)
-      // console.log('====element====', sel, ele)
-
-      let dh = ele? this.getOffsetTop(ele, this.container) : 0
-      let rect = ele !== null? ele.getBoundingClientRect() : 0
-      // 这里确定了是否高亮某一个 link
-      if(dh <= 150 && dh >= -rect.height / 2){
-        this.setState({
-          activeLinkIndex: index
-        })
+  setLink = (link)=> {
+    
+    var sel = link.href;
+    let ele = document.querySelector(sel)
+    let dh = ele ? this.getOffsetTop(ele, this.container) : 0
+    let rect = ele !== null ? ele.getBoundingClientRect() : 0
+    // 这里确定了是否高亮某一个 link
+    if (dh <= 150 && dh >= -rect.height / 2) {
+      let activeLink = {
+        [sel]: true
       }
+
+      let links = document.querySelectorAll('a')
+      let target = null
+      for( let link of links){
+        if(link.name === sel){
+          target =  link
+          break
+        }
+      }
+      this.setMask(target, this.wrapper)
+      this.setState({
+        links: activeLink
+      })
+    }
+    if(link.children){
+      this.setLinks(link.children)
+    }
+  }
+
+  // 设置高亮 mask 的高度
+  setMask = (target, wrapper) => {
+    let h = this.getOffsetTop(target, wrapper)
+    
+    this.setState({
+      linkHigth: h,
+    })
+  }
+
+  setLinks(links){
+    let array = links
+    for (var index = 0; index < array.length; index++) {
+      this.setLink(array[index])
     }
   }
 
@@ -140,24 +161,16 @@ class Anchor extends React.Component {
     return eleRectTop - containerRectTop
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    
-  }
-
-  componentWillUnmount() {
-    
-  }
-
   handleLinkClick = (index)=>(e) => {
-    console.log('click one', e.target,e.target.getBoundingClientRect().top)
-    // let h = e.target.getBoundingClientRect().top
-    let parent = document.querySelector('#wrapper')
-    console.log('parent  ',this.wrapper)
+    let ele = e.target
+    let links = {
+      [ele.name]: true
+    }
 
-    let h = this.getOffsetTop(e.target, this.wrapper)
+    this.setMask(ele, this.wrapper)
     this.setState({
       activeLinkIndex: index,
-      linkHigth: h
+      links: links
     })
   }
 
@@ -165,30 +178,27 @@ class Anchor extends React.Component {
     let {
       classes
     } = this.props
-
+    let linkClass = this.state.links[link.href] ? `${classes.link} ${classes.active}` : classes.link
     return (
-      <li key={index}  className={classes.anchorItem}>
-        <a onClick={this.handleLinkClick(index)} className={classes.link} href={link.href}>{link.label}</a>
+      <li key={index}>
+        <a 
+          name={link.href}
+          onClick={this.handleLinkClick(index)} 
+          className={linkClass} 
+          href={link.href}>{link.label}
+        </a>
         {children && this.renderLinks(children)}
       </li>
     )
   }
   renderLink = (link, index) => {
-    
-    // let result = null
-    // if(link.children){
-    //   return <div className={classes.linkBox}> {this.renderLinks(link.children)}</div>
-    // }
     return this.renderItem(link, index, link.children)
-    
   }
   renderLinks = (links) => {
     let {classes} = this.props
     let result = links.map((link, index)=>{
       return this.renderLink(link, index)
     })
-    
-    
     return <ul className={classes.ul}>{result}</ul>
   }
 
@@ -214,7 +224,9 @@ class Anchor extends React.Component {
 }
 
 Anchor.propTypes = {
-  
+  links: PropTypes.array.isRequired,
+  container: PropTypes.string,
+  style: PropTypes.object
 }
 
 Anchor.defaultProps = {
@@ -222,7 +234,8 @@ Anchor.defaultProps = {
     position: 'fixed',
     top: 10,
     minWidth: 100,
-    margin: 20
+    margin: 20,
+    zIndex: 900
   }
 }
 

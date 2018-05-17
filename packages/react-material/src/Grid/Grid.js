@@ -1,4 +1,4 @@
-import react from 'react'
+import React from 'react'
 import FlexGrid from 'material-ui/Grid'
 import PercentageGrid from './PercentageGrid'
 

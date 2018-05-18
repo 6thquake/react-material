@@ -65,7 +65,9 @@
     "react-annotation": "^1.2.1",
     "react-dnd": "^2.6.0",
     "react-dnd-html5-backend": "^2.6.0",
-    "downshift": "^1.31.14"
+    "downshift": "^1.31.14",
+    "re-resizable":"^4.4.8"
+
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.4",

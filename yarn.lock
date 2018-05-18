@@ -8958,6 +8958,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+re-resizable@^4.4.8:
+  version "4.4.8"
+  resolved "http://registry.npm.taobao.org/re-resizable/download/re-resizable-4.4.8.tgz#1c7eedfd9b9ed1f83b3adfa7a97cda76881e4e57"
+
 react-addons-update@^15.6.2:
   version "15.6.2"
   resolved "http://registry.npm.release.ctripcorp.com/react-addons-update/download/react-addons-update-15.6.2.tgz#e53753c5b34887974510c882d7fb075851d5e504"

@@ -75,9 +75,7 @@ class Modal extends Component {
             <DialogTitle className={classes.title} disableTypography={true}>
                 {label}<Clear className={classes.icon}  onClick={onClose}/>
             </DialogTitle>
-            <DialogContent>
-                {this.props.children }
-            </DialogContent>
+            {this.props.children }
         </Dialog>
     }
 }

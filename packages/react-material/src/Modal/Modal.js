@@ -66,7 +66,6 @@ class Modal extends Component {
         const { classes, label, onClose,...other} = this.props;
         return <Dialog
             TransitionComponent={this._transition}
-            keepMounted
             aria-labelledby="alert-dialog-slide-title"
             aria-describedby="alert-dialog-slide-description"
             {...classes}

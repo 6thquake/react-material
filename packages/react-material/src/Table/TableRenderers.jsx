@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {CrossTableData} from './Utilities';
+import { CrossTableData } from './Utilities';
+import Table, { TableBody, TableCell, TableHead, TableRow } from 'react-material/Table';
 
 // helper function for setting row/col-span in CrossTableRenderer
 const spanSize = function(arr, i, j) {
@@ -55,12 +56,12 @@ function redColorScaleGenerator(values) {
 function makeRenderer(opts = {}) {
   class TableRenderer extends React.PureComponent {
     render() {
-      const pivotData = new CrossTableData(this.props);
-      const colAttrs = pivotData.props.cols;
-      const rowAttrs = pivotData.props.rows;
-      const rowKeys = pivotData.getRowKeys();
-      const colKeys = pivotData.getColKeys();
-      const grandTotalAggregator = pivotData.getAggregator([], []);
+      const crossTableData = new CrossTableData(this.props);
+      const colAttrs = crossTableData.props.cols;
+      const rowAttrs = crossTableData.props.rows;
+      const rowKeys = crossTableData.getRowKeys();
+      const colKeys = crossTableData.getColKeys();
+      const grandTotalAggregator = crossTableData.getAggregator([], []);
 
       let valueCellColors = () => {};
       let rowTotalColors = () => {};
@@ -68,11 +69,11 @@ function makeRenderer(opts = {}) {
       if (opts.heatmapMode) {
         const colorScaleGenerator = this.props.tableColorScaleGenerator;
         const rowTotalValues = colKeys.map(x =>
-          pivotData.getAggregator([], x).value()
+          crossTableData.getAggregator([], x).value()
         );
         rowTotalColors = colorScaleGenerator(rowTotalValues);
         const colTotalValues = rowKeys.map(x =>
-          pivotData.getAggregator(x, []).value()
+          crossTableData.getAggregator(x, []).value()
         );
         colTotalColors = colorScaleGenerator(colTotalValues);
 
@@ -80,7 +81,7 @@ function makeRenderer(opts = {}) {
           const allValues = [];
           rowKeys.map(r =>
             colKeys.map(c =>
-              allValues.push(pivotData.getAggregator(r, c).value())
+              allValues.push(crossTableData.getAggregator(r, c).value())
             )
           );
           const colorScale = colorScaleGenerator(allValues);
@@ -89,7 +90,7 @@ function makeRenderer(opts = {}) {
           const rowColorScales = {};
           rowKeys.map(r => {
             const rowValues = colKeys.map(x =>
-              pivotData.getAggregator(r, x).value()
+              crossTableData.getAggregator(r, x).value()
             );
             rowColorScales[r] = colorScaleGenerator(rowValues);
           });
@@ -98,7 +99,7 @@ function makeRenderer(opts = {}) {
           const colColorScales = {};
           colKeys.map(c => {
             const colValues = rowKeys.map(x =>
-              pivotData.getAggregator(x, c).value()
+              crossTableData.getAggregator(x, c).value()
             );
             colColorScales[c] = colorScaleGenerator(colValues);
           });
@@ -127,29 +128,29 @@ function makeRenderer(opts = {}) {
                   e,
                   value,
                   filters,
-                  pivotData
+                  crossTableData
                 );
             }
           : null;
 
       return (
-        <table className="rm-ct-Table">
-          <thead>
+        <Table className="rm-ct-Table">
+          <TableHead>
             {colAttrs.map(function(c, j) {
               return (
-                <tr key={`colAttr${j}`}>
+                <TableRow key={`colAttr${j}`}>
                   {j === 0 &&
                     rowAttrs.length !== 0 && (
-                      <th colSpan={rowAttrs.length} rowSpan={colAttrs.length} />
+                      <TableCell colSpan={rowAttrs.length} rowSpan={colAttrs.length} />
                     )}
-                  <th className="rm-ct-AxisLabel">{c}</th>
+                  <TableCell className="rm-ct-AxisLabel">{c}</TableCell>
                   {colKeys.map(function(colKey, i) {
                     const x = spanSize(colKeys, i, j);
                     if (x === -1) {
                       return null;
                     }
                     return (
-                      <th
+                      <TableCell
                         className="rm-ct-ColLabel"
                         key={`colKey${i}`}
                         colSpan={x}
@@ -160,52 +161,52 @@ function makeRenderer(opts = {}) {
                         }
                       >
                         {colKey[j]}
-                      </th>
+                      </TableCell>
                     );
                   })}
 
                   {j === 0 && (
-                    <th
+                    <TableCell
                       className="rm-ct-TotalLabel"
                       rowSpan={
                         colAttrs.length + (rowAttrs.length === 0 ? 0 : 1)
                       }
                     >
                       Totals
-                    </th>
+                    </TableCell>
                   )}
-                </tr>
+                </TableRow>
               );
             })}
 
             {rowAttrs.length !== 0 && (
-              <tr>
+              <TableRow>
                 {rowAttrs.map(function(r, i) {
                   return (
-                    <th className="rm-ct-AxisLabel" key={`rowAttr${i}`}>
+                    <TableCell className="rm-ct-AxisLabel" key={`rowAttr${i}`}>
                       {r}
-                    </th>
+                    </TableCell>
                   );
                 })}
-                <th className="rm-ct-TotalLabel">
+                <TableCell className="rm-ct-TotalLabel">
                   {colAttrs.length === 0 ? 'Totals' : null}
-                </th>
-              </tr>
+                </TableCell>
+              </TableRow>
             )}
-          </thead>
+          </TableHead>
 
-          <tbody>
+          <TableBody>
             {rowKeys.map(function(rowKey, i) {
-              const totalAggregator = pivotData.getAggregator(rowKey, []);
+              const totalAggregator = crossTableData.getAggregator(rowKey, []);
               return (
-                <tr key={`rowKeyRow${i}`}>
+                <TableRow key={`rowKeyRow${i}`}>
                   {rowKey.map(function(txt, j) {
                     const x = spanSize(rowKeys, i, j);
                     if (x === -1) {
                       return null;
                     }
                     return (
-                      <th
+                      <TableCell
                         key={`rowKeyLabel${i}-${j}`}
                         className="rm-ct-RowLabel"
                         rowSpan={x}
@@ -216,13 +217,13 @@ function makeRenderer(opts = {}) {
                         }
                       >
                         {txt}
-                      </th>
+                      </TableCell>
                     );
                   })}
                   {colKeys.map(function(colKey, j) {
-                    const aggregator = pivotData.getAggregator(rowKey, colKey);
+                    const aggregator = crossTableData.getAggregator(rowKey, colKey);
                     return (
-                      <td
+                      <TableCell
                         className="rm-ct-Val"
                         key={`rm-ct-Val${i}-${j}`}
                         onClick={
@@ -236,10 +237,10 @@ function makeRenderer(opts = {}) {
                         )}
                       >
                         {aggregator.format(aggregator.value())}
-                      </td>
+                      </TableCell>
                     );
                   })}
-                  <td
+                  <TableCell
                     className="rm-ct-Total"
                     onClick={
                       getClickHandler &&
@@ -248,23 +249,23 @@ function makeRenderer(opts = {}) {
                     style={colTotalColors(totalAggregator.value())}
                   >
                     {totalAggregator.format(totalAggregator.value())}
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               );
             })}
 
-            <tr>
-              <th
+            <TableRow>
+              <TableCell
                 className="rm-ct-TotalLabel"
                 colSpan={rowAttrs.length + (colAttrs.length === 0 ? 0 : 1)}
               >
                 Totals
-              </th>
+              </TableCell>
 
               {colKeys.map(function(colKey, i) {
-                const totalAggregator = pivotData.getAggregator([], colKey);
+                const totalAggregator = crossTableData.getAggregator([], colKey);
                 return (
-                  <td
+                  <TableCell
                     className="rm-ct-Total"
                     key={`total${i}`}
                     onClick={
@@ -274,11 +275,11 @@ function makeRenderer(opts = {}) {
                     style={rowTotalColors(totalAggregator.value())}
                   >
                     {totalAggregator.format(totalAggregator.value())}
-                  </td>
+                  </TableCell>
                 );
               })}
 
-              <td
+              <TableCell
                 onClick={
                   getClickHandler &&
                   getClickHandler(grandTotalAggregator.value(), [null], [null])
@@ -286,28 +287,32 @@ function makeRenderer(opts = {}) {
                 className="rm-ct-GrandTotal"
               >
                 {grandTotalAggregator.format(grandTotalAggregator.value())}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       );
     }
   }
 
-  TableRenderer.defaultProps = CrossTableData.defaultProps;
-  TableRenderer.propTypes = CrossTableData.propTypes;
-  TableRenderer.defaultProps.tableColorScaleGenerator = redColorScaleGenerator;
-  TableRenderer.defaultProps.tableOptions = {};
-  TableRenderer.propTypes.tableColorScaleGenerator = PropTypes.func;
-  TableRenderer.propTypes.tableOptions = PropTypes.object;
+  TableRenderer.defaultProps = Object.assign({}, CrossTableData.defaultProps, {
+    tableColorScaleGenerator: redColorScaleGenerator,
+    tableOptions: {}
+  });
+
+  TableRenderer.propTypes = Object.assign({}, CrossTableData.defaultProps, {
+    tableColorScaleGenerator: PropTypes.func,
+    tableOptions: PropTypes.object
+  });
+
   return TableRenderer;
 }
 
 class TSVExportRenderer extends React.PureComponent {
   render() {
-    const pivotData = new CrossTableData(this.props);
-    const rowKeys = pivotData.getRowKeys();
-    const colKeys = pivotData.getColKeys();
+    const crossTableData = new CrossTableData(this.props);
+    const rowKeys = crossTableData.getRowKeys();
+    const colKeys = crossTableData.getColKeys();
     if (rowKeys.length === 0) {
       rowKeys.push([]);
     }
@@ -315,7 +320,7 @@ class TSVExportRenderer extends React.PureComponent {
       colKeys.push([]);
     }
 
-    const headerRow = pivotData.props.rows.map(r => r);
+    const headerRow = crossTableData.props.rows.map(r => r);
     if (colKeys.length === 1 && colKeys[0].length === 0) {
       headerRow.push(this.props.aggregatorName);
     } else {
@@ -325,7 +330,7 @@ class TSVExportRenderer extends React.PureComponent {
     const result = rowKeys.map(r => {
       const row = r.map(x => x);
       colKeys.map(c => {
-        const v = pivotData.getAggregator(r, c).value();
+        const v = crossTableData.getAggregator(r, c).value();
         row.push(v ? v : '');
       });
       return row;

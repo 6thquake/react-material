@@ -73,6 +73,7 @@ table.rm-ct-Table tbody tr td {
     padding: 5px;
     min-width: 20px;
     min-height: 20px;
+    height: 20px;
 }
 
 .rm-ct-Renderers {
@@ -246,11 +247,9 @@ table.rm-ct-Table tbody tr td {
 }
 
 .rm-ct-FilterBox {
-    z-index: 100;
     width: 300px;
-    border: 1px solid #506784;
+    padding: 8px;
     background-color: #fff;
-    position: absolute;
     text-align: center;
     user-select: none;
     min-height: 100px;

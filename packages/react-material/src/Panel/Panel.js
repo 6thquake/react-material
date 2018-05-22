@@ -191,26 +191,26 @@ class Panel extends React.Component {
   refCallBack=(node)=>{
     console.log('**************','refcallback')
     if(node && node.offsetWidth){
-    const _offsetWidth = node.offsetWidth;
-    const _colsCount = this.state.colsCount || defaultColsCount;
-    const _cellSize = Math.round(_offsetWidth/_colsCount);
-    if(_cellSize != this.state.cellSize){
-      //const ul = node.querySelector('ul[class^="MuiGridList"]');
-      const coreWidth = _colsCount*_cellSize
-      const myPadding = _offsetWidth - coreWidth;
-      if(!!this.state.panelSize){
-        this.state.panelSize.width = coreWidth;
-      }
 
-      let _paddingLeft = 0,_paddingRight = 0;
-      if(myPadding>=1){
-        _paddingLeft = Math.floor(myPadding/2);
-        _paddingRight = Math.ceil(myPadding/2);
-      }
+      const _offsetWidth = node.offsetWidth;
+      const _colsCount = this.state.colsCount || defaultColsCount;
+      const _cellSize = Math.round(_offsetWidth/_colsCount);
+      if(_cellSize != this.state.cellSize){
+        //const ul = node.querySelector('ul[class^="MuiGridList"]');
+        const coreWidth = _colsCount*_cellSize
+        const myPadding = _offsetWidth - coreWidth;
+        if(!!this.state.panelSize){
+          this.state.panelSize.width = coreWidth;
+        }
 
-      this.setState({cellSize:_cellSize,spacing:[_paddingLeft,_paddingRight],panelSize:this.state.panelSize});
-    }
-    
+        let _paddingLeft = 0,_paddingRight = 0;
+        if(myPadding>=1){
+          _paddingLeft = Math.floor(myPadding/2);
+          _paddingRight = Math.ceil(myPadding/2);
+        }
+
+        this.setState({cellSize:_cellSize,spacing:[_paddingLeft,_paddingRight],panelSize:this.state.panelSize});
+      }
     }
   }
 

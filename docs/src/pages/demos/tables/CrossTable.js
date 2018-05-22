@@ -1,21 +1,29 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import update from 'immutability-helper';
-import {CrossTableData, sortAs, getSort} from 'react-material/Table/Utilities';
+import { CrossTableData, sortAs, getSort } from 'react-material/Table/Utilities';
 import CrossTable from 'react-material/Table/CrossTable';
-import Sortable from 'react-sortablejs';
-import Draggable from 'react-draggable';
 
 import TableRenderers from 'react-material/Table/TableRenderers';
-import Dropzone from 'react-dropzone';
 import tips from './tips';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
+
+import Grid from 'react-material/Grid';
 
 import Input, { InputLabel } from 'react-material/Input';
 import { MenuItem } from 'react-material/Menu';
 import { FormControl, FormHelperText } from 'react-material/Form';
 import Select from 'react-material/Select';
+
+import Popover from 'react-material/Popover';
+
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import Chip from 'react-material/Chip';
+
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContextProvider, DragSource, DropTarget } from 'react-dnd';
 
 
 if(process.browser) {
@@ -24,6 +32,118 @@ if(process.browser) {
       document.querySelector('#insertion-point-jss'),
     );
 }
+
+const ItemTypes = {
+  FILTER: 'filterBox',
+  COLUMN:'column',
+  CHIP: 'chip'
+};
+
+const columnSource = {
+  beginDrag(props, monitor, component) {
+    console.log(props)
+    return {name: props.name};
+  },
+
+  endDrag(props, monitor, component) {
+    if (!monitor.didDrop()) {
+      return;
+    }
+
+    // When dropped on a compatible target, do something
+    const item = monitor.getItem();
+    const dropResult = monitor.getDropResult();
+
+    component.props.dragOut();
+  }
+};
+
+const columnTarget = {
+  drop(props, monitor, component) {
+    // 获取正在拖放的数据
+    const item = monitor.getItem();
+    // 更新组件状态
+
+    let items = component.state.items;
+    items.push(item.name);
+    component.setState({
+      items: items
+    });
+
+    component.props.onDrop(items);
+  }
+};
+
+function chipDragcollect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging()
+  }
+}
+
+
+class DragSource2 extends React.Component {
+  render() {
+    const { connectDragSource, connectDragPreview, children } = this.props;
+
+    return connectDragSource(
+          <div style={{display:'inline-block'}}>{children}</div>
+    );
+  }
+}
+const DragSource3 = DragSource(ItemTypes.CHIP, columnSource, chipDragcollect)(DragSource2);
+
+
+function chipDropcollect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget()
+  };
+}
+
+class DropZone extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {items: props.items};
+  }
+
+  dragOut = val => {
+    return () => {
+      let items = this.state.items;
+      let index = items.indexOf(val);
+
+      if(index > -1) {
+        items.splice(index,1);
+        this.setState({
+          items: items
+        });
+      }
+    };
+  }
+
+  render() {
+    const { connectDropTarget } = this.props;
+
+    return connectDropTarget(
+      <div style={{display:'inline-block', width: '100%', height: '100%'}}>
+        {this.state.items.map((value, index) => (
+          <DraggableAttribute
+              name={value}
+              key={value}
+              attrValues={this.props.attrValuess[value]}
+              valueFilter={this.props.valueFilters[value] || {}}
+              zIndex={this.props.zIndices[value] || this.props.maxZIndex}
+              sorter={getSort(this.props.sorters,value)}
+              dragOut={this.dragOut(value).bind(this)}
+              {...this.props}
+            />
+        ))}
+      </div>
+    );
+  }
+}
+
+const DropZone2 = DropTarget(ItemTypes.CHIP, columnTarget, chipDropcollect)(DropZone);
 
 
 class DraggableAttribute extends React.Component {
@@ -63,105 +183,107 @@ class DraggableAttribute extends React.Component {
     const shown = values
       .filter(this.matchesFilter.bind(this))
       .sort(this.props.sorter);
-
     return (
-      <Draggable handle=".rm-ct-DragHandle">
-        <div
-          className="rm-ct-FilterBox"
-          style={{
-            display: 'block',
-            cursor: 'initial',
-            zIndex: this.props.zIndex,
-            top: this.state.top + 'px',
-            left: this.state.left + 'px',
+        <Popover
+          open={!!this.state.anchorEl && this.state.open}
+          anchorEl={this.state.anchorEl}
+          anchorReference={'anchorEl'}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
           }}
-          onClick={() => this.props.moveFilterBoxToTop(this.props.name)}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
         >
-          <a onClick={() => this.setState({open: false})} className="rm-ct-CloseX">
-            ×
-          </a>
-          <span className="rm-ct-DragHandle">☰</span>
-          <h4>{this.props.name}</h4>
+          <div
+            className="rm-ct-FilterBox"
+            style={{
+              cursor: 'initial'
+            }}
+          >
+            <a onClick={() => this.setState({open: false})} className="rm-ct-CloseX">
+              ×
+            </a>
+            <span className="rm-ct-DragHandle">☰</span>
+            <h4>{this.props.name}</h4>
 
-          {showMenu || <p>(too many values to show)</p>}
+            {showMenu || <p>(too many values to show)</p>}
 
-          {showMenu && (
-            <p>
-              <input
-                type="text"
-                placeholder="Filter values"
-                className="rm-ct-Search"
-                value={this.state.filterText}
-                onChange={e =>
-                  this.setState({
-                    filterText: e.target.value,
-                  })
-                }
-              />
-              <br />
-              <a
-                role="button"
-                className="rm-ct-Button"
-                onClick={() =>
-                  this.props.removeValuesFromFilter(
-                    this.props.name,
-                    Object.keys(this.props.attrValues).filter(
-                      this.matchesFilter.bind(this)
+            {showMenu && (
+              <p>
+                <input
+                  type="text"
+                  placeholder="Filter values"
+                  className="rm-ct-Search"
+                  value={this.state.filterText}
+                  onChange={e =>
+                    this.setState({
+                      filterText: e.target.value,
+                    })
+                  }
+                />
+                <br />
+                <a
+                  role="button"
+                  className="rm-ct-Button"
+                  onClick={() =>
+                    this.props.removeValuesFromFilter(
+                      this.props.name,
+                      Object.keys(this.props.attrValues).filter(
+                        this.matchesFilter.bind(this)
+                      )
                     )
-                  )
-                }
-              >
-                Select {values.length === shown.length ? 'All' : shown.length}
-              </a>{' '}
-              <a
-                role="button"
-                className="rm-ct-Button"
-                onClick={() =>
-                  this.props.addValuesToFilter(
-                    this.props.name,
-                    Object.keys(this.props.attrValues).filter(
-                      this.matchesFilter.bind(this)
-                    )
-                  )
-                }
-              >
-                Deselect {values.length === shown.length ? 'All' : shown.length}
-              </a>
-            </p>
-          )}
-
-          {showMenu && (
-            <div className="rm-ct-CheckContainer">
-              {shown.map(x => (
-                <p
-                  key={x}
-                  onClick={() => this.toggleValue(x)}
-                  className={x in this.props.valueFilter ? '' : 'selected'}
+                  }
                 >
-                  <a className="rm-ct-Only" onClick={e => this.selectOnly(e, x)}>
-                    only
-                  </a>
-                  <a className="rm-ct-OnlySpacer">&nbsp;</a>
+                  Select {values.length === shown.length ? 'All' : shown.length}
+                </a>{' '}
+                <a
+                  role="button"
+                  className="rm-ct-Button"
+                  onClick={() =>
+                    this.props.addValuesToFilter(
+                      this.props.name,
+                      Object.keys(this.props.attrValues).filter(
+                        this.matchesFilter.bind(this)
+                      )
+                    )
+                  }
+                >
+                  Deselect {values.length === shown.length ? 'All' : shown.length}
+                </a>
+              </p>
+            )}
 
-                  {x === '' ? <em>null</em> : x}
-                </p>
-              ))}
-            </div>
-          )}
-        </div>
-      </Draggable>
+            {showMenu && (
+              <div className="rm-ct-CheckContainer">
+                {shown.map(x => (
+                  <p
+                    key={x}
+                    onClick={() => this.toggleValue(x)}
+                    className={x in this.props.valueFilter ? '' : 'selected'}
+                  >
+                    <a className="rm-ct-Only" onClick={e => this.selectOnly(e, x)}>
+                      only
+                    </a>
+                    <a className="rm-ct-OnlySpacer">&nbsp;</a>
+
+                    {x === '' ? <em>null</em> : x}
+                  </p>
+                ))}
+              </div>
+            )}
+          </div>
+        </Popover>
     );
   }
 
   toggleFilterBox(event) {
-    const bodyRect = document.body.getBoundingClientRect();
-    const rect = event.nativeEvent.target.getBoundingClientRect();
     this.setState({
       open: !this.state.open,
-      top: 10 + rect.top - bodyRect.top,
-      left: 10 + rect.left - bodyRect.left,
+      anchorEl: event.target
     });
-    this.props.moveFilterBoxToTop(this.props.name);
   }
 
   render() {
@@ -169,21 +291,21 @@ class DraggableAttribute extends React.Component {
       Object.keys(this.props.valueFilter).length !== 0
         ? 'rm-ct-FilteredAttribute'
         : '';
-    return (
-      <li data-id={this.props.name}>
-        <span className={'rm-ct-Attr ' + filtered}>
-          {this.props.name}
-          <span
-            className="rm-ct-Triangle"
-            onClick={this.toggleFilterBox.bind(this)}
-          >
-            {' '}
-            ▾
-          </span>
-        </span>
 
-        {this.state.open ? this.getFilterBox() : null}
-      </li>
+    const { connectDragSource, isDragging } = this.props;
+
+    return (
+      <DragSource3 {...this.props}>
+        <div style={{display:'inline-block'}} data-id={this.props.name}>
+          <Chip
+            label={this.props.name}
+            onDelete={this.toggleFilterBox.bind(this)}
+            className={'rm-ct-Attr ' + filtered}
+            deleteIcon={<KeyboardArrowDownIcon />}
+          />
+          {this.state.open ? this.getFilterBox() : null}
+        </div>
+      </DragSource3>
     );
   }
 }
@@ -198,11 +320,12 @@ DraggableAttribute.propTypes = {
   removeValuesFromFilter: PropTypes.func.isRequired,
   attrValues: PropTypes.objectOf(PropTypes.number).isRequired,
   valueFilter: PropTypes.objectOf(PropTypes.bool),
-  moveFilterBoxToTop: PropTypes.func.isRequired,
   sorter: PropTypes.func.isRequired,
   menuLimit: PropTypes.number,
   zIndex: PropTypes.number,
 };
+
+//const DraggableAttribute2 = DragSource(ItemTypes.COLUMN, columnSource, collect)(DraggableAttribute);
 
 class Dropdown extends React.PureComponent {
   handleChange = event => {
@@ -232,6 +355,7 @@ class Dropdown extends React.PureComponent {
     );
   }
 }
+
 
 class CrossTableUI extends React.PureComponent {
   constructor(props) {
@@ -327,44 +451,23 @@ class CrossTableUI extends React.PureComponent {
     });
   }
 
-  moveFilterBoxToTop(attribute) {
-    this.setState(
-      update(this.state, {
-        maxZIndex: {$set: this.state.maxZIndex + 1},
-        zIndices: {[attribute]: {$set: this.state.maxZIndex + 1}},
-      })
-    );
-  }
-  
   makeDnDCell(items, onChange, classes) {
     return (
-      <Sortable
-        options={{
-          group: 'shared',
-          ghostClass: 'rm-ct-Placeholder',
-          filter: '.rm-ct-FilterBox',
-          preventOnFilter: false,
-        }}
-        tag="td"
+      <td 
         className={classes}
-        onChange={onChange}
-      >
-        {items.map(x => (
-          <DraggableAttribute
-            name={x}
-            key={x}
-            attrValues={this.attrValues[x]}
-            valueFilter={this.props.valueFilter[x] || {}}
-            sorter={getSort(this.props.sorters, x)}
-            menuLimit={this.props.menuLimit}
-            setValuesInFilter={this.setValuesInFilter.bind(this)}
-            addValuesToFilter={this.addValuesToFilter.bind(this)}
-            moveFilterBoxToTop={this.moveFilterBoxToTop.bind(this)}
-            removeValuesFromFilter={this.removeValuesFromFilter.bind(this)}
-            zIndex={this.state.zIndices[x] || this.state.maxZIndex}
-          />
-        ))}
-      </Sortable>
+        >
+        <DropZone2 items={items} onDrop={onChange} 
+              attrValuess={this.attrValues}
+              valueFilters={this.props.valueFilter}
+              sorters={this.props.sorters}
+              menuLimit={this.props.menuLimit}
+              setValuesInFilter={this.setValuesInFilter.bind(this)}
+              addValuesToFilter={this.addValuesToFilter.bind(this)}
+              removeValuesFromFilter={this.removeValuesFromFilter.bind(this)}
+              zIndices={this.state.zIndices}
+              maxZIndex={this.state.maxZIndex}>
+        </DropZone2>
+      </td>
     );
   }
 
@@ -402,7 +505,9 @@ class CrossTableUI extends React.PureComponent {
       value_z_to_a: {rowSymbol: '↑', colSymbol: '←', next: 'key_a_to_z'},
     };
 
+
     const aggregatorCell = (
+
       <td className="rm-ct-Vals">
         <Dropdown
           label="aggregators"
@@ -479,7 +584,7 @@ class CrossTableUI extends React.PureComponent {
 
     const colAttrsCell = this.makeDnDCell(
       colAttrs,
-      this.propUpdater('cols'),
+      this.propUpdater('cols').bind(this),
       'rm-ct-AxisContainer rm-ct-HorizList rm-ct-Cols'
     );
 
@@ -490,7 +595,7 @@ class CrossTableUI extends React.PureComponent {
     );
     const rowAttrsCell = this.makeDnDCell(
       rowAttrs,
-      this.propUpdater('rows'),
+      this.propUpdater('rows').bind(this),
       'rm-ct-AxisContainer rm-ct-VertList rm-ct-Rows'
     );
     const outputCell = (
@@ -564,11 +669,11 @@ CrossTableUI.defaultProps = Object.assign({}, CrossTable.defaultProps, {
 class CrossTableUISmartWrapper extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.state = {pivotState: props};
+        this.state = {crossTableState: props};
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({pivotState: nextProps});
+        this.setState({crossTableState: nextProps});
     }
 
     render() {
@@ -578,8 +683,8 @@ class CrossTableUISmartWrapper extends React.PureComponent {
                     {},
                     TableRenderers
                 )}
-                {...this.state.pivotState}
-                onChange={s => this.setState({pivotState: s})}
+                {...this.state.crossTableState}
+                onChange={s => this.setState({crossTableState: s})}
                 unusedOrientationCutoff={Infinity}
             />
         );
@@ -589,9 +694,10 @@ class CrossTableUISmartWrapper extends React.PureComponent {
 class App extends React.Component {
     componentWillMount() {
         this.setState({
+            textarea: JSON.stringify(tips),
             mode: 'demo',
             filename: 'Sample Dataset: Tips',
-            pivotState: {
+            crossTableState: {
                 data: tips,
                 rows: ['Payer Gender'],
                 cols: ['Party Size'],
@@ -606,6 +712,9 @@ class App extends React.Component {
                         'Saturday',
                         'Sunday',
                     ]),
+                    'Party Size': (a, b)=>{
+                      return a - b;
+                    }
                 },
                 tableOptions: {
                     clickCallback: function(e, value, filters, tableData) {
@@ -622,52 +731,37 @@ class App extends React.Component {
         });
     }
 
-    onDrop(files) {
-        this.setState(
-            {
-                mode: 'thinking',
-                filename: '(Parsing CSV...)',
-                textarea: '',
-                pivotState: {data: []},
-            },
-            () =>
-                Papa.parse(files[0], {
-                    skipEmptyLines: true,
-                    error: e => alert(e),
-                    complete: parsed =>
-                        this.setState({
-                            mode: 'file',
-                            filename: files[0].name,
-                            pivotState: {data: parsed.data},
-                        }),
-                })
-        );
-    }
-
     onType(event) {
-        Papa.parse(event.target.value, {
-            skipEmptyLines: true,
-            error: e => alert(e),
-            complete: parsed =>
-                this.setState({
+      this.setState({
                     mode: 'text',
                     filename: 'Data from <textarea>',
                     textarea: event.target.value,
-                    pivotState: {data: parsed.data},
-                }),
-        });
+                    crossTableState: {data: JSON.parse(event.target.value)},
+                })
     }
 
     render() {
         return (
-            <div>
-                <div className="row">
-                    <h2 className="text-center">{this.state.filename}</h2>
-                    <br />
-
-                    <CrossTableUISmartWrapper {...this.state.pivotState} />
-                </div>
-            </div>
+          <DragDropContextProvider backend={HTML5Backend}>
+            <Grid container spacing={24}>
+                <Grid item xs={12}>
+                  <p>initial data or paste some data below:</p>
+                  <textarea
+                      style={{width: '100%'}}
+                      rows="10"
+                      value={this.state.textarea}
+                      onChange={this.onType.bind(this)}
+                      placeholder="Paste from a spreadsheet or CSV-like file"
+                  />
+                  <p>
+                    <em>Note: the data never leaves your browser!</em>
+                  </p>
+                </Grid>
+                <Grid item xs={12}>
+                    <CrossTableUISmartWrapper {...this.state.crossTableState} />
+                </Grid>
+            </Grid>
+          </DragDropContextProvider>
           );
     }
 }  

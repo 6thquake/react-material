@@ -2,6 +2,10 @@
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
+## Cross Table
+{{"demo": "pages/demos/tables/CrossTable.js"}}
+
+
 # Tables
 
 [Data tables](https://material.io/guidelines/components/data-tables.html) display sets of raw data.
@@ -44,5 +48,3 @@ You can customize the look and feel of the table by overriding the styles of the
 
 For more advanced use cases you might be able to take advantage of [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/). It's a data grid for React-Material with paging, sorting, filtering, grouping and editing features.
 
-## Cross Table
-{{"demo": "pages/demos/tables/CrossTable.js"}}

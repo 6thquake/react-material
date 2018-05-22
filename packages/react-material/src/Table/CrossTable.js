@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {CrossTableData} from './Utilities';
+import { CrossTableData } from './Utilities';
 import TableRenderers from './TableRenderers';
 
 /* eslint-disable react/prop-types */

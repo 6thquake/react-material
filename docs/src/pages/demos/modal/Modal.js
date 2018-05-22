@@ -10,6 +10,9 @@ import Grid from 'react-material/Grid';
 const styles = theme => ({
   box: {
     marginBottom: theme.spacing.unit * 6,
+  },
+  paperWidthSm:{
+    minWidth:1000
   }
 });
 
@@ -43,10 +46,15 @@ class App extends Component {
     return (
       <div>
         <Button onClick={this.handleOpen}>Open Modal</Button>
-        <Modal2 {...other} open={this.state.open}
-               onClose={this.handleClose.bind(this)}
-               label={'this is a modal test'}
-               animation={this.state.animation}
+        <Modal2
+          classes={{
+              paperWidthSm:
+              classes.paperWidthSm
+            }}
+            open={this.state.open}
+             onClose={this.handleClose.bind(this)}
+             label={'this is a modal test'}
+             animation={this.state.animation}
         >
           <div>
             <DialogContent>

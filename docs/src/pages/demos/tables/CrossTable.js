@@ -12,6 +12,12 @@ import Dropzone from 'react-dropzone';
 import tips from './tips';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 
+import Input, { InputLabel } from 'react-material/Input';
+import { MenuItem } from 'react-material/Menu';
+import { FormControl, FormHelperText } from 'react-material/Form';
+import Select from 'react-material/Select';
+
+
 if(process.browser) {
   loadCSS(
       '/static/crosstable.css',
@@ -199,49 +205,30 @@ DraggableAttribute.propTypes = {
 };
 
 class Dropdown extends React.PureComponent {
-  render() {
-    return (
-      <div className="rm-ct-Dropdown" style={{zIndex: this.props.zIndex}}>
-        <div
-          onClick={e => {
-            e.stopPropagation();
-            this.props.toggle();
-          }}
-          className={
-            'rm-ct-DropdownValue rm-ct-DropdownCurrent ' +
-            (this.props.open ? 'rm-ct-DropdownCurrentOpen' : '')
-          }
-          role="button"
-        >
-          <div className="rm-ct-DropdownIcon">{this.props.open ? '×' : '▾'}</div>
-          {this.props.current || <span>&nbsp;</span>}
-        </div>
+  handleChange = event => {
+    this.props.setValue(event.target.value);
+  }
 
-        {this.props.open && (
-          <div className="rm-ct-DropdownMenu">
-            {this.props.values.map(r => (
-              <div
-                key={r}
-                role="button"
-                onClick={e => {
-                  e.stopPropagation();
-                  if (this.props.current === r) {
-                    this.props.toggle();
-                  } else {
-                    this.props.setValue(r);
-                  }
-                }}
-                className={
-                  'rm-ct-DropdownValue ' +
-                  (r === this.props.current ? 'rm-ct-DropdownActiveValue' : '')
-                }
-              >
-                {r}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+  render() {
+    let id = `select-${new Date().getTime()}${Math.floor(Math.random()*1000)}`;
+    return (
+      <FormControl>
+        <InputLabel htmlFor={id}>{this.props.label}</InputLabel>
+        <Select
+          value={this.props.current}
+          onChange={this.handleChange}
+          inputProps={{
+            name: id,
+            id: id,
+          }}
+        >
+          {this.props.values.map(r => (
+            <MenuItem value={r}>
+              <em>{r}</em>
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     );
   }
 }
@@ -253,7 +240,6 @@ class CrossTableUI extends React.PureComponent {
       unusedOrder: [],
       zIndices: {},
       maxZIndex: 1000,
-      openDropdown: false,
     };
   }
 
@@ -349,11 +335,7 @@ class CrossTableUI extends React.PureComponent {
       })
     );
   }
-
-  isOpen(dropdown) {
-    return this.state.openDropdown === dropdown;
-  }
-
+  
   makeDnDCell(items, onChange, classes) {
     return (
       <Sortable
@@ -398,15 +380,9 @@ class CrossTableUI extends React.PureComponent {
     const rendererCell = (
       <td className="rm-ct-Renderers">
         <Dropdown
+          label="renderer"
           current={rendererName}
           values={Object.keys(this.props.renderers)}
-          open={this.isOpen('renderer')}
-          zIndex={this.isOpen('renderer') ? this.state.maxZIndex + 1 : 1}
-          toggle={() =>
-            this.setState({
-              openDropdown: this.isOpen('renderer') ? false : 'renderer',
-            })
-          }
           setValue={this.propUpdater('rendererName')}
         />
       </td>
@@ -429,15 +405,9 @@ class CrossTableUI extends React.PureComponent {
     const aggregatorCell = (
       <td className="rm-ct-Vals">
         <Dropdown
+          label="aggregators"
           current={this.props.aggregatorName}
           values={Object.keys(this.props.aggregators)}
-          open={this.isOpen('aggregators')}
-          zIndex={this.isOpen('aggregators') ? this.state.maxZIndex + 1 : 1}
-          toggle={() =>
-            this.setState({
-              openDropdown: this.isOpen('aggregators') ? false : 'aggregators',
-            })
-          }
           setValue={this.propUpdater('aggregatorName')}
         />
         <a
@@ -461,6 +431,7 @@ class CrossTableUI extends React.PureComponent {
         {numValsAllowed > 0 && <br />}
         {new Array(numValsAllowed).fill().map((n, i) => [
           <Dropdown
+            label="value"
             key={i}
             current={this.props.vals[i]}
             values={Object.keys(this.attrValues).filter(
@@ -468,13 +439,6 @@ class CrossTableUI extends React.PureComponent {
                 !this.props.hiddenAttributes.includes(e) &&
                 !this.props.hiddenFromAggregators.includes(e)
             )}
-            open={this.isOpen(`val${i}`)}
-            zIndex={this.isOpen(`val${i}`) ? this.state.maxZIndex + 1 : 1}
-            toggle={() =>
-              this.setState({
-                openDropdown: this.isOpen(`val${i}`) ? false : `val${i}`,
-              })
-            }
             setValue={value =>
               this.sendPropUpdate({
                 vals: {$splice: [[i, 1, value]]},
@@ -542,7 +506,7 @@ class CrossTableUI extends React.PureComponent {
     if (horizUnused) {
       return (
         <table className="rm-ct-Ui">
-          <tbody onClick={() => this.setState({openDropdown: false})}>
+          <tbody>
             <tr>
               {rendererCell}
               {unusedAttrsCell}
@@ -562,7 +526,7 @@ class CrossTableUI extends React.PureComponent {
 
     return (
       <table className="rm-ct-Ui">
-        <tbody onClick={() => this.setState({openDropdown: false})}>
+        <tbody>
           <tr>
             {rendererCell}
             {aggregatorCell}

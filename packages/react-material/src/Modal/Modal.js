@@ -68,8 +68,7 @@ class Modal extends Component {
             TransitionComponent={this._transition}
             aria-labelledby="alert-dialog-slide-title"
             aria-describedby="alert-dialog-slide-description"
-            {...classes}
-            {...other}
+            {...this.props}
         >
             <DialogTitle className={classes.title} disableTypography={true}>
                 {label}<Clear className={classes.icon}  onClick={onClose}/>

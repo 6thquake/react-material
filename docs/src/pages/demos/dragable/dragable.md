@@ -6,6 +6,12 @@ components: Transfer
 
 The [Transfer],is used for exchange data of two array.
 
-{{"demo": "pages/demos/dragable/Dragable.js"}}
 
 
+# Transfer
+
+The [Transfer],is used for exchange data of two array.
+
+{{"demo": "pages/demos/dragable/DragableLayer.js"}}
+
+	

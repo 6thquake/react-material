@@ -24,6 +24,7 @@ export {
 } from './Dialog';
 export { default as Divider } from './Divider';
 export { default as Drawer } from './Drawer';
+export { DragSource,DropZone } from './DragAndDrop';
 export {
   default as ExpansionPanel,
   ExpansionPanelActions,
@@ -60,6 +61,7 @@ export { default as Message } from './Message';
 export { default as MobileStepper } from './MobileStepper';
 export { default as Modal, Backdrop, ModalManager } from './Modal';
 export { default as Pagination } from './Pagination';
+export { default as Panel } from './Panel';
 export { default as Paper } from './Paper';
 export { default as Popconfirm } from './Popconfirm';
 export { default as Popover } from './Popover';

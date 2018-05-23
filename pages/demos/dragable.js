@@ -14,6 +14,12 @@ function Page() {
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/dragable/Dragable'), 'utf8')
 `,
+        },'pages/demos/dragable/DragableLayer.js': {
+          js: require('docs/src/pages/demos/dragable/DragableLayer').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/dragable/DragableLayer'), 'utf8')
+`,
         }
       }}
     />

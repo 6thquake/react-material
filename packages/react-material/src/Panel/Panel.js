@@ -25,14 +25,14 @@ const styles={
   root:{
     minWidth:'100px',
     minHeight:'100px',
-    border:'1px solid red',
+    border:'1px solid rgba(0,0,0,0.1)',
     position:'relative',
   },
   resize:{
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    border: 'solid 1px #ddd',
+    //border: 'solid 1px #ddd',
     background: '#f0f0f0'
   },
   resizeInnerWrap:{
@@ -44,7 +44,8 @@ const styles={
   },
   dragsourceResizeable:{
     "&:hover":{
-      border:'1px solid red'
+      border:'1px dashed rgba(0,0,0,0.1)',
+      borderRedius:'3px'
     }
   }
 
@@ -53,7 +54,10 @@ const boxTarget = {
   drop(props, monitor, component) {
     const item = monitor.getItem();
     console.log(item);
-
+    if(!item.component){
+      //如果没有component 说明不是从外部拖进来的 不予处理
+      return;
+    }
     //取到drop时的xy坐标，
     //计算出栅格的坐标值,
     if(!component.state.childComponents){
@@ -112,8 +116,8 @@ class Panel extends React.Component {
     //改变的宽高
     let _dw = delta.width,
       _dh = delta.height;
-    let _col = Math.round((_w+_dw)/cs),
-    _row = Math.round((_h+_dh)/cs);
+    let _col = Math.round(_w/cs),
+    _row = Math.round(_h/cs);
     mc[_i].size=[_col,_row];
     console.log('*********',mc[_i].size);
     //用state更新size of <Resizable>
@@ -136,7 +140,7 @@ class Panel extends React.Component {
     const _childComponents =(childComponents||[]).map((value,index)=>{
       if(value && (value.size instanceof Array) && value.size.length == 2){
         return (<GridListTile className={classes.gridListTile} key={index} cols={value.size[0]} rows={value.size[1]}>
-          <Resizable size={{width:value.size[0]*cellSize,height:value.size[1]*cellSize}} minWidth={10} minHeight={10} datakey={index} onResize={this.dragSourceResize} className={classes.dragsourceResizeable} bounds={'window'}>
+          <Resizable size={{width:value.size[0]*cellSize,height:value.size[1]*cellSize}} minWidth={10} minHeight={10} datakey={index} onResizeStop={this.dragSourceResize} className={classes.dragsourceResizeable} bounds={'window'}>
 
           <Source type={'POSITION'} sequence={this.sequenceComponent} index={index}>{value.component}</Source></Resizable>
           </GridListTile>);

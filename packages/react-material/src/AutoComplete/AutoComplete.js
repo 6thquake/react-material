@@ -7,7 +7,6 @@ import Chip from 'material-ui/Chip';
 import Pagination from '../Pagination/Pagination';
 import Divider from 'material-ui/Divider';
 import { MenuItem } from 'material-ui/Menu';
-
 const styles = theme => ({
   root: {
    flexGrow: 1,
@@ -45,6 +44,9 @@ const styles = theme => ({
   inputRoot: {
     flexGrow: 1,
     flexWrap: 'wrap',
+  },
+  inputHold:{
+    padding:'10px 0 7px'
   }
 });
 class AutoComplete extends Component {
@@ -286,24 +288,26 @@ class AutoComplete extends Component {
             {multiple?
               <TextField
                 disabled={disabled}
-              className={classes.textarea}
-              onChange={this.handleChange.bind(this)}
-              value={inputValue}
-              multiline
-              InputProps={{
-                classes: {
-                  root: classes.inputRoot,
-                },
-                startAdornment: value.map(item => (
-                  <Chip
-                    key={item}
-                    label={item}
-                    className={classes.chip}
-                    onDelete={this.handleDelete(item)}
-                  />
-                )),
-                placeholder: placeHold
-              }}
+                className={classes.textarea}
+                onChange={this.handleChange.bind(this)}
+                value={inputValue}
+                multiline
+                rows='1'
+                InputProps={{
+                  classes: {
+                    root: classes.inputRoot,
+                    input:classes.inputHold
+                  },
+                  startAdornment:value.map(item => (
+                    <Chip
+                      key={item}
+                      label={item}
+                      className={classes.chip}
+                      onDelete={this.handleDelete(item)}
+                    />
+                  )),
+                  placeholder:value.length>0?'':placeHold
+                }}
             />: <TextField
                 disabled={disabled}
                 className={classes.textarea}

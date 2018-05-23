@@ -21,7 +21,6 @@ const styles={
 		alignItems: 'center',
 		width:'100%',
 		height:'100%',
-		border:'1px solid rgba(0,0,0,0.1)'
 	},
 	dragin:{
 		
@@ -35,6 +34,14 @@ const _source = {
 	如果type==dragin 就会生成新的position source传给dropTarget
 	如果type == position 就需要传回当前xy定位；
     */
+    //每次begin时 如果有span的class中有MuiTouchRipple 则display none
+    let _ripple = component.decoratedComponentInstance.refs.mytttest.querySelectorAll('span[class^="MuiTouchRipple"]');
+    if(_ripple.length>0){
+    	_ripple.forEach((element, index, array)=>{
+    		element.style.display = 'none'
+    	})
+    }
+    
     const item = {};
     if(props.type =='POSITION'){
     	//拿到当前node的index
@@ -98,17 +105,13 @@ class DragSouce extends Component {
 	render() {
 		const {connectDragSource,connectDropTarget,children,isDragging,type,classes} = this.props;
 		let _style ={};
-		if(type =='POSITION'){
-		  _style={
-			background:'rgba(0,0,0,0.1)'
-		  }
-		}
+
 		 
 		if( type =='POSITION' && !!isDragging){
-			return null;
+			//return null;
 		}
 		return connectDropTarget(connectDragSource(	
-			<div className={type=='POSITION'?classes.position:classes.dragin} style={{..._style}}>
+			<div className={type=='POSITION'?classes.position:classes.dragin} >
 			<div ><div ref = {'mytttest'}>
 			{children}
 			</div></div>

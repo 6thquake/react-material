@@ -27,9 +27,9 @@ class MyPanel extends Component {
 
 	render() {
 		const defaultChildren=[(<div cols={4} rows={2}><StatusButton color="primary">默认的button</StatusButton></div>),
-		(<div cols={5} rows={4}><div>默认的div1</div></div>),
+		(<div cols={5} rows={2}><div>默认的div1</div></div>),
 		(<div cols={3} rows={2}><div>默认的div2</div></div>),
-		(<div cols={4} rows={3}><div>默认的div3</div></div>)];
+		(<div cols={4} rows={2}><div>默认的div3</div></div>)];
 		return (
 			<DragDropContextProvider backend={HTML5Backend}>
 

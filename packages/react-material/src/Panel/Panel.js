@@ -52,8 +52,14 @@ const styles={
 };
 const boxTarget = {
   drop(props, monitor, component) {
+
+    console.log('drop.......')
     const item = monitor.getItem();
     console.log(item);
+    if(!item.component){
+      //当comp不是从panel外部拉入
+      component.hasDroped = true;
+    }
     if(!item.component){
       //如果没有component 说明不是从外部拖进来的 不予处理
       return;
@@ -71,7 +77,7 @@ const boxTarget = {
 
   },
   hover(props, monitor, component) {
-    console.log('now hover');
+    //console.log('now hover');
   },
   //canDrop(props, monitor){}
 }
@@ -98,8 +104,25 @@ class Panel extends React.Component {
     //this.state();
     this.setState({childComponents:_cc})
   };
-  removeComponent=()=>{
-    console.log('**********************');
+  removeComponent=(index)=>{
+    if(!index && index !=0){
+      return;
+    }
+    if(this.hasDroped){
+      //说明drop在了panel内部 不作处理
+    }else{
+      //说明drop在了panle外部 需要删除指定index
+      console.log('remove'+index);  
+      let _cc = this.state.childComponents; 
+      if(!_cc){
+        return;
+      }
+    _cc.splice(index,1);
+    this.setState({childComponents:_cc})
+    }
+    
+    this.hasDroped = false;
+
   };
   dragSourceResize=(event,direction,refToElement,delta)=>{
     const mc = this.state.childComponents;
@@ -119,7 +142,6 @@ class Panel extends React.Component {
     let _col = Math.round(_w/cs),
     _row = Math.round(_h/cs);
     mc[_i].size=[_col,_row];
-    console.log('*********',mc[_i].size);
     //用state更新size of <Resizable>
     this.setState({childComponents:mc})
     //从而得到新的宽高 
@@ -127,11 +149,11 @@ class Panel extends React.Component {
     //console.log(direction,delta)
   };
   componentDidMount(){
-    console.log('****************has mount')
     //
     //const a = this.refs['panelwrap'].getBoundingClientRect();
     //this.worldCoordinate = [a.x,a.y]
   }
+
 
   render() {
     const self =this;
@@ -142,7 +164,7 @@ class Panel extends React.Component {
         return (<GridListTile className={classes.gridListTile} key={index} cols={value.size[0]} rows={value.size[1]}>
           <Resizable size={{width:value.size[0]*cellSize,height:value.size[1]*cellSize}} minWidth={10} minHeight={10} datakey={index} onResizeStop={this.dragSourceResize} className={classes.dragsourceResizeable} bounds={'window'}>
 
-          <Source type={'POSITION'} sequence={this.sequenceComponent} index={index}>{value.component}</Source></Resizable>
+          <Source type={'POSITION'} sequence={this.sequenceComponent} remove={this.removeComponent} index={index}>{value.component}</Source></Resizable>
           </GridListTile>);
       }else{
         return null;
@@ -165,7 +187,7 @@ class Panel extends React.Component {
     );
   }
 }
-let C = DropTarget(['test'], boxTarget, (connect,monitor) => {
+let C = DropTarget(['DRAGANDDROP'], boxTarget, (connect,monitor) => {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver({ shallow: true }),

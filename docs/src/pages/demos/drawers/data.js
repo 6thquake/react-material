@@ -24,6 +24,46 @@ export default [
         path: 'inbox',
         component: 'Inbox',
         icon: <ReportIcon/>,
+        // beforeChildren:function () {
+        //   return false
+        // },
+
+        childRoutes: [
+          {
+            path: '/messages/:id',
+            icon:<MailIcon />,
+            component: 'Message',
+            before:function () {
+              return false
+            },
+          },
+          {
+            path: 'messages/:id',
+            component: 'DeleteIcon',
+            icon: <DeleteIcon/>,
+            onEnter: function (nextState, replaceState) {
+              replaceState(null, '/messages/' + nextState.params.id)
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: '/',
+    component: 'App',
+    icon: <StarIcon/>,
+    indexRoute: {component: 'Dashboard'},
+    childRoutes: [
+      {
+        path: 'about',
+        icon: <SendIcon/>,
+        component: 'About'
+      },
+      {
+        path: 'inbox',
+        component: 'Inbox',
+        icon: <ReportIcon/>,
         childRoutes: [
           {
             path: '/messages/:id',

@@ -52,6 +52,7 @@
     "material-ui": "^1.0.0-beta.45",
     "normalize-scroll-left": "^0.1.2",
     "prop-types": "^15.6.0",
+    "rc-menu": "^7.0.4",
     "react-addons-update": "^15.6.2",
     "react-annotation": "^1.2.1",
     "react-dnd": "^2.6.0",

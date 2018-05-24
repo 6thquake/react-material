@@ -60,7 +60,7 @@
     "@material-ui/docs": "^1.0.0-alpha.0",
     "@material-ui/icons": "^1.0.0-beta.43",
     "@material-ui/lab": "^1.0.0-alpha.1",
-    "material-ui": "^1.0.0-beta.45",
+    "material-ui": "^1.0.0-beta.47",
     "react-addons-update": "^15.6.2",
     "react-annotation": "^1.2.1",
     "react-dnd": "^2.6.0",

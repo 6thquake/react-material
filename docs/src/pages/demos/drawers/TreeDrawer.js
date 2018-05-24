@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import {withStyles} from 'material-ui/styles';
 import classNames from 'classnames';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
@@ -15,7 +15,7 @@ import {TreeMenu} from 'react-material/Drawer';
 import data from './data';
 
 const drawerWidth = 240;
-const defaultItemKeysMap =  {
+const defaultItemKeysMap = {
   name: 'name',
   icon: 'icon',
   children: 'children',
@@ -91,26 +91,28 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
   },
-  docked:{
-    overflow:'scroll'
+  docked: {
+    overflow: 'scroll'
   }
 });
 
 class MiniDrawer extends React.Component {
   state = {
     open: true,
-  };
+  }
 
   handleDrawerOpen = () => {
-    this.setState({ open: true });
+    this.setState({open: true});
   };
 
   handleDrawerClose = () => {
-    this.setState({ open: false });
+    this.setState({open: false});
   };
-
+  onClick(info) {
+    console.log('click ', info);
+  }
   render() {
-    const { classes, theme } = this.props;
+    const {classes, theme} = this.props;
 
     return (
       <div className={classes.root}>
@@ -125,7 +127,7 @@ class MiniDrawer extends React.Component {
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, this.state.open && classes.hide)}
             >
-              <MenuIcon />
+              <MenuIcon/>
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
               Mini variant drawer
@@ -136,25 +138,28 @@ class MiniDrawer extends React.Component {
           variant="permanent"
           classes={{
             paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-            docked:classes.docked
+            docked: classes.docked
           }}
           open={this.state.open}
         >
           <div className={classes.toolbar}>
             <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+              {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
             </IconButton>
           </div>
           <Divider/>
-          <TreeMenu list={data}  itemKeysMap={
-            {
-              name:'component',
-              children:'childRoutes'
-            }
-          } />
+          <TreeMenu list={data} itemKeysMap={{
+              name: 'component',
+              children: 'childRoutes'
+            }}
+                    onClick={this.onClick}
+                    mode="inline"
+                    inlineCollapsed={!this.state.open}
+                    theme={'dark'}
+          />
         </Drawer>
         <main className={classes.content}>
-          <div className={classes.toolbar} />
+          <div className={classes.toolbar}/>
           <Typography noWrap>
             xxx
           </Typography>
@@ -169,4 +174,4 @@ MiniDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(MiniDrawer);
+export default withStyles(styles, {withTheme: true})(MiniDrawer);

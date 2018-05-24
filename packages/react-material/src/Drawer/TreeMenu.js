@@ -1,14 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { withStyles, createMuiTheme } from '../styles';
-import List, { ListItem, ListItemText, ListItemIcon } from '../List';
-import Collapse from '../transitions/Collapse';
+import {withStyles, createMuiTheme} from '../styles';
 import classNames from 'classnames';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
 
-import Menu from '@material-ui/icons/Menu';
+import Menu from '../Menu/Menu';
+
+const SubMenu = Menu.SubMenu;
+const MenuItem = Menu.Item;
 
 const defaultItemKeysMap = {
   name: 'name',
@@ -37,48 +35,21 @@ const styles = theme => ({
   }
 });
 
-class MenuList extends React.Component {
-  static childContextTypes = {
-    level: PropTypes.number,
-  }
-  static contextTypes = {
-    level: PropTypes.number,
-    itemKeysMap: PropTypes.object,
-  }
+/**
+ * Menu
+ *    SubMenu
+ *        MenuItem
+ *        MenuItem
+ *        MenuItem
+ *            SubMenu
+ *   SubMenu
+ *   SubMenu
+ *   SubMenu
+ *   MenuItem
+ *   MenuItem
+ *
+ */
 
-  getChildContext() {
-    return {
-      level: this.context.level + 1
-    }
-  }
-
-  itemKeyToProps(item) {
-    const { itemKeysMap } = this.context;
-    let result = {};
-    for (const key in itemKeysMap) {
-      const resultKey = itemKeysMap[key];
-      result[key] = item[resultKey];
-    }
-    return result;
-  }
-
-  render() {
-    const { list } = this.props;
-    return list ? <List>
-      {
-        list.map((item, index) => {
-          const Component = withStyles(styles)(Item);
-          return <Component key={index} {...this.itemKeyToProps(item)} />
-        })
-      }
-
-    </List> : null;
-  }
-}
-
-MenuList.propTypes = {
-  list: PropTypes.array.isRequired
-};
 
 class Item extends React.Component {
   static contextTypes = {
@@ -86,62 +57,21 @@ class Item extends React.Component {
     inlineIndent: PropTypes.number,
     root: PropTypes.object
   }
-  state = {
-    open: this.props.open,
-    selected: this.selected()
-  }
-  selected(selected = this.props.selected) {
-    const { children, beforeChildren, before } = this.props;
-    if (!selected) return false;
-    if (children) {
-      //有子节点
-      if (!beforeChildren()) {
-        //不显示子节点
-        return true;
-      }
+
+
+  renderItem() {
+    const {name, key, children} = this.props;
+    if (this.isRenderItem()) {
+      return <React.Fragment>
+        <MenuItem key={key}>
+          {renderIcon(this.props)}{name}
+        </MenuItem>
+        {children ? <MenuList list={children}/> : null}
+      </React.Fragment>
     } else {
-      //无子节点
-      if (before()) {
-        //显示该节点
-        return true;
-      }
+      return null;
     }
   }
-  isBranch() {
-    const { children, beforeChildren } = this.props;
-    if (children && beforeChildren())
-      return true;
-    return false;
-  }
-
-  handleClick = (e) => {
-    const {
-      onClick,
-      onHandle
-    } = this.props;
-    if (this.handle !== 'pending') {
-      let result = onHandle();
-      if (result instanceof Promise || typeof result.then === 'function') {
-        this.handle = 'pending';
-        result.then(() => {
-          this.handle = 'resolve';
-        }, () => {
-          this.handle = 'reject';
-        }).catch(() => {
-          this.handle = 'reject';
-        });
-      }
-    }
-    onClick();
-    // let root = ReactDOM.findDOMNode(this.context.root);
-    // let ele = root.getElementsByClassName('selected')[0];
-    // if(ele){
-    //   ele.className = ele.className.replace('selected','');
-    // }
-    // this.state.selected = this.selected(true);
-    this.setState({ open: !this.state.open });
-  }
-
 
   render() {
     const {
@@ -154,40 +84,18 @@ class Item extends React.Component {
       className: classNamePro,
       classes,
     } = this.props;
-    const { selected } = this.state;
     const {
       level,
       inlineIndent
     } = this.context;
-    const className = classNames({
-      [classes.MuiListItemButton]: true
-    }, classNamePro);
 
-    return before() ? <React.Fragment>
-      <ListItem onClick={this.handleClick}
-        className={className}
-        button
-        style={{ paddingLeft: level * inlineIndent * theme.spacing.unit, ...style }}>
-        {icon && <ListItemIcon>
-          {icon}
-        </ListItemIcon>}
-        {!icon && !this.state.open && <ListItemIcon>
-          <Menu />
-        </ListItemIcon>}
-        <ListItemText primary={name} />
-        {this.isBranch() && (this.state.open ? <ExpandLess /> : <ExpandMore />)}
-      </ListItem>
-      {beforeChildren() && children && <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-        <MenuList list={children} />
-      </Collapse>}
-    </React.Fragment> : null;
+    return this.renderItem();
   }
 }
 
 Item.propTypes = {
-  classes: PropTypes.object.isRequired,
-  name: PropTypes.node,
-  icon: PropTypes.element,
+  name: PropTypes.node || PropTypes.string,
+  icon: PropTypes.element || PropTypes.string,
   children: PropTypes.array,
   beforeChildren: PropTypes.func,
   before: PropTypes.func,
@@ -195,14 +103,6 @@ Item.propTypes = {
   onHandle: PropTypes.func,
   style: PropTypes.object,
   className: PropTypes.object,
-  /**
-   * 是否打开
-   */
-  open: PropTypes.bool,
-  /**
-   * 是否被选中
-   */
-  selected: PropTypes.bool
 };
 
 Item.defaultProps = {
@@ -221,25 +121,117 @@ class TreeMenu extends React.Component {
     inlineIndent: PropTypes.number,
     // root:PropTypes.object
   }
+  state = {
+    itemKeysMap: {...defaultItemKeysMap, ...this.props.itemKeysMap}
+  }
+
+  itemKeyToProps(item) {
+    const {itemKeysMap} = this.state;
+    let result = {};
+    for (const key in itemKeysMap) {
+      const resultKey = itemKeysMap[key];
+      result[key] = item[resultKey];
+    }
+    return result;
+  }
+
+  /**
+   * 是否渲染当前节点
+   * @param item
+   */
+  isRenderItem(item) {
+    if (item.before)
+      return item.before();
+    return true;
+  }
+
+  /**
+   * 渲染icon
+   * @param icon
+   */
+  renderIcon(icon) {
+    if (icon) {
+      if (typeof icon === 'string') {
+        return <i className="material-icons">
+          {icon}
+        </i>
+      } else {
+        return icon;
+      }
+    } else {
+      return null;
+    }
+  }
 
   getChildContext() {
     return {
       level: 0,
-      itemKeysMap: { ...defaultItemKeysMap, ...this.props.itemKeysMap },
+      itemKeysMap: {...defaultItemKeysMap, ...this.props.itemKeysMap},
       inlineIndent: this.props.inlineIndent,
       // root:this
     }
   }
 
+  /**
+   * 是否渲染子节点
+   * @param item 当前节点
+   * @return boolean
+   */
+  isRenderChildren(item) {
+    if (item.children && item.children !== 0) {
+      if (item.beforeChildren)
+        return item.beforeChildren();
+      else
+        return true;
+    } else {
+      return false;
+    }
+  }
+
+  renderMenu(list, key) {
+    if (!Array.isArray(list)) return null;
+
+    return list.map((item, index) => {
+      const result = this.itemKeyToProps(item);
+      const {icon, name, children} = result;
+      let _key;
+      if (item.key) {
+        _key = item.key;
+      }else {
+        _key = key === undefined ? index : `${key}-${index}`;
+      }
+      if (this.isRenderItem(item)) {
+        if (this.isRenderChildren(result)) {
+          return <SubMenu key={_key} title={<span>
+            {this.renderIcon(icon)}<span>{name}</span> {this.props.debugger?_key:null}
+                </span>
+          }>
+            {this.renderMenu(children, _key)}
+          </SubMenu>
+        } else {
+          return <MenuItem key={_key}>
+            {this.renderIcon(icon)}<span>{name}</span> {this.props.debugger?_key:null}
+          </MenuItem>
+        }
+      } else {
+        return null;
+      }
+    });
+  }
+
   render() {
+
     return (
-      <MenuList ref={e => this.e = e} list={this.props.list} />
+      <Menu
+        {...this.props}
+      >
+        {this.renderMenu(this.props.list)}
+      </Menu>
     );
   }
 }
 
 TreeMenu.propTypes = {
-  classes: PropTypes.object.isRequired,
   /**
    * 要展示的menu
    */
@@ -247,7 +239,7 @@ TreeMenu.propTypes = {
   /**
    * 缩进
    */
-  inlineIndent: PropTypes.number,
+  //inlineIndent: PropTypes.number,
   /**
    * menu的每一项数据的key值
    */
@@ -261,15 +253,13 @@ TreeMenu.propTypes = {
     onHandle: PropTypes.string,
     style: PropTypes.string,
     className: PropTypes.string,
-    open: PropTypes.string
+    open: PropTypes.string,
+    key: PropTypes.string
   }),
-  /**
-   * 选中的样式，class
-   */
-  selected: PropTypes.string
+  debugger:PropTypes.bool
 };
 TreeMenu.defaultProps = {
-  inlineIndent: 3,
+  //inlineIndent: 3,
   itemKeysMap: defaultItemKeysMap
 };
 

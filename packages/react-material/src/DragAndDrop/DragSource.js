@@ -28,6 +28,7 @@ const styles={
 };
 const _source = {
   beginDrag(props, monitor, component) {
+  	console.log('start drag.......')
     // Return the data describing the dragged item
     /*
 	开始drag时，
@@ -54,12 +55,15 @@ const _source = {
     return item;
   },
   endDrag(props, monitor, component){
+  	const item = monitor.getItem();
+  	if((!!item.sortFrom || item.sortFrom ==0)&& typeof props.remove =='function' ){
+  		props.remove(item.sortFrom);
+  	}
+  	console.log('end drag.......')
   }
 };
 const _target = {
-	drop(props, monitor, component){
-		//console.log('droooooop')
-	},
+	
 	hover(props, monitor,component) {
 		//当hover的时候改变原数组的排列顺序
 		let gi = monitor.getItem(),from;
@@ -67,7 +71,7 @@ const _target = {
 			from = gi.sortFrom;
 		}
 		const to = props.index || 0;
-		if(from != to){
+		if(from != to && (typeof props.sequence =='function')){
 			props.sequence(parseInt(from),parseInt(to));
 			monitor.getItem().sortFrom = to
 		}
@@ -120,6 +124,6 @@ class DragSouce extends Component {
 	}
 }
 
-const _mc = DropTargetBase('test', _target, _dropCollect)(DragSouce);
-const _mcm = DragSourceBase('test', _source, _dragCollect)(_mc);
+const _mc = DropTargetBase('DRAGANDDROP', _target, _dropCollect)(DragSouce);
+const _mcm = DragSourceBase('DRAGANDDROP', _source, _dragCollect)(_mc);
 export default withStyles(styles)(_mcm);

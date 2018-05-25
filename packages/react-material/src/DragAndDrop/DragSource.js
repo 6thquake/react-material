@@ -11,6 +11,7 @@ style
 */
 
 const styles={
+
 	position:{
 		display: 'flex',
 		justifyContent: 'center',
@@ -19,7 +20,8 @@ const styles={
 		height:'100%',
 	},
 	dragin:{
-		
+		display:'inline-block',
+		padding:'6px'
 	}
 };
 const _source = {

@@ -20,6 +20,8 @@ cellSize int //每个网格的宽度
 
 
 */
+let myCellSize = 50;
+
 
 const styles={
   root:{
@@ -27,22 +29,32 @@ const styles={
     minHeight:'100px',
     border:'1px solid rgba(0,0,0,0.1)',
     position:'relative',
+    
   },
   resize:{
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     //border: 'solid 1px #ddd',
-    background: '#f0f0f0'
+    background: '#f0f0f0',
+    
   },
   resizeInnerWrap:{
     height:'100%',
-    width:'100%'
+    width:'100%',
+    '&> ul':{
+      
+      backgroundImage:'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAAEH5aXCAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA0xpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjMyQzFGREI1Nzc2MTFFODkxMDJGNThFQ0JGQzFCMzQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjMyQzFGREE1Nzc2MTFFODkxMDJGNThFQ0JGQzFCMzQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmRkNzZhNTk4LTllZWYtMTE3Yi1hNWRmLWM5MWVjYTRjYTk3ZCIgc3RSZWY6ZG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmRkNzZhNTk4LTllZWYtMTE3Yi1hNWRmLWM5MWVjYTRjYTk3ZCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhWNmR8AAAE6SURBVHjaYmRkZGQgFTAxkAFGNY1qooImgABiJDXBMtHcWaMaRooGgABiJKe0pEu2GLVk1JJRS0YtwQ0AAogeZZf8aJyMWjJqyaglo5aMWjJqyaglo5bQxxKAAOzXQQkAAAgDwI897N9SUwyUGyzA4cdFhmkgmQfyzdlBQEBAQEBAQEBAQEBAQEBAzqe2/QEyArBrxzQAAAAIw/y7RsNeUhz04CEY6HQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQk5eZBNwHauWMaAIAQCILFI+D9qyWhxQC5zFoYygsVsqBLaA7qATnTBwJEQIAICBABASIgQIAAERAgAgJEQIAICBAgQAQEiIAAERAgAgJEQAQEiIAAERAgAgJEQAQEiIAAERAgAgJEQLRAYj6xpdSuGwYph8fsCgAAAABJRU5ErkJggg==")',
+      backgroundSize: myCellSize+'px '+myCellSize+'px', 
+      overflow: 'visible'
+    }
   },
   gridListTile:{
     "@global div":{overflow:'visible'}
   },
   dragsourceResizeable:{
+    background:'rgba(0,0,0,0.1)',
+    margin:'1px',
     "&:hover":{
       border:'1px dashed rgba(0,0,0,0.1)',
       borderRedius:'3px'
@@ -87,7 +99,7 @@ class Panel extends React.Component {
   
     this.state = {
       //childComponents:props.defaultChildren,
-      cellSize:50
+      cellSize:myCellSize
     };
     this.state.childComponents = props.defaultChildren.map((v,i)=>{
       return {component:v,size:[v.props.cols,v.props.rows]}
@@ -153,6 +165,26 @@ class Panel extends React.Component {
     //const a = this.refs['panelwrap'].getBoundingClientRect();
     //this.worldCoordinate = [a.x,a.y]
   }
+  resizePanel =(event,direction,refToElement,delta)=>{
+    this.refCallBack(refToElement);
+  }
+  //改变cellSize的方法
+
+
+  //当外部risizeable改变尺寸的时候
+  refCallBack=(node)=>{
+    console.log('**************','refcallback')
+    if(node && node.offsetWidth){
+
+    const cellSize = Math.round(node.offsetWidth/12);
+    if(cellSize != this.state.cellSize){
+      const ul = node.querySelector('ul[class^="MuiGridList"]');
+      ul.style.backgroundSize = cellSize+'px '+cellSize+'px';
+      this.setState({cellSize:cellSize});
+    }
+    
+    }
+  }
 
 
   render() {
@@ -162,7 +194,7 @@ class Panel extends React.Component {
     const _childComponents =(childComponents||[]).map((value,index)=>{
       if(value && (value.size instanceof Array) && value.size.length == 2){
         return (<GridListTile className={classes.gridListTile} key={index} cols={value.size[0]} rows={value.size[1]}>
-          <Resizable size={{width:value.size[0]*cellSize,height:value.size[1]*cellSize}} minWidth={10} minHeight={10} datakey={index} onResizeStop={this.dragSourceResize} className={classes.dragsourceResizeable} bounds={'window'}>
+          <Resizable size={{width:value.size[0]*cellSize-4,height:value.size[1]*cellSize-4}} minWidth={10} minHeight={10} datakey={index} onResizeStop={this.dragSourceResize} className={classes.dragsourceResizeable} bounds={'window'}>
 
           <Source type={'POSITION'} sequence={this.sequenceComponent} remove={this.removeComponent} index={index}>{value.component}</Source></Resizable>
           </GridListTile>);
@@ -172,13 +204,13 @@ class Panel extends React.Component {
       
     });
     return connectDropTarget(
-      <div className={classes.root} >
+      <div className={classes.root} ref={this.refCallBack}>
       <Resizable className={classes.resize} defaultSize = {{ 
     width :650,
      height :600
-  }} minWidth={100} minHeight={100} grid={[10,10]} bounds={'window'}>
+  }} minWidth={100} minHeight={100} grid={[10,10]} bounds={'window'} onResizeStop={this.resizePanel}>
     <div className={classes.resizeInnerWrap}>
-        <GridList cellHeight={cellSize} cols={12}>
+        <GridList spacing={0} cellHeight={cellSize} cols={12}>
             {_childComponents}
         </GridList>
         </div>

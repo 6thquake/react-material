@@ -164,6 +164,7 @@ class Panel extends React.Component {
     //console.log(direction,delta)
   };
   componentDidMount(){
+   // this.
     //
     //const a = this.refs['panelwrap'].getBoundingClientRect();
     //this.worldCoordinate = [a.x,a.y]
@@ -182,7 +183,7 @@ class Panel extends React.Component {
     const cellSize = Math.round(node.offsetWidth/12);
     if(cellSize != this.state.cellSize){
       //const ul = node.querySelector('ul[class^="MuiGridList"]');
-      const ul = node.querySelector('div[class^="DropTarget-Panel"]');
+      const ul = node.querySelector('div[class*="resizeInnerWrap"]');
       ul.style.backgroundSize = cellSize+'px '+cellSize+'px';
       this.setState({cellSize:cellSize});
     }

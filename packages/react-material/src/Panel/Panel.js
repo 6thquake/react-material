@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { ChevronRight, ChevronLeft, LastPage, FirstPage } from '@material-ui/icons';
 import { DropTarget } from 'react-dnd';
-import GridList, { GridListTile, GridListTileBar } from 'react-material/GridList';
-import {DragSource as Source} from 'react-material/DragAndDrop';
+import GridList, { GridListTile, GridListTileBar } from '../GridList';
+import {DragSource as Source} from '../DragAndDrop';
 import Resizable from 're-resizable';
 
 /*

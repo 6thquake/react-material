@@ -1,13 +1,9 @@
-
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import {Home,Grade,Lock} from '@material-ui/icons';
-import Panel from 'react-material/Panel';
 import HTML5Backend from 'react-dnd-html5-backend';
 import {DragSource as DragSourceBase,DropTarget as DropTargetBase } from 'react-dnd';
-import { StatusButton } from 'react-material/Button';
 /*type:
 position 对于panel中已存在的source 拖拽时会重新定位它的位置 当拖出panel以外时会删除
 dragin 从panel外部拖入，源source不变，复制一份

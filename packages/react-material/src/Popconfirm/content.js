@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
+import Button from '../Button';
 import {withLocale} from '../LocaleProvider'
 
 const styles = theme => ({

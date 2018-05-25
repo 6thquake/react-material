@@ -1,6 +1,6 @@
 {
   "name": "react-material",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "private": false,
   "licenses": "MIT",
   "main": "index.js",
@@ -49,7 +49,7 @@
     "jss-vendor-prefixer": "^7.0.0",
     "keycode": "^2.1.9",
     "lodash": "^4.2.0",
-    "material-ui": "^1.0.0-beta.45",
+    "material-ui": "^1.0.0-beta.47",
     "normalize-scroll-left": "^0.1.2",
     "prop-types": "^15.6.0",
     "rc-menu": "^7.0.4",

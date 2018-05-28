@@ -10,18 +10,18 @@ import ReportIcon from '@material-ui/icons/Report';
 
 export default [
   {
-    path: '/',
+    //path: '/',
     component: 'App',
     icon: <StarIcon/>,
     indexRoute: {component: 'Dashboard'},
     childRoutes: [
       {
-        path: 'about',
+        //path: 'about',
         icon: <SendIcon/>,
         component: 'About'
       },
       {
-        path: 'inbox',
+        path: 'inbox11',
         component: 'Inbox',
         icon: <ReportIcon/>,
         // beforeChildren:function () {
@@ -30,7 +30,7 @@ export default [
 
         childRoutes: [
           {
-            path: '/messages/:id',
+            path: '/messages/123',
             icon:<MailIcon />,
             component: 'Message',
             before:function () {
@@ -38,7 +38,11 @@ export default [
             },
           },
           {
-            path: 'messages/:id',
+            icon:<MailIcon />,
+            component: 'Message',
+          },
+          {
+            path: '/messages/222',
             component: 'DeleteIcon',
             icon: <DeleteIcon/>,
             onEnter: function (nextState, replaceState) {

@@ -15,7 +15,6 @@ const effect = {
   transformOrigin: '0 0'
 };
 function leave(node,done){
-  console.log(node)
   done();
 }
 

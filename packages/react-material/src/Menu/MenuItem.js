@@ -22,7 +22,6 @@ class MenuItem extends React.Component{
     const { inlineCollapsed } = this.context;
     const props = this.props;
     const item = <Item {...props} ref={this.saveMenuItem} />;
-    console.log(props);
     if (inlineCollapsed && props.level === 1) {
       return <Tooltip
         title={props.children}

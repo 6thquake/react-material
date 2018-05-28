@@ -19,7 +19,8 @@ const defaultItemKeysMap = {
   style: 'style',
   className: 'className',
   open: 'open',
-  selected: 'selected'
+  selected: 'selected',
+  key:'key'
 };
 const theme = createMuiTheme();
 const styles = theme => ({
@@ -188,17 +189,17 @@ class TreeMenu extends React.Component {
     }
   }
 
-  renderMenu(list, key) {
+  renderMenu(list, parentKey) {
     if (!Array.isArray(list)) return null;
 
     return list.map((item, index) => {
       const result = this.itemKeyToProps(item);
-      const {icon, name, children} = result;
+      const {icon, name, children,key} = result;
       let _key;
-      if (item.key) {
-        _key = item.key;
+      if (key) {
+        _key = key;
       }else {
-        _key = key === undefined ? index : `${key}-${index}`;
+        _key = parentKey === undefined ? index : `${parentKey}-${index}`;
       }
       if (this.isRenderItem(item)) {
         if (this.isRenderChildren(result)) {
@@ -220,12 +221,12 @@ class TreeMenu extends React.Component {
   }
 
   render() {
-
+    const {list,itemKeysMap,debugger:d,...props} = this.props;
     return (
       <Menu
-        {...this.props}
+        {...props}
       >
-        {this.renderMenu(this.props.list)}
+        {this.renderMenu(list)}
       </Menu>
     );
   }
@@ -259,8 +260,7 @@ TreeMenu.propTypes = {
   debugger:PropTypes.bool
 };
 TreeMenu.defaultProps = {
-  //inlineIndent: 3,
+  debugger:false,
   itemKeysMap: defaultItemKeysMap
 };
-
 export default withStyles()(TreeMenu);

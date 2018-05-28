@@ -150,7 +150,8 @@ class MiniDrawer extends React.Component {
           <Divider/>
           <TreeMenu list={data} itemKeysMap={{
               name: 'component',
-              children: 'childRoutes'
+              children: 'childRoutes',
+            key:'path'
             }}
                     onClick={this.onClick}
                     mode="inline"

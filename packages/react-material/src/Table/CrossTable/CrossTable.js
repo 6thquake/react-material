@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CrossTableData } from './Utilities';
-import TableRenderers from './TableRenderers';
+import { CrossTableData } from './CrossTableUtilities';
+import CrossTableRenderers from './CrossTableRenderers';
 
 /* eslint-disable react/prop-types */
 // eslint can't see inherited propTypes!
@@ -24,7 +24,7 @@ CrossTable.propTypes = Object.assign({}, CrossTableData.propTypes, {
 
 CrossTable.defaultProps = Object.assign({}, CrossTableData.defaultProps, {
   rendererName: 'Table',
-  renderers: TableRenderers,
+  renderers: CrossTableRenderers,
 });
 
 export default CrossTable;

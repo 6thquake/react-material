@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CrossTableData } from './Utilities';
-import Table, { TableBody, TableCell, TableHead, TableRow } from 'react-material/Table';
+import { CrossTableData } from './CrossTableUtilities';
+import Table, { TableBody, TableCell, TableHead, TableRow } from '../../Table';
 
 // helper function for setting row/col-span in CrossTableRenderer
 const spanSize = function(arr, i, j) {

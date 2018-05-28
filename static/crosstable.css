@@ -77,6 +77,8 @@ table.rm-ct-Table tbody tr td {
 }
 
 .rm-ct-Renderers {
+    border: 1px solid #a2b1c6;
+    background: #f2f5fa;
     padding-left: 5px;
     user-select: none;
 }

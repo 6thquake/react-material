@@ -98,6 +98,9 @@ export {
   TablePagination,
   TableRow,
   TableSortLabel,
+
+  CrossTable,
+  AbundantCrossTable,
 } from './Table';
 export { default as Tabs, Tab } from './Tabs';
 export { default as TextField } from './TextField';

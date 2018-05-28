@@ -201,12 +201,12 @@ class Anchor extends React.Component {
   }
 
   render() {
-    const {classes , links, style} = this.props
+    const {classes, links, style} = this.props
     const maskStyle  = {
       top: this.state.linkHigth
     }
     return (
-      <Paper className={classes.box} style = {style}>
+      <Paper className={classes.box} style={style}>
         <div className={classes.line}></div>
         <div ref={(e)=>{this.wrapper= e}} className={classes.wrapper}>
           <div className={classes.activeMask} style={maskStyle}></div>

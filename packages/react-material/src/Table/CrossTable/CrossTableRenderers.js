@@ -3,6 +3,39 @@ import PropTypes from 'prop-types';
 import { CrossTableData } from './CrossTableUtilities';
 import Table, { TableBody, TableCell, TableHead, TableRow } from '../../Table';
 
+import { withStyles } from '../../styles';
+
+const styles = (theme) => ({
+  table:{
+    fontSize: '8pt',
+    textAlign: 'left',
+    borderCollapse: 'collapse',
+    marginTop: '3px',
+    marginLeft: '3px',
+    fontFamily: 'Verdana'
+  },
+  th:{
+    backgroundColor: '#ebf0f8',
+    border: '1px solid #c8d4e3',
+    fontSize: '8pt',
+    padding: '5px !important'
+  },
+  td:{
+    color: '#2a3f5f',
+    padding: '5px !important',
+    backgroundColor: '#fff',
+    border: '1px solid #c8d4e3',
+    verticalAlign: 'top',
+    textAlign: 'right'
+  },
+  tf:{
+    backgroundColor: '#ebf0f8',
+    border: '1px solid #c8d4e3',
+    fontSize: '8pt',
+    padding: '5px !important'
+  },
+});
+
 // helper function for setting row/col-span in CrossTableRenderer
 const spanSize = function(arr, i, j) {
   let x;
@@ -56,6 +89,8 @@ function redColorScaleGenerator(values) {
 function makeRenderer(opts = {}) {
   class TableRenderer extends React.PureComponent {
     render() {
+      let { classes } = this.props;
+
       const crossTableData = new CrossTableData(this.props);
       const colAttrs = crossTableData.props.cols;
       const rowAttrs = crossTableData.props.rows;
@@ -134,16 +169,16 @@ function makeRenderer(opts = {}) {
           : null;
 
       return (
-        <Table className="rm-ct-Table">
+        <Table className={classes.table}>
           <TableHead>
             {colAttrs.map(function(c, j) {
               return (
                 <TableRow key={`colAttr${j}`}>
                   {j === 0 &&
                     rowAttrs.length !== 0 && (
-                      <TableCell colSpan={rowAttrs.length} rowSpan={colAttrs.length} />
+                      <TableCell className={classes.th} colSpan={rowAttrs.length} rowSpan={colAttrs.length} />
                     )}
-                  <TableCell className="rm-ct-AxisLabel">{c}</TableCell>
+                  <TableCell className={classes.th}>{c}</TableCell>
                   {colKeys.map(function(colKey, i) {
                     const x = spanSize(colKeys, i, j);
                     if (x === -1) {
@@ -151,7 +186,7 @@ function makeRenderer(opts = {}) {
                     }
                     return (
                       <TableCell
-                        className="rm-ct-ColLabel"
+                        className={classes.th}
                         key={`colKey${i}`}
                         colSpan={x}
                         rowSpan={
@@ -167,7 +202,7 @@ function makeRenderer(opts = {}) {
 
                   {j === 0 && (
                     <TableCell
-                      className="rm-ct-TotalLabel"
+                      className={classes.th}
                       rowSpan={
                         colAttrs.length + (rowAttrs.length === 0 ? 0 : 1)
                       }
@@ -183,12 +218,12 @@ function makeRenderer(opts = {}) {
               <TableRow>
                 {rowAttrs.map(function(r, i) {
                   return (
-                    <TableCell className="rm-ct-AxisLabel" key={`rowAttr${i}`}>
+                    <TableCell className={classes.th} key={`rowAttr${i}`}>
                       {r}
                     </TableCell>
                   );
                 })}
-                <TableCell className="rm-ct-TotalLabel">
+                <TableCell className={classes.th}>
                   {colAttrs.length === 0 ? 'Totals' : null}
                 </TableCell>
               </TableRow>
@@ -208,7 +243,7 @@ function makeRenderer(opts = {}) {
                     return (
                       <TableCell
                         key={`rowKeyLabel${i}-${j}`}
-                        className="rm-ct-RowLabel"
+                        className={classes.td}
                         rowSpan={x}
                         colSpan={
                           j === rowAttrs.length - 1 && colAttrs.length !== 0
@@ -224,8 +259,8 @@ function makeRenderer(opts = {}) {
                     const aggregator = crossTableData.getAggregator(rowKey, colKey);
                     return (
                       <TableCell
-                        className="rm-ct-Val"
-                        key={`rm-ct-Val${i}-${j}`}
+                        className={classes.td}
+                        key={`rm-ct-td-${i}-${j}`}
                         onClick={
                           getClickHandler &&
                           getClickHandler(aggregator.value(), rowKey, colKey)
@@ -241,7 +276,7 @@ function makeRenderer(opts = {}) {
                     );
                   })}
                   <TableCell
-                    className="rm-ct-Total"
+                    className={classes.td}
                     onClick={
                       getClickHandler &&
                       getClickHandler(totalAggregator.value(), rowKey, [null])
@@ -256,7 +291,7 @@ function makeRenderer(opts = {}) {
 
             <TableRow>
               <TableCell
-                className="rm-ct-TotalLabel"
+                className={classes.tf}
                 colSpan={rowAttrs.length + (colAttrs.length === 0 ? 0 : 1)}
               >
                 Totals
@@ -266,7 +301,7 @@ function makeRenderer(opts = {}) {
                 const totalAggregator = crossTableData.getAggregator([], colKey);
                 return (
                   <TableCell
-                    className="rm-ct-Total"
+                    className={classes.tf}
                     key={`total${i}`}
                     onClick={
                       getClickHandler &&
@@ -284,7 +319,7 @@ function makeRenderer(opts = {}) {
                   getClickHandler &&
                   getClickHandler(grandTotalAggregator.value(), [null], [null])
                 }
-                className="rm-ct-GrandTotal"
+                className={classes.tf}
               >
                 {grandTotalAggregator.format(grandTotalAggregator.value())}
               </TableCell>
@@ -305,7 +340,7 @@ function makeRenderer(opts = {}) {
     tableOptions: PropTypes.object
   });
 
-  return TableRenderer;
+  return withStyles(styles)(TableRenderer);
 }
 
 class TSVExportRenderer extends React.PureComponent {

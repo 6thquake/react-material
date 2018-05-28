@@ -4,11 +4,98 @@ import PropTypes from 'prop-types';
 
 import Popover from '../../Popover';
 import Chip from '../../Chip';
+import Grid from '../../Grid';
+import Button from '../../Button';
+import TextField from '../../TextField';
 
 import DragSource from './CrossTableDragSource';
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import { withStyles } from '../../styles';
 
+const styles = (theme) => ({
+  container:{
+    display:'inline-block'
+  },
+  box:{
+    width: '300px',
+    backgroundColor: '#fff',
+    textAlign: 'center',
+    userSelect: 'none',
+    minHeight: '100px',
+    padding: '8px',
+    margin: '0px'
+  },
+  input :{
+    color: '#506784',
+    padding: '0 3px',
+    fontSize: '14px',
+    '&:focus': {
+    }
+  },
+  p:{
+    padding: '2px 0px',
+    margin: '0px'
+  },
+  h4: {
+    margin: '2px'
+  },
+  button: {
+    color: '#2a3f5f',
+    margin: '0px'
+  },
+  closeX :{
+    fontSize: '18px',
+    cursor: 'pointer',
+    textDecoration: 'none !important'
+  },
+  filter:{
+    textAlign: 'left',
+    fontSize: '14px',
+    whiteSpace: 'nowrap',
+    overflowY: 'scroll',
+    width: '100%',
+    maxHeight: '30vh'
+  },
+  item:{
+    margin: '0',
+    marginBottom: '1px',
+    padding: '4px 4px 4px 32px',
+    cursor: 'default',
+    '&:hover': {
+      background: '#f2f7ff'
+    }
+  },
+  selectedItem:{
+    margin: '0',
+    marginBottom: '1px',
+    padding: '4px 4px 4px 32px',
+    cursor: 'default',
+    background: '#ebf0f8',
+    '&:before':{
+      content: '"√"',
+      fontSize: '12px',
+      position: 'absolute',
+      left: '12px'
+    }
+  },
+  only: {
+    display: 'none',
+    width: '35px',
+    float: 'left',
+    fontSize: '12px',
+    paddingLeft: '5px',
+    cursor: 'pointer'
+  },
+  onlySpacer: {
+    display: 'block',
+    width: '35px',
+    float: 'left'
+  },
+  filtered:{
+    fontStyle: 'italic'
+  }
+});
 
 class CrossCrossTableColumn extends React.Component {
   constructor(props) {
@@ -40,6 +127,7 @@ class CrossCrossTableColumn extends React.Component {
   }
 
   getFilterBox() {
+    let { classes } = this.props;
     const showMenu =
       Object.keys(this.props.attrValues).length < this.props.menuLimit;
 
@@ -62,26 +150,39 @@ class CrossCrossTableColumn extends React.Component {
           }}
         >
           <div
-            className="rm-ct-FilterBox"
+            className={classes.box}
             style={{
               cursor: 'initial'
             }}
           >
-            <a onClick={() => this.setState({open: false})} className="rm-ct-CloseX">
-              ×
-            </a>
-            <span className="rm-ct-DragHandle">☰</span>
-            <h4>{this.props.name}</h4>
+            <Grid container spacing={0}>
+                <Grid item xs={1}>
+                  <span>☰</span>
+                </Grid>
+                <Grid item xs={10}>
+                  <h4 className={classes.h4}>{this.props.name}</h4>
+                </Grid>
+                <Grid item xs={1}>
+                  <a onClick={() => this.setState({open: false})} className={classes.closeX}>
+                    ×
+                  </a>
+                </Grid>
+            </Grid>
 
             {showMenu || <p>(too many values to show)</p>}
 
             {showMenu && (
-              <p>
-                <input
-                  type="text"
+              <p className={classes.p}>
+                <TextField
+                  label="Filter"
                   placeholder="Filter values"
-                  className="rm-ct-Search"
+                  className={classes.input}
                   value={this.state.filterText}
+                  fullWidth
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                   onChange={e =>
                     this.setState({
                       filterText: e.target.value,
@@ -89,9 +190,9 @@ class CrossCrossTableColumn extends React.Component {
                   }
                 />
                 <br />
-                <a
+                <Button
                   role="button"
-                  className="rm-ct-Button"
+                  className={classes.button}
                   onClick={() =>
                     this.props.removeValuesFromFilter(
                       this.props.name,
@@ -102,10 +203,10 @@ class CrossCrossTableColumn extends React.Component {
                   }
                 >
                   Select {values.length === shown.length ? 'All' : shown.length}
-                </a>{' '}
-                <a
+                </Button>{' '}
+                <Button
                   role="button"
-                  className="rm-ct-Button"
+                  className={classes.button}
                   onClick={() =>
                     this.props.addValuesToFilter(
                       this.props.name,
@@ -116,22 +217,22 @@ class CrossCrossTableColumn extends React.Component {
                   }
                 >
                   Deselect {values.length === shown.length ? 'All' : shown.length}
-                </a>
+                </Button>
               </p>
             )}
 
             {showMenu && (
-              <div className="rm-ct-CheckContainer">
+              <div className={classes.filter}>
                 {shown.map(x => (
                   <p
                     key={x}
                     onClick={() => this.toggleValue(x)}
-                    className={x in this.props.valueFilter ? '' : 'selected'}
+                    className={x in this.props.valueFilter ? classes.item : classes.selectedItem}
                   >
-                    <a className="rm-ct-Only" onClick={e => this.selectOnly(e, x)}>
+                    <a className={classes.only} onClick={e => this.selectOnly(e, x)}>
                       only
                     </a>
-                    <a className="rm-ct-OnlySpacer">&nbsp;</a>
+                    <a className={classes.onlySpacer}>&nbsp;</a>
 
                     {x === '' ? <em>null</em> : x}
                   </p>
@@ -151,20 +252,22 @@ class CrossCrossTableColumn extends React.Component {
   }
 
   render() {
+    let { classes } = this.props;
+
     const filtered =
       Object.keys(this.props.valueFilter).length !== 0
-        ? 'rm-ct-FilteredAttribute'
-        : '';
+        ? classes.filtered
+        : null;
 
     const { connectDragSource, isDragging } = this.props;
 
     return (
       <DragSource {...this.props}>
-        <div style={{display:'inline-block'}} data-id={this.props.name}>
+        <div className={classes.container} data-id={this.props.name}>
           <Chip
             label={this.props.name}
             onDelete={this.toggleFilterBox.bind(this)}
-            className={'rm-ct-Attr ' + filtered}
+            className={filtered}
             deleteIcon={<KeyboardArrowDownIcon />}
           />
           {this.state.open ? this.getFilterBox() : null}
@@ -189,4 +292,4 @@ CrossCrossTableColumn.propTypes = {
   zIndex: PropTypes.number,
 };
 
-export default CrossCrossTableColumn;
+export default withStyles(styles)(CrossCrossTableColumn);

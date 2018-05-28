@@ -9,14 +9,6 @@ import tips from './tips';
 import { AbundantCrossTable } from 'react-material/Table/CrossTable'
 import { sortAs } from 'react-material/Table/CrossTable';
 
-import { loadCSS } from 'fg-loadcss/src/loadCSS';
-
-if(process.browser) {
-  loadCSS(
-      '/static/crosstable.css',
-      document.querySelector('#insertion-point-jss'),
-    );
-}
 
 class App extends React.Component {
     componentWillMount() {

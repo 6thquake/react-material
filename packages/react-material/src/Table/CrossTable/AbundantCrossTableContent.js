@@ -9,6 +9,43 @@ import { CrossTableData, sortAs } from './CrossTableUtilities';
 import CrossTable from './CrossTable';
 import CrossTableAttribute from './CrossTableAttribute';
 import DropZone from './CrossTableDropZone';
+import { withStyles } from '../../styles';
+
+const styles = (theme) => ({
+  table: {
+    color: '#2a3f5f',
+    fontFamily: 'Verdana',
+    borderCollapse: 'collapse'
+  },
+
+  renderers:{
+    border: '1px solid #a2b1c6',
+    background: '#f2f5fa',
+    paddingLeft: '5px',
+    userSelect: 'none'
+  },
+
+  axis: {
+    border: '1px solid #a2b1c6',
+    background: '#f2f5fa',
+    padding: '5px',
+    minWidth: '20px',
+    minHeight: '20px',
+    height: '20px'
+  },
+  vaxis:{
+    verticalAlign: 'top'
+  },
+
+  orders:{
+    cursor: 'pointer',
+    width: '15px',
+    marginLeft: '5px',
+    display: 'inline-block',
+    userSelect: 'none',
+    textDecoration: 'none !important'
+  }
+});
 
 class AbundantCrossTableContent extends React.PureComponent {
   constructor(props) {
@@ -125,6 +162,8 @@ class AbundantCrossTableContent extends React.PureComponent {
   }
 
   render() {
+    let { classes } = this.props;
+
     const numValsAllowed =
       this.props.aggregators[this.props.aggregatorName]([])().numInputs || 0;
 
@@ -134,7 +173,7 @@ class AbundantCrossTableContent extends React.PureComponent {
         : Object.keys(this.props.renderers)[0];
 
     const rendererCell = (
-      <td className="rm-ct-Renderers">
+      <td className={classes.renderers}>
         <CrossTableAttribute
           label="renderer"
           current={rendererName}
@@ -161,7 +200,7 @@ class AbundantCrossTableContent extends React.PureComponent {
 
     const aggregatorCell = (
 
-      <td className="rm-ct-Vals">
+      <td className={classes.axis}>
         <CrossTableAttribute
           label="aggregators"
           current={this.props.aggregatorName}
@@ -170,7 +209,7 @@ class AbundantCrossTableContent extends React.PureComponent {
         />
         <a
           role="button"
-          className="rm-ct-RowOrder"
+          className={classes.orders}
           onClick={() =>
             this.propUpdater('rowOrder')(sortIcons[this.props.rowOrder].next)
           }
@@ -179,7 +218,7 @@ class AbundantCrossTableContent extends React.PureComponent {
         </a>
         <a
           role="button"
-          className="rm-ct-ColOrder"
+          className={classes.orders}
           onClick={() =>
             this.propUpdater('colOrder')(sortIcons[this.props.colOrder].next)
           }
@@ -224,9 +263,7 @@ class AbundantCrossTableContent extends React.PureComponent {
     const unusedAttrsCell = this.makeDnDCell(
       unusedAttrs,
       order => this.setState({unusedOrder: order}),
-      `rm-ct-AxisContainer rm-ct-Unused ${
-        horizUnused ? 'rm-ct-HorizList' : 'rm-ct-VertList'
-      }`
+      classes.axis
     );
 
     const colAttrs = this.props.cols.filter(
@@ -238,7 +275,7 @@ class AbundantCrossTableContent extends React.PureComponent {
     const colAttrsCell = this.makeDnDCell(
       colAttrs,
       this.propUpdater('cols').bind(this),
-      'rm-ct-AxisContainer rm-ct-HorizList rm-ct-Cols'
+      classes.axis
     );
 
     const rowAttrs = this.props.rows.filter(
@@ -249,10 +286,10 @@ class AbundantCrossTableContent extends React.PureComponent {
     const rowAttrsCell = this.makeDnDCell(
       rowAttrs,
       this.propUpdater('rows').bind(this),
-      'rm-ct-AxisContainer rm-ct-VertList rm-ct-Rows'
+      classes.axis
     );
     const outputCell = (
-      <td className="rm-ct-Output">
+      <td>
         <CrossTable
           {...update(this.props, {
             data: {$set: this.materializedInput},
@@ -263,7 +300,7 @@ class AbundantCrossTableContent extends React.PureComponent {
 
     if (horizUnused) {
       return (
-        <table className="rm-ct-Ui">
+        <table className={classes.table} width="100%">
           <tbody>
             <tr>
               {rendererCell}
@@ -283,7 +320,7 @@ class AbundantCrossTableContent extends React.PureComponent {
     }
 
     return (
-      <table className="rm-ct-Ui">
+      <table className={classes.table}>
         <tbody>
           <tr>
             {rendererCell}
@@ -318,4 +355,4 @@ AbundantCrossTableContent.defaultProps = Object.assign({}, CrossTable.defaultPro
   menuLimit: 500,
 });
 
-export default AbundantCrossTableContent;
+export default withStyles(styles)(AbundantCrossTableContent);

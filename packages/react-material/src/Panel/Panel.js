@@ -106,7 +106,7 @@ const boxTarget = {
   },
   //canDrop(props, monitor){}
 }
-class Panel extends React.Component {
+class _Panel extends React.Component {
   constructor(props) {
     super(props);
   
@@ -245,13 +245,13 @@ class Panel extends React.Component {
     );
   }
 }
-let C = DropTarget(['DRAGANDDROP'], boxTarget, (connect,monitor) => {
+let Panel = DropTarget(['DRAGANDDROP'], boxTarget, (connect,monitor) => {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver({ shallow: true }),
     //isOverCurrent: monitor.isOver({ shallow: false }),
     canDrop: monitor.canDrop(),
     itemType: monitor.getItemType()
-}})(Panel);
+}})(_Panel);
 
-export default withStyles(styles)(withDragAndDrop(C));
+export default withStyles(styles)(withDragAndDrop(Panel));

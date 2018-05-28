@@ -93,9 +93,6 @@ let defaultManager;
 	}
 }
 
-
-
-
 export default function withDragAndDrop(Component) {
   return DragDropContext(HTML5Backend)(Component);
 }

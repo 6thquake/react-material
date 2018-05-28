@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import {Home,Grade,Lock} from '@material-ui/icons';
+import { Home, Grade, Lock } from '@material-ui/icons';
 import HTML5Backend from 'react-dnd-html5-backend';
-import {DragSource as DragSourceBase,DropTarget as DropTargetBase } from 'react-dnd';
+import { DragSource as DragSourceBase, DropTarget as DropTargetBase } from 'react-dnd';
 /*type:
 position 对于panel中已存在的source 拖拽时会重新定位它的位置 当拖出panel以外时会删除
 dragin 从panel外部拖入，源source不变，复制一份
@@ -97,7 +97,7 @@ function _dropCollect(connect,monitor){
 	}
 };
 
-class DragSouce extends Component {
+class _DragSouce extends Component {
 	constructor(props) {
 		super(props)
 	}
@@ -122,6 +122,6 @@ class DragSouce extends Component {
 	}
 }
 
-const _mc = DropTargetBase('DRAGANDDROP', _target, _dropCollect)(DragSouce);
-const _mcm = DragSourceBase('DRAGANDDROP', _source, _dragCollect)(_mc);
-export default withStyles(styles)(_mcm);
+const _mc = DropTargetBase('DRAGANDDROP', _target, _dropCollect)(_DragSouce);
+const DragSouce = DragSourceBase('DRAGANDDROP', _source, _dragCollect)(_mc);
+export default withStyles(styles)(DragSouce);

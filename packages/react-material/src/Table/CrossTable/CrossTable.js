@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { CrossTableData } from './CrossTableUtilities';
 import CrossTableRenderers from './CrossTableRenderers';
 
-/* eslint-disable react/prop-types */
-// eslint can't see inherited propTypes!
 
 class CrossTable extends React.PureComponent {
   render() {

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Popover from 'material-ui/Popover';
-import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
+import Popover from '../Popover';
+import { withStyles } from '../styles';
+import TextField from '../TextField';
 import CascadeOption from './CascadeOption'
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown'
-import {InputAdornment} from 'material-ui/Input';
+import { InputAdornment } from '../Input';
 
 
 const styles = theme => ({

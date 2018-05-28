@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper';
-import Chip from 'material-ui/Chip';
+import { withStyles } from '../styles';
+import TextField from '../TextField';
+import Paper from '../Paper';
+import Chip from '../Chip';
 import Pagination from '../Pagination/Pagination';
-import Divider from 'material-ui/Divider';
-import { MenuItem } from 'material-ui/Menu';
+import Divider from '../Divider';
+import { MenuItem } from '../Menu';
 const styles = theme => ({
   root: {
    flexGrow: 1,

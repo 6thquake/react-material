@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '../styles';
 import { Clear } from '@material-ui/icons';
-import Slide from 'material-ui/transitions/Slide';
-import Fade from 'material-ui/transitions/Fade';
+import Slide from '../transitions/Slide';
+import Fade from '../transitions/Fade';
 
 const styles = {
     rmTag: {

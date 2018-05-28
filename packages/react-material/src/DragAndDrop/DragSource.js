@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '../styles';
 import { Home, Grade, Lock } from '@material-ui/icons';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragSource as DragSourceBase, DropTarget as DropTargetBase } from 'react-dnd';

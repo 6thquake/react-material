@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import pink from 'material-ui/colors/pink';
-import green from 'material-ui/colors/green';
-import orange from 'material-ui/colors/orange';
-import common from 'material-ui/colors/common';
-import { fade } from 'material-ui/styles/colorManipulator';
+import { withStyles } from '../styles';
+import pink from '../colors/pink';
+import green from '../colors/green';
+import orange from '../colors/orange';
+import common from '../colors/common';
+import { fade } from '../styles/colorManipulator';
 import Button from 'material-ui/Button';
 import classNames from 'classnames';
 import Done from '@material-ui/icons/Done';
 import Replay from '@material-ui/icons/Replay';
-import { CircularProgress } from 'material-ui/Progress';
+import { CircularProgress } from '../Progress';
 import addonRmTheme from '../styles/addonRmTheme';
 
 

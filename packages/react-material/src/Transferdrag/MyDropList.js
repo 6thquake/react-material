@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import List from 'material-ui/List';
+import { withStyles } from '../styles';
+import List from '../List';
 import { DropTarget, DragDropContext } from 'react-dnd'
-import {DragListItem as ListItem,ListItemText} from './DragListItem';
+import { DragListItem as ListItem,ListItemText } from './DragListItem';
 
 const styles = {
   root: {

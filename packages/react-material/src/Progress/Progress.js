@@ -1,9 +1,9 @@
 import React , { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '../styles';
 import { LinearProgress } from 'material-ui/Progress';
 import { Done, HighlightOff } from '@material-ui/icons';
-import { red } from 'material-ui/colors';
+import { red } from '../colors';
 
 const styles = theme => ({
     lineProgress: {

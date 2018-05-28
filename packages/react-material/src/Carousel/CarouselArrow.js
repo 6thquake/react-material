@@ -1,6 +1,6 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import {ChevronRight,ChevronLeft} from '@material-ui/icons';
+import { withStyles } from '../styles';
+import { ChevronRight, ChevronLeft } from '@material-ui/icons';
 //<RMTransfer></RMTransfer> 
 const styles = {
   root:{

@@ -2,7 +2,7 @@ import React from 'react'
 import Paper from 'material-ui/Paper'
 
 import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
+import { withStyles } from '../styles'
 import Divider from 'material-ui/Divider'
 import Anchor from '../Anchor'
 export const styles = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '../styles';
 import { ChevronRight, ChevronLeft, LastPage, FirstPage } from '@material-ui/icons';
 import { DropTarget } from 'react-dnd';
 import GridList, { GridListTile, GridListTileBar } from '../GridList';

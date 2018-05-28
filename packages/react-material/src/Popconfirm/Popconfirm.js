@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Popover from 'material-ui/Popover';
+import { withStyles } from '../styles';
+import Popover from '../Popover';
 import PopoverContent from './content'
 const styles = theme => ({
   box: {

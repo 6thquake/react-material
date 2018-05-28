@@ -145,6 +145,7 @@ class Menu extends React.Component {
 
   render() {
     const {prefixCls, className, theme} = this.props;
+    const {classes,...props} = this.props;
     const menuMode = this.getRealMenuMode();
     const menuOpenAnimation = this.getMenuOpenAnimation(menuMode);
     const menuClassName = classNames(className, `${prefixCls}-${theme}`, {
@@ -169,7 +170,7 @@ class Menu extends React.Component {
       (collapsedWidth === 0 || collapsedWidth === '0' || collapsedWidth === '0px')) {
       return null;
     }
-    return <RcMenu {...this.props} {...menuProps}/>;
+    return <RcMenu {...props} {...menuProps}/>;
   }
 }
 

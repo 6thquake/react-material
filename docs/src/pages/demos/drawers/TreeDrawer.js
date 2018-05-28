@@ -157,7 +157,6 @@ class MiniDrawer extends React.Component {
                     mode="inline"
                     inlineCollapsed={!this.state.open}
                     theme={'dark'}
-                    debugger={true}
           />
         </Drawer>
         <main className={classes.content}>

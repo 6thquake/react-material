@@ -1,45 +1,84 @@
 import dark from './dark';
+import {fade, emphasize} from '../styles/colorManipulator';
+
 const menuPrefixCls = 'rm-menu';
+
 const styles = theme => {
-  const menuItem = {
-    height: theme.spacing.unit * 5,
-    lineHeight: `${theme.spacing.unit * 5}px`,
-    fontSize: theme.typography.fontSize
+  const menu = {
+    menuCollapsedWidth:'80',
+    fontSizeBase:'14px',
+    textColor:fade('#000',.65),
+    lineHeightBase:1.5,
+    boxShadowBase:'0 2px 8px rgba(0, 0, 0, .15)',
+
+    borderColorSplit: 'border-color-split',
+    menuItemColor: fade('#000', .65),
+    menuBg: '#fff',
+    menuItemGroupTitleColor: fade('#000', .45),
+
+    menuItemActiveBg: fade(theme.palette.primary.main, .1),
+    menuHoverBg: fade('#000', .08),
+    // menuHoverBg: fade(theme.palette.primary.main, .05),
+
+    menuHighlightColor: theme.palette.primary.main,
+    disabledColor: fade('#000', .25),
+    textColorDark: fade('#fff', .85),
+
+    menuDarkColor:'#fff',
+    menuDarkBg:fade('#000', .87),
+    menuDarkArrowColor: '#fff',
+    menuDarkSubmenuBg:fade('#000', .87),
+    menuDarkHoverBg:fade('#9e9e9e', .3),
+    menuDarkHighlightColor: '#fff',
+
+    menuDarkItemSelectedBg:fade(theme.palette.primary.main, .3),
+
+    disabledColorDark    : fade('#fff', .35),
+    easeInOut         : 'cubic-bezier(0.645, 0.045, 0.355, 1)',
+    border:{
+      width: '1px',
+      style: 'solid',
+      color: '#e8e8e8',
+      radius: '4px',
+      colorSplit:'#e8e8e8'    //todo @border-color-split;
+    },
+    menuItem:{
+      height:'40px',
+      lineHeight: '40px',
+      fontSize: '14px'
+    },
+    iconStyle:{
+      fontSize: 'inherit',
+      marginRight: '8px',
+      verticalAlign: 'text-bottom'
+    },
+    ...theme.menu
   };
-  const active = {
-    backgroundColor: theme.palette.primary[50],
-    color: theme.palette.primary.main,
-    light: theme.palette.primary.light,
-  };
-  const border = {
-    width: '1px',
-    style: 'solid',
-    color: theme.palette.divider,
-    radius: '4px'
-  };
+
+  const border = menu.border,menuItem = menu.menuItem,iconStyle = menu.iconStyle;
+
   const iconfontCssPrefix = 'material-icons';
-  const iconStyle = {
-    fontSize: 'inherit',
-    marginRight: theme.spacing.unit,
-    verticalAlign: 'text-bottom'
-  };
-  // console.log(theme);
+
   return {
     '@global': {
       [`.${menuPrefixCls}`]: {
         ...theme.typography.body1,
+        boxShadow: menu.boxShadowBase,
+        color:menu.menuItemColor,
+        background:menu.menuBg,
         outline: 'none',
         margin: 0,
         padding: 0,
         paddingLeft: 0,
         listStyle: 'none',
-        boxShadow: theme.shadows[1],
-        background: theme.palette.background.default,
-        lineHeight: 0,// Fix display inline-block gap
+        lineHeight: 0,
         transition: 'background .3s, width .2s',
         zoom: 1,
         '@global .material-icons,[class*=MuiSvgIcon-root]': {
           ...iconStyle
+        },
+        '& *':{
+          boxSizing:'border-box'
         },
         '&:before, &:after': {
           content: "' '",
@@ -62,33 +101,28 @@ const styles = theme => {
         },
 
         '&-item-group-title': {
-          ...theme.typography.subheading,
+          color:menu.menuItemGroupTitleColor,
+          fontSize:menu.fontSizeBase,
+          lineHeight:menu.lineHeightBase,
           padding: '8px 16px',
-          transition: 'all .3s',
-          color: theme.palette.text.secondary
-
-          //         color: @menu-item-group-title-color;
-          // font-size: @font-size-base;
-          // line-height: @line-height-base;
-          // padding: 8px 16px;
-          // transition: all .3s;
+          transition: 'all .3s'
         },
         '&-submenu, &-submenu-inline': {
-          transition: `border-color .3s ${theme.transitions.easing.easeInOut}, background .3s ${theme.transitions.easing.easeInOut}, padding .15s ${theme.transitions.easing.easeInOut}`
+          transition: `border-color .3s ${menu.easeInOut}, background .3s ${menu.easeInOut}, padding .15s ${menu.easeInOut}`
         },
 
         '&-item:active, &-submenu-title:active': {
-          background: active.backgroundColor
+          background: menu.menuItemActiveBg,
         },
         '&-submenu &-sub': {
           cursor: 'initial',
-          transition: `background .3s ${theme.transitions.easing.easeInOut}, padding .3s ${theme.transitions.easing.easeInOut}`
+          transition: `background .3s ${menu.easeInOut}, padding .3s ${menu.easeInOut}`
         },
         '&-item > a': {
           display: 'block',
-          // color: @menu-item-color,
+          color: menu.menuItemColor,
           '&:hover': {
-            color: active.light
+            color: menu.menuHighlightColor
           },
           '&:focus': {
             textDecoration: 'none'
@@ -106,13 +140,16 @@ const styles = theme => {
         '&-item-divider': {
           height: 1,
           overflow: 'hidden',
-          backgroundColor: theme.palette.divider,
+          backgroundColor: '#e8e8e8',//theme.palette.divider,
           lineHeight: 0,
         },
-        '&-item:hover, &-item-active, &:not(&-inline) &-submenu-open, &-submenu-active, &-submenu-title:hover': {
-          color: active.light,
+        '&-item:hover, &-item-active, &:not(&-inline) &-submenu-open, &-submenu-active': {
+          color: menu.menuHighlightColor,
+          background:menu.menuHoverBg
         },
-
+        '&-submenu-title:hover':{
+          color: menu.menuHighlightColor
+        },
         '&-horizontal &-item, &-horizontal &-submenu': {
           marginTop: -1
         },
@@ -120,13 +157,13 @@ const styles = theme => {
           backgroundColor: 'transparent'
         },
         '&-item-selected': {
-          color: active.light,
+          color: menu.menuHighlightColor,
           '&> a, > a:hover': {
-            color: active.light
+            color: menu.menuHighlightColor
           }
         },
         '&:not(&-horizontal) &-item-selected': {
-          backgroundColor: active.backgroundColor
+          backgroundColor: menu.menuItemActiveBg
         },
         '&-inline, &-vertical, &-vertical-left': {
           borderRight: `${border.width} ${border.style} ${border.color}`
@@ -160,13 +197,13 @@ const styles = theme => {
           position: 'relative',
           display: 'block',
           whiteSpace: 'nowrap',
-          transition: `color .3s ${theme.transitions.easing.easeInOut}, border-color .3s ${theme.transitions.easing.easeInOut}, background .3s ${theme.transitions.easing.easeInOut}, padding .15s ${theme.transitions.easing.easeInOut}`,
+          transition: `color .3s ${menu.easeInOut}, border-color .3s ${menu.easeInOut}, background .3s ${menu.easeInOut}, padding .15s ${menu.easeInOut}`,
           [`& .${iconfontCssPrefix}`]: {
             minWidth: 14,
             marginRight: 10,
-            transition: `font-size .15s ${theme.transitions.easing.easeInOut}, margin .3s ${theme.transitions.easing.easeInOut}`,
+            transition: `font-size .15s ${menu.easeInOut}, margin .3s ${menu.easeInOut}`,
             '&+ span': {
-              transition: `opacity .3s ${theme.transitions.easing.easeInOut}, width .3s ${theme.transitions.easing.easeInOut}`,
+              transition: `opacity .3s ${menu.easeInOut}, width .3s ${menu.easeInOut}`,
               opacity: 1
             }
           }
@@ -177,7 +214,7 @@ const styles = theme => {
           overflow: 'hidden',
           padding: 0,
           lineHeight: 0,
-          backgroundColor: theme.palette.divider
+          backgroundColor: border.colorSplit
         },
 
         '&-submenu': {
@@ -187,10 +224,10 @@ const styles = theme => {
             zIndex: theme.zIndex.drawer
           },
           [`& > .${menuPrefixCls}`]: {
-            backgroundColor: theme.palette.background.default,
+            backgroundColor: menu.menuBg,
             borderRadius: border.radius,
             '&-submenu-title:after': {
-              transition: `transform .3s ${theme.transitions.easing.easeInOut}`
+              transition: `transform .3s ${menu.easeInOut}`
             }
           },
 
@@ -215,7 +252,7 @@ const styles = theme => {
           },
           '&-vertical, &-vertical-left, &-vertical-right, &-inline': {
             [`&> .${menuPrefixCls}-submenu-title .${menuPrefixCls}-submenu-arrow`]: {
-              transition: `transform .3s ${theme.transitions.easing.easeInOut}`,
+              transition: `transform .3s ${menu.easeInOut}`,
               position: 'absolute',
               top: '50%',
               right: 16,
@@ -224,12 +261,12 @@ const styles = theme => {
                 content: "' '",
                 position: 'absolute',
                 verticalAlign: 'baseline',
-                background: theme.palette.common.white,
-                backgroundImage: `linear-gradient(to right, ${theme.palette.text.primary}, ${theme.palette.text.primary})`,
+                background: menu.menuItemColor,
+                backgroundImage: `linear-gradient(to right, ${menu.menuItemColor}, ${menu.menuItemColor})`,
                 width: 6,
                 height: 1.5,
                 borderRadius: 2,
-                transition: `background .3s ${theme.transitions.easing.easeInOut}, transform .3s ${theme.transitions.easing.easeInOut}, top .3s ${theme.transitions.easing.easeInOut}`
+                transition: `background .3s ${menu.easeInOut}, transform .3s ${menu.easeInOut}, top .3s ${menu.easeInOut}`
               },
               '&:before': {
                 transform: 'rotate(45deg) translateY(-2px)'
@@ -240,7 +277,7 @@ const styles = theme => {
             },
             [`&> .${menuPrefixCls}-submenu-title:hover .${menuPrefixCls}-submenu-arrow`]: {
               '&:after, &:before': {
-                background: `linear-gradient(to right, ${active.light}, ${active.light})`
+                background: `${menu.menuHighlightColor}`
               }
             }
           },
@@ -248,9 +285,9 @@ const styles = theme => {
 
 
         '&-vertical &-submenu-selected, &-vertical-left &-submenu-selected, &-vertical-right &-submenu-selected': {
-          color: active.light,
+          color: menu.menuHighlightColor,
           '&> a': {
-            color: active.light
+            color: menu.menuHighlightColor
           }
         },
         '&-horizontal': {
@@ -264,14 +301,14 @@ const styles = theme => {
             float: 'left',
             borderBottom: '2px solid transparent',
             [`&:hover,&-active,&-open,&-selected`]: {
-              borderBottom: `2px solid ${active.light}`,
-              color: active.light
+              borderBottom: `2px solid ${menu.menuHighlightColor}`,
+              color: menu.menuHighlightColor
             },
             '& > a': {
               display: 'block',
-              color: theme.palette.text.primary,
+              color: menu.menuItemColor,
               '&:hover': {
-                color: active.light
+                color: menu.menuHighlightColor
               },
               '&:before': {
                 bottom: -2
@@ -289,7 +326,7 @@ const styles = theme => {
           width: '100%',
           [`& .${menuPrefixCls}-selected,& .${menuPrefixCls}-item-selected`]: {
             '&:after': {
-              transition: `transform .15s ${theme.transitions.easing.easeInOut}, opacity .15s ${theme.transitions.easing.easeInOut}`,
+              transition: `transform .15s ${menu.easeInOut}, opacity .15s ${menu.easeInOut}`,
               opacity: 1,
               transform: 'scaleY(1)'
             }
@@ -310,15 +347,17 @@ const styles = theme => {
               left: 0,
               top: 0,
               bottom: 0,
-              borderRight: `3px solid ${active.color}`,
+              borderRight: `3px solid ${menu.menuHighlightColor}`,
               transform: 'scaleY(.0001)',
               opacity: 0,
-              transition: `transform .15s ${theme.transitions.easing.easeInOut}, opacity .15s ${theme.transitions.easing.easeInOut}`
+              transition: `transform .15s ${menu.easeInOut}, opacity .15s ${menu.easeInOut}`
             }
           },
           [`& .${menuPrefixCls}-item,& .${menuPrefixCls}-submenu-title`]: {
             padding: '0 16px',
-            ...menuItem,
+            fontSize:menu.fontSizeBase,
+            lineHeight:menuItem.height,
+            height:menuItem.height,
             marginTop: 4,
             marginBottom: 4,
             overflow: 'hidden',
@@ -339,13 +378,13 @@ const styles = theme => {
         },
 
         '&-inline-collapsed': {
-          width: theme.spacing.unit * 10,
+          width: `${menu.menuCollapsedWidth}px`,
           [`& > .${menuPrefixCls}-item,
           &> .${menuPrefixCls}-item-group > .${menuPrefixCls}-item-group-list > .${menuPrefixCls}-item,
           &> .${menuPrefixCls}-submenu > .${menuPrefixCls}-submenu-title`]: {
             left: 0,
             textOverflow: 'clip',
-            padding: `0 ${( theme.spacing.unit * 10 - 16) / 2}px !important`,
+            padding: `0 ${( menu.menuCollapsedWidth - 16) / 2}px !important`,
             [`& .${menuPrefixCls}-submenu-arrow`]: {
               display: 'none'
             },
@@ -367,7 +406,7 @@ const styles = theme => {
               display: 'none'
             },
             '& a': {
-              color: theme.palette.common.white
+              color: menu.textColorDark
             }
           },
           [`& .${menuPrefixCls}-item-group-title`]: {
@@ -407,20 +446,20 @@ const styles = theme => {
         },
         // Disabled state sets text to gray and nukes hover/tab effects
         '&-item-disabled, &-submenu-disabled': {
-          color: `${theme.palette.text.disabled} !important`,
+          color: `${menu.disabledColorDark} !important`,
           cursor: 'not-allowed',
           background: 'none',
           borderColor: 'transparent !important',
           '&> a': {
-            color: `${theme.palette.text.disabled} !important`,
+            color: `${menu.disabledColor} !important`,
             pointerEvents: 'none'
           },
           [`&> .${menuPrefixCls}-submenu-title`]: {
-            color: `${theme.palette.text.disabled} !important`,
+            color: `${menu.disabledColor} !important`,
             cursor: 'not-allowed'
           }
         },
-       ...dark(theme,menuPrefixCls)
+        ...dark(menu, menuPrefixCls)
       }
     }
   }

@@ -18,10 +18,11 @@ class SubMenu extends React.Component{
   }
   render() {
     const { rootPrefixCls, className } = this.props;
+    const {classes,...props} = this.props;
     const theme = this.context.rMMenuTheme;
     return (
       <RcSubMenu
-        {...this.props}
+        {...props}
         ref={this.saveSubMenu}
         popupClassName={classNames(`${rootPrefixCls}-${theme}`, className)}
       />
@@ -30,5 +31,5 @@ class SubMenu extends React.Component{
 }
 SubMenu.isSubMenu = true;
 
-export default withStyles(styles,{ withTheme: true })(SubMenu);
+export default withStyles(styles)(SubMenu);
 

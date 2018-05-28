@@ -221,12 +221,12 @@ class TreeMenu extends React.Component {
   }
 
   render() {
-
+    const {list,itemKeysMap,debugger:d,...props} = this.props;
     return (
       <Menu
-        {...this.props}
+        {...props}
       >
-        {this.renderMenu(this.props.list)}
+        {this.renderMenu(list)}
       </Menu>
     );
   }
@@ -260,8 +260,7 @@ TreeMenu.propTypes = {
   debugger:PropTypes.bool
 };
 TreeMenu.defaultProps = {
-  //inlineIndent: 3,
+  debugger:false,
   itemKeysMap: defaultItemKeysMap
 };
-
 export default withStyles()(TreeMenu);

@@ -24,7 +24,7 @@ export {
 } from './Dialog';
 export { default as Divider } from './Divider';
 export { default as Drawer } from './Drawer';
-export { DragSource,DropZone } from './DragAndDrop';
+export { DragSource, DropZone, withDragAndDrop } from './DragAndDrop';
 export {
   default as ExpansionPanel,
   ExpansionPanelActions,

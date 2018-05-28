@@ -6,6 +6,7 @@ import { DropTarget } from 'react-dnd';
 import GridList, { GridListTile, GridListTileBar } from '../GridList';
 import {DragSource as Source} from '../DragAndDrop';
 import Resizable from 're-resizable';
+import withDragAndDrop from '../DragAndDrop/withDragAndDrop'
 
 /*
 需要get到penal的clientOffset xy
@@ -253,4 +254,4 @@ let C = DropTarget(['DRAGANDDROP'], boxTarget, (connect,monitor) => {
     itemType: monitor.getItemType()
 }})(Panel);
 
-export default withStyles(styles)(C);
+export default withStyles(styles)(withDragAndDrop(C));

@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -7,9 +5,9 @@ import {Home,Grade,Lock} from '@material-ui/icons';
 import Panel from 'react-material/Panel';
 //import Source from './Source';
 import {DragSource as Source} from 'react-material/DragAndDrop';
-import HTML5Backend from 'react-dnd-html5-backend';
-import { DragDropContextProvider,DropTarget } from 'react-dnd';
+import { DropTarget } from 'react-dnd';
 import { StatusButton } from 'react-material/Button';
+import withDragAndDrop from 'react-material/DragAndDrop/withDragAndDrop'
 
 
 
@@ -35,8 +33,6 @@ class MyPanel extends Component {
 		(<div cols={3} rows={2}><div>默认的div2</div></div>),
 		(<div cols={4} rows={2}><div>默认的div3</div></div>)];
 		return (
-			<DragDropContextProvider backend={HTML5Backend}>
-
 			<div>
 			  <div style={{position:'relative',paddingLeft: '140px'}}>
 				<div style={{position:'absolute',width:'120px',height:'100%',left:'0px',top:'0'}}>
@@ -46,10 +42,8 @@ class MyPanel extends Component {
 				<Panel defaultChildren={defaultChildren} ></Panel>
 			  </div>
 			</div>
-      		</DragDropContextProvider>
-
 		)
 	}
 }
 
-export default withStyles(styles)(MyPanel)
+export default withStyles(styles)(withDragAndDrop(MyPanel))

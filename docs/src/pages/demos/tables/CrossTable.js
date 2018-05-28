@@ -22,8 +22,9 @@ import Popover from 'react-material/Popover';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import Chip from 'react-material/Chip';
 
-import HTML5Backend from 'react-dnd-html5-backend';
-import { DragDropContextProvider, DragSource, DropTarget } from 'react-dnd';
+import { DragSource, DropTarget } from 'react-dnd';
+
+import withDragAndDrop from 'react-material/DragAndDrop/withDragAndDrop'
 
 
 if(process.browser) {
@@ -742,7 +743,6 @@ class App extends React.Component {
 
     render() {
         return (
-          <DragDropContextProvider backend={HTML5Backend}>
             <Grid container spacing={24}>
                 <Grid item xs={12}>
                   <p>initial data or paste some data below:</p>
@@ -761,8 +761,8 @@ class App extends React.Component {
                     <CrossTableUISmartWrapper {...this.state.crossTableState} />
                 </Grid>
             </Grid>
-          </DragDropContextProvider>
           );
     }
 }  
-export default withStyles()(App);
+
+export default withStyles()(withDragAndDrop(App));

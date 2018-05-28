@@ -21,15 +21,20 @@ cellSize int //每个网格的宽度
 
 */
 let myCellSize = 50;
+let defaultColsCount = 12;
+let defaultPanelSize ={
+  width:650,
+  height:600
+};
 
 
 const styles={
   root:{
     minWidth:'100px',
     minHeight:'100px',
-    border:'1px solid rgba(0,0,0,0.1)',
+    
     position:'relative',
-    backgroundImage:'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAAEH5aXCAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA0xpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjMyQzFGREI1Nzc2MTFFODkxMDJGNThFQ0JGQzFCMzQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjMyQzFGREE1Nzc2MTFFODkxMDJGNThFQ0JGQzFCMzQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmRkNzZhNTk4LTllZWYtMTE3Yi1hNWRmLWM5MWVjYTRjYTk3ZCIgc3RSZWY6ZG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmRkNzZhNTk4LTllZWYtMTE3Yi1hNWRmLWM5MWVjYTRjYTk3ZCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhWNmR8AAAE6SURBVHjaYmRkZGQgFTAxkAFGNY1qooImgABiJDXBMtHcWaMaRooGgABiJKe0pEu2GLVk1JJRS0YtwQ0AAogeZZf8aJyMWjJqyaglo5aMWjJqyaglo5bQxxKAAOzXQQkAAAgDwI897N9SUwyUGyzA4cdFhmkgmQfyzdlBQEBAQEBAQEBAQEBAQEBAzqe2/QEyArBrxzQAAAAIw/y7RsNeUhz04CEY6HQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQk5eZBNwHauWMaAIAQCILFI+D9qyWhxQC5zFoYygsVsqBLaA7qATnTBwJEQIAICBABASIgQIAAERAgAgJEQIAICBAgQAQEiIAAERAgAgJEQAQEiIAAERAgAgJEQAQEiIAAERAgAgJEQLRAYj6xpdSuGwYph8fsCgAAAABJRU5ErkJggg==")',
+    backgroundImage:'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAAEH5aXCAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NTQzODRDNjY1OTEyMTFFODkwMDFEODY0QTdDMDVBRTMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NTQzODRDNjU1OTEyMTFFODkwMDFEODY0QTdDMDVBRTMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2MzJDMUZEQTU3NzYxMUU4OTEwMkY1OEVDQkZDMUIzNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2MzJDMUZEQjU3NzYxMUU4OTEwMkY1OEVDQkZDMUIzNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PpaCGOAAAAFLSURBVHjaYpDXMJT6//8/AymYiYEMMKppVBMVNAEEECMoAdLUllENoxpwAIAAYiCntKRL6UqXvDdqyaglo5YMUUsAAojkinM0TkYtGbVk1JJRS0YtGbVk1JJRSwavJQAB2K9jEwBgEAiATaawSps2+w8nWeLBcILfn18ZeUwTm7nWN7WDgICAgICAgICAgICAgICATJ/1Yp9b0yEtALt2TAMAAIAwzL9rNOwlxUEPHoKBTkdAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBSbh50E6C9O7QBAIQBIAgJ+4+GxaKYg1TUdoDmXlVzqWvCjAu6GO7Zb8iKCAgQAQEiIEAEBIiACAgQAQEiIEAEBIiACAgQAQEiIEAEBIiACAgQAQEiIEAEBIiACAgQAQEiIEAEBIiAAPEEQFS0cmjxn2mDPp5bn+8Ii2+BAAAAAElFTkSuQmCC")',
     backgroundSize: myCellSize+'px '+myCellSize+'px', 
     
   },
@@ -37,6 +42,9 @@ const styles={
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    borderTop:'1px solid rgba(0,0,0,0.1)',
+    borderRight:'1px solid rgba(0,0,0,0.1)',
+    borderBottom:'1px solid rgba(0,0,0,0.1)',
     //border: 'solid 1px #ddd',
     //background: '#f0f0f0',
     
@@ -103,7 +111,10 @@ class Panel extends React.Component {
   
     this.state = {
       //childComponents:props.defaultChildren,
-      cellSize:myCellSize
+      cellSize:myCellSize,
+      spacing:[0,0],
+      panelSize:defaultPanelSize,
+      colsCount:defaultColsCount
     };
     this.state.childComponents = props.defaultChildren.map((v,i)=>{
       return {component:v,size:[v.props.cols,v.props.rows]}
@@ -180,12 +191,24 @@ class Panel extends React.Component {
   refCallBack=(node)=>{
     console.log('**************','refcallback')
     if(node && node.offsetWidth){
-
-    const cellSize = Math.round(node.offsetWidth/12);
-    if(cellSize != this.state.cellSize){
+    const _offsetWidth = node.offsetWidth;
+    const _colsCount = this.state.colsCount || defaultColsCount;
+    const _cellSize = Math.round(_offsetWidth/_colsCount);
+    if(_cellSize != this.state.cellSize){
       //const ul = node.querySelector('ul[class^="MuiGridList"]');
-      
-      this.setState({cellSize:cellSize});
+      const coreWidth = _colsCount*_cellSize
+      const myPadding = _offsetWidth - coreWidth;
+      if(!!this.state.panelSize){
+        this.state.panelSize.width = coreWidth;
+      }
+
+      let _paddingLeft = 0,_paddingRight = 0;
+      if(myPadding>=1){
+        _paddingLeft = Math.floor(myPadding/2);
+        _paddingRight = Math.ceil(myPadding/2);
+      }
+
+      this.setState({cellSize:_cellSize,spacing:[_paddingLeft,_paddingRight],panelSize:this.state.panelSize});
     }
     
     }
@@ -194,7 +217,7 @@ class Panel extends React.Component {
 
   render() {
     const self =this;
-    const {childComponents,cellSize} = this.state;
+    const {childComponents,cellSize,colsCount,spacing,panelSize} = this.state;
     const {classes,connectDropTarget} = this.props;
     const _childComponents =(childComponents||[]).map((value,index)=>{
       if(value && (value.size instanceof Array) && value.size.length == 2){
@@ -209,13 +232,10 @@ class Panel extends React.Component {
       
     });
     return connectDropTarget(
-      <div className={classes.root} ref={this.refCallBack} style={{backgroundSize:cellSize+'px '+cellSize+'px'}}>
-      <Resizable className={classes.resize} defaultSize = {{ 
-    width :650,
-     height :600
-  }} minWidth={100} minHeight={100} grid={[10,10]} bounds={'window'} onResizeStop={this.resizePanel}>
+      <div className={classes.root} ref={this.refCallBack} style={{backgroundSize:cellSize+'px '+cellSize+'px',marginRight:spacing[1]+'px',marginLeft:spacing[0]+'px'}}>
+      <Resizable className={classes.resize} defaultSize = {panelSize} size={panelSize} minWidth={100} minHeight={100}  bounds={'window'} onResizeStop={this.resizePanel}>
     <div className={classes.resizeInnerWrap}>
-        <GridList spacing={0} cellHeight={cellSize} cols={12}>
+        <GridList spacing={0} cellHeight={cellSize} cols={colsCount}>
             {_childComponents}
         </GridList>
         </div>

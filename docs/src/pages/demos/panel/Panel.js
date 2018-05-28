@@ -1,17 +1,15 @@
-
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { DropTarget } from 'react-dnd';
+
 import { withStyles } from 'material-ui/styles';
-import {Home,Grade,Lock} from '@material-ui/icons';
+
 import Panel from 'react-material/Panel';
-//import Source from './Source';
-import {DragSource as Source} from 'react-material/DragAndDrop';
-import HTML5Backend from 'react-dnd-html5-backend';
-import { DragDropContextProvider,DropTarget } from 'react-dnd';
+
 import { StatusButton } from 'react-material/Button';
+import { DragSource, withDragAndDrop } from 'react-material/DragAndDrop'
 
-
+import { Home, Grade, Lock } from '@material-ui/icons';
 
 const styles={
 	root:{
@@ -27,7 +25,6 @@ class MyPanel extends Component {
 		super(props)
 	}
 
-
 	render() {
 		const {classes} = this.props;
 		const defaultChildren=[(<div cols={4} rows={2}><StatusButton color="primary">默认的button</StatusButton></div>),
@@ -35,21 +32,21 @@ class MyPanel extends Component {
 		(<div cols={3} rows={2}><div>默认的div2</div></div>),
 		(<div cols={4} rows={2}><div>默认的div3</div></div>)];
 		return (
-			<DragDropContextProvider backend={HTML5Backend}>
-
 			<div>
 			  <div style={{position:'relative',paddingLeft: '140px'}}>
 				<div style={{position:'absolute',width:'120px',height:'100%',left:'0px',top:'0'}}>
-					<Source type={'DRAGIN'} className={classes.source}><StatusButton color="primary" cols={3} rows={2}>test button</StatusButton></Source>
-					<Source type={'DRAGIN'} className={classes.source}><div cols={3} rows={2}>test word</div></Source>
+					<DragSource type={'DRAGIN'} className={classes.source}>
+						<StatusButton color="primary" cols={3} rows={2}>test button</StatusButton>
+					</DragSource>
+					<DragSource type={'DRAGIN'} className={classes.source}>
+						<div cols={3} rows={2}>test word</div>
+					</DragSource>
 				</div>
 				<Panel defaultChildren={defaultChildren} ></Panel>
 			  </div>
 			</div>
-      		</DragDropContextProvider>
-
 		)
 	}
 }
 
-export default withStyles(styles)(MyPanel)
+export default withStyles(styles)(withDragAndDrop(MyPanel))

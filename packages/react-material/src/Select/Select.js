@@ -2,12 +2,12 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import Select from 'material-ui/Select';
-import Menu, { MenuItem } from 'material-ui/Menu';
+import Menu, { MenuItem } from '../Menu';
 import Pagination from '../Pagination/Pagination'
 import RMTextField from './TextField'
-import Divider from 'material-ui/Divider';
-import Chip from 'material-ui/Chip';
-import { withStyles } from 'material-ui/styles';
+import Divider from '../Divider';
+import Chip from '../Chip';
+import { withStyles } from '../styles';
 const styles = theme => ({
   selectMenu:{
     whiteSpace: 'pre-wrap',

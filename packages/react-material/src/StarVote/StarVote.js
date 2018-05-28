@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '../styles';
 // import './StarVote.css';
 
 import { StarBorder } from '@material-ui/icons'

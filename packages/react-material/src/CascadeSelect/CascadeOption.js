@@ -1,9 +1,9 @@
 import React ,{ Component}from 'react';
 import PropTypes from 'prop-types';
-import { MenuList, MenuItem } from 'material-ui/Menu';
-import Paper from 'material-ui/Paper';
-import { withStyles } from 'material-ui/styles';
-import { ListItemIcon, ListItemText } from 'material-ui/List';
+import { MenuList, MenuItem } from '../Menu';
+import Paper from '../Paper';
+import { withStyles } from '../styles';
+import { ListItemIcon, ListItemText } from '../List';
 import PlayArrow from '@material-ui/icons/PlayArrow';
 
 const styles = theme => ({

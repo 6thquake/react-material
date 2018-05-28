@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { ListItem,ListItemText } from 'material-ui/List';
+import { withStyles } from '../styles';
+import { ListItem,ListItemText } from '../List';
 import { DragSource } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
-import Checkbox from 'material-ui/Checkbox';
+import Checkbox from '../Checkbox';
 
 const boxSource = {
 	beginDrag(props,monitor, component) {

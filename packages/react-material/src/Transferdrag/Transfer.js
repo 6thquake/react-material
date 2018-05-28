@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-//import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
+import { withStyles } from '../styles';
 import DropList from './DropList';
 import MyDropList from './MyDropList';
-import {DragListItem as ListItem,ListItemText} from './DragListItem';
-import Checkbox from 'material-ui/Checkbox';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
+import { DragListItem as ListItem, ListItemText } from './DragListItem';
+import Checkbox from '../Checkbox';
+import Button from '../Button';
+import IconButton from '../IconButton';
 import { ChevronRight, ChevronLeft, LastPage, FirstPage } from '@material-ui/icons';
 import { DropTarget, DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'

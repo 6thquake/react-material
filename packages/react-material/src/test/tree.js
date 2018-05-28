@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import MuiThemeProvider from '../styles/MuiThemeProvider'
 import Drawer from 'material-ui/Drawer'
 import Subheader from 'material-ui/Subheader'
 import RaisedButton from 'material-ui/RaisedButton'

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '../styles';
 import { ChevronRight, ChevronLeft, LastPage, FirstPage } from '@material-ui/icons';
 import { DropTarget } from 'react-dnd';
 import GridList, { GridListTile, GridListTileBar } from '../GridList';
 import {DragSource as Source} from '../DragAndDrop';
 import Resizable from 're-resizable';
+import withDragAndDrop from '../DragAndDrop/withDragAndDrop'
 
 /*
 需要get到penal的clientOffset xy
@@ -105,7 +106,7 @@ const boxTarget = {
   },
   //canDrop(props, monitor){}
 }
-class Panel extends React.Component {
+class _Panel extends React.Component {
   constructor(props) {
     super(props);
   
@@ -191,26 +192,26 @@ class Panel extends React.Component {
   refCallBack=(node)=>{
     console.log('**************','refcallback')
     if(node && node.offsetWidth){
-    const _offsetWidth = node.offsetWidth;
-    const _colsCount = this.state.colsCount || defaultColsCount;
-    const _cellSize = Math.round(_offsetWidth/_colsCount);
-    if(_cellSize != this.state.cellSize){
-      //const ul = node.querySelector('ul[class^="MuiGridList"]');
-      const coreWidth = _colsCount*_cellSize
-      const myPadding = _offsetWidth - coreWidth;
-      if(!!this.state.panelSize){
-        this.state.panelSize.width = coreWidth;
-      }
 
-      let _paddingLeft = 0,_paddingRight = 0;
-      if(myPadding>=1){
-        _paddingLeft = Math.floor(myPadding/2);
-        _paddingRight = Math.ceil(myPadding/2);
-      }
+      const _offsetWidth = node.offsetWidth;
+      const _colsCount = this.state.colsCount || defaultColsCount;
+      const _cellSize = Math.round(_offsetWidth/_colsCount);
+      if(_cellSize != this.state.cellSize){
+        //const ul = node.querySelector('ul[class^="MuiGridList"]');
+        const coreWidth = _colsCount*_cellSize
+        const myPadding = _offsetWidth - coreWidth;
+        if(!!this.state.panelSize){
+          this.state.panelSize.width = coreWidth;
+        }
 
-      this.setState({cellSize:_cellSize,spacing:[_paddingLeft,_paddingRight],panelSize:this.state.panelSize});
-    }
-    
+        let _paddingLeft = 0,_paddingRight = 0;
+        if(myPadding>=1){
+          _paddingLeft = Math.floor(myPadding/2);
+          _paddingRight = Math.ceil(myPadding/2);
+        }
+
+        this.setState({cellSize:_cellSize,spacing:[_paddingLeft,_paddingRight],panelSize:this.state.panelSize});
+      }
     }
   }
 
@@ -244,13 +245,13 @@ class Panel extends React.Component {
     );
   }
 }
-let C = DropTarget(['DRAGANDDROP'], boxTarget, (connect,monitor) => {
+let Panel = DropTarget(['DRAGANDDROP'], boxTarget, (connect,monitor) => {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver({ shallow: true }),
     //isOverCurrent: monitor.isOver({ shallow: false }),
     canDrop: monitor.canDrop(),
     itemType: monitor.getItemType()
-}})(Panel);
+}})(_Panel);
 
-export default withStyles(styles)(C);
+export default withStyles(styles)(withDragAndDrop(Panel));

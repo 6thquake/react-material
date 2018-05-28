@@ -1,8 +1,8 @@
 import React , {Component} from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Snackbar ,{SnackbarContent } from 'material-ui/Snackbar';
-import {Fade,Slide,Collapse,Grow,Zoom} from 'material-ui/transitions';
+import { withStyles } from '../styles';
+import Snackbar ,{ SnackbarContent } from '../Snackbar';
+import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
 
 const styles = theme => ({
     snackbar: {

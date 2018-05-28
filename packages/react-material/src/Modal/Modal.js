@@ -1,9 +1,9 @@
 import React , {Component} from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Dialog, { DialogContent, DialogTitle } from 'material-ui/Dialog';
+import { withStyles } from '../styles';
+import Dialog, { DialogContent, DialogTitle } from '../Dialog';
 import { Clear } from '@material-ui/icons';
-import { Fade, Slide, Collapse, Grow, Zoom } from 'material-ui/transitions';
+import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
 
 
 const styles = theme => ({

@@ -36,6 +36,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/CustomizedTable'), 'utf8')
 `,
         },
+        'pages/demos/tables/CrossTable.js': {
+          js: require('docs/src/pages/demos/tables/CrossTable').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tables/CrossTable'), 'utf8')
+`,
+        }
       }}
     />
   );

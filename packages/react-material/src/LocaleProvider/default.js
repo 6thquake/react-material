@@ -33,4 +33,9 @@ export default {
     uploadError: 'Upload error',
     previewFile: 'Preview file',
   },
+  StepperPane: {
+    next: 'Next',
+    back: 'Back',
+    finish: 'Finish',
+  }
 };

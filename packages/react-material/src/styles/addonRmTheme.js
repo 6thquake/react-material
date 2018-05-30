@@ -1,5 +1,5 @@
 import deepmerge from 'deepmerge';
-import { orange, green } from 'material-ui/colors';
+import { orange, green, common } from 'material-ui/colors';
 
 const addonRmTheme = function(theme){
   
@@ -8,17 +8,20 @@ const addonRmTheme = function(theme){
       waring: {
         light: orange['300'],
         main: orange['500'],
-        dark: orange['700']
+        dark: orange['700'],
+        contrastText: common.white
       },
       success: {
         light: green['300'],
         main: green['500'],
-        dark: green['700']
+        dark: green['700'],
+        contrastText: common.white
       },
       progress: {
         light: green['300'],
         main: green['500'],
-        dark: green['700']
+        dark: green['700'],
+        contrastText: common.white
       }
     }
   };

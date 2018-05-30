@@ -32,4 +32,9 @@ export default {
     uploadError: '上傳失敗',
     previewFile: '檔案預覽',
   },
+  StepperPane: {
+    next: '下一頁',
+    back: '上一頁',
+    finish: '完成',
+  }
 };

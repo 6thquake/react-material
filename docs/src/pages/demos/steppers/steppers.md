@@ -1,6 +1,9 @@
 ---
 components: MobileStepper, Step, StepButton, StepContent, StepIcon, StepLabel, Stepper
 ---
+# Stepper Pane
+
+{{"demo": "pages/demos/steppers/StepperPane.js"}}
 
 # Steppers
 

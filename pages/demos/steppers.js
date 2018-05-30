@@ -76,6 +76,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/steppers/ProgressMobileStepper'), 'utf8')
 `,
         },
+        'pages/demos/steppers/StepperPane.js': {
+          js: require('docs/src/pages/demos/steppers/StepperPane').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/steppers/StepperPane'), 'utf8')
+`,
+        },
       }}
     />
   );

@@ -41,12 +41,12 @@ class Filters extends Component {
   isSelected = value => this.props.value.includes(value);
 
   render() {
-    const {classes, source, label, mapProps} = this.props;
+    const {classes, options, label, mapProps} = this.props;
     return (
       <Grid container spacing={24}>
         <Grid item className={classes.label}>{label}</Grid>
         <Grid item>
-          {source.map(s => {
+          {options.map(s => {
             const value = s[mapProps.value];
             const isSelected = this.isSelected(value);
             return (
@@ -78,9 +78,9 @@ Filters.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * data source.
+   * data options.
    */
-  source: PropTypes.array,
+  options: PropTypes.array,
   /**
    * singleSelect or multiSelect default is singleSelect.
    */
@@ -91,7 +91,7 @@ Filters.propTypes = {
    */
   label: PropTypes.string,
   /**
-   * map data source struct
+   * map data options struct
    */
   mapProps: PropTypes.shape({
     label: PropTypes.string,
@@ -100,7 +100,7 @@ Filters.propTypes = {
 };
 
 Filters.defaultProps = {
-  source: [],
+  options: [],
   value: [],
   multi: false,
   label: '',

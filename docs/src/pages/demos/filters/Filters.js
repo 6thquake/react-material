@@ -21,7 +21,7 @@ function createData(label, value) {
 class FiltersDemo extends Component {
   state = {
     radio: '1',
-    source: [
+    options: [
       createData('红色', '1'),
       createData('橙色', '2'),
       createData('黄色', '3'),
@@ -56,7 +56,7 @@ class FiltersDemo extends Component {
 
   render() {
     const {classes} = this.props;
-    const {label, multi, source, value, radio} = this.state;
+    const {label, multi, options, value, radio} = this.state;
     const selected = JSON.stringify(value);
     return (
       <div>
@@ -68,7 +68,7 @@ class FiltersDemo extends Component {
           <FormControlLabel value={'2'} control={<Radio/>} label="多选"/>
         </RadioGroup>
         <div className={classes.mt}>
-          <Filters label={label} multi={multi} source={source} value={value} onChange={this.onChange}/>
+          <Filters label={label} multi={multi} options={options} value={value} onChange={this.onChange}/>
         </div>
         <div className={classes.mt}>
           selected values:{selected}

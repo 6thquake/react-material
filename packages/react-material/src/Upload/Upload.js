@@ -10,15 +10,6 @@ import { withStyles } from 'react-material/styles';
 import FileUpload from '@material-ui/icons/FileUpload';
 import Icon from 'react-material/Icon';
 
-function handle() {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      Math.random() > .5 ? reject('err') : resolve('ok');
-    }, 1000);
-  }).then(function (r) {
-    return true;
-  });
-}
 
 const styles = theme => ({
     button: {
@@ -36,13 +27,41 @@ const styles = theme => ({
 });
 
 
+
 class Upload extends Component{
     constructor(props){
         super(props);
         this.state = {
-            path:[],
-            data:[],
+            acceptType: props.acceptType,
+            action: props.action,
+            multiple: props.multiple,
+            disabled: props.disabled,
+            path: [],
+            data: [],
         }
+        this.status = false;
+    try{
+        if(!this.state.acceptType){
+            this.state.acceptType = "*";
+        }
+        if(!this.state.action){
+            throw new Error('please input the url for uploading');
+        }
+        if(Boolean(this.state.multiple)){
+            this.state.multiple=true;  //可多选
+        }else{
+            this.state.multiple=false;  //默认为false ,不可多选
+        }
+        if (Boolean(this.state.disabled)) {
+            this.state.disabled = true;// 只读，无法进行交互
+        } else {
+            this.state.disabled = false;// 默认为false 可以进行交互事件
+        }
+
+    }catch (err) {
+            console.log(err);
+        }
+
     }
     changePath=(e)=>{
         for(let i=0;i<e.target.files.length;i++){
@@ -58,20 +77,27 @@ class Upload extends Component{
             }))
         }
     }
-    upload = () =>{
-        const data = this.state.data;
+    upload = () =>{ 
 
-        console.log(data)
-        const url = " ";//服务器上传地址  
+        const data = this.state.data;
+        const url = this.state.action;//服务器上传地址  
         const form = new FormData();
-        form.append('file', data);  
-        fetch(url,{
+        form.append('file', data);
+
+        let _promise = new Promise(function(resolve, reject){
+            fetch(url,{
             method: 'POST',  
             body: form  
-        }).then(res=>{
-        console.log(res)
-        })
-    }   
+            }).then(function(res){
+                resolve('success');
+            },function(err){
+                reject('error');
+            })
+        });
+
+        return _promise;
+    }
+
     cancel=()=>{
         this.setState({
         path:[],
@@ -81,34 +107,20 @@ class Upload extends Component{
     render(){
         const classes = this.props.classes;
         const eachPath = this.state.path.map((item)=>
-            <li>{item}</li>
+            <li key={item}>{item}</li>
         );
+      
         return (
             <div>
-                <input accept="*" className={classes.input} id="raised-button-file" multiple type="file"/>
-                <label htmlFor="raised-button-file">
-                    <Button variant="raised" component="span" className={classes.button}>
-                    选择文件
-                    </Button>
-                </label>
-                <StatusButton color="primary" variant="raised" onHandler={handle} className={classes.button}>开始上传</StatusButton>
-                <Button variant="raised" color="error" className={classes.button}>取消上传</Button>
-
-                
                 <div className='row'>
                     <div className='row-input'>
-
-                        <input type="file" accept="*"  multiple onChange={this.changePath}/>
-
-
-                        
-
-                    
-                        <input accept="*" className={classes.input} id="raised-button-file" onChange={this.changePath} multiple type="file"/>
-                       
-                        <label htmlFor="raised-button-file">
-                            <Button variant="raised" component="span"   className={classes.button}>
+                        {this.state.disabled?<input accept={this.state.acceptType} className={classes.input} id="raisedButtonFile" onChange={this.changePath} type="file" disabled/>:this.state.multiple?
+                        <input accept={this.state.acceptType} className={classes.input} id="raisedButtonFile" onChange={this.changePath} type="file" multiple />:<input accept={this.state.acceptType} className={classes.input} id="raisedButtonFile" onChange={this.changePath} type="file"/>}
+                
+                        <label htmlFor="raisedButtonFile">
+                            <Button variant="raised" component="span" color="default" className={classes.button}>
                             选择文件
+                            <FileUpload className={classes.rightIcon} />
                             </Button>
                         </label>
 
@@ -117,8 +129,9 @@ class Upload extends Component{
                     {eachPath}
                     </div>
                 </div>
-                <button className='primary upload' onClick={this.upload}>开始上传</button>
-                <button className='primary cancel' onClick={this.cancel}>取消</button>
+                <StatusButton color="primary" variant="raised" className={classes.button} onHandler={this.upload} >开始上传</StatusButton>
+                <Button variant="raised" color="default" className={classes.button} onClick={this.cancel}>取消</Button>
+               
             </div>
             )
     }

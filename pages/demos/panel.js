@@ -14,6 +14,13 @@ function Page() {
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/panel/Panel'), 'utf8')
 `,
+        },
+        'pages/demos/panel/LoadingPanel.js': {
+          js: require('docs/src/pages/demos/panel/LoadingPanel').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/panel/LoadingPanel'), 'utf8')
+`,
         }
       }}
     />

@@ -39,6 +39,9 @@ class App extends React.Component {
       [key]: value,
     })
   }
+  handleAnchorChange=(e)=>{
+    console.log('anchor', e)
+  }
   state={
     orientation: 'vertical'
   }
@@ -179,6 +182,7 @@ class App extends React.Component {
               container={'#t-box'}
               linkActiveStyle={linkActiveStyle}
               links={links}
+              onChange={this.handleAnchorChange}
             ></Anchor>
           </Paper> :
           <Paper className={classes.paper} style={style2}>
@@ -188,6 +192,7 @@ class App extends React.Component {
               container={'#t-box'}
               links={links2}
               linkActiveStyle={linkActiveStyle}
+              onChange={this.handleAnchorChange}
             ></Anchor>
           </Paper>
         }

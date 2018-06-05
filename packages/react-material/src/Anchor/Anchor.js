@@ -102,7 +102,8 @@ class Anchor extends React.Component {
 
   state = {
     linkHigth: 10,
-    links: {}
+    links: {},
+    active: '',
   }
   level = 0
   container = null
@@ -121,17 +122,23 @@ class Anchor extends React.Component {
 
   setLink = (link)=> {
     // debugger
+    let { onChange } = this.props
     var sel = link.href;
     let ele = document.querySelector(sel)
     let dh = ele ? this.getOffsetTop(ele, this.container) : 0
     let rect = ele? ele.getBoundingClientRect() : 0
     // 这里确定了是否高亮某一个 link
     if (dh <= 150 && dh >= -rect.height / 2) {
+      if (this.state.active !== sel){
+        onChange && onChange(sel)
+        this.state.active = sel
+      }
+
       let activeLink = {
         [sel]: true
       }
-
-      let links = document.querySelectorAll('a')
+      // todo vertical
+      let links = this.wrapper.querySelectorAll('a')
       let target = null
       for( let link of links){
         if(link.name === sel){
@@ -145,9 +152,10 @@ class Anchor extends React.Component {
         links: activeLink
       })
     }
-    if(link.children){
+    if (link.children) {
       this.setLinks(link.children)
     }
+
   }
 
   // 设置高亮 mask 的高度
@@ -241,7 +249,7 @@ class Anchor extends React.Component {
     let result = links.map((link, index) => {
       let selected = this.state.links[link.href]
       let defaultActiveStyle = {
-        transition: 'all .2s ease',
+        transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         borderBottom: `2px solid ${theme.palette.primary.main}`,
         color: theme.palette.primary.main
       }
@@ -296,7 +304,8 @@ Anchor.propTypes = {
   style: PropTypes.object,
   linkStyle: PropTypes.object,
   linkActiveStyle:PropTypes.object,
-  orientation: PropTypes.string
+  orientation: PropTypes.string,
+  onChange: PropTypes.func
 }
 
 Anchor.defaultProps = {

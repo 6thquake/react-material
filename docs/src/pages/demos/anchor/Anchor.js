@@ -149,11 +149,11 @@ class App extends React.Component {
        zIndex: 20
     }
     let linkStyle ={
-      color: "red",
+      color: "teal",
 
     }
     let linkActiveStyle = {
-      color: 'green'
+      color: 'red'
     }
 
     return (

@@ -7,17 +7,16 @@ import Button from '../Button';
 const style = theme => ({
   label: {
     width: '120px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    textAlign: 'right',
+    lineHeight: 2,
   },
-  btn: {
-    marginRight: theme.spacing.unit,
+  content: {
+    flex: 1
   },
 });
 
 class Filters extends Component {
-  onClick(selectItem) {
+  onClick = selectItem => () => {
     const {multi, onChange, value, mapProps} = this.props;
     const selectVal = selectItem[mapProps.value];
     let newVal;
@@ -36,32 +35,35 @@ class Filters extends Component {
       }
     }
     onChange(newVal);
-  }
+  };
 
   isSelected = value => this.props.value.includes(value);
 
   render() {
-    const {classes, options, label, mapProps} = this.props;
+    const {classes, options, label, mapProps, spacing} = this.props;
     return (
-      <Grid container spacing={24}>
+      <Grid container spacing={8}>
         <Grid item className={classes.label}>{label}</Grid>
-        <Grid item>
-          {options.map(s => {
-            const value = s[mapProps.value];
-            const isSelected = this.isSelected(value);
-            return (
-              <Button
-                className={classes.btn}
-                variant={isSelected ? 'raised' : 'flat'}
-                key={value}
-                color={isSelected ? 'primary' : 'default'}
-                onClick={this.onClick.bind(this, s)}
-              >
-                {s[mapProps.label]}
-              </Button>
-            )
-          })
-          }
+        <Grid item className={classes.content}>
+          <Grid container spacing={spacing}>
+            {options.map(s => {
+              const value = s[mapProps.value];
+              const isSelected = this.isSelected(value);
+              return (
+                <Grid item>
+                  <Button
+                    variant={isSelected ? 'raised' : 'flat'}
+                    key={value}
+                    color={isSelected ? 'primary' : 'default'}
+                    onClick={this.onClick(s)}
+                  >
+                    {s[mapProps.label]}
+                  </Button>
+                </Grid>
+              )
+            })
+            }
+          </Grid>
         </Grid>
       </Grid>
     );
@@ -96,7 +98,8 @@ Filters.propTypes = {
   mapProps: PropTypes.shape({
     label: PropTypes.string,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  })
+  }),
+  spacing: PropTypes.number
 };
 
 Filters.defaultProps = {
@@ -111,6 +114,7 @@ Filters.defaultProps = {
   onChange() {
     console.log('请添加回调函数');
   },
+  spacing: 8
 };
 
 export default withStyles(style)(Filters);

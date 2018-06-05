@@ -4,6 +4,10 @@ import { withStyles } from 'react-material/styles';
 import Radio from 'react-material/Radio';
 import RadioGroup from 'react-material/RadioGroup';
 import FormControlLabel from 'react-material/FormControlLabel';
+import FormControl from 'react-material/FormControl';
+import MenuItem from 'react-material/MenuItem';
+import Select from 'react-material/Select';
+import InputLabel from 'react-material/InputLabel';
 import Filters from 'react-material/Filters';
 
 const style = theme => ({
@@ -36,8 +40,9 @@ class FiltersDemo extends Component {
     value: ['1'],
     mapProps: {
       label: 'label',
-      value: 'value'
-    }
+      value: 'value',
+    },
+    spacing: 8,
   };
 
   onChange = (value) => {
@@ -52,16 +57,39 @@ class FiltersDemo extends Component {
       radio: value,
       multi: value === '2',
       value: ['1'],
+    });
+  };
+
+  selectChange = (event) => {
+    this.setState({
+      spacing: event.target.value
     })
-  }
+  };
 
   render() {
     const {classes} = this.props;
-    const {label, multi, options, value, radio} = this.state;
+    const {label, multi, options, value, radio, spacing} = this.state;
     const selected = JSON.stringify(value);
     return (
       <div>
+        <FormControl>
+          <InputLabel htmlFor="spacing">spacing</InputLabel>
+          <Select
+            value={spacing}
+            onChange={this.selectChange}
+            inputProps={{
+              name: 'spacing',
+              id: 'spacing',
+            }}
+          >
+            <MenuItem value={0}>0</MenuItem>
+            <MenuItem value={8}>8</MenuItem>
+            <MenuItem value={16}>16</MenuItem>
+            <MenuItem value={24}>24</MenuItem>
+          </Select>
+        </FormControl>
         <RadioGroup
+          row
           value={radio}
           onChange={this.handleChange}
         >
@@ -69,7 +97,14 @@ class FiltersDemo extends Component {
           <FormControlLabel value={'2'} control={<Radio/>} label="多选"/>
         </RadioGroup>
         <div className={classes.mt}>
-          <Filters label={label} multi={multi} options={options} value={value} onChange={this.onChange}/>
+          <Filters
+            label={label}
+            multi={multi}
+            options={options}
+            spacing={spacing}
+            value={value}
+            onChange={this.onChange}
+          />
         </div>
         <div className={classes.mt}>
           selected values:{selected}

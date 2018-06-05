@@ -1,9 +1,9 @@
 import React from 'react'
-import Paper from 'material-ui/Paper'
+import Paper from '@material-ui/core/Paper'
 
 import PropTypes from 'prop-types'
 import { withStyles } from '../styles'
-import Divider from 'material-ui/Divider'
+import Divider from '@material-ui/core/Divider'
 import Anchor from '../Anchor'
 export const styles = {
   tBox: {

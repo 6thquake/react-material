@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, MuiThemeProvider, createMuiTheme } from 'react-material/styles';
-import Input, { InputLabel } from 'react-material/Input';
+import Input from 'react-material/Input';
+import InputLabel from 'react-material/InputLabel';
 import TextField from 'react-material/TextField';
-import { FormControl } from 'react-material/Form';
+import FormControl from 'react-material/FormControl';
 import purple from 'react-material/colors/purple';
 import green from 'react-material/colors/green';
 

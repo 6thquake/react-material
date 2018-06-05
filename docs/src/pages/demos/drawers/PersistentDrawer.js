@@ -6,7 +6,7 @@ import Drawer from 'react-material/Drawer';
 import AppBar from 'react-material/AppBar';
 import Toolbar from 'react-material/Toolbar';
 import List from 'react-material/List';
-import { MenuItem } from 'react-material/Menu';
+import MenuItem from 'react-material/MenuItem';
 import Typography from 'react-material/Typography';
 import TextField from 'react-material/TextField';
 import Divider from 'react-material/Divider';

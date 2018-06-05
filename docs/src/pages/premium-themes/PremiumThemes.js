@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Card, { CardActions, CardContent, CardMedia } from 'react-material/Card';
+import Card from 'react-material/Card';
+import CardActions from 'react-material/CardActions';
+import CardContent from 'react-material/CardContent';
+import CardMedia from 'react-material/CardMedia';
 import Button from 'react-material/Button';
 import Grid from 'react-material/Grid';
 import Typography from 'react-material/Typography';

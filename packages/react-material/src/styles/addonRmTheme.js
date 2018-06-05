@@ -1,5 +1,5 @@
 import deepmerge from 'deepmerge';
-import { orange, green, common } from 'material-ui/colors';
+import { orange, green, common } from '@material-ui/core/colors';
 
 const addonRmTheme = function(theme){
   

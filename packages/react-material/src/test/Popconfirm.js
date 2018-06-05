@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import Popconfirm from '../Popconfirm'
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 class Test  extends Component {
   constructor(props) {

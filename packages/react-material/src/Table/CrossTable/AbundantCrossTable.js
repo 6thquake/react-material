@@ -31,4 +31,4 @@ class AbundantCrossTable extends React.PureComponent {
     }
 }
 
-export default withDragAndDrop(AbundantCrossTable);
+export default withDragAndDrop()(AbundantCrossTable);

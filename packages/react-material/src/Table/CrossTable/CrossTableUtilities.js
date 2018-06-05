@@ -794,7 +794,7 @@ CrossTableData.propTypes = {
     PropTypes.func,
     PropTypes.objectOf(PropTypes.func),
   ]),
-  derivedAttributes: PropTypes.objectOf(PropTypes.func),
+  derivedAttributes: PropTypes.objectOf(PropTypes.object),
   rowOrder: PropTypes.oneOf(['key_a_to_z', 'value_a_to_z', 'value_z_to_a']),
   colOrder: PropTypes.oneOf(['key_a_to_z', 'value_a_to_z', 'value_z_to_a']),
 };

@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Table, { TableBody, TableCell, TableHead, TableRow } from 'react-material/Table';
+import Table from 'react-material/Table';
+import TableBody from 'react-material/TableBody';
+import TableCell from 'react-material/TableCell';
+import TableHead from 'react-material/TableHead';
+import TableRow from 'react-material/TableRow';
 import Paper from 'react-material/Paper';
 
 const CustomTableCell = withStyles(theme => ({

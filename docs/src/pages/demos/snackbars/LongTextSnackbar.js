@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-material/Button';
 import { withStyles } from 'react-material/styles';
-import { SnackbarContent } from 'react-material/Snackbar';
+import SnackbarContent from 'react-material/SnackbarContent';
 
 const action = (
   <Button color="secondary" size="small">

@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import { ChevronRight, ChevronLeft, LastPage, FirstPage } from '@material-ui/icons';
 import { DropTarget } from 'react-dnd';
-import GridList, { GridListTile, GridListTileBar } from '../GridList';
-import {DragSource as Source} from '../DragAndDrop';
+import GridList from '../GridList';
+import GridListTile from '../GridListTile';
+import GridListTileBar from '../GridListTileBar';
+import { DragSource as Source} from '../DragAndDrop';
 import Resizable from 're-resizable';
 import withDragAndDrop from '../DragAndDrop/withDragAndDrop'
 
@@ -254,4 +256,4 @@ let Panel = DropTarget(['DRAGANDDROP'], boxTarget, (connect,monitor) => {
     itemType: monitor.getItemType()
 }})(_Panel);
 
-export default withStyles(styles)(withDragAndDrop(Panel));
+export default withStyles(styles)(withDragAndDrop()(Panel));

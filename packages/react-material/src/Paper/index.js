@@ -1,2 +1,2 @@
-export * from 'material-ui/Paper';
-export { default } from 'material-ui/Paper';
+export * from '@material-ui/core/Paper';
+export { default } from '@material-ui/core/Paper';

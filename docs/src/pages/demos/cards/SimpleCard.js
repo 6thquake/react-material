@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Card, { CardActions, CardContent } from 'react-material/Card';
+import Card from 'react-material/Card';
+import CardActions from 'react-material/CardActions';
+import CardContent from 'react-material/CardContent';
 import Button from 'react-material/Button';
 import Typography from 'react-material/Typography';
 

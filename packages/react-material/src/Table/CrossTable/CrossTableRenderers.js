@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CrossTableData } from './CrossTableUtilities';
-import Table, { TableBody, TableCell, TableHead, TableRow } from '../../Table';
+import Table from '../../Table';
+import TableBody from '../../TableBody';
+import TableCell from '../../TableCell';
+import TableHead from '../../TableHead';
+import TableRow from '../../TableRow';
 
 import { withStyles } from '../../styles';
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import Switch from 'react-material/Switch';
 import Paper from 'react-material/Paper';
-import Collapse from 'react-material/transitions/Collapse';
+import Collapse from 'react-material/Collapse';
 
 const styles = theme => ({
   root: {

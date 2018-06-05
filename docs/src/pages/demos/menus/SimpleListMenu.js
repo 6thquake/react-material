@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import List, { ListItem, ListItemText } from 'react-material/List';
-import Menu, { MenuItem } from 'react-material/Menu';
+import List from 'react-material/List';
+import ListItem from 'react-material/ListItem';
+import ListItemText from 'react-material/ListItemText';
+import Menu from 'react-material/Menu';
+import MenuItem from 'react-material/MenuItem';
 
 const styles = theme => ({
   root: {

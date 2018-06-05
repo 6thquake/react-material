@@ -53,7 +53,7 @@ class AbundantCrossTableContent extends React.PureComponent {
     this.state = {
       unusedOrder: [],
       zIndices: {},
-      maxZIndex: 1000,
+      maxZIndex: 1000
     };
   }
 
@@ -70,6 +70,7 @@ class AbundantCrossTableContent extends React.PureComponent {
       return;
     }
     this.data = nextData;
+
     const attrValues = {};
     const materializedInput = [];
     let recordsProcessed = 0;

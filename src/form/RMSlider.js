@@ -1,4 +1,4 @@
 import React, { Component } from 'react';
-import Slider from 'material-ui/Slider';
+import Slider from 'react-material/Slider';
 
 export default Slider;

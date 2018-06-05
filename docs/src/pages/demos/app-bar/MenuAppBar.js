@@ -8,8 +8,10 @@ import IconButton from 'react-material/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from 'react-material/Switch';
-import { FormControlLabel, FormGroup } from 'react-material/Form';
-import Menu, { MenuItem } from 'react-material/Menu';
+import FormControlLabel from 'react-material/FormControlLabel';
+import FormGroup from 'react-material/FormGroup';
+import Menu from 'react-material/Menu';
+import MenuItem from 'react-material/MenuItem';
 
 const styles = {
   root: {

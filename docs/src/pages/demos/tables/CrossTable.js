@@ -11,8 +11,9 @@ import { sortAs } from 'react-material/Table/CrossTable';
 
 
 class App extends React.Component {
-    componentWillMount() {
-        this.setState({
+    constructor() {
+        super();
+        this.state = {
             textarea: JSON.stringify(tips),
             mode: 'demo',
             filename: 'Sample Dataset: Tips',
@@ -47,7 +48,7 @@ class App extends React.Component {
                     },
                 },
             },
-        });
+        };
     }
 
     onType(event) {

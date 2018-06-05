@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 import Select from '../../Select';
-import { FormControl, FormHelperText } from '../../Form';
-import { MenuItem } from '../../Menu';
-import Input, { InputLabel } from '../../Input';
+import FormControl from '../../FormControl';
+import FormHelperText from '../../FormHelperText';
+import MenuItem from '../../MenuItem';
+import Input from '../../Input';
+import InputLabel from '../../InputLabel';
 
 
 class CrossTableAttribute extends React.PureComponent {

@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import GridList, { GridListTile, GridListTileBar } from 'react-material/GridList';
-import ListSubheader from 'react-material/List';
+import GridList from 'react-material/GridList';
+import GridListTile from 'react-material/GridListTile';
+import GridListTileBar from 'react-material/GridListTileBar';
+import ListSubheader from 'react-material/ListSubheader';
 import IconButton from 'react-material/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import tileData from './tileData';

@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import Select from 'material-ui/Select';
+import Select from '@material-ui/core/Select';
 import Menu, { MenuItem } from '../Menu';
 import Pagination from '../Pagination/Pagination'
 import RMTextField from './TextField'

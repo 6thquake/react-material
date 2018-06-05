@@ -1,29 +1,29 @@
 import React , { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
-import { LinearProgress } from 'material-ui/Progress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { Done, HighlightOff } from '@material-ui/icons';
 import { red } from '../colors';
 
 const styles = theme => ({
-    lineProgress: {
-        display:'inline-block',
-        width: '90%'
+  lineProgress: {
+    display:'inline-block',
+    width: '90%'
+  },
+  nubProgress:{
+    marginLeft:theme.spacing.unit * 2,
+    width: 35+'px',
+    textAlign: 'left',
+    fontSize: 1+'em',
+    verticalAlign: 'middle',
+    fontAamily: 'tahoma'
+  },
+  icon: {
+    marginLeft: theme.spacing.unit * 2,
+    '&:hover': {
+        color: red[200],
     },
-    nubProgress:{
-        marginLeft:theme.spacing.unit * 2,
-        width: 35+'px',
-        textAlign: 'left',
-        fontSize: 1+'em',
-        verticalAlign: 'middle',
-        fontAamily: 'tahoma'
-    },
-    icon: {
-        marginLeft: theme.spacing.unit * 2,
-        '&:hover': {
-            color: red[200],
-        },
-    },
+  },
 });
 
 class Progress extends Component {
@@ -64,32 +64,37 @@ class Progress extends Component {
   };
   
   constructor(props){
-      super(props);
-      this.state={
-          completed:this.props.completed
-      }
+    super(props);
+    this.state={
+        completed:this.props.completed
+    }
   }
 
   componentDidMount() {
-      if(this.props.isPromise){
-          this.timer = setInterval(this.progress,300);
-      }
+    if(this.props.isPromise){
+      this.timer = setInterval(this.progress,300);
+    }
   }
 
-  componentWillReceiveProps(nextProps){
-      if(!nextProps.isFinish&&this.props.isPromise){
-        this.setState({ completed: 0});
-        if(this.timer){
-          clearInterval(this.timer);
-        }
-        this.timer = setInterval(this.progress,300);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if(!nextProps.isFinish && this.props.isPromise){
+      
+      if(this.timer){
+        clearInterval(this.timer);
       }
+      this.timer = setInterval(this.progress,300);
+
+      return {
+        completed: 0
+      }
+    }
+    return null;
   }
 
   componentWillUnmount() {
-      if(this.timer){
-          clearInterval(this.timer);
-      }
+    if(this.timer){
+        clearInterval(this.timer);
+    }
   }
 
   timer = null;

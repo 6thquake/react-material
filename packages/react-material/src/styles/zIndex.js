@@ -1,2 +1,2 @@
-export * from '../styles/zIndex';
-export { default } from '../styles/zIndex';
+export * from '@material-ui/core/styles/zIndex';
+export { default } from '@material-ui/core/styles/zIndex';

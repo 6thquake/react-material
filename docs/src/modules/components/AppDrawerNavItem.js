@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import { ListItem } from 'material-ui/List';
-import Button from 'material-ui/Button';
-import Collapse from 'material-ui/transitions/Collapse';
+import { withStyles } from 'react-material/styles';
+import ListItem from 'react-material/ListItem';
+import Button from 'react-material/Button';
+import Collapse from 'react-material/Collapse';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({

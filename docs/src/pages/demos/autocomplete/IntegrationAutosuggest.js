@@ -5,7 +5,7 @@ import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import TextField from 'react-material/TextField';
 import Paper from 'react-material/Paper';
-import { MenuItem } from 'react-material/Menu';
+import MenuItem from 'react-material/MenuItem';
 import { withStyles } from 'react-material/styles';
 
 const suggestions = [

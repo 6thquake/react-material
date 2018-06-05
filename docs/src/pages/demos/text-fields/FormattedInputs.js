@@ -1,13 +1,12 @@
-/* eslint-disable react/prefer-stateless-function */
-
 import React from 'react';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Input, { InputLabel } from 'react-material/Input';
+import Input from 'react-material/Input';
+import InputLabel from 'react-material/InputLabel';
 import TextField from 'react-material/TextField';
-import { FormControl } from 'react-material/Form';
+import FormControl from 'react-material/FormControl';
 
 const styles = theme => ({
   container: {

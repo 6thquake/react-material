@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import GridList, { GridListTile } from 'react-material/GridList';
+import GridList from 'react-material/GridList';
+import GridListTile from 'react-material/GridListTile';
 import tileData from './tileData';
 
 const styles = theme => ({

@@ -3,7 +3,7 @@ import url from 'url';
 import PropTypes from 'prop-types';
 import Inspector from 'react-inspector';
 import { withStyles, withTheme, createMuiTheme } from 'react-material/styles';
-import { FormControlLabel } from 'react-material/Form';
+import FormControlLabel from 'react-material/FormControlLabel';
 import Switch from 'react-material/Switch';
 
 const styles = theme => ({

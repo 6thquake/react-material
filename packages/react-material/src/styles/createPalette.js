@@ -1,2 +1,2 @@
-export * from 'material-ui/styles/createPalette';
-export { default } from 'material-ui/styles/createPalette';
+export * from '@material-ui/core/styles/createPalette';
+export { default } from '@material-ui/core/styles/createPalette';

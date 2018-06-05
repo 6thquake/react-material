@@ -4,7 +4,7 @@ import compose from 'recompose/compose';
 import { withStyles } from 'react-material/styles';
 import Paper from 'react-material/Paper';
 import Hidden from 'react-material/Hidden';
-import withWidth from 'react-material/utils/withWidth';
+import withWidth from 'react-material/withWidth';
 import Typography from 'react-material/Typography';
 
 const styles = theme => ({

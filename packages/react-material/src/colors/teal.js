@@ -1,2 +1,2 @@
-export * from 'material-ui/colors/teal';
-export { default } from 'material-ui/colors/teal';
+export * from '@material-ui/core/colors/teal';
+export { default } from '@material-ui/core/colors/teal';

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider from 'react-material/styles/MuiThemeProvider';
 import RMRadioButton from './form/RMRadioButton';
 import RMRadioButtonGroup from './form/RMRadioButtonGroup';
 import RMSlider from './form/RMSlider';
 import RMTooltip from './form/RMTooltip';
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'react-material/RaisedButton';
 
-import TextField from 'material-ui/TextField';
+import TextField from 'react-material/TextField';
 
 
 const style = {

@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import withStyles from 'material-ui/styles/withStyles';
-import {keys as breakpointKeys} from 'material-ui/styles/createBreakpoints';
+import withStyles from 'react-material/styles/withStyles';
+import {keys as breakpointKeys} from 'react-material/styles/createBreakpoints';
 
-import requirePropFactory from 'material-ui/utils/requirePropFactory';
+import requirePropFactory from 'react-material/utils/requirePropFactory';
 
-import Hidden from 'material-ui/Hidden';
+import Hidden from 'react-material/Hidden';
 
 import {
   createMuiTheme
 }
-from 'material-ui/styles'
+from 'react-material/styles'
 
 let theme = createMuiTheme()
 const GUTTERS = [0, 8, 16, 24, 40];

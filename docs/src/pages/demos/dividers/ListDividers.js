@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import List, { ListItem, ListItemText } from 'react-material/List';
+import List from 'react-material/List';
+import ListItem from 'react-material/ListItem';
+import ListItemText from 'react-material/ListItemText';
 import Divider from 'react-material/Divider';
 
 const styles = theme => ({

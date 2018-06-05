@@ -1,10 +1,8 @@
-
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import {Dragable} from 'react-material/Dragable';
-import {Home,Grade,Lock} from '@material-ui/icons';
+import { withStyles } from 'react-material/styles';
+import { Dragable } from 'react-material/Dragable';
+import { Home, Grade, Lock} from '@material-ui/icons';
 
 
 export default class DragAroundNaive extends Component {

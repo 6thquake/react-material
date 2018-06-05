@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import Switch from 'react-material/Switch';
 import Paper from 'react-material/Paper';
-import Grow from 'react-material/transitions/Grow';
+import Grow from 'react-material/Grow';
 
 const styles = theme => ({
   root: {

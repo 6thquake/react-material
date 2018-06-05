@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import TextField from '../TextField';
@@ -29,7 +29,7 @@ const styles = theme => ({
     backgroundColor: 'rgb(0, 0, 0)',
     opacity: 0,
     zIndex: 1
-},
+  },
   paper: {
     position: 'absolute',
     zIndex: 200,

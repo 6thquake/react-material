@@ -1,14 +1,8 @@
-
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import {Carousel} from 'react-material/Carousel';
-import {Home,Grade,Lock} from '@material-ui/icons';
-
-
-
-
+import { withStyles } from 'react-material/styles';
+import Carousel from 'react-material/Carousel';
+import { Home, Grade, Lock } from '@material-ui/icons';
 
 const style={
   wrap:{
@@ -38,7 +32,6 @@ class App extends React.Component {
         alt: 'images-4',
       }
     ];
-
   }
 
   render() {

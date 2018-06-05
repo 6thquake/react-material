@@ -1,6 +1,6 @@
 import React from 'react';
-import Paper from 'material-ui/Paper';
-import Menu, { MenuItem } from 'material-ui/Menu';
+import Paper from '@material-ui/core/Paper';
+import Menu, { MenuItem } from '@material-ui/core/Menu';
 
 
 const style = {

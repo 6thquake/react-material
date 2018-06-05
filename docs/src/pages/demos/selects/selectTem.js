@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import { AsynSelect } from 'react-material/Select'
-import { InputLabel } from 'react-material/Input';
+import InputLabel from 'react-material/Input';
 import { withStyles } from 'react-material/styles';
-import { FormControl } from 'react-material/Form';
-import { MenuItem } from 'react-material/Menu';
-import { ListItemText,ListItemIcon  } from 'material-ui/List';
+import FormControl from 'react-material/FormControl';
+import MenuItem from 'react-material/MenuItem';
+import ListItemText from 'react-material/ListItemText';
+import ListItemIcon from 'react-material/ListItemIcon';
 import StarBorder from '@material-ui/icons/StarBorder';
 
 const styles = theme => ({

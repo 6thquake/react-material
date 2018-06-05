@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import List, {
-  ListItem,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
-  ListSubheader,
-} from 'react-material/List';
+import List from 'react-material/List';
+import ListItem from 'react-material/ListItem';
+import ListItemIcon from 'react-material/ListItemIcon';
+import ListItemSecondaryAction from 'react-material/ListItemSecondaryAction';
+import ListItemText from 'react-material/ListItemText';
+import ListSubheader from 'react-material/ListSubheader';
 import Switch from 'react-material/Switch';
 import WifiIcon from '@material-ui/icons/Wifi';
 import BluetoothIcon from '@material-ui/icons/Bluetooth';

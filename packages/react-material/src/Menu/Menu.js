@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles, createMuiTheme} from '../styles';
-import {findDOMNode} from 'react-dom';
-import RcMenu, {Divider, ItemGroup} from 'rc-menu';
+import { withStyles, createMuiTheme } from '../styles';
+import { findDOMNode } from 'react-dom';
+import RcMenu, { Divider, ItemGroup } from 'rc-menu';
 import classNames from 'classnames';
 import SubMenu from './SubMenu';
 import Item from './MenuItem';

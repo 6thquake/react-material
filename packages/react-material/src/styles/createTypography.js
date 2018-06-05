@@ -1,2 +1,2 @@
-export * from 'material-ui/styles/createTypography';
-export { default } from 'material-ui/styles/createTypography';
+export * from '@material-ui/core/styles/createTypography';
+export { default } from '@material-ui/core/styles/createTypography';

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import BottomNavigation, { BottomNavigationAction } from 'react-material/BottomNavigation';
+import BottomNavigation from 'react-material/BottomNavigation';
+import BottomNavigationAction from 'react-material/BottomNavigation';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';

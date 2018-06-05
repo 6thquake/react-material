@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles, createMuiTheme} from '../styles';
+import { withStyles, createMuiTheme } from '../styles';
 import classNames from 'classnames';
 
-import Menu from '../Menu/Menu';
+import Menu from './Menu';
 
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;

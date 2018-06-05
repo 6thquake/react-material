@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-material/Button';
 import { withStyles } from 'react-material/styles';
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'react-material/Dialog';
-import Input, { InputLabel } from 'react-material/Input';
-import { MenuItem } from 'react-material/Menu';
-import { FormControl } from 'react-material/Form';
+import Dialog from 'react-material/Dialog';
+import DialogActions from 'react-material/DialogActions';
+import DialogContent from 'react-material/DialogContent';
+import DialogTitle from 'react-material/DialogTitle';
+import Input from 'react-material/Input';
+import InputLabel from 'react-material/InputLabel';
+import MenuItem from 'react-material/MenuItem';
+import FormControl from 'react-material/FormControl';
 import Select from 'react-material/Select';
 
 const styles = theme => ({

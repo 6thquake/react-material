@@ -5,10 +5,10 @@ import pure from 'recompose/pure';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
-import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
+import withWidth, { isWidthUp } from 'react-material/withWidth';
 import SearchIcon from '@material-ui/icons/Search';
-import { fade } from 'material-ui/styles/colorManipulator';
-import { withStyles } from 'material-ui/styles';
+import { fade } from 'react-material/styles/colorManipulator';
+import { withStyles } from 'react-material/styles';
 
 let searchTimer;
 let initialized = false;

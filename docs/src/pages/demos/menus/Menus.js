@@ -3,7 +3,9 @@ import Menu from 'react-material/Menu/Menu';
 import Button from 'react-material/Button';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import Icon from 'react-material/Icon';
-import {withStyles} from 'react-material/styles';
+import { withStyles } from 'react-material/styles';
+
+
 const styles = theme=>({
   root:{
     width:400,
@@ -13,6 +15,7 @@ const styles = theme=>({
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 const MenuItemGroup = Menu.ItemGroup;
+
 class Test extends React.Component {
   onClick(info) {
     console.log('click ', info.item.props.path);

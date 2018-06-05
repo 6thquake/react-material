@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import Dragable from 'react-material/DragableLayer';
 

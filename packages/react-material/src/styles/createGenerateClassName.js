@@ -1,2 +1,2 @@
-export * from 'material-ui/styles/createGenerateClassName';
-export { default } from 'material-ui/styles/createGenerateClassName';
+export * from '@material-ui/core/styles/createGenerateClassName';
+export { default } from '@material-ui/core/styles/createGenerateClassName';

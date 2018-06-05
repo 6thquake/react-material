@@ -1,2 +1,2 @@
-export * from 'material-ui/utils/requirePropFactory';
-export { default } from 'material-ui/utils/requirePropFactory';
+export * from '@material-ui/core/utils/requirePropFactory';
+export { default } from '@material-ui/core/utils/requirePropFactory';

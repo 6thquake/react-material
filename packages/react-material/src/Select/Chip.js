@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Chip from 'material-ui/Chip';
+import Chip from '@material-ui/core/Chip';
 
 export default class RMChip extends Component {
 

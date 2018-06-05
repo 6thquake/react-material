@@ -1,15 +1,21 @@
-import React , {Component} from 'react';
+import React, { Component } from 'react';
 import Message from 'react-material/Message';
 import Button from 'react-material/Button'
 import { withStyles } from 'react-material/styles';
-import { FormControl, FormLabel, FormControlLabel } from 'react-material/Form';
-import Radio, { RadioGroup } from 'react-material/Radio';
+import FormControl from 'react-material/FormControl';
+import FormLabel from 'react-material/FormLabel';
+import FormControlLabel from 'react-material/FormControlLabel';
+import Radio from 'react-material/Radio';
+import RadioGroup from 'react-material/RadioGroup';
 import Grid from 'react-material/Grid';
+
+
 const styles = theme => ({
   box: {
     marginBottom: theme.spacing.unit * 6,
   },
 });
+
 class MessageTest extends Component {
   constructor(props){
     super(props);
@@ -119,4 +125,5 @@ class MessageTest extends Component {
     );
   }
 }
+
 export default withStyles(styles)(MessageTest);

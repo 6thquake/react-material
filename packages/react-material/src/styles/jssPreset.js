@@ -1,2 +1,2 @@
-export * from 'material-ui/styles/jssPreset';
-export { default } from 'material-ui/styles/jssPreset';
+export * from '@material-ui/core/styles/jssPreset';
+export { default } from '@material-ui/core/styles/jssPreset';

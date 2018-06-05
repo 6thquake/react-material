@@ -32,27 +32,27 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactTransitionGroup = require('react-transition-group');
 
-var _ListItem = require('material-ui/List/ListItem');
+var _ListItem = require('@material-ui/core/List/ListItem');
 
 var _ListItem2 = _interopRequireDefault(_ListItem);
 
-var _TextField = require('material-ui/TextField');
+var _TextField = require('@material-ui/core/TextField');
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-var _expandMore = require('material-ui/svg-icons/navigation/expand-more');
+var _expandMore = require('@material-ui/core/svg-icons/navigation/expand-more');
 
 var _expandMore2 = _interopRequireDefault(_expandMore);
 
-var _expandLess = require('material-ui/svg-icons/navigation/expand-less');
+var _expandLess = require('@material-ui/core/svg-icons/navigation/expand-less');
 
 var _expandLess2 = _interopRequireDefault(_expandLess);
 
-var _folder = require('material-ui/svg-icons/file/folder');
+var _folder = require('@material-ui/core/svg-icons/file/folder');
 
 var _folder2 = _interopRequireDefault(_folder);
 
-var _insertDriveFile = require('material-ui/svg-icons/editor/insert-drive-file');
+var _insertDriveFile = require('@material-ui/core/svg-icons/editor/insert-drive-file');
 
 var _insertDriveFile2 = _interopRequireDefault(_insertDriveFile);
 

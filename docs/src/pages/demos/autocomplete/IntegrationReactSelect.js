@@ -6,7 +6,7 @@ import { withStyles } from 'react-material/styles';
 import Typography from 'react-material/Typography';
 import Input from 'react-material/Input';
 import TextField from 'react-material/TextField';
-import { MenuItem } from 'react-material/Menu';
+import MenuItem from 'react-material/MenuItem';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import CancelIcon from '@material-ui/icons/Cancel';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';

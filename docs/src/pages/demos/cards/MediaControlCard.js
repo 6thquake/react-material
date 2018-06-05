@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Card, { CardContent, CardMedia } from 'react-material/Card';
+import Card from 'react-material/Card';
+import CardContent from 'react-material/CardContent';
+import CardMedia from 'react-material/CardContent';
 import IconButton from 'react-material/IconButton';
 import Typography from 'react-material/Typography';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';

@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'react-material/styles';
-import Radio, {RadioGroup} from 'react-material/Radio';
-import {FormControlLabel} from 'react-material/Form';
+import { withStyles } from 'react-material/styles';
+import Radio from 'react-material/Radio';
+import RadioGroup from 'react-material/RadioGroup';
+import FormControlLabel from 'react-material/FormControlLabel';
 import Filters from 'react-material/Filters';
 
 const style = theme => ({

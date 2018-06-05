@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import { InputLabel } from 'react-material/Input';
-import { MenuItem } from 'react-material/Menu';
-import { FormControl } from 'react-material/Form';
+import InputLabel from 'react-material/InputLabel';
+import MenuItem from 'react-material/MenuItem';
+import FormControl from 'react-material/FormControl';
 import Select from 'react-material/Select';
 import Button from 'react-material/Button';
 

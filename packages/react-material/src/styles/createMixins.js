@@ -1,2 +1,2 @@
-export * from 'material-ui/styles/createMixins';
-export { default } from 'material-ui/styles/createMixins';
+export * from '@material-ui/core/styles/createMixins';
+export { default } from '@material-ui/core/styles/createMixins';

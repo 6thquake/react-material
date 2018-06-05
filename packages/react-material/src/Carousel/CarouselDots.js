@@ -50,12 +50,7 @@ class CarouselDots extends React.Component {
       styles.dot.transition ='all '+this.props.speed+'s';
       styles.dot.WebkitTransition ='all '+this.props.speed+'s';
     }
-    
   }
-  componentWillReceiveProps(nextProps) {
-    
-  }
-
 
   render() {
     const {onChange,count,actived,classes} = this.props;

@@ -2,14 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Table, {
-  TableBody,
-  TableCell,
-  TableHead,
-  TablePagination,
-  TableRow,
-  TableSortLabel,
-} from 'react-material/Table';
+import Table from 'react-material/Table';
+import TableBody from 'react-material/TableBody';
+import TableCell from 'react-material/TableCell';
+import TableHead from 'react-material/TableHead';
+import TablePagination from 'react-material/TablePagination';
+import TableRow from 'react-material/TableRow';
+import TableSortLabel from 'react-material/TableSortLabel';
 import Toolbar from 'react-material/Toolbar';
 import Typography from 'react-material/Typography';
 import Paper from 'react-material/Paper';

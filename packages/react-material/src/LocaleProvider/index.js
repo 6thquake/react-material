@@ -5,7 +5,7 @@ import {
 } from './LocaleContext'
 
 
-export{
+export {
   LocaleProvider,
   LocaleContext,
   withLocale

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'react-material/styles';
-import { CircularProgress } from 'react-material/Progress';
+import CircularProgress from 'react-material/CircularProgress';
 import green from 'react-material/colors/green';
 import Button from 'react-material/Button';
 import CheckIcon from '@material-ui/icons/Check';

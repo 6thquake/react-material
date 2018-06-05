@@ -1,7 +1,9 @@
 // This file is shared across the demos.
 
 import React from 'react';
-import { ListItem, ListItemIcon, ListItemText } from 'react-material/List';
+import ListItem from 'react-material/ListItem';
+import ListItemIcon from 'react-material/ListItemIcon';
+import ListItemText from 'react-material/List';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import StarIcon from '@material-ui/icons/Star';

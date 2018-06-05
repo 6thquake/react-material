@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import ListSubheader from 'react-material/List';
-import List, { ListItem, ListItemIcon, ListItemText } from 'react-material/List';
-import Collapse from 'react-material/transitions/Collapse';
+import ListSubheader from 'react-material/ListSubheader';
+import List from 'react-material/List';
+import ListItem from 'react-material/ListItem';
+import ListItemIcon from 'react-material/ListItemIcon';
+import ListItemText from 'react-material/ListItemText';
+import Collapse from 'react-material/Collapse';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';

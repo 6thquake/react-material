@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import { MenuItem } from 'react-material/Menu';
+import MenuItem from 'react-material/MenuItem';
 import TextField from 'react-material/TextField';
 
 const styles = theme => ({

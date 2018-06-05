@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import Popover from '../Popover';
-import PopoverContent from './content'
+import PopoverContent from './content';
+
 const styles = theme => ({
   box: {
     display: 'inline-block'
@@ -18,7 +19,7 @@ const styles = theme => ({
   },
 });
 
-class RMpopConfirm extends React.Component {
+class Popconfirm extends React.Component {
   state = {
     open: false,
     anchorReference: 'anchorEl',
@@ -119,8 +120,8 @@ class RMpopConfirm extends React.Component {
   }
 }
 
-RMpopConfirm.propTypes = {
+Popconfirm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RMpopConfirm);
+export default withStyles(styles)(Popconfirm);

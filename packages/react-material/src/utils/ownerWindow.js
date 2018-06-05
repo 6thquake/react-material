@@ -1,2 +1,2 @@
-export * from 'material-ui/utils/ownerWindow';
-export { default } from 'material-ui/utils/ownerWindow';
+export * from '@material-ui/core/utils/ownerWindow';
+export { default } from '@material-ui/core/utils/ownerWindow';

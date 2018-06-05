@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-  FormLabel,
-  FormControl,
-  FormGroup,
-  FormControlLabel,
-  FormHelperText,
-} from 'react-material/Form';
+import FormLabel from 'react-material/FormLabel';
+import FormControl from 'react-material/FormControl';
+import FormGroup from 'react-material/FormGroup';
+import FormControlLabel from 'react-material/FormControlLabel';
+import FormHelperText from 'react-material/FormHelperText';
 import Switch from 'react-material/Switch';
 
 class SwitchesGroup extends React.Component {

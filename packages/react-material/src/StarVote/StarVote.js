@@ -153,12 +153,6 @@ class StarVote extends React.Component {
         catch (err) {
             console.log(err);
         }
-
-
-    }
-
-    componentWillMount() {
-
     }
 
     componentDidMount() {

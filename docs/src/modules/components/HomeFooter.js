@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
+import { withStyles } from 'react-material/styles';
+import Typography from 'react-material/Typography';
+import Grid from 'react-material/Grid';
 import Link from 'docs/src/modules/components/Link';
 
 const styleSheet = theme => ({

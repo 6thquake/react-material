@@ -5,7 +5,7 @@ import { withStyles } from '../styles';
 import TextField from '../TextField';
 import CascadeOption from './CascadeOption'
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown'
-import { InputAdornment } from '../Input';
+import InputAdornment from '../InputAdornment';
 
 
 const styles = theme => ({

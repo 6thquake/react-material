@@ -1,2 +1,2 @@
-export * from 'material-ui/colors/indigo';
-export { default } from 'material-ui/colors/indigo';
+export * from '@material-ui/core/colors/indigo';
+export { default } from '@material-ui/core/colors/indigo';

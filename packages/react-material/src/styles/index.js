@@ -1,12 +1,7 @@
 export { default as createGenerateClassName } from './createGenerateClassName';
-export { default as createMuiTheme, Theme, Direction } from './createMuiTheme';
+export { default as createMuiTheme } from './createMuiTheme';
 export { default as jssPreset } from './jssPreset';
 export { default as MuiThemeProvider } from './MuiThemeProvider';
-export {
-  default as withStyles,
-  WithStyles,
-  StyleRules,
-  StyleRulesCallback,
-  StyledComponentProps,
-} from './withStyles';
-export { default as withTheme, WithTheme } from './withTheme';
+export { default as createStyles } from './createStyles';
+export { default as withStyles } from './withStyles';
+export { default as withTheme } from './withTheme';

@@ -1,2 +1,2 @@
-export * from 'material-ui/IconButton';
-export { default } from 'material-ui/IconButton';
+export * from '@material-ui/core/IconButton';
+export { default } from '@material-ui/core/IconButton';

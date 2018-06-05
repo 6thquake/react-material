@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Manager, Target, Popper } from 'react-popper';
 import Button from 'react-material/Button';
-import ClickAwayListener from 'react-material/utils/ClickAwayListener';
-import Collapse from 'react-material/transitions/Collapse';
-import Grow from 'react-material/transitions/Grow';
+import ClickAwayListener from 'react-material/ClickAwayListener';
+import Collapse from 'react-material/Collapse';
+import Grow from 'react-material/Grow';
 import Paper from 'react-material/Paper';
 import Portal from 'react-material/Portal';
-import { MenuItem, MenuList } from 'react-material/Menu';
+import MenuList from 'react-material/MenuList';
+import MenuItem from 'react-material/MenuItem';
 import { withStyles } from 'react-material/styles';
 
 const styles = theme => ({

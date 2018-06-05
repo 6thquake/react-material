@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Input, { InputLabel } from 'react-material/Input';
-import { MenuItem } from 'react-material/Menu';
-import { FormControl } from 'react-material/Form';
-import { ListItemText } from 'react-material/List';
+import Input from 'react-material/Input';
+import InputLabel from 'react-material/InputLabel';
+import MenuItem from 'react-material/MenuItem';
+import FormControl from 'react-material/FormControl';
+import ListItemText from 'react-material/ListItemText';
 import Select from 'react-material/Select';
 import Checkbox from 'react-material/Checkbox';
 import Chip from 'react-material/Chip';

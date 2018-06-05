@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from 'react-material/styles';
 import NoSSR from '@material-ui/docs/NoSSR';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 

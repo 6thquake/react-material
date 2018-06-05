@@ -1,1 +1,1 @@
-export * from 'material-ui/utils/helpers';
+export * from '@material-ui/core/utils/helpers';

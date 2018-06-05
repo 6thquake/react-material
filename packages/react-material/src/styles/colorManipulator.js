@@ -1,2 +1,2 @@
-export * from 'material-ui/styles/colorManipulator';
-export { default } from 'material-ui/styles/colorManipulator';
+export * from '@material-ui/core/styles/colorManipulator';
+export { default } from '@material-ui/core/styles/colorManipulator';

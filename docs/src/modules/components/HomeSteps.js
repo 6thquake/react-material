@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
-import Button from 'material-ui/Button';
-import Divider from 'material-ui/Divider';
+import { withStyles } from 'react-material/styles';
+import Typography from 'react-material/Typography';
+import Grid from 'react-material/Grid';
+import Button from 'react-material/Button';
+import Divider from 'react-material/Divider';
 import FileDownloadIcon from '@material-ui/icons/FileDownload';
 import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
 import WhatshotIcon from '@material-ui/icons/Whatshot';

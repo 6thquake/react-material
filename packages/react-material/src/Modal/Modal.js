@@ -1,7 +1,9 @@
-import React , {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
-import Dialog, { DialogContent, DialogTitle } from '../Dialog';
+import Dialog from '../Dialog';
+import DialogContent from '../DialogContent';
+import DialogTitle from '../DialogTitle';
 import { Clear } from '@material-ui/icons';
 import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
 

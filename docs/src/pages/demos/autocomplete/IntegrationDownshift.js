@@ -5,7 +5,7 @@ import Downshift from 'downshift';
 import { withStyles } from 'react-material/styles';
 import TextField from 'react-material/TextField';
 import Paper from 'react-material/Paper';
-import { MenuItem } from 'react-material/Menu';
+import MenuItem from 'react-material/MenuItem';
 import Chip from 'react-material/Chip';
 
 const suggestions = [

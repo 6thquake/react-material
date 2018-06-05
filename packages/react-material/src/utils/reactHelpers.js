@@ -1,1 +1,1 @@
-export * from 'material-ui/utils/reactHelpers';
+export * from '@material-ui/core/utils/reactHelpers';

@@ -1,2 +1,2 @@
-export * from 'material-ui/styles/MuiThemeProvider';
-export { default } from 'material-ui/styles/MuiThemeProvider';
+export * from '@material-ui/core/styles/MuiThemeProvider';
+export { default } from '@material-ui/core/styles/MuiThemeProvider';

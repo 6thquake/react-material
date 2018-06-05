@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
-
-import { withStyles } from 'material-ui/styles';
-
+import { withStyles } from 'react-material/styles';
 import Panel from 'react-material/Panel';
-
 import { StatusButton } from 'react-material/Button';
 import { DragSource, withDragAndDrop } from 'react-material/DragAndDrop'
-
 import { Home, Grade, Lock } from '@material-ui/icons';
 
 const styles={
@@ -49,4 +45,4 @@ class MyPanel extends Component {
 	}
 }
 
-export default withStyles(styles)(withDragAndDrop(MyPanel))
+export default withStyles(styles)(withDragAndDrop()(MyPanel))

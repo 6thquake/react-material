@@ -1,6 +1,7 @@
 import React from 'react';
 import IconButton from 'react-material/IconButton';
-import Menu, { MenuItem } from 'react-material/Menu';
+import Menu from 'react-material/Menu';
+import MenuItem from 'react-material/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const options = [

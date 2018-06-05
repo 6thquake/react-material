@@ -93,6 +93,8 @@ let defaultManager;
 	}
 }
 
-export default function withDragAndDrop(Component) {
-  return DragDropContext(HTML5Backend)(Component);
+const withDragAndDrop = (options = {}) => Component => {
+  return DragDropContext(options.backend || HTML5Backend)(Component);
 }
+
+export default withDragAndDrop;

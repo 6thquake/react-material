@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+import { withStyles } from 'react-material/styles';
+import Paper from 'react-material/Paper';
 import Grid from '../Grid/Grid';
-// import Divider from 'material-ui/Divider'
+// import Divider from 'react-material/Divider'
 
 // import Divider from '@material-ui/core/Divider';
 

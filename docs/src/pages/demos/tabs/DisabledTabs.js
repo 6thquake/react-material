@@ -1,6 +1,7 @@
 import React from 'react';
 import Paper from 'react-material/Paper';
-import Tabs, { Tab } from 'react-material/Tabs';
+import Tabs from 'react-material/Tabs';
+import Tab from 'react-material/Tab';
 
 class DisabledTabs extends React.Component {
   state = {

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
-import {ListItem, ListItemText, ListItemIcon} from 'material-ui/List';
-import {Menu,MenuList, MenuItem} from 'material-ui/Menu';
-import {createMuiTheme} from 'material-ui/styles';
-import Collapse from 'material-ui/transitions/Collapse';
+import {withStyles} from 'react-material/styles';
+import {ListItem, ListItemText, ListItemIcon} from 'react-material/List';
+import {Menu,MenuList, MenuItem} from 'react-material/Menu';
+import {createMuiTheme} from 'react-material/styles';
+import Collapse from 'react-material/transitions/Collapse';
 import classNames from 'classnames';
 
 const theme = createMuiTheme();

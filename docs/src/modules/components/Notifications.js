@@ -1,8 +1,8 @@
 /* eslint-disable react/no-danger */
 
 import React from 'react';
-import Button from 'material-ui/Button';
-import Snackbar from 'material-ui/Snackbar';
+import Button from 'react-material/Button';
+import Snackbar from 'react-material/Snackbar';
 import 'isomorphic-fetch';
 
 function getLastSeenNotification() {

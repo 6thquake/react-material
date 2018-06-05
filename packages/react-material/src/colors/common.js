@@ -1,2 +1,2 @@
-export * from 'material-ui/colors/common';
-export { default } from 'material-ui/colors/common';
+export * from '@material-ui/core/colors/common';
+export { default } from '@material-ui/core/colors/common';

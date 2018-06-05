@@ -1,2 +1,2 @@
-export * from 'material-ui/transitions/Fade';
-export { default } from 'material-ui/transitions/Fade';
+export * from '@material-ui/core/Fade';
+export { default } from '@material-ui/core/Fade';

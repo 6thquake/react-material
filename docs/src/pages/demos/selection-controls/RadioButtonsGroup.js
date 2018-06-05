@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Radio, { RadioGroup } from 'react-material/Radio';
+import Radio from 'react-material/Radio';
+import RadioGroup from 'react-material/RadioGroup';
 import Button from 'react-material/Button';
-import { FormLabel, FormControl, FormControlLabel, FormHelperText } from 'react-material/Form';
+import FormLabel from 'react-material/FormLabel';
+import FormControl from 'react-material/FormControl';
+import FormControlLabel from 'react-material/FormControlLabel';
+import FormHelperText from 'react-material/FormHelperText';
 
 const styles = theme => ({
   root: {
@@ -76,16 +80,16 @@ class RadioButtonsGroup extends React.Component {
         </FormControl>
 
         <FormControl component="fieldset" required error className={classes.formControl}>
-          <Radio.Group className={classes.button}>
+          <RadioGroup className={classes.button}>
             <Button variant="raised" color="primary" radio={radio}>左</Button>
             <Button variant="raised" color="primary">中</Button>
             <Button variant="raised" color="primary">右</Button>
-          </Radio.Group>
-          <Radio.Group position="vertical" className={classes.button}>
+          </RadioGroup>
+          <RadioGroup position="vertical" className={classes.button}>
             <Button variant="raised" className="test">上</Button>
             <Button variant="raised" >中</Button>
             <Button variant="raised" >下</Button>
-          </Radio.Group>
+          </RadioGroup>
           <FormHelperText>You can display an error</FormHelperText>
         </FormControl>
 

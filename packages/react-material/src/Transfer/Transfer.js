@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from '../List';
+import List from '../List';
+import ListItem from '../ListItem';
+import ListItemSecondaryAction from '../ListItemSecondaryAction';
+import ListItemText from '../ListItemText';
 import Checkbox from '../Checkbox';
 import Button from '../Button';
 import IconButton from '../IconButton';

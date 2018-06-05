@@ -1,8 +1,8 @@
-import react, {Component} from 'react'
+import react, { Component } from 'react'
 import Popconfirm from 'react-material/Popconfirm'
 import { withStyles } from 'react-material/styles';
 import Button from 'react-material/Button'
-import { LocaleProvider } from 'react-material/LocaleProvider'
+import LocaleProvider from 'react-material/LocaleProvider'
 import zhCN from 'react-material/LocaleProvider/zh_CN'
 import zhTW from 'react-material/LocaleProvider/zh_TW'
 import enUS from 'react-material/LocaleProvider/en_US'

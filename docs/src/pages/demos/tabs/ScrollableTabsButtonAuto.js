@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import AppBar from 'react-material/AppBar';
-import Tabs, { Tab } from 'react-material/Tabs';
+import Tabs from 'react-material/Tabs';
+import Tab from 'react-material/Tab';
 import Typography from 'react-material/Typography';
 
 function TabContainer(props) {

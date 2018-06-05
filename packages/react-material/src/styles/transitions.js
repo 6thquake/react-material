@@ -1,2 +1,2 @@
-export * from 'material-ui/styles/transitions';
-export { default } from 'material-ui/styles/transitions';
+export * from '@material-ui/core/styles/transitions';
+export { default } from '@material-ui/core/styles/transitions';

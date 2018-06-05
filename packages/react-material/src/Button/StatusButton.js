@@ -6,7 +6,7 @@ import green from '../colors/green';
 import orange from '../colors/orange';
 import common from '../colors/common';
 import { fade } from '../styles/colorManipulator';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 import Done from '@material-ui/icons/Done';
 import Replay from '@material-ui/icons/Replay';
@@ -207,9 +207,6 @@ class StatusButton extends Component {
     if (!this.context.resetActive) return;
     this.status.radio = !this.status.radio;
     this.context.resetActive();
-  }
-
-  componentWillReceiveProps(nextProps) {
   }
 
   onHandler = () => {

@@ -1,18 +1,15 @@
-import React from 'react'
-import Paper from 'react-material/Paper'
-import Grid from 'react-material/Grid'
-import PropTypes from 'prop-types'
-import { withStyles } from 'react-material/styles'
-import Divider from 'react-material/Divider'
-import Anchor from 'react-material/Anchor'
-import {
-  FormControl,
-  FormLabel,
-  FormControlLabel
-} from 'react-material/Form';
-import Radio, {
-  RadioGroup
-} from 'react-material/Radio';
+import React from 'react';
+import Paper from 'react-material/Paper';
+import Grid from 'react-material/Grid';
+import PropTypes from 'prop-types';
+import { withStyles } from 'react-material/styles';
+import Divider from 'react-material/Divider';
+import Anchor from 'react-material/Anchor';
+import FormControl from 'react-material/FormControl';
+import FormLabel from 'react-material/FormLabel';
+import FormControlLabel from 'react-material/FormControlLabel';
+import Radio from 'react-material/Radio';
+import RadioGroup from 'react-material/RadioGroup';
 
 
 export const styles = (theme)=> {

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
-import { ListItem,ListItemText } from '../List';
+import ListItem from '../ListItem';
+import ListItemText from '../ListItemText';
 import { DragSource } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import Checkbox from '../Checkbox';

@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Stepper, { Step, StepButton } from 'react-material/Stepper';
+import Stepper from 'react-material/Stepper';
+import Step from 'react-material/Step';
+import StepButton from 'react-material/StepButton';
 import Button from 'react-material/Button';
 import Typography from 'react-material/Typography';
 

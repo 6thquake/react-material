@@ -3,9 +3,9 @@
 import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
 import { createMuiTheme, createGenerateClassName, jssPreset } from 'react-material/styles';
-import blue from 'material-ui/colors/blue';
-import pink from 'material-ui/colors/pink';
-import { darken } from 'material-ui/styles/colorManipulator';
+import blue from 'react-material/colors/blue';
+import pink from 'react-material/colors/pink';
+import { darken } from 'react-material/styles/colorManipulator';
 
 function getTheme(uiTheme) {
   const theme = createMuiTheme({

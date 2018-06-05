@@ -3,10 +3,13 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import IconButton from 'react-material/IconButton';
-import Input, { InputLabel, InputAdornment } from 'react-material/Input';
-import { FormControl, FormHelperText } from 'react-material/Form';
+import Input from 'react-material/Input';
+import InputLabel from 'react-material/InputLabel'; 
+import InputAdornment from 'react-material/InputAdornment';
+import FormControl from 'react-material/FormControl';
+import FormHelperText from 'react-material/FormHelperText';
 import TextField from 'react-material/TextField';
-import { MenuItem } from 'react-material/Menu';
+import MenuItem from 'react-material/MenuItem';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 

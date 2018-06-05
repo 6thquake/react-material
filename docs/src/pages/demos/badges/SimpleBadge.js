@@ -5,7 +5,8 @@ import Badge from 'react-material/Badge';
 import IconButton from 'react-material/IconButton';
 import MailIcon from '@material-ui/icons/Mail';
 import AppBar from 'react-material/AppBar';
-import Tabs, { Tab } from 'react-material/Tabs';
+import Tabs from 'react-material/Tabs';
+import Tab from 'react-material/Tab';
 import Typography from 'react-material/Typography';
 import Button from 'react-material/Button';
 

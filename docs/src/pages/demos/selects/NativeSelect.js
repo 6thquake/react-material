@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Input, { InputLabel } from 'react-material/Input';
-import { FormControl, FormHelperText } from 'react-material/Form';
+import Input from 'react-material/Input';
+import InputLabel from 'react-material/InputLabel';
+import FormControl from 'react-material/FormControl';
+import FormHelperText from 'react-material/FormHelperText';
 import Select from 'react-material/Select';
 
 const styles = theme => ({

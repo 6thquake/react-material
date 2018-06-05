@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { AsynSelect } from 'react-material/Select'
-import { InputLabel } from 'react-material/Input';
+import InputLabel from 'react-material/InputLabel';
 import { withStyles } from 'react-material/styles';
-import { FormControl } from 'react-material/Form';
-import { MenuItem } from 'react-material/Menu';
+import FormControl from 'react-material/FormControl';
+import MenuItem from 'react-material/MenuItem';
 
 
 const styles = theme => ({

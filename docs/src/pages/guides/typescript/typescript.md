@@ -135,7 +135,7 @@ The following example adds an `appDrawer` property that is merged into the one e
 import { Theme } from 'react-material/styles/createMuiTheme';
 import { Breakpoint } from 'react-material/styles/createBreakpoints';
 
-declare module 'material-ui/styles/createMuiTheme' {
+declare module 'react-material/styles/createMuiTheme' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width']

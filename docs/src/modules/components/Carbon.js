@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import pure from 'recompose/pure';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Tooltip from 'material-ui/Tooltip';
+import { withStyles } from 'react-material/styles';
+import Typography from 'react-material/Typography';
+import Tooltip from 'react-material/Tooltip';
 
 const styles = theme => ({
   '@global': {

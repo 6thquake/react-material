@@ -1,5 +1,5 @@
 import React from 'react'
-import FlexGrid from 'material-ui/Grid'
+import FlexGrid from '@material-ui/core/Grid'
 import PercentageGrid from './PercentageGrid'
 
 function Grid(props){

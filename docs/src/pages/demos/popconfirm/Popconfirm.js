@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import { FormControl, FormLabel, FormControlLabel } from 'react-material/Form';
-import Radio, { RadioGroup } from 'react-material/Radio';
+import FormControl from 'react-material/FormControl';
+import FormLabel from 'react-material/FormLabel';
+import FormControlLabel from 'react-material/FormControlLabel';
+import Radio from 'react-material/Radio';
+import RadioGroup from 'react-material/RadioGroup';
 import Grid from 'react-material/Grid';
 import Button from 'react-material/Button';
 import Popover from 'react-material/Popover';

@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Stepper, { Step, StepLabel, StepContent } from 'react-material/Stepper';
+import Stepper from 'react-material/Stepper';
+import Step from 'react-material/Step';
+import StepLabel from 'react-material/StepLabel';
+import StepContent from 'react-material/StepContent';
 import Button from 'react-material/Button';
 import Paper from 'react-material/Paper';
 import Typography from 'react-material/Typography';

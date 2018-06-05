@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Input, { InputLabel, InputAdornment } from 'react-material/Input';
-import { FormControl } from 'react-material/Form';
+import Input from 'react-material/Input';
+import InputLabel from 'react-material/InputLabel';
+import InputAdornment from 'react-material/InputAdornment';
+import FormControl from 'react-material/FormControl';
 import TextField from 'react-material/TextField';
 import Grid from 'react-material/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';

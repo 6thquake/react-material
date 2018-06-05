@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'react-material/List';
+import List from 'react-material/List';
+import ListItem from 'react-material/ListItem';
+import ListItemSecondaryAction from 'react-material/ListItemSecondaryAction';
+import ListItemText from 'react-material/ListItemText';
 import Checkbox from 'react-material/Checkbox';
 import Avatar from 'react-material/Avatar';
 

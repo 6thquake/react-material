@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Table, {
-  TableBody,
-  TableCell,
-  TableFooter,
-  TablePagination,
-  TableRow,
-} from 'react-material/Table';
+import Table from 'react-material/Table';
+import TableBody from 'react-material/TableBody';
+import TableCell from 'react-material/TableCell';
+import TableFooter from 'react-material/TableFooter';
+import TablePagination from 'react-material/TablePagination';
+import TableRow from 'react-material/TableRow';
 import Paper from 'react-material/Paper';
 import IconButton from 'react-material/IconButton';
 import FirstPageIcon from '@material-ui/icons/FirstPage';

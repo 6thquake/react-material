@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '../styles';
 import Button from '../Button';
-import {withLocale} from '../LocaleProvider'
+import { withLocale } from '../LocaleProvider';
 
 const styles = theme => ({
   box: {

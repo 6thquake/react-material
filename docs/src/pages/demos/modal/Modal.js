@@ -1,10 +1,15 @@
 import React , { Component } from 'react';
-import Modal, { Modal2, ModalManager}  from 'react-material/Modal';
+import Modal, { Modal2, ModalManager }  from 'react-material/Modal';
 import Button from 'react-material/Button';
 import { withStyles } from 'react-material/styles';
-import { DialogActions, DialogContent, DialogContentText } from 'react-material/Dialog';
-import { FormControl, FormLabel, FormControlLabel } from 'react-material/Form';
-import Radio, { RadioGroup } from 'react-material/Radio';
+import DialogActions from 'react-material/DialogActions';
+import DialogContent from 'react-material/DialogContent';
+import DialogContentText from 'react-material/DialogContentText';
+import FormControl from 'react-material/FormControl';
+import FormLabel from 'react-material/FormLabel';
+import FormControlLabel from 'react-material/FormControlLabel';
+import Radio from 'react-material/Radio';
+import RadioGroup from 'react-material/RadioGroup';
 import Grid from 'react-material/Grid';
 
 const styles = theme => ({

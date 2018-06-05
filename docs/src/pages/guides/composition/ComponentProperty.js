@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import List, { ListItem, ListItemIcon, ListItemText } from 'react-material/List';
+import List from 'react-material/List';
+import ListItem from 'react-material/ListItem';
+import ListItemIcon from 'react-material/ListItemIcon';
+import ListItemText from 'react-material/ListItemText';
 import Divider from 'react-material/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';

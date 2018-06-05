@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from 'react-material/styles';
-import withWidth from 'react-material/utils/withWidth';
+import withWidth from 'react-material/withWidth';
 import Typography from 'react-material/Typography';
 
 const styles = theme => ({

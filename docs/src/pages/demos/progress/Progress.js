@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Progress from 'react-material/Progress';
 import { withStyles } from 'react-material/styles';
 import Button from 'react-material/Button'

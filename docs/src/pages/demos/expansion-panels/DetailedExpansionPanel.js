@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import classNames from 'classnames';
-import ExpansionPanel, {
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
-  ExpansionPanelActions,
-} from 'react-material/ExpansionPanel';
+import ExpansionPanel from 'react-material/ExpansionPanel';
+import ExpansionPanelDetails from 'react-material/ExpansionPanelDetails';
+import ExpansionPanelSummary from 'react-material/ExpansionPanelSummary';
+import ExpansionPanelActions from 'react-material/ExpansionPanelActions';
 import Typography from 'react-material/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from 'react-material/Chip';

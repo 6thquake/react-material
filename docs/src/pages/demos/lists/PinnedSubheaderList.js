@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import ListSubheader from 'react-material/List';
-import List, { ListItem, ListItemText } from 'react-material/List';
+import ListSubheader from 'react-material/ListSubheader';
+import List from 'react-material/List';
+import ListItem from 'react-material/ListItem';
+import ListItemText from 'react-material/ListItemText';
 
 const styles = theme => ({
   root: {

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-//import UploadFile from './UploadFile.js'
-import './Upload.css'
 
 import PropTypes from 'prop-types';
 import Button,{StatusButton} from 'react-material/Button';

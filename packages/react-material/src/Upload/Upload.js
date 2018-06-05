@@ -116,22 +116,22 @@ class Upload extends Component{
         });
         return _promise;*/
     }
-
-    selectInput=(instance)=>{
-        if(this.state.disabled){
-            instance.setAttribute("disabled","disabled")
+    componentDidMount(){
+      if(this.state.disabled){
+            this.selectInput.setAttribute("disabled","disabled")
         }else if(this.state.multiple){
-            instance.setAttribute("multiple","multiple")
+            this.selectInput.setAttribute("multiple","multiple")
         }
     }
+
+
     render(){
         const classes = this.props.classes;
-      
         return (
             <div>
                 <div className='row'>
                     <div className='row-input'>
-                        <input accept={this.state.acceptType} ref={this.selectInput} className={classes.input} id="raisedButtonFile" onChange={this.changePath} type="file" />
+                        <input accept={this.state.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFile" onChange={this.changePath} type="file" />
                         
                         <label htmlFor="raisedButtonFile">
                             <Button variant="raised" component="span" color="default" className={classes.button}>

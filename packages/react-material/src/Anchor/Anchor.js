@@ -1,17 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Paper from '../Paper'
-import { withStyles } from '../styles';
+import {
+  withStyles,
+  createMuiTheme
+} from '../styles'
 
+import Button from '../Button'
+import classNames from 'classnames'
+import deepmerge from 'deepmerge'
+import {
+  fade
+} from '../styles/colorManipulator';
+
+const theme = createMuiTheme()
 const styles = (theme) => ({
   box:{
-    position: 'fixed',
-    top: 10,
-    minWidth: 100,
-    margin: 20,
+    position: 'relative',
     display: 'flex',
     overflow: 'hidden',
-    // zIndex: 900
+    backgroundColor: theme.palette.common.white,
+    zIndex: 999,
+    width: 250
   }, 
   anchorWrapper:{
     marginTop: 10,
@@ -26,6 +36,7 @@ const styles = (theme) => ({
   active: {
     color:` ${theme.palette.primary.dark} !important`
   },
+  
   wrapper: {
     position: 'relative',
     paddingRight: theme.spacing.unit * 40
@@ -46,15 +57,16 @@ const styles = (theme) => ({
     alignItems: 'center',
     'text-decoration':'none',
     'color':'#333',
-    '&:selection': {
-      color: 'red'
-    },
-    minWidth: 300,
-    // overflow: 'hidden',
-    // 'text-overflow':'ellipsis',
-    // whiteSpace: 'nowrap',
   },
-
+  hoLink: {
+    color: '#333',
+    textDecoration: 'none',
+    '&:hover': {
+      backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+    },
+    padding: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit * 2}px`,
+    minWidth: 120
+  },
   line: {
     height: 'inherit',
     backgroundColor: '#ccc',
@@ -62,6 +74,9 @@ const styles = (theme) => ({
     marginTop: 10,
     marginBottom: 10,
     paddingLeft: 2,
+  },
+  horizontalAnchor: {
+    display: 'flex'
   }
 })
 
@@ -105,6 +120,7 @@ class Anchor extends React.Component {
   }
 
   setLink = (link)=> {
+    // debugger
     var sel = link.href;
     let ele = document.querySelector(sel)
     let dh = ele ? this.getOffsetTop(ele, this.container) : 0
@@ -123,7 +139,8 @@ class Anchor extends React.Component {
           break
         }
       }
-      this.setMask(target, this.wrapper)
+      target && this.setMask(target, this.wrapper)
+
       this.setState({
         links: activeLink
       })
@@ -174,16 +191,29 @@ class Anchor extends React.Component {
 
   renderItem = (link, index, children)=>{
     let {
-      classes
+      classes,
+      linkStyle,
+      linkActiveStyle
+
     } = this.props
-    let linkClass = this.state.links[link.href] ? `${classes.link} ${classes.active}` : classes.link
+
+    let selected = this.state.links[link.href]
+    let defaultActiveStyle = {
+      color: theme.palette.primary.dark
+    }
+    let activeStyle = selected ? deepmerge(defaultActiveStyle, linkActiveStyle) : {}
+    let style = deepmerge(linkStyle, activeStyle)
+
     return (
       <li key={index}>
         <a 
           name={link.href}
           onClick={this.handleLinkClick(index)} 
-          className={linkClass} 
-          href={link.href}>{link.label}
+          className={classes.link} 
+          href={link.href}
+          style= {style}
+          >
+          {link.label}
         </a>
         {children && this.renderLinks(children)}
       </li>
@@ -200,13 +230,52 @@ class Anchor extends React.Component {
     return <ul className={classes.ul}>{result}</ul>
   }
 
+  
+  renderHorizontalLinks = (links) => {
+    let {
+      classes,
+      linkStyle,
+      linkActiveStyle
+    } = this.props
+
+    let result = links.map((link, index) => {
+      let selected = this.state.links[link.href]
+      let defaultActiveStyle = {
+        transition: 'all .2s ease',
+        borderBottom: `2px solid ${theme.palette.primary.main}`,
+        color: theme.palette.primary.main
+      }
+      let activeStyle = selected ? deepmerge(defaultActiveStyle, linkActiveStyle):{}
+      let style = deepmerge(linkStyle,activeStyle)
+      return (
+          <a 
+            name={link.href}
+            onClick={this.handleLinkClick(index)} 
+            className={classes.hoLink} 
+            href={link.href}
+            style= {style}
+            >{link.label}
+          </a>
+      )
+    })
+    return <div ref={(e)=>{this.wrapper= e}} className={classes.horizontalAnchor}>{result}</div>
+  }
   render() {
-    const {classes, links, style} = this.props
+    const {
+      classes,
+      links,
+      style,
+      orientation
+    } = this.props
+    
     const maskStyle  = {
       top: this.state.linkHigth
     }
+    
     return (
-      <Paper className={classes.box} style={style}>
+      orientation == 'horizontal' ? this.renderHorizontalLinks(links) :
+
+      <div className={classes.box} style={style}>
         <div className={classes.line}></div>
         <div ref={(e)=>{this.wrapper= e}} className={classes.wrapper}>
           <div className={classes.activeMask} style={maskStyle}></div>
@@ -216,7 +285,7 @@ class Anchor extends React.Component {
             }
           </div>
         </div>
-      </Paper>
+      </div>
     )
   }
 }
@@ -224,17 +293,15 @@ class Anchor extends React.Component {
 Anchor.propTypes = {
   links: PropTypes.array.isRequired,
   container: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  linkStyle: PropTypes.object,
+  linkActiveStyle:PropTypes.object,
+  orientation: PropTypes.string
 }
 
 Anchor.defaultProps = {
-  style: {
-    position: 'fixed',
-    top: 10,
-    minWidth: 100,
-    margin: 20,
-    zIndex: 900
-  }
+  linkStyle: {},
+  linkActiveStyle: {}
 }
 
 export default withStyles(styles)(Anchor)

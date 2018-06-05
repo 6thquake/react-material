@@ -5,23 +5,49 @@ import PropTypes from 'prop-types'
 import { withStyles } from 'react-material/styles'
 import Divider from 'react-material/Divider'
 import Anchor from 'react-material/Anchor'
+import {
+  FormControl,
+  FormLabel,
+  FormControlLabel
+} from 'react-material/Form';
+import Radio, {
+  RadioGroup
+} from 'react-material/Radio';
 
-export const styles = {
-  tBox: {
-    overflow: 'scroll',
-    marginTop: 20,
-    height: 500,
-    marginBottom: 100,
-  },
-  sub: {
-    marginRight: 50
+
+export const styles = (theme)=> {
+  return {
+    tBox: {
+      overflow: 'scroll',
+      marginTop: 20,
+      height: 500,
+      marginBottom: 100,
+    },
+    sub: {
+      marginRight: 50
+    },
+    paper: {
+      // background: theme.palette.primary.main
+    }
   }
 }
 
 class App extends React.Component {
   target = null
+  handleChange = key => (event, value) => {
+    this.setState({
+      [key]: value,
+    })
+  }
+  handleAnchorChange=(e)=>{
+    console.log('anchor', e)
+  }
+  state={
+    orientation: 'vertical'
+  }
   render() {
     const { classes } = this.props
+    const {orientation} = this.state
     let a = {
       fontSize: 40,
       display: 'block',
@@ -84,21 +110,95 @@ class App extends React.Component {
         label: '#6'
       }
     ]
+    const links2= [{
+        href: '#a1',
+        label: '#1dsdss'
+      },
+      {
+        href: '#a2',
+        label: '#2ewrwrwe'
+      },
+      {
+        href: '#a3',
+        label: '#3',
+      },
+      {
+        href: '#a4',
+        label: '#4'
+      },
+      {
+        href: '#a5',
+        label: '#5'
+      },
+      {
+        href: '#a6',
+        label: '#6'
+      }
+    ]
 
     let style = {
-      position: 'sticky',
+      position: 'fixed',
       top: 100,
       right: '0',
-      width: 260
+      top: 80,
+      width: 260,
+      zIndex: 20,
+      // background: 
     }
+    let style2 = {
+      position:'fixed',
+       top: 70,
+       left: 250,
+       zIndex: 20
+    }
+    let linkStyle ={
+      color: "teal",
+
+    }
+    let linkActiveStyle = {
+      color: 'red'
+    }
+
     return (
 
       <div>
-        <Anchor
-          style={style}
-          container={'#t-box'}
-          links={links}
-        ></Anchor>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">orientation: </FormLabel>
+          <RadioGroup
+            aria-label="orientation"
+            name="orientation"
+            value={this.state.orientation}
+            onChange={this.handleChange('orientation')}
+          >
+            <FormControlLabel value="vertical" control={<Radio />} label="vertical" />
+            <FormControlLabel value="horizontal" control={<Radio />} label="horizontal" />
+          </RadioGroup>
+        </FormControl>
+        {
+          orientation !== 'horizontal' ?
+          <Paper className={classes.paper} style={style}>
+            <Anchor
+              linkStyle={linkStyle}
+              container={'#t-box'}
+              linkActiveStyle={linkActiveStyle}
+              links={links}
+              onChange={this.handleAnchorChange}
+            ></Anchor>
+          </Paper> :
+          <Paper className={classes.paper} style={style2}>
+            <Anchor
+              // linkStyle={linkStyle}
+              orientation='horizontal'
+              container={'#t-box'}
+              links={links2}
+              linkActiveStyle={linkActiveStyle}
+              onChange={this.handleAnchorChange}
+            ></Anchor>
+          </Paper>
+        }
+
+        
+        
         <Divider />
         <Paper ref={(node) => { this.container = node; }} id={'t-box'} className={classes.tBox}>
           <p id="a1" style={p}>

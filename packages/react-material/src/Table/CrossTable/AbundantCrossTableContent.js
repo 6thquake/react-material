@@ -10,6 +10,7 @@ import CrossTable from './CrossTable';
 import CrossTableAttribute from './CrossTableAttribute';
 import DropZone from './CrossTableDropZone';
 import { withStyles } from '../../styles';
+import "babel-polyfill";
 
 const styles = (theme) => ({
   table: {

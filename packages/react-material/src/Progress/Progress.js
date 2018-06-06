@@ -63,10 +63,10 @@ class Progress extends Component {
     baseProgress:false
   };
   
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     this.state={
-        completed:this.props.completed
+        completed:0
     }
   }
 
@@ -77,13 +77,7 @@ class Progress extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if(!nextProps.isFinish && this.props.isPromise){
-      
-      if(this.timer){
-        clearInterval(this.timer);
-      }
-      this.timer = setInterval(this.progress,300);
-
+    if(!nextProps.isFinish && nextProps.isPromise){
       return {
         completed: 0
       }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import Grid from '../Grid';
 import Button from '../Button';
+import "babel-polyfill";
 
 const style = theme => ({
   label: {

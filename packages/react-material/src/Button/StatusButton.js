@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 import Done from '@material-ui/icons/Done';
 import Replay from '@material-ui/icons/Replay';
-import { CircularProgress } from '../Progress';
+import CircularProgress from '../CircularProgress';
 import addonRmTheme from '../styles/addonRmTheme';
 
 

@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import Grid from '../Grid';
 import Button from '../Button';
+import classnames from 'classnames';
 import "babel-polyfill";
 
 const style = theme => ({
@@ -14,6 +15,14 @@ const style = theme => ({
   content: {
     flex: 1
   },
+  btn: {},
+  active: {
+    backgroundColor: '#2196f3',
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: '#1976d2',
+    }
+  }
 });
 
 class Filters extends Component {
@@ -50,12 +59,16 @@ class Filters extends Component {
             {options.map(s => {
               const value = s[mapProps.value];
               const isSelected = this.isSelected(value);
+              const className = classnames(isSelected && classes.active);
+
               return (
                 <Grid item>
                   <Button
-                    variant={isSelected ? 'raised' : 'flat'}
+                    className={className}
+                    classes={{
+                      root: classes.btn
+                    }}
                     key={value}
-                    color={isSelected ? 'primary' : 'default'}
                     onClick={this.onClick(s)}
                   >
                     {s[mapProps.label]}

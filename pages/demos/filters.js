@@ -14,7 +14,14 @@ function Page() {
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/filters/Filters'), 'utf8')
 `,
-        }
+        },
+        'pages/demos/filters/CustomFilters.js': {
+          js: require('docs/src/pages/demos/filters/CustomFilters').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/filters/CustomFilters'), 'utf8')
+`,
+        },
       }}
     />
   );

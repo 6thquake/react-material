@@ -93,7 +93,7 @@ const DecoratedUnionProps = decorate<Props>( // <-- without the type argument, w
 Injecting multiple classes into a component is as straightforward as possible. Take the following code for example. The classes `one` and `two` are both available with type information on the `classes`-prop passed in by `withStyles`.
 
 ```jsx
-import { Theme, withStyles, WithStyles } from "material-ui/styles";
+import { Theme, withStyles, WithStyles } from "react-material/styles";
 import * as React from "react";
 
 const style = (theme: Theme) => ({

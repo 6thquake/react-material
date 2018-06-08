@@ -1,8 +1,8 @@
 import React , { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
-import Progress from 'react-material/Progress';
-import { CircularProgress } from 'react-material/Progress';
+import Progress from '../Progress';
+import CircularProgress from '../CircularProgress';
 
 const styles = theme => ({
   root:{

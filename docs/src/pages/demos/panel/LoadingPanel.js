@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { withStyles } from 'material-ui/styles';
-import {LoadingPanel} from 'react-material/Panel';
+import { withStyles } from 'react-material/styles';
+import { LoadingPanel } from 'react-material/Panel';
 import Typography from 'react-material/Typography';
 import Button from 'react-material/Button';
 

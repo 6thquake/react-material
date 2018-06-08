@@ -11,7 +11,10 @@ const style = theme => ({
     borderRadius:'20px'
   },
   active: {
-    backgroundColor: '#2196f3'
+    backgroundColor: '#2196f3',
+    '&:hover':{
+      backgroundColor: '#419ae0',
+    }
   }
 });
 
@@ -57,6 +60,7 @@ class CustomFiltersDemo extends Component {
       <div>
         <div className={classes.mt}>
           <Filters
+            type={'dark'}
             label={label}
             multi={multi}
             options={options}

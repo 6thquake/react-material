@@ -175,6 +175,7 @@ class App extends React.Component {
           orientation !== 'horizontal' ?
           <Paper className={classes.paper} style={style}>
             <Anchor
+              type='hash'
               linkStyle={linkStyle}
               container={'#t-box'}
               linkActiveStyle={linkActiveStyle}
@@ -184,6 +185,7 @@ class App extends React.Component {
           </Paper> :
           <Paper className={classes.paper} style={style2}>
             <Anchor
+              // type={'hash'}
               // linkStyle={linkStyle}
               orientation='horizontal'
               container={'#t-box'}

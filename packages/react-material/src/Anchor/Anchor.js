@@ -65,7 +65,8 @@ const styles = (theme) => ({
       backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
     },
     padding: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit * 2}px`,
-    minWidth: 120
+    minWidth: 120,
+    textAlign: 'center'
   },
   line: {
     height: 'inherit',
@@ -98,8 +99,17 @@ const throttling = (fn, wait, maxTimelong) =>{
   }
 }
 
-class Anchor extends React.Component {
+ export const scrollToAnchor = (anchorName) => {
+   if (anchorName) {
+     let anchorElement = document.querySelector(anchorName)
+     if (anchorElement) {
+       anchorElement.scrollIntoView()
+       console.log('scroll to', anchorName)
+     }
+   }
+ }
 
+class Anchor extends React.Component {
   state = {
     linkHigth: 10,
     links: {},
@@ -201,8 +211,8 @@ class Anchor extends React.Component {
     let {
       classes,
       linkStyle,
-      linkActiveStyle
-
+      linkActiveStyle,
+      type
     } = this.props
 
     let selected = this.state.links[link.href]
@@ -211,15 +221,19 @@ class Anchor extends React.Component {
     }
     let activeStyle = selected ? deepmerge(defaultActiveStyle, linkActiveStyle) : {}
     let style = deepmerge(linkStyle, activeStyle)
-
+    const prop = {}
+    if(type !== 'hash'){
+      prop.href = link.href
+    }
     return (
       <li key={index}>
         <a 
           name={link.href}
           onClick={this.handleLinkClick(index)} 
           className={classes.link} 
-          href={link.href}
           style= {style}
+          onClick={(e)=>this.scrollToAnchor(link.href)}
+          {...prop}
           >
           {link.label}
         </a>
@@ -243,9 +257,10 @@ class Anchor extends React.Component {
     let {
       classes,
       linkStyle,
-      linkActiveStyle
+      linkActiveStyle,
+      type
     } = this.props
-
+    
     let result = links.map((link, index) => {
       let selected = this.state.links[link.href]
       let defaultActiveStyle = {
@@ -255,18 +270,29 @@ class Anchor extends React.Component {
       }
       let activeStyle = selected ? deepmerge(defaultActiveStyle, linkActiveStyle):{}
       let style = deepmerge(linkStyle,activeStyle)
+      const prop = {}
+      if(type !== 'hash'){
+        prop.href = link.href
+      }
       return (
-          <a 
-            name={link.href}
-            onClick={this.handleLinkClick(index)} 
-            className={classes.hoLink} 
-            href={link.href}
-            style= {style}
-            >{link.label}
-          </a>
+        <a 
+          key={link.href}
+          name={link.href}
+          onClick={this.handleLinkClick(index)} 
+          className={classes.hoLink} 
+          style= {style}
+          onClick={(e)=>this.scrollToAnchor(link.href)}
+          {...prop}
+          >{link.label}
+        </a>
       )
     })
     return <div ref={(e)=>{this.wrapper= e}} className={classes.horizontalAnchor}>{result}</div>
+  }
+  scrollToAnchor = (id)=> {
+    if(this.props.type === 'hash'){
+      return scrollToAnchor(id)
+    }
   }
   render() {
     const {
@@ -282,7 +308,6 @@ class Anchor extends React.Component {
     
     return (
       orientation == 'horizontal' ? this.renderHorizontalLinks(links) :
-
       <div className={classes.box} style={style}>
         <div className={classes.line}></div>
         <div ref={(e)=>{this.wrapper= e}} className={classes.wrapper}>
@@ -305,7 +330,8 @@ Anchor.propTypes = {
   linkStyle: PropTypes.object,
   linkActiveStyle:PropTypes.object,
   orientation: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  type: PropTypes.string,
 }
 
 Anchor.defaultProps = {

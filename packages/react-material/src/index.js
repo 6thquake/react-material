@@ -12,7 +12,6 @@ export {
 } from './styles';
 
 
-
 export { default as Anchor } from './Anchor';
 export { default as AppBar } from './AppBar';
 export { default as AutoComplete } from './AutoComplete';
@@ -99,6 +98,7 @@ export { default as Portal } from './Portal';
 export { default as Progress } from './Progress';
 export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';
+export { default as Scrollbar } from './Scrollbar';
 export { default as Select } from './Select';
 export { default as Slide } from './Slide';
 export { default as Snackbar } from './Snackbar';

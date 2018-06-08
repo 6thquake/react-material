@@ -1,6 +1,6 @@
 {
   "name": "react-material",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "licenses": "MIT",
   "main": "index.js",
@@ -60,6 +60,7 @@
     "re-resizable": "^4.4.8",
     "react-addons-update": "^15.6.2",
     "react-annotation": "^1.2.1",
+    "react-custom-scrollbars": "^4.2.1",
     "react-dnd": "^2.6.0",
     "react-dnd-html5-backend": "^2.6.0",
     "react-event-listener": "^0.5.1",

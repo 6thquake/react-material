@@ -4461,6 +4461,10 @@ forever-agent@~0.6.1:
   version "0.6.1"
   resolved "http://registry.npm.release.ctripcorp.com/forever-agent/download/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
 
+form-data-to-object@^0.2.0:
+  version "0.2.0"
+  resolved "http://registry.npm.release.ctripcorp.com/form-data-to-object/download/form-data-to-object-0.2.0.tgz#f7a8e68ddd910a1100a65e25ac6a484143ff8168"
+
 form-data@^2.1.4, form-data@~2.3.0, form-data@~2.3.1:
   version "2.3.2"
   resolved "http://registry.npm.release.ctripcorp.com/form-data/download/form-data-2.3.2.tgz#4970498be604c20c005d4f5c23aecd21d6b49099"
@@ -4476,6 +4480,13 @@ form-data@~2.0.0:
     asynckit "^0.4.0"
     combined-stream "^1.0.5"
     mime-types "^2.1.11"
+
+formsy-react@^1.1.4:
+  version "1.1.4"
+  resolved "http://registry.npm.release.ctripcorp.com/formsy-react/download/formsy-react-1.1.4.tgz#687525cbcaa6f6a6000e0c8029076fb5ac8dac3e"
+  dependencies:
+    form-data-to-object "^0.2.0"
+    prop-types "^15.5.10"
 
 forwarded@~0.1.2:
   version "0.1.2"
@@ -8819,7 +8830,7 @@ recast@^0.14.4:
     private "~0.1.5"
     source-map "~0.6.1"
 
-"recompose@^0.26.0 || ^0.27.0":
+"recompose@^0.26.0 || ^0.27.0", recompose@^0.27.1:
   version "0.27.1"
   resolved "http://registry.npm.release.ctripcorp.com/recompose/download/recompose-0.27.1.tgz#1a49e931f183634516633bbb4f4edbfd3f38a7ba"
   dependencies:

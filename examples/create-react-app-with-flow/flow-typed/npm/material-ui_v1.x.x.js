@@ -569,7 +569,7 @@ declare module "material-ui/ExpansionPanel" {
   >;
 }
 
-declare module "material-ui/Form/FormControl" {
+declare module "material-ui/Forme/FormControl" {
   declare type Margin = "none" | "dense" | "normal";
 
   declare module.exports: React$ComponentType<{
@@ -587,7 +587,7 @@ declare module "material-ui/Form/FormControl" {
   }>;
 }
 
-declare module "material-ui/Form/FormControlLabel" {
+declare module "material-ui/Forme/FormControlLabel" {
   declare module.exports: React$ComponentType<{
     checked?: boolean | string,
     classes?: Object,
@@ -602,7 +602,7 @@ declare module "material-ui/Form/FormControlLabel" {
   }>;
 }
 
-declare module "material-ui/Form/FormGroup" {
+declare module "material-ui/Forme/FormGroup" {
   declare module.exports: React$ComponentType<{
     children?: React$Node,
     classes?: Object,
@@ -611,7 +611,7 @@ declare module "material-ui/Form/FormGroup" {
   }>;
 }
 
-declare module "material-ui/Form/FormHelperText" {
+declare module "material-ui/Forme/FormHelperText" {
   declare module.exports: React$ComponentType<{
     children?: React$Node,
     classes?: Object,
@@ -622,7 +622,7 @@ declare module "material-ui/Form/FormHelperText" {
   }>;
 }
 
-declare module "material-ui/Form/FormLabel" {
+declare module "material-ui/Forme/FormLabel" {
   declare module.exports: React$ComponentType<{
     children?: React$Node,
     classes?: Object,
@@ -635,13 +635,13 @@ declare module "material-ui/Form/FormLabel" {
   }>;
 }
 
-declare module "material-ui/Form" {
+declare module "material-ui/Forme" {
   declare module.exports: {
-    FormGroup: $Exports<"material-ui/Form/FormGroup">,
-    FormLabel: $Exports<"material-ui/Form/FormLabel">,
-    FormControl: $Exports<"material-ui/Form/FormControl">,
-    FormHelperText: $Exports<"material-ui/Form/FormHelperText">,
-    FormControlLabel: $Exports<"material-ui/Form/FormControlLabel">
+    FormGroup: $Exports<"material-ui/Forme/FormGroup">,
+    FormLabel: $Exports<"material-ui/Forme/FormLabel">,
+    FormControl: $Exports<"material-ui/Forme/FormControl">,
+    FormHelperText: $Exports<"material-ui/Forme/FormHelperText">,
+    FormControlLabel: $Exports<"material-ui/Forme/FormControlLabel">
   };
 }
 
@@ -2547,22 +2547,22 @@ declare module "material-ui/ExpansionPanel/index.js" {
   declare module.exports: $Exports<"material-ui/ExpansionPanel">;
 }
 declare module "material-ui/Form/FormControl.js" {
-  declare module.exports: $Exports<"material-ui/Form/FormControl">;
+  declare module.exports: $Exports<"material-ui/Forme/FormControl">;
 }
 declare module "material-ui/Form/FormControlLabel.js" {
-  declare module.exports: $Exports<"material-ui/Form/FormControlLabel">;
+  declare module.exports: $Exports<"material-ui/Forme/FormControlLabel">;
 }
 declare module "material-ui/Form/FormGroup.js" {
-  declare module.exports: $Exports<"material-ui/Form/FormGroup">;
+  declare module.exports: $Exports<"material-ui/Forme/FormGroup">;
 }
 declare module "material-ui/Form/FormHelperText.js" {
-  declare module.exports: $Exports<"material-ui/Form/FormHelperText">;
+  declare module.exports: $Exports<"material-ui/Forme/FormHelperText">;
 }
 declare module "material-ui/Form/FormLabel.js" {
-  declare module.exports: $Exports<"material-ui/Form/FormLabel">;
+  declare module.exports: $Exports<"material-ui/Forme/FormLabel">;
 }
 declare module "material-ui/Form/index.js" {
-  declare module.exports: $Exports<"material-ui/Form">;
+  declare module.exports: $Exports<"material-ui/Forme">;
 }
 declare module "material-ui/Grid/Grid.js" {
   declare module.exports: $Exports<"material-ui/Grid/Grid">;
@@ -3034,14 +3034,14 @@ declare module "material-ui" {
     "material-ui/ExpansionPanel/ExpansionPanelSummary"
   >;
 
-  declare export var FormControl: $Exports<"material-ui/Form/FormControl">;
-  declare export var FormGroup: $Exports<"material-ui/Form/FormGroup">;
-  declare export var FormLabel: $Exports<"material-ui/Form/FormLabel">;
+  declare export var FormControl: $Exports<"material-ui/Forme/FormControl">;
+  declare export var FormGroup: $Exports<"material-ui/Forme/FormGroup">;
+  declare export var FormLabel: $Exports<"material-ui/Forme/FormLabel">;
   declare export var FormHelperText: $Exports<
-    "material-ui/Form/FormHelperText"
+    "material-ui/Forme/FormHelperText"
   >;
   declare export var FormControlLabel: $Exports<
-    "material-ui/Form/FormControlLabel"
+    "material-ui/Forme/FormControlLabel"
   >;
   declare export var Hidden: $Exports<"material-ui/Hidden/Hidden">;
   declare export var Icon: $Exports<"material-ui/Icon/Icon">;

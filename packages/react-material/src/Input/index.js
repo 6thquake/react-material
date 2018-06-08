@@ -1,2 +1,4 @@
-export * from '@material-ui/core/Input';
-export { default } from '@material-ui/core/Input';
+// export * from '@material-ui/core/Input';
+// export { default } from '@material-ui/core/Input';
+export * from './FormeInput';
+export {default} from './FormeInput';

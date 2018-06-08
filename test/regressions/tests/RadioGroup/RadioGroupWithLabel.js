@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
+import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Forme';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 
 export default function RadioGroupWithLabel() {

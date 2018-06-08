@@ -41,6 +41,7 @@
     "classnames": "^2.2.5",
     "deepmerge": "^2.0.1",
     "dom-helpers": "^3.2.1",
+    "formsy-react": "^1.1.4",
     "hoist-non-react-statics": "^2.5.0",
     "immutability-helper": "^2.7.0",
     "jss": "^9.3.3",
@@ -69,6 +70,7 @@
     "react-popper": "^0.10.0",
     "react-scrollbar-size": "^2.0.2",
     "react-transition-group": "^2.2.1",
+    "recompose": "^0.27.1",
     "scroll": "^2.0.3",
     "warning": "^3.0.0"
   },

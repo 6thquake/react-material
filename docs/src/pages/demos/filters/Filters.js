@@ -98,6 +98,17 @@ class FiltersDemo extends Component {
         </RadioGroup>
         <div className={classes.mt}>
           <Filters
+            type={'dark'}
+            label={label}
+            multi={multi}
+            options={options}
+            spacing={spacing}
+            value={value}
+            onChange={this.onChange}
+          />
+        </div>
+        <div className={classes.mt} style={{background:'#3fa4f6'}}>
+          <Filters
             label={label}
             multi={multi}
             options={options}

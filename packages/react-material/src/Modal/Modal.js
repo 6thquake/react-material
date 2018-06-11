@@ -9,7 +9,7 @@ import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
 
 
 const styles = theme => ({
-    root: {
+    headtitle: {
         backgroundColor:'rgb(16,108,200)',
         color:'white'
     },
@@ -72,7 +72,7 @@ class Modal extends Component {
             aria-describedby="alert-dialog-slide-description"
             {...this.props}
         >
-            <DialogTitle className={classes.root} disableTypography={true}>
+            <DialogTitle className={classes.headtitle} disableTypography={true}>
                 {label}<Clear className={classes.icon}  onClick={onClose}/>
             </DialogTitle>
             {this.props.children }

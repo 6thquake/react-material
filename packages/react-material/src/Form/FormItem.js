@@ -51,7 +51,7 @@ const style = theme => ({
   'form-item-wrapper': {}
 });
 
-class FormeItem extends Component {
+class FormItem extends Component {
   state = {};
 
   renderLabel() {
@@ -110,18 +110,18 @@ class FormeItem extends Component {
   }
 }
 
-FormeItem.propTypes = {
+FormItem.propTypes = {
   classes: PropTypes.object.isRequired,
   required: PropTypes.bool,
   colon: PropTypes.bool,
   label: PropTypes.any
 };
 
-FormeItem.defaultProps = {
+FormItem.defaultProps = {
   required: false,
   colon: true,
   label: '',
   labelDirection: 'row'
 };
 
-export default withStyles(style)(FormeItem)
+export default withStyles(style)(FormItem)

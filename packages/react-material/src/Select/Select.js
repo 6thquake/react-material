@@ -1,189 +1,113 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
-import Select from '@material-ui/core/Select';
-import Menu, { MenuItem } from '../Menu';
-import Pagination from '../Pagination/Pagination'
-import RMTextField from './TextField'
-import Divider from '../Divider';
-import Chip from '../Chip';
-import { withStyles } from '../styles';
-const styles = theme => ({
-  selectMenu:{
-    whiteSpace: 'pre-wrap',
-  },
-  root:{
-    width:'100%'
-  },
+import withStyles from '../styles/withStyles';
+import SelectStandalone from '@material-ui/core/Select';
+import FormHelperText from '../FormHelperText';
+import { withFormsy, propTypes } from 'formsy-react';
+import { compose } from 'recompose';
+import withFormItem from '../Form/withFormItem';
+import withForm from '../Form/withForm';
+
+const style = theme => ({
+  formHelperTextRoot: {
+    marginTop: 0
+  }
 });
-class AsynSelect extends Component {
-    static propTypes = {
-      /**
-       * callback to parent component when select option
-       */
-      selectCb : PropTypes.func.isRequired,
-      /**
-       * default select value,用于回显
-       */
-      value : PropTypes.array,
-      /**
-       * pagination component config
-       */
-      pageConfig: PropTypes.object,
-      /**
-       * placeHold
-       */
-      placeHold: PropTypes.string,
-      /**
-       * decided multiple select
-       */
-      multiple: PropTypes.bool,
-      /**
-       * callback to parent component when currentpage change
-       */
-      pageChangeCb : PropTypes.func,
-      /**
-       * callback to parent component when  filter change
-       */
-      filterChangeCb : PropTypes.func,
-      /**
-       * decided select is disabled
-       */
-      disabled : PropTypes.bool,
 
-    };
-    static defaultProps = {
-      selectCb:function () {
-        console.log("need cb function")
-      },
-      pageChangeCb:function () {
-        console.log("need cb function")
-      },
-      filterChangeCb:function () {
-        console.log("need cb function")
-      },
-      pageConfig:{
-        currentPage: 1,
-        pageSize: 5,
-        total:0
-      },
-      placeHold:'please input something',
-      multiple:false,
-      value:'',
-      disabled:false
-    };
-    constructor(props) {
-        super(props);
-        this.state = {
-            values: [],
-        };
-    }
-    handleChange(event) {
-        if(event.target)
-        if(event.target.value){
-            this.props.selectCb(event.target.value);
-            this.setState({values:event.target.value});
-        }
-    };
-    handleDelete= data => () => {
-        const chipData = [...this.state.values];
-        const chipToDelete = chipData.indexOf(data);
-        chipData.splice(chipToDelete, 1);
-        this.props.selectCb(chipData);
-        this.setState({ values:chipData });
-    };
+class Select extends Component {
+  onChange = (event) => {
+    // setValue() will set the value of the component, which in
+    // turn will validate it and the rest of the form
+    // Important: Don't skip this step. This pattern is required
+    // for Formsy to work.
+    const value = event.target.value;
+    this.props.setValue(value);
 
-    pageCallbackFn(currentPage1) {
-      this.props.pageChangeCb(currentPage1);
-    }
-    textchange(e) {
-        // const filteString = e.target.value;
-        // const filterData=this.props.options.filter(
-        //     item => {
-        //         return !filteString || item.toLowerCase().indexOf(filteString.toLowerCase()) !== -1;
-        //     }
-        // );
-        // this.setState({
-        //     currentPage:1,
-        //     options: filterData
-        // });
-      this.props.filterChangeCb(e.target.value);
-    }
-    menuItems(values) {
-        const {pageConfig,options,children,keyValue} = this.props;
-        if(children){
-          return children
-        }else{
-          if(Array.isArray(options)){
-            let start = (pageConfig.currentPage - 1) * pageConfig.pageSize;
-            let end = pageConfig.currentPage * pageConfig.pageSize > options.length ? undefined :pageConfig.currentPage * pageConfig.pageSize;
-            return options.slice(start, end).map((name) => {
-              switch (typeof name) {
-                case 'string':
-                  return <MenuItem key={name} value={name}>{name}</MenuItem>;
-                case 'object':
-                  return <MenuItem key={name[keyValue[0]]} value={name[keyValue[1]]}>{name[keyValue[0]]}</MenuItem>;
-                default:
-                  throw new Error('select[dataSource] only supports type `string[] | Object[]`.');
-              }
-            });
-          } else {
-            throw new Error(
-              'React-Material: the `options` property must be an array '
-            );
-          }
-        }
-    };
-    componentDidMount () {
-      if(!this.props.multiple){
-        this.setState({
-          values:this.props.value
-        });
-      }else{
-        this.setState({
-          values:[...this.props.value]
-        });
+    const {onChange} = this.props;
+    onChange && onChange(event, value);
+  };
+
+  renderFormComponent() {
+    const {
+      classes,
+      getErrorMessage,
+      getErrorMessages,
+      getValue,
+      hasValue,
+      isFormDisabled,
+      isValid,
+      isPristine,
+      isFormSubmitted,
+      isRequired,
+      isValidValue,
+      resetValue,
+      setValidations,
+      setValue,
+      showRequired,
+      showError,
+      validationError,
+      validationErrors,
+      validations,
+      innerRef,
+      value,
+      colon,
+      required,
+      onChange,
+      label,
+      children,
+      formInputRef,
+      ...rest
+    } = this.props;
+
+    let error = false;
+    let helperText = null;
+    const isDisabled = isFormDisabled();
+    if (!isDisabled) {
+      if (!isPristine()) {
+        helperText = getErrorMessage();
+        error = !isValid();
       }
     }
-    render() {
-        const {pageConfig, placeholder, multiple,classes,disabled,...other} = this.props;
-        return (
-            <Select
-                {...other}
-                multiple={multiple}
-                value={this.state.values}
-                onChange={this.handleChange.bind(this)}
-                classes={{
-                  ...classes,
-                  root: classes.root,
-                  selectMenu: classes.selectMenu,
-                }}
-                inputProps={{
-                    placeholder: placeholder,
 
-                }}
-                disabled={disabled}
-                renderValue={selected => (
-                    multiple? <div className={classes.chips}>{
-                      selected.map(value => <Chip key={value}  onDelete={this.handleDelete(value).bind(this)} label={value} />)}
-                      </div>:selected
-                )}
-            >
-                <RMTextField
-                    fullWidth={true}
-                    autoFocus={true}
-                    placeholder={placeholder}
-                    onChange={this.textchange.bind(this)}
-                />
-                {this.menuItems(this.state.values)}
-                <Divider/>
-                <Pagination
-                    {...pageConfig}
-                    pageCallbackFn={this.pageCallbackFn.bind(this)}
-                >
-                </Pagination>
-            </Select>
-        );
-    }
+    const helpTextClasses = {
+      root: classes.formHelperTextRoot
+    };
+
+    return (
+      <React.Fragment>
+        <SelectStandalone
+          classes={classes}
+          error={error}
+          value={getValue()}
+          disabled={isDisabled}
+          onChange={this.onChange}
+          ref={formInputRef}
+          {...rest}
+        >
+          {children}
+        </SelectStandalone>
+        {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
+      </React.Fragment>
+    )
+  }
+
+  render() {
+    return this.renderFormComponent();
+  }
 }
-export default withStyles(styles)(AsynSelect);
+
+Select.displayName = 'Select';
+
+Select.propTypes = {
+  classes: PropTypes.object.isRequired,
+  ...propTypes
+};
+
+Select.defaultProps = {
+  formInputRef:React.createRef()
+};
+
+
+const FormComponent = compose(withFormsy, withFormItem, withStyles(style))(Select);
+
+export default compose(withForm)(FormComponent, SelectStandalone);

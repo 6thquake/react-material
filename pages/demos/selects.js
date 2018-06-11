@@ -8,18 +8,18 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/demos/selects/Select.js': {
-          js: require('docs/src/pages/demos/selects/Select').default,
+        'pages/demos/selects/AsyncSelect.js': {
+          js: require('docs/src/pages/demos/selects/AsyncSelect').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/Select'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/selects/AsyncSelect'), 'utf8')
 `,
         },
-        'pages/demos/selects/selectTem.js': {
-          js: require('docs/src/pages/demos/selects/selectTem').default,
+        'pages/demos/selects/CustomSelect.js': {
+          js: require('docs/src/pages/demos/selects/CustomSelect').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/selectTem'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/selects/CustomSelect'), 'utf8')
 `,
         },
         'pages/demos/selects/CascadeSelect.js': {

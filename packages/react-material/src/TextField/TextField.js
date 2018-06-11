@@ -1,34 +1,29 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
-import CheckboxGroup from './CheckboxGroup';
-import FormHelperText from '../FormHelperText';
-import {withFormsy, propTypes} from 'formsy-react';
-import {compose} from 'recompose';
-import FormeItemHOC from '../Forme/FormeItemHOC';
-import FormeHOC from '../Forme/FormeHOC';
+import TextFieldStandalone from '@material-ui/core/TextField';
+import { withFormsy, propTypes } from 'formsy-react';
+import { compose } from 'recompose';
+import withFormItem from '../Form/withFormItem';
+import withForm from '../Form/withForm';
 
-const style = theme => ({
-  formHelperTextRoot: {
-    marginTop: '-8px'
-  }
-});
+const style = theme => ({});
 
-class FormeCheckboxGroup extends Component {
-  onChange = (event, value) => {
+class TextField extends Component {
+  onChange = (event) => {
     // setValue() will set the value of the component, which in
     // turn will validate it and the rest of the form
     // Important: Don't skip this step. This pattern is required
     // for Formsy to work.
+    const value = event.target.value;
     this.props.setValue(value);
 
     const {onChange} = this.props;
     onChange && onChange(event, value);
   };
 
-  renderFormeComponent() {
+  renderFormComponent() {
     const {
-      classes,
       getErrorMessage,
       getErrorMessages,
       getValue,
@@ -53,8 +48,6 @@ class FormeCheckboxGroup extends Component {
       required,
       onChange,
       label,
-      children,
-      formeInputRef,
       ...rest
     } = this.props;
 
@@ -68,43 +61,34 @@ class FormeCheckboxGroup extends Component {
       }
     }
 
-    const helpTextClasses = {
-      root: classes.formHelperTextRoot
-    };
-
     return (
       <React.Fragment>
-        <CheckboxGroup
-          classes={classes}
+        <TextFieldStandalone
+          error={error}
           value={getValue()}
+          helperText={helperText}
           disabled={isDisabled}
           onChange={this.onChange}
-          ref={formeInputRef}
           {...rest}
-        >
-          {children}
-        </CheckboxGroup>
-        {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
+        />
       </React.Fragment>
     )
   }
 
   render() {
-    return this.renderFormeComponent();
+    return this.renderFormComponent();
   }
 }
 
-FormeCheckboxGroup.displayName = 'FormeCheckboxGroup';
+TextField.displayName = 'TextField';
 
-FormeCheckboxGroup.propTypes = {
+TextField.propTypes = {
   classes: PropTypes.object.isRequired,
   ...propTypes
 };
 
-FormeCheckboxGroup.defaultProps = {
-  formeInputRef:React.createRef()
-};
+TextField.defaultProps = {};
 
-const FormeComponent = compose(withFormsy, FormeItemHOC, withStyles(style))(FormeCheckboxGroup);
+const FormComponent = compose(withFormsy, withFormItem, withStyles(style))(TextField);
 
-export default compose(FormeHOC)(FormeComponent, CheckboxGroup);
+export default compose(withForm)(FormComponent, TextFieldStandalone);

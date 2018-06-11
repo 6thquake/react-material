@@ -9,12 +9,12 @@ const styles = theme => ({
     paddingLeft:'10px'
   }
 });
-class NATextField extends Component {
+class AsyncSelectFilter extends Component {
     componentDidMount() {
-        let _x = document.getElementById('menu-').getElementsByTagName('input')[0];
-        _x.addEventListener("click", function(e){
-            e.stopPropagation();
-        });
+        // let _x = document.getElementById('menu-').getElementsByTagName('input')[0];
+        // _x.addEventListener("click", function(e){
+        //     e.stopPropagation();
+        // });
     }
     render(){
        const {placeholder,onChange,classes}=this.props;
@@ -25,9 +25,8 @@ class NATextField extends Component {
             className={classes.root}
             inputProps={{
               className:classes.input
-            }
-            }
+            }}
         />)
     }
 }
-export default withStyles(styles)(NATextField);
+export default withStyles(styles)(AsyncSelectFilter);

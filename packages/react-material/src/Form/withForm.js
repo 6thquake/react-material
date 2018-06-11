@@ -1,8 +1,9 @@
+import React from 'react';
 import {Component} from "react";
 import PropTypes from 'prop-types';
 
-function FormeHOC(WrappedComponent, OriginComponent) {
-  class FormeComponent extends Component {
+function withForm(WrappedComponent, OriginComponent) {
+  class FormComponent extends Component {
     isForm = () => !!this.context.formsy;
 
     render() {
@@ -13,13 +14,13 @@ function FormeHOC(WrappedComponent, OriginComponent) {
   }
 
   const name = OriginComponent.displayName || OriginComponent.name;
-  FormeComponent.displayName = `formeHOC-${name}`;
+  FormComponent.displayName = `formHOC-${name}`;
 
-  FormeComponent.contextTypes = {
+  FormComponent.contextTypes = {
     formsy: PropTypes.object
   };
 
-  return React.forwardRef((props, ref) => <FormeComponent {...props} forwardedRef={ref}/>);
+  return React.forwardRef((props, ref) => <FormComponent {...props} forwardedRef={ref}/>);
 }
 
-export default FormeHOC;
+export default withForm;

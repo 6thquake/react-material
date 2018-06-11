@@ -1,20 +1,20 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
-import Select from '@material-ui/core/Select';
+import RadioGroupStandalone from '@material-ui/core/RadioGroup';
 import FormHelperText from '../FormHelperText';
-import {withFormsy, propTypes} from 'formsy-react';
-import {compose} from 'recompose';
-import FormeItemHOC from '../Forme/FormeItemHOC';
-import FormeHOC from '../Forme/FormeHOC';
+import { withFormsy, propTypes } from 'formsy-react';
+import { compose } from 'recompose';
+import withFormItem from '../Form/withFormItem';
+import withForm from '../Form/withForm';
 
 const style = theme => ({
   formHelperTextRoot: {
-    marginTop: 0
+    marginTop: '-8px'
   }
 });
 
-class FormeSelect extends Component {
+class RadioGroup extends Component {
   onChange = (event) => {
     // setValue() will set the value of the component, which in
     // turn will validate it and the rest of the form
@@ -27,7 +27,7 @@ class FormeSelect extends Component {
     onChange && onChange(event, value);
   };
 
-  renderFormeComponent() {
+  renderFormComponent() {
     const {
       classes,
       getErrorMessage,
@@ -55,7 +55,7 @@ class FormeSelect extends Component {
       onChange,
       label,
       children,
-      formeInputRef,
+      formInputRef,
       ...rest
     } = this.props;
 
@@ -75,39 +75,37 @@ class FormeSelect extends Component {
 
     return (
       <React.Fragment>
-        <Select
+        <RadioGroupStandalone
           classes={classes}
-          error={error}
           value={getValue()}
           disabled={isDisabled}
           onChange={this.onChange}
-          ref={formeInputRef}
+          ref={formInputRef}
           {...rest}
         >
           {children}
-        </Select>
+        </RadioGroupStandalone>
         {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
       </React.Fragment>
     )
   }
 
   render() {
-    return this.renderFormeComponent();
+    return this.renderFormComponent();
   }
 }
 
-FormeSelect.displayName = 'FormeSelect';
+RadioGroup.displayName = 'RadioGroup';
 
-FormeSelect.propTypes = {
+RadioGroup.propTypes = {
   classes: PropTypes.object.isRequired,
   ...propTypes
 };
 
-FormeSelect.defaultProps = {
-  formeInputRef:React.createRef()
+RadioGroup.defaultProps = {
+  formInputRef: React.createRef()
 };
 
+const FormComponent = compose(withFormsy, withFormItem, withStyles(style))(RadioGroup);
 
-const FormeComponent = compose(withFormsy, FormeItemHOC, withStyles(style))(FormeSelect);
-
-export default compose(FormeHOC)(FormeComponent, Select);
+export default compose(withForm)(FormComponent, RadioGroupStandalone);

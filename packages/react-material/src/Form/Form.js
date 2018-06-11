@@ -10,7 +10,7 @@ addValidationRule('isRequired', (values, value) => {
 
 const style = theme => ({});
 
-class Forme extends React.Component {
+class Form extends React.Component {
   state = {
     instance: null
   };
@@ -29,12 +29,12 @@ class Forme extends React.Component {
   }
 }
 
-Forme.propTypes = {
+Form.propTypes = {
   classes: PropTypes.object.isRequired,
   ...Formsy.propTypes
 };
 
-Forme.defaultProps = {
+Form.defaultProps = {
   ...Formsy.defaultProps
 };
 
@@ -45,4 +45,4 @@ export {
   propTypes
 }
 
-export default withStyles(style)(Forme);
+export default withStyles(style)(Form);

@@ -1,67 +1,110 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from '../styles';
-import FormGroup from '../FormGroup';
+import withStyles from '../styles/withStyles';
+import CheckboxGroupStandalone from './CheckboxGroupStandalone';
+import FormHelperText from '../FormHelperText';
+import { withFormsy, propTypes } from 'formsy-react';
+import { compose} from 'recompose';
+import withFormItem from '../Form/withFormItem';
+import withForm from '../Form/withForm';
 
-const style = theme => ({});
+const style = theme => ({
+  formHelperTextRoot: {
+    marginTop: '-8px'
+  }
+});
 
 class CheckboxGroup extends Component {
-  checkboxs = [];
+  onChange = (event, value) => {
+    // setValue() will set the value of the component, which in
+    // turn will validate it and the rest of the form
+    // Important: Don't skip this step. This pattern is required
+    // for Formsy to work.
+    this.props.setValue(value);
 
-  onChange = (event, checked) => {
-    const value = event.target.value;
-    const v = this.props.value;
-    let values = v ? v.split(',') : [];
-
-    if (checked) {
-      values.push(value);
-    } else {
-      values = values.filter(v => v !== value);
-    }
-
-    this.props.onChange(event, values.join(','));
+    const {onChange} = this.props;
+    onChange && onChange(event, value);
   };
 
-  render() {
+  renderFormComponent() {
     const {
       classes,
+      getErrorMessage,
+      getErrorMessages,
+      getValue,
+      hasValue,
+      isFormDisabled,
+      isValid,
+      isPristine,
+      isFormSubmitted,
+      isRequired,
+      isValidValue,
+      resetValue,
+      setValidations,
+      setValue,
+      showRequired,
+      showError,
+      validationError,
+      validationErrors,
+      validations,
+      innerRef,
       value,
-      name,
-      children,
+      colon,
+      required,
       onChange,
+      label,
+      children,
+      formInputRef,
       ...rest
     } = this.props;
 
-    this.checkboxs = [];
-    return (
-      <FormGroup {...rest}>
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) {
-            return null;
-          }
+    let error = false;
+    let helperText = null;
+    const isDisabled = isFormDisabled();
+    if (!isDisabled) {
+      if (!isPristine()) {
+        helperText = getErrorMessage();
+        error = !isValid();
+      }
+    }
 
-          const v = value ? value.split(',') : [];
-          return React.cloneElement(child, {
-            key: index,
-            name,
-            inputRef: node => {
-              if (node) {
-                this.checkboxs.push(node);
-              }
-            },
-            checked: v.includes(child.props.value),
-            onChange: this.onChange
-          });
-        })}
-      </FormGroup>
+    const helpTextClasses = {
+      root: classes.formHelperTextRoot
+    };
+
+    return (
+      <React.Fragment>
+        <CheckboxGroupStandalone
+          classes={classes}
+          value={getValue()}
+          disabled={isDisabled}
+          onChange={this.onChange}
+          ref={formInputRef}
+          {...rest}
+        >
+          {children}
+        </CheckboxGroupStandalone>
+        {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
+      </React.Fragment>
     )
+  }
+
+  render() {
+    return this.renderFormComponent();
   }
 }
 
+CheckboxGroup.displayName = 'CheckboxGroup';
+
 CheckboxGroup.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  ...propTypes
 };
 
-CheckboxGroup.defaultProps = {};
+CheckboxGroup.defaultProps = {
+  formInputRef:React.createRef()
+};
 
-export default withStyles(style)(CheckboxGroup)
+const FormComponent = compose(withFormsy, withFormItem, withStyles(style))(CheckboxGroup);
+
+export default compose(withForm)(FormComponent, CheckboxGroupStandalone);

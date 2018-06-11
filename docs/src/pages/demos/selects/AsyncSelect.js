@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsynSelect } from 'react-material/Select'
+import { AsyncSelect } from 'react-material/Select'
 import InputLabel from 'react-material/InputLabel';
 import { withStyles } from 'react-material/styles';
 import FormControl from 'react-material/FormControl';
@@ -112,7 +112,7 @@ class App extends Component {
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-native-simple">single select of simple array and disabled</InputLabel>
-          <AsynSelect
+          <AsyncSelect
             multiple={false}
             value={this.state.singlevalue}
             options={this.state.options}
@@ -123,11 +123,11 @@ class App extends Component {
             filterChangeCb={this.filterChangeCb.bind(this)}
             disabled={true}
           >
-          </AsynSelect>
+          </AsyncSelect>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-native-helper">Multiple select of simple array</InputLabel>
-          <AsynSelect
+          <AsyncSelect
             multiple={true}
             value={this.state.valuesMu}
             options={this.state.options}
@@ -137,11 +137,11 @@ class App extends Component {
             pageChangeCb={this.autoCb.bind(this)}
             filterChangeCb={this.filterChangeCb.bind(this)}
           >
-          </AsynSelect>
+          </AsyncSelect>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-native-helper">Multiple select of object array</InputLabel>
-          <AsynSelect
+          <AsyncSelect
             multiple={true}
             value={this.state.values}
             options={this.state.optionstem}
@@ -152,7 +152,7 @@ class App extends Component {
             pageChangeCb={this.autoCb.bind(this)}
             filterChangeCb={this.filterChangeCb.bind(this)}
           >
-          </AsynSelect>
+          </AsyncSelect>
         </FormControl>
       </div>
     );

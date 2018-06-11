@@ -1,9 +1,11 @@
-import React ,{ Component}from 'react';
+import React ,{ Component }from 'react';
 import PropTypes from 'prop-types';
-import { MenuList, MenuItem } from '../Menu';
+import MenuList from '../MenuList';
+import MenuItem from '../MenuItem';
 import Paper from '../Paper';
 import { withStyles } from '../styles';
-import { ListItemIcon, ListItemText } from '../List';
+import ListItemIcon from '../ListItemIcon';
+import ListItemText from '../ListItemText';
 import PlayArrow from '@material-ui/icons/PlayArrow';
 
 const styles = theme => ({
@@ -24,6 +26,7 @@ const styles = theme => ({
   primary: {},
   icon: {},
 });
+
 class CascadeOption  extends Component {
   constructor(props) {
     super(props);

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'react-material/styles';
+import { withStyles } from 'react-material/styles';
 import Grid from 'react-material/Grid';
-import Forme from 'react-material/Forme';
+import Form from 'react-material/Form';
 import Input from 'react-material/Input';
 import TextField from 'react-material/TextField';
 import Select from 'react-material/Select';
@@ -27,7 +27,7 @@ const style = theme => ({
   })
 ;
 
-class FormeDemo extends Component {
+class FormDemo extends Component {
   state = {
     input: '',
     textField: '',
@@ -95,7 +95,7 @@ class FormeDemo extends Component {
     const {classes} = this.props;
     const {canSubmit, input, textField, select, selectOptions, radio, radioOptions, checkbox, checkboxOptions, textarea} = this.state;
     return (
-      <Forme
+      <Form
         onSubmit={this.onSubmit}
         onReset={this.onReset}
         onValid={this.enableSubmitButton}
@@ -115,6 +115,7 @@ class FormeDemo extends Component {
           </Grid>
           <Grid item xs={12} className={classes.mb}>
             <TextField
+              multiline
               name="textField"
               label="textField"
               value={textField}
@@ -204,15 +205,15 @@ class FormeDemo extends Component {
             </Grid>
           </Grid>
         </Grid>
-      </Forme>
+      </Form>
     )
   }
 }
 
-FormeDemo.propTypes = {
+FormDemo.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-FormeDemo.defaultProps = {};
+FormDemo.defaultProps = {};
 
-export default withStyles(style)(FormeDemo);
+export default withStyles(style)(FormDemo);

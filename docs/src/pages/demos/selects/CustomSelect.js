@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { AsynSelect } from 'react-material/Select'
+import React, { Component } from 'react';
+import { AsyncSelect } from 'react-material/Select'
 import InputLabel from 'react-material/Input';
 import { withStyles } from 'react-material/styles';
 import FormControl from 'react-material/FormControl';
@@ -92,7 +92,7 @@ class App extends Component {
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-native-helper">Multiple select of object array</InputLabel>
-          <AsynSelect
+          <AsyncSelect
             multiple={true}
             value={this.state.values}
             pageConfig={this.state.pageConfig}
@@ -113,11 +113,11 @@ class App extends Component {
                 <ListItemText primary={item.label} />
               </MenuItem>
             ))}
-          </AsynSelect>
+          </AsyncSelect>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-native-helper">single select of object array</InputLabel>
-          <AsynSelect
+          <AsyncSelect
             multiple={false}
             value={this.state.valuestem}
             pageConfig={this.state.pageConfig}
@@ -138,7 +138,7 @@ class App extends Component {
                 <ListItemText primary={item.label} />
               </MenuItem>
             ))}
-          </AsynSelect>
+          </AsyncSelect>
         </FormControl>
       </div>
     );

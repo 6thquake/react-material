@@ -1,5 +1,5 @@
 import {Component} from "react";
-import FormeItem from './FormeItem';
+import FormItem from './FormItem';
 
 const convertValidationsToObject = (validations) => {
   if (typeof validations === 'string') {
@@ -29,8 +29,8 @@ const convertValidationsToObject = (validations) => {
   return validations || {};
 };
 
-function FormeItemHOC(WrappedComponent) {
-  class FormeItemComponent extends Component {
+function withFormItem(WrappedComponent) {
+  class FormItemComponent extends Component {
     render() {
       const {colon, labelDirection, ...rest} = this.props;
       let required = false;
@@ -42,17 +42,17 @@ function FormeItemHOC(WrappedComponent) {
       }
 
       return (
-        <FormeItem label={this.props.label} required={required} colon={colon} labelDirection={labelDirection}>
+        <FormItem label={this.props.label} required={required} colon={colon} labelDirection={labelDirection}>
           <WrappedComponent {...rest}/>
-        </FormeItem>
+        </FormItem>
       )
     }
   }
 
   const name = WrappedComponent.displayName || WrappedComponent.name;
-  FormeItemComponent.displayName = `formeItemHOC-${name}`;
+  FormItemComponent.displayName = `formItemHOC-${name}`;
 
-  return FormeItemComponent;
+  return FormItemComponent;
 }
 
-export default FormeItemHOC;
+export default withFormItem;

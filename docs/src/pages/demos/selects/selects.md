@@ -6,11 +6,11 @@ components: Select
 
 Select of dataSource
 
-{{"demo": "pages/demos/selects/Select.js"}}
+{{"demo": "pages/demos/selects/AsyncSelect.js"}}
 
-Select of customer templete
+Select of custom templete
 
-{{"demo": "pages/demos/selects/selectTem.js"}}
+{{"demo": "pages/demos/selects/CustomSelect.js"}}
 ## CascadeSelect
 
 Select items by Cascading

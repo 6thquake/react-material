@@ -54,6 +54,7 @@ class FormeInput extends Component {
       required,
       onChange,
       label,
+      formeInputRef,
       ...rest
     } = this.props;
 
@@ -79,6 +80,7 @@ class FormeInput extends Component {
           value={getValue()}
           disabled={isDisabled}
           onChange={this.onChange}
+          ref={formeInputRef}
           {...rest}
         />
         {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
@@ -98,7 +100,9 @@ FormeInput.propTypes = {
   ...propTypes
 };
 
-FormeInput.defaultProps = {};
+FormeInput.defaultProps = {
+  formeInputRef: React.createRef()
+};
 
 
 const FormeComponent = compose(withFormsy, FormeItemHOC, withStyles(style))(FormeInput);

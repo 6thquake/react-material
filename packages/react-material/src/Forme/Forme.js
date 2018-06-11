@@ -1,5 +1,5 @@
 import React from 'react';
-import Formsy from 'formsy-react';
+import Formsy, {addValidationRule, validationRules, withFormsy, propTypes} from 'formsy-react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 
@@ -32,5 +32,12 @@ Forme.propTypes = {
 Forme.defaultProps = {
   ...Formsy.defaultProps
 };
+
+export {
+  addValidationRule,
+  validationRules,
+  withFormsy,
+  propTypes
+}
 
 export default withStyles(style)(Forme);

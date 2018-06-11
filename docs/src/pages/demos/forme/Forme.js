@@ -119,7 +119,9 @@ class FormeDemo extends Component {
               label="textField"
               value={textField}
               onChange={this.onChange('textField')}
-              required
+              validations={{
+                isDefaultRequiredValue: true
+              }}
               validationErrors={{"isDefaultRequiredValue": "please enter"}}
             />
           </Grid>

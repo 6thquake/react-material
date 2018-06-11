@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 function withForm(WrappedComponent, OriginComponent) {
@@ -8,11 +8,14 @@ function withForm(WrappedComponent, OriginComponent) {
     render() {
       const {forwardedRef, ...rest} = this.props;
       const isForm = this.isForm();
-      return isForm ? <WrappedComponent {...rest} ref={forwardedRef}/> : <OriginComponent {...rest} ref={forwardedRef}/>
+      if (isForm) {
+        return <WrappedComponent {...rest} ref={forwardedRef}/>;
+      }
+      return <OriginComponent {...rest} ref={forwardedRef}/>
     }
   }
 
-  const name = OriginComponent.displayName || OriginComponent.name;
+  const name = OriginComponent.displayName || OriginComponent.name || (typeof OriginComponent === 'string' ? OriginComponent : 'Component');
   FormComponent.displayName = `formHOC-${name}`;
 
   FormComponent.contextTypes = {

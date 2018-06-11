@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import CheckboxGroupStandalone from './CheckboxGroupStandalone';
 import FormHelperText from '../FormHelperText';
-import { withFormsy, propTypes } from 'formsy-react';
-import { compose} from 'recompose';
+import {withFormsy, propTypes} from 'formsy-react';
+import {compose} from 'recompose';
 import withFormItem from '../Form/withFormItem';
 import withForm from '../Form/withForm';
+import omit from "../Form/omit";
 
 const style = theme => ({
+  formHelpTextContainer: {
+    minHeight: '12px'
+  },
   formHelperTextRoot: {
     marginTop: '-8px'
   }
@@ -72,10 +76,12 @@ class CheckboxGroup extends Component {
       root: classes.formHelperTextRoot
     };
 
+    const restClasses = omit(classes, ['formHelpTextContainer', 'formHelperTextRoot']);
+
     return (
       <React.Fragment>
         <CheckboxGroupStandalone
-          classes={classes}
+          classes={restClasses}
           value={getValue()}
           disabled={isDisabled}
           onChange={this.onChange}
@@ -84,7 +90,9 @@ class CheckboxGroup extends Component {
         >
           {children}
         </CheckboxGroupStandalone>
-        {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
+        <div className={classes.formHelpTextContainer}>
+          {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
+        </div>
       </React.Fragment>
     )
   }
@@ -102,7 +110,7 @@ CheckboxGroup.propTypes = {
 };
 
 CheckboxGroup.defaultProps = {
-  formInputRef:React.createRef()
+  formInputRef: React.createRef()
 };
 
 const FormComponent = compose(withFormsy, withFormItem, withStyles(style))(CheckboxGroup);

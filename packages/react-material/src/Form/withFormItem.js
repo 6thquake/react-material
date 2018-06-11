@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import FormItem from './FormItem';
 
 const convertValidationsToObject = (validations) => {
@@ -32,7 +32,7 @@ const convertValidationsToObject = (validations) => {
 function withFormItem(WrappedComponent) {
   class FormItemComponent extends Component {
     render() {
-      const {colon, labelDirection, ...rest} = this.props;
+      const {colon, labelDirection, formItemLayout, ...rest} = this.props;
       let required = false;
       if (this.props.required) {
         required = true;
@@ -42,14 +42,15 @@ function withFormItem(WrappedComponent) {
       }
 
       return (
-        <FormItem label={this.props.label} required={required} colon={colon} labelDirection={labelDirection}>
+        <FormItem label={this.props.label} required={required} formItemLayout={formItemLayout} colon={colon}
+                  labelDirection={labelDirection}>
           <WrappedComponent {...rest}/>
         </FormItem>
       )
     }
   }
 
-  const name = WrappedComponent.displayName || WrappedComponent.name;
+  const name = WrappedComponent.displayName || WrappedComponent.name || (typeof WrappedComponent === 'string' ? WrappedComponent : 'Component');
   FormItemComponent.displayName = `formItemHOC-${name}`;
 
   return FormItemComponent;

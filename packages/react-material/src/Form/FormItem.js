@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
@@ -55,7 +55,11 @@ class FormItem extends Component {
   state = {};
 
   renderLabel() {
-    const {classes, colon, label, required, labelDirection} = this.props;
+    const {classes, colon, label, formItemLayout, required, labelDirection} = this.props;
+
+    if (!label) {
+      return <React.Fragment key="label"/>
+    }
 
     let labelChildren = label;
 
@@ -63,24 +67,30 @@ class FormItem extends Component {
       labelChildren = label.replace(/[：|:]\s*$/, '');
     }
 
+    const requiredClass = typeof label === 'string' ? !!label.trim().length : true;
+
     const className = classnames(
       classes['form-item-label'],
-      colon ? classes['form-item-label-colon'] : '',
-      required ? classes['form-item-label-required'] : '',
-      labelDirection === 'column' ? classes['form-item-label-direction-column'] : ''
+      {
+        [classes['form-item-label-colon']]: colon,
+        [classes['form-item-label-required']]: requiredClass && required,
+        [classes['form-item-label-direction-column']]: labelDirection === 'column'
+      }
     );
 
     return (
-      <Grid className={className} item xs={12} sm={3} key="label">
+      <Grid className={className} item xs={12} sm={formItemLayout['label']} key="label">
         <label>{labelChildren}</label>
       </Grid>
     )
   }
 
   renderWrapper() {
-    const {classes, children} = this.props;
+    const {classes, children, formItemLayout, label} = this.props;
+    const sm = label ? formItemLayout['content'] : 12;
+
     return (
-      <Grid className={classes['form-item-wrapper']} item xs={12} sm={9} key="wrapper">
+      <Grid className={classes['form-item-wrapper']} item xs={12} sm={sm} key="wrapper">
         {children}
       </Grid>
     )
@@ -114,14 +124,22 @@ FormItem.propTypes = {
   classes: PropTypes.object.isRequired,
   required: PropTypes.bool,
   colon: PropTypes.bool,
-  label: PropTypes.any
+  label: PropTypes.any,
+  formItemLayout: PropTypes.shape({
+    label: PropTypes.number,
+    content: PropTypes.number
+  })
 };
 
 FormItem.defaultProps = {
   required: false,
   colon: true,
   label: '',
-  labelDirection: 'row'
+  labelDirection: 'row',
+  formItemLayout: {
+    label: 3,
+    content: 9
+  }
 };
 
 export default withStyles(style)(FormItem)

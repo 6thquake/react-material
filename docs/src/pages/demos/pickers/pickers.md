@@ -48,3 +48,7 @@ Here are some components that are **promising**:
 ## Date & Time pickers
 
 {{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
+
+## Localization 
+
+{{"demo": "pages/demos/pickers/Localization.js"}}

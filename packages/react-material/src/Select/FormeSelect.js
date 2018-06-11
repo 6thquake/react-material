@@ -55,6 +55,7 @@ class FormeSelect extends Component {
       onChange,
       label,
       children,
+      formeInputRef,
       ...rest
     } = this.props;
 
@@ -80,6 +81,7 @@ class FormeSelect extends Component {
           value={getValue()}
           disabled={isDisabled}
           onChange={this.onChange}
+          ref={formeInputRef}
           {...rest}
         >
           {children}
@@ -101,7 +103,9 @@ FormeSelect.propTypes = {
   ...propTypes
 };
 
-FormeSelect.defaultProps = {};
+FormeSelect.defaultProps = {
+  formeInputRef:React.createRef()
+};
 
 
 const FormeComponent = compose(withFormsy, FormeItemHOC, withStyles(style))(FormeSelect);

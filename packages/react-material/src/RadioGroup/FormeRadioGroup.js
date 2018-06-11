@@ -55,6 +55,7 @@ class FormeRadioGroup extends Component {
       onChange,
       label,
       children,
+      formeInputRef,
       ...rest
     } = this.props;
 
@@ -79,6 +80,7 @@ class FormeRadioGroup extends Component {
           value={getValue()}
           disabled={isDisabled}
           onChange={this.onChange}
+          ref={formeInputRef}
           {...rest}
         >
           {children}
@@ -100,7 +102,9 @@ FormeRadioGroup.propTypes = {
   ...propTypes
 };
 
-FormeRadioGroup.defaultProps = {};
+FormeRadioGroup.defaultProps = {
+  formeInputRef: React.createRef()
+};
 
 const FormeComponent = compose(withFormsy, FormeItemHOC, withStyles(style))(FormeRadioGroup);
 

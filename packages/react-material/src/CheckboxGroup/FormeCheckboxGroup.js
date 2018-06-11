@@ -54,6 +54,7 @@ class FormeCheckboxGroup extends Component {
       onChange,
       label,
       children,
+      formeInputRef,
       ...rest
     } = this.props;
 
@@ -78,6 +79,7 @@ class FormeCheckboxGroup extends Component {
           value={getValue()}
           disabled={isDisabled}
           onChange={this.onChange}
+          ref={formeInputRef}
           {...rest}
         >
           {children}
@@ -92,14 +94,16 @@ class FormeCheckboxGroup extends Component {
   }
 }
 
-FormeCheckboxGroup.displayName = 'FormeRadioGroup';
+FormeCheckboxGroup.displayName = 'FormeCheckboxGroup';
 
 FormeCheckboxGroup.propTypes = {
   classes: PropTypes.object.isRequired,
   ...propTypes
 };
 
-FormeCheckboxGroup.defaultProps = {};
+FormeCheckboxGroup.defaultProps = {
+  formeInputRef:React.createRef()
+};
 
 const FormeComponent = compose(withFormsy, FormeItemHOC, withStyles(style))(FormeCheckboxGroup);
 

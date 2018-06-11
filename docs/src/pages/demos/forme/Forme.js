@@ -109,8 +109,8 @@ class FormeDemo extends Component {
               label="input"
               value={input}
               onChange={this.onChange('input')}
-              required
-              validationErrors={{"isDefaultRequiredValue": "please enter"}}
+              validations={{isRequired: true}}
+              validationErrors={{"isRequired": "please enter"}}
             />
           </Grid>
           <Grid item xs={12} className={classes.mb}>
@@ -119,10 +119,8 @@ class FormeDemo extends Component {
               label="textField"
               value={textField}
               onChange={this.onChange('textField')}
-              validations={{
-                isDefaultRequiredValue: true
-              }}
-              validationErrors={{"isDefaultRequiredValue": "please enter"}}
+              validations={{isRequired: true}}
+              validationErrors={{"isRequired": "please enter"}}
             />
           </Grid>
           <Grid item xs={12} className={classes.mb}>
@@ -130,8 +128,8 @@ class FormeDemo extends Component {
               name="select"
               label="select"
               value={select}
-              required
-              validationErrors={{"isDefaultRequiredValue": "please enter"}}
+              validations={{isRequired: true}}
+              validationErrors={{"isRequired": "please select"}}
               onChange={this.onChange('select')}
             >
               <MenuItem value=''>none</MenuItem>
@@ -146,8 +144,8 @@ class FormeDemo extends Component {
               name="radio"
               label="radio"
               value={radio}
-              required
-              validationErrors={{"isDefaultRequiredValue": "please choose"}}
+              validations={{isRequired: true}}
+              validationErrors={{"isRequired": "please choose"}}
               onChange={this.onChange('radio')}
             >
               {radioOptions.map(d => (
@@ -163,8 +161,8 @@ class FormeDemo extends Component {
               onChange={this.onChange('textarea')}
               multiline
               rowsMax={4}
-              required
-              validationErrors={{"isDefaultRequiredValue": "please enter"}}
+              validations={{isRequired: true}}
+              validationErrors={{"isRequired": "please enter"}}
             />
           </Grid>
           <Grid item xs={12} className={classes.mb}>
@@ -173,12 +171,12 @@ class FormeDemo extends Component {
               name="checkbox"
               label="checkbox"
               value={checkbox}
-              required
-              validationErrors={{"isDefaultRequiredValue": "please choose"}}
+              validations={{isRequired: true}}
+              validationErrors={{"isRequired": "please choose"}}
               onChange={this.onChange('checkbox')}
             >
               {checkboxOptions.map(d => (
-                <FormControlLabel label={d.label} value={d.value} control={<Checkbox color="primary"/>}/>
+                <FormControlLabel key={d.value} label={d.label} value={d.value} control={<Checkbox color="primary"/>}/>
               ))}
             </CheckboxGroup>
           </Grid>

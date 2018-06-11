@@ -3,6 +3,11 @@ import Formsy, {addValidationRule, validationRules, withFormsy, propTypes} from 
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 
+// required
+addValidationRule('isRequired', (values, value) => {
+  return !(value === undefined || value === null || value === '');
+});
+
 const style = theme => ({});
 
 class Forme extends React.Component {

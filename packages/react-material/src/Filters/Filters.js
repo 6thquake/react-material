@@ -8,15 +8,15 @@ import "babel-polyfill";
 //颜色需要替换
 const style = theme => ({
   label: {
-    fontSize:'13px',
-    display:'inline-block',
-    width:'7em',
-    color:'rgba(255,255,255,0.7)',
+    fontSize: '13px',
+    display: 'inline-block',
+    width: '7em',
+    color: 'rgba(255,255,255,0.7)',
     lineHeight: '2.6em',
     textAlign: 'left'
   },
-  labelDark:{
-    color:'rgba(0,0,0,0.7) !important'
+  labelDark: {
+    color: 'rgba(0,0,0,0.7) !important'
   },
   content: {
     flex: 1
@@ -29,23 +29,22 @@ const style = theme => ({
     background: 'none',
     boxShadow: 'none',
     borderRadius: '1.3em',
-    color:'rgba(255,255,255,0.8)',
-    fontWeight:'400',
-    '&:hover':{
-        background: 'rgba(0,0,0,0.05)',
+    color: 'rgba(255,255,255,0.8)',
+    fontWeight: '400',
+    '&:hover': {
+      background: 'rgba(0,0,0,0.05)',
     }
   },
-  btnDark:{
-    color:'rgba(0,0,0,0.7)'
+  btnDark: {
+    color: 'rgba(0,0,0,0.7)'
   },
   active: {
     background: 'rgba(0,0,0,0.2)',
-        '&:hover':{
-            background: 'rgba(0,0,0,0.15)',
+    '&:hover': {
+      background: 'rgba(0,0,0,0.15)',
     }
   },
-  activeDark:{
-  }
+  activeDark: {}
 });
 
 class Filters extends Component {
@@ -73,26 +72,25 @@ class Filters extends Component {
   isSelected = value => this.props.value.includes(value);
 
   render() {
-    const {classes, options, label, mapProps, spacing,type} = this.props;
+    const {classes, options, label, mapProps, spacing, type} = this.props;
     return (
       <Grid container spacing={8}>
-        <Grid item className={(type=='dark'?classes.labelDark:'')+' '+classes.label}>{label}</Grid>
+        <Grid item className={(type == 'dark' ? classes.labelDark : '') + ' ' + classes.label}>{label}</Grid>
         <Grid item className={classes.content}>
           <Grid container spacing={spacing}>
             {options.map(s => {
               const value = s[mapProps.value];
               const isSelected = this.isSelected(value);
               const className = classnames(isSelected && classes.active);
-              const className1 = classnames(type=='dark' && classes.btnDark);
+              const className1 = classnames(type == 'dark' && classes.btnDark);
 
               return (
-                <Grid item>
+                <Grid item key={value}>
                   <Button
-                    className={className+' '+className1}
+                    className={className + ' ' + className1}
                     classes={{
                       root: classes.btn
                     }}
-                    key={value}
                     onClick={this.onClick(s)}
                   >
                     {s[mapProps.label]}

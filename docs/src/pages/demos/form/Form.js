@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
+import {withStyles} from 'react-material/styles';
 import Grid from 'react-material/Grid';
 import Form from 'react-material/Form';
 import Input from 'react-material/Input';
@@ -103,7 +103,7 @@ class FormDemo extends Component {
         className={classes.form}
       >
         <Grid container>
-          <Grid item xs={12} className={classes.mb}>
+          <Grid item xs={12}>
             <Input
               name="input"
               label="input"
@@ -113,7 +113,7 @@ class FormDemo extends Component {
               validationErrors={{"isRequired": "please enter"}}
             />
           </Grid>
-          <Grid item xs={12} className={classes.mb}>
+          <Grid item xs={12}>
             <TextField
               multiline
               name="textField"
@@ -124,7 +124,7 @@ class FormDemo extends Component {
               validationErrors={{"isRequired": "please enter"}}
             />
           </Grid>
-          <Grid item xs={12} className={classes.mb}>
+          <Grid item xs={12}>
             <Select
               name="select"
               label="select"
@@ -139,7 +139,7 @@ class FormDemo extends Component {
               ))}
             </Select>
           </Grid>
-          <Grid item xs={12} className={classes.mb}>
+          <Grid item xs={12}>
             <RadioGroup
               row
               name="radio"
@@ -154,19 +154,7 @@ class FormDemo extends Component {
               ))}
             </RadioGroup>
           </Grid>
-          <Grid item xs={12} className={classes.mb}>
-            <Input
-              name="textarea"
-              label="textarea"
-              value={textarea}
-              onChange={this.onChange('textarea')}
-              multiline
-              rowsMax={4}
-              validations={{isRequired: true}}
-              validationErrors={{"isRequired": "please enter"}}
-            />
-          </Grid>
-          <Grid item xs={12} className={classes.mb}>
+          <Grid item xs={12}>
             <CheckboxGroup
               row
               name="checkbox"
@@ -180,6 +168,20 @@ class FormDemo extends Component {
                 <FormControlLabel key={d.value} label={d.label} value={d.value} control={<Checkbox color="primary"/>}/>
               ))}
             </CheckboxGroup>
+          </Grid>
+          <Grid item xs={12}>
+            <Input
+              name="textarea"
+              label=" "
+              colon={false}
+              value={textarea}
+              onChange={this.onChange('textarea')}
+              multiline
+              placeholder="请输入"
+              rowsMax={4}
+              validations={{isRequired: true}}
+              validationErrors={{"isRequired": "please enter"}}
+            />
           </Grid>
           <Grid item xs={12} className={classes.mb}>
             <br/>

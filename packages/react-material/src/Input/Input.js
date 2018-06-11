@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import InputStandalone from '@material-ui/core/Input';
 import FormHelperText from '../FormHelperText';
-import { withFormsy, propTypes } from 'formsy-react';
-import { compose } from 'recompose';
+import {withFormsy, propTypes} from 'formsy-react';
+import {compose} from 'recompose';
 import withFormItem from '../Form/withFormItem';
 import withForm from '../Form/withForm';
-
+import omit from '../Form/omit';
 
 const style = theme => ({
+  formHelpTextContainer: {
+    minHeight: '12px'
+  },
   formHelperTextRoot: {
     marginTop: 0
   }
@@ -73,10 +76,12 @@ class Input extends Component {
       root: classes.formHelperTextRoot
     };
 
+    const restClasses = omit(classes, ['formHelpTextContainer','formHelperTextRoot']);
+
     return (
       <React.Fragment>
         <InputStandalone
-          classes={classes}
+          classes={restClasses}
           error={error}
           value={getValue()}
           disabled={isDisabled}
@@ -84,7 +89,9 @@ class Input extends Component {
           ref={formInputRef}
           {...rest}
         />
-        {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
+        <div className={classes.formHelpTextContainer}>
+          {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
+        </div>
       </React.Fragment>
     )
   }

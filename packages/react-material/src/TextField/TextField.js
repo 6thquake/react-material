@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import TextFieldStandalone from '@material-ui/core/TextField';
-import { withFormsy, propTypes } from 'formsy-react';
-import { compose } from 'recompose';
+import {withFormsy, propTypes} from 'formsy-react';
+import {compose} from 'recompose';
 import withFormItem from '../Form/withFormItem';
 import withForm from '../Form/withForm';
 
-const style = theme => ({});
+const style = theme => ({
+
+});
 
 class TextField extends Component {
   onChange = (event) => {
@@ -52,11 +54,11 @@ class TextField extends Component {
     } = this.props;
 
     let error = false;
-    let helperText = null;
+    let helperText = ' ';
     const isDisabled = isFormDisabled();
     if (!isDisabled) {
       if (!isPristine()) {
-        helperText = getErrorMessage();
+        helperText = getErrorMessage() || ' ';
         error = !isValid();
       }
     }

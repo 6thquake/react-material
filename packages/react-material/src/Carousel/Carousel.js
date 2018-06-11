@@ -1,12 +1,13 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import CarouselItem from './CarouselItem';
 import CarouselDots from './CarouselDots';
 import CarouselArrow from './CarouselArrow';
 
-//<RMTransfer></RMTransfer> 
-let styles = {
+
+const styles = {
   root:{
     height:'100%',
     width:'100%',
@@ -15,107 +16,115 @@ let styles = {
 
   },
   scrollwrap:{
-    minWidth:'10000px',
     overflow:'hidden',
     transition: 'all .5s',
     WebkitTransition: 'all .5s'
   }
 };
+
 class Carousel extends React.Component {
   constructor(props) {
-    
     super(props);
+
     if(!!props.speed){
       styles.scrollwrap.transition ='all '+props.speed+'s';
       styles.scrollwrap.WebkitTransition ='all '+props.speed+'s';
     }
 
-    this.statusMsg = {
-      count:props.items.length,
-      current:0
-    };
+    this.count = props.items.length;
+    this.activeIndex = 0
+
+    this.carouselRef = React.createRef();
+    this.carouselWarpRef = React.createRef();
+  }
+
+  componentDidMount() {
+    let carouselEl = ReactDOM.findDOMNode(this.carouselRef.current),
+        carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current),
+        width = carouselEl.offsetWidth;
+
+    carouselWarpEl.style.minWidth = this.count * width + 'px';
   
-  }
-
-  componentDidMount(){
-    if(!!this.props.speed){
-      this.refs.mycarouselwarp.style.transition ='all '+this.props.speed+'s';
-      this.refs.mycarouselwarp.style.WebkitTransition ='all '+this.props.speed+'s';
-      //styles.scrollwrap.transition ='all '+this.props.speed+'s';
-     // styles.scrollwrap.WebkitTransition ='all '+this.props.speed+'s';
-    }
-    if(!!this._status.autoplay){
-      this.startIntervalScroll();
-    
+    if(!!this.props.speed) {
+      carouselWarpEl.style.transition = 'all ' + this.props.speed + 's';
+      carouselWarpEl.style.WebkitTransition = 'all ' + this.props.speed + 's';
     }
     
-  }
-
-  mouseoverFunc =()=>{
-    if(!!this._status.pause){
-      clearInterval(this.myinterval);
+    if(!!this.props.autoplay) {
+      this.start();
     }
   }
-  mouseoutFunc =()=>{
-    if(!this._status.autoplay){
+
+  mouseOver =()=>{
+    if(!!this.props.pause){
+      clearInterval(this.interval);
+    }
+  }
+
+  mouseOut =()=>{
+    if(!this.props.autoplay){
       return;
     }
     
-    if(!!this._status.pause){
-      this.startIntervalScroll();
+    if(!!this.props.pause){
+      this.start();
     }
   }
-  startIntervalScroll =()=>{
-    clearInterval(this.myinterval);
-        const self = this;
-        this.myinterval = setInterval(()=>{
-          self.nextFunc()
+
+  start =()=>{
+    clearInterval(this.interval);
+    this.interval = setInterval(()=>{
+      this.next()
     },this.props.delay*1000)
-
-  }
-  nextFunc = ()=>{
-    const len = this.statusMsg.count, 
-      curr = this.statusMsg.current,
-      newCurr = curr<len-1?curr+1:0;
-
-      this.activeItems(newCurr);
-  }
-  preFunc = ()=>{
-    const len = this.statusMsg.count, 
-      curr = this.statusMsg.current,
-      newCurr = curr>0?curr-1:len-1;
-
-      this.activeItems(newCurr);
-      
-  }
-  activeItems=index=>{
-    const w = this.refs.mycarousel.offsetWidth;
-    this.refs.mycarouselwarp.style.marginLeft=-1*index*w+'px';
-    this.statusMsg.current = index;
-    this.setState({temp:new Date().getTime()})
   }
 
+  next = ()=>{
+    const len = this.count, 
+      activeIndex = this.activeIndex,
+      nextActiveIndex = activeIndex < len-1 ? activeIndex + 1 : 0;
+
+    this.setActive(nextActiveIndex);
+  }
+
+  previous = ()=>{
+    const len = this.count, 
+      activeIndex = this.activeIndex,
+      preActiveIndex = activeIndex > 0 ? activeIndex - 1 : len - 1;
+
+    this.setActive(preActiveIndex);
+  }
+
+  setActive=index=>{
+    let carouselEl = ReactDOM.findDOMNode(this.carouselRef.current),
+      carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current),
+      width = carouselEl.offsetWidth;
+
+    carouselWarpEl.style.marginLeft = -1 * index * width + 'px';
+    this.activeIndex = index;
+    this.setState({
+      temp: new Date().getTime()
+    });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
 
   render() {
     const { items,speed,delay,pause,autoplay,dots,arrows,classes } = this.props;
-    this._status ={
-      autoplay:(typeof autoplay) =='boolean' && !autoplay?false:true,
-      pause:(typeof pause) =='boolean' && !pause?false:true
-    }
+    
     const _items = items.map((_,index)=>{
       return <CarouselItem data={_} index={index}></CarouselItem>;
     });
-    
-    
 
     return (
-      <div ref="mycarousel" onMouseOver={this.mouseoverFunc} onMouseOut={this.mouseoutFunc} className={classes.root}>
+      <div ref={this.carouselRef} onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} className={classes.root}>
 
-        <div ref='mycarouselwarp' className={classes.scrollwrap}>
+        <div ref={this.carouselWarpRef} className={classes.scrollwrap}>
           {_items}
         </div>
-        {!!arrows?<CarouselArrow next={this.nextFunc} pre={this.preFunc}></CarouselArrow>:null}
-        {!!dots?<CarouselDots count={items.length} speed={speed} actived={this.statusMsg.current} onChange={this.activeItems.bind(this)}></CarouselDots>:null}   
+        {!!arrows ? <CarouselArrow next={this.next} pre={this.previous}></CarouselArrow> : null}
+        {!!dots ? <CarouselDots count={items.length} speed={speed} activeIndex={this.activeIndex} onChange={this.setActive.bind(this)}></CarouselDots> : null}   
       </div>
     );
   }

@@ -59,7 +59,6 @@ class Item extends React.Component {
     root: PropTypes.object
   }
 
-
   renderItem() {
     const {name, key, children} = this.props;
     if (this.isRenderItem()) {

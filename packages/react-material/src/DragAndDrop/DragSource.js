@@ -22,6 +22,9 @@ const styles={
 	dragin:{
 		display:'inline-block',
 		padding:'6px'
+	},
+	isOvered:{
+		opacity:'0.1'
 	}
 };
 const _source = {
@@ -119,20 +122,14 @@ class _DragSouce extends Component {
 
 
 	render() {
-		const {connectDragSource,connectDropTarget,children,isDragging,type,classes} = this.props;
+		const {connectDragSource,connectDropTarget,children,isDragging,type,classes,isOver} = this.props;
 		let _style ={};
-
-		 
 		if( type =='POSITION' && !!isDragging){
 			//return null;
-			return (<div className={type=='POSITION'?classes.position:classes.dragin} >
-			<div ref={'dndwrap'}><div ref = {'mytttest'}>
-			{children}
-			</div></div>
-			</div>);
+			
 		}
 		return connectDropTarget(connectDragSource(	
-			<div className={type=='POSITION'?classes.position:classes.dragin} >
+			<div className={(type=='POSITION'?classes.position:classes.dragin)+' '+(isOver?classes.isOvered:'')} >
 			<div ref={'dndwrap'}><div ref = {'mytttest'}>
 			{children}
 			</div></div>

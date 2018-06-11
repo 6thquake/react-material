@@ -66,7 +66,8 @@ const styles={
   },
   gridListTile:{
     "@global div":{overflow:'visible'},
-    'transition': 'all 0.2s'
+    'transition': 'all 0.5s',
+
   },
   dragsourceResizeable:{
     background:'rgba(0,0,0,0.1)',

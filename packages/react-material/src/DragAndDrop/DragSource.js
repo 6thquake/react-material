@@ -64,19 +64,32 @@ const _target = {
 	
 	hover(props, monitor,component) {
 		//当hover的时候改变原数组的排列顺序
+		//
+		let justComeIn = true;
 		let gi = monitor.getItem(),from;
 		if(gi){
 			from = gi.sortFrom;
 		}
 		const to = props.index || 0;
 		if(from != to && (typeof props.sequence =='function')){
-			props.sequence(parseInt(from),parseInt(to));
-			monitor.getItem().sortFrom = to
+			console.log('################# from '+from+' to '+to+' #################');
+			
+			//const hovered = component.refs.dndwrap.parentElement.getBoundingClientRect();
+			props.sequence(parseInt(from),parseInt(to),()=>{
+					component.hasChanged = true;
+					monitor.getItem().sortFrom = to
+			});
+			
+			
+			
 		}
 		
 
 		//console.log('!!!!!!!!!!')
 	},
+	/*drop(props, monitor, component){
+		component.hasChanged = false;
+	}*/
 };
 function _dragCollect(connect, monitor) {
   return {
@@ -100,6 +113,7 @@ function _dropCollect(connect,monitor){
 class _DragSouce extends Component {
 	constructor(props) {
 		super(props)
+		
 	}
 
 
@@ -111,10 +125,15 @@ class _DragSouce extends Component {
 		 
 		if( type =='POSITION' && !!isDragging){
 			//return null;
+			return (<div className={type=='POSITION'?classes.position:classes.dragin} >
+			<div ref={'dndwrap'}><div ref = {'mytttest'}>
+			{children}
+			</div></div>
+			</div>);
 		}
 		return connectDropTarget(connectDragSource(	
 			<div className={type=='POSITION'?classes.position:classes.dragin} >
-			<div ><div ref = {'mytttest'}>
+			<div ref={'dndwrap'}><div ref = {'mytttest'}>
 			{children}
 			</div></div>
 			</div>

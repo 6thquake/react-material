@@ -65,7 +65,8 @@ const styles={
     }
   },
   gridListTile:{
-    "@global div":{overflow:'visible'}
+    "@global div":{overflow:'visible'},
+    'transition': 'all 0.2s'
   },
   dragsourceResizeable:{
     background:'rgba(0,0,0,0.1)',
@@ -123,7 +124,7 @@ class _Panel extends React.Component {
       return {component:v,size:[v.props.cols,v.props.rows]}
     })
   }
-  sequenceComponent = (from,to)=>{
+  sequenceComponent = (from,to,callback)=>{
     //from 是指原数组的第from个位置 to 是指原数组的第to个位置
     let _cc = this.state.childComponents; 
     if(!_cc){
@@ -133,6 +134,9 @@ class _Panel extends React.Component {
     _cc.splice(to,0,mycom[0]);
     //this.state();
     this.setState({childComponents:_cc})
+    if(!!callback && typeof callback === "function"){
+      callback();
+    }
   };
   removeComponent=(index)=>{
     if(!index && index !=0){

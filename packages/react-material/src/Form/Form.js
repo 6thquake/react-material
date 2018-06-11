@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Formsy, {addValidationRule, validationRules, withFormsy, propTypes} from 'formsy-react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';

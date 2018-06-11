@@ -111,11 +111,12 @@ class App extends Component {
     return (
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-native-simple">single select of simple array and disabled</InputLabel>
+          <InputLabel htmlFor="InputLabel1">single select of simple array and disabled</InputLabel>
           <AsyncSelect
             multiple={false}
             value={this.state.singlevalue}
             options={this.state.options}
+            htmlFor={'InputLabel1'}
             pageConfig={this.state.pageConfig}
             placeholder="select one or more"
             selectCb={this.selectCb.bind(this)}
@@ -126,11 +127,12 @@ class App extends Component {
           </AsyncSelect>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-native-helper">Multiple select of simple array</InputLabel>
+          <InputLabel htmlFor="InputLabel2">Multiple select of simple array</InputLabel>
           <AsyncSelect
             multiple={true}
             value={this.state.valuesMu}
             options={this.state.options}
+            htmlFor={'InputLabel2'}
             pageConfig={this.state.pageConfig}
             placeholder="select one or more"
             selectCb={this.selectCb.bind(this)}
@@ -140,11 +142,12 @@ class App extends Component {
           </AsyncSelect>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-native-helper">Multiple select of object array</InputLabel>
+          <InputLabel htmlFor="InputLabel3">Multiple select of object array</InputLabel>
           <AsyncSelect
             multiple={true}
             value={this.state.values}
             options={this.state.optionstem}
+            htmlFor={'InputLabel3'}
             keyValue={['label','label']}
             pageConfig={this.state.pageConfig}
             placeholder="select one or more"

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'react-material/styles';
-import FormGroup from 'react-material/FormGroup';
+import {withStyles} from '../styles';
+import FormGroup from '../FormGroup';
 
 const style = theme => ({});
 

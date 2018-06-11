@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import PropTypes from 'prop-types';
-import Button,{StatusButton} from 'react-material/Button';
+import Button,{StatusButton} from '../Button';
 import classNames from 'classnames';
-import { withStyles } from 'react-material/styles';
+import { withStyles } from '../styles';
 import FileUpload from '@material-ui/icons/FileUpload';
-import Icon from 'react-material/Icon';
+import Icon from '../Icon';
 
-import Avatar from 'react-material/Avatar';
-import Chip from 'react-material/Chip';
-import Paper from 'react-material/Paper';
+import Avatar from '../Avatar';
+import Chip from '../Chip';
+import Paper from '../Paper';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 
 const styles = theme => ({

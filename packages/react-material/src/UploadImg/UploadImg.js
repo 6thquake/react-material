@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'react-material/styles';
-import CssBaseline from 'react-material/CssBaseline';
+import { withStyles } from '../styles';
+import CssBaseline from '../CssBaseline';
 const styles = theme => ({
     input: {
         opacity: '0',

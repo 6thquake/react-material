@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'react-material/styles/withStyles';
-import Grid from 'react-material/Grid';
-import Button from 'react-material/Button';
+import withStyles from '../styles/withStyles';
+import Grid from '../Grid';
+import Button from '../Button';
 import classnames from 'classnames';
 import "babel-polyfill";
 //颜色需要替换

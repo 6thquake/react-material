@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { withStyles } from 'react-material/styles';
+import { withStyles } from '../styles';
                        
 import SearchIcon from '@material-ui/icons/Search';
-import Button from 'react-material/Button'
+import Button from '../Button'
 
 const styles = theme => ({
     root: {

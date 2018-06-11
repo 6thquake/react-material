@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncSelect } from 'react-material/Select'
-import InputLabel from 'react-material/Input';
+import InputLabel from 'react-material/InputLabel';
 import { withStyles } from 'react-material/styles';
 import FormControl from 'react-material/FormControl';
 import MenuItem from 'react-material/MenuItem';
@@ -101,7 +101,7 @@ class App extends Component {
             selectCb={this.selectCb.bind(this)}
             pageChangeCb={this.autoCb.bind(this)}
           >
-            {this.state.optionstem.slice(total==0?total:(currentPage-1)*pageSize,
+            {this.state.optionstem.slice(total===0?total:(currentPage-1)*pageSize,
               currentPage*pageSize>total?total:currentPage*pageSize).map(item => (
               <MenuItem
                 key={item.label}
@@ -126,7 +126,7 @@ class App extends Component {
             selectCb={this.selectCb.bind(this)}
             pageChangeCb={this.autoCb.bind(this)}
           >
-            {this.state.optionstem.slice(total==0?total:(currentPage-1)*pageSize,
+            {this.state.optionstem.slice(total===0?total:(currentPage-1)*pageSize,
               currentPage*pageSize>total?total:currentPage*pageSize).map(item => (
               <MenuItem
                 key={item.label}

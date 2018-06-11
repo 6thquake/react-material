@@ -6,7 +6,7 @@ import Paper from '../Paper';
 import Chip from '../Chip';
 import Pagination from '../Pagination/Pagination';
 import Divider from '../Divider';
-import { MenuItem } from '../Menu';
+import MenuItem from '../MenuItem';
 const styles = theme => ({
   root: {
    flexGrow: 1,
@@ -78,7 +78,7 @@ class AutoComplete extends Component {
     /**
      * 用于回显
      */
-    value : PropTypes.string,
+    value : PropTypes.oneOfType(PropTypes.string,PropTypes.array),
     /**
      * decided autocomplete is disabled
      */

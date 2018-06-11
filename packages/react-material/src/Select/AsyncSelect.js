@@ -150,7 +150,7 @@ class AsyncSelect extends Component {
       }
     }
     render() {
-        const {pageConfig, placeholder, multiple,classes,disabled,...other} = this.props;
+        const {pageConfig, placeholder, multiple,classes,disabled,htmlFor,...other} = this.props;
         return (
             <SelectStandalone
                 {...other}
@@ -164,7 +164,7 @@ class AsyncSelect extends Component {
                 }}
                 inputProps={{
                     placeholder: placeholder,
-
+                    id:htmlFor
                 }}
                 disabled={disabled}
                 renderValue={selected => (

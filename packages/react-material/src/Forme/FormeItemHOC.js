@@ -36,7 +36,8 @@ function FormeItemHOC(WrappedComponent) {
       let required = false;
       if (this.props.required) {
         required = true;
-      } else if (convertValidationsToObject(this.props.validations)['isDefaultRequiredValue']) {
+      }
+      if (convertValidationsToObject(this.props.validations)['isRequired']) {
         required = true;
       }
 

@@ -1,7 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import { withStyles } from '../styles';
 
-//<RMTransfer></RMTransfer> 
+
 const styles = {
   imgwarp:{
     maxWidth:'500px',
@@ -14,26 +15,27 @@ const styles = {
     }
   }
 };
+
 class CarouselItem extends React.Component {
   constructor(props) {
     super(props);
-  
+    this.itemRef = React.createRef();
   }
   componentDidMount(){
-    const parent = this.refs.item.parentNode.parentNode, 
-    h = parent.offsetHeight,
-    w = parent.offsetWidth;
-    this.refs.item.style.height= h+'px';
-    this.refs.item.style.width= w+'px';
-    this.refs.item.children[0].style.minHeight=h+'px';
-    this.refs.item.children[0].style.display='block';
-
+    const itemEl = ReactDOM.findDOMNode(this.itemRef.current),
+      parentEl = itemEl.parentNode.parentNode, 
+    h = parentEl.offsetHeight,
+    w = parentEl.offsetWidth;
+    itemEl.style.height= h+'px';
+    itemEl.style.width= w+'px';
+    itemEl.children[0].style.minHeight=h+'px';
+    itemEl.children[0].style.display='block';
   }
 
   render() {
     const {data,index,classes} = this.props;
     return (
-      <div ref="item" className={classes.imgwarp}>
+      <div ref={this.itemRef} className={classes.imgwarp}>
         <img src={data.src} alt={data.alt} />
       </div>
     );

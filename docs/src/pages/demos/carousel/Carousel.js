@@ -16,19 +16,19 @@ class App extends React.Component {
     super(props);
     this.IMAGE_DATA = [
       {
-        src: '/static/carouselimg/1.jpg',
+        src: '/static/images/grid-list/bike.jpg',
         alt: 'images-1',
       },
       {
-        src: '/static/carouselimg/2.jpg',
+        src: '/static/images/grid-list/mushroom.jpg',
         alt: 'images-2',
       },
       {
-        src: '/static/carouselimg/3.jpg',
+        src: '/static/images/grid-list/burgers.jpg',
         alt: 'images-3',
       },
       {
-        src: '/static/carouselimg/4.jpg',
+        src: '/static/images/grid-list/morning.jpg',
         alt: 'images-4',
       }
     ];

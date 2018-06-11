@@ -1,7 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import { withStyles } from '../styles';
 
-//<RMTransfer></RMTransfer> 
+
 const styles = {
   root:{
     position:'absolute',
@@ -25,9 +26,9 @@ const styles = {
   actived:{
     width:'30px',
     background:'rgba(255,255,255,1)'
-
   }
 };
+
 class CarouselDots extends React.Component {
   constructor(props) {
     super(props);
@@ -35,15 +36,16 @@ class CarouselDots extends React.Component {
       styles.dot.transition ='all '+props.speed+'s';
       styles.dot.WebkitTransition ='all '+props.speed+'s';
     }
-
+    this.dotRef = React.createRef();
   }
   componentDidMount(){
     if(!!this.props.speed){
-      //this.refs.dot.childNodes.style.transition ='all '+this.props.speed+'s';
-      //this.refs.dot.childNode.style.WebkitTransition ='all '+this.props.speed+'s';
-      for(let i=0,len=this.refs.dot.childNodes.length;i<len;i++){
-        this.refs.dot.childNodes[i].style.transition ='all '+this.props.speed+'s';
-        this.refs.dot.childNodes[i].style.WebkitTransition ='all '+this.props.speed+'s';
+      let dotEl = ReactDOM.findDOMNode(this.dotRef.current),
+        nodes = dotEl.childNodes,
+        speed = this.props.speed;
+      for(let i=0, len=nodes.length; i<len; i++){
+        nodes[i].style.transition ='all '+speed+'s';
+        nodes[i].style.WebkitTransition ='all '+speed+'s';
       }
     }
     if(!!this.props.speed){
@@ -53,18 +55,18 @@ class CarouselDots extends React.Component {
   }
 
   render() {
-    const {onChange,count,actived,classes} = this.props;
+    const {onChange,count,activeIndex,classes} = this.props;
     const _dots = [];
     for(let i=0;i<count;i++){
       _dots.push('dot');
     }
     const dots = _dots.map((_,index)=>{
-      const _class = index == actived?classes.dot+' '+classes.actived: classes.dot;
+      const _class = index == activeIndex?classes.dot+' '+classes.actived: classes.dot;
       return <span key={index} className={_class}  onClick={()=>{onChange(index)}}>{index}</span>;
     })
 
     return (
-      <div ref='dot' className={classes.root}>
+      <div ref={this.dotRef} className={classes.root}>
         {dots}
       </div>
     );

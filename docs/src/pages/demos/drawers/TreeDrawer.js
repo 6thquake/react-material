@@ -12,6 +12,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { TreeMenu } from 'react-material/Menu';
+import Scrollbar from 'react-material/Scrollbar';
+import Grid from 'react-material/Grid';
+import SvgIcon from 'react-material/SvgIcon';
+import { white } from 'react-material/colors/common';
 import data from './data';
 
 const drawerWidth = 240;
@@ -28,6 +32,7 @@ const defaultItemKeysMap = {
   open: 'open',
   selected: 'selected'
 };
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -38,6 +43,8 @@ const styles = theme => ({
     display: 'flex',
   },
   appBar: {
+    marginLeft: 72,
+    width: `calc(100% - 72px)`,
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -67,6 +74,7 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    height: '100%'
   },
   drawerPaperClose: {
     overflowX: 'hidden',
@@ -92,9 +100,37 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   },
   docked: {
-    overflow: 'scroll'
+    overflow: 'hidden'
   }
 });
+
+const logoStyles = {
+  cl1: {
+    fill: 'rgb(132, 241, 246)',
+    opacity: 0.55,
+    isolation: 'isolate'
+  },
+  cl2: {
+    fill: 'rgb(36, 136, 199)'
+  },
+  cl3: {
+    fill: 'rgb(132, 241, 246)',
+    stroke: 'rgb(132, 241, 246)',
+    strokeMiterlimit: 10,
+    strokeWidth: '0.06px'
+  }
+};
+
+const Logo = (props) => (
+  <SvgIcon {...props}>
+    <polygon style={logoStyles.cl1} points="5.6 9.8 6.8 11.6 5.6 9.8 5.6 9.8"/>
+    <polygon style={logoStyles.cl2} points="1 0.4 0.1 1 0.5 14.3 1.4 15.6 1 0.4"/>
+    <polygon style={logoStyles.cl2} points="5.6 8 5.6 9.8 6.8 11.6 9 12.9 5.6 8"/>
+    <polygon style={logoStyles.cl2} points="12.3 7.6 10 11.4 10.1 13.2 12.1 14.3 12.3 7.6"/>
+    <polygon style={logoStyles.cl2} points="12.6 0.9 10.2 1.5 8 4.8 9.1 6.5 12.6 0.9"/>
+    <polygon style={logoStyles.cl3} points="12.6 0.9 9.1 6.5 8 4.8 5.4 0.6 1 0.4 1.4 15.6 5.6 15.1 5.6 9.8 5.6 9.8 5.6 8 9 12.9 10 11.4 12.3 7.6 12.1 14.3 15.4 13.9 15.9 0.9 12.6 0.9"/>
+  </SvgIcon>
+);
 
 class MiniDrawer extends React.Component {
   state = {
@@ -108,6 +144,11 @@ class MiniDrawer extends React.Component {
   handleDrawerClose = () => {
     this.setState({open: false});
   };
+
+  toggleDrawer = () => {
+    this.setState({open: !this.state.open});
+  };
+
   onClick(info) {
     console.log('click ', info);
   }
@@ -142,22 +183,72 @@ class MiniDrawer extends React.Component {
           }}
           open={this.state.open}
         >
-          <div className={classes.toolbar}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
-            </IconButton>
-          </div>
-          <Divider/>
-          <TreeMenu list={data} itemKeysMap={{
-              name: 'component',
-              children: 'childRoutes',
-            key:'path'
-            }}
-                    onClick={this.onClick}
-                    mode="inline"
-                    inlineCollapsed={!this.state.open}
-                    theme={'dark'}
-          />
+          <Grid container
+            direction="column"
+            alignItems="stretch"
+            justify="space-between"
+            spacing="0"
+            style={{
+              height: '100%',
+              backgroundColor: 'rgba(0, 0, 0, 0.87)'
+            }}>
+            <Grid item container style={{
+              height: "100px"
+            }} 
+              direction="row"
+              alignItems="stretch"
+              justify="center"
+              spacing="2">
+              <Grid item>
+                <Logo style={{
+                  height: '48px',
+                  fontSize: '48px',
+                  marginTop: '32px'
+                }}></Logo>
+              </Grid>
+              { this.state.open ? (
+                <Grid item>
+                  <Typography variant="title" style={{
+                    lineHeight: '100px',
+                    color: white
+                  }}>
+                    React-Material
+                  </Typography>
+                </Grid>) : null
+              }
+              
+            </Grid>
+            <Grid item>
+              <Divider/>
+            </Grid>
+            <Grid item xs>
+              <Scrollbar style={{height: '100%'}}>
+                <TreeMenu list={data} itemKeysMap={{
+                    name: 'component',
+                    children: 'childRoutes',
+                    key:'path'
+                  }}
+                  onClick={this.onClick}
+                  mode="inline"
+                  inlineCollapsed={!this.state.open}
+                  theme={'dark'}
+                />
+              </Scrollbar>
+            </Grid>
+            <Grid item container
+              direction="row"
+              alignItems="stretch"
+              justify="center"
+              spacing="0">
+              <Grid item>
+                <div className={classes.toolbar}>
+                  <IconButton onClick={this.toggleDrawer} style={{color: white}}>
+                    {this.state.open ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+                  </IconButton>
+                </div>
+              </Grid>
+            </Grid>
+          </Grid>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar}/>

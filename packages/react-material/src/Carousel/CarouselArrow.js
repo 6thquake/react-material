@@ -1,7 +1,8 @@
 import React from 'react';
 import { withStyles } from '../styles';
 import { ChevronRight, ChevronLeft } from '@material-ui/icons';
-//<RMTransfer></RMTransfer> 
+
+
 const styles = {
   root:{
     width:'100%',
@@ -28,6 +29,7 @@ const styles = {
     float:'right'
   }
 };
+
 class CarouselArrow extends React.Component {
   constructor(props) {
     super(props);

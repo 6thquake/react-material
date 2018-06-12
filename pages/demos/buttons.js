@@ -64,6 +64,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/buttons/IconButtons'), 'utf8')
 `,
         },
+        'pages/demos/buttons/FishButton.js': {
+          js: require('docs/src/pages/demos/buttons/FishButton').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/FishButton'), 'utf8')
+`,
+        },
         'pages/demos/buttons/IconLabelButtons.js': {
           js: require('docs/src/pages/demos/buttons/IconLabelButtons').default,
           raw: preval`

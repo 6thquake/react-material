@@ -73,6 +73,9 @@ const _target = {
 		if(gi){
 			from = gi.sortFrom;
 		}
+		if(!from && from !=0){
+			return;
+		}
 		const to = props.index || 0;
 		if(from != to && (typeof props.sequence =='function')){
 			console.log('################# from '+from+' to '+to+' #################');

@@ -7,7 +7,7 @@ import {withFormsy, propTypes} from 'formsy-react';
 import {compose} from 'recompose';
 import withFormItem from '../Form/withFormItem';
 import withForm from '../Form/withForm';
-import omit from "../Form/omit";
+import omit from "../utils/omit";
 
 const style = theme => ({
   formHelpTextContainer: {

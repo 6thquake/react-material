@@ -11,10 +11,11 @@ import omit from '../Form/omit';
 
 const style = theme => ({
   formHelpTextContainer: {
+    marginTop: '-8px',
     minHeight: '12px'
   },
   formHelperTextRoot: {
-    marginTop: '-8px'
+    marginTop: 0
   }
 });
 
@@ -77,7 +78,7 @@ class RadioGroup extends Component {
       root: classes.formHelperTextRoot
     };
 
-    const restClasses = omit(classes, ['formHelpTextContainer','formHelperTextRoot']);
+    const restClasses = omit(classes, ['formHelpTextContainer', 'formHelperTextRoot']);
 
     return (
       <React.Fragment>

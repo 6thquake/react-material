@@ -8383,6 +8383,17 @@ rc-menu@^7.0.4:
     rc-trigger "^2.3.0"
     rc-util "^4.1.0"
 
+rc-tree@^1.12.0:
+  version "1.12.0"
+  resolved "http://registry.npm.release.ctripcorp.com/rc-tree/download/rc-tree-1.12.0.tgz#c859e82571cb78b5f9a771d24827ada6476076de"
+  dependencies:
+    babel-runtime "^6.23.0"
+    classnames "2.x"
+    prop-types "^15.5.8"
+    rc-animate "2.x"
+    rc-util "^4.0.4"
+    warning "^3.0.0"
+
 rc-trigger@^2.3.0:
   version "2.5.1"
   resolved "http://registry.npm.release.ctripcorp.com/rc-trigger/download/rc-trigger-2.5.1.tgz#a64e06d9bff05d23e7d18c558048ce75a51d6ac9"

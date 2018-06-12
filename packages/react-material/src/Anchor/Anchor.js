@@ -19,63 +19,78 @@ const styles = (theme) => ({
     position: 'relative',
     display: 'flex',
     overflow: 'hidden',
-    backgroundColor: theme.palette.common.white,
-    zIndex: 999,
-    width: 250
+    // backgroundColor: theme.palette.common.white,
+    // zIndex: 999,
+    width: '100%'
   }, 
+
   anchorWrapper:{
-    marginTop: 10,
-    marginBottom: 10,
-    paddingLeft: 10,
+    marginTop: 0,
+    marginBottom: 0,
+    paddingLeft: 0,
+    paddingRight: theme.spacing.unit * 4,
   },
-  
+
   ul: {
     position: 'relative',
-    zIndex: 2
+    zIndex: 2,
+    listStyleType: 'none',
+    paddingLeft: theme.spacing.unit * 4,
   },
+
+  li: {},
+
   active: {
     color:` ${theme.palette.primary.dark} !important`
   },
   
   wrapper: {
     position: 'relative',
-    paddingRight: theme.spacing.unit * 40
+    paddingRight: 0
   },
+
   activeMask: {
     position: 'absolute',
-    backgroundColor: '#f3f3f3',
+    backgroundColor: fade(theme.palette.primary.main, 0.2),
     borderLeft: `2px solid ${theme.palette.primary.dark}`,
     transition: 'all .2s ease',
     zIndex: 1,
     width: '100%',
-    right: 2,
+    right: 0,
     height: 40,
+    left: -2
   },
+
   link: {
     display: 'flex',
-    height: 40,
     alignItems: 'center',
-    'text-decoration':'none',
-    'color':'#333',
+    textDecoration: 'none',
+    color: theme.palette.common.black,
+    cursor: 'pointer',
+    height: 40,
   },
+
   hoLink: {
-    color: '#333',
+    color: theme.palette.common.black,
     textDecoration: 'none',
     '&:hover': {
-      backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      backgroundColor: fade(theme.palette.primary.main, 0.2),
     },
     padding: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit * 2}px`,
+    textAlign: 'center',
+    cursor: 'pointer',
     minWidth: 120,
-    textAlign: 'center'
   },
+
   line: {
     height: 'inherit',
-    backgroundColor: '#ccc',
-    marginLeft:20,
-    marginTop: 10,
-    marginBottom: 10,
+    backgroundColor: theme.palette.grey['300'],
+    marginLeft:0,
+    marginTop: 0,
+    marginBottom: 0,
     paddingLeft: 2,
   },
+
   horizontalAnchor: {
     display: 'flex'
   }
@@ -104,7 +119,6 @@ const throttling = (fn, wait, maxTimelong) =>{
      let anchorElement = document.querySelector(anchorName)
      if (anchorElement) {
        anchorElement.scrollIntoView()
-       console.log('scroll to', anchorName)
      }
    }
  }
@@ -121,10 +135,13 @@ class Anchor extends React.Component {
   componentDidMount() {
     let sel = this.props.container 
     this.container = document.querySelector(sel) || window
-    this.container.addEventListener('scroll', throttling(this.scrollHandle))
+    this.ths = throttling(this.scrollHandle)
+    this.container.addEventListener('scroll', this.ths)
     this.setLinks(this.props.links)
   }
-
+  componentWillUnmount(){
+    this.container.removeEventListener('scroll', this.ths, false)
+  }
   scrollHandle = (e) => {
     let { links } = this.props
     this.setLinks(links)
@@ -132,7 +149,10 @@ class Anchor extends React.Component {
 
   setLink = (link)=> {
     // debugger
-    let { onChange } = this.props
+    let {
+      onChange,
+    } = this.props
+
     var sel = link.href;
     let ele = document.querySelector(sel)
     let dh = ele ? this.getOffsetTop(ele, this.container) : 0
@@ -147,17 +167,7 @@ class Anchor extends React.Component {
       let activeLink = {
         [sel]: true
       }
-      // todo vertical
-      let links = this.wrapper.querySelectorAll('a')
-      let target = null
-      for( let link of links){
-        if(link.name === sel){
-          target =  link
-          break
-        }
-      }
-      target && this.setMask(target, this.wrapper)
-
+      this.setMask(sel)
       this.setState({
         links: activeLink
       })
@@ -168,12 +178,24 @@ class Anchor extends React.Component {
 
   }
 
+  
   // 设置高亮 mask 的高度
-  setMask = (target, wrapper) => {
-    let h = this.getOffsetTop(target, wrapper)
-    this.setState({
-      linkHigth: h,
-    })
+  setMask = (sel) => {
+    let { orientation } = this.props
+    if (orientation != 'horizontal') {
+      let links = this.wrapper.querySelectorAll('a')
+      let target = null
+      for (let link of links) {
+        if (link.name === sel) {
+          target = link
+          break
+        }
+      }
+      let h = target && this.getOffsetTop(target, this.wrapper)
+      this.setState({
+        linkHigth: h,
+      })
+    }
   }
 
   setLinks(links){
@@ -226,7 +248,7 @@ class Anchor extends React.Component {
       prop.href = link.href
     }
     return (
-      <li key={index}>
+      <li key={index} className={classes.li}>
         <a 
           name={link.href}
           onClick={this.handleLinkClick(index)} 
@@ -241,9 +263,11 @@ class Anchor extends React.Component {
       </li>
     )
   }
+
   renderLink = (link, index) => {
     return this.renderItem(link, index, link.children)
   }
+
   renderLinks = (links) => {
     let {classes} = this.props
     let result = links.map((link, index)=>{
@@ -252,7 +276,6 @@ class Anchor extends React.Component {
     return <ul className={classes.ul}>{result}</ul>
   }
 
-  
   renderHorizontalLinks = (links) => {
     let {
       classes,
@@ -287,12 +310,16 @@ class Anchor extends React.Component {
         </a>
       )
     })
-    return <div ref={(e)=>{this.wrapper= e}} className={classes.horizontalAnchor}>{result}</div>
+    return <div ref={(e)=> {this.setRef(e)}} className={classes.horizontalAnchor}>{result}</div>
   }
+
   scrollToAnchor = (id)=> {
     if(this.props.type === 'hash'){
       return scrollToAnchor(id)
     }
+  }
+  setRef =(e)=> {
+    this.wrapper = e
   }
   render() {
     const {
@@ -310,7 +337,7 @@ class Anchor extends React.Component {
       orientation == 'horizontal' ? this.renderHorizontalLinks(links) :
       <div className={classes.box} style={style}>
         <div className={classes.line}></div>
-        <div ref={(e)=>{this.wrapper= e}} className={classes.wrapper}>
+        <div ref={this.setRef} className={classes.wrapper}>
           <div className={classes.activeMask} style={maskStyle}></div>
           <div className={classes.anchorWrapper}>
             {

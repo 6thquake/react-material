@@ -62,7 +62,8 @@ class FormDemo extends Component {
       value: '3'
     }],
     textarea: '',
-    canSubmit: false
+    canSubmit: false,
+    formRef: React.createRef()
   };
 
   onChange = key => (event, value) => {
@@ -91,9 +92,14 @@ class FormDemo extends Component {
     })
   };
 
+  otherSubmit = () => {
+    const {formRef} = this.state;
+    formRef.current.submit();
+  };
+
   render() {
     const {classes} = this.props;
-    const {canSubmit, input, textField, select, selectOptions, radio, radioOptions, checkbox, checkboxOptions, textarea} = this.state;
+    const {canSubmit, input, textField, select, selectOptions, radio, radioOptions, checkbox, checkboxOptions, textarea, formRef} = this.state;
     return (
       <Form
         onSubmit={this.onSubmit}
@@ -101,6 +107,7 @@ class FormDemo extends Component {
         onValid={this.enableSubmitButton}
         onInvalid={this.disableSubmitButton}
         className={classes.form}
+        ref={formRef}
       >
         <Grid container>
           <Grid item xs={12}>
@@ -202,6 +209,14 @@ class FormDemo extends Component {
                   className={classes.btn}
                 >
                   重置
+                </Button>
+                <Button
+                  variant="raised"
+                  color="primary"
+                  className={classes.btn}
+                  onClick={this.otherSubmit}
+                >
+                  另一种提交方式
                 </Button>
               </Grid>
             </Grid>

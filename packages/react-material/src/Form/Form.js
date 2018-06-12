@@ -1,30 +1,37 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Formsy, {addValidationRule, validationRules, withFormsy, propTypes} from 'formsy-react';
 import PropTypes from 'prop-types';
-import withStyles from '../styles/withStyles';
 
 // required
 addValidationRule('isRequired', (values, value) => {
   return !(value === undefined || value === null || value === '');
 });
 
-const style = theme => ({});
-
-class Form extends React.Component {
+class Form extends Component {
   state = {
-    instance: null
+    formsyRef: React.createRef()
   };
 
+  // 获取formsy实例
+  getFormsyRef() {
+    return this.state.formsyRef.current;
+  }
+
   isValid() {
-    return this.instance.state.isValid;
+    const formsyRef = this.getFormsyRef();
+    return formsyRef.state.isValid;
+  }
+
+  submit() {
+    const formsyRef = this.getFormsyRef();
+    formsyRef.submit();
   }
 
   render() {
     const {children, ...rest} = this.props;
+    const {formsyRef} = this.state;
     return (
-      <Formsy {...rest} ref={r => {
-        this.instance = r;
-      }}>{children}</Formsy>
+      <Formsy {...rest} ref={formsyRef}>{children}</Formsy>
     );
   }
 }
@@ -45,4 +52,4 @@ export {
   propTypes
 }
 
-export default withStyles(style)(Form);
+export default Form;

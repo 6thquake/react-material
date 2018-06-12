@@ -25,6 +25,13 @@ class Form extends Component {
   submit() {
     const formsyRef = this.getFormsyRef();
     formsyRef.submit();
+    return this;
+  }
+
+  reset(){
+    const formsyRef = this.getFormsyRef();
+    formsyRef.reset();
+    return this;
   }
 
   render() {
@@ -37,7 +44,6 @@ class Form extends Component {
 }
 
 Form.propTypes = {
-  classes: PropTypes.object.isRequired,
   ...Formsy.propTypes
 };
 

@@ -337,6 +337,7 @@ class App extends React.Component {
                     linkStyle={{}}
                     container={'#t-box'}
                     linkActiveStyle={{}}
+                    orientation='vertical'
                     links={links}
                     onChange={this.handleAnchorChange}
                   ></Anchor>

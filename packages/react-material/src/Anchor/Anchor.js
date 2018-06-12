@@ -119,7 +119,6 @@ const throttling = (fn, wait, maxTimelong) =>{
      let anchorElement = document.querySelector(anchorName)
      if (anchorElement) {
        anchorElement.scrollIntoView()
-       console.log('scroll to', anchorName)
      }
    }
  }
@@ -136,10 +135,13 @@ class Anchor extends React.Component {
   componentDidMount() {
     let sel = this.props.container 
     this.container = document.querySelector(sel) || window
-    this.container.addEventListener('scroll', throttling(this.scrollHandle))
+    this.ths = throttling(this.scrollHandle)
+    this.container.addEventListener('scroll', this.ths)
     this.setLinks(this.props.links)
   }
-
+  componentWillUnmount(){
+    this.container.removeEventListener('scroll', this.ths, false)
+  }
   scrollHandle = (e) => {
     let { links } = this.props
     this.setLinks(links)
@@ -147,7 +149,10 @@ class Anchor extends React.Component {
 
   setLink = (link)=> {
     // debugger
-    let { onChange } = this.props
+    let {
+      onChange,
+    } = this.props
+
     var sel = link.href;
     let ele = document.querySelector(sel)
     let dh = ele ? this.getOffsetTop(ele, this.container) : 0
@@ -162,17 +167,7 @@ class Anchor extends React.Component {
       let activeLink = {
         [sel]: true
       }
-      // todo vertical
-      let links = this.wrapper.querySelectorAll('a')
-      let target = null
-      for( let link of links){
-        if(link.name === sel){
-          target = link
-          break
-        }
-      }
-      target && this.setMask(target, this.wrapper)
-
+      this.setMask(sel)
       this.setState({
         links: activeLink
       })
@@ -183,12 +178,24 @@ class Anchor extends React.Component {
 
   }
 
+  
   // 设置高亮 mask 的高度
-  setMask = (target, wrapper) => {
-    let h = this.getOffsetTop(target, wrapper)
-    this.setState({
-      linkHigth: h,
-    })
+  setMask = (sel) => {
+    let { orientation } = this.props
+    if (orientation != 'horizontal') {
+      let links = this.wrapper.querySelectorAll('a')
+      let target = null
+      for (let link of links) {
+        if (link.name === sel) {
+          target = link
+          break
+        }
+      }
+      let h = target && this.getOffsetTop(target, this.wrapper)
+      this.setState({
+        linkHigth: h,
+      })
+    }
   }
 
   setLinks(links){
@@ -303,7 +310,7 @@ class Anchor extends React.Component {
         </a>
       )
     })
-    return <div ref={(e)=>{this.wrapper= e}} className={classes.horizontalAnchor}>{result}</div>
+    return <div ref={(e)=> {this.setRef(e)}} className={classes.horizontalAnchor}>{result}</div>
   }
 
   scrollToAnchor = (id)=> {
@@ -311,7 +318,9 @@ class Anchor extends React.Component {
       return scrollToAnchor(id)
     }
   }
-
+  setRef =(e)=> {
+    this.wrapper = e
+  }
   render() {
     const {
       classes,
@@ -328,7 +337,7 @@ class Anchor extends React.Component {
       orientation == 'horizontal' ? this.renderHorizontalLinks(links) :
       <div className={classes.box} style={style}>
         <div className={classes.line}></div>
-        <div ref={(e)=>{this.wrapper= e}} className={classes.wrapper}>
+        <div ref={this.setRef} className={classes.wrapper}>
           <div className={classes.activeMask} style={maskStyle}></div>
           <div className={classes.anchorWrapper}>
             {

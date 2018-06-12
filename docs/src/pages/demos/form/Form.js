@@ -92,6 +92,11 @@ class FormDemo extends Component {
     })
   };
 
+  otherReset = () => {
+    const {formRef} = this.state;
+    formRef.current.reset();
+  };
+
   otherSubmit = () => {
     const {formRef} = this.state;
     formRef.current.submit();
@@ -195,29 +200,33 @@ class FormDemo extends Component {
             <Grid container>
               <Grid item sm={3}/>
               <Grid item sm={9}>
-                <Button
-                  type="submit"
-                  variant="raised"
-                  color="primary"
-                  disabled={!canSubmit}
-                >
-                  提交
-                </Button>
-                <Button
-                  type="reset"
-                  variant="raised"
-                  className={classes.btn}
-                >
-                  重置
-                </Button>
-                <Button
-                  variant="raised"
-                  color="primary"
-                  className={classes.btn}
-                  onClick={this.otherSubmit}
-                >
-                  另一种提交方式
-                </Button>
+                <Grid container spacing={16}>
+                  <Grid item>
+                    <Button
+                      type="submit"
+                      variant="raised"
+                      color="primary"
+                      disabled={!canSubmit}
+                    >
+                      提交
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button type="reset" variant="raised">重置</Button>
+                  </Grid>
+                  <Grid item>
+                    <Button
+                      variant="raised"
+                      color="primary"
+                      onClick={this.otherSubmit}
+                    >
+                      另一种提交方式
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="raised" onClick={this.otherReset}>另一种重置方式</Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>

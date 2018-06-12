@@ -1,55 +1,26 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Formsy, {addValidationRule, validationRules, withFormsy, propTypes} from 'formsy-react';
-import PropTypes from 'prop-types';
 
 // required
 addValidationRule('isRequired', (values, value) => {
   return !(value === undefined || value === null || value === '');
 });
 
-class Form extends Component {
-  state = {
-    formsyRef: React.createRef()
-  };
-
-  // 获取formsy实例
-  getFormsyRef() {
-    return this.state.formsyRef.current;
-  }
-
+class Form extends Formsy {
   isValid() {
-    const formsyRef = this.getFormsyRef();
-    return formsyRef.state.isValid;
+    return super.state.isValid;
   }
 
   submit() {
-    const formsyRef = this.getFormsyRef();
-    formsyRef.submit();
+    super.submit();
     return this;
   }
 
-  reset(){
-    const formsyRef = this.getFormsyRef();
-    formsyRef.reset();
+  reset() {
+    super.reset();
     return this;
-  }
-
-  render() {
-    const {children, ...rest} = this.props;
-    const {formsyRef} = this.state;
-    return (
-      <Formsy {...rest} ref={formsyRef}>{children}</Formsy>
-    );
   }
 }
-
-Form.propTypes = {
-  ...Formsy.propTypes
-};
-
-Form.defaultProps = {
-  ...Formsy.defaultProps
-};
 
 export {
   addValidationRule,

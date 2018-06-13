@@ -5,10 +5,10 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-diff';
 
 import lightTheme from 'prismjs/themes/prism.css';
 import darkTheme from 'prismjs/themes/prism-okaidia.css';
-
 export { lightTheme, darkTheme };
 
 let styleNode;
@@ -22,7 +22,9 @@ if (process.browser) {
 }
 
 export function setPrismTheme(theme) {
+	console.log(theme)
   styleNode.textContent = theme;
 }
 
 export default prism;
+

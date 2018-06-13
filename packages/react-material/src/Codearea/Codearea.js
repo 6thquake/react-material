@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '../styles';
-import prism from './prism';
+import prism, { lightTheme, darkTheme, setPrismTheme } from './prism';
 
 const styles = theme => ({
   root: {
@@ -15,22 +15,32 @@ const styles = theme => ({
 class Codearea extends React.Component{
   static propTypes = {
     children: PropTypes.node.isRequired,
-    language: PropTypes.string
+    language: PropTypes.string,
   }
 
   render () {
     let lang = '';
-    switch(this.props.language){
+    switch((this.props.language || '').toLowerCase()){
       case 'css':
         lang = 'css';
+        break;
+      case 'diff':
+        lang = 'diff';
+        break;
+      case 'typescript':
+        lang = 'typescript';
+        break;
+      case 'markup':
+        lang = 'markup';
         break;
       case 'js':
       case 'jsx':
       case 'javascript':
       default:
-        lang= 'jsx';
+        lang = 'jsx';
         break;
     }
+
     const className = classNames({
       'classes.root': true,
       'react-prism': true,
@@ -60,7 +70,6 @@ class Codearea extends React.Component{
   }
 }
 
-
 Codearea.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
@@ -68,3 +77,4 @@ Codearea.propTypes = {
 };
 
 export default withStyles(styles, { flip: false })(Codearea);
+export { lightTheme, darkTheme, setPrismTheme }

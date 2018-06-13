@@ -67,6 +67,7 @@
     "downshift": "^1.31.14",
     "formsy-react": "^1.1.4",
     "immutability-helper": "^2.7.0",
+    "marked": "^0.4.0",
     "material-ui-pickers": "^1.0.0-rc.9",
     "moment": "^2.22.2",
     "rc-menu": "^7.0.4",

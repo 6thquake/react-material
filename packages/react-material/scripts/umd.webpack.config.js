@@ -39,7 +39,10 @@ const baseConfig = {
         query: {
           cacheDirectory: true,
         },
-      },
+      }, {
+        test: /\.css$/,
+        loader: ['css-loader'],
+      }
     ],
   },
   plugins: [],

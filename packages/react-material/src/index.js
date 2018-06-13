@@ -35,6 +35,7 @@ export { default as CheckboxGroup, CheckboxGroupStandalone } from './CheckboxGro
 export { default as Chip } from './Chip';
 export { default as CircularProgress } from './CircularProgress';
 export { default as ClickAwayListener } from './ClickAwayListener';
+export { default as Codearea} from './Codearea';
 export { default as Collapse } from './Collapse';
 export { default as CssBaseline } from './CssBaseline';
 export { default as Dialog } from './Dialog';
@@ -83,7 +84,6 @@ export { default as ListItemIcon } from './ListItemIcon';
 export { default as ListItemSecondaryAction } from './ListItemSecondaryAction';
 export { default as ListItemText } from './ListItemText';
 export { default as ListSubheader } from './ListSubheader';
-export { default as MarkdownElement} from './MarkdownElement';
 export { default as Menu, TreeMenu } from './Menu';
 export { default as MenuItem } from './MenuItem';
 export { default as MenuList } from './MenuList';

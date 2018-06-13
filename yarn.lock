@@ -6572,6 +6572,10 @@ marked@^0.3.12:
   version "0.3.19"
   resolved "http://registry.npm.release.ctripcorp.com/marked/download/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
 
+marked@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.4.0.tgz#9ad2c2a7a1791f10a852e0112f77b571dce10c66"
+
 "match-stream@>= 0.0.2 < 1":
   version "0.0.2"
   resolved "http://registry.npm.release.ctripcorp.com/match-stream/download/match-stream-0.0.2.tgz#99eb050093b34dffade421b9ac0b410a9cfa17cf"

@@ -8,6 +8,9 @@ import moment from 'moment';
 import 'moment/locale/en-ca';
 import 'moment/locale/zh-cn'; 
 
+import deepmerge from 'deepmerge'
+
+
 const languages = {
   'zh-tw': zh_tw,
   'zh-cn': zh_cn,
@@ -17,26 +20,38 @@ const languages = {
   'en': en,
 }
 
-const getLocale = (lang) => {
+const getLanguage = (lang, value) => {
+  let _languages = value || languages;
+
   if (lang) {
     lang = lang.toLowerCase();
-
-    let locale = languages[lang];
     
-    if(locale) {
-      return locale;
+    if(_languages[lang]) {
+      return lang;
     }
 
     lang = lang.split('-')[0];
 
-    locale = languages[lang];
-
-    if(locale){
-      return locale;
+    if(_languages[lang]){
+      return lang;
     }
   }
 
-  return languages['en'];
+  return 'en';
+}
+
+const getLocale = (lang, value) => {
+  let lang1 = getLanguage(lang);
+
+  if(!value) {
+    return languages[lang1];
+  }
+
+  let lang2 = getLanguage(lang, value);
+  
+  return {
+      ...deepmerge(languages[lang1],value[lang2])
+    }
 }
 
 const getDefaultLocale = () => {
@@ -69,16 +84,14 @@ class LocaleProvider extends React.Component {
 
     const { locale } = this.state;
 
-    const value = {
-      ...getLocale(locale),
-      ...this.props.value,
-    }
-
-    value.changeLocale = this.changeLocale.bind(this);
-
     if(locale) {
       moment.locale(locale);
     }
+
+    const value = {
+      ...{ changeLocale: this.changeLocale.bind(this) },
+      ...getLocale(locale, this.props.value),
+    };
 
     return (
       <LocaleContext.Provider locale={ locale } value={ value }>
@@ -96,6 +109,7 @@ export {
   LocaleContext,
   LocaleProvider,
   LocaleConsumer,
+  getLanguage,
   getLocale,
   getDefaultLocale
 }

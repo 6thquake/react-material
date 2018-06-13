@@ -23,17 +23,30 @@ class MyComponent extends Component {
     };
   }
 
+  value={
+    en: {
+      Popconfirm: {
+        okText: 'I am OK'
+      }
+    },
+    zh: {
+      Popconfirm: {
+        okText: '点我确认'
+      }
+    }
+  }
+
   render() {
     const { classes } = this.props;
     
     const { 
-      content 
+      content
     } = this.state;
     
     return (
       <div className={classes.box}>
         {/* with provider */}
-        <LocaleProvider locale={'en-us'}> 
+        <LocaleProvider locale={'en-us'} value={this.value}> 
           <Popconfirm content={content}>
             <Button>
               open

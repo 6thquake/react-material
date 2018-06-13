@@ -3,6 +3,7 @@ import {
   LocaleContext,
   LocaleProvider,
   LocaleConsumer,
+  getLanguage,
   getLocale,
   getDefaultLocale
 } from './LocaleContext'
@@ -13,6 +14,7 @@ export {
   LocaleConsumer,
   LocaleContext,
   withLocale,
+  getLanguage,
   getLocale,
   getDefaultLocale
 }

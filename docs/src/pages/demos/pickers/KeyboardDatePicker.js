@@ -1,5 +1,7 @@
 import React, { Fragment, PureComponent } from 'react';
-import DatePicker, { withDateTimePicker } from 'react-material/Picker';
+import DatePicker from 'react-material/Picker';
+import LocaleProvider from 'react-material/LocaleProvider';
+
 
 class BasicUsage extends PureComponent {
   state = {
@@ -14,35 +16,37 @@ class BasicUsage extends PureComponent {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
-        <div className="picker">
-          <DatePicker
-            keyboard
-            clearable
-            label="Uncontrolled input"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-            animateYearScrolling={false}
-          />
-        </div>
+      <LocaleProvider>
+        <Fragment>
+          <div className="picker">
+            <DatePicker
+              keyboard
+              clearable
+              label="Uncontrolled input"
+              value={selectedDate}
+              onChange={this.handleDateChange}
+              animateYearScrolling={false}
+            />
+          </div>
 
-        <div className="picker">
-          <DatePicker
-            keyboard
-            label="Masked input"
-            format="DD/MM/YYYY"
-            placeholder="10/10/2018"
-            // handle clearing outside => pass plain array if you are not controlling value outside
-            mask={value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : [])}
-            value={selectedDate}
-            onChange={this.handleDateChange}
-            disableOpenOnEnter
-            animateYearScrolling={false}
-          />
-        </div>
-      </Fragment>
+          <div className="picker">
+            <DatePicker
+              keyboard
+              label="Masked input"
+              format="DD/MM/YYYY"
+              placeholder="10/10/2018"
+              // handle clearing outside => pass plain array if you are not controlling value outside
+              mask={value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : [])}
+              value={selectedDate}
+              onChange={this.handleDateChange}
+              disableOpenOnEnter
+              animateYearScrolling={false}
+            />
+          </div>
+        </Fragment>
+      </LocaleProvider>
     );
   }
 }
 
-export default withDateTimePicker()(BasicUsage)
+export default BasicUsage

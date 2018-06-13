@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
-import { TimePicker, withDateTimePicker } from 'react-material/Picker';
+import { TimePicker } from 'react-material/Picker';
+import LocaleProvider from 'react-material/LocaleProvider';
+
 
 class BasicUsage extends PureComponent {
   state = {
@@ -14,19 +16,21 @@ class BasicUsage extends PureComponent {
     const { selectedDate } = this.state;
 
     return (
-      <div className="picker">
-        <TimePicker
-          keyboard
-          label="Masked timepicker"
-          mask={[/\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
-          placeholder="08:00 AM"
-          value={selectedDate}
-          onChange={this.handleDateChange}
-          disableOpenOnEnter
-        />
-      </div>
+      <LocaleProvider>
+        <div className="picker">
+          <TimePicker
+            keyboard
+            label="Masked timepicker"
+            mask={[/\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
+            placeholder="08:00 AM"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+            disableOpenOnEnter
+          />
+        </div>
+      </LocaleProvider>
     );
   }
 }
 
-export default withDateTimePicker()(BasicUsage)
+export default BasicUsage

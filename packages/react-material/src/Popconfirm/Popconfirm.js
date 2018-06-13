@@ -81,7 +81,7 @@ class Popconfirm extends React.Component {
 
     return (
       <div>
-        <div  className={classes.box} ref={this.anchorRef} onClick={this.handleClick}>
+        <div className={classes.box} ref={this.anchorRef} onClick={this.handleClick}>
           <div></div>
           <div className={classes.anchorElementBox}>
             {children}

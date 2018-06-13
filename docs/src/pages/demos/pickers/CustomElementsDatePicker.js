@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
 
-import DatePicker, { withDateTimePicker } from 'react-material/Picker';
+import DatePicker from 'react-material/Picker';
 import { IconButton, withStyles } from 'react-material';
-import DateFnsUtils from 'react-material/Picker/utils/date-fns-utils';
 
 import isValid from 'date-fns/isValid';
 import format from 'date-fns/format';
@@ -14,6 +13,8 @@ import isSameDay from 'date-fns/isSameDay';
 import startOfWeek from 'date-fns/startOfWeek';
 import endOfWeek from 'date-fns/endOfWeek';
 import isWithinInterval from 'date-fns/isWithinInterval';
+import LocaleProvider from 'react-material/LocaleProvider';
+
 
 
 class CustomElements extends PureComponent {
@@ -81,15 +82,17 @@ class CustomElements extends PureComponent {
     const { selectedDate } = this.state;
 
     return (
-      <div className="picker">
-        <DatePicker
-          label="Week picker"
-          value={selectedDate}
-          onChange={this.handleWeekChange}
-          renderDay={this.renderWrappedWeekDay}
-          labelFunc={this.formatWeekSelectLabel}
-        />
-      </div>
+      <LocaleProvider>
+        <div className="picker">
+          <DatePicker
+            label="Week picker"
+            value={selectedDate}
+            onChange={this.handleWeekChange}
+            renderDay={this.renderWrappedWeekDay}
+            labelFunc={this.formatWeekSelectLabel}
+          />
+        </div>
+      </LocaleProvider>
     );
   }
 }
@@ -136,4 +139,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(withDateTimePicker({util:DateFnsUtils})(CustomElements));
+export default withStyles(styles)(CustomElements);

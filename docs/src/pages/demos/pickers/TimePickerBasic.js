@@ -1,5 +1,7 @@
 import React, { Fragment, PureComponent } from 'react';
-import { TimePicker, withDateTimePicker } from 'react-material/Picker';
+import { TimePicker } from 'react-material/Picker';
+import LocaleProvider from 'react-material/LocaleProvider';
+
 
 class BasicUsage extends PureComponent {
   state = {
@@ -14,37 +16,39 @@ class BasicUsage extends PureComponent {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
-        <div className="picker">
-          <TimePicker
-            label="12 hours"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-          />
-        </div>
+      <LocaleProvider>
+        <Fragment>
+          <div className="picker">
+            <TimePicker
+              label="12 hours"
+              value={selectedDate}
+              onChange={this.handleDateChange}
+            />
+          </div>
 
-        <div className="picker">
-          <TimePicker
-            clearable
-            ampm={false}
-            label="24 hours"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-          />
-        </div>
+          <div className="picker">
+            <TimePicker
+              clearable
+              ampm={false}
+              label="24 hours"
+              value={selectedDate}
+              onChange={this.handleDateChange}
+            />
+          </div>
 
-        <div className="picker">
-          <TimePicker
-            showTodayButton
-            todayLabel="now"
-            label="With today button"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-          />
-        </div>
-      </Fragment>
+          <div className="picker">
+            <TimePicker
+              showTodayButton
+              todayLabel="now"
+              label="With today button"
+              value={selectedDate}
+              onChange={this.handleDateChange}
+            />
+          </div>
+        </Fragment>
+      </LocaleProvider>
     );
   }
 }
 
-export default withDateTimePicker()(BasicUsage)
+export default BasicUsage

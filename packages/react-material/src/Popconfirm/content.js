@@ -69,5 +69,5 @@ class PopOverContent extends Component {
     );
   }
 }
-const PopContent = withLocale(PopOverContent, 'Popconfirm')
+const PopContent = withLocale({name: 'Popconfirm'})(PopOverContent)
 export default withStyles(styles)(PopContent);

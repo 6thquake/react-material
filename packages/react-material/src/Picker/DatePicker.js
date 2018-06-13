@@ -1,3 +1,5 @@
 import { DatePicker } from 'material-ui-pickers';
 
-export default DatePicker;
+import { withLocale } from '../LocaleProvider';
+
+export default withLocale({name:'DatePicker'})(DatePicker);

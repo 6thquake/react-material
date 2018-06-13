@@ -1,3 +1,6 @@
-import { MuiPickersUtilsProvider as DateTimePickersProvider } from 'material-ui-pickers';
+import { 
+	MuiPickersUtilsProvider as DateTimePickersProvider
+} from 'material-ui-pickers';
 
-export default DateTimePickersProvider;
+
+export { DateTimePickersProvider as default };

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import TextField from 'react-material/TextField';
+import LocaleProvider from 'react-material/LocaleProvider';
+
 
 const styles = theme => ({
   container: {
@@ -19,18 +21,20 @@ function DatePickers(props) {
   const { classes } = props;
 
   return (
-    <form className={classes.container} noValidate>
-      <TextField
-        id="date"
-        label="Birthday"
-        type="date"
-        defaultValue="2017-05-24"
-        className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </form>
+    <LocaleProvider>
+      <form className={classes.container} noValidate>
+        <TextField
+          id="date"
+          label="Birthday"
+          type="date"
+          defaultValue="2017-05-24"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </form>
+    </LocaleProvider>
   );
 }
 

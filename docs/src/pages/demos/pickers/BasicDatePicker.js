@@ -1,5 +1,7 @@
 import React, { Fragment, PureComponent } from 'react';
-import DatePicker, { withDateTimePicker } from 'react-material/Picker';
+import DatePicker from 'react-material/Picker';
+import LocaleProvider from 'react-material/LocaleProvider';
+
 
 class BasicDatePicker extends PureComponent {
   state = {
@@ -14,41 +16,43 @@ class BasicDatePicker extends PureComponent {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
-        <div className="picker">
-          <DatePicker
-            label="Basic example"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-            animateYearScrolling={false}
-          />
-        </div>
+      <LocaleProvider>
+        <Fragment>
+          <div className="picker">
+            <DatePicker
+              label="Basic example"
+              value={selectedDate}
+              onChange={this.handleDateChange}
+              animateYearScrolling={false}
+            />
+          </div>
 
-        <div className="picker">
-          <DatePicker
-            label="Clearable"
-            clearable
-            disableFuture
-            maxDateMessage="Date must be less than today"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-            animateYearScrolling={false}
-          />
-        </div>
+          <div className="picker">
+            <DatePicker
+              label="Clearable"
+              clearable
+              disableFuture
+              maxDateMessage="Date must be less than today"
+              value={selectedDate}
+              onChange={this.handleDateChange}
+              animateYearScrolling={false}
+            />
+          </div>
 
-        <div className="picker">
-          <DatePicker
-            label="With today button"
-            showTodayButton
-            maxDateMessage="Date must be less than today"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-            animateYearScrolling={false}
-          />
-        </div>
-      </Fragment>
+          <div className="picker">
+            <DatePicker
+              label="With today button"
+              showTodayButton
+              maxDateMessage="Date must be less than today"
+              value={selectedDate}
+              onChange={this.handleDateChange}
+              animateYearScrolling={false}
+            />
+          </div>
+        </Fragment>
+      </LocaleProvider>
     );
   }
 }
 
-export default withDateTimePicker()(BasicDatePicker)
+export default BasicDatePicker

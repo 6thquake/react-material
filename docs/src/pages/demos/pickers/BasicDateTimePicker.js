@@ -1,5 +1,7 @@
 import React, { Fragment, PureComponent } from 'react';
-import { DateTimePicker, withDateTimePicker } from 'react-material/Picker';
+import { DateTimePicker } from 'react-material/Picker';
+import LocaleProvider from 'react-material/LocaleProvider';
+
 
 class BasicDateTimePicker extends PureComponent {
   state = {
@@ -14,39 +16,41 @@ class BasicDateTimePicker extends PureComponent {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
-        <div className="picker">
-          <DateTimePicker
-            value={selectedDate}
-            disablePast
-            onChange={this.handleDateChange}
-            label="DateTimePicker"
-          />
-        </div>
+      <LocaleProvider>
+        <Fragment>
+          <div className="picker">
+            <DateTimePicker
+              value={selectedDate}
+              disablePast
+              onChange={this.handleDateChange}
+              label="DateTimePicker"
+            />
+          </div>
 
-        <div className="picker">
-          <DateTimePicker
-            autoOk
-            ampm={false}
-            disableFuture
-            value={selectedDate}
-            onChange={this.handleDateChange}
-            label="24h clock"
-          />
-        </div>
+          <div className="picker">
+            <DateTimePicker
+              autoOk
+              ampm={false}
+              disableFuture
+              value={selectedDate}
+              onChange={this.handleDateChange}
+              label="24h clock"
+            />
+          </div>
 
-        <div className="picker">
-          <DateTimePicker
-            value={selectedDate}
-            disablePast
-            onChange={this.handleDateChange}
-            label="With Today Button"
-            showTodayButton
-          />
-        </div>
-      </Fragment>
+          <div className="picker">
+            <DateTimePicker
+              value={selectedDate}
+              disablePast
+              onChange={this.handleDateChange}
+              label="With Today Button"
+              showTodayButton
+            />
+          </div>
+        </Fragment>
+      </LocaleProvider>
     );
   }
 }
 
-export default withDateTimePicker()(BasicDateTimePicker)
+export default BasicDateTimePicker

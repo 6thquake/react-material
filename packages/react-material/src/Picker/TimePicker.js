@@ -1,3 +1,5 @@
 import { TimePicker } from 'material-ui-pickers';
 
-export default TimePicker;
+import { withLocale } from '../LocaleProvider';
+
+export default withLocale({name:'TimePicker'})(TimePicker);

@@ -2,16 +2,10 @@ import react, { Component } from 'react'
 import Popconfirm from 'react-material/Popconfirm'
 import { withStyles } from 'react-material/styles';
 import Button from 'react-material/Button'
-import LocaleProvider from 'react-material/LocaleProvider'
-import zhCN from 'react-material/LocaleProvider/zh_CN'
-import zhTW from 'react-material/LocaleProvider/zh_TW'
-import enUS from 'react-material/LocaleProvider/en_US'
+import LocaleProvider, { LocaleConsumer } from 'react-material/LocaleProvider'
 
-const ButtonGroup = Button.Group;
+
 const radio = true
-const locales = {
-  zhCN, zhTW, enUS
-}
 const styles = theme => ({
   box: {
     marginBottom: theme.spacing.unit * 6,
@@ -20,53 +14,48 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2
   }
 });
+
 class MyComponent extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      content: 'are you sure to close it?',
-      locale: enUS
+      content: 'are you sure to close it?'
     };
   }
-  handleButtonClick =(type)=> (e)=>{
-    let locale = locales[type]
-    this.setState({
-      locale: locale
-    })
-  }
-  changeLocale=(locale)=>{
-    console.log('hi', locale)
-  }
+
   render() {
     const { classes } = this.props;
-
-    let value = {
-      locale: this.state.locale,
-      changeLocale: this.changeLocale
-    }
-    let locale = {
-      ...this.state.locale,
-      changeLocale: this.changeLocale
-    }
+    
+    const { 
+      content 
+    } = this.state;
+    
     return (
       <div className={classes.box}>
         {/* with provider */}
-        <LocaleProvider locale={locale}> 
-          <Popconfirm cancelText='cancel!' content={this.state.content}>
+        <LocaleProvider locale={'en-us'}> 
+          <Popconfirm content={content}>
             <Button>
               open
             </Button>
           </Popconfirm>
           <div className={classes.label}>Change locale of components:</div>
-          <ButtonGroup>
-            <Button onClick={this.handleButtonClick('zhCN')} variant="raised" color="primary">中文</Button>
-            <Button onClick={this.handleButtonClick('enUS')} radio={radio} variant="raised" color="primary">EN</Button>
-            <Button onClick={this.handleButtonClick('zhTW')} variant="raised" color="primary">繁体中文</Button>
-          </ButtonGroup>
+          <LocaleConsumer>
+            {(value) => {
+              const { locale, changeLocale } = value;
+              return (
+                <Button.Group>
+                  <Button onClick={changeLocale('zh-cn')} variant="raised" color="primary">中文</Button>
+                  <Button onClick={changeLocale('en-us')} radio={radio} variant="raised" color="primary">EN</Button>
+                  <Button onClick={changeLocale('zh-tw')} variant="raised" color="primary">繁体中文</Button>
+                </Button.Group>
+              )
+            }}
+          </LocaleConsumer>
         </LocaleProvider>
 
         {/* without provider */}
-        <Popconfirm content={this.state.content}>
+        <Popconfirm content={content}>
             <Button>
               default locale
             </Button>

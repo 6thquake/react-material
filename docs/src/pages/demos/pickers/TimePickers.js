@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import TextField from 'react-material/TextField';
+import LocaleProvider from 'react-material/LocaleProvider';
+
 
 const styles = theme => ({
   container: {
@@ -19,21 +21,23 @@ function TimePickers(props) {
   const { classes } = props;
 
   return (
-    <form className={classes.container} noValidate>
-      <TextField
-        id="time"
-        label="Alarm clock"
-        type="time"
-        defaultValue="07:30"
-        className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        inputProps={{
-          step: 300, // 5 min
-        }}
-      />
-    </form>
+    <LocaleProvider>
+      <form className={classes.container} noValidate>
+        <TextField
+          id="time"
+          label="Alarm clock"
+          type="time"
+          defaultValue="07:30"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{
+            step: 300, // 5 min
+          }}
+        />
+      </form>
+    </LocaleProvider>
   );
 }
 

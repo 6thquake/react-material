@@ -93,7 +93,7 @@ export { default as NativeSelect } from './NativeSelect';
 export { default as Pagination } from './Pagination';
 export { default as Panel } from './Panel';
 export { default as Paper } from './Paper';
-export { default as DatePicker, TimePicker, DateTimePicker, DateTimePickersProvider, withDateTimePicker } from './Picker';
+export { default as DatePicker, TimePicker, DateTimePicker, DateTimePickersProvider } from './Picker';
 export { default as Popconfirm } from './Popconfirm';
 export { default as Popover } from './Popover';
 export { default as Portal } from './Portal';

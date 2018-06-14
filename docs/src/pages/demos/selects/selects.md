@@ -1,5 +1,5 @@
 ---
-components: Select
+components: Select, Chip, AsyncSelect, CascadeSelect
 ---
 # Selects
 ## Select with pagination、filter

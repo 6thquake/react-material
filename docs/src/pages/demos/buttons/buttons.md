@@ -1,5 +1,5 @@
 ---
-components: Button, IconButton, ButtonBase, Zoom
+components: Button, IconButton, ButtonBase
 ---
 
 # Buttons

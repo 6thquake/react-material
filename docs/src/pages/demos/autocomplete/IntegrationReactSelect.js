@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
@@ -123,7 +121,6 @@ const ITEM_HEIGHT = 48;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 250,
   },
   chip: {
     margin: theme.spacing.unit / 4,
@@ -261,6 +258,8 @@ class IntegrationReactSelect extends React.Component {
             options: suggestions,
           }}
         />
+        <br/>
+        <br/>
         <Input
           fullWidth
           inputComponent={SelectWrapped}
@@ -277,6 +276,8 @@ class IntegrationReactSelect extends React.Component {
             options: suggestions,
           }}
         />
+        <br/>
+        <br/>
         <TextField
           fullWidth
           value={this.state.multiLabel}

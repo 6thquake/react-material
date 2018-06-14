@@ -1,5 +1,5 @@
 ---
-components: Dialog, DialogTitle, DialogContent, DialogActions, Slide
+components: Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, withMobileDialog
 ---
 
 # Dialogs

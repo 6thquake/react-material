@@ -1,5 +1,5 @@
 ---
-components: LocalProvider
+components: LocaleProvider, LocaleConsumer, withLocale
 ---
 
 # LocalProvider
@@ -8,6 +8,5 @@ LocaleProvider takes use of context, a feature of React, to accomplish global ef
 
 
 ## Examples
-
 
 {{"demo": "pages/demos/locale-provider/LocaleProvider.js"}}

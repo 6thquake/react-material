@@ -7,8 +7,6 @@ import Typography from 'react-material/Typography';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    minHeight: '250px',
-    // width:'300px'
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,

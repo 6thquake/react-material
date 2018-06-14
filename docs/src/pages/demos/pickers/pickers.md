@@ -1,5 +1,5 @@
 ---
-components: TextField
+components: DatePicker, TimePicker, DateTimePicker, LocaleProvider, TextField
 ---
 
 # Date & time picker

@@ -1,5 +1,5 @@
 ---
-components: Form
+components: Form, FormControl, FormControlLabel
 ---
 
 # Form

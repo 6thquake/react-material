@@ -1,14 +1,14 @@
 ---
-components: Transfer
+components: Panel, LoadingPanel
 ---
 
 
 # Panel
 
-The [Transfer],is used for exchange data of two array.
+## The panel allow anything dropping on, and adopt grid layout within it.
 
 {{"demo": "pages/demos/panel/Panel.js"}}
 
-The panel with loading.
+## The panel with loading.
 
 {{"demo": "pages/demos/panel/LoadingPanel.js"}}

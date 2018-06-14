@@ -1,16 +1,11 @@
 ---
-components: Transfer
+components: Dragable
 ---
 
-# Transfer
 
-The [Transfer],is used for exchange data of two array.
+# Dragable
 
-
-
-# Transfer
-
-The [Transfer],is used for exchange data of two array.
+Dragable makes everything can be dragged.
 
 {{"demo": "pages/demos/dragable/DragableLayer.js"}}
 

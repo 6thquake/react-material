@@ -5,7 +5,6 @@ import { withStyles } from 'react-material/styles';
 const styles = {
   root: {
     flexGrow: 1,
-    //width:'190px'
   },
 };
 

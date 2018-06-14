@@ -7,7 +7,9 @@ import { StepperPane, StepPane } from 'react-material/Stepper';
 
 const styles = {
   pane:{},
-  step:{}
+  step:{
+    padding: 16
+  }
 };
 
 function getSteps() {
@@ -17,16 +19,17 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`;
+      return `The Stepper can be controlled by passing the current step index (zero-based) as the activeStep property. Stepper orientation is set using the orientation property.
+
+This example also shows the use of an optional step by placing the optional property on the second Step component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set completed={false} to signify that even though the active step index has gone beyond the optional step, it's not actually complete.`;
     case 1:
-      return 'An ad group contains one or more ads which target a shared set of keywords.';
+      return `Non-linear steppers allow users to enter a multi-step flow at any point.
+
+This example is similar to the regular horizontal stepper, except steps are no longer automatically set to disabled={true} based on the activeStep property.
+
+We've used the StepButton here to demonstrate clickable step labels as well as setting the completed flag however because steps can be accessed in a non-linear fashion it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).;`
     case 2:
-      return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
+      return `This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.`;
     default:
       return 'Unknown step';
   }
@@ -62,7 +65,7 @@ class App extends React.Component {
           steps.map((label, index) => {
             return (
               <StepPane key={label} className={classes.step}>
-                {getStepContent(index)}
+                <p>{getStepContent(index)}</p>
               </StepPane>
             )
           })

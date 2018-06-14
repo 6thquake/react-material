@@ -204,7 +204,6 @@ DownshiftMultiple.propTypes = {
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 250,
   },
   container: {
     flexGrow: 1,
@@ -257,6 +256,7 @@ function IntegrationDownshift(props) {
           </div>
         )}
       </Downshift>
+      <br/>
       <DownshiftMultiple classes={classes} />
     </div>
   );

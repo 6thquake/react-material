@@ -1,7 +1,7 @@
 ---
-components: CircularProgress, LinearProgress
+components: Progress, CircularProgress, LinearProgress
 ---
-# Progress biubiubiu
+
 # Progress
 
 [Progress and activity indicators](https://material.io/guidelines/components/progress-activity.html)

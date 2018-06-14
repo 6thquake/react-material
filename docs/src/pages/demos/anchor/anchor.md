@@ -5,7 +5,7 @@ components: Anchor
 # Anchor
 Hyperlinks to scroll on one page.
 
-# When To Use
+# How to use
 
 For displaying anchor hyperlinks on page and jumping between them.
 

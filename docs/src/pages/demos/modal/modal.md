@@ -1,5 +1,5 @@
 ---
-components: Modal
+components: Modal, Modal2, ModalManager
 ---
 
 # Modal

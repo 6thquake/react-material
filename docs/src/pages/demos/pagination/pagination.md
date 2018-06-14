@@ -4,7 +4,6 @@ components: Pagination
 
 # Pagination
 
-
 Pagination contain a simple UI .
 
 ## Simple Pagination

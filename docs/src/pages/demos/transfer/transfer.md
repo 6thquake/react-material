@@ -4,11 +4,10 @@ components: Transfer
 
 # Transfer
 
-The [Transfer],is used for exchange data of two array.
+## Transfer is used for exchange data between two array by dragging and dropping.
+
 {{"demo": "pages/demos/transfer/Transferdrag.js"}}
 
-The [Transfer],is used for exchange data of two array343.
-
+## Transfer is used for exchange data between two array.
 
 {{"demo": "pages/demos/transfer/Transfer.js"}}
-

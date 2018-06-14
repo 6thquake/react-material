@@ -166,7 +166,7 @@ export default class LineTo extends Component {
 
     render() {
         const points = this.detect();
-        console.log('points', points)
+        //console.log('points', points)
         return points ? (
             <Line {...points} {...this.props} />
         ) : null;

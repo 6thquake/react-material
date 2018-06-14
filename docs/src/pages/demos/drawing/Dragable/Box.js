@@ -10,6 +10,13 @@ const style = {
 	padding: '0.5rem 1rem',
 	cursor: 'move',
 }
+const style2 = {
+	position: 'absolute',
+	border: '1px dashed gray',
+	backgroundColor: 'white',
+	padding: '0.5rem 1rem',
+	cursor: 'pointer',
+}
 
 const boxSource = {
 	beginDrag(props,monitor, component) {
@@ -35,7 +42,7 @@ class Box extends Component {
 	}
 	componentDidMount() {
 		const img = new Image()
-		console.log('img', img)
+		//console.log('img', img)
 		let div = document.createElement('a')
 		// let div = <div style={{display: 'none'}}></div>
 		// div.style.opacity = 0
@@ -55,15 +62,20 @@ class Box extends Component {
 			children,
 			id
 		} = this.props
-		console.log('left', left)
+		//console.log('left', left)
 		if (isDragging && hideSourceOnDrag) {
 			return null
 		}
 		let opacity = isDragging ? 1 : 1
-
-		return connectDragSource(
-			<div className={id} id={id} style={{ ...style, left, top,  opacity}}>{children}</div>,
-		)
+		if(this.props.dragDisable){
+			return (
+				<div className={id} id={id} style={{ ...style2, left, top,  opacity}}>{children}</div>
+			)
+		}else{
+			return connectDragSource(
+			<div className={id} id={id} style={{ ...style, left, top,  opacity}}>{children}</div>
+			)
+		}
 	}
 }
 

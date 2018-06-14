@@ -7,7 +7,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import ItemTypes from './ItemTypes'
 import Box from './Box'
 import LineTo from 'react-material/Drawing/Line'
-
+import {Line} from 'react-material/Drawing/Line'
 const styles = {
 	width: 600,
 	height: 600,
@@ -100,7 +100,7 @@ class Container extends Component {
 		super(props)
 		this.state = {
 			boxes: {
-				a: { top: 20, left: 80, title: 'Drag me around' },
+				a: { top: 20, left: 80, title: 'Drag me around'},
 				b: { top: 180, left: 20, title: 'Drag me too' },
 			},
 			from:{
@@ -111,14 +111,11 @@ class Container extends Component {
 			  x: 20,
 			  y: 180,
 			},
-			text:'www'
-
+			text: 'www',
+			point: {x0: '', y0: '', x1: '', y1: ''},
+			flag: false,
+			inproperArea : false,
 		}
-	}
-	componentDidMount(){
-		this.setState({
-			text: 'hello'
-		})
 	}
 	moveBox(id, left, top) {
 		this.setState(
@@ -138,14 +135,94 @@ class Container extends Component {
 			},
 		})
 	}
+	mousedown(event){
+		if(!this.props.allowDraw){
+			return
+		}
+		let doc = document.documentElement
+		let body = document.body;
+		let x00 = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
+		let y00 = event.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc && doc.clientTop || body && body.clientTop || 0);    
+		this.setState(preState=>({
+			point: {...preState.point,x0:x00,y0:y00},
+			flag:true
+		}))
+	}
+	mousemove(event){
+		if(!this.props.allowDraw){
+			return
+		}
+		if (!this.state.flag) return;
+		let doc = document.documentElement
+		let body = document.body;
+		const x11 = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
+		const y11 = event.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc && doc.clientTop || body && body.clientTop || 0);
+		this.setState(preState=>({
+			point: {...preState.point,x1:x11,y1:y11}
+		}))
 
+		
+	}
+	mouseup(event){
+		this.setState({flag:false})
+		//console.log(this.state.point)
+		let newBoxA = document.getElementById('a')
+		let newBoxB = document.getElementById('b')
+
+		if((this.state.point.x0>newBoxA.getBoundingClientRect().left)&&(this.state.point.x0<newBoxA.getBoundingClientRect().right)&&(this.state.point.y0>newBoxA.getBoundingClientRect().top)&&(this.state.point.y0<newBoxA.getBoundingClientRect().bottom)){
+			//console.log("x0 am in boxA-dragmearound");
+			if((this.state.point.x1>newBoxB.getBoundingClientRect().left)&&(this.state.point.x1<newBoxB.getBoundingClientRect().right)&&(this.state.point.y1>newBoxB.getBoundingClientRect().top)&&(this.state.point.y1<newBoxB.getBoundingClientRect().bottom)){
+			console.log("around to too");
+			this.setState({
+				inproperArea : true
+			})
+			this.props.drawComplete();
+			}
+		}
+		if((this.state.point.x1>newBoxA.getBoundingClientRect().left)&&(this.state.point.x1<newBoxA.getBoundingClientRect().right)&&(this.state.point.y1>newBoxA.getBoundingClientRect().top)&&(this.state.point.y1<newBoxA.getBoundingClientRect().bottom)){
+			//console.log("x1 am in boxA-dragmearound");
+			if((this.state.point.x0>newBoxB.getBoundingClientRect().left)&&(this.state.point.x0<newBoxB.getBoundingClientRect().right)&&(this.state.point.y0>newBoxB.getBoundingClientRect().top)&&(this.state.point.y0<newBoxB.getBoundingClientRect().bottom)){
+			console.log("too to around");
+			this.setState({
+				inproperArea : true
+			})
+			this.props.drawComplete();
+			}
+		}
+	}
+	componentDidMount(){
+		this.setState({
+			text: 'hello'
+		})
+	}
+	componentDidUpdate(){
+		/*if((this.state.point.x0>(ths.state.boxes.a.left+newDiv.getBoundingClientRect()))&&
+			(this.state.point.x1<(ths.state.boxes.a.left+newDiv.getBoundingClientRect()+80))&&
+			(this.state.point.y0>(ths.state.boxes.a.top+newDiv.getBoundingClientRect()))&&
+			(this.state.point.y1<(ths.state.boxes.a.left+newDiv.getBoundingClientRect()+80))){
+			console.log("i am in box");
+		}*/
+		//console.log(this.state.boxes.a)
+		//console.log(this.state.boxes.b)
+
+		
+	}
+	static getDerivedStateFromProps(props, state){
+		if(props.removeLine){
+			return {
+				inproperArea : false,
+				point: {x0: '', y0: '', x1: '', y1: ''}
+			}
+		}		
+	}
 	render() {
 		const { hideSourceOnDrag, connectDropTarget } = this.props
-		const { boxes , from , to} = this.state
+		const { boxes , from , to, inproperArea} = this.state
 		return connectDropTarget(
-			<div style={styles}>
+			<div style={styles} id="test" onMouseDown={this.mousedown.bind(this)} onMouseUp={this.mouseup.bind(this)} onMouseMove={this.mousemove.bind(this)}>
 				{Object.keys(boxes).map(key => {
 					const { left, top, title } = boxes[key]
+
 					return (
 						<Box
 							key={key}
@@ -155,13 +232,15 @@ class Container extends Component {
 							top={top}
 							hideSourceOnDrag={hideSourceOnDrag}
 							name={'hahe'}
+							dragDisable={this.props.dragDisable}
 						>
 							{title}
 						</Box>
 					)
 				})}
-				<LineTo from={this.a} to={this.b}/>
-			</div>,
+				{this.props.removeLine?null:inproperArea?<LineTo from={this.a} to={this.b}/>:<Line {...this.state.point}/>}
+				
+			</div>
 		)
 	}
 }
@@ -171,3 +250,5 @@ let C = DropTarget(ItemTypes.BOX, boxTarget, connect => {
 	connectDropTarget: connect.dropTarget(),
 }})(Container);
 export default DragDropContext(HTML5Backend)(C);
+
+

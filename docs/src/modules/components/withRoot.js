@@ -10,11 +10,11 @@ import "babel-polyfill";
 
 if (process.browser) {
   loadCSS(
-    'https://fonts.googleapis.com/icon?family=Material+Icons',
+    '/static/fonts/Material+Icons/icon.css',
     document.querySelector('#insertion-point-jss'),
   );
   loadCSS(
-    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
+    '/static/docsearch.js/2/docsearch.min.css',
     document.querySelector('#insertion-point-jss'),
   );
 }

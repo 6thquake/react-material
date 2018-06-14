@@ -24,7 +24,7 @@ As a prerequisite, you must include one, such as the
 [Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web) in your project.
 For instance, via Google Web Fonts:
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="/static/fonts/Material+Icons/icon.css">
 ```
 
 `Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the

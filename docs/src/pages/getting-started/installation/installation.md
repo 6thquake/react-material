@@ -16,7 +16,7 @@ React-Material was designed with the [Roboto](http://www.google.com/fonts/specim
 font in mind. So be sure to follow [these instructions](/style/typography#general).
 For instance, via Google Web Fonts:
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<link rel="stylesheet" href="/static/fonts/Roboto/css.css">
 ```
 
 ## Font Icons
@@ -27,7 +27,7 @@ Here are [some instructions](/style/icons#font-icons)
 on how to do so.
 For instance, via Google Web Fonts:
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="/static/fonts/Material+Icons/icon.css">
 ```
 
 ## SVG Icons

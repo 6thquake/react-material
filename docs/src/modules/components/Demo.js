@@ -50,8 +50,8 @@ if (rootElement) {
       `,
       'index.html': `
 <body>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="/static/fonts/Roboto/css.css" />
+  <link rel="stylesheet" href="/static/fonts/Material+Icons/icon.css" />
   <div id="root"></div>
 </body>
       `,

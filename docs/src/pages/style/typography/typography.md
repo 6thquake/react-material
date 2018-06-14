@@ -17,7 +17,7 @@ Roboto Font has a few easy ways to get started.
 
 Shown below is a sample link markup used to load the Roboto font from a CDN.
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<link rel="stylesheet" href="/static/fonts/Roboto/css.css">
 ```
 
 ## Install with [npm](https://www.npmjs.com/package/typeface-roboto)

@@ -31,7 +31,7 @@ const styles = {
 //     if (!cacheVersions) {
 //       await pause(1e3); // Soften the pressure on the main thread.
 //       const result = await fetch(
-//         '/docs/versions.json',
+//         '/static/versions.json',
 //       );
 //       cacheVersions = await result.json();
 //     }

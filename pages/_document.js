@@ -44,7 +44,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+            href="/static/fonts/Roboto/css.css"
           />
           <style id="insertion-point-jss" />
           {/* Twitter */}
@@ -70,8 +70,12 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Main />
-          {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.google.id}`} />
+          {
+            /* Global Site Tag (gtag.js) - Google Analytics */
+            /*
+               <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.google.id}`} />
+            */
+          }
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
@@ -82,7 +86,7 @@ gtag('js', new Date());
             }}
           />
           <NextScript />
-          <script async src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" />
+          <script async src="/static/docsearch.js/2/docsearch.min.js" />
         </body>
       </html>
     );

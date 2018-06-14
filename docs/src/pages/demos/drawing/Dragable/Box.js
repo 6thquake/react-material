@@ -15,7 +15,11 @@ const style2 = {
 	border: '1px dashed gray',
 	backgroundColor: 'white',
 	padding: '0.5rem 1rem',
-	cursor: 'pointer',
+	cursor: 'default',
+  	'-webkit-user-select': 'none',
+  	'-moz-user-select':'none',
+  	'-o-user-select':'none',
+  	'-ms-user-select':'none',
 }
 
 const boxSource = {

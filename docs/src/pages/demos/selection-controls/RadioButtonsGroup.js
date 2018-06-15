@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Radio from 'react-material/Radio';
+import Radio,{RadioButton} from 'react-material/Radio';
 import RadioGroup from 'react-material/RadioGroup';
 import Button from 'react-material/Button';
 import FormLabel from 'react-material/FormLabel';
@@ -15,6 +15,9 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit * 3,
+  },
+  button:{
+    margin: theme.spacing.unit
   },
   group: {
     margin: `${theme.spacing.unit}px 0`,
@@ -80,16 +83,16 @@ class RadioButtonsGroup extends React.Component {
         </FormControl>
 
         <FormControl component="fieldset" required error className={classes.formControl}>
-          <RadioGroup className={classes.button}>
+          <RadioButton className={classes.button} circular>
             <Button variant="raised" color="primary" radio={radio}>左</Button>
             <Button variant="raised" color="primary">中</Button>
             <Button variant="raised" color="primary">右</Button>
-          </RadioGroup>
-          <RadioGroup position="vertical" className={classes.button}>
+          </RadioButton>
+          <RadioButton position="vertical" className={classes.button}>
             <Button variant="raised" className="test">上</Button>
             <Button variant="raised" >中</Button>
             <Button variant="raised" >下</Button>
-          </RadioGroup>
+          </RadioButton>
           <FormHelperText>You can display an error</FormHelperText>
         </FormControl>
 

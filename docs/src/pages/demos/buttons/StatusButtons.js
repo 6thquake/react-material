@@ -18,11 +18,13 @@ const styles = theme => ({
     margin: theme.spacing.unit,
   },
 });
-
+function onClick() {
+  console.log(this,arguments)
+}
 function StatusButtons(props) {
   const {classes} = props;
   return (<div>
-    <StatusButton color="primary" variant="raised" onHandler={handle} className={classes.button}>开始扩容</StatusButton>
+    <StatusButton color="primary"  onClick={onClick} variant="raised" onHandler={handle} className={classes.button}>开始扩容</StatusButton>
     <StatusButton color="primary"  onHandler={handle} className={classes.button}>开始扩容</StatusButton>
   </div>);
 }

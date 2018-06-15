@@ -11,12 +11,14 @@ const styles = theme => ({
     display: 'none',
   },
 });
-
+function onClick() {
+  console.log(this,arguments)
+}
 function RaisedButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button variant="raised" className={classes.button}>
+      <Button variant="raised" className={classes.button} onClick={onClick}>
         Default
       </Button>
       <Button variant="raised" color="primary" className={classes.button}>

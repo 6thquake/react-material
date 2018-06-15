@@ -35,26 +35,67 @@ thanks to the support of these awesome [backers](/discover-more/backers).
 
 #### via [Sixthquake](http://git.dev.sh.ctripcorp.com/sixthquake/react-material)
 
-<table>
+<table cellspacing="0" cellspadding="0">
   <tbody>
-    <tr>
-
-      ${['liujc', 'jxzhuang', 'wgshao', 'honggc', 'wmhuang', 'liyn']
+      ${[
+          [{
+            id: 'liujc',
+            name: '刘继超'
+          }, {
+            id: 'honggc',
+            name: '洪国超'
+          }, {
+            id:'wgshao',
+            name: '邵文广'
+          }, {
+            id:'liubz',
+            name: '刘必洲'
+          }, {
+            id: 'jxzhuang',
+            name: '庄嘉祥'
+          }, {
+            id:  'wmhuang',
+            name: '黄伟民'
+          }],
+          [{
+            id: 'liyn',
+            name: '李雅男'
+          }, {
+            id: 'yh.tang',
+            name: '汤雨欢'
+          }, {
+            id: 'sy.tang',
+            name: '唐思雨'
+          }, {
+            id: 'slfan',
+            name: '范世丽'
+          }, {
+            id: 'zhangzhea',
+            name: '张哲'
+          }]
+        ]
         .map(
-          user =>
-            `<td align="center" valign="middle">
-              <a href="http://git.dev.sh.ctripcorp.com/u/${user}" rel="noopener" target="_blank">
-                <img
-                  width="80"
-                  src="https://www.ctripteam.com/avatar/${user}?_dc=0"
-                  alt="${user}"
-                  title="${user}"
-                >
-              </a>
-            </td>`  
-          )
-        .join('')}
-    </tr>
+          users => {
+            return [
+              '<tr>',
+              users.map(user =>
+              `
+              <td align="center" valign="middle" style="text-align: center; padding: 16px;">
+                <a href="http://git.dev.sh.ctripcorp.com/u/${user.id}" rel="noopener" target="_blank">
+                  <img
+                    width="80"
+                    height="80"
+                    src="https://www.ctripteam.com/avatar/${user.id}?_dc=0"
+                    alt="${user.name}"
+                    title="${user.name}"
+                  ><p>${user.name}</p></a>
+              </td>
+              `  
+              ).join(''),
+              '</tr>'
+            ].join('')
+        })
+      }
   </tbody>
 </table>
 

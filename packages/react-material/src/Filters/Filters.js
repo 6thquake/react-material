@@ -24,7 +24,7 @@ const style = theme => ({
   btn: {
     fontSize: '13px',
     lineHeight: '2.6em',
-    padding: '0',
+    padding: '0 8px',
     minHeight: '0',
     background: 'none',
     boxShadow: 'none',
@@ -75,19 +75,20 @@ class Filters extends Component {
     const {classes, options, label, mapProps, spacing, type} = this.props;
     return (
       <Grid container spacing={8}>
-        <Grid item className={(type == 'dark' ? classes.labelDark : '') + ' ' + classes.label}>{label}</Grid>
+        <Grid item className={(type === 'dark' ? classes.labelDark : '') + ' ' + classes.label}>{label}</Grid>
         <Grid item className={classes.content}>
           <Grid container spacing={spacing}>
             {options.map(s => {
               const value = s[mapProps.value];
               const isSelected = this.isSelected(value);
-              const className = classnames(isSelected && classes.active);
-              const className1 = classnames(type == 'dark' && classes.btnDark);
-
+              const className = classnames({
+                [classes.active]: isSelected,
+                [classes.btnDark]: type === 'dark'
+              });
               return (
                 <Grid item key={value}>
                   <Button
-                    className={className + ' ' + className1}
+                    className={className}
                     classes={{
                       root: classes.btn
                     }}
@@ -97,8 +98,7 @@ class Filters extends Component {
                   </Button>
                 </Grid>
               )
-            })
-            }
+            })}
           </Grid>
         </Grid>
       </Grid>

@@ -43,9 +43,10 @@ const styles = theme => ({
         transform:'translate(-50%,-50%)',
         overflow:'hidden',
         borderRadius:'5px',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
     },
 });
-
 class UploadImg extends Component{
     constructor(props){
         super(props);
@@ -64,8 +65,7 @@ class UploadImg extends Component{
         let src,preview,type = file.type;
         if (/^image\/\S+$/.test(type)) {
         	src = URL.createObjectURL(file); 
-        	preview = <img src={src} alt=''/>
-        	this.setState({ path: file.name, data: file, preview: preview })
+        	this.setState({ path: file.name, data: file, preview: src })
         }
     }
     componentDidUpdate(prevProps, prevState){
@@ -95,7 +95,7 @@ class UploadImg extends Component{
                 <input accept="image/*" id="raisedButtonFile" ref={this.selectInput} onChange={this.changePath} type="file" className={classes.input}/>
                 <label htmlFor="raisedButtonFile">
                     <div className={classes.clickToUpload}><div className={classes.add}>+</div><div className={classes.upload}>Upload</div>
-                        <div className={classes.media}>{preview}</div>
+                        <div className={classes.media} ref={"changeImgSize"} style={{backgroundImage:"url("+preview+")"}}></div>
                     </div>
                 </label>
                 

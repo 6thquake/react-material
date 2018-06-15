@@ -184,6 +184,9 @@ const pages = [
         title: 'About The Lab',
       },
       {
+        pathname: '/lab/slider',
+      },
+      {
         pathname: '/lab/speed-dial',
       },
       findPages[2].children[1],

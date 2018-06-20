@@ -74,6 +74,12 @@ deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
 
+## Fish eyes Buttons
+
+Fish eyes effect Buttons.
+
+{{"demo": "pages/demos/buttons/FishButton.js"}}
+
 ### Buttons with icons and label
 
 Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.

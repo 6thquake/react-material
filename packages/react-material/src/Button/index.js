@@ -8,3 +8,6 @@ export { default } from '@material-ui/core/Button';
 
 export * from './StatusButton';
 export { default as StatusButton } from './StatusButton';
+
+export * from './FishButton';
+export { default as FishButton } from './FishButton';

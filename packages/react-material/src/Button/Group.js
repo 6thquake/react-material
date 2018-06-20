@@ -2,28 +2,44 @@ import React, {Component} from 'react';
 import {withStyles} from '../styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-//todo small medium lage
+import { capitalize } from '../utils/helpers';
 const styles = theme => ({
+  sizeSmall: {
+    '@global button':{
+      padding: `${theme.spacing.unit - 1}px ${theme.spacing.unit}px`,
+      minWidth: theme.spacing.unit * 8,
+      minHeight: 32,
+      fontSize: theme.typography.pxToRem(13)
+    }
+  },
+  sizeLarge: {
+    '@global button':{
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
+      minWidth: theme.spacing.unit * 14,
+      minHeight: 40,
+      fontSize: theme.typography.pxToRem(15),
+    }
+  },
   horizontal: {
     '@global button:first-child': {
-      borderTopLeftRadius: 2,
-      borderBottomLeftRadius: 2
+      borderTopLeftRadius: 4,
+      borderBottomLeftRadius: 4
     },
     '@global button:last-child': {
-      borderTopRightRadius: 2,
-      borderBottomRightRadius: 2
+      borderTopRightRadius: 4,
+      borderBottomRightRadius: 4
     }
   },
   vertical: {
     display: 'inline-block',
     verticalAlign: 'middle',
     '@global button:first-child': {
-      borderTopLeftRadius: 2,
-      borderTopRightRadius: 2
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4
     },
     '@global button:last-child': {
-      borderBottomLeftRadius: 2,
-      borderBottomRightRadius: 2
+      borderBottomLeftRadius: 4,
+      borderBottomRightRadius: 4
     },
     '@global button': {
       width: '100%',
@@ -31,6 +47,69 @@ const styles = theme => ({
       display: 'block'
     }
   },
+  horizontalCircularSmall:{
+    '@global button:first-child': {
+      borderTopLeftRadius: 16,
+      borderBottomLeftRadius: 16
+    },
+    '@global button:last-child': {
+      borderTopRightRadius: 16,
+      borderBottomRightRadius: 16
+    }
+  },
+  horizontalCircularMedium:{
+    '@global button:first-child': {
+      borderTopLeftRadius: 18,
+      borderBottomLeftRadius: 18
+    },
+    '@global button:last-child': {
+      borderTopRightRadius: 18,
+      borderBottomRightRadius: 18
+    }
+  },
+  horizontalCircularLarge:{
+    '@global button:first-child': {
+      borderTopLeftRadius: 20,
+      borderBottomLeftRadius: 20
+    },
+    '@global button:last-child': {
+      borderTopRightRadius: 20,
+      borderBottomRightRadius: 20
+    }
+  },
+
+
+  verticalCircularSmall:{
+    '@global button:first-child': {
+      borderTopLeftRadius: theme.spacing.unit * 4,
+      borderTopRightRadius: theme.spacing.unit * 4
+    },
+    '@global button:last-child': {
+      borderBottomLeftRadius: theme.spacing.unit * 4,
+      borderBottomRightRadius: theme.spacing.unit * 4
+    },
+  },
+  verticalCircularMedium:{
+    '@global button:first-child': {
+      borderTopLeftRadius: theme.spacing.unit * 11/2,
+      borderTopRightRadius: theme.spacing.unit * 11/2
+    },
+    '@global button:last-child': {
+      borderBottomLeftRadius: theme.spacing.unit * 11/2,
+      borderBottomRightRadius: theme.spacing.unit * 11/2
+    }
+  },
+  verticalCircularLarge:{
+    '@global button:first-child': {
+      borderTopLeftRadius: theme.spacing.unit * 7,
+      borderTopRightRadius: theme.spacing.unit * 7
+    },
+    '@global button:last-child': {
+      borderBottomLeftRadius: theme.spacing.unit * 7,
+      borderBottomRightRadius: theme.spacing.unit * 7
+    }
+  },
+
   group: {
     '@global button': {
       borderRadius: 0,
@@ -40,42 +119,15 @@ const styles = theme => ({
 });
 
 class Group extends Component {
-  changeRadius() {
-    const {circular,position} = this.props;
-    if(circular){
-      const childNodes = this.group.childNodes,length=childNodes.length;
-      if(length){
-        if(position==='vertical'){
-          console.log(9999)
-          const radius = this.group.childNodes[0].offsetWidth/2;
-          // const radius2 = this.group.childNodes[length-1].offsetWidth/2;
-          this.group.childNodes[0].style.borderTopLeftRadius = radius+'px';
-          this.group.childNodes[0].style.borderTopRightRadius = radius+'px';
-
-          this.group.childNodes[length-1].style.borderBottomLeftRadius = radius+'px';
-          this.group.childNodes[length-1].style.borderBottomRightRadius = radius+'px';
-        }else{
-          const radius = this.group.childNodes[0].offsetHeight/2;
-          // const radius2 = this.group.childNodes[length-1].offsetHeight/2;
-
-          this.group.childNodes[0].style.borderTopLeftRadius = radius+'px';
-          this.group.childNodes[0].style.borderBottomLeftRadius = radius+'px';
-
-          this.group.childNodes[length-1].style.borderTopRightRadius = radius+'px';
-          this.group.childNodes[length-1].style.borderBottomRightRadius = radius+'px';
-        }
-      }
-    }
-  }
-  componentDidMount(){
-    this.changeRadius();
-  }
   render() {
-    const {children, position, className: classNamePro, classes} = this.props;
+    const {children, position, className: classNamePro, classes,size,circular} = this.props;
+    const sizePostfix = capitalize(size);
     const className = classNames({
       [classes.group]: true,
       [classes.vertical]: position === 'vertical',
-      [classes.horizontal]: position === 'horizontal'
+      [classes.horizontal]: position === 'horizontal',
+      [classes[`size${sizePostfix}`]]: size !== 'medium',
+      [classes[`${position}Circular${sizePostfix}`]]: circular,
     }, classNamePro);
     return (
       <div className={className} ref={e=>this.group=e}>
@@ -88,16 +140,14 @@ class Group extends Component {
 
 Group.propTypes = {
   position: PropTypes.oneOf(['vertical', 'horizontal']),
-  circular:PropTypes.bool
+  circular:PropTypes.bool,
+  size: PropTypes.oneOf(['small', 'medium', 'large'])
 };
 
 Group.defaultProps = {
   position: 'horizontal',
-  circular:false
-};
-
-Group.childContextTypes = {
-  resetActive: PropTypes.func
+  circular:false,
+  size: 'medium'
 };
 
 export default withStyles(styles)(Group);

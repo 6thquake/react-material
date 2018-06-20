@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import Radio,{RadioButton} from 'react-material/Radio';
 import RadioGroup from 'react-material/RadioGroup';
-import Button from 'react-material/Button';
 import FormLabel from 'react-material/FormLabel';
 import FormControl from 'react-material/FormControl';
 import FormControlLabel from 'react-material/FormControlLabel';
@@ -12,6 +11,7 @@ import FormHelperText from 'react-material/FormHelperText';
 const styles = theme => ({
   root: {
     display: 'flex',
+    flexWrap:'wrap'
   },
   formControl: {
     margin: theme.spacing.unit * 3,
@@ -22,13 +22,20 @@ const styles = theme => ({
   group: {
     margin: `${theme.spacing.unit}px 0`,
   },
+  checked:{
+    //todo remove span important
+    '&+span': {
+      color: 'red !important',
+      background: 'green !important',
+      border:`1px solid black !important`
+    }
+  }
 });
 
-let radio = true;
 
 class RadioButtonsGroup extends React.Component {
   state = {
-    value: 'female',
+    value: '',
   };
 
   handleChange = event => {
@@ -82,20 +89,76 @@ class RadioButtonsGroup extends React.Component {
           <FormHelperText>You can display an error</FormHelperText>
         </FormControl>
 
-        <FormControl component="fieldset" required error className={classes.formControl}>
-          <RadioButton className={classes.button} circular>
-            <Button variant="raised" color="primary" radio={radio}>左</Button>
-            <Button variant="raised" color="primary">中</Button>
-            <Button variant="raised" color="primary">右</Button>
-          </RadioButton>
-          <RadioButton position="vertical" className={classes.button}>
-            <Button variant="raised" className="test">上</Button>
-            <Button variant="raised" >中</Button>
-            <Button variant="raised" >下</Button>
-          </RadioButton>
-          <FormHelperText>You can display an error</FormHelperText>
-        </FormControl>
+        <RadioGroup circular size='large' onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
+        <RadioGroup size='large' onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
+        <RadioGroup circular onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
+        <RadioGroup  onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
+        <RadioGroup circular size='small' onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
+        <RadioGroup size='small' onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
 
+        <RadioGroup row size='large' onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
+
+        <RadioGroup row onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
+
+        <RadioGroup row size='small'onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
+
+        <RadioGroup row circular size='large' onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
+
+        <RadioGroup row circular onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
+
+        <RadioGroup
+          classes={{
+            checked:classes.checked
+          }}
+          row circular size='small' onChange={this.handleChange} value={this.state.value} name="gender1">
+          <RadioButton value="female">female</RadioButton>
+          <RadioButton value="male">male</RadioButton>
+          <RadioButton value="other" disabled>other</RadioButton>
+        </RadioGroup>
       </div>
     );
   }

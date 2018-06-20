@@ -109,50 +109,7 @@ const styles = theme => {
     icon: {
       fontSize: theme.typography.pxToRem(15),
       marginRight: theme.spacing.unit,
-    },
-
-    radioRaisedPrimary: {
-      backgroundColor: theme.palette.primary.dark,
-      '&:hover': {
-        backgroundColor: theme.palette.primary.dark,
-      }
-    },
-    radioRaisedSecondary: {
-      backgroundColor: theme.palette.secondary.dark,
-      '&:hover': {
-        backgroundColor: theme.palette.secondary.dark,
-      }
-    },
-    radioRaisedWaring: {
-      backgroundColor: theme.palette.waring.dark,
-      '&:hover': {
-        backgroundColor: theme.palette.waring.dark,
-      }
-    },
-    radioRaisedError: {
-      backgroundColor: theme.palette.error.dark,
-      '&:hover': {
-        backgroundColor: theme.palette.error.dark
-      }
-    },
-    radioRaisedSuccess: {
-      backgroundColor: theme.palette.success.dark,
-      '&:hover': {
-        backgroundColor: theme.palette.success.dark
-      }
-    },
-    radioRaisedProgress: {
-      backgroundColor: theme.palette.progress.dark,
-      '&:hover': {
-        backgroundColor: theme.palette.progress.dark
-      }
-    },
-    radioRaisedDefault: {
-      backgroundColor: theme.palette.action.hover,
-      '&:hover': {
-        backgroundColor: theme.palette.action.hover
-      }
-    },
+    }
   }
 };
 
@@ -170,8 +127,7 @@ class StatusButton extends Component {
   status = {
     status: '',
     text: '',
-    statusButton: this.props.statusButton,
-    radio: false
+    //statusButton: this.props.statusButton,
   }
 
   getStatusIcon(classes) {
@@ -187,33 +143,19 @@ class StatusButton extends Component {
         return null;
     }
   }
-
-  // resetActive() {
-  //   this.setState({
-  //     active: false
-  //   });
-  // }
-
-  // radioButton() {
-  //   if (!this.context.resetActive) return;
-  //   this.status.radio = !this.status.radio;
-  //   this.context.resetActive();
-  // }
-
   onHandler = () => {
     const {onHandler, onClick} = this.props;
     let result;
     if (typeof onClick === 'function') {
       onClick.apply(this, arguments);
     }
-    // this.radioButton();
     if (this.status.status === 'progress') {
       return void 0;
     }
     if (typeof onHandler === 'function') {
       result = onHandler.apply(this, arguments);
     }
-    if (!this.status.statusButton) return;
+    //if (!this.status.statusButton) return;
     if (result instanceof Promise) {
       this.status.status = 'progress';
       this.setState({
@@ -271,12 +213,7 @@ StatusButton.propTypes = {
 StatusButton.defaultProps = {
     color: 'default',
     variant: 'flat',
-    statusButton: true,
-    radio:false
+    //statusButton: true
 };
-
-// StatusButton.contextTypes = {
-//     resetActive: PropTypes.func
-// };
 
 export default withStyles(styles)(StatusButton);

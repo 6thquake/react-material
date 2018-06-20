@@ -23,9 +23,9 @@ function onClick() {
 }
 function StatusButtons(props) {
   const {classes} = props;
-  return (<div>
-    <StatusButton color="primary"  onClick={onClick} variant="raised" onHandler={handle} className={classes.button}>开始扩容</StatusButton>
-    <StatusButton color="primary"  onHandler={handle} className={classes.button}>开始扩容</StatusButton>
+  return (<div>999
+    {/*<StatusButton color="primary"  onClick={onClick} variant="raised" onHandler={handle} className={classes.button}>开始扩容</StatusButton>*/}
+    {/*<StatusButton color="primary"  onHandler={handle} className={classes.button}>开始扩容</StatusButton>*/}
   </div>);
 }
 

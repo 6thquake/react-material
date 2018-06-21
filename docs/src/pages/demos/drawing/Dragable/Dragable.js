@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 //import update from 'immutability-helper'
+import ReactDOM from 'react-dom'
 import update from 'react-addons-update'; 
 import { DropTarget, DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
@@ -8,6 +9,7 @@ import ItemTypes from './ItemTypes'
 import Box from './Box'
 import LineTo from 'react-material/Drawing/Line'
 import {Line} from 'react-material/Drawing/Line'
+import PubSub from 'pubsub-js'
 const styles = {
 	width: 600,
 	height: 600,
@@ -56,11 +58,8 @@ var debounce = function (idle, action) {
 }
 let log = throttle(20, (monitor, component) => {
 
-	// console.log('hello=========world', c)
-	// c.setState({
-	// 	ss: 'ddd'
-	// })
 	const item = monitor.getItem()
+
 	const delta = monitor.getDifferenceFromInitialOffset()
 	const left = Math.round(item.left + delta.x)
 	const top = Math.round(item.top + delta.y)
@@ -71,7 +70,7 @@ let log = throttle(20, (monitor, component) => {
 
 const boxTarget = {
 	drop(props, monitor, component) {
-		console.log('moniter1', monitor )
+		//console.log('moniter1', monitor )
 		const item = monitor.getItem()
 		const delta = monitor.getDifferenceFromInitialOffset()
 		const left = Math.round(item.left + delta.x)
@@ -111,10 +110,11 @@ class Container extends Component {
 			  x: 20,
 			  y: 180,
 			},
-			text: 'www',
-			point: {x0: '', y0: '', x1: '', y1: ''},
-			flag: false,
-			inproperArea : false,
+			point: {},
+			startDrawflag: false,
+			AtoBinproperArea : false,
+			BtoAinproperArea : false,
+			angle:'0deg',
 		}
 	}
 	moveBox(id, left, top) {
@@ -134,90 +134,167 @@ class Container extends Component {
 				y: top
 			},
 		})
+		if(this.state.AtoBinproperArea){
+			this.changeBoxPosition(document.getElementById('a'),document.getElementById('b'))
+		}else{
+			this.changeBoxPosition(document.getElementById('b'),document.getElementById('a'))
+		}
+	}
+	changeBoxPosition(newBoxA,newBoxB){
+		if(newBoxA.getBoundingClientRect().left > newBoxB.getBoundingClientRect().right){
+			if(newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().top){
+				PubSub.publish('boxMove',["left bottom","right top"])
+				this.setState({angle:"135deg"})
+			}
+			if((newBoxA.getBoundingClientRect().bottom < (newBoxB.getBoundingClientRect().top + newBoxB.getBoundingClientRect().height/2))&&(newBoxA.getBoundingClientRect().bottom > newBoxB.getBoundingClientRect().top)){
+				PubSub.publish('boxMove',["left middle-bottom","right top-middle"])
+				this.setState({angle:"155deg"})
+			}
+			if((newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().bottom)&&(newBoxA.getBoundingClientRect().bottom > (newBoxB.getBoundingClientRect().top + newBoxB.getBoundingClientRect().height/2))){
+				PubSub.publish('boxMove',["left middle","right middle"])
+				this.setState({angle:"180deg"})
+			}
+			if((newBoxA.getBoundingClientRect().top > (newBoxB.getBoundingClientRect().top+ newBoxB.getBoundingClientRect().height/2))&&(newBoxA.getBoundingClientRect().top < newBoxB.getBoundingClientRect().bottom)){
+				PubSub.publish('boxMove',["left top-middle","right middle-bottom"])
+				this.setState({angle:"200deg"})
+			}
+			if(newBoxA.getBoundingClientRect().top > newBoxB.getBoundingClientRect().bottom){
+				PubSub.publish('boxMove',["left top","right bottom"])
+				this.setState({angle:"225deg"})
+			}
+		}
+		if(newBoxA.getBoundingClientRect().right < newBoxB.getBoundingClientRect().left){
+			if(newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().top){
+				PubSub.publish('boxMove',["right bottom","left top"])
+				this.setState({angle:"45deg"})
+			}
+			if((newBoxA.getBoundingClientRect().bottom < (newBoxB.getBoundingClientRect().top + newBoxB.getBoundingClientRect().height/2))&&(newBoxA.getBoundingClientRect().bottom > newBoxB.getBoundingClientRect().top)){
+				PubSub.publish('boxMove',["right middle-bottom","left top-middle"])
+				this.setState({angle:"25deg"})
+			}
+			if((newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().bottom)&&(newBoxA.getBoundingClientRect().bottom > (newBoxB.getBoundingClientRect().top + newBoxB.getBoundingClientRect().height/2))){
+				PubSub.publish('boxMove',["right middle","left middle"])
+				this.setState({angle:"0deg"})
+			}
+			if((newBoxA.getBoundingClientRect().top > (newBoxB.getBoundingClientRect().top+ newBoxB.getBoundingClientRect().height/2))&&(newBoxA.getBoundingClientRect().top < newBoxB.getBoundingClientRect().bottom)){
+				PubSub.publish('boxMove',["right top-middle","left middle-bottom"])
+				this.setState({angle:"-20deg"})
+			}
+			if(newBoxA.getBoundingClientRect().top > newBoxB.getBoundingClientRect().bottom){
+				PubSub.publish('boxMove',["right top","left bottom"])
+				this.setState({angle:"-45deg"})
+			}
+
+		}
+		if((newBoxA.getBoundingClientRect().right < (newBoxB.getBoundingClientRect().left+newBoxB.getBoundingClientRect().width/2))&&(newBoxA.getBoundingClientRect().right > newBoxB.getBoundingClientRect().left)){
+			if(newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().top){
+				PubSub.publish('boxMove',["center-right bottom","left-center top"])
+				this.setState({angle:"70deg"})
+			}
+			if(newBoxA.getBoundingClientRect().top > newBoxB.getBoundingClientRect().bottom){
+				PubSub.publish('boxMove',["center-right top","left-center bottom"])
+				this.setState({angle:"290deg"})
+			}
+		}
+
+		if((newBoxA.getBoundingClientRect().right < newBoxB.getBoundingClientRect().right)&&(newBoxA.getBoundingClientRect().right > (newBoxB.getBoundingClientRect().left+newBoxB.getBoundingClientRect().width/2))){
+			if(newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().top){
+				PubSub.publish('boxMove',["center bottom","center top"])
+				this.setState({angle:"90deg"})
+			}
+			if(newBoxA.getBoundingClientRect().top > newBoxB.getBoundingClientRect().bottom){
+				PubSub.publish('boxMove',["center top","center bottom"])
+				this.setState({angle:"270deg"})
+			}
+		}
+		if((newBoxA.getBoundingClientRect().left < newBoxB.getBoundingClientRect().right)&&(newBoxA.getBoundingClientRect().left > (newBoxB.getBoundingClientRect().left+newBoxB.getBoundingClientRect().width/2))){
+			if(newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().top){
+				PubSub.publish('boxMove',["left-center bottom","center-right top"])
+				this.setState({angle:"110deg"})
+			}
+			if(newBoxA.getBoundingClientRect().top > newBoxB.getBoundingClientRect().bottom){
+				PubSub.publish('boxMove',["left-center top","center-right bottom"])
+				this.setState({angle:"250deg"})
+			}
+		}
 	}
 	mousedown(event){
 		if(!this.props.allowDraw){
 			return
 		}
-		let doc = document.documentElement
-		let body = document.body;
-		let x00 = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
-		let y00 = event.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc && doc.clientTop || body && body.clientTop || 0);    
+		const doc = document.documentElement
+		const body = document.body;
+		const x00 = event.clientX + (doc.scrollLeft || body.scrollLeft || 0) - ( doc.clientLeft ||  body.clientLeft || 0);
+		const y00 = event.clientY + (doc.scrollTop || body.scrollTop || 0) - ( doc.clientTop ||  body.clientTop || 0);    
 		this.setState(preState=>({
 			point: {...preState.point,x0:x00,y0:y00},
-			flag:true
+			startDrawflag:true
 		}))
+		//console.log('points')
+		//console.log(this.state.point)
 	}
 	mousemove(event){
-		if(!this.props.allowDraw){
+		if(!this.props.allowDraw||!this.state.startDrawflag){
 			return
 		}
-		if (!this.state.flag) return;
-		let doc = document.documentElement
-		let body = document.body;
-		const x11 = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
-		const y11 = event.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc && doc.clientTop || body && body.clientTop || 0);
+		const doc = document.documentElement
+		const body = document.body;
+		const x11 = event.clientX + (doc.scrollLeft || body.scrollLeft || 0) - (doc.clientLeft || body.clientLeft || 0);
+		const y11 = event.clientY + (doc.scrollTop || body.scrollTop || 0) - (doc.clientTop ||  body.clientTop || 0);
 		this.setState(preState=>({
 			point: {...preState.point,x1:x11,y1:y11}
 		}))
-
-		
 	}
 	mouseup(event){
-		this.setState({flag:false})
-		//console.log(this.state.point)
-		let newBoxA = document.getElementById('a')
-		let newBoxB = document.getElementById('b')
+		if(!this.props.allowDraw){
+			return
+		}
+		this.setState({startDrawflag:false})
+		const newBoxA = document.getElementById('a')
+		const newBoxB = document.getElementById('b')
+		const doc = document.documentElement
+		const body = document.body;
+		const offsetX = (doc.scrollLeft || body.scrollLeft || 0) - ( doc.clientLeft ||  body.clientLeft || 0);
+		const offsetY = (doc.scrollTop || body.scrollTop || 0) - (doc.clientTop ||  body.clientTop || 0);
 
-		if((this.state.point.x0>newBoxA.getBoundingClientRect().left)&&(this.state.point.x0<newBoxA.getBoundingClientRect().right)&&(this.state.point.y0>newBoxA.getBoundingClientRect().top)&&(this.state.point.y0<newBoxA.getBoundingClientRect().bottom)){
-			//console.log("x0 am in boxA-dragmearound");
-			if((this.state.point.x1>newBoxB.getBoundingClientRect().left)&&(this.state.point.x1<newBoxB.getBoundingClientRect().right)&&(this.state.point.y1>newBoxB.getBoundingClientRect().top)&&(this.state.point.y1<newBoxB.getBoundingClientRect().bottom)){
-			console.log("around to too");
+		if((this.state.point.x0>(newBoxA.getBoundingClientRect().left + offsetX))&&(this.state.point.x0<(newBoxA.getBoundingClientRect().right+offsetX))&&(this.state.point.y0>(newBoxA.getBoundingClientRect().top+offsetY))&&(this.state.point.y0<(newBoxA.getBoundingClientRect().bottom+offsetY))){
+			if((this.state.point.x1>(newBoxB.getBoundingClientRect().left+offsetX))&&(this.state.point.x1<(newBoxB.getBoundingClientRect().right+offsetX))&&(this.state.point.y1>(newBoxB.getBoundingClientRect().top+offsetY))&&(this.state.point.y1<(newBoxB.getBoundingClientRect().bottom+offsetY))){
+			console.log('around to too')
 			this.setState({
-				inproperArea : true
+				AtoBinproperArea : true
 			})
 			this.props.drawComplete();
 			}
 		}
-		if((this.state.point.x1>newBoxA.getBoundingClientRect().left)&&(this.state.point.x1<newBoxA.getBoundingClientRect().right)&&(this.state.point.y1>newBoxA.getBoundingClientRect().top)&&(this.state.point.y1<newBoxA.getBoundingClientRect().bottom)){
-			//console.log("x1 am in boxA-dragmearound");
-			if((this.state.point.x0>newBoxB.getBoundingClientRect().left)&&(this.state.point.x0<newBoxB.getBoundingClientRect().right)&&(this.state.point.y0>newBoxB.getBoundingClientRect().top)&&(this.state.point.y0<newBoxB.getBoundingClientRect().bottom)){
-			console.log("too to around");
+		if((this.state.point.x1>(newBoxA.getBoundingClientRect().left+offsetX))&&(this.state.point.x1<(newBoxA.getBoundingClientRect().right+offsetX))&&(this.state.point.y1>(newBoxA.getBoundingClientRect().top)+offsetY)&&(this.state.point.y1<(newBoxA.getBoundingClientRect().bottom+offsetY))){
+			if((this.state.point.x0>(newBoxB.getBoundingClientRect().left+offsetX))&&(this.state.point.x0<(newBoxB.getBoundingClientRect().right+offsetX))&&(this.state.point.y0>(newBoxB.getBoundingClientRect().top)+offsetY)&&(this.state.point.y0<(newBoxB.getBoundingClientRect().bottom+offsetY))){
+			console.log('too to around')
 			this.setState({
-				inproperArea : true
+				BtoAinproperArea : true
 			})
 			this.props.drawComplete();
 			}
 		}
+
+
 	}
 	componentDidMount(){
-		this.setState({
-			text: 'hello'
-		})
-	}
-	componentDidUpdate(){
-		/*if((this.state.point.x0>(ths.state.boxes.a.left+newDiv.getBoundingClientRect()))&&
-			(this.state.point.x1<(ths.state.boxes.a.left+newDiv.getBoundingClientRect()+80))&&
-			(this.state.point.y0>(ths.state.boxes.a.top+newDiv.getBoundingClientRect()))&&
-			(this.state.point.y1<(ths.state.boxes.a.left+newDiv.getBoundingClientRect()+80))){
-			console.log("i am in box");
-		}*/
-		//console.log(this.state.boxes.a)
-		//console.log(this.state.boxes.b)
-
 		
 	}
 	static getDerivedStateFromProps(props, state){
 		if(props.removeLine){
 			return {
-				inproperArea : false,
-				point: {x0: '', y0: '', x1: '', y1: ''}
+				AtoBinproperArea : false,
+				BtoAinproperArea : false,
+				point: {}
 			}
 		}		
 	}
 	render() {
 		const { hideSourceOnDrag, connectDropTarget } = this.props
-		const { boxes , from , to, inproperArea} = this.state
+		const { boxes ,from , to, AtoBinproperArea,BtoAinproperArea} = this.state
+		//console.log('this.props.borderStyle')
+		//console.log(this.props.borderStyle)
 		return connectDropTarget(
 			<div style={styles} id="test" onMouseDown={this.mousedown.bind(this)} onMouseUp={this.mouseup.bind(this)} onMouseMove={this.mousemove.bind(this)}>
 				{Object.keys(boxes).map(key => {
@@ -238,8 +315,8 @@ class Container extends Component {
 						</Box>
 					)
 				})}
-				{this.props.removeLine?null:inproperArea?<LineTo from={this.a} to={this.b}/>:<Line {...this.state.point}/>}
-				
+				{this.props.removeLine?null:AtoBinproperArea?<LineTo from={ReactDOM.findDOMNode(this.a)} to={ReactDOM.findDOMNode(this.b)} borderStyle={this.props.borderStyle} arrowStyle={this.props.arrowStyle} angle={this.state.angle}/>:BtoAinproperArea?<LineTo from={ReactDOM.findDOMNode(this.b)} to={ReactDOM.findDOMNode(this.a)} borderStyle={this.props.borderStyle} arrowStyle={this.props.arrowStyle} angle={this.state.angle}/>:<Line {...this.state.point} borderStyle={'dashed'}/>}
+
 			</div>
 		)
 	}

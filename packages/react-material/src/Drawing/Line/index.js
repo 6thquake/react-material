@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component, PureComponent } from 'react';
 import ReactDOM from 'react-dom'
+import PubSub from 'pubsub-js'
+import Arrow from '../Arrow.js'
 const defaultAnchor = { x: 0.5, y: 1 };
-const defaultBorderColor = '#f00';
+const defaultBorderColor = '#000';
 const defaultBorderStyle = 'solid';
 const defaultBorderWidth = 1;
 
@@ -15,9 +17,16 @@ const optionalStyleProps = {
 };
 
 export default class LineTo extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            fromAnchor:"center middle",
+            toAnchor:"center middle",
+        }
+    }
     componentWillMount() {
-        this.fromAnchor = this.parseAnchor(this.props.fromAnchor);
-        this.toAnchor = this.parseAnchor(this.props.toAnchor);
+        //this.fromAnchor = this.parseAnchor(this.props.fromAnchor);
+        //this.toAnchor = this.parseAnchor(this.props.toAnchor);
         this.delay = this.parseDelay(this.props.delay);
     }
 
@@ -26,15 +35,21 @@ export default class LineTo extends Component {
         if (typeof this.delay !== 'undefined') {
             this.deferUpdate(this.delay);
         }
-    }
+        this.pubsub_token = PubSub.subscribe('boxMove',function(msg,data){
+            this.setState({
+                fromAnchor:data[0],
+                toAnchor:data[1],
+            })
+        }.bind(this))
 
+    }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.fromAnchor !== this.props.fromAnchor) {
+      /*  if (nextProps.fromAnchor !== this.props.fromAnchor) {
             this.fromAnchor = this.parseAnchor(this.props.fromAnchor);
         }
         if (nextProps.toAnchor !== this.props.toAnchor) {
             this.toAnchor = this.parseAnchor(this.props.toAnchor);
-        }
+        }*/
         this.delay = this.parseDelay(nextProps.delay);
         if (typeof this.delay !== 'undefined') {
             this.deferUpdate(this.delay);
@@ -79,14 +94,6 @@ export default class LineTo extends Component {
         return delay;
     }
 
-    parseAnchorPercent(value) {
-        const percent = parseFloat(value) / 100;
-        if (isNaN(percent) || !isFinite(percent)) {
-            throw new Error(`LinkTo could not parse percent value "${value}"`);
-        }
-        return percent;
-    }
-
     parseAnchorText(value) {
         // Try to infer the relevant axis.
         switch (value) {
@@ -94,10 +101,18 @@ export default class LineTo extends Component {
                 return { y: 0 };
             case 'left':
                 return { x: 0 };
+            case 'top-middle':
+                return { y: 0.25 };   
+            case 'left-center':
+                return { x: 0.25 };             
             case 'middle':
                 return { y: 0.5 };
             case 'center':
                 return { x: 0.5 };
+            case 'middle-bottom':
+                return { y: 0.75 };
+            case 'center-right':
+                return { x: 0.75 };            
             case 'bottom':
                 return { y: 1 };
             case 'right':
@@ -116,47 +131,26 @@ export default class LineTo extends Component {
         }
         const [x, y] = parts;
         return Object.assign({}, defaultAnchor,
-            x ? this.parseAnchorText(x) || { x: this.parseAnchorPercent(x) } : {},
-            y ? this.parseAnchorText(y) || { y: this.parseAnchorPercent(y) } : {}
+            x ? this.parseAnchorText(x) : {},
+            y ? this.parseAnchorText(y) : {}
         );
     }
 
-    findElement(className) {        
-        // let element = document.getElementsByClassName(className)[0];
-        let dom = ReactDOM.findDOMNode(className)
-        // console.log('dom node',dom)
-        return dom
-        // return document.getElementsByClassName(className)[0];
-    }
-
     detect() {
-        const { from, to, within = '' } = this.props;
-
-        const a = this.findElement(from);
-        const b = this.findElement(to);
-        
-        if (!a || !b) {
+        const { from, to} = this.props;
+        if (!from || !to) {
             return false;
         }
 
-        const anchor0 = this.fromAnchor;
-        const anchor1 = this.toAnchor;
-
-        const box0 = a.getBoundingClientRect();
-        const box1 = b.getBoundingClientRect();
+        const anchor0 = this.parseAnchor(this.state.fromAnchor); 
+        const anchor1 = this.parseAnchor(this.state.toAnchor);
+        const box0 = from.getBoundingClientRect();
+        const box1 = to.getBoundingClientRect();
 
         let offsetX = window.pageXOffset;
         let offsetY = window.pageYOffset;
 
-        if (within) {
-            const p = this.findElement(within);
-            const boxp = p.getBoundingClientRect();
-
-            offsetX -= boxp.left;
-            offsetY -= boxp.top;
-        }
-
-        const x0 = box0.left + box0.width * anchor0.x + offsetX;
+        const x0 = box0.left + box0.width * anchor0.x + offsetX; 
         const x1 = box1.left + box1.width * anchor1.x + offsetX;
         const y0 = box0.top + box0.height * anchor0.y + offsetY;
         const y1 = box1.top + box1.height * anchor1.y + offsetY;
@@ -166,19 +160,32 @@ export default class LineTo extends Component {
 
     render() {
         const points = this.detect();
-        //console.log('points', points)
+        const doc = document.documentElement
+        const body = document.body;
+        const offsetX = (doc.scrollLeft || body.scrollLeft || 0) - ( doc.clientLeft ||  body.clientLeft || 0);
+        const offsetY = (doc.scrollTop || body.scrollTop || 0) - (doc.clientTop ||  body.clientTop || 0);
+
+        //const x1 = (points.x1-offsetX)+'px'
+       // const y1 = (points.y1-offsetY)+'px'
+       const x1 = (points.x1-offsetX)
+       const y1 = (points.y1-offsetY)
         return points ? (
+            <div>
             <Line {...points} {...this.props} />
+            <Arrow left={x1} top={y1} angle={this.props.angle} arrowStyle={this.props.arrowStyle}/>
+            </div>
         ) : null;
     }
 }
+
+
 
 LineTo.propTypes = Object.assign({}, {
     // from: PropTypes.string.isRequired,
     // to: PropTypes.string.isRequired,
     // within: PropTypes.string,
-    fromAnchor: PropTypes.string,
-    toAnchor: PropTypes.string,
+    //fromAnchor: PropTypes.string,
+    //toAnchor: PropTypes.string,
     delay: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 }, optionalStyleProps);
 
@@ -186,22 +193,19 @@ export class Line extends PureComponent {
     componentDidMount() {
         // Append rendered DOM element to the container the
         // offsets were calculated for
-        this.within.appendChild(this.el);
+        //this.within.appendChild(this.el);
+        document.body.appendChild(this.el)
     }
 
     componentWillUnmount() {
-        this.within.removeChild(this.el);
-    }
-
-    findElement(c) {
-    //   return document.getElementsByClassName(className)[0];
-        return ReactDOM.findDOMNode(c)
+        //this.within.removeChild(this.el);
+        document.body.removeChild(this.el);
     }
 
     render() {
-        const { x0, y0, x1, y1, within = '' } = this.props;
-        this.within = within ? this.findElement(within) : document.body;
 
+
+        const { x0, y0, x1, y1} = this.props;
         const dy = y1 - y0;
         const dx = x1 - x0;
 

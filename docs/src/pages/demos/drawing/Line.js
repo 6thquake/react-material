@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import {Dragable} from './Dragable';
 import {Home,Grade,Lock} from '@material-ui/icons';
-import {Line} from 'react-material/Drawing/Line'
+
+import Button from 'react-material/Button';
+import Icon from 'react-material/Icon';
+import DeleteIcon from '@material-ui/icons/Delete';
+const Style={
+	buttonWrap:{
+		margin:'1em 0.5em'
+	}
+}
 
 export default class DragAroundNaive extends Component {
 	constructor(props) {
@@ -14,6 +22,8 @@ export default class DragAroundNaive extends Component {
 			allowDraw: false,
 			dragDisable:false,
 			removeLine: false,
+			borderStyle: 'dashed',
+			arrowStyle:'default',
 		}
 	}
 
@@ -22,16 +32,76 @@ export default class DragAroundNaive extends Component {
 			hideSourceOnDrag: !this.state.hideSourceOnDrag,
 		})
 	}
-	drawLine(){
+	drawLineCompose(){
 		this.setState({
 			allowDraw: true,
 			dragDisable:true,
 			removeLine: false,
+			borderStyle: 'solid',
+			arrowStyle : 'compose',
+
+		})
+	}
+	drawLineAggregate(){
+		this.setState({
+			allowDraw: true,
+			dragDisable:true,
+			removeLine: false,
+			borderStyle: 'solid',
+			arrowStyle : 'aggregate',
+
+		})
+	}
+	drawLineRealize(){
+		this.setState({
+			allowDraw: true,
+			dragDisable:true,
+			removeLine: false,
+			borderStyle: 'dashed',
+			arrowStyle : 'realize',
+
+		})
+	}
+	drawLineAssociate(){
+		this.setState({
+			allowDraw: true,
+			dragDisable:true,
+			removeLine: false,
+			borderStyle: 'solid',
+			arrowStyle: 'default',
+		})
+	}
+	drawLineGeneralize(){
+		this.setState({
+			allowDraw: true,
+			dragDisable:true,
+			removeLine: false,
+			borderStyle: 'solid',
+			arrowStyle: 'generalize',
+		})
+	}
+	drawLineImport(){
+		this.setState({
+			allowDraw: true,
+			dragDisable:true,
+			removeLine: false,
+			borderStyle: 'dashed',
+			arrowStyle: 'import',
+		})
+	}
+	drawLineLink(){
+		this.setState({
+			allowDraw: true,
+			dragDisable:true,
+			removeLine: false,
+			borderStyle: 'dashed',
+			arrowStyle: 'default',
 		})
 	}
 	resetLine(){
 		this.setState({
 			removeLine: true,
+			dragDisable:false,
 		})
 	}
 	drawComplete(){
@@ -44,9 +114,40 @@ export default class DragAroundNaive extends Component {
 		const { hideSourceOnDrag } = this.state
 		return (
 			<div>
-				<button onClick={this.drawLine.bind(this)}>-----></button>
-				<button onClick={this.resetLine.bind(this)}>resetLine</button>
-				<Dragable hideSourceOnDrag={hideSourceOnDrag} allowDraw={this.state.allowDraw} dragDisable={this.state.dragDisable} drawComplete={this.drawComplete.bind(this)} removeLine={this.state.removeLine}/>
+				<div style={Style.buttonWrap}>
+				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineCompose.bind(this)} mini>
+				      <img src="https://devsketch.io/images/compose.gif" alt=""/>
+				    </Button> 
+				    &nbsp;&nbsp;&nbsp;&nbsp;
+				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineAggregate.bind(this)} mini>
+				      <img src="https://devsketch.io/images/aggregate.gif" alt=""/>
+				    </Button>
+				    &nbsp;&nbsp;&nbsp;&nbsp;
+				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineRealize.bind(this)} mini>
+				      <img src="https://devsketch.io/images/realize.gif" alt=""/>
+				    </Button> 
+				    &nbsp;&nbsp;&nbsp;&nbsp;
+				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineAssociate.bind(this)} mini>
+				      <img src="https://devsketch.io/images/associate.gif" alt=""/>
+				    </Button>
+				    &nbsp;&nbsp;&nbsp;&nbsp;
+				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineGeneralize.bind(this)} mini>
+				      <img src="https://devsketch.io/images/generalize.gif" alt=""/>
+				    </Button> 
+				    &nbsp;&nbsp;&nbsp;&nbsp;
+				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineImport.bind(this)} mini>
+				      <img src="https://devsketch.io/images/import.gif" alt=""/>
+				    </Button>  
+				    &nbsp;&nbsp;&nbsp;&nbsp;
+				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineLink.bind(this)} mini>
+				      <img src="https://devsketch.io/images/link.gif" alt=""/>
+				    </Button> 
+				    &nbsp;&nbsp;&nbsp;&nbsp; 
+				    <Button variant="fab" aria-label="delete" onClick={this.resetLine.bind(this)} mini>
+				      <DeleteIcon />
+				    </Button> 
+				</div>
+				<Dragable hideSourceOnDrag={hideSourceOnDrag} allowDraw={this.state.allowDraw} dragDisable={this.state.dragDisable} drawComplete={this.drawComplete.bind(this)} removeLine={this.state.removeLine} borderStyle={this.state.borderStyle} arrowStyle={this.state.arrowStyle}/>
 				<p>
 					<label htmlFor="hideSourceOnDrag">
 						<input

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {withStyles,createGenerateClassName} from '../styles';
+import React, { Component } from 'react';
+import { withStyles, createGenerateClassName } from '../styles';
 import FormControlLabel from '../FormControlLabel';
 import Button from '../Button';
 import Radio from '@material-ui/core/Radio';

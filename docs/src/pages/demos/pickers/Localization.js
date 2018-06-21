@@ -5,6 +5,7 @@ import IconButton from 'react-material/IconButton';
 import Menu from 'react-material/Menu';
 import MenuItem from 'react-material/MenuItem';
 import Button from 'react-material/Button';
+import ButtonGroup from 'react-material/ButtonGroup';
 import Grid from 'react-material/Grid';
 import LocaleProvider, { withLocale, LocaleConsumer } from 'react-material/LocaleProvider';
 
@@ -85,11 +86,11 @@ class App extends Component{
               {(value) => {
                 const { locale, changeLocale } = value;
                 return (
-                  <Button.Group>
+                  <ButtonGroup>
                     <Button onClick={changeLocale('zh-cn')} variant="raised" color="primary">中文</Button>
                     <Button onClick={changeLocale('en-us')} radio={radio} variant="raised" color="primary">EN</Button>
                     <Button onClick={changeLocale('zh-tw')} variant="raised" color="primary">繁体中文</Button>
-                  </Button.Group>
+                  </ButtonGroup>
                 )
               }}
             </LocaleConsumer>

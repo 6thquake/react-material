@@ -1,7 +1,8 @@
 import react, { Component } from 'react'
 import Popconfirm from 'react-material/Popconfirm'
 import { withStyles } from 'react-material/styles';
-import Button from 'react-material/Button'
+import Button from 'react-material/Button';
+import ButtonGroup from 'react-material/ButtonGroup';
 import LocaleProvider, { LocaleConsumer } from 'react-material/LocaleProvider'
 
 
@@ -57,11 +58,11 @@ class MyComponent extends Component {
             {(value) => {
               const { locale, changeLocale } = value;
               return (
-                <Button.Group>
+                <ButtonGroup>
                   <Button onClick={changeLocale('zh-cn')} variant="raised" color="primary">中文</Button>
                   <Button onClick={changeLocale('en-us')} radio={radio} variant="raised" color="primary">EN</Button>
                   <Button onClick={changeLocale('zh-tw')} variant="raised" color="primary">繁体中文</Button>
-                </Button.Group>
+                </ButtonGroup>
               )
             }}
           </LocaleConsumer>

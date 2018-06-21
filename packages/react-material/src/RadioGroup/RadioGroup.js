@@ -117,4 +117,37 @@ RadioGroup.defaultProps = {
 
 const FormComponent = compose(withFormsy, withFormItem, withStyles(style))(RadioGroup);
 
-export default compose(withForm)(FormComponent, RadioGroupStandalone);
+class C extends Component {
+  getChildContext() {
+    const {row, size, circular, classes} = this.props;
+    return {
+      row, size, circular, classes
+    };
+  }
+
+  render() {
+    let {circular, size, classes, ...props} = this.props;
+    classes = classes ? classes : {};
+    const {checked, ...classesPro} = classes;
+    return <RadioGroupStandalone {...props} classes={classesPro}/>;
+  }
+}
+
+C.childContextTypes = {
+  row: PropTypes.bool,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  circular: PropTypes.bool,
+  classes: PropTypes.object
+};
+C.propTypes = {
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  circular: PropTypes.bool,
+  classes: PropTypes.object
+};
+C.defaultProps = {
+  size: 'medium',
+  circular: false
+};
+
+
+export default compose(withForm)(FormComponent, C);

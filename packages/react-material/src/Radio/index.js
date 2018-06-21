@@ -1,7 +1,4 @@
 import Radio from '@material-ui/core/Radio';
-import Group from './Group';
-
-Radio.Group = Group;
-
+export {default as RadioButton} from './RadioButton';
 export * from '@material-ui/core/Radio';
 export { default } from '@material-ui/core/Radio';

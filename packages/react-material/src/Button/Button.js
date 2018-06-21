@@ -1,18 +1,22 @@
-import React, { Component } from 'react';
+/**
+ *  属性
+ *      状态
+ *      外观
+ *  行为
+ *
+ *  button 组，状态, icon, 级别
+ *  icon：svg
+ */
+
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
-import common from '../colors/common';
-import { fade } from '../styles/colorManipulator';
-import Button from './Button';
+import {withStyles} from '../styles';
+import {fade} from '../styles/colorManipulator';
+import Button from '@material-ui/core/Button/Button';
 import classNames from 'classnames';
-import Done from '@material-ui/icons/Done';
-import Replay from '@material-ui/icons/Replay';
-import CircularProgress from '../CircularProgress';
 import addonRmTheme from '../styles/addonRmTheme';
-
-const styles = theme => {
+export const styles = theme => {
   theme = addonRmTheme(theme);
-
   const defaultStyle = {
     flat: {
       waring: {
@@ -96,6 +100,23 @@ const styles = theme => {
     }
   };
   return {
+    //todo remove
+    root:{},
+    label:{},
+    flatPrimary:{},
+    flatSecondary:{},
+    colorInherit:{},
+    raised:{},
+    raisedPrimary:{},
+    raisedSecondary:{},
+    focusVisible:{},
+    disabled:{},
+    fab:{},
+    mini:{},
+    sizeSmall:{},
+    sizeLarge:{},
+    fullWidth:{},
+    // ...styles(theme),
     flatWaring: defaultStyle.flat.waring,
     flatError: defaultStyle.flat.error,
     flatSuccess: defaultStyle.flat.success,
@@ -112,108 +133,67 @@ const styles = theme => {
     }
   }
 };
-
-/**
- * success
- * progress
- * fail
- */
-class StatusButton extends Component {
-
+class CreateButton extends Component {
+  firstRender = true
   state = {
-      color: this.props.color
+    color: this.props.color,
   }
-
   status = {
     status: '',
     text: '',
-    //statusButton: this.props.statusButton,
+    statusButton: this.props.statusButton,
   }
 
-  getStatusIcon(classes) {
-    switch (this.status.status) {
-      case 'progress':
-        //todo button loading styles
-        return <CircularProgress className={classes.icon} size={15} style={{color: common.white}}/>;
-      case 'success':
-        return <Done className={classes.icon}/>;
-      case 'false':
-        return <Replay className={classes.icon}/>;
-      default:
-        return null;
-    }
+  resetActive() {
+    this.setState({
+      active: false
+    });
   }
-  onHandler = () => {
-    const {onHandler, onClick} = this.props;
-    let result;
-    if (typeof onClick === 'function') {
-      onClick.apply(this, arguments);
-    }
-    if (this.status.status === 'progress') {
-      return void 0;
-    }
-    if (typeof onHandler === 'function') {
-      result = onHandler.apply(this, arguments);
-    }
-    //if (!this.status.statusButton) return;
-    if (result instanceof Promise) {
-      this.status.status = 'progress';
-      this.setState({
-        color: 'progress'
-      });
-      result.then((r) => {
-        this.status.status = 'success';
-        this.setState({
-          color: 'success'
-        });
-      }).catch(r => {
-        this.status.status = 'false';
-        this.setState({
-          color: 'error'
-        });
-      });
-    }
+  getButtonStyle(){
+
   }
 
   render() {
-    let {children, className: classNamePro, classes, onHandler, ...other} = this.props;
-    other.color = this.state.color;
-    const {color} = other;
+    let {children, className: classNamePro, classes,...props} = this.props;
+    let {raisedProgress,raisedError,raisedSuccess,raisedWaring,flatProgress,
+      flatError, flatSuccess,flatWaring,icon,
+      ...classesPro} = classes;
+    props.color = this.state.color;
+    const {color} = props;
     const customColors = ['waring', 'error', 'success', 'progress'];
     if (customColors.indexOf(color) !== -1) {
-      other.color = 'default';
+      props.color = 'default';
     }
+    this.firstRender = false;
     const flat = this.props.variant === 'flat';
-
     const className = classNames({
       [classes.raisedProgress]: !flat && color === 'progress',
       [classes.raisedError]: !flat && color === 'error',
       [classes.raisedSuccess]: !flat && color === 'success',
       [classes.raisedWaring]: !flat && color === 'waring',
-
       [classes.flatProgress]: flat && color === 'progress',
       [classes.flatError]: flat && color === 'error',
       [classes.flatSuccess]: flat && color === 'success',
       [classes.flatWaring]: flat && color === 'waring',
-
     }, classNamePro);
 
     return (
-      <Button {...other} className={className} onClick={this.onHandler}>
-        {this.getStatusIcon(classes)}{children}
+      <Button {...props} classes={classesPro} className={className} >
+        {children}
       </Button>
     );
   }
 }
 
-StatusButton.propTypes = {
-    onHandler: PropTypes.func
+CreateButton.propTypes = {
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'error', 'success', 'waring', 'progress']),
 };
-
-StatusButton.defaultProps = {
-    color: 'default',
-    variant: 'flat',
-    //statusButton: true
+CreateButton.defaultProps = {
+  color: 'default',
+  variant: 'flat',
+  statusButton: true,
 };
-
-export default withStyles(styles)(StatusButton);
+CreateButton.contextTypes = {
+  resetActive: PropTypes.func
+};
+export default withStyles(styles)(CreateButton);

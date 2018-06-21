@@ -39,7 +39,7 @@ function C() {
         <hr/>
 
         <Button color="primary" variant="raised" onHandler={handle}>3</Button>
-        <Button color="primary" variant="raised" onHandler={()=>handle()} statusButton={false}>3</Button>
+        <Button color="primary" variant="raised" onHandler={()=>handle()}>3</Button>
         <Button color="error" variant="raised">error</Button>
         <Button color="progress" variant="flat">progress</Button>
         <Button color="success" variant="fab">success</Button>

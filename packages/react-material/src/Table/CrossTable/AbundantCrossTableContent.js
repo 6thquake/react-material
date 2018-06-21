@@ -15,7 +15,7 @@ import "babel-polyfill";
 const styles = (theme) => ({
   table: {
     color: '#2a3f5f',
-    fontFamily: 'Verdana',
+    fontFamily: theme.typography.fontFamily,
     borderCollapse: 'collapse'
   },
 

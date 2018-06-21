@@ -16,7 +16,7 @@ const styles = (theme) => ({
     borderCollapse: 'collapse',
     marginTop: '3px',
     marginLeft: '3px',
-    fontFamily: 'Verdana'
+    fontFamily: theme.typography.fontFamily
   },
   th:{
     backgroundColor: '#ebf0f8',

@@ -5,7 +5,7 @@ const menuPrefixCls = 'rm-menu';
 
 const styles = theme => {
   const menu = {
-    menuCollapsedWidth:'80',
+    menuCollapsedWidth:'72',
     fontSizeBase:'14px',
     textColor:fade('#000',.65),
     lineHeightBase:1.5,
@@ -31,7 +31,7 @@ const styles = theme => {
     menuDarkHoverBg:fade('#9e9e9e', .3),
     menuDarkHighlightColor: '#fff',
 
-    menuDarkItemSelectedBg:fade(theme.palette.primary.main, .3),
+    menuDarkItemSelectedBg:theme.palette.primary.main,
 
     disabledColorDark    : fade('#fff', .35),
     easeInOut         : 'cubic-bezier(0.645, 0.045, 0.355, 1)',
@@ -74,7 +74,7 @@ const styles = theme => {
         lineHeight: 0,
         transition: 'background .3s, width .2s',
         zoom: 1,
-        '@global .material-icons,[class*=MuiSvgIcon-root]': {
+        '@global .material-icons, svg': {
           ...iconStyle
         },
         '& *':{
@@ -379,18 +379,19 @@ const styles = theme => {
 
         '&-inline-collapsed': {
           width: `${menu.menuCollapsedWidth}px`,
+          // width: `${menu.menuCollapsedWidth}px`,
           [`& > .${menuPrefixCls}-item,
           &> .${menuPrefixCls}-item-group > .${menuPrefixCls}-item-group-list > .${menuPrefixCls}-item,
           &> .${menuPrefixCls}-submenu > .${menuPrefixCls}-submenu-title`]: {
             left: 0,
             textOverflow: 'clip',
-            padding: `0 ${( menu.menuCollapsedWidth - 16) / 2}px !important`,
+            padding: `0 ${( menu.menuCollapsedWidth - 24) / 2}px !important`,
             [`& .${menuPrefixCls}-submenu-arrow`]: {
               display: 'none'
             },
 
-            [`& .${iconfontCssPrefix},[class*=MuiSvgIcon-root]`]: {
-              fontSize: 16,
+            [`& .${iconfontCssPrefix},svg`]: {
+              fontSize: 24,
               lineHeight: menuItem.lineHeight,
               margin: 0,
               '&+ span': {

@@ -4,7 +4,7 @@ const styles = (menu, menuPrefixCls) => {
     // dark theme
     '&-dark, &-dark &-sub': {
       color: `${menu.menuDarkColor} `,
-      background: menu.menuDarkBg,
+      background: `${menu.menuDarkBg} !important`,
       [`& .${menuPrefixCls}-submenu-title .${menuPrefixCls}-submenu-arrow`]: {
         // opacity: .45,
         transition: 'all .3s ',

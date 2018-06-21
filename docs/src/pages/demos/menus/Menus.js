@@ -38,7 +38,7 @@ class Test extends React.Component {
           onClick={this.onClick}
           mode="inline"
           inlineCollapsed={this.state.collapsed}
-          // theme={'dark'}
+          theme={'dark'}
           // defaultSelectedKeys={["1-1"]}
           // defaultOpenKeys={['sub1']}
         >

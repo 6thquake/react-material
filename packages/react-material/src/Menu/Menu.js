@@ -54,8 +54,9 @@ class Menu extends React.Component {
       rMMenuTheme: this.props.theme,
     };
   }
-
+//  todo remove unsafe life
   componentWillReceiveProps(nextProps, nextContext) {
+  // componentWillReceiveProps(nextProps, nextContext) {
     const {prefixCls} = this.props;
     if (this.props.mode === 'inline' &&
       nextProps.mode !== 'inline') {

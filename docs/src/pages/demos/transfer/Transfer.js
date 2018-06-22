@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import Transfer from 'react-material/Transfer';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +16,12 @@ class App extends React.Component {
         {name:'left one is left one ',id:'l1'},
         {name:'show the left two',id:'l2'},
         {name:'you get left three',id:'l3'}
-      ]
+      ],
+      pageConfig:{
+      currentPage: 1,
+      pageSize: 3,
+      total: 3
+      }
     };
   }
 
@@ -33,6 +37,9 @@ class App extends React.Component {
       <div >
         <Transfer left={this.state.left} 
           right={this.state.right} 
+          filterOption={true}
+          paginationOption={true}
+          pageConfig={this.state.pageConfig}
           onChange={this.changeListTest.bind(this)}>
         </Transfer>
       </div>

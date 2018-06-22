@@ -91,18 +91,15 @@ const throttling = (fn, wait, maxTimeLong) => {
   }
 
 }
-class Transfer extends React.Component {
+class AsyncTransfer extends React.Component {
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
       leftChecked: [],   //左边选中的item
       rightChecked: [],
-      temp: {
-        left: props.left,   //左边渲染的数据
-        right: props.right
-      },
-      pageConfigLeft: props.pageConfig,  //左边的分页参数
-      pageConfigRight: props.pageConfig
+      pageConfigLeft: props.pageConfigL,  //左边的分页参数
+      pageConfigRight: props.pageConfigR
     };
   }
   static defaultProps = {
@@ -119,7 +116,6 @@ class Transfer extends React.Component {
     left: PropTypes.array.isRequired,
     right: PropTypes.array.isRequired,
     paginationOption: PropTypes.boolean,
-    pageConfig: PropTypes.object,
     onChange: PropTypes.func
   }
   //数组去重
@@ -149,20 +145,16 @@ class Transfer extends React.Component {
     this.setState({
       leftChecked: [],
       rightChecked: [],
-      temp: {
-        left: [...newData['left']],
-        right: [...newData['right']]
-      },
       pageConfigLeft: {
-        ...this.props.pageConfig,
+        ...this.props.pageConfigL,
         total: newData.left.length
       },
       pageConfigRight: {
-        ...this.props.pageConfig,
+        ...this.props.pageConfigR,
         total: newData.right.length
       }
     });
-    this.props.onChange(newData);
+     this.props.onChange(newData);
   };
 
   transferAllToggle = position => () => {    //左右移动所有
@@ -176,16 +168,12 @@ class Transfer extends React.Component {
     this.setState({
       leftChecked: [],
       rightChecked: [],
-      temp: {
-        left: [...newData['left']],
-        right: [...newData['right']]
-      },
       pageConfigLeft: {
-        ...this.props.pageConfig,
+        ...this.props.pageConfigL,
         total: newData.left.length
       },
       pageConfigRight: {
-        ...this.props.pageConfig,
+        ...this.props.pageConfigR,
         total: newData.right.length
       }
     });
@@ -218,35 +206,7 @@ class Transfer extends React.Component {
 
   //过滤文本改変的函数
   textchange = position => (e) => {
-    let _otherPos = position == 'left' ? "right" : "left";
-    const filterString = e.target.value;
-    const filterData = this.props[position].filter(
-      item => {
-        return !filterString || item.name.toLowerCase().indexOf(filterString.toLowerCase()) !== -1;
-      }
-    );
-    let newData = {};
-    newData[position] = filterData;
-    newData[_otherPos] = this.state.temp[_otherPos];
-    if (position == 'left') {
-      this.setState({
-        temp: newData,
-        pageConfigLeft: {
-          ...this.props.pageConfig,
-          currentPage: 1,
-          total: newData.left.length
-        }
-      });
-    } else if (position == 'right') {
-      this.setState({
-        temp: newData,
-        pageConfigRight: {
-          ...this.props.pageConfig,
-          currentPage: 1,
-          total: newData.right.length
-        }
-      });
-    }
+   this.props.filterChangeCb(position,e.target.value);
   }
   pageCallbackFnLeft(currentPage1) {  //左边的分页参数改变回调
     this.setState({
@@ -265,6 +225,8 @@ class Transfer extends React.Component {
     });
   }
   listItem(options, pageConfig) {  //只渲染属于该页面的item
+    console.log(pageConfig);
+  
     if (Array.isArray(options)) {
       let start = (pageConfig.currentPage - 1) * pageConfig.pageSize;
       let end = pageConfig.currentPage * pageConfig.pageSize > options.length ? undefined : pageConfig.currentPage * pageConfig.pageSize;
@@ -275,7 +237,15 @@ class Transfer extends React.Component {
       );
     }
   }
-  
+  static getDerivedStateFromProps(newprops, prestate){
+    if(newprops.pageConfigL!==prestate.pageConfigLeft){
+      return newprops.pageConfigL;
+    }else if(newprops.pageConfigR!==prestate.pageConfigRight){
+      return newprops.pageConfigR;
+    }else{
+      return null;
+    }
+  }
   render() {
     const { classes, filterOption, placeholder, paginationOption } = this.props;
     return (
@@ -303,7 +273,7 @@ class Transfer extends React.Component {
               placeholder={placeholder}
               onChange={throttling(this.textchange('left')).bind(this)}
             ></SelectFilter>}
-            {this.listItem(this.state.temp.left, this.state.pageConfigLeft).map(value => (
+            {this.listItem(this.props.left, this.state.pageConfigLeft).map(value => (
               <ListItem
                 key={value.id}
                 role={undefined}
@@ -337,7 +307,7 @@ class Transfer extends React.Component {
               placeholder={placeholder}
               onChange={throttling(this.textchange('right')).bind(this)}
             ></SelectFilter>}
-            {this.listItem(this.state.temp.right, this.state.pageConfigRight).map(value => (
+            {this.listItem(this.props.right, this.state.pageConfigRight).map(value => (
               <ListItem
                 key={value.id}
                 role={undefined}
@@ -368,4 +338,4 @@ class Transfer extends React.Component {
   }
 }
 
-export default withStyles(styles)(Transfer);
+export default withStyles(styles)(AsyncTransfer);

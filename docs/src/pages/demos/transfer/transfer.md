@@ -11,3 +11,4 @@ components: Transfer
 ## Transfer is used for exchange data between two array.
 
 {{"demo": "pages/demos/transfer/Transfer.js"}}
+

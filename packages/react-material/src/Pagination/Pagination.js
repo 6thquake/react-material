@@ -105,7 +105,7 @@ class Pagination extends Component {
                       </a>
                       <a className={classes.next + ' '+(currentPage == totalPage? classes.disable : '')}
                          onClick={this.nextPageHandeler.bind(this)}>
-                      </a>
+                      </a>                                              
                   </div>
                  {textOpen?<span>{total==0?total:(currentPage-1)*pageSize+1 }- {currentPage*pageSize>total?total:currentPage*pageSize} of {total}</span>:null}
               </div>

@@ -14,6 +14,13 @@ function Page() {
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/upload/Upload'), 'utf8')
 `,
+                },
+                'pages/demos/upload/UploadBasic.js': {
+                    js: require('docs/src/pages/demos/upload/UploadBasic').default,
+                    raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/upload/UploadBasic'), 'utf8')
+`,
                 }
             }}
         />

@@ -8,6 +8,8 @@ const styles = {
     maxWidth:'500px',
     float:'left',
     overflow:'hidden',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
     '@global img':{
       width:'100%',
       height:'auto',
@@ -33,10 +35,9 @@ class CarouselItem extends React.Component {
   }
 
   render() {
-    const {data,index,classes} = this.props;
+    const {data,index,classes,size} = this.props;
     return (
-      <div ref={this.itemRef} className={classes.imgwarp}>
-        <img src={data.src} alt={data.alt} />
+      <div ref={this.itemRef} style={{'width':size.width+'px','height':size.height+'px',backgroundImage:'url('+data.src+')'}} alt={data.alt} className={classes.imgwarp}>
       </div>
     );
   }

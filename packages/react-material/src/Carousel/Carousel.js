@@ -43,8 +43,8 @@ class Carousel extends React.Component {
         carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current),
         width = carouselEl.offsetWidth;
 
-    carouselWarpEl.style.minWidth = this.count * width + 'px';
-  
+    carouselWarpEl.style.minWidth = (this.count+2) * width + 'px';
+    carouselWarpEl.style.marginLeft = -1 * width + 'px';
     if(!!this.props.speed) {
       carouselWarpEl.style.transition = 'all ' + this.props.speed + 's';
       carouselWarpEl.style.WebkitTransition = 'all ' + this.props.speed + 's';
@@ -81,25 +81,45 @@ class Carousel extends React.Component {
   next = ()=>{
     const len = this.count, 
       activeIndex = this.activeIndex,
-      nextActiveIndex = activeIndex < len-1 ? activeIndex + 1 : 0;
-
-    this.setActive(nextActiveIndex);
+      nextActiveIndex = activeIndex < len ? activeIndex + 1 : 0;
+    const self = this;
+    this.setActive(nextActiveIndex,true);
+    if(activeIndex==(len-1)){
+      setTimeout(function(){
+        self.setActive(0,false);
+      },(self.props.speed || '0.5')*1000);
+      
+    }
+    
   }
 
   previous = ()=>{
     const len = this.count, 
       activeIndex = this.activeIndex,
-      preActiveIndex = activeIndex > 0 ? activeIndex - 1 : len - 1;
-
-    this.setActive(preActiveIndex);
+      preActiveIndex = activeIndex >= 0 ? activeIndex - 1 : len - 1;
+    const self = this;
+    this.setActive(preActiveIndex,true);
+    if(activeIndex==0){
+      setTimeout(function(){
+        self.setActive(self.count-1,false);
+      },(self.props.speed || '0.5')*1000);
+      
+    }
   }
 
-  setActive=index=>{
+  setActive=(index,withAnimation)=>{
     let carouselEl = ReactDOM.findDOMNode(this.carouselRef.current),
       carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current),
       width = carouselEl.offsetWidth;
-
-    carouselWarpEl.style.marginLeft = -1 * index * width + 'px';
+      if(!withAnimation){
+        carouselWarpEl.style.transition = 'none';
+        carouselWarpEl.style.WebkitTransition = 'none';
+      }else{
+        carouselWarpEl.style.transition = 'all ' + (this.props.speed || '0.5') + 's';
+        carouselWarpEl.style.WebkitTransition = 'all ' + (this.props.speed || '0.5') + 's';
+      }
+    
+    carouselWarpEl.style.marginLeft = -1 * (index+1) * width + 'px';
     this.activeIndex = index;
     this.setState({
       temp: new Date().getTime()
@@ -121,7 +141,9 @@ class Carousel extends React.Component {
       <div ref={this.carouselRef} onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} className={classes.root}>
 
         <div ref={this.carouselWarpRef} className={classes.scrollwrap}>
+          {<CarouselItem data={items[items.length-1]} index={-1}></CarouselItem>}
           {_items}
+          {<CarouselItem data={items[0]} index={items.length}></CarouselItem>}
         </div>
         {!!arrows ? <CarouselArrow next={this.next} pre={this.previous}></CarouselArrow> : null}
         {!!dots ? <CarouselDots count={items.length} speed={speed} activeIndex={this.activeIndex} onChange={this.setActive.bind(this)}></CarouselDots> : null}   

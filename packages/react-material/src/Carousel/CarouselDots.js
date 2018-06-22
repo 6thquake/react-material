@@ -69,7 +69,7 @@ class CarouselDots extends React.Component {
     }
     const dots = _dots.map((_,index)=>{
       const _class = index == _activeIndex?classes.dot+' '+classes.actived: classes.dot;
-      return <span key={index} className={_class}  onClick={()=>{onChange(index)}}>{index}</span>;
+      return <span key={index} className={_class}  onClick={()=>{onChange(index,true)}}>{index}</span>;
     })
 
     return (

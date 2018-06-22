@@ -36,12 +36,20 @@ class Carousel extends React.Component {
 
     this.carouselRef = React.createRef();
     this.carouselWarpRef = React.createRef();
+    this.mainSize={
+      width:0,
+      height:0
+    }
   }
 
   componentDidMount() {
     let carouselEl = ReactDOM.findDOMNode(this.carouselRef.current),
         carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current),
         width = carouselEl.offsetWidth;
+    this.mainSize={
+      width:carouselEl.offsetWidth,
+      height:carouselEl.offsetHeight
+    }
 
     carouselWarpEl.style.minWidth = (this.count+2) * width + 'px';
     carouselWarpEl.style.marginLeft = -1 * width + 'px';
@@ -122,6 +130,7 @@ class Carousel extends React.Component {
     carouselWarpEl.style.marginLeft = -1 * (index+1) * width + 'px';
     this.activeIndex = index;
     this.setState({
+
       temp: new Date().getTime()
     });
   }
@@ -132,18 +141,18 @@ class Carousel extends React.Component {
 
   render() {
     const { items,speed,delay,pause,autoplay,dots,arrows,classes } = this.props;
-    
+    const self = this;
     const _items = items.map((_,index)=>{
-      return <CarouselItem data={_} index={index}></CarouselItem>;
+      return <CarouselItem data={_} size={self.mainSize} index={index}></CarouselItem>;
     });
 
     return (
       <div ref={this.carouselRef} onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} className={classes.root}>
 
         <div ref={this.carouselWarpRef} className={classes.scrollwrap}>
-          {<CarouselItem data={items[items.length-1]} index={-1}></CarouselItem>}
+          {<CarouselItem data={items[items.length-1]} size={self.mainSize}  index={-1}></CarouselItem>}
           {_items}
-          {<CarouselItem data={items[0]} index={items.length}></CarouselItem>}
+          {<CarouselItem data={items[0]} size={self.mainSize} index={items.length}></CarouselItem>}
         </div>
         {!!arrows ? <CarouselArrow next={this.next} pre={this.previous}></CarouselArrow> : null}
         {!!dots ? <CarouselDots count={items.length} speed={speed} activeIndex={this.activeIndex} onChange={this.setActive.bind(this)}></CarouselDots> : null}   

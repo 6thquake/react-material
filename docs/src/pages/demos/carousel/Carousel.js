@@ -6,7 +6,7 @@ import { Home, Grade, Lock } from '@material-ui/icons';
 
 const style={
   wrap:{
-    width:'500px',
+    width:'700px',
     height:'300px'
   }
 }

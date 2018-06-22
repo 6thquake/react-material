@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Grid from 'react-material/Grid';
+import Grid, { CompatibleGrid } from 'react-material/Grid';
 import FormControl from 'react-material/FormControl';
 import FormLabel from 'react-material/FormLabel';
 import FormControlLabel from 'react-material/FormControlLabel';
@@ -14,7 +14,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   demo: {
-    height: 240,
+    height: 340,
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -56,14 +56,53 @@ class InteractiveGrid extends React.Component {
               <Grid key={value} item>
                 <Paper
                   className={classes.paper}
-                  style={{ paddingTop: (value + 1) * 10, paddingBottom: (value + 1) * 10 }}
+                  style={{ paddingTop: (value + 1) * 5, paddingBottom: (value + 1) * 5 }}
                 >
                   {`Cell ${value + 1}`}
                 </Paper>
               </Grid>
             ))}
+
+            <Grid key={3} item xs>
+              <Paper
+                className={classes.paper}
+              >
+                {'Cell 4'}
+              </Paper>
+            </Grid>
           </Grid>
         </Grid>
+
+        <CompatibleGrid item xs={12}>
+          <CompatibleGrid
+            container
+            spacing={16}
+            className={classes.demo}
+            alignItems={alignItems}
+            direction={direction}
+            justify={justify}
+          >
+            {[0].map(value => (
+              <CompatibleGrid key={value} item>
+                <Paper
+                  className={classes.paper}
+                  style={{ paddingTop: (value + 1) * 5, paddingBottom: (value + 1) * 5 }}
+                >
+                  {`Cell ${value + 1}`}
+                </Paper>
+              </CompatibleGrid>
+            ))}
+
+            <CompatibleGrid key={3} item xs>
+              <Paper
+                className={classes.paper}
+              >
+                {'Cell 4'}
+              </Paper>
+            </CompatibleGrid>
+          </CompatibleGrid>
+        </CompatibleGrid>
+
         <Grid item xs={12}>
           <Paper className={classes.control}>
             <Grid container>
@@ -133,9 +172,11 @@ class InteractiveGrid extends React.Component {
           </Paper>
         </Grid>
       </Grid>
+
     );
   }
 }
+
 
 InteractiveGrid.propTypes = {
   classes: PropTypes.object.isRequired,

@@ -15,7 +15,7 @@ import { TreeMenu } from 'react-material/Menu';
 import Scrollbar from 'react-material/Scrollbar';
 import Grid from 'react-material/Grid';
 import SvgIcon from 'react-material/SvgIcon';
-import { white } from 'react-material/colors/common';
+import common from 'react-material/colors/common';
 import data from './data';
 
 const drawerWidth = 240;
@@ -100,7 +100,8 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   },
   docked: {
-    overflow: 'hidden'
+    overflow: 'hidden',
+    height: '100%'
   }
 });
 
@@ -159,8 +160,7 @@ class MiniDrawer extends React.Component {
       <div className={classes.root}>
         <AppBar
           position="absolute"
-          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
-        >
+          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
           <Toolbar disableGutters={!this.state.open}>
             <IconButton
               color="inherit"
@@ -181,8 +181,7 @@ class MiniDrawer extends React.Component {
             paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
             docked: classes.docked
           }}
-          open={this.state.open}
-        >
+          open={this.state.open}>
           <Grid container
             direction="column"
             alignItems="stretch"
@@ -192,9 +191,10 @@ class MiniDrawer extends React.Component {
               height: '100%',
               backgroundColor: 'rgba(0, 0, 0, 0.87)'
             }}>
-            <Grid item container style={{
-              height: "100px"
-            }} 
+            <Grid item container 
+              style={{
+                height: "100px"
+              }} 
               direction="row"
               alignItems="stretch"
               justify="center"
@@ -210,19 +210,18 @@ class MiniDrawer extends React.Component {
                 <Grid item>
                   <Typography variant="title" style={{
                     lineHeight: '100px',
-                    color: white
+                    color: common.white
                   }}>
                     React-Material
                   </Typography>
                 </Grid>) : null
               }
-              
             </Grid>
             <Grid item>
               <Divider/>
             </Grid>
-            <Grid item xs>
-              <Scrollbar style={{height: '100%'}}>
+            <Grid item xs style={{ position: 'relative' }}>
+              <Scrollbar style={{ position:'initial', height: '100%'}}>
                 <TreeMenu list={data} itemKeysMap={{
                     name: 'component',
                     children: 'childRoutes',
@@ -242,7 +241,7 @@ class MiniDrawer extends React.Component {
               spacing="0">
               <Grid item>
                 <div className={classes.toolbar}>
-                  <IconButton onClick={this.toggleDrawer} style={{color: white}}>
+                  <IconButton onClick={this.toggleDrawer} style={{color: common.white}}>
                     {this.state.open ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
                   </IconButton>
                 </div>

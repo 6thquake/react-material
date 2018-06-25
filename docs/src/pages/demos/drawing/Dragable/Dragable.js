@@ -114,7 +114,6 @@ class Container extends Component {
 			startDrawflag: false,
 			AtoBinproperArea : false,
 			BtoAinproperArea : false,
-			angle:'0deg',
 		}
 	}
 	moveBox(id, left, top) {
@@ -144,77 +143,61 @@ class Container extends Component {
 		if(newBoxA.getBoundingClientRect().left > newBoxB.getBoundingClientRect().right){
 			if(newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().top){
 				PubSub.publish('boxMove',["left bottom","right top"])
-				this.setState({angle:"135deg"})
 			}
 			if((newBoxA.getBoundingClientRect().bottom < (newBoxB.getBoundingClientRect().top + newBoxB.getBoundingClientRect().height/2))&&(newBoxA.getBoundingClientRect().bottom > newBoxB.getBoundingClientRect().top)){
 				PubSub.publish('boxMove',["left middle-bottom","right top-middle"])
-				this.setState({angle:"155deg"})
 			}
 			if((newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().bottom)&&(newBoxA.getBoundingClientRect().bottom > (newBoxB.getBoundingClientRect().top + newBoxB.getBoundingClientRect().height/2))){
 				PubSub.publish('boxMove',["left middle","right middle"])
-				this.setState({angle:"180deg"})
 			}
 			if((newBoxA.getBoundingClientRect().top > (newBoxB.getBoundingClientRect().top+ newBoxB.getBoundingClientRect().height/2))&&(newBoxA.getBoundingClientRect().top < newBoxB.getBoundingClientRect().bottom)){
 				PubSub.publish('boxMove',["left top-middle","right middle-bottom"])
-				this.setState({angle:"200deg"})
 			}
 			if(newBoxA.getBoundingClientRect().top > newBoxB.getBoundingClientRect().bottom){
 				PubSub.publish('boxMove',["left top","right bottom"])
-				this.setState({angle:"225deg"})
 			}
 		}
 		if(newBoxA.getBoundingClientRect().right < newBoxB.getBoundingClientRect().left){
 			if(newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().top){
 				PubSub.publish('boxMove',["right bottom","left top"])
-				this.setState({angle:"45deg"})
 			}
 			if((newBoxA.getBoundingClientRect().bottom < (newBoxB.getBoundingClientRect().top + newBoxB.getBoundingClientRect().height/2))&&(newBoxA.getBoundingClientRect().bottom > newBoxB.getBoundingClientRect().top)){
 				PubSub.publish('boxMove',["right middle-bottom","left top-middle"])
-				this.setState({angle:"25deg"})
 			}
 			if((newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().bottom)&&(newBoxA.getBoundingClientRect().bottom > (newBoxB.getBoundingClientRect().top + newBoxB.getBoundingClientRect().height/2))){
 				PubSub.publish('boxMove',["right middle","left middle"])
-				this.setState({angle:"0deg"})
 			}
 			if((newBoxA.getBoundingClientRect().top > (newBoxB.getBoundingClientRect().top+ newBoxB.getBoundingClientRect().height/2))&&(newBoxA.getBoundingClientRect().top < newBoxB.getBoundingClientRect().bottom)){
 				PubSub.publish('boxMove',["right top-middle","left middle-bottom"])
-				this.setState({angle:"-20deg"})
 			}
 			if(newBoxA.getBoundingClientRect().top > newBoxB.getBoundingClientRect().bottom){
 				PubSub.publish('boxMove',["right top","left bottom"])
-				this.setState({angle:"-45deg"})
 			}
 
 		}
 		if((newBoxA.getBoundingClientRect().right < (newBoxB.getBoundingClientRect().left+newBoxB.getBoundingClientRect().width/2))&&(newBoxA.getBoundingClientRect().right > newBoxB.getBoundingClientRect().left)){
 			if(newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().top){
 				PubSub.publish('boxMove',["center-right bottom","left-center top"])
-				this.setState({angle:"70deg"})
 			}
 			if(newBoxA.getBoundingClientRect().top > newBoxB.getBoundingClientRect().bottom){
 				PubSub.publish('boxMove',["center-right top","left-center bottom"])
-				this.setState({angle:"290deg"})
 			}
 		}
 
 		if((newBoxA.getBoundingClientRect().right < newBoxB.getBoundingClientRect().right)&&(newBoxA.getBoundingClientRect().right > (newBoxB.getBoundingClientRect().left+newBoxB.getBoundingClientRect().width/2))){
 			if(newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().top){
 				PubSub.publish('boxMove',["center bottom","center top"])
-				this.setState({angle:"90deg"})
 			}
 			if(newBoxA.getBoundingClientRect().top > newBoxB.getBoundingClientRect().bottom){
 				PubSub.publish('boxMove',["center top","center bottom"])
-				this.setState({angle:"270deg"})
 			}
 		}
 		if((newBoxA.getBoundingClientRect().left < newBoxB.getBoundingClientRect().right)&&(newBoxA.getBoundingClientRect().left > (newBoxB.getBoundingClientRect().left+newBoxB.getBoundingClientRect().width/2))){
 			if(newBoxA.getBoundingClientRect().bottom < newBoxB.getBoundingClientRect().top){
 				PubSub.publish('boxMove',["left-center bottom","center-right top"])
-				this.setState({angle:"110deg"})
 			}
 			if(newBoxA.getBoundingClientRect().top > newBoxB.getBoundingClientRect().bottom){
 				PubSub.publish('boxMove',["left-center top","center-right bottom"])
-				this.setState({angle:"250deg"})
 			}
 		}
 	}
@@ -315,7 +298,7 @@ class Container extends Component {
 						</Box>
 					)
 				})}
-				{this.props.removeLine?null:AtoBinproperArea?<LineTo from={ReactDOM.findDOMNode(this.a)} to={ReactDOM.findDOMNode(this.b)} borderStyle={this.props.borderStyle} arrowStyle={this.props.arrowStyle} angle={this.state.angle}/>:BtoAinproperArea?<LineTo from={ReactDOM.findDOMNode(this.b)} to={ReactDOM.findDOMNode(this.a)} borderStyle={this.props.borderStyle} arrowStyle={this.props.arrowStyle} angle={this.state.angle}/>:<Line {...this.state.point} borderStyle={'dashed'}/>}
+				{this.props.removeLine?null:AtoBinproperArea?<LineTo from={ReactDOM.findDOMNode(this.a)} to={ReactDOM.findDOMNode(this.b)} borderStyle={this.props.borderStyle} arrowStyle={this.props.arrowStyle} />:BtoAinproperArea?<LineTo from={ReactDOM.findDOMNode(this.b)} to={ReactDOM.findDOMNode(this.a)} borderStyle={this.props.borderStyle} arrowStyle={this.props.arrowStyle}/>:<Line {...this.state.point} borderStyle={'dashed'}/>}
 
 			</div>
 		)

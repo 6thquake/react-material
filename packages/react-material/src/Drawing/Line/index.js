@@ -164,15 +164,18 @@ export default class LineTo extends Component {
         const body = document.body;
         const offsetX = (doc.scrollLeft || body.scrollLeft || 0) - ( doc.clientLeft ||  body.clientLeft || 0);
         const offsetY = (doc.scrollTop || body.scrollTop || 0) - (doc.clientTop ||  body.clientTop || 0);
+        const toX = points.x1 - offsetX
+        const toY = points.y1 - offsetY
 
-        //const x1 = (points.x1-offsetX)+'px'
-       // const y1 = (points.y1-offsetY)+'px'
-       const x1 = (points.x1-offsetX)
-       const y1 = (points.y1-offsetY)
+    window.onresize=function(){
+        console.log('window onresize')
+    };
+    window.onscroll = function(){
+        console.log('window scroll')
+    }
         return points ? (
             <div>
-            <Line {...points} {...this.props} />
-            <Arrow left={x1} top={y1} angle={this.props.angle} arrowStyle={this.props.arrowStyle}/>
+            <Line {...points}{...this.props} toX={toX} toY={toY}/>        
             </div>
         ) : null;
     }
@@ -189,16 +192,13 @@ LineTo.propTypes = Object.assign({}, {
     delay: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 }, optionalStyleProps);
 
+
 export class Line extends PureComponent {
     componentDidMount() {
-        // Append rendered DOM element to the container the
-        // offsets were calculated for
-        //this.within.appendChild(this.el);
         document.body.appendChild(this.el)
     }
 
     componentWillUnmount() {
-        //this.within.removeChild(this.el);
         document.body.removeChild(this.el);
     }
 
@@ -211,7 +211,7 @@ export class Line extends PureComponent {
 
         const angle = Math.atan2(dy, dx) * 180 / Math.PI;
         const length = Math.sqrt(dx * dx + dy * dy);
-
+        
         const positionStyle = {
             position: 'absolute',
             top: `${y0}px`,
@@ -236,15 +236,19 @@ export class Line extends PureComponent {
             style: Object.assign({}, defaultStyle, positionStyle),
         }
 
+
         // We need a wrapper element to prevent an exception when then
         // React component is removed. This is because we manually
         // move the rendered DOM element after creation.
         return (
-            <div className="react-lineto-placeholder">
-                <div
-                    ref={(el) => { this.el = el; }}
-                    {...props}
-                 />
+            <div>
+                <div className="react-lineto-placeholder">
+                    <div
+                        ref={(el) => { this.el = el; }}
+                        {...props}
+                     />
+                </div>
+                <Arrow top={this.props.toY} left={this.props.toX} angle={`${angle}deg`} arrowStyle={this.props.arrowStyle}/>
             </div>
         );
     }

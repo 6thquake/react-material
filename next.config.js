@@ -47,7 +47,11 @@ module.exports = {
         }, {
           test: /\.(css|md)$/,
           loader: 'raw-loader',
-        }]),
+        }, {
+        test:/\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader'
+      }
+      ]),
       }),
     });
   },

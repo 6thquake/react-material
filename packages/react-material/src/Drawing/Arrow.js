@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
+
 export default class Arrow extends Component {
-	constructor(props) {
-		super(props)
-	}
-	render(){
-		//const topadjust = this.props.top-10
-		const composeArrow = <div style={{border:'6px solid', width:'0', height:'0', transform:'rotate(45deg)', position:'fixed', top: (this.props.top-3)+'px', left:(this.props.left-3)+'px'}}></div>
-		const aggregateArrow = <div style={{border:'1px solid', zIndex:'2',width:'12px',background:'#fff', height:'12px', transform:'rotate(45deg)', position:'fixed', top:(this.props.top-3)+'px', left:(this.props.left-3)+'px'}}></div>
-		const realizeArrow = <div style={{border:'1px solid', width:'5px', height:'5px', transform:'rotate(45deg)', position:'fixed', top: (this.props.top-3)+'px', left:(this.props.left-3)+'px'}}></div>
-		const generalizeArrow = <div style={{border:'5px solid transparent', borderLeft:'12px solid #000', width:'0', height:'0', transform:'rotate('+this.props.angle+')', position:'fixed', top: (this.props.top-6)+'px', left:(this.props.left-10)+'px'}}></div>
-		const importArrow = <div style={{width:'20px', height:'20px', transform:'rotate('+this.props.angle+')', fontSize:'20px', position:'fixed', top: (this.props.top-13)+'px', left:(this.props.left-1)+'px'}}>></div>
-		return(
-			<div>
-				{this.props.arrowStyle==='compose'?composeArrow:null}
-				{this.props.arrowStyle==='aggregate'?aggregateArrow:null}
-				{this.props.arrowStyle==='realize'?realizeArrow:null}
-				{this.props.arrowStyle==='default'?null:null}
-				{this.props.arrowStyle==='generalize'?generalizeArrow:null}
-				{this.props.arrowStyle==='import'?importArrow:null}
+	
+    render() {
+		const { top, left, angle, arrowStyle } = this.props;
+		const composeArrow = <svg width="13px" height="13px"><rect width="7px" height="7px" fill="#000" transform="translate(3 7) rotate(-45)"/></svg>
+		const aggregateArrow = <svg width="14px" height="14px"><rect width="7px" height="7px"  stroke="#000" stroke-width="1" fill="#fff" transform="translate(3 7) rotate(-45)"/></svg>
+		const realizeArrow = <svg width="10px" height="10px"><polygon points="0 0, 10 5, 0 10" stroke="#000" fill="#fff" stroke-width="1"/></svg>
+		const generalizeArrow = <svg width="10px" height="10px"><polygon points="0 0, 10 5, 0 10" fill="#000"/></svg>
+		const importArrow = <svg width="12px" height="12px"><polygon points="1.4 11.9 1.2 11.5 10.6 6 1.2 0.6 1.4 0.1 11.6 6 1.4 11.9" stroke="#000"  stroke-width="0.5"/></svg>
+        return (
+			<div style={{transform:'rotate('+angle+')', padding:'0',margin:'0', position:'fixed', top: (top-10)+'px', left: (left-5)+'px', zIndex:'2'}}>
+				{arrowStyle==='compose'?composeArrow:arrowStyle==='aggregate'?aggregateArrow:arrowStyle==='realize'?realizeArrow:arrowStyle==='default'?null:arrowStyle==='generalize'?generalizeArrow:arrowStyle==='import'?importArrow:null}
 			</div>
-		)
-	}
+        );
+    }
 }

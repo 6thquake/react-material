@@ -7,12 +7,25 @@ import {Home,Grade,Lock} from '@material-ui/icons';
 import Button from 'react-material/Button';
 import Icon from 'react-material/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
+const  aggregate = "/static/images/drawing/aggregate.gif"
+const compose = "/static/images/drawing/compose.gif"
+const associate = "/static/images/drawing/associate.gif"
+const generalize = "/static/images/drawing/generalize.gif"
+const realize = "/static/images/drawing/realize.gif"
+const link = "/static/images/drawing/link.gif"
+const import1 = "/static/images/drawing/import1.gif"
+// './images/aggregate.gif'
+// import compose from './images/compose.gif'
+// import associate from './images/associate.gif'
+// import generalize from './images/generalize.gif'
+// import realize from './images/realize.gif'
+// import link from './images/link.gif'
+// import import1 from './images/import.gif'
 const Style={
 	buttonWrap:{
 		margin:'1em 0.5em'
 	}
 }
-
 export default class DragAroundNaive extends Component {
 	constructor(props) {
 		super(props)
@@ -116,31 +129,31 @@ export default class DragAroundNaive extends Component {
 			<div>
 				<div style={Style.buttonWrap}>
 				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineCompose.bind(this)} mini>
-				      <img src="https://devsketch.io/images/compose.gif" alt=""/>
+				      <img src={compose} alt=""/>
 				    </Button> 
 				    &nbsp;&nbsp;&nbsp;&nbsp;
 				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineAggregate.bind(this)} mini>
-				      <img src="https://devsketch.io/images/aggregate.gif" alt=""/>
+				      <img src={aggregate} alt=""/>
 				    </Button>
 				    &nbsp;&nbsp;&nbsp;&nbsp;
 				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineRealize.bind(this)} mini>
-				      <img src="https://devsketch.io/images/realize.gif" alt=""/>
+				      <img src={realize} alt=""/>
 				    </Button> 
 				    &nbsp;&nbsp;&nbsp;&nbsp;
 				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineAssociate.bind(this)} mini>
-				      <img src="https://devsketch.io/images/associate.gif" alt=""/>
+				      <img src={associate} alt=""/>
 				    </Button>
 				    &nbsp;&nbsp;&nbsp;&nbsp;
 				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineGeneralize.bind(this)} mini>
-				      <img src="https://devsketch.io/images/generalize.gif" alt=""/>
+				      <img src={generalize} alt=""/>
 				    </Button> 
 				    &nbsp;&nbsp;&nbsp;&nbsp;
 				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineImport.bind(this)} mini>
-				      <img src="https://devsketch.io/images/import.gif" alt=""/>
+				      <img src={import1} alt=""/>
 				    </Button>  
 				    &nbsp;&nbsp;&nbsp;&nbsp;
 				    <Button variant="fab"  color="default" aria-label="edit" onClick={this.drawLineLink.bind(this)} mini>
-				      <img src="https://devsketch.io/images/link.gif" alt=""/>
+				      <img src={link} alt=""/>
 				    </Button> 
 				    &nbsp;&nbsp;&nbsp;&nbsp; 
 				    <Button variant="fab" aria-label="delete" onClick={this.resetLine.bind(this)} mini>

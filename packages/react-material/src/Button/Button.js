@@ -140,8 +140,7 @@ class CreateButton extends Component {
   }
   status = {
     status: '',
-    text: '',
-    statusButton: this.props.statusButton,
+    text: ''
   }
 
   resetActive() {
@@ -191,7 +190,6 @@ CreateButton.propTypes = {
 CreateButton.defaultProps = {
   color: 'default',
   variant: 'flat',
-  statusButton: true,
 };
 CreateButton.contextTypes = {
   resetActive: PropTypes.func

@@ -78,8 +78,8 @@ class UploadBasic extends Component{
             if(!file){
                 return;
             }
-            console.log('this.state.path')
-            console.log(this.state.path)
+            // console.log('this.state.path')
+            // console.log(this.state.path)
             if(this.state.path.indexOf(file.name) === -1){
                 let src,type = file.type;
                 src = URL.createObjectURL(file); 

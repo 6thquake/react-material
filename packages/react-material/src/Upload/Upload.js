@@ -87,15 +87,14 @@ class Upload extends Component{
             if(!file){
                 return;
             }
-            if(this.state.path.indexOf(file.name)!== -1){
-                return;
+            if(this.state.path.indexOf(file.name) === -1){
+                let src,type = file.type;
+                src = URL.createObjectURL(file); 
+                this.setState(preState => ({
+                path: [...preState.path,file.name],
+                data: [...preState.data,file]
+                }))
             }
-            let src,type = file.type;
-            src = URL.createObjectURL(file); 
-            this.setState(preState => ({
-            path: [...preState.path,file.name],
-            data: [...preState.data,file]
-            }))
         }
     }
     upload = () =>{ 

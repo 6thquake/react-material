@@ -13,14 +13,8 @@ const associate = "/static/images/drawing/associate.gif"
 const generalize = "/static/images/drawing/generalize.gif"
 const realize = "/static/images/drawing/realize.gif"
 const link = "/static/images/drawing/link.gif"
-const import1 = "/static/images/drawing/import1.gif"
-// './images/aggregate.gif'
-// import compose from './images/compose.gif'
-// import associate from './images/associate.gif'
-// import generalize from './images/generalize.gif'
-// import realize from './images/realize.gif'
-// import link from './images/link.gif'
-// import import1 from './images/import.gif'
+const import1 = "/static/images/drawing/import.gif"
+
 const Style={
 	buttonWrap:{
 		margin:'1em 0.5em'

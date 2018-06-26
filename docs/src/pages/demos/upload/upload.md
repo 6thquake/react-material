@@ -1,5 +1,5 @@
 ---
-components: Upload
+components: Upload, UploadBasic
 ---
 
 ###  Upload

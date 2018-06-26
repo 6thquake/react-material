@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui/src/Toolbar/Toolbar.js
+filename: /packages/material-ui/src/UploadImg/UploadImg.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -23,16 +23,22 @@ const styles = theme => ({
     rightIcon: {
         marginLeft: theme.spacing.unit,
     },
-    button: {
-        margin: theme.spacing.unit,
-    },
     root: {
         display: 'flex',
         justifyContent: 'center',
         flexWrap: 'wrap',
+        borderRadius: '5px',
     },
     chip: {
         margin: theme.spacing.unit,
+    },
+    wrap: {
+        width: '140px',
+        margin: '0 auto',
+    },
+    wrap2: {
+        width: '110px',
+        margin: '0 auto',
     },
 });
 
@@ -128,33 +134,32 @@ class Upload extends Component{
         const classes = this.props.classes;
         return (
             <div>
-                <div className='row'>
-                    <div className='row-input'>
-                        <input accept={this.state.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFile" onChange={this.changePath} type="file" />
-                        
-                        <label htmlFor="raisedButtonFile">
-                            <Button variant="raised" component="span" color="default" className={classes.button}>
-                            选择文件
-                            <FileUpload className={classes.rightIcon} />
-                            </Button>
-                        </label>
-                    </div>
-                    <Paper className={classes.root}>
-                        {this.state.path.map(item => {
-                          let avatar = null;
-                        return (
-                        <Chip
-                        key={item}
-                        avatar={avatar}
-                        label={item}
-                        onDelete={this.handleDelete(item)}
-                        className={classes.chip}
-                        />
-                        );
-                        })}
-                    </Paper>
+                <div className={classes.wrap}>
+                    <input accept={this.state.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFile" onChange={this.changePath} type="file" />
+                    <label for="raisedButtonFile">
+                        <Button variant="raised" component="span" color="default" className={classes.button}>
+                        选择文件
+                        <FileUpload className={classes.rightIcon} />
+                        </Button>
+                    </label>
                 </div>
-                <StatusButton color="primary" variant="raised" className={classes.button} onHandler={this.upload} >开始上传</StatusButton>
+                <Paper className={classes.root}>
+                    {this.state.path.map(item => {
+                      let avatar = null;
+                    return (
+                    <Chip
+                    key={item}
+                    avatar={avatar}
+                    label={item}
+                    onDelete={this.handleDelete(item)}
+                    className={classes.chip}
+                    />
+                    );
+                    })}
+                </Paper>
+                <div className={classes.wrap2}>
+                    <StatusButton color="primary" variant="raised" className={classes.button} onHandler={this.upload} >开始上传</StatusButton>
+                </div>
             </div>
             )
     }

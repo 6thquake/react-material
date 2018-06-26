@@ -108,8 +108,8 @@ class UploadBasic extends Component{
         return (
             <div>
                 <div className={classes.choose}>
-                    <input accept={this.state.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFile" onChange={this.changePath} type="file" />
-                    <label htmlFor="raisedButtonFile">
+                    <input accept={this.state.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFileBasic" onChange={this.changePath} type="file" />
+                    <label for="raisedButtonFileBasic">
                         {this.props.children}
                     </label>                    
                 </div>

@@ -10,7 +10,7 @@ import Avatar from '../Avatar';
 import Chip from '../Chip';
 import Paper from '../Paper';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
-import { CompatibleGrid as Grid } from 'react-material/Grid';
+import { CompatibleGrid as Grid } from '../Grid';
 const styles = theme => ({
     choose:{
         display: 'inline-block',

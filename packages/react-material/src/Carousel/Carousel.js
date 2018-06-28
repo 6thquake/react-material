@@ -81,6 +81,7 @@ class Carousel extends React.Component {
 
   start =()=>{
     clearInterval(this.interval);
+    this.next();
     this.interval = setInterval(()=>{
       this.next()
     },this.props.delay*1000)
@@ -143,7 +144,7 @@ class Carousel extends React.Component {
     const { items,speed,delay,pause,autoplay,dots,arrows,classes } = this.props;
     const self = this;
     const _items = items.map((_,index)=>{
-      return <CarouselItem data={_} size={self.mainSize} index={index}></CarouselItem>;
+      return <CarouselItem data={_} size={self.mainSize} key={'item'+index} index={index}></CarouselItem>;
     });
 
     return (

@@ -148,37 +148,59 @@ class Anchor extends React.Component {
   }
 
   setLink = (link)=> {
-    // debugger
-    let {
-      onChange,
-    } = this.props
-
     var sel = link.href;
     let ele = document.querySelector(sel)
     let dh = ele ? this.getOffsetTop(ele, this.container) : 0
     let rect = ele? ele.getBoundingClientRect() : 0
     // 这里确定了是否高亮某一个 link
-    if (dh <= 150 && dh >= -rect.height / 2) {
-      if (this.state.active !== sel){
-        onChange && onChange(sel)
-        this.state.active = sel
-      }
-
-      let activeLink = {
-        [sel]: true
-      }
-      this.setMask(sel)
-      this.setState({
-        links: activeLink
-      })
-    }
+    let existed =  false
     if (link.children) {
-      this.setLinks(link.children)
+      existed = this.setLinks(link.children)
     }
-
+    if (!existed && dh <= 150 && dh >= -rect.height / 2) {
+      return this.changeActiveLink(sel)
+    }
   }
 
-  
+  // 激活高亮选项
+  changeActiveLink = (sel) => {
+    let {
+      onChange,
+    } = this.props
+    // let flag = true
+    if (this.state.active !== sel) {
+      let dir = this.scrollDirection(this.state.active, sel)
+      onChange && onChange({
+        name: sel,
+        direction: dir
+      })
+      this.state.active = sel
+    }
+
+    let activeLink = {
+      [sel]: true
+    }
+    this.setMask(sel)
+    this.setState({
+      links: activeLink
+    })
+    return true
+  }
+  // 计算滚动条的滚动方向
+  scrollDirection = (pre, cur) => {
+    if(!pre || !cur){
+      return ''
+    }
+    let preHeight = document.querySelector(pre).getBoundingClientRect().top
+    let curHeight = document.querySelector(cur).getBoundingClientRect().top
+    let dh = preHeight - curHeight
+    if(dh > 0){
+      return 'up'
+    }else{
+      return 'down'
+    }
+  }
+
   // 设置高亮 mask 的高度
   setMask = (sel) => {
     let { orientation } = this.props
@@ -199,10 +221,10 @@ class Anchor extends React.Component {
   }
 
   setLinks(links){
-    let array = links
-    for (var index = 0; index < array.length; index++) {
-      this.setLink(array[index])
-    }
+    let result =  links.some((link, index)=> {
+      return this.setLink(links[index])
+    })
+    return result
   }
 
   // 找到子元素在父元素中的相对位置

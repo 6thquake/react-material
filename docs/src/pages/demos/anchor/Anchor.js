@@ -10,7 +10,11 @@ import FormLabel from 'react-material/FormLabel';
 import FormControlLabel from 'react-material/FormControlLabel';
 import Radio from 'react-material/Radio';
 import RadioGroup from 'react-material/RadioGroup';
-
+// import {
+//   scrollToAnchor
+// } from 'react-material/Anchor';
+// 滚动到某一个位置
+// console.log('scrollToAnchor', scrollToAnchor)
 export const styles = (theme)=> {
   return {
     tBox: {
@@ -75,7 +79,7 @@ class App extends React.Component {
             label: 'sub31',
             children: [{
               href: '#sub311',
-              label: 'sub31'
+              label: 'sub311'
             }, {
               href: '#sub321',
               label: 'sub321'
@@ -215,8 +219,8 @@ class App extends React.Component {
                   The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
                   The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
                 </p>
-                <div id="a3" style={p}>
-                  <a style={a} href="#a3">3</a>
+                <div  style={p}>
+                  <a id="a3" style={a} href="#a3">3</a>
                   The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
                   The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
                   The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
@@ -234,10 +238,48 @@ class App extends React.Component {
                       otherwise the API would grow out of control.
                       The TextField is a convenience wrapper
                       for the most common cases(80 % ).It cannot be all things to all people,
+                      he TextField is a convenience wrapper < br / >
+                        for the most common cases(80 % ).It cannot be all things to all people, <
+                        br / >
+                        otherwise the API would grow out of control.
+                      The TextField is a convenience wrapper
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                        otherwise the API would grow out of control.
+                      The TextField is a convenience wrapper
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                        otherwise the API would grow out of control.
+                      The TextField is a convenience wrapper
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                        otherwise the API would grow out of control.
+                        he TextField is a convenience wrapper < br / >
+                          for the most common cases(80 % ).It cannot be all things to all people, <
+                          br / >
+                          otherwise the API would grow out of control.
+                        The TextField is a convenience wrapper
+                        for the most common cases(80 % ).It cannot be all things to all people,
+                          otherwise the API would grow out of control.
+                        The TextField is a convenience wrapper
+                        for the most common cases(80 % ).It cannot be all things to all people,
+                          otherwise the API would grow out of control.
+                        The TextField is a convenience wrapper
+                        for the most common cases(80 % ).It cannot be all things to all people,
+                          otherwise the API would grow out of control.
+                          he TextField is a convenience wrapper<br/>
+                      for the most common cases(80 % ).It cannot be all things to all people,<br/>
+                      otherwise the API would grow out of control.
+                      The TextField is a convenience wrapper
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                      otherwise the API would grow out of control.
+                      The TextField is a convenience wrapper
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                      otherwise the API would grow out of control.
+                      The TextField is a convenience wrapper
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                      otherwise the API would grow out of control.
                       otherwise the API would grow out of control.
                     </Grid>
-                    <Grid item  xs={12}>
-                      <a id='sub311' href="#sub311">sub311</a>
+                    <Grid  item  xs={12}>
+                      <a id='sub311'  href="#sub311">sub311</a>
                       The TextField is a convenience wrapper<br/>
                       for the most common cases(80 % ).It cannot be all things to all people,<br/>
                       otherwise the API would grow out of control.
@@ -252,22 +294,7 @@ class App extends React.Component {
                       otherwise the API would grow out of control.
                     </Grid>
                     <Grid  item xs={12}>
-                      <a id='sub321' href="#sub321">sub321</a>
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                    </Grid>
-                    <Grid item xs={12}>
-                      <a id='sub331' href="#sub331">sub331</a>
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
+                      <a id='sub321'  href="#sub321">sub321</a>
                       The TextField is a convenience wrapper
                       for the most common cases(80 % ).It cannot be all things to all people,
                       otherwise the API would grow out of control.
@@ -279,6 +306,21 @@ class App extends React.Component {
                       otherwise the API would grow out of control.
                     </Grid>
                     <Grid  item xs={12}>
+                      <a id='sub331'  href="#sub331">sub331</a>
+                      The TextField is a convenience wrapper
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                      otherwise the API would grow out of control.
+                      The TextField is a convenience wrapper
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                      otherwise the API would grow out of control.
+                      The TextField is a convenience wrapper
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                      otherwise the API would grow out of control.
+                      The TextField is a convenience wrapper
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                      otherwise the API would grow out of control.
+                    </Grid>
+                    <Grid   item xs={12}>
                       <a id='sub32' href="#sub32">sub32</a>
                       The TextField is a convenience wrapper
                       for the most common cases(80 % ).It cannot be all things to all people,
@@ -290,8 +332,8 @@ class App extends React.Component {
                       for the most common cases(80 % ).It cannot be all things to all people,
                       otherwise the API would grow out of control.
                     </Grid>
-                    <Grid item xs={12}>
-                      <a id='sub33' href="#sub33">sub33</a>
+                    <Grid  item xs={12}>
+                      <a  id='sub33' href="#sub33">sub33</a>
                       The TextField is a convenience wrapper
                       for the most common cases(80 % ).It cannot be all things to all people,
                       otherwise the API would grow out of control.

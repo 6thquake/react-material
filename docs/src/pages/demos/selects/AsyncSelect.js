@@ -22,11 +22,11 @@ const styles = theme => ({
 
 class App extends Component {
   state = {
-    values: ['Afghanistan', 'Aland Islands'],
-    singlevalue: '3',
-    valuesMu: ['1', '2'],
-    valuestem: 'Afghanistan',
-    name: '',
+    values:['a','b'],
+    singlevalue:'3',
+    valuesMu:['1','2'],
+    valuestem:'f',
+    name:'',
     options: [
       '1',
       '2',
@@ -50,58 +50,56 @@ class App extends Component {
       '20',
     ],
     optionstem: [
-      { label: 'Afghanistan' },
-      { label: 'Aland Islands' },
-      { label: 'Albania' },
-      { label: 'Algeria' },
-      { label: 'American Samoa' },
-      { label: 'Andorra' },
-      { label: 'Angola' },
-      { label: 'Anguilla' },
-      { label: 'Antarctica' },
-      { label: 'Antigua and Barbuda' },
-      { label: 'Argentina' },
-      { label: 'Armenia' },
-      { label: 'Aruba' },
-      { label: 'Australia' },
-      { label: 'Austria' },
-      { label: 'Azerbaijan' },
-      { label: 'Bahamas' },
-      { label: 'Bahrain' },
-      { label: 'Bangladesh' },
-      { label: 'Barbados' },
-      { label: 'Belarus' },
-      { label: 'Belgium' },
-      { label: 'Belize' },
-      { label: 'Benin' },
-      { label: 'Bermuda' },
-      { label: 'Bhutan' },
-      { label: 'Bolivia, Plurinational State of' },
-      { label: 'Bonaire, Sint Eustatius and Saba' },
-      { label: 'Bosnia and Herzegovina' },
-      { label: 'Botswana' },
-      { label: 'Bouvet Island' },
-      { label: 'Brazil' },
-      { label: 'British Indian Ocean Territory' },
-      { label: 'Brunei Darussalam' },
+      { label: 'Afghanistan',value:'a' },
+      { label: 'Aland Islands' ,value:'b'},
+      { label: 'Albania' ,value:'c'},
+      { label: 'Algeria' ,value:'d'},
+      { label: 'American Samoa',value:'e' },
+      { label: 'Andorra',value:'f' },
+      { label: 'Angola' ,value:'g'},
+      { label: 'Anguilla' ,value:'h'},
+      { label: 'Antarctica',value:'i' },
+      { label: 'Antigua and Barbuda',value:'j' },
+      { label: 'Argentina' ,value:'k'},
+      { label: 'Armenia',value:'l' },
+      { label: 'Aruba',value:'m' },
+      { label: 'Australia' ,value:'n'},
+      { label: 'Austria' ,value:'o'},
+      { label: 'Azerbaijan' ,value:'p'},
+      { label: 'Bahamas',value:'q' },
+      { label: 'Bahrain',value:'r' },
+      { label: 'Bangladesh',value:'s' },
+      { label: 'Barbados',value:'t' },
+      { label: 'Belarus' ,value:'u'},
+      { label: 'Belgium' ,value:'v'},
+      { label: 'Belize' ,value:'w'},
+      { label: 'Benin',value:'x' },
+      { label: 'Bermuda' ,value:'y'},
+      { label: 'Bhutan',value:'z' },
+      { label: 'Bolivia, Plurinational State of',value:'ab' },
+      { label: 'Bonaire, Sint Eustatius and Saba' ,value:'ac'},
+      { label: 'Bosnia and Herzegovina' ,value:'ad'},
+      { label: 'Botswana' ,value:'ae'},
+      { label: 'Bouvet Island' ,value:'af'},
+      { label: 'Brazil',value:'ag' },
+      { label: 'British Indian Ocean Territory',value:'ah' },
+      { label: 'Brunei Darussalam' ,value:'ai'},
     ],
     pageConfig: {
       pageSize: 5,
-      currentPage: 1,
-      total: 34,
-    },
+      currentPage:0,
+      total:34
+    }
   };
-  autoCb(i) {
-    console.log('item', i);
-    this.setState({
-      pageConfig: {
-        ...this.state.pageConfig,
-        currentPage: i,
-      },
-    });
-  }
-  selectCb(i) {
-    console.log('event.target.value', i);
+  autoCb(i){
+    console.log('item',i);
+    this.setState({pageConfig:{
+      ...this.state.pageConfig,
+      currentPage:i
+    }});
+  };
+  selectCb(i){
+    console.log('biubiubiubiu', i)
   }
   filterChangeCb(i) {
     console.log('text', i);
@@ -147,7 +145,10 @@ class App extends Component {
             value={this.state.values}
             options={this.state.optionstem}
             htmlFor={'InputLabel3'}
-            keyValue={['label', 'label']}
+            keyValue={{
+              key:'label',
+              value:'value'
+            }}
             pageConfig={this.state.pageConfig}
             placeholder="select one or more"
             selectCb={this.selectCb.bind(this)}

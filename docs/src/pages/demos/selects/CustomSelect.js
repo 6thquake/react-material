@@ -25,50 +25,50 @@ const styles = theme => ({
 
 class App extends Component {
   state = {
-    values: ['Afghanistan', 'Aland Islands'],
-    valuestem: 'Afghanistan',
-    name: '',
+    values:['a','b'],
+    valuestem:'c',
+    name:'',
     optionstem: [
-      { label: 'Afghanistan' },
-      { label: 'Aland Islands' },
-      { label: 'Albania' },
-      { label: 'Algeria' },
-      { label: 'American Samoa' },
-      { label: 'Andorra' },
-      { label: 'Angola' },
-      { label: 'Anguilla' },
-      { label: 'Antarctica' },
-      { label: 'Antigua and Barbuda' },
-      { label: 'Argentina' },
-      { label: 'Armenia' },
-      { label: 'Aruba' },
-      { label: 'Australia' },
-      { label: 'Austria' },
-      { label: 'Azerbaijan' },
-      { label: 'Bahamas' },
-      { label: 'Bahrain' },
-      { label: 'Bangladesh' },
-      { label: 'Barbados' },
-      { label: 'Belarus' },
-      { label: 'Belgium' },
-      { label: 'Belize' },
-      { label: 'Benin' },
-      { label: 'Bermuda' },
-      { label: 'Bhutan' },
-      { label: 'Bolivia, Plurinational State of' },
-      { label: 'Bonaire, Sint Eustatius and Saba' },
-      { label: 'Bosnia and Herzegovina' },
-      { label: 'Botswana' },
-      { label: 'Bouvet Island' },
-      { label: 'Brazil' },
-      { label: 'British Indian Ocean Territory' },
-      { label: 'Brunei Darussalam' },
+      { label: 'Afghanistan',value:'a' },
+      { label: 'Aland Islands' ,value:'b'},
+      { label: 'Albania' ,value:'c'},
+      { label: 'Algeria' ,value:'d'},
+      { label: 'American Samoa',value:'e' },
+      { label: 'Andorra',value:'f' },
+      { label: 'Angola' ,value:'g'},
+      { label: 'Anguilla' ,value:'h'},
+      { label: 'Antarctica',value:'i' },
+      { label: 'Antigua and Barbuda',value:'j' },
+      { label: 'Argentina' ,value:'k'},
+      { label: 'Armenia',value:'l' },
+      { label: 'Aruba',value:'m' },
+      { label: 'Australia' ,value:'n'},
+      { label: 'Austria' ,value:'o'},
+      { label: 'Azerbaijan' ,value:'p'},
+      { label: 'Bahamas',value:'q' },
+      { label: 'Bahrain',value:'r' },
+      { label: 'Bangladesh',value:'s' },
+      { label: 'Barbados',value:'t' },
+      { label: 'Belarus' ,value:'u'},
+      { label: 'Belgium' ,value:'v'},
+      { label: 'Belize' ,value:'w'},
+      { label: 'Benin',value:'x' },
+      { label: 'Bermuda' ,value:'y'},
+      { label: 'Bhutan',value:'z' },
+      { label: 'Bolivia, Plurinational State of',value:'ab' },
+      { label: 'Bonaire, Sint Eustatius and Saba' ,value:'ac'},
+      { label: 'Bosnia and Herzegovina' ,value:'ad'},
+      { label: 'Botswana' ,value:'ae'},
+      { label: 'Bouvet Island' ,value:'af'},
+      { label: 'Brazil',value:'ag' },
+      { label: 'British Indian Ocean Territory',value:'ah' },
+      { label: 'Brunei Darussalam' ,value:'ai'},
     ],
-    pageConfig: {
-      pageSize: 5,
-      currentPage: 1,
-      total: 34,
-    },
+    pageConfig : {
+      pageSize: 10,
+      currentPage:0,
+      total:34
+    }
   };
   autoCb(i) {
     console.log('item', i);
@@ -93,33 +93,36 @@ class App extends Component {
     return (
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-native-helper">Multiple select of object array</InputLabel>
+          <InputLabel htmlFor="">Multiple select of object array</InputLabel>
           <AsyncSelect
             multiple={true}
             value={this.state.values}
             pageConfig={this.state.pageConfig}
             placeholder="select one or more"
+            keyValue={{
+              key:'label',
+              value:'value'
+            }}
             filterChangeCb={this.filterChangeCb.bind(this)}
             selectCb={this.selectCb.bind(this)}
             pageChangeCb={this.autoCb.bind(this)}
           >
-            {this.state.optionstem
-              .slice(
-                total === 0 ? total : (currentPage - 1) * pageSize,
-                currentPage * pageSize > total ? total : currentPage * pageSize,
-              )
-              .map(item => (
-                <MenuItem key={item.label} value={item.label}>
-                  <ListItemIcon>
-                    <StarBorder />
-                  </ListItemIcon>
-                  <ListItemText primary={item.label} />
-                </MenuItem>
-              ))}
+            {this.state.optionstem.slice(total===0?total:currentPage*pageSize,
+              (currentPage+1)*pageSize>total?total:(currentPage+1)*pageSize).map(item => (
+              <MenuItem
+                key={item.label}
+                value={item.value}
+              >
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText primary={item.label} />
+              </MenuItem>
+            ))}
           </AsyncSelect>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-native-helper">single select of object array</InputLabel>
+          <InputLabel htmlFor="">single select of object array</InputLabel>
           <AsyncSelect
             multiple={false}
             value={this.state.valuestem}
@@ -129,19 +132,18 @@ class App extends Component {
             selectCb={this.selectCb.bind(this)}
             pageChangeCb={this.autoCb.bind(this)}
           >
-            {this.state.optionstem
-              .slice(
-                total === 0 ? total : (currentPage - 1) * pageSize,
-                currentPage * pageSize > total ? total : currentPage * pageSize,
-              )
-              .map(item => (
-                <MenuItem key={item.label} value={item.label}>
-                  <ListItemIcon>
-                    <StarBorder />
-                  </ListItemIcon>
-                  <ListItemText primary={item.label} />
-                </MenuItem>
-              ))}
+            {this.state.optionstem.slice(total===0?total:currentPage*pageSize,
+              (currentPage+1)*pageSize>total?total:(currentPage+1)*pageSize).map(item => (
+              <MenuItem
+                key={item.label}
+                value={item.value}
+              >
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText primary={item.label} />
+              </MenuItem>
+            ))}
           </AsyncSelect>
         </FormControl>
       </div>

@@ -64,9 +64,9 @@ class AutoComplete extends Component {
      */
     pageConfig: PropTypes.object,
     /**
-     * PlaceHold
+     * placeholder
      */
-    placeHold: PropTypes.string,
+    placeholder: PropTypes.string,
     /**
      * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
      */
@@ -96,11 +96,8 @@ class AutoComplete extends Component {
       pageSize: 5,
       total: 0,
     },
-    placeHold: 'please input something',
-    multiple: false,
-    onChange: function() {
-      console.log('need cb function');
-    },
+    placeholder:'please input something',
+    multiple:false,
     disabled: false,
   };
   constructor() {
@@ -209,19 +206,8 @@ class AutoComplete extends Component {
     }
   }
   render() {
-    const {
-      pageConfig,
-      pageChangeCb,
-      classes,
-      placeHold,
-      children,
-      multiple,
-      value,
-      dataSource,
-      keyValue,
-      disabled,
-    } = this.props;
-    const { open, inputValue } = this.state;
+    const {pageConfig,pageChangeCb,classes,placeholder ,children,multiple,value,dataSource,keyValue,disabled} = this.props;
+    const {open,inputValue} = this.state;
     let items;
     if (dataSource) {
       items = dataSource
@@ -308,27 +294,50 @@ class AutoComplete extends Component {
     }
     return (
       <div className={classes.root}>
-        {open ? <div onClick={this.handleBlur} className={classes.modal} /> : null}
-        <div className={classes.container}>
-          {multiple ? (
-            <TextField
-              disabled={disabled}
-              className={classes.textarea}
-              onChange={this.handleChange.bind(this)}
-              value={inputValue}
-              multiline
-              rows="1"
-              InputProps={{
-                classes: {
-                  root: classes.inputRoot,
-                  input: classes.inputHold,
-                },
-                startAdornment: value.map(item => (
-                  <Chip
-                    key={item}
-                    label={item}
-                    className={classes.chip}
-                    onDelete={this.handleDelete(item)}
+        {open?
+          <div
+            onClick={this.handleBlur}
+            className={classes.modal}>
+          </div>:null}
+          <div className={classes.container}>
+            {multiple?
+              <TextField
+                disabled={disabled}
+                className={classes.textarea}
+                onChange={this.handleChange.bind(this)}
+                value={inputValue}
+                multiline
+                rows='1'
+                InputProps={{
+                  classes: {
+                    root: classes.inputRoot,
+                    input:classes.inputHold
+                  },
+                  startAdornment:value.map(item => (
+                    <Chip
+                      key={item}
+                      label={item}
+                      className={classes.chip}
+                      onDelete={this.handleDelete(item)}
+                    />
+                  )),
+                  placeholder:value.length>0?'':placeholder
+                }}
+            />: <TextField
+                disabled={disabled}
+                className={classes.textarea}
+                onChange={this.handleChange.bind(this)}
+                value={inputValue}
+                placeholder={placeholder}
+              />}
+            {open? (
+              <Paper className={classes.paper} square>
+                {items}
+                <Divider/>
+                  <Pagination
+                    {...pageConfig}
+                    pageCallbackFn ={pageChangeCb}
+>
                   />
                 )),
                 placeholder: value.length > 0 ? '' : placeHold,

@@ -32,9 +32,6 @@ const styles = theme => ({
         padding:'10px 0 0 0',
     },
     media: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems:'center',
         height:'130px',
         width:'130px',
         position: 'absolute',
@@ -62,9 +59,9 @@ class UploadImg extends Component{
         if(!file){
             return;
         }
-        let src,preview,type = file.type;
+        let type = file.type;
         if (/^image\/\S+$/.test(type)) {
-        	src = URL.createObjectURL(file); 
+        	let src = URL.createObjectURL(file); 
         	this.setState({ path: file.name, data: file, preview: src })
         }
     }
@@ -89,13 +86,14 @@ class UploadImg extends Component{
     render(){
         const classes = this.props.classes;
       	const {preview} = this.state;
+        console.log(preview)
         return (
             <div>
                 <CssBaseline />
                 <input accept="image/*" id="raisedButtonFile" ref={this.selectInput} onChange={this.changePath} type="file" className={classes.input}/>
                 <label htmlFor="raisedButtonFile">
                     <div className={classes.clickToUpload}><div className={classes.add}>+</div><div className={classes.upload}>Upload</div>
-                        <div className={classes.media} ref={"changeImgSize"} style={{backgroundImage:"url("+preview+")"}}></div>
+                        <div className={classes.media} style={{backgroundImage:"url("+preview+")"}}></div>
                     </div>
                 </label>
                 

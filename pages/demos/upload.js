@@ -21,6 +21,13 @@ module.exports = require('fs')
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/upload/UploadBasic'), 'utf8')
 `,
+                },
+                'pages/demos/upload/UploadDrag.js': {
+                    js: require('docs/src/pages/demos/upload/UploadDrag').default,
+                    raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/upload/UploadDrag'), 'utf8')
+`,
                 }
             }}
         />

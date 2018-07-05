@@ -1,5 +1,5 @@
 ---
-components: Upload, UploadBasic
+components: Upload, UploadBasic , UploadDrag
 ---
 
 ###  Upload
@@ -13,3 +13,10 @@ Upload是一个手动上传文件控件。
 UploadBasic是一个自动上传文件控件。
 
 {{"demo": "pages/demos/upload/UploadBasic.js"}}
+
+
+###  UploadDrag
+
+UploadDrag是一个拖拽上传文件控件。
+
+{{"demo": "pages/demos/upload/UploadDrag.js"}}

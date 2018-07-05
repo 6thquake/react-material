@@ -18,9 +18,6 @@ const styles = theme => ({
     input: {
         display: 'none',
     },
-    rightIcon: {
-        marginLeft: theme.spacing.unit,
-    },
     array: {
         display: 'inline-block',
     },
@@ -60,7 +57,7 @@ class UploadBasic extends Component{
 
     }
 
-    handleDelete = item => () => {
+    handleDelete = item  => {
         const path = [...this.state.path];
         const pathToDelete = path.indexOf(item);
         path.splice(pathToDelete, 1);
@@ -73,7 +70,7 @@ class UploadBasic extends Component{
     };
 
     changePath=(e)=>{
-        for(let i=0;i<e.target.files.length+1;i++){
+        for(let i=0;i<e.target.files.length;i++){
             let file = e.target.files[i];
             if(!file){
                 return;
@@ -99,7 +96,7 @@ class UploadBasic extends Component{
     }
 
     componentDidUpdate(prevProps, prevState){
-        if(prevProps.path!== prevState.path){
+        if(prevState.path!== this.state.path){
             this.props.actionFunc(this.state.data)
         }
     }
@@ -108,7 +105,7 @@ class UploadBasic extends Component{
         return (
             <div>
                 <div className={classes.choose}>
-                    <input accept={this.state.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFileBasic" onChange={this.changePath} type="file" />
+                    <input accept={this.state.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFileBasic" onChange={this.changePath.bind(this)} type="file" />
                     <label for="raisedButtonFileBasic">
                         {this.props.children}
                     </label>                    
@@ -119,9 +116,8 @@ class UploadBasic extends Component{
                     return (
                         <Chip
                         key={item}
-                        avatar={avatar}
                         label={item}
-                        onDelete={this.handleDelete(item)}
+                        onDelete={this.handleDelete.bind(this,item)}
                         className={classes.chip}
                         />
                     );

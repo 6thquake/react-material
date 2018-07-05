@@ -11,15 +11,14 @@ import Chip from '../Chip';
 import Paper from '../Paper';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { CompatibleGrid as Grid } from '../Grid';
+
+import { DragDropContext, DropTargetMonitor } from 'react-dnd'
+import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend'
+import TargetBox from './TargetBox'
+
 const styles = theme => ({
-    choose:{
-        display: 'inline-block',
-    },
     input: {
         display: 'none',
-    },
-    rightIcon: {
-        marginLeft: theme.spacing.unit,
     },
     array: {
         display: 'inline-block',
@@ -46,12 +45,6 @@ const styles = theme => ({
         justifyContent: 'center',
         alignItems:'center',
     },  
-    add: {
-
-        fontSize: '25px',
-        //border:'1px solid red',
-        color:'#616161',
-    },
     media: {
         //position:'relative',
         //left:'10px',
@@ -105,7 +98,7 @@ class UploadDrag extends Component{
 
     }
 
-    handleDelete = item => () => {
+    handleDelete = (e,item) => {
         const path = [...this.state.path];
         const pathToDelete = path.indexOf(item);
         path.splice(pathToDelete, 1);
@@ -115,10 +108,12 @@ class UploadDrag extends Component{
         this.props.deleteFile(data[pathToDelete])
         data.splice(pathToDelete, 1);
         this.setState({ data });
-    };
+        e.preventDefault();
+    }
+
 
     changePath=(e)=>{
-        for(let i=0;i<e.target.files.length+1;i++){
+        for(let i=0;i<e.target.files.length;i++){
             let file = e.target.files[i];
             if(!file){
                 return;
@@ -140,6 +135,28 @@ class UploadDrag extends Component{
             }
         }
     }
+    handleFileDrop(item, monitor) {
+        if (monitor) {
+            for(let i=0; i < monitor.getItem().files.length; i++){
+                let file = monitor.getItem().files[i];
+                if(this.state.path.indexOf(file.name) === -1){
+                    this.setState(preState => ({
+                    data: [...preState.data,file],
+                    }))
+                    if (/^image\/\S+$/.test(file.type)) {
+                        let src = URL.createObjectURL(file); 
+                        this.setState(preState =>({ 
+                            path: [...preState.path, src] 
+                        }))
+                    }else{
+                        this.setState(preState =>({ 
+                            path: [...preState.path, file.name] 
+                        }))
+                    }
+                }
+            }
+        }
+    }
     componentDidMount(){
       if(this.disabled){
             this.selectInput.setAttribute("disabled","disabled")
@@ -149,27 +166,28 @@ class UploadDrag extends Component{
     }
 
     componentDidUpdate(prevProps, prevState){
-        if(prevProps.path!== prevState.path){
+        if(prevState.data!== this.state.data){
             this.props.actionFunc(this.state.data)
         }
     }
     render(){
         const classes = this.props.classes;
         const path = this.state.path;
+        const { FILE } = NativeTypes
         return (
             <div>
-                <div className={classes.choose}>
+                <TargetBox accepts={[FILE]} onDrop={this.handleFileDrop.bind(this)} >
                     <input accept={this.state.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFileDrag" onChange={this.changePath} type="file" />
                     <label for="raisedButtonFileDrag">
-                        <div className={classes.clickToUpload}><div className={classes.add}>drag file here</div>
+                        <div className={classes.clickToUpload}>
                             <div className={classes.array}>
                                 {this.state.path.map(item => {
                                     let preview = /blob/.test(item)=== true ? <div className={classes.media} style={{backgroundImage:"url("+item+")"}}></div> : item
                                 return (
                                     <Chip
                                     key={item}
-                                    label={preview}
-                                    onDelete={this.handleDelete(item)}
+                                    label={preview}  
+                                    onDelete={(e) => this.handleDelete(e,item)}
                                     className={classes.chip}
                                     deleteIcon={<CancelIcon className={classes.icon}/>}
                                     />
@@ -177,14 +195,13 @@ class UploadDrag extends Component{
                                 })}
                             </div>
                         </div>
-                    </label>                    
-                </div>
-                
+                    </label>  
+                </TargetBox>                         
             </div>
             )
     }
 }
 
-
-export default withStyles(styles)(UploadDrag);
+let c = DragDropContext(HTML5Backend)(UploadDrag)
+export default withStyles(styles)(c);
 

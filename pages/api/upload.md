@@ -5,7 +5,7 @@ filename: /packages/material-ui/src/Upload/Upload.js
 
 # Upload
 
-The [Upload], 手动上传文件控件。
+The [Upload], 是一个手动点击上传文件控件，拒绝相同文件名的文件上传。
 
 
 ## Props

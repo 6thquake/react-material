@@ -13,14 +13,15 @@ class PaginationTest extends Component {
    super(props);
     this.state={
            pageConfig: {
-             currentPage: 1,
-             pageSize: 4,
+             currentPage: 0,
+             pageSize: 5,
              total:20
          }
     }
   }
-  
+
   pageCallbackFn(i) {
+    console.log(i,typeof i);
     this.setState({
       pageConfig: {
         ...this.state.pageConfig,
@@ -28,14 +29,63 @@ class PaginationTest extends Component {
       }
     });
   };
-
+  onChangeRowsPerPage(e){
+    console.log('onChangeRowsPerPage',e.target.value);
+      this.setState({
+        pageConfig: {
+          ...this.state.pageConfig,
+          pageSize:e.target.value
+        }
+      });
+  }
   render() {
     const { classes } = this.props;
       return (
         <div className={classes.root}>
           <Pagination
           {...this.state.pageConfig}
-          pageCallbackFn={this.pageCallbackFn.bind(this)}
+          pageCallbackFn ={this.pageCallbackFn.bind(this)}
+          onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
+          />
+          <Pagination
+            showTwoEnds
+            {...this.state.pageConfig}
+            pageCallbackFn ={this.pageCallbackFn.bind(this)}
+            onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
+          />
+          <Pagination
+            showSizeChanger
+            {...this.state.pageConfig}
+            pageCallbackFn ={this.pageCallbackFn.bind(this)}
+            onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
+          />
+          <Pagination
+            showQuickJumper
+            {...this.state.pageConfig}
+            pageCallbackFn ={this.pageCallbackFn.bind(this)}
+            onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
+          />
+          <Pagination
+            showTwoEnds
+            showSizeChanger
+            {...this.state.pageConfig}
+            pageCallbackFn ={this.pageCallbackFn.bind(this)}
+            onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
+          />
+          <Pagination
+            showQuickJumper
+            showTwoEnds
+            {...this.state.pageConfig}
+            pageCallbackFn ={this.pageCallbackFn.bind(this)}
+            onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
+          />
+          <Pagination
+            showSizeChanger
+            showQuickJumper
+            showTwoEnds
+            {...this.state.pageConfig}
+            pageCallbackFn ={this.pageCallbackFn.bind(this)}
+            onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
           />
         </div>
       );

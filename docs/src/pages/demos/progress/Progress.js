@@ -24,36 +24,35 @@ class App extends Component {
   componentDidMount (){
     this.promiseEst()
   }
-  
+
   componentWillUnmount() {
-      clearInterval(this.timer);
+    clearInterval(this.timer);
   }
 
   promiseEst=()=>{
-    const self = this;
     if(this.timer1){
       clearInterval(this.timer);
     }
-    this.timer1=setTimeout(function () {
-      self.setState( {isFinish:true})
+    this.timer1=setTimeout(()=>{
+      this.setState({isFinish:true})
     },5000)
   };
 
   timer = null;
 
   progress = () => {
-      const { completed2 } = this.state;
-      if (completed2 === 100) {
-          clearInterval(this.timer);
-      } else {
-          const diff = Math.random() * 10;
-          if(this.state.completed2>50){
-            this.setState({ error: true});
-          }else{
-            this.setState({ completed2: Math.min(completed2 + diff, 100) });
-          }
-
+    const { completed2 } = this.state;
+    if (completed2 === 100) {
+      clearInterval(this.timer);
+    } else {
+      const diff = Math.random() * 10;
+      if(this.state.completed2>50){
+        this.setState({ error: true});
+      }else{
+        this.setState({ completed2: Math.min(completed2 + diff, 100) });
       }
+
+    }
   };
 
   reStartbase(){
@@ -77,7 +76,7 @@ class App extends Component {
       <div className={classes.root}>
         <Button>base progress</Button>
         <Progress
-            baseProgress={true}
+          baseProgress={true}
         />
         <br/>
         <br/>
@@ -93,6 +92,13 @@ class App extends Component {
         <br/>
         <br/>
         <Button  onClick={this.reStartpromise.bind(this)} >restart promise progress</Button>
+        <Progress
+          isPromise={true}
+          isFinish={this.state.isFinish}
+          estimatedTime={5}
+          variant='query'
+        />
+        <br/>
         <Progress
           isPromise={true}
           isFinish={this.state.isFinish}

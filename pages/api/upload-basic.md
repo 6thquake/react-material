@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/UploadBasic/UploadBasic.js
 
 # UploadBasic
 
-The [UploadBasic], 自动上传文件控件。
+The [UploadBasic], 是一个自动上传文件控件，拒绝相同文件名的文件上传。
 
 
 ## Props

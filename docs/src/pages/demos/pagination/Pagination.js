@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Pagination  from 'react-material/Pagination';
 import { withStyles } from 'react-material/styles';
+import Divider from 'react-material/Divider';
 
 const styles = {
   root: {
@@ -47,24 +48,28 @@ class PaginationTest extends Component {
           pageCallbackFn ={this.pageCallbackFn.bind(this)}
           onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
           />
+          <Divider/>
           <Pagination
             showTwoEnds
             {...this.state.pageConfig}
             pageCallbackFn ={this.pageCallbackFn.bind(this)}
             onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
           />
+          <Divider/>
           <Pagination
             showSizeChanger
             {...this.state.pageConfig}
             pageCallbackFn ={this.pageCallbackFn.bind(this)}
             onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
           />
+          <Divider/>
           <Pagination
             showQuickJumper
             {...this.state.pageConfig}
             pageCallbackFn ={this.pageCallbackFn.bind(this)}
             onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
           />
+          <Divider/>
           <Pagination
             showTwoEnds
             showSizeChanger
@@ -72,6 +77,7 @@ class PaginationTest extends Component {
             pageCallbackFn ={this.pageCallbackFn.bind(this)}
             onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
           />
+          <Divider/>
           <Pagination
             showQuickJumper
             showTwoEnds
@@ -79,6 +85,7 @@ class PaginationTest extends Component {
             pageCallbackFn ={this.pageCallbackFn.bind(this)}
             onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
           />
+          <Divider/>
           <Pagination
             showSizeChanger
             showQuickJumper
@@ -87,6 +94,7 @@ class PaginationTest extends Component {
             pageCallbackFn ={this.pageCallbackFn.bind(this)}
             onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
           />
+          <Divider/>
         </div>
       );
   }

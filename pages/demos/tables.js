@@ -8,6 +8,13 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
+        'pages/demos/tables/RmTable.js': {
+          js: require('docs/src/pages/demos/tables/RmTable').default,
+          raw: preval `
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tables/RmTable'), 'utf8')
+`,
+        },
         'pages/demos/tables/SimpleTable.js': {
           js: require('docs/src/pages/demos/tables/SimpleTable').default,
           raw: preval`

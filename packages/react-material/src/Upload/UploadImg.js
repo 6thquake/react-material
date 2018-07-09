@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '../styles';
-import CssBaseline from '../CssBaseline';
+
 const styles = theme => ({
     input: {
         opacity: '0',
@@ -66,16 +65,9 @@ class UploadImg extends Component{
         }
     }
     componentDidUpdate(prevProps, prevState){
-    	if(prevProps.path!== prevState.path){
-    		this.upload();
-    	}
-    }
-    upload = () =>{ 
-        const data = this.state.data;
-        const form = new FormData();
-        form.append('file', data);
-       //console.log(data);
-        return this.props.actionFunc(form);
+        if(prevState.path!== this.state.path){
+            this.props.actionFunc(this.state.data)
+        }
     }
     selectInput=(instance)=>{
     	if(this.props.disabled){
@@ -85,13 +77,11 @@ class UploadImg extends Component{
 
     render(){
         const classes = this.props.classes;
-      	const {preview} = this.state;
-        console.log(preview)
+      	const preview = this.state.preview;
         return (
             <div>
-                <CssBaseline />
-                <input accept="image/*" id="raisedButtonFile" ref={this.selectInput} onChange={this.changePath} type="file" className={classes.input}/>
-                <label htmlFor="raisedButtonFile">
+                <input accept="image/*" id="raisedButtonFileImg" ref={this.selectInput} onChange={this.changePath} type="file" className={classes.input}/>
+                <label htmlFor="raisedButtonFileImg">
                     <div className={classes.clickToUpload}><div className={classes.add}>+</div><div className={classes.upload}>Upload</div>
                         <div className={classes.media} style={{backgroundImage:"url("+preview+")"}}></div>
                     </div>

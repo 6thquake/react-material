@@ -27,46 +27,29 @@ const styles = theme => ({
 });
 
 class UploadBasic extends Component{
+    static defaultProps = {
+        acceptType : "*",
+        multiple : true,
+        disabled : false
+    }
     constructor(props){
         super(props);
-        this.acceptType = this.props.acceptType;
-        this.multiple = this.props.multiple;
-        this.disabled = this.props.disabled;
         this.state = {
             path: [],
             data: [],
         }
-    try{
-        if(!this.acceptType){
-            this.acceptType = "*";
-        }
-        if(Boolean(this.multiple)){
-            this.multiple=true;  //可多选
-        }else{
-            this.multiple=false;  //默认为false ,不可多选
-        }
-        if (Boolean(this.disabled)) {
-            this.disabled = true;// 禁用
-        } else {
-            this.disabled = false;
-        }
-
-    }catch (err) {
-            console.log(err);
-        }
-
     }
 
     handleDelete = item  => {
         const path = [...this.state.path];
         const pathToDelete = path.indexOf(item);
         path.splice(pathToDelete, 1);
-        this.setState({ path });
+        this.setState({ path:path });
 
         const data = [...this.state.data];
         this.props.deleteFile(data[pathToDelete])
         data.splice(pathToDelete, 1);
-        this.setState({ data });
+        this.setState({ data:data });
     };
 
     changePath=(e)=>{
@@ -75,8 +58,6 @@ class UploadBasic extends Component{
             if(!file){
                 return;
             }
-            // console.log('this.state.path')
-            // console.log(this.state.path)
             if(this.state.path.indexOf(file.name) === -1){
                 let src,type = file.type;
                 src = URL.createObjectURL(file); 
@@ -88,9 +69,9 @@ class UploadBasic extends Component{
         }
     }
     componentDidMount(){
-      if(this.disabled){
+      if(this.props.disabled){
             this.selectInput.setAttribute("disabled","disabled")
-        }else if(this.multiple){
+        }else if(this.props.multiple){
             this.selectInput.setAttribute("multiple","multiple")
         }
     }
@@ -105,7 +86,7 @@ class UploadBasic extends Component{
         return (
             <div>
                 <div className={classes.choose}>
-                    <input accept={this.state.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFileBasic" onChange={this.changePath.bind(this)} type="file" />
+                    <input accept={this.props.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFileBasic" onChange={this.changePath.bind(this)} type="file" />
                     <label for="raisedButtonFileBasic">
                         {this.props.children}
                     </label>                    

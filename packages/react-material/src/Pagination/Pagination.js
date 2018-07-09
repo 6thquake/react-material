@@ -72,7 +72,7 @@ const styles = theme => ({
     paddingRight: theme.spacing.unit * 2,
   },
   jump:{
-    lineHeight:28,
+    lineHeight:'28px',
   },
   selectIcon: {
     top: 1,

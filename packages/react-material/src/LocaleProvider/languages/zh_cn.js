@@ -73,5 +73,11 @@ export default {
   MomentUtils: {
     am: "上午",
     pm: "下午"
+  },
+  Pagination:{
+      lastPage:'尾页',
+      homePage:'首页',
+      page:'页',
+      jumpTo:'跳至'
   }
 };

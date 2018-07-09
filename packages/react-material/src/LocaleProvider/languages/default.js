@@ -74,5 +74,11 @@ export default {
   MomentUtils: {
     am: "AM",
     pm: "PM"
+  },
+  Pagination:{
+    lastPage:'last',
+    homePage:'first',
+    page:'page',
+    jumpTo:'jump to'
   }
 };

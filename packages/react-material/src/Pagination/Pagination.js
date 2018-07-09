@@ -8,7 +8,7 @@ import Typography from '../Typography';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import IconButton from '../IconButton';
-
+import {withLocale} from '../LocaleProvider';
 const styles = theme => ({
   root: {
     fontSize: theme.typography.pxToRem(12),
@@ -200,7 +200,11 @@ class Pagination extends Component {
         showSizeChanger,
         showQuickJumper,
         showTwoEnds,
-        ...other} = this.props;
+        homePage,
+        lastPage,
+        jumpTo,
+        page,
+        } = this.props;
       const {minwidth,value}=this.state;
       const totalPage = Math.ceil(total/pageSize);
       return <div className={classes.root} ref={(div) => this.div = div}>
@@ -243,7 +247,7 @@ class Pagination extends Component {
                         }):null}
                   </Typography>
                   {showTwoEnds?<Typography variant="caption" className={classes.caption + ' '+ classes.jump+' '+ classes.firstpage} onClick={this.goEnd.bind(this,'first')}>
-                    首页
+                    {homePage}
                   </Typography>:null}
                   <IconButton
                     onClick={this.prePageHandeler.bind(this)}
@@ -260,11 +264,11 @@ class Pagination extends Component {
                     <KeyboardArrowRight />
                   </IconButton>
                   {showTwoEnds?<Typography variant="caption" className={classes.caption + ' '+ classes.jump+' '+ classes.lastpage} onClick={this.goEnd.bind(this,'last')}>
-                    尾页
+                    {lastPage}
                   </Typography>:null}
                   {showQuickJumper?<Typography variant="caption"
                               className={classes.caption + ' '+ classes.jump}>
-                    跳至<Input className={classes.pageinput} disableUnderline  type='number' value={value} onChange={this.jumpTo.bind(this)}/>页
+                    {jumpTo}<Input className={classes.pageinput} disableUnderline  type='number' value={value} onChange={this.jumpTo.bind(this)}/>{page}
                   </Typography>:null}
                 </div>
               </div>
@@ -330,4 +334,5 @@ class Pagination extends Component {
       return this.createPage();
   }
 }
+Pagination = withLocale({name:'Pagination'})(Pagination);
 export default withStyles(styles)(Pagination);

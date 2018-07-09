@@ -1,5 +1,5 @@
 ---
-components: Upload, UploadBasic , UploadDrag
+components: Upload, UploadBasic, UploadImg, UploadDrag
 ---
 
 ###  Upload
@@ -15,8 +15,18 @@ UploadBasic是一个自动上传文件控件，拒绝相同文件名的文件上
 {{"demo": "pages/demos/upload/UploadBasic.js"}}
 
 
+### UploadImg
+UploadImg 是一个用户头像上传预览控件。
+
+{{"demo": "pages/demos/upload/UploadImg.js"}}
+
+
 ###  UploadDrag
 
 UploadDrag是一个拖拽上传文件控件，也支持点击上传，图片文件支持预览，拒绝相同文件名的文件上传（图片除外） 。
 
 {{"demo": "pages/demos/upload/UploadDrag.js"}}
+
+
+
+

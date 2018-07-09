@@ -13,11 +13,13 @@ UploadImg 是一个用户头像上传预览控件。
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">actionFunc</span> | <span class="prop-type">func</span> | <span class="prop-default"></span> | 上传图片后触发的函数，函数返回一个promise实例 |
+| <span class="prop-name">actionFunc</span> | <span class="prop-type">func</span> | <span class="prop-default"></span> |  点击上传图片时触发的函数 |
 | <span class="prop-name">disabled</span> | <span class="prop-type">Boolean</span> | <span class="prop-default">false</span> |  可选参数, 是否禁用 |
 
 ## Demos
 
-- [UploadImg](/demos/upload-img)
+- [UploadBasic](/demos/upload)
+
+
 
 

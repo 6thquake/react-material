@@ -37,54 +37,35 @@ const styles = theme => ({
         margin: '0 auto',
     },
     wrap2: {
-        width: '110px',
+        width: '140px',
         margin: '0 auto',
     },
 });
 
 
 class Upload extends Component{
+    static defaultProps = {
+        acceptType : "*",
+        multiple : true,
+        disabled : false
+    }
     constructor(props){
         super(props);
         this.state = {
-            acceptType: props.acceptType,
-            multiple: props.multiple,
-            disabled: props.disabled,
-            onHandler: props.onHandler,
             path: [],
             data: [],
         }
-        this.status = false;
-    try{
-        if(!this.state.acceptType){
-            this.state.acceptType = "*";
-        }
-        if(Boolean(this.state.multiple)){
-            this.state.multiple=true;  //可多选
-        }else{
-            this.state.multiple=false;  //默认为false ,不可多选
-        }
-        if (Boolean(this.state.disabled)) {
-            this.state.disabled = true;// 禁用
-        } else {
-            this.state.disabled = false;
-        }
-
-    }catch (err) {
-            console.log(err);
-        }
-
     }
 
     handleDelete = item => () => {
         const path = [...this.state.path];
         const pathToDelete = path.indexOf(item);
         path.splice(pathToDelete, 1);
-        this.setState({ path });
+        this.setState({ path:path });
 
         const data = [...this.state.data];
         data.splice(pathToDelete, 1);
-        this.setState({ data });
+        this.setState({ data:data });
     };
 
     changePath=(e)=>{
@@ -107,24 +88,12 @@ class Upload extends Component{
         const data = this.state.data;
         const form = new FormData();
         form.append('file', data);
-        //console.log(data);
         return this.props.actionFunc(form);
-        /*let _promise = new Promise(function(resolve, reject){
-            fetch(url,{
-            method: 'POST',  
-            body: form  
-            }).then(function(res){
-                resolve('success');
-            },function(err){
-                reject('error');
-            })
-        });
-        return _promise;*/
     }
     componentDidMount(){
-      if(this.state.disabled){
+      if(this.props.disabled){
             this.selectInput.setAttribute("disabled","disabled")
-        }else if(this.state.multiple){
+        }else if(this.props.multiple){
             this.selectInput.setAttribute("multiple","multiple")
         }
     }
@@ -135,7 +104,7 @@ class Upload extends Component{
         return (
             <div>
                 <div className={classes.wrap}>
-                    <input accept={this.state.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFile" onChange={this.changePath} type="file" />
+                    <input accept={this.props.acceptType} ref={input=>this.selectInput=input} className={classes.input} id="raisedButtonFile" onChange={this.changePath} type="file" />
                     <label for="raisedButtonFile">
                         <Button variant="raised" component="span" color="default" className={classes.button}>
                         选择文件

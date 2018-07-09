@@ -12,7 +12,7 @@ class App extends React.Component {
     }
     render() {
         return (
-                <UploadBasic acceptType={"*"} actionFunc={this.uploadFunc} disabled={false} multiple={true} deleteFile={this.deleteFunc}>
+                <UploadBasic acceptType={"image/*"} actionFunc={this.uploadFunc} disabled={false} multiple={true} deleteFile={this.deleteFunc}>
                     <Button variant="raised" component="span" color="default">
                     上传文件
                     </Button>

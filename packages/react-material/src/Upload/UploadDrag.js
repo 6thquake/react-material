@@ -114,7 +114,7 @@ class UploadDrag extends Component{
         }
     }
     /*通过drag添加图片*/
-    handleFileDrop(monitor) {
+    handleFileDrop(item, monitor) {
         if (monitor) {
             for(let i=0; i < monitor.getItem().files.length; i++){
                 let file = monitor.getItem().files[i];

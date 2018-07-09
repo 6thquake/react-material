@@ -280,7 +280,7 @@ class Pagination extends Component {
   }
   prePageHandeler() {
       let {currentPage} = this.props;
-      if (--currentPage === 0) {
+      if (--currentPage === -1) {
           return false
       }
       this.pageClick(currentPage)

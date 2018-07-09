@@ -4,7 +4,7 @@ import withStyles from '../styles/withStyles';
 import Grid from '../Grid';
 import Button from '../Button';
 import classnames from 'classnames';
-import "babel-polyfill";
+
 //颜色需要替换
 const style = theme => ({
   label: {
@@ -79,7 +79,8 @@ class Filters extends Component {
         <Grid item className={classes.content}>
           <Grid container spacing={spacing}>
             {options.map(s => {
-              const value = s[mapProps.value];
+              const label = typeof mapProps.label === 'function' ? mapProps.label(s, options) : s[mapProps.label];
+              const value = typeof mapProps.value === 'function' ? mapProps.value(s, options) : s[mapProps.value];
               const isSelected = this.isSelected(value);
               const className = classnames({
                 [classes.active]: isSelected,
@@ -94,7 +95,7 @@ class Filters extends Component {
                     }}
                     onClick={this.onClick(s)}
                   >
-                    {s[mapProps.label]}
+                    {label}
                   </Button>
                 </Grid>
               )
@@ -108,7 +109,8 @@ class Filters extends Component {
 
 Filters.propTypes = {
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -125,16 +127,19 @@ Filters.propTypes = {
   multi: PropTypes.bool,
   value: PropTypes.array,
   /**
-   * label name
+   * label name for Filter
    */
   label: PropTypes.string,
   /**
    * map data options struct
    */
   mapProps: PropTypes.shape({
-    label: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.func])
   }),
+  /**
+   * spacing between items
+   */
   spacing: PropTypes.number
 };
 

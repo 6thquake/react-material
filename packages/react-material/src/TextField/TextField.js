@@ -91,6 +91,6 @@ TextField.propTypes = {
 
 TextField.defaultProps = {};
 
-const FormComponent = compose(withFormsy, withFormItem, withStyles(style))(TextField);
+const FormComponent = compose(withFormsy, withFormItem, withStyles(style, { name: 'RMTextField' }))(TextField);
 
 export default compose(withForm)(FormComponent, TextFieldStandalone);

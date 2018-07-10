@@ -292,4 +292,4 @@ CrossCrossTableColumn.propTypes = {
   zIndex: PropTypes.number,
 };
 
-export default withStyles(styles)(CrossCrossTableColumn);
+export default withStyles(styles, { name: 'RMCrossCrossTableColumn' })(CrossCrossTableColumn);

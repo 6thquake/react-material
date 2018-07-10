@@ -170,4 +170,4 @@ class Progress extends Component {
     }
   }
 }
-export default withStyles(styles)(Progress);
+export default withStyles(styles, { name: 'RMProgress' })(Progress);

@@ -262,4 +262,4 @@ TreeMenu.defaultProps = {
   debugger:false,
   itemKeysMap: defaultItemKeysMap
 };
-export default withStyles()(TreeMenu);
+export default withStyles(styles, { name: 'RMTreeMenu' })(TreeMenu);

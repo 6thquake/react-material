@@ -190,4 +190,4 @@ class AsyncSelect extends Component {
         );
     }
 }
-export default withStyles(styles)(AsyncSelect);
+export default withStyles(styles, { name: 'RMAsyncSelect' })(AsyncSelect);

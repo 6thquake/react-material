@@ -113,6 +113,6 @@ Input.defaultProps = {
 };
 
 
-const FormComponent = compose(withFormsy, withFormItem, withStyles(style))(Input);
+const FormComponent = compose(withFormsy, withFormItem, withStyles(style, { name: 'RMInput' }))(Input);
 
 export default compose(withForm)(FormComponent, InputStandalone);

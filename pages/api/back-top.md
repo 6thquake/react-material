@@ -1,14 +1,21 @@
+---
+filename: /packages/react-material/src/BackTop/BackTop.js
+---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# BackTop
 
 
-## BackTop
+
 ## Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">visibilityHeight</span> | <span class="prop-type">Number |300| 滚动高度达到此参数值才出现 BackTop |
-| <span class="prop-name">onClick</span> | <span class="prop-type">func | <span class="prop-default"></span> |  点击按钮的回调函数 |
 
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## Demos
 
-- [BackTop](/demos/BackTop)
+- [Back Top](/demos/back-top)
+

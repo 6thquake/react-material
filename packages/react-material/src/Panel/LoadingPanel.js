@@ -120,4 +120,4 @@ class LoadingPanel extends Component {
           )
   }
 }
-export default withStyles(styles)(LoadingPanel);
+export default withStyles(styles, { name: 'RMLoadingPanel' })(LoadingPanel);

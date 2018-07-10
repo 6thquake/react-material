@@ -84,4 +84,4 @@ CascadeOption.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CascadeOption);
+export default withStyles(styles, { name: 'RMCascadeOption' })(CascadeOption);

@@ -207,7 +207,9 @@ class StatusButton extends Component {
 }
 
 StatusButton.propTypes = {
-    onHandler: PropTypes.func
+    onHandler: PropTypes.func,
+    color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'error', 'success', 'waring', 'progress']),
+    variant: PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab']),
 };
 
 StatusButton.defaultProps = {
@@ -216,4 +218,4 @@ StatusButton.defaultProps = {
     //statusButton: true
 };
 
-export default withStyles(styles)(StatusButton);
+export default withStyles(styles, { name: 'RMStatusButton' })(StatusButton);

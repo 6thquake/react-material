@@ -19,4 +19,4 @@ class DronZone extends Component {
 	}
 }
 
-export default withStyles(styles)(DronZone);
+export default withStyles(styles, { name: 'RMDronZone' })(DronZone);

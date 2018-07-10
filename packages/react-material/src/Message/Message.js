@@ -70,4 +70,4 @@ class Message  extends Component {
         />
     }
 }
-export default withStyles(styles)(Message);
+export default withStyles(styles, { name: 'RMMessage' })(Message);

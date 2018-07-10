@@ -64,4 +64,4 @@ CheckboxGroupStandalone.propTypes = {
 
 CheckboxGroupStandalone.defaultProps = {};
 
-export default withStyles(style)(CheckboxGroupStandalone)
+export default withStyles(style, { name: 'RMCheckboxGroupStandalone' })(CheckboxGroupStandalone)

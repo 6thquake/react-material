@@ -338,4 +338,4 @@ class AsyncTransfer extends React.Component {
   }
 }
 
-export default withStyles(styles)(AsyncTransfer);
+export default withStyles(styles, { name: 'RMAsyncTransfer' })(AsyncTransfer);

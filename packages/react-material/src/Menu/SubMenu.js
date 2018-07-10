@@ -31,5 +31,5 @@ class SubMenu extends React.Component{
 }
 SubMenu.isSubMenu = true;
 
-export default withStyles(styles)(SubMenu);
+export default withStyles(styles, { name: 'RMSubMenu' })(SubMenu);
 

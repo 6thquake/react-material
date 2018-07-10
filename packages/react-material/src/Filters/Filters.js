@@ -158,4 +158,4 @@ Filters.defaultProps = {
   spacing: 8
 };
 
-export default withStyles(style)(Filters);
+export default withStyles(style, { name: 'RMFilters' })(Filters);

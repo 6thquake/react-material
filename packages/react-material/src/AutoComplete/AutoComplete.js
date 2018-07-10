@@ -78,7 +78,7 @@ class AutoComplete extends Component {
     /**
      * 用于回显
      */
-    value : PropTypes.oneOfType(PropTypes.string,PropTypes.array),
+    value : PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     /**
      * decided autocomplete is disabled
      */
@@ -330,4 +330,4 @@ class AutoComplete extends Component {
     );
   }
 }
-export default withStyles(styles)(AutoComplete);
+export default withStyles(styles, { name: 'RMAutoComplete' })(AutoComplete);

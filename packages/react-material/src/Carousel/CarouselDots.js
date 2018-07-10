@@ -82,4 +82,4 @@ class CarouselDots extends React.Component {
 }
 
 
-export default withStyles(styles)(CarouselDots);
+export default withStyles(styles, { name: 'RMCarouselDots' })(CarouselDots);

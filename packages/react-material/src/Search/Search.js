@@ -77,7 +77,7 @@ const styles = theme => ({
     }
 });
 
-class search extends Component {
+class Search extends Component {
     state = {
         search:'',
         options: [],
@@ -129,4 +129,4 @@ class search extends Component {
         );
     }
 }
-export default withStyles(styles)(search);
+export default withStyles(styles, { name: 'RMSearch' })(Search);

@@ -76,5 +76,5 @@ Codearea.propTypes = {
   texttype:PropTypes.string
 };
 
-export default withStyles(styles, { flip: false })(Codearea);
+export default withStyles(styles, { flip: false, name: 'RMCodearea' })(Codearea);
 export { lightTheme, darkTheme, setPrismTheme }

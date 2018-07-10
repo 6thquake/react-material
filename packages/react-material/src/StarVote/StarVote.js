@@ -413,4 +413,4 @@ class StarVote extends React.Component {
 }
 
 
-export default withStyles(styles)(StarVote);
+export default withStyles(styles, { name: 'RMStarVote' })(StarVote);

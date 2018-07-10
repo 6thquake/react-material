@@ -184,4 +184,4 @@ StepperPane.defaultProps = {
 };
 
 
-export default withStyles(styles, { withTheme: true })(withLocale({name: 'StepperPane'})(StepperPane));
+export default withStyles(styles, { withTheme: true, name: 'RMStepperPane' })(withLocale({name: 'StepperPane'})(StepperPane));

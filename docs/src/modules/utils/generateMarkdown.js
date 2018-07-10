@@ -173,45 +173,47 @@ function generateProps(reactAPI) {
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|\n`;
 
-  text = Object.keys(reactAPI.props).reduce((textProps, propRaw) => {
-    const prop = getProp(reactAPI.props, propRaw);
+  if(reactAPI.props){
+    text = Object.keys(reactAPI.props).reduce((textProps, propRaw) => {
+      const prop = getProp(reactAPI.props, propRaw);
 
-    if (typeof prop.description === 'undefined') {
-      throw new Error(`The "${propRaw}"" property is missing a description`);
-    }
-
-    const description = generatePropDescription(prop.description, prop.flowType || prop.type);
-
-    if (description === null) {
-      return textProps;
-    }
-
-    let defaultValue = '';
-
-    if (prop.defaultValue) {
-      defaultValue = `<span class="prop-default">${escapeCell(
-        prop.defaultValue.value.replace(/\n/g, ''),
-      )}</span>`;
-    }
-
-    if (prop.required) {
-      propRaw = `<span class="prop-name required">${propRaw}\u00a0*</span>`;
-    } else {
-      propRaw = `<span class="prop-name">${propRaw}</span>`;
-    }
-
-    if (prop.type.name === 'custom') {
-      if (getDeprecatedInfo(prop.type)) {
-        propRaw = `~~${propRaw}~~`;
+      if (typeof prop.description === 'undefined') {
+        throw new Error(`The "${propRaw}"" property is missing a description`);
       }
-    }
 
-    textProps += `| ${propRaw} | <span class="prop-type">${generatePropType(
-      prop.type,
-    )} | ${defaultValue} | ${description} |\n`;
+      const description = generatePropDescription(prop.description, prop.flowType || prop.type);
 
-    return textProps;
-  }, text);
+      if (description === null) {
+        return textProps;
+      }
+
+      let defaultValue = '';
+
+      if (prop.defaultValue) {
+        defaultValue = `<span class="prop-default">${escapeCell(
+          prop.defaultValue.value.replace(/\n/g, ''),
+        )}</span>`;
+      }
+
+      if (prop.required) {
+        propRaw = `<span class="prop-name required">${propRaw}\u00a0*</span>`;
+      } else {
+        propRaw = `<span class="prop-name">${propRaw}</span>`;
+      }
+
+      if (prop.type.name === 'custom') {
+        if (getDeprecatedInfo(prop.type)) {
+          propRaw = `~~${propRaw}~~`;
+        }
+      }
+
+      textProps += `| ${propRaw} | <span class="prop-type">${generatePropType(
+        prop.type,
+      )} | ${defaultValue} | ${description} |\n`;
+
+      return textProps;
+    }, text);
+  }
 
   return text;
 }
@@ -220,7 +222,7 @@ function generateClasses(reactAPI) {
   if (!reactAPI.styles.classes.length) {
     return '';
   }
-
+  
   if (!reactAPI.styles.name) {
     throw new Error(`Missing styles name on ${reactAPI.name} component`);
   }

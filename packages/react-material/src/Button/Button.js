@@ -186,6 +186,7 @@ class CreateButton extends Component {
 
 CreateButton.propTypes = {
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'error', 'success', 'waring', 'progress']),
+  variant: PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab']),
 };
 CreateButton.defaultProps = {
   color: 'default',
@@ -194,4 +195,4 @@ CreateButton.defaultProps = {
 CreateButton.contextTypes = {
   resetActive: PropTypes.func
 };
-export default withStyles(styles)(CreateButton);
+export default withStyles(styles, { name: 'RMButton' })(CreateButton);

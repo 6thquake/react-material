@@ -8503,7 +8503,7 @@ react-dnd@^2.6.0:
     lodash "^4.2.0"
     prop-types "^15.5.10"
 
-react-docgen@^3.0.0-beta10:
+react-docgen@^3.0.0-beta12:
   version "3.0.0-beta9"
   resolved "http://registry.npm.release.ctripcorp.com/react-docgen/download/react-docgen-3.0.0-beta9.tgz#6be987e640786ecb10ce2dd22157a022c8285e95"
   dependencies:

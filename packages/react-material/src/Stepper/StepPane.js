@@ -128,4 +128,4 @@ StepPane.defaultProps = {
   disabled: false,
 };
 
-export default withStyles(styles, { withTheme: true })(StepPane);
+export default withStyles(styles, { withTheme: true, name: 'RMStepPane' })(StepPane);

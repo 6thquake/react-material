@@ -11,7 +11,4 @@ class Scrollbar extends Scrollbars {
 
 }
 
-
-// export default withStyles(styles)(Scrollbar);
-
 export default Scrollbar;

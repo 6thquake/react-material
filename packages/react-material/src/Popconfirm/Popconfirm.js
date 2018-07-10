@@ -124,4 +124,4 @@ Popconfirm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Popconfirm);
+export default withStyles(styles, { name: 'RMPopconfirm' })(Popconfirm);

@@ -163,4 +163,4 @@ class Carousel extends React.Component {
 }
 
 
-export default withStyles(styles)(Carousel);
+export default withStyles(styles, { name: 'RMCarousel' })(Carousel);

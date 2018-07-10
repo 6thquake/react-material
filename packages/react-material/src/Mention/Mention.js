@@ -287,4 +287,4 @@ class Mention extends Component {
   );
 }
 }
-export default withStyles(styles)(Mention);
+export default withStyles(styles, { name: 'RMMention' })(Mention);

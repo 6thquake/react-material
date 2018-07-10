@@ -79,4 +79,4 @@ class Modal extends Component {
         </Dialog>
     }
 }
-export default withStyles(styles)(Modal);
+export default withStyles(styles, { name: 'RMModal' })(Modal);

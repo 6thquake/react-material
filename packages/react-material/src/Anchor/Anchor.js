@@ -409,4 +409,4 @@ Anchor.defaultProps = {
   linkActiveStyle: {}
 }
 
-export default withStyles(styles)(Anchor)
+export default withStyles(styles, { name: 'RMAnchor' })(Anchor)

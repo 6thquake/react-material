@@ -126,5 +126,8 @@ class BackTop extends React.Component {
     }
 }
 
+BackTop.propTypes = {
+};
 
-export default withStyles(styles)(BackTop);
+export default withStyles(styles, { name: 'RMBackTop' })(BackTop);
+

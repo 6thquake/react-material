@@ -274,7 +274,7 @@ Grid.defaultProps = {
 }
 
 export default withStyles(styles, {
-  name: 'MuiGrid'
+  name: 'RMGrid'
 })(Grid)
 
 

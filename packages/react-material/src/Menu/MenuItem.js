@@ -37,4 +37,4 @@ class MenuItem extends React.Component{
 
 
 MenuItem.isMenuItem = true;
-export default withStyles(styles)(MenuItem);
+export default withStyles(styles, { name: 'RMMenuItem' })(MenuItem);

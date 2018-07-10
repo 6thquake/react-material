@@ -217,4 +217,4 @@ CascadeSelect.propTypes = {
   width: PropTypes.number
 }
 
-export default withStyles(styles)(CascadeSelect);
+export default withStyles(styles, { name: 'RMCascadeSelect' })(CascadeSelect);

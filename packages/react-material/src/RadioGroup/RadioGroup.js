@@ -115,7 +115,7 @@ RadioGroup.defaultProps = {
   formInputRef: React.createRef()
 };
 
-const FormComponent = compose(withFormsy, withFormItem, withStyles(style))(RadioGroup);
+const FormComponent = compose(withFormsy, withFormItem, withStyles(style, { name: 'RMRadioGroup' }))(RadioGroup);
 
 class C extends Component {
   getChildContext() {

@@ -335,4 +335,4 @@ class Pagination extends Component {
   }
 }
 Pagination = withLocale({name:'Pagination'})(Pagination);
-export default withStyles(styles)(Pagination);
+export default withStyles(styles, { name: 'RMPagination' })(Pagination);

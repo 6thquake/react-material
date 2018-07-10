@@ -184,5 +184,5 @@ class UploadDrag extends Component{
 }
 
 let c = DragDropContext(HTML5Backend)(UploadDrag)
-export default withStyles(styles)(c);
+export default withStyles(styles, { name: 'RMUploadDrag' })(c);
 

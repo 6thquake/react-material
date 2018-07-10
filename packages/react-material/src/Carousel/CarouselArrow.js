@@ -51,4 +51,4 @@ class CarouselArrow extends React.Component {
 }
 
 
-export default withStyles(styles)(CarouselArrow);
+export default withStyles(styles, { name: 'RMCarouselArrow' })(CarouselArrow);

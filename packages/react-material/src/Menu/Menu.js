@@ -196,6 +196,6 @@ Menu.contextTypes = {
 export {
   SubMenu, Item, ItemGroup
 }
-export default withStyles(styles)(Menu);
+export default withStyles(styles, { name: 'RMMenu' })(Menu);
 //前缀
 

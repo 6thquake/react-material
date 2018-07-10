@@ -127,4 +127,4 @@ class Tag extends Component {
     }
 }
 
-export default withStyles(styles)(Tag);
+export default withStyles(styles, { name: 'RMTag' })(Tag);

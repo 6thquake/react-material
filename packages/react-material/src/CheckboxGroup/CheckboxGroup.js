@@ -107,13 +107,18 @@ CheckboxGroup.displayName = 'CheckboxGroup';
 
 CheckboxGroup.propTypes = {
   classes: PropTypes.object.isRequired,
-  ...propTypes
+  // ...propTypes
 };
 
 CheckboxGroup.defaultProps = {
   formInputRef: React.createRef()
 };
 
-const FormComponent = compose(withFormsy, withFormItem, withStyles(style))(CheckboxGroup);
+const FormComponent = compose(withFormsy, withFormItem, withStyles(style, { name: 'RMCheckboxGroup' }))(CheckboxGroup);
 
 export default compose(withForm)(FormComponent, CheckboxGroupStandalone);
+
+/**
+ * @ignore - do not document.
+ */
+

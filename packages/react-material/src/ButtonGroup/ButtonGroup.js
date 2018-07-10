@@ -150,4 +150,4 @@ Group.defaultProps = {
   size: 'medium'
 };
 
-export default withStyles(styles)(Group);
+export default withStyles(styles, { name: 'RMButtonGroup' })(Group);

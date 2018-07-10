@@ -87,4 +87,4 @@ class Breadcrumb extends React.Component {
 }
 
 
-export default withStyles(styles)(Breadcrumb);
+export default withStyles(styles, { name: 'RMBreadcrumb' })(Breadcrumb);

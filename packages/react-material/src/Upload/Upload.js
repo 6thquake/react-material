@@ -135,5 +135,5 @@ class Upload extends Component{
 }
 
 
-export default withStyles(styles)(Upload);
+export default withStyles(styles, { name: 'RMUpload' })(Upload);
 

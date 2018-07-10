@@ -344,7 +344,7 @@ function makeRenderer(opts = {}) {
     tableOptions: PropTypes.object
   });
 
-  return withStyles(styles)(TableRenderer);
+  return withStyles(styles, { name: 'RMTableRenderer' })(TableRenderer);
 }
 
 class TSVExportRenderer extends React.PureComponent {

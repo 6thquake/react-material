@@ -92,5 +92,5 @@ class UploadImg extends Component{
     }
 }
 
-export default withStyles(styles)(UploadImg);
+export default withStyles(styles, { name: 'RMUploadImg' })(UploadImg);
 		

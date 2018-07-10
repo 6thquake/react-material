@@ -143,4 +143,4 @@ class _DragSouce extends Component {
 
 const _mc = DropTargetBase('DRAGANDDROP', _target, _dropCollect)(_DragSouce);
 const DragSouce = DragSourceBase('DRAGANDDROP', _source, _dragCollect)(_mc);
-export default withStyles(styles)(DragSouce);
+export default withStyles(styles, { name: 'RMDragSouce' })(DragSouce);

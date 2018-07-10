@@ -130,5 +130,5 @@ class Tree extends React.Component {
 //   filterTreeNode: (node) => false
 // };
 // console.log(styles)
-export default withStyles(styles)(Tree);
+export default withStyles(styles, { name: 'RMTree' })(Tree);
 

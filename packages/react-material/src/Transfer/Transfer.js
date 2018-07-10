@@ -368,4 +368,4 @@ class Transfer extends React.Component {
   }
 }
 
-export default withStyles(styles)(Transfer);
+export default withStyles(styles, { name: 'RMTransfer' })(Transfer);

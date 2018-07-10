@@ -179,6 +179,20 @@ Menu.Divider = Divider;
 Menu.Item = Item;
 Menu.SubMenu = SubMenu;
 Menu.ItemGroup = ItemGroup;
+Menu.propTypes = {
+  /**
+   *
+   */
+  prefixCls: PropTypes.string,
+  /**
+   *
+   */
+  className: PropTypes.string,
+  /**
+   *
+   */
+  theme: PropTypes.oneOf(['light', 'dark'])
+};
 Menu.defaultProps = {
   prefixCls: menuPrefixCls,
   className: '',

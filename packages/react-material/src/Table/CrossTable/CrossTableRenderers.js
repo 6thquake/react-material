@@ -397,3 +397,8 @@ export default {
   'Table Row Heatmap': makeRenderer({heatmapMode: 'row'}),
   'Exportable TSV': TSVExportRenderer,
 };
+
+/**
+ * @ignore - do not document.
+ */
+

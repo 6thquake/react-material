@@ -262,3 +262,8 @@ let Panel = DropTarget(['DRAGANDDROP'], boxTarget, (connect,monitor) => {
 }})(_Panel);
 
 export default withStyles(styles, { name: 'RMPanel' })(withDragAndDrop()(Panel));
+
+/**
+ * @ignore - do not document.
+ */
+

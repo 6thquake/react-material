@@ -94,3 +94,8 @@ TextField.defaultProps = {};
 const FormComponent = compose(withFormsy, withFormItem, withStyles(style, { name: 'RMTextField' }))(TextField);
 
 export default compose(withForm)(FormComponent, TextFieldStandalone);
+
+/**
+ * @ignore - do not document.
+ */
+

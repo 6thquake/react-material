@@ -111,7 +111,6 @@ class Popconfirm extends React.Component {
               type={type}
               size={size}
             >
-
             </PopoverContent>
           </div>
         </Popover>
@@ -122,6 +121,16 @@ class Popconfirm extends React.Component {
 
 Popconfirm.propTypes = {
   classes: PropTypes.object.isRequired,
+
+  anchorOrigin: PropTypes.shape({
+    vertical: PropTypes.oneOf(['top', 'center', 'bottom']),
+    horizontal: PropTypes.oneOf(['left', 'center', 'right']),
+  }),
+
+  transformOrigin: PropTypes.shape({
+    vertical: PropTypes.oneOf(['top', 'center', 'bottom']),
+    horizontal: PropTypes.oneOf(['left', 'center', 'right']),
+  }),
 };
 
 export default withStyles(styles, { name: 'RMPopconfirm' })(Popconfirm);

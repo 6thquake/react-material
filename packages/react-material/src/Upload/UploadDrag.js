@@ -62,6 +62,11 @@ const styles = theme => ({
 });
 
 class UploadDrag extends Component{
+    static propTypes = {
+        acceptType : PropTypes.string,
+        multiple : PropTypes.bool,
+        disabled : PropTypes.bool,
+    };
     static defaultProps = {
         acceptType : "*",
         multiple : true,
@@ -185,4 +190,7 @@ class UploadDrag extends Component{
 
 let c = DragDropContext(HTML5Backend)(UploadDrag)
 export default withStyles(styles, { name: 'RMUploadDrag' })(c);
+/**
+ * @ignore - do not document.
+ */
 

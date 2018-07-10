@@ -27,11 +27,16 @@ const styles = theme => ({
 });
 
 class UploadBasic extends Component{
+    static propTypes = {
+        acceptType : PropTypes.string,
+        multiple : PropTypes.bool,
+        disabled : PropTypes.bool,
+    };
     static defaultProps = {
         acceptType : "*",
         multiple : true,
         disabled : false
-    }
+    };
     constructor(props){
         super(props);
         this.state = {

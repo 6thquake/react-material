@@ -811,3 +811,8 @@ export {
   sortAs,
   CrossTableData,
 };
+
+/**
+ * @ignore - do not document.
+ */
+

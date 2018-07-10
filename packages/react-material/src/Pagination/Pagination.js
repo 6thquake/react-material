@@ -334,5 +334,4 @@ class Pagination extends Component {
       return this.createPage();
   }
 }
-Pagination = withLocale({name:'Pagination'})(Pagination);
-export default withStyles(styles, { name: 'RMPagination' })(Pagination);
+export default withStyles(styles, { name: 'RMPagination' })(withLocale({name:'Pagination'})(Pagination));

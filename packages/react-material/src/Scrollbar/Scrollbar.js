@@ -12,3 +12,7 @@ class Scrollbar extends Scrollbars {
 }
 
 export default Scrollbar;
+
+/**
+ * @ignore - do not document.
+ */

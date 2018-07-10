@@ -99,11 +99,11 @@ class Mention extends Component {
     /**
      * 用于设置触发符号
      */
-    triggerOptions: PropTypes.oneOfType(PropTypes.string, PropTypes.array),
+    triggerOptions: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     /**
      * 用于设置可选项目
      */
-    dataSource: PropTypes.oneOfType(PropTypes.object, PropTypes.array),
+    dataSource: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     /**
      * 外部传入数据是否出错
      */
@@ -111,7 +111,11 @@ class Mention extends Component {
     /**
      * 初始的选中值
      */
-    selected:PropTypes.array
+    selected:PropTypes.array,
+    /**
+     * 是否只读
+     */
+    readOnly: PropTypes.bool
   };
   static defaultProps = {
     inputChangeCb: function () {
@@ -255,36 +259,37 @@ class Mention extends Component {
           'data-value': child.props.value, // Instead, we provide it as a data attribute.
         });
       });
-  }  return (
-    <div className={classes.root}>
-      {open?
-        <div
-          onClick={this.handleBlur.bind(this)}
-          className={classes.modal}>
-        </div>:null}
-        <div className={classes.container}>
-          <TextField
-              disabled={disabled}
-              className={classes.textarea}
-              onChange={throttling(this.handleChange).bind(this)}
-              value={inputValue}
-              placeholder={placeHold}
-              error={showError}
-            />
-          {open? (
-            <Paper className={classes.paper} square>
-              {items.slice(total==0?total:(currentPage-1)*pageSize,currentPage*pageSize>total?total
-              :currentPage*pageSize)}
-              <Divider/>
-                <Pagination
-                  {...this.state.pageConfig}
-                  pageCallbackFn ={this.pageChangeCb.bind(this)}
-                />
-            </Paper>
-          ) : null}
-        </div>
-    </div>
-  );
-}
+    }  
+    return (
+      <div className={classes.root}>
+        {open?
+          <div
+            onClick={this.handleBlur.bind(this)}
+            className={classes.modal}>
+          </div>:null}
+          <div className={classes.container}>
+            <TextField
+                disabled={disabled}
+                className={classes.textarea}
+                onChange={throttling(this.handleChange).bind(this)}
+                value={inputValue}
+                placeholder={placeHold}
+                error={showError}
+              />
+            {open? (
+              <Paper className={classes.paper} square>
+                {items.slice(total==0?total:(currentPage-1)*pageSize,currentPage*pageSize>total?total
+                :currentPage*pageSize)}
+                <Divider/>
+                  <Pagination
+                    {...this.state.pageConfig}
+                    pageCallbackFn ={this.pageChangeCb.bind(this)}
+                  />
+              </Paper>
+            ) : null}
+          </div>
+      </div>
+    );
+  }
 }
 export default withStyles(styles, { name: 'RMMention' })(Mention);

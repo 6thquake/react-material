@@ -44,18 +44,25 @@ const styles = theme => ({
 
 
 class Upload extends Component{
+    static propTypes = {
+        acceptType : PropTypes.string,
+        multiple : PropTypes.bool,
+        disabled : PropTypes.bool,
+    };
+
     static defaultProps = {
         acceptType : "*",
         multiple : true,
-        disabled : false
-    }
+        disabled : false,
+    };
+
     constructor(props){
         super(props);
         this.state = {
             path: [],
             data: [],
         }
-    }
+    };
 
     handleDelete = item => () => {
         const path = [...this.state.path];

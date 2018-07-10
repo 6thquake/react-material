@@ -114,11 +114,11 @@ class Pagination extends Component {
     /**
      * This is total count of pagination
      */
-    total: PropTypes.number.isRequired,
+    total: PropTypes.number,
     /**
      * This is call current page back to parent component
      */
-    pageCallbackFn: PropTypes.func.isRequired,
+    pageCallbackFn: PropTypes.func,
     /**
      * Callback fired when the number of rows per page is changed.
      */
@@ -136,7 +136,7 @@ class Pagination extends Component {
      */
     showSizeChanger: PropTypes.bool,
     /**
-     * show jump to xx page.
+     * show quick jumper ,jump to xx page.
      */
     showQuickJumper: PropTypes.bool,
     /**

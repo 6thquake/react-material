@@ -18,13 +18,13 @@ filename: /packages/react-material/src/Pagination/Pagination.js
 | <span class="prop-name">currentPage</span> | <span class="prop-type">number | <span class="prop-default">1</span> | The zero-based index of the current page. |
 | <span class="prop-name">pageSize</span> | <span class="prop-type">number | <span class="prop-default">5</span> | This is page size of pagination |
 | <span class="prop-name">labelDisplayedRows</span> | <span class="prop-type">func | <span class="prop-default">({ from, to, total }) => `${from}-${to} of ${total}`</span> | Customize the displayed rows label. |
-| <span class="prop-name required">total *</span> | <span class="prop-type">number | <span class="prop-default">0</span> | This is total count of pagination |
-| <span class="prop-name required">pageCallbackFn *</span> | <span class="prop-type">func |  | This is call current page back to parent component |
+| <span class="prop-name">total</span> | <span class="prop-type">number | <span class="prop-default">0</span> | This is total count of pagination |
+| <span class="prop-name">pageCallbackFn</span> | <span class="prop-type">func |  | This is call current page back to parent component |
 | <span class="prop-name">onChangeRowsPerPage</span> | <span class="prop-type">func |  | Callback fired when the number of rows per page is changed. |
 | <span class="prop-name">labelRowsPerPage</span> | <span class="prop-type">node | <span class="prop-default">'Rows per page:'</span> | Useful to customize the rows per page label. Invoked with a { from, to, count, page } object. |
 | <span class="prop-name">rowsPerPageOptions</span> | <span class="prop-type">array | <span class="prop-default">[5, 10, 25]</span> | Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. |
 | <span class="prop-name">showSizeChanger</span> | <span class="prop-type">bool |  | show page size option. |
-| <span class="prop-name">showQuickJumper</span> | <span class="prop-type">bool |  | show jump to xx page. |
+| <span class="prop-name">showQuickJumper</span> | <span class="prop-type">bool |  | show quick jumper ,jump to xx page. |
 | <span class="prop-name">showTwoEnds</span> | <span class="prop-type">bool |  | show jump to first and last page button. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

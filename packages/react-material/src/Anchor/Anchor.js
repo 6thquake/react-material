@@ -19,8 +19,6 @@ const styles = (theme) => ({
     position: 'relative',
     display: 'flex',
     overflow: 'hidden',
-    // backgroundColor: theme.palette.common.white,
-    // zIndex: 999,
     width: '100%'
   }, 
 
@@ -57,7 +55,7 @@ const styles = (theme) => ({
     zIndex: 1,
     width: '100%',
     right: 0,
-    height: 40,
+    // height: 40,
     left: -2
   },
 
@@ -125,7 +123,8 @@ const throttling = (fn, wait, maxTimelong) =>{
 
 class Anchor extends React.Component {
   state = {
-    linkHigth: 10,
+    linkToTop: 10,
+    linkHeight:40,
     links: {},
     active: '',
   }
@@ -135,7 +134,7 @@ class Anchor extends React.Component {
   componentDidMount() {
     let sel = this.props.container 
     this.container = document.querySelector(sel) || window
-    this.ths = throttling(this.scrollHandle)
+    this.ths = throttling(this.scrollHandle, 5, 20)
     this.container.addEventListener('scroll', this.ths)
     this.setLinks(this.props.links)
   }
@@ -147,27 +146,41 @@ class Anchor extends React.Component {
     this.setLinks(links)
   }
 
-  setLink = (link)=> {
-    var sel = link.href;
+  // find the nearest link to the contianer
+  nearestLink = (links) => {
+    let min = {
+      key: '',
+      value: Infinity
+    }
+    for(let link of links){
+      let sel = link.href
     let ele = document.querySelector(sel)
-    let dh = ele ? this.getOffsetTop(ele, this.container) : 0
-    let rect = ele? ele.getBoundingClientRect() : 0
-    // 这里确定了是否高亮某一个 link
-    let existed =  false
-    if (link.children) {
-      existed = this.setLinks(link.children)
-    }
-    if (!existed && dh <= 150 && dh >= -rect.height / 2) {
-      return this.changeActiveLink(sel)
-    }
-  }
+      let dh = ele ? this.getOffsetTop(ele, this.container) : Infinity
+      if(dh > 50 && sel === this.props.links[0].href){
+        sel = ''
+      }
+      let absDh = Math.abs(dh)
+      if (absDh < min.value) {
 
+        min = {
+          key: sel,
+          value: absDh
+        }
+      }
+      if(link.children){
+        let m = this.nearestLink(link.children)
+        if(m.value < min.value){
+          min = m
+        }
+    }
+    }
+    return min
+  }
   // 激活高亮选项
   changeActiveLink = (sel) => {
     let {
       onChange,
     } = this.props
-    // let flag = true
     if (this.state.active !== sel) {
       let dir = this.scrollDirection(this.state.active, sel)
       onChange && onChange({
@@ -188,8 +201,11 @@ class Anchor extends React.Component {
   }
   // 计算滚动条的滚动方向
   scrollDirection = (pre, cur) => {
-    if(!pre || !cur){
-      return ''
+    if(pre === ''){
+      return 'down'
+    }
+    if(cur === ''){
+      return 'up'
     }
     let preHeight = document.querySelector(pre).getBoundingClientRect().top
     let curHeight = document.querySelector(cur).getBoundingClientRect().top
@@ -213,18 +229,18 @@ class Anchor extends React.Component {
           break
         }
       }
-      let h = target && this.getOffsetTop(target, this.wrapper)
+      let top = target && this.getOffsetTop(target, this.wrapper)
+      let height = target && target.getBoundingClientRect().height
       this.setState({
-        linkHigth: h,
+        linkToTop: top,
+        linkHeight: height,
       })
     }
   }
 
   setLinks(links){
-    let result =  links.some((link, index)=> {
-      return this.setLink(links[index])
-    })
-    return result
+    let nearestLink = this.nearestLink(links)
+    this.changeActiveLink(nearestLink.key)
   }
 
   // 找到子元素在父元素中的相对位置
@@ -235,7 +251,7 @@ class Anchor extends React.Component {
       return eleRectTop - container.clientTop;
     }
     let containerRectTop = container.getBoundingClientRect().top
-    return eleRectTop - containerRectTop
+    return (eleRectTop - containerRectTop)
   }
 
   handleLinkClick = (index)=>(e) => {
@@ -350,9 +366,14 @@ class Anchor extends React.Component {
       style,
       orientation
     } = this.props
-    
+    const {
+      active,
+      linkToTop,
+      linkHeight
+    } = this.state
     const maskStyle  = {
-      top: this.state.linkHigth
+      top: linkToTop,
+      height: linkHeight
     }
     
     return (
@@ -360,7 +381,7 @@ class Anchor extends React.Component {
       <div className={classes.box} style={style}>
         <div className={classes.line}></div>
         <div ref={this.setRef} className={classes.wrapper}>
-          <div className={classes.activeMask} style={maskStyle}></div>
+          {active && <div className={classes.activeMask} style={maskStyle}></div>}
           <div className={classes.anchorWrapper}>
             {
               this.renderLinks(links)

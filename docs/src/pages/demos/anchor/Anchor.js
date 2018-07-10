@@ -204,7 +204,16 @@ class App extends React.Component {
             spacing={16}
             >
             <Grid item xs>
-              <Paper ref={(node) => { this.container = node; }} id={'t-box'} className={classes.tBox}>
+              <Paper id={'t-box'} className={classes.tBox}>
+                <p style={p}>
+                  <a style={a} ></a>
+                  <a style={a} ></a>
+                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
+                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
+                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
+                </p>
+                <Divider />
+
                 <p id="a1" style={p}>
                   <a style={a} href="#a1">1</a>
                   The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.

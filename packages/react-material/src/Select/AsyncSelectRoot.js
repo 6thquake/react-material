@@ -1,13 +1,14 @@
 // @inheritedComponent Input
-
+/**
+ * @ignore - internal component.
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from './SelectInput';
-import { withStyles,mergeClasses} from '../styles';
+import { withStyles, mergeClasses } from '../styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Input from '../Input';
-
-function Select2(props) {
+function AsyncSelectRoot(props) {
   const {
     autoWidth,
     children,
@@ -21,6 +22,8 @@ function Select2(props) {
     onClose,
     onOpen,
     open,
+    comparison,
+    readOnly,
     renderValue,
     SelectDisplayProps,
     ...other
@@ -38,22 +41,24 @@ function Select2(props) {
       IconComponent,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
       ...{
-            autoWidth,
-            displayEmpty,
-            MenuProps,
-            multiple,
-            onClose,
-            onOpen,
-            open,
-            renderValue,
-            SelectDisplayProps,
-          },
+        autoWidth,
+        displayEmpty,
+        MenuProps,
+        multiple,
+        onClose,
+        onOpen,
+        open,
+        comparison,
+        readOnly,
+        renderValue,
+        SelectDisplayProps,
+      },
       ...inputProps,
       classes: inputProps
         ? mergeClasses({
             baseClasses: classes,
             newClasses: inputProps.classes,
-            Component: Select2,
+            Component: AsyncSelectRoot,
           })
         : classes,
       ...(input ? input.props.inputProps : {}),
@@ -62,7 +67,7 @@ function Select2(props) {
   });
 }
 
-Select2.propTypes = {
+AsyncSelectRoot.propTypes = {
   /**
    * If true, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -155,11 +160,12 @@ Select2.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    PropTypes.object,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number])),
   ]),
 };
 
-Select2.defaultProps = {
+AsyncSelectRoot.defaultProps = {
   autoWidth: false,
   displayEmpty: false,
   IconComponent: ArrowDropDownIcon,
@@ -168,6 +174,6 @@ Select2.defaultProps = {
   native: false,
 };
 
-Select2.muiName = 'Select2';
+AsyncSelectRoot.muiName = 'AsyncSelectRoot';
 
-export default withStyles( { name: 'MuiSelect' })(Select2);
+export default withStyles({ name: 'MuiAsyncSelectRoot' })(AsyncSelectRoot);

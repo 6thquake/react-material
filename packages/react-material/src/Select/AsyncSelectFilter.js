@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '../styles';
+/**
+ * @ignore - internal component.
+ */
 const styles = theme => ({
   root: {
     width: '100%',
   },
   input: {
-    paddingLeft: '10px',
+    padding: '10px',
+    minWidth: '200px',
   },
 });
 class AsyncSelectFilter extends Component {
-  componentDidMount() {
-    // let _x = document.getElementById('menu-').getElementsByTagName('input')[0];
-    // _x.addEventListener("click", function(e){
-    //     e.stopPropagation();
-    // });
-  }
   render() {
-    const { placeholder, onChange, classes } = this.props;
+    const { text, placeholder, onChange, classes } = this.props;
     return (
       <TextField
         autoFocus={true}
+        value={text}
         placeholder={placeholder}
         onChange={onChange}
         className={classes.root}

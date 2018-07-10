@@ -3,14 +3,43 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import Menu from '../Menu';
+import { withStyles } from '../styles';
 /**
  * @ignore - internal component.
  */
+const styles = theme => ({
+  root: {
+    postion: 'relative',
+  },
+  icon: {
+    top: 'calc(50% - 12px)',
+    right: 0,
+    color: 'rgba(0, 0, 0, 0.54)',
+    position: 'absolute',
+    pointerEvents: 'none',
+  },
+  selectMenu: {
+    width: 'auto',
+    overflow: 'hidden',
+    minHeight: '1.1875em',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+  },
+  select: {
+    width: 'calc(100% - 32px)',
+    cursor: 'pointer',
+    minWidth: '16px',
+    userSelect: 'none',
+    paddingRight: '32px',
+    '-moz-appearance': 'none',
+    '-webkit-appearance': 'none',
+  },
+});
 function hasValue(value) {
   return value != null && !(Array.isArray(value) && value.length === 0);
 }
 
- function isFilled(obj, SSR = false) {
+function isFilled(obj, SSR = false) {
   return (
     obj &&
     ((hasValue(obj.value) && obj.value !== '') ||
@@ -27,13 +56,8 @@ class SelectInput extends React.Component {
   state = {
     menuMinWidth: null,
     open: false,
-    childrenlast:[]
   };
-  componentWillReceiveProps(props){
-    this.setState({
-      childrenlast:[...this,this.state.childrenlast,...props.children]
-    })
-  };
+
   componentDidMount() {
     if (this.isOpenControlled && this.props.open) {
       // Focus the display node so the focus is restored on this element once
@@ -49,14 +73,14 @@ class SelectInput extends React.Component {
   }
 
   update = ({ event, open }) => {
-    if (this.isOpenControlled) {
-      if (open) {
-        this.props.onOpen(event);
-      } else {
-        this.props.onClose(event);
-      }
-      return;
+    //if (this.isOpenControlled) {//受控的才會触发onOpen、onClose
+    if (open) {
+      this.props.onOpen && this.props.onOpen(event);
+    } else {
+      this.props.onClose && this.props.onClose(event);
     }
+    // return;
+    // }
 
     this.setState({
       // Perfom the layout computation outside of the render method.
@@ -82,7 +106,6 @@ class SelectInput extends React.Component {
   };
 
   handleItemClick = child => event => {
-    console.log('wewqeqwe',event.target.getAttribute('data-name'));
     if (!this.props.multiple) {
       this.update({
         open: false,
@@ -198,13 +221,12 @@ class SelectInput extends React.Component {
       tabIndex: tabIndexProp,
       type = 'hidden',
       value,
+      comparison,
       ...other
     } = this.props;
-    const {childrenlast} = this.state;
     const open = this.isOpenControlled && this.displayNode ? openProp : this.state.open;
 
     delete other['aria-invalid'];
-
     let display;
     let displaySingle = '';
     const displayMultiple = [];
@@ -212,55 +234,37 @@ class SelectInput extends React.Component {
 
     // No need to display any value if the field is empty.
     if (isFilled(this.props) || displayEmpty) {
-      let d=[];
       if (renderValue) {
-        children.map((child,index)=>{
-          if (React.isValidElement(child)) {
-            return null;
-          }
-          console.log('ok',child,value);
-          child.map(item=>{
-              if(typeof value ==='string'){
-                   if(value===item.props.value){
-                     d=item.key;
-                     console.log('value',d)
-                   }
-              }
-              if(typeof value ==='object'){
-                value.map(n=>{
-                  if(n===item.props.value){
-                    d.push(item.key);
-                  }
-                })
-              }
-          })
-        });
-        display = renderValue(d);
+        display = renderValue(value);
       } else {
         computeDisplay = true;
       }
     }
-
     const items = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {
         return null;
       }
       let selected;
-      // console.log('child',child);
       if (multiple) {
         if (!Array.isArray(value)) {
           throw new Error(
-            'Material-UI: the `value` property must be an array ' +
+            'React-Material: the `value` property must be an array ' +
               'when using the `Select` component with `multiple`.',
           );
         }
-
-        selected = value.indexOf(child.props.value) !== -1;
+        for (let i = 0; i < value.length; i++) {
+          if (child.props.value && comparison(child.props.value, value[i])) {
+            selected = true;
+            break;
+          }
+        }
         if (selected && computeDisplay) {
           displayMultiple.push(child.props.children);
         }
       } else {
-        selected = value === child.props.value;
+        if (child.props.value && comparison(child.props.value, value)) {
+          selected = true;
+        }
         if (selected && computeDisplay) {
           displaySingle = child.props.children;
         }
@@ -271,7 +275,7 @@ class SelectInput extends React.Component {
         selected,
         value: undefined, // The value is most likely not a valid HTML attribute.
         'data-value': child.props.value, // Instead, we provide it as a data attribute.
-        'data-name':child.props.children,
+        'data-name': child.props.children,
       });
     });
 
@@ -324,7 +328,6 @@ class SelectInput extends React.Component {
         <input
           value={Array.isArray(value) ? value.join(',') : value}
           name={name}
-          style={{display:'inline-block'}}
           ref={this.handleInputRef}
           type={type}
           {...other}
@@ -474,8 +477,8 @@ SelectInput.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    PropTypes.object,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object])),
   ]).isRequired,
 };
-export default SelectInput;
-
+export default withStyles(styles)(SelectInput);

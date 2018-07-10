@@ -96,8 +96,8 @@ class AutoComplete extends Component {
       pageSize: 5,
       total: 0,
     },
-    placeholder:'please input something',
-    multiple:false,
+    placeholder: 'please input something',
+    multiple: false,
     disabled: false,
   };
   constructor() {
@@ -206,8 +206,19 @@ class AutoComplete extends Component {
     }
   }
   render() {
-    const {pageConfig,pageChangeCb,classes,placeholder ,children,multiple,value,dataSource,keyValue,disabled} = this.props;
-    const {open,inputValue} = this.state;
+    const {
+      pageConfig,
+      pageChangeCb,
+      classes,
+      placeholder,
+      children,
+      multiple,
+      value,
+      dataSource,
+      keyValue,
+      disabled,
+    } = this.props;
+    const { open, inputValue } = this.state;
     let items;
     if (dataSource) {
       items = dataSource
@@ -294,53 +305,30 @@ class AutoComplete extends Component {
     }
     return (
       <div className={classes.root}>
-        {open?
-          <div
-            onClick={this.handleBlur}
-            className={classes.modal}>
-          </div>:null}
-          <div className={classes.container}>
-            {multiple?
-              <TextField
-                disabled={disabled}
-                className={classes.textarea}
-                onChange={this.handleChange.bind(this)}
-                value={inputValue}
-                multiline
-                rows='1'
-                InputProps={{
-                  classes: {
-                    root: classes.inputRoot,
-                    input:classes.inputHold
-                  },
-                  startAdornment:value.map(item => (
-                    <Chip
-                      key={item}
-                      label={item}
-                      className={classes.chip}
-                      onDelete={this.handleDelete(item)}
-                    />
-                  )),
-                  placeholder:value.length>0?'':placeholder
-                }}
-            />: <TextField
-                disabled={disabled}
-                className={classes.textarea}
-                onChange={this.handleChange.bind(this)}
-                value={inputValue}
-                placeholder={placeholder}
-              />}
-            {open? (
-              <Paper className={classes.paper} square>
-                {items}
-                <Divider/>
-                  <Pagination
-                    {...pageConfig}
-                    pageCallbackFn ={pageChangeCb}
->
+        {open ? <div onClick={this.handleBlur} className={classes.modal} /> : null}
+        <div className={classes.container}>
+          {multiple ? (
+            <TextField
+              disabled={disabled}
+              className={classes.textarea}
+              onChange={this.handleChange.bind(this)}
+              value={inputValue}
+              multiline
+              rows="1"
+              InputProps={{
+                classes: {
+                  root: classes.inputRoot,
+                  input: classes.inputHold,
+                },
+                startAdornment: value.map(item => (
+                  <Chip
+                    key={item}
+                    label={item}
+                    className={classes.chip}
+                    onDelete={this.handleDelete(item)}
                   />
                 )),
-                placeholder: value.length > 0 ? '' : placeHold,
+                placeholder: value.length > 0 ? '' : placeholder,
               }}
             />
           ) : (
@@ -349,7 +337,7 @@ class AutoComplete extends Component {
               className={classes.textarea}
               onChange={this.handleChange.bind(this)}
               value={inputValue}
-              placeholder={placeHold}
+              placeholder={placeholder}
             />
           )}
           {open ? (

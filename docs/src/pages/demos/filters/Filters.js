@@ -12,15 +12,15 @@ import Filters from 'react-material/Filters';
 
 const style = theme => ({
   mt: {
-    marginTop: theme.spacing.unit * 3
-  }
+    marginTop: theme.spacing.unit * 3,
+  },
 });
 
 function createData(label, value) {
   return {
     label,
-    value
-  }
+    value,
+  };
 }
 
 class FiltersDemo extends Component {
@@ -45,14 +45,14 @@ class FiltersDemo extends Component {
     spacing: 8,
   };
 
-  onChange = (value) => {
+  onChange = value => {
     this.setState({
-      value
-    })
+      value,
+    });
   };
 
-  handleChange = (event) => {
-    const {value} = event.target;
+  handleChange = event => {
+    const { value } = event.target;
     this.setState({
       radio: value,
       multi: value === '2',
@@ -60,15 +60,15 @@ class FiltersDemo extends Component {
     });
   };
 
-  selectChange = (event) => {
+  selectChange = event => {
     this.setState({
-      spacing: event.target.value
-    })
+      spacing: event.target.value,
+    });
   };
 
   render() {
-    const {classes} = this.props;
-    const {label, multi, options, value, radio, spacing} = this.state;
+    const { classes } = this.props;
+    const { label, multi, options, value, radio, spacing } = this.state;
     const selected = JSON.stringify(value);
     return (
       <div>
@@ -88,13 +88,9 @@ class FiltersDemo extends Component {
             <MenuItem value={24}>24</MenuItem>
           </Select>
         </FormControl>
-        <RadioGroup
-          row
-          value={radio}
-          onChange={this.handleChange}
-        >
-          <FormControlLabel value={'1'} control={<Radio/>} label="单选"/>
-          <FormControlLabel value={'2'} control={<Radio/>} label="多选"/>
+        <RadioGroup row value={radio} onChange={this.handleChange}>
+          <FormControlLabel value={'1'} control={<Radio />} label="单选" />
+          <FormControlLabel value={'2'} control={<Radio />} label="多选" />
         </RadioGroup>
         <div className={classes.mt}>
           <Filters
@@ -107,7 +103,7 @@ class FiltersDemo extends Component {
             onChange={this.onChange}
           />
         </div>
-        <div className={classes.mt} style={{background:'#3fa4f6'}}>
+        <div className={classes.mt} style={{ background: '#3fa4f6' }}>
           <Filters
             label={label}
             multi={multi}
@@ -117,16 +113,14 @@ class FiltersDemo extends Component {
             onChange={this.onChange}
           />
         </div>
-        <div className={classes.mt}>
-          selected values:{selected}
-        </div>
+        <div className={classes.mt}>selected values:{selected}</div>
       </div>
-    )
+    );
   }
 }
 
 FiltersDemo.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 FiltersDemo.defaultProps = {};

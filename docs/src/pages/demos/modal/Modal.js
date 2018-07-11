@@ -1,5 +1,5 @@
-import React , { Component } from 'react';
-import Modal, { Modal2, ModalManager }  from 'react-material/Modal';
+import React, { Component } from 'react';
+import Modal, { Modal2, ModalManager } from 'react-material/Modal';
 import Button from 'react-material/Button';
 import { withStyles } from 'react-material/styles';
 import DialogActions from 'react-material/DialogActions';
@@ -16,56 +16,55 @@ const styles = theme => ({
   box: {
     marginBottom: theme.spacing.unit * 6,
   },
-  paperWidthSm:{
-    minWidth:1000
-  }
+  paperWidthSm: {
+    minWidth: 1000,
+  },
 });
 
 class App extends Component {
-  constructor(props){
-   super(props);
-   this.state = {
-     open: false,
-     animation:'zoom'
-   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      animation: 'zoom',
+    };
   }
 
-  handleChange =(event, value) => {
-   console.log(value);
-   this.setState({
-     animation: value,
-   });
+  handleChange = (event, value) => {
+    console.log(value);
+    this.setState({
+      animation: value,
+    });
   };
 
   handleOpen = () => {
     this.setState({ open: true });
   };
 
-  handleClose(){
+  handleClose() {
     this.setState({ open: false });
-  };
+  }
 
   render() {
     const { classes } = this.props;
-    let { open, animation, ...other} = this.state;
+    let { open, animation, ...other } = this.state;
     return (
       <div>
         <Button onClick={this.handleOpen}>Open Modal</Button>
         <Modal2
           classes={{
-              paperWidthSm:
-              classes.paperWidthSm
-            }}
-            open={this.state.open}
-             onClose={this.handleClose.bind(this)}
-             label={'this is a modal test'}
-             animation={this.state.animation}
+            paperWidthSm: classes.paperWidthSm,
+          }}
+          open={this.state.open}
+          onClose={this.handleClose.bind(this)}
+          label={'this is a modal test'}
+          animation={this.state.animation}
         >
           <div>
             <DialogContent>
               <DialogContentText>
-                Let Google help apps determine location. This means sending anonymous location data to
-                Google, even when no apps are running.
+                Let Google help apps determine location. This means sending anonymous location data
+                to Google, even when no apps are running.
               </DialogContentText>
             </DialogContent>
             <DialogActions>

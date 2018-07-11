@@ -10,21 +10,17 @@ import RaisedButton from 'react-material/RaisedButton';
 
 import TextField from 'react-material/TextField';
 
-
 const style = {
-  margin :300,
+  margin: 300,
   // height:100
 };
 
-
 class App extends Component {
- 
   render() {
     return (
       <div>
         <MuiThemeProvider>
           <div>
-
             {/* <RMRadioButtonGroup name="company">
               <RMRadioButton value="Ctrip" label="Ctrip" disabled={false}></RMRadioButton>
               <RMRadioButton value="Qunar" label="Qunar" disabled={false}></RMRadioButton>
@@ -34,11 +30,12 @@ class App extends Component {
             <RMSlider defaultValue={0.5} />
             <RMSlider defaultValue={1} /> */}
             {/* const position = ['top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom']; */}
-          {/*   <RMTooltip title = '这是提示' placement = "bottom"><RaisedButton label="Primary" primary={true} style={style}/></RMTooltip> */}
+            {/*   <RMTooltip title = '这是提示' placement = "bottom"><RaisedButton label="Primary" primary={true} style={style}/></RMTooltip> */}
 
-            <RMTooltip title = '这是提示fdsaf' placement = "right"><TextField hintText="Hint Text"/></RMTooltip>
-            
-          
+            <RMTooltip title="这是提示fdsaf" placement="right">
+              <TextField hintText="Hint Text" />
+            </RMTooltip>
+
             {/* <RMTooltip title = '这是提示' placement = "bottomLeft">
             <div>first元素
               <div></div>
@@ -46,13 +43,8 @@ class App extends Component {
 
               <div>测试两个根元素</div>
             </RMTooltip> */}
-
-
           </div>
-
         </MuiThemeProvider>
-
-
       </div>
     );
   }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import CascadeSelect from 'react-material/CascadeSelect'
+import CascadeSelect from 'react-material/CascadeSelect';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       cdata: [
         {
@@ -25,14 +25,14 @@ class App extends Component {
                 {
                   value: '113',
                   text: 'test111',
-                }
-              ]
+                },
+              ],
             },
             {
               value: '111',
               text: 'test22',
-            }
-          ]
+            },
+          ],
         },
         {
           value: '2',
@@ -53,14 +53,14 @@ class App extends Component {
                 {
                   value: '113',
                   text: 'test111a',
-                }
-              ]
+                },
+              ],
             },
             {
               value: '111a',
               text: 'test22a',
-            }
-          ]
+            },
+          ],
         },
         {
           value: '3c',
@@ -86,14 +86,14 @@ class App extends Component {
                 {
                   value: '113',
                   text: 'test111',
-                }
-              ]
+                },
+              ],
             },
             {
               value: '111',
               text: 'test22',
-            }
-          ]
+            },
+          ],
         },
         {
           value: '2',
@@ -114,27 +114,27 @@ class App extends Component {
                 {
                   value: '113',
                   text: 'test111a',
-                }
-              ]
+                },
+              ],
             },
             {
               value: '111a',
               text: 'test22a',
-            }
-          ]
+            },
+          ],
         },
         {
           value: '3c',
           text: 'test3c',
-        }
-      ]
+        },
+      ],
     };
   }
 
-  handleChange = (e) => {
-    console.log('change log', e)
-  }
-  
+  handleChange = e => {
+    console.log('change log', e);
+  };
+
   render() {
     return (
       <div>
@@ -142,8 +142,8 @@ class App extends Component {
           onChange={this.handleChange}
           label={'Cascade Select'}
           dataSource={this.state.cdata}
-          renderLabel='text'
-          separator='|'
+          renderLabel="text"
+          separator="|"
           width={400}
         />
       </div>

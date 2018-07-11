@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import Popover from '../Popover';
@@ -7,16 +7,14 @@ import PopoverContent from './content';
 
 const styles = theme => ({
   box: {
-    display: 'inline-block'
+    display: 'inline-block',
   },
   anchorElementBox: {
     // padding: theme.spacing.unit,
     boxSizing: 'border-box',
-    display: 'inline-block'
+    display: 'inline-block',
   },
-  contentBox: {
-    
-  },
+  contentBox: {},
 });
 
 class Popconfirm extends React.Component {
@@ -34,18 +32,18 @@ class Popconfirm extends React.Component {
       vertical: 'bottom',
       horizontal: 'center',
     },
-  }
+  };
   anchorEl = null;
-  anchorRef = React.createRef()
+  anchorRef = React.createRef();
 
-  componentDidMount(){
-    let el = ReactDOM.findDOMNode(this.anchorRef.current)
+  componentDidMount() {
+    let el = ReactDOM.findDOMNode(this.anchorRef.current);
     this.setState({
-      anchorEl: el
+      anchorEl: el,
     });
   }
 
-  handleClick = (e) => {
+  handleClick = e => {
     this.setState({
       open: true,
     });
@@ -58,37 +56,40 @@ class Popconfirm extends React.Component {
   };
 
   confirm = () => {
-    this.props.onConfirm && this.props.onConfirm()
+    this.props.onConfirm && this.props.onConfirm();
     this.setState({
-      open: false
-    })
-  }
-  cancel = ()=>{
-    this.props.onCancel && this.props.onCancel()
+      open: false,
+    });
+  };
+  cancel = () => {
+    this.props.onCancel && this.props.onCancel();
     this.setState({
-      open: false
-    })
-  }
+      open: false,
+    });
+  };
   render() {
-    const { color, variant, type, size, classes, children, cancelText, okText, content, ...other} = this.props;
     const {
-      open,
-      positionTop,
-      positionLeft,
-      anchorReference,
-      anchorEl,
-    } = this.state;
+      color,
+      variant,
+      type,
+      size,
+      classes,
+      children,
+      cancelText,
+      okText,
+      content,
+      ...other
+    } = this.props;
+    const { open, positionTop, positionLeft, anchorReference, anchorEl } = this.state;
 
     return (
       <div>
         <div className={classes.box} ref={this.anchorRef} onClick={this.handleClick}>
-          <div></div>
-          <div className={classes.anchorElementBox}>
-            {children}
-          </div>
-          <div></div>
+          <div />
+          <div className={classes.anchorElementBox}>{children}</div>
+          <div />
         </div>
-        
+
         <Popover
           {...other}
           open={open}
@@ -101,17 +102,16 @@ class Popconfirm extends React.Component {
         >
           <div className={classes.contentBox}>
             <PopoverContent
-              onCancel = {this.cancel}
-              onConfirm = {this.confirm}
+              onCancel={this.cancel}
+              onConfirm={this.confirm}
               cancelText={cancelText}
               okText={okText}
-              content = {content}
+              content={content}
               color={color}
               variant={variant}
               type={type}
               size={size}
-            >
-            </PopoverContent>
+            />
           </div>
         </Popover>
       </div>

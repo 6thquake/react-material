@@ -3,7 +3,6 @@ import Button from 'react-material/Button';
 import Menu from 'react-material/Menu';
 import MenuItem from 'react-material/MenuItem';
 
-
 class SimpleMenu extends React.Component {
   state = {
     anchorEl: null,

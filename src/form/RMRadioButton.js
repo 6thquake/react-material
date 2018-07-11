@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { RadioButton } from 'react-material/RadioButton';
 
-
 /* class RMRadioButton extends React.Component {
     constructor(props) {
         super(props);

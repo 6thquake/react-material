@@ -11,7 +11,6 @@ export {
   withTheme,
 } from './styles';
 
-
 export { default as Anchor } from './Anchor';
 export { default as AppBar } from './AppBar';
 export { default as AutoComplete } from './AutoComplete';
@@ -35,7 +34,7 @@ export { default as CheckboxGroup, CheckboxGroupStandalone } from './CheckboxGro
 export { default as Chip } from './Chip';
 export { default as CircularProgress } from './CircularProgress';
 export { default as ClickAwayListener } from './ClickAwayListener';
-export { default as Codearea} from './Codearea';
+export { default as Codearea } from './Codearea';
 export { default as Collapse } from './Collapse';
 export { default as CssBaseline } from './CssBaseline';
 export { default as Dialog } from './Dialog';
@@ -58,14 +57,7 @@ export { default as FormControlLabel } from './FormControlLabel';
 export { default as FormGroup } from './FormGroup';
 export { default as FormHelperText } from './FormHelperText';
 export { default as FormLabel } from './FormLabel';
-export {
-  default as Grid, 
-  FlexGrid,
-  FloatGrid,
-  CompatibleGrid,
-  PercentageGrid
-}
-from './Grid';
+export { default as Grid, FlexGrid, FloatGrid, CompatibleGrid, PercentageGrid } from './Grid';
 export { default as GridList } from './GridList';
 export { default as GridListTile } from './GridListTile';
 export { default as GridListTileBar } from './GridListTileBar';
@@ -95,7 +87,12 @@ export { default as NativeSelect } from './NativeSelect';
 export { default as Pagination } from './Pagination';
 export { default as Panel } from './Panel';
 export { default as Paper } from './Paper';
-export { default as DatePicker, TimePicker, DateTimePicker, DateTimePickersProvider } from './Picker';
+export {
+  default as DatePicker,
+  TimePicker,
+  DateTimePicker,
+  DateTimePickersProvider,
+} from './Picker';
 export { default as Popconfirm } from './Popconfirm';
 export { default as Popover } from './Popover';
 export { default as Portal } from './Portal';
@@ -119,10 +116,7 @@ export { default as Stepper, StepperPane, StepPane } from './Stepper';
 export { default as SvgIcon } from './SvgIcon';
 export { default as SwipeableDrawer } from './SwipeableDrawer';
 export { default as Switch } from './Switch';
-export { default as Table, 
-  CrossTable,
-  AbundantCrossTable
-} from './Table';
+export { default as Table, CrossTable, AbundantCrossTable } from './Table';
 export { default as TableBody } from './TableBody';
 export { default as TableCell } from './TableCell';
 export { default as TableFooter } from './TableFooter';

@@ -25,9 +25,7 @@ async function getMessages() {
   try {
     if (!messages) {
       await pause(1e3); // Soften the pressure on the main thread.
-      const result = await fetch(
-        '/static/notifications.json',
-      );
+      const result = await fetch('/static/notifications.json');
       messages = await result.json();
     }
   } catch (err) {

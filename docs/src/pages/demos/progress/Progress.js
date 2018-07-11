@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Progress from 'react-material/Progress';
 import { withStyles } from 'react-material/styles';
-import Button from 'react-material/Button'
+import Button from 'react-material/Button';
 
 const styles = {
   root: {
@@ -10,32 +10,32 @@ const styles = {
 };
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
-    this.state={
-      error:false,
-      completed2:0,
-      isFinish:false
+    this.state = {
+      error: false,
+      completed2: 0,
+      isFinish: false,
     };
   }
 
   timer1 = null;
 
-  componentDidMount (){
-    this.promiseEst()
+  componentDidMount() {
+    this.promiseEst();
   }
 
   componentWillUnmount() {
     clearInterval(this.timer);
   }
 
-  promiseEst=()=>{
-    if(this.timer1){
+  promiseEst = () => {
+    if (this.timer1) {
       clearInterval(this.timer);
     }
-    this.timer1=setTimeout(()=>{
-      this.setState({isFinish:true})
-    },5000)
+    this.timer1 = setTimeout(() => {
+      this.setState({ isFinish: true });
+    }, 5000);
   };
 
   timer = null;
@@ -46,41 +46,38 @@ class App extends Component {
       clearInterval(this.timer);
     } else {
       const diff = Math.random() * 10;
-      if(this.state.completed2>50){
-        this.setState({ error: true});
-      }else{
+      if (this.state.completed2 > 50) {
+        this.setState({ error: true });
+      } else {
         this.setState({ completed2: Math.min(completed2 + diff, 100) });
       }
-
     }
   };
 
-  reStartbase(){
+  reStartbase() {
     this.setState({
-      error:false,
-      completed2:0
+      error: false,
+      completed2: 0,
     });
     this.timer = setInterval(this.progress, 500);
-  };
+  }
 
-  reStartpromise(){
+  reStartpromise() {
     this.setState({
-      isFinish:false
+      isFinish: false,
     });
     this.promiseEst();
-  };
+  }
 
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
         <Button>base progress</Button>
-        <Progress
-          baseProgress={true}
-        />
-        <br/>
-        <br/>
-        <br/>
+        <Progress baseProgress={true} />
+        <br />
+        <br />
+        <br />
         <Button onClick={this.reStartbase.bind(this)}>start progress with percentage</Button>
         <Progress
           completed={this.state.completed2}
@@ -88,22 +85,18 @@ class App extends Component {
           isPromise={false}
           isFinish={false}
         />
-        <br/>
-        <br/>
-        <br/>
-        <Button  onClick={this.reStartpromise.bind(this)} >restart promise progress</Button>
+        <br />
+        <br />
+        <br />
+        <Button onClick={this.reStartpromise.bind(this)}>restart promise progress</Button>
         <Progress
           isPromise={true}
           isFinish={this.state.isFinish}
           estimatedTime={5}
-          variant='query'
+          variant="query"
         />
-        <br/>
-        <Progress
-          isPromise={true}
-          isFinish={this.state.isFinish}
-          estimatedTime={5}
-        />
+        <br />
+        <Progress isPromise={true} isFinish={this.state.isFinish} estimatedTime={5} />
       </div>
     );
   }

@@ -11,15 +11,15 @@ import omit from '../utils/omit';
 
 const style = theme => ({
   formHelpTextContainer: {
-    minHeight: '12px'
+    minHeight: '12px',
   },
   formHelperTextRoot: {
-    marginTop: 0
-  }
+    marginTop: 0,
+  },
 });
 
 class Select extends Component {
-  onChange = (event) => {
+  onChange = event => {
     // setValue() will set the value of the component, which in
     // turn will validate it and the rest of the form
     // Important: Don't skip this step. This pattern is required
@@ -27,7 +27,7 @@ class Select extends Component {
     const value = event.target.value;
     this.props.setValue(value);
 
-    const {onChange} = this.props;
+    const { onChange } = this.props;
     onChange && onChange(event, value);
   };
 
@@ -74,10 +74,10 @@ class Select extends Component {
     }
 
     const helpTextClasses = {
-      root: classes.formHelperTextRoot
+      root: classes.formHelperTextRoot,
     };
 
-    const restClasses = omit(classes, ['formHelpTextContainer','formHelperTextRoot']);
+    const restClasses = omit(classes, ['formHelpTextContainer', 'formHelperTextRoot']);
 
     return (
       <React.Fragment>
@@ -93,10 +93,14 @@ class Select extends Component {
           {children}
         </SelectStandalone>
         <div className={classes.formHelpTextContainer}>
-          {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
+          {error && (
+            <FormHelperText classes={helpTextClasses} error>
+              {helperText}
+            </FormHelperText>
+          )}
         </div>
       </React.Fragment>
-    )
+    );
   }
 
   render() {
@@ -108,19 +112,21 @@ Select.displayName = 'Select';
 
 Select.propTypes = {
   classes: PropTypes.object.isRequired,
-  ...propTypes
+  ...propTypes,
 };
 
 Select.defaultProps = {
-  formInputRef:React.createRef()
+  formInputRef: React.createRef(),
 };
 
-
-const FormComponent = compose(withFormsy, withFormItem, withStyles(style, { name: 'RMSelect' }))(Select);
+const FormComponent = compose(
+  withFormsy,
+  withFormItem,
+  withStyles(style, { name: 'RMSelect' }),
+)(Select);
 
 export default compose(withForm)(FormComponent, SelectStandalone);
 
 /**
  * @ignore - do not document.
  */
-

@@ -4,20 +4,20 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import markdown from 'docs/src/pages/demos/back-top/back-top.md';
 
 function Page() {
-    return (
-        <MarkdownDocs
-            markdown={markdown}
-            demos={{
-                'pages/demos/back-top/BackTop.js': {
-                    js: require('docs/src/pages/demos/back-top/BackTop').default,
-                    raw: preval`
+  return (
+    <MarkdownDocs
+      markdown={markdown}
+      demos={{
+        'pages/demos/back-top/BackTop.js': {
+          js: require('docs/src/pages/demos/back-top/BackTop').default,
+          raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/back-top/BackTop'), 'utf8')
 `,
-                }
-            }}
-        />
-    );
+        },
+      }}
+    />
+  );
 }
 
 export default withRoot(Page);

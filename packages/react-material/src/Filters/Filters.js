@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import Grid from '../Grid';
@@ -13,13 +13,13 @@ const style = theme => ({
     width: '7em',
     color: 'rgba(255,255,255,0.7)',
     lineHeight: '2.6em',
-    textAlign: 'left'
+    textAlign: 'left',
   },
   labelDark: {
-    color: 'rgba(0,0,0,0.7) !important'
+    color: 'rgba(0,0,0,0.7) !important',
   },
   content: {
-    flex: 1
+    flex: 1,
   },
   btn: {
     fontSize: '13px',
@@ -33,23 +33,23 @@ const style = theme => ({
     fontWeight: '400',
     '&:hover': {
       background: 'rgba(0,0,0,0.05)',
-    }
+    },
   },
   btnDark: {
-    color: 'rgba(0,0,0,0.7)'
+    color: 'rgba(0,0,0,0.7)',
   },
   active: {
     background: 'rgba(0,0,0,0.2)',
     '&:hover': {
       background: 'rgba(0,0,0,0.15)',
-    }
+    },
   },
-  activeDark: {}
+  activeDark: {},
 });
 
 class Filters extends Component {
   onClick = selectItem => () => {
-    const {multi, onChange, value, mapProps} = this.props;
+    const { multi, onChange, value, mapProps } = this.props;
     const selectVal = selectItem[mapProps.value];
     let newVal;
 
@@ -72,33 +72,41 @@ class Filters extends Component {
   isSelected = value => this.props.value.includes(value);
 
   render() {
-    const {classes, options, label, mapProps, spacing, type} = this.props;
+    const { classes, options, label, mapProps, spacing, type } = this.props;
     return (
       <Grid container spacing={8}>
-        <Grid item className={(type === 'dark' ? classes.labelDark : '') + ' ' + classes.label}>{label}</Grid>
+        <Grid item className={(type === 'dark' ? classes.labelDark : '') + ' ' + classes.label}>
+          {label}
+        </Grid>
         <Grid item className={classes.content}>
           <Grid container spacing={spacing}>
             {options.map(s => {
-              const label = typeof mapProps.label === 'function' ? mapProps.label(s, options) : s[mapProps.label];
-              const value = typeof mapProps.value === 'function' ? mapProps.value(s, options) : s[mapProps.value];
+              const label =
+                typeof mapProps.label === 'function'
+                  ? mapProps.label(s, options)
+                  : s[mapProps.label];
+              const value =
+                typeof mapProps.value === 'function'
+                  ? mapProps.value(s, options)
+                  : s[mapProps.value];
               const isSelected = this.isSelected(value);
               const className = classnames({
                 [classes.active]: isSelected,
-                [classes.btnDark]: type === 'dark'
+                [classes.btnDark]: type === 'dark',
               });
               return (
                 <Grid item key={value}>
                   <Button
                     className={className}
                     classes={{
-                      root: classes.btn
+                      root: classes.btn,
                     }}
                     onClick={this.onClick(s)}
                   >
                     {label}
                   </Button>
                 </Grid>
-              )
+              );
             })}
           </Grid>
         </Grid>
@@ -135,12 +143,12 @@ Filters.propTypes = {
    */
   mapProps: PropTypes.shape({
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.func])
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.func]),
   }),
   /**
    * spacing between items
    */
-  spacing: PropTypes.number
+  spacing: PropTypes.number,
 };
 
 Filters.defaultProps = {
@@ -150,12 +158,12 @@ Filters.defaultProps = {
   label: '',
   mapProps: {
     label: 'label',
-    value: 'value'
+    value: 'value',
   },
   onChange() {
     console.log('请添加回调函数');
   },
-  spacing: 8
+  spacing: 8,
 };
 
 export default withStyles(style, { name: 'RMFilters' })(Filters);

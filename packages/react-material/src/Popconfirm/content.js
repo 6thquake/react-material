@@ -30,44 +30,46 @@ const styles = theme => ({
 class PopOverContent extends Component {
   constructor(props) {
     super(props);
-    this.state = {  };
+    this.state = {};
   }
-  handleConfirm = ()=>{
-    this.props.onConfirm && this.props.onConfirm()
-  }
+  handleConfirm = () => {
+    this.props.onConfirm && this.props.onConfirm();
+  };
   handleCancel = () => {
-    this.props.onCancel && this.props.onCancel()
-  }
+    this.props.onCancel && this.props.onCancel();
+  };
   render() {
     let {
       classes,
       content,
       cancelText,
       okText,
-      color ='primary', 
-      variant, 
-      type, 
-      size ='small',
-      
-    } = this.props
-     return (
+      color = 'primary',
+      variant,
+      type,
+      size = 'small',
+    } = this.props;
+    return (
       <div className={classes.box}>
-        <div className={classes.content}>
-          {content}
-        </div>
+        <div className={classes.content}>{content}</div>
 
         <div className={classes.footer}>
-          <Button type={type} size={size} onClick={this.handleConfirm} color={color} className={classes.button}>
+          <Button
+            type={type}
+            size={size}
+            onClick={this.handleConfirm}
+            color={color}
+            className={classes.button}
+          >
             {okText}
           </Button>
           <Button size={size} onClick={this.handleCancel} className={classes.button}>
             {cancelText}
           </Button>
-
         </div>
       </div>
     );
   }
 }
-const PopContent = withLocale({name: 'Popconfirm'})(PopOverContent)
+const PopContent = withLocale({ name: 'Popconfirm' })(PopOverContent);
 export default withStyles(styles, { name: 'RMPopContent' })(PopContent);

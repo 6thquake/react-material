@@ -22,7 +22,7 @@ class App extends React.Component {
     anchorOriginVertical: 'top',
     anchorOriginHorizontal: 'center',
     transformOriginVertical: 'bottom',
-    transformOriginHorizontal: 'center'
+    transformOriginHorizontal: 'center',
   };
 
   handleChange = key => (event, value) => {
@@ -34,7 +34,7 @@ class App extends React.Component {
   cancel = () => {
     console.log('cancel');
   };
-  
+
   confirm = () => {
     console.log('ok');
   };
@@ -51,8 +51,8 @@ class App extends React.Component {
     return (
       <div className={classes.box}>
         <Popconfirm
-          onCancel={this.cancel}    //cancel callback
-          onConfirm={this.confirm}  // confirm callback
+          onCancel={this.cancel} //cancel callback
+          onConfirm={this.confirm} // confirm callback
           cancelText={'cancel'}
           okText={'yes'}
           content={'Are you sure delete this task?'}
@@ -65,14 +65,11 @@ class App extends React.Component {
             horizontal: transformOriginHorizontal,
           }}
         >
-          <Button
-            variant="raised"
-            color="secondary"
-          >
+          <Button variant="raised" color="secondary">
             Open Popconfirm
           </Button>
         </Popconfirm>
-        <Grid container spacing={16}>          
+        <Grid container spacing={16}>
           <Grid item xs={12} sm={6}>
             <FormControl component="fieldset">
               <FormLabel component="legend">anchorOrigin.vertical</FormLabel>

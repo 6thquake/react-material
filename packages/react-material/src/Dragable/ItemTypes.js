@@ -1,6 +1,6 @@
 export default {
-	BOX : 'box',
-}
+  BOX: 'box',
+};
 
 /**
  * @ignore - do not document.

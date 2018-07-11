@@ -10,11 +10,11 @@ import styles from './styles';
 
 const menuPrefixCls = 'rm-menu';
 const effect = {
-  animationDuration: .3,
+  animationDuration: 0.3,
   animationFillMode: 'both',
-  transformOrigin: '0 0'
+  transformOrigin: '0 0',
 };
-function leave(node,done){
+function leave(node, done) {
   done();
 }
 
@@ -22,16 +22,16 @@ class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.inlineOpenKeys = [];
-    this.handleClick = (e) => {
+    this.handleClick = e => {
       this.handleOpenChange([]);
-      const {onClick} = this.props;
+      const { onClick } = this.props;
       if (onClick) {
         onClick(e);
       }
     };
-    this.handleOpenChange = (openKeys) => {
+    this.handleOpenChange = openKeys => {
       this.setOpenKeys(openKeys);
-      const {onOpenChange} = this.props;
+      const { onOpenChange } = this.props;
       if (onOpenChange) {
         onOpenChange(openKeys);
       }
@@ -39,8 +39,7 @@ class Menu extends React.Component {
     let openKeys;
     if ('defaultOpenKeys' in props) {
       openKeys = props.defaultOpenKeys;
-    }
-    else if ('openKeys' in props) {
+    } else if ('openKeys' in props) {
       openKeys = props.openKeys;
     }
     this.state = {
@@ -54,36 +53,40 @@ class Menu extends React.Component {
       rMMenuTheme: this.props.theme,
     };
   }
-//  todo remove unsafe life
+  //  todo remove unsafe life
   componentWillReceiveProps(nextProps, nextContext) {
-  // componentWillReceiveProps(nextProps, nextContext) {
-    const {prefixCls} = this.props;
-    if (this.props.mode === 'inline' &&
-      nextProps.mode !== 'inline') {
+    // componentWillReceiveProps(nextProps, nextContext) {
+    const { prefixCls } = this.props;
+    if (this.props.mode === 'inline' && nextProps.mode !== 'inline') {
       this.switchModeFromInline = true;
     }
     if ('openKeys' in nextProps) {
-      this.setState({openKeys: nextProps.openKeys});
+      this.setState({ openKeys: nextProps.openKeys });
       return;
     }
-    if ((nextProps.inlineCollapsed && !this.props.inlineCollapsed) ||
-      (nextContext.siderCollapsed && !this.context.siderCollapsed)) {
+    if (
+      (nextProps.inlineCollapsed && !this.props.inlineCollapsed) ||
+      (nextContext.siderCollapsed && !this.context.siderCollapsed)
+    ) {
       const menuNode = findDOMNode(this);
       this.switchModeFromInline =
-        !!this.state.openKeys.length && !!menuNode.querySelectorAll(`.${prefixCls}-submenu-open`).length;
+        !!this.state.openKeys.length &&
+        !!menuNode.querySelectorAll(`.${prefixCls}-submenu-open`).length;
       this.inlineOpenKeys = this.state.openKeys;
-      this.setState({openKeys: []});
+      this.setState({ openKeys: [] });
     }
-    if ((!nextProps.inlineCollapsed && this.props.inlineCollapsed) ||
-      (!nextContext.siderCollapsed && this.context.siderCollapsed)) {
-      this.setState({openKeys: this.inlineOpenKeys});
+    if (
+      (!nextProps.inlineCollapsed && this.props.inlineCollapsed) ||
+      (!nextContext.siderCollapsed && this.context.siderCollapsed)
+    ) {
+      this.setState({ openKeys: this.inlineOpenKeys });
       this.inlineOpenKeys = [];
     }
   }
 
   setOpenKeys(openKeys) {
     if (!('openKeys' in this.props)) {
-      this.setState({openKeys});
+      this.setState({ openKeys });
     }
   }
 
@@ -92,12 +95,12 @@ class Menu extends React.Component {
     if (this.switchModeFromInline && inlineCollapsed) {
       return 'inline';
     }
-    const {mode} = this.props;
+    const { mode } = this.props;
     return inlineCollapsed ? 'vertical' : mode;
   }
 
   getInlineCollapsed() {
-    const {inlineCollapsed} = this.props;
+    const { inlineCollapsed } = this.props;
     if (this.context.siderCollapsed !== undefined) {
       return this.context.siderCollapsed;
     }
@@ -105,7 +108,7 @@ class Menu extends React.Component {
   }
 
   getMenuOpenAnimation(menuMode) {
-    const {openAnimation, openTransitionName} = this.props;
+    const { openAnimation, openTransitionName } = this.props;
     let menuOpenAnimation = openAnimation || openTransitionName;
     if (openAnimation === undefined && openTransitionName === undefined) {
       switch (menuMode) {
@@ -120,8 +123,7 @@ class Menu extends React.Component {
           if (this.switchModeFromInline) {
             menuOpenAnimation = '';
             this.switchModeFromInline = false;
-          }
-          else {
+          } else {
             menuOpenAnimation = 'zoom-big';
           }
           break;
@@ -145,8 +147,8 @@ class Menu extends React.Component {
   }
 
   render() {
-    const {prefixCls, className, theme} = this.props;
-    const {classes,...props} = this.props;
+    const { prefixCls, className, theme } = this.props;
+    const { classes, ...props } = this.props;
     const menuMode = this.getRealMenuMode();
     const menuOpenAnimation = this.getMenuOpenAnimation(menuMode);
     const menuClassName = classNames(className, `${prefixCls}-${theme}`, {
@@ -162,16 +164,17 @@ class Menu extends React.Component {
       // closing vertical popup submenu after click it
       menuProps.onClick = this.handleClick;
       menuProps.openTransitionName = menuOpenAnimation;
-    }
-    else {
+    } else {
       menuProps.openAnimation = menuOpenAnimation;
     }
-    const {collapsedWidth} = this.context;
-    if (this.getInlineCollapsed() &&
-      (collapsedWidth === 0 || collapsedWidth === '0' || collapsedWidth === '0px')) {
+    const { collapsedWidth } = this.context;
+    if (
+      this.getInlineCollapsed() &&
+      (collapsedWidth === 0 || collapsedWidth === '0' || collapsedWidth === '0px')
+    ) {
       return null;
     }
-    return <RcMenu {...props} {...menuProps}/>;
+    return <RcMenu {...props} {...menuProps} />;
   }
 }
 
@@ -191,7 +194,7 @@ Menu.propTypes = {
   /**
    *
    */
-  theme: PropTypes.oneOf(['light', 'dark'])
+  theme: PropTypes.oneOf(['light', 'dark']),
 };
 Menu.defaultProps = {
   prefixCls: menuPrefixCls,
@@ -207,9 +210,6 @@ Menu.contextTypes = {
   collapsedWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
-export {
-  SubMenu, Item, ItemGroup
-}
+export { SubMenu, Item, ItemGroup };
 export default withStyles(styles, { name: 'RMMenu' })(Menu);
 //前缀
-

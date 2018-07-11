@@ -1,25 +1,25 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import InputStandalone from '@material-ui/core/Input';
 import FormHelperText from '../FormHelperText';
-import {withFormsy, propTypes} from 'formsy-react';
-import {compose} from 'recompose';
+import { withFormsy, propTypes } from 'formsy-react';
+import { compose } from 'recompose';
 import withFormItem from '../Form/withFormItem';
 import withForm from '../Form/withForm';
 import omit from '../utils/omit';
 
 const style = theme => ({
   formHelpTextContainer: {
-    minHeight: '12px'
+    minHeight: '12px',
   },
   formHelperTextRoot: {
-    marginTop: 0
-  }
+    marginTop: 0,
+  },
 });
 
 class Input extends Component {
-  onChange = (event) => {
+  onChange = event => {
     // setValue() will set the value of the component, which in
     // turn will validate it and the rest of the form
     // Important: Don't skip this step. This pattern is required
@@ -27,7 +27,7 @@ class Input extends Component {
     const value = event.target.value;
     this.props.setValue(value);
 
-    const {onChange} = this.props;
+    const { onChange } = this.props;
     onChange && onChange(event, value);
   };
 
@@ -73,10 +73,10 @@ class Input extends Component {
     }
 
     const helpTextClasses = {
-      root: classes.formHelperTextRoot
+      root: classes.formHelperTextRoot,
     };
 
-    const restClasses = omit(classes, ['formHelpTextContainer','formHelperTextRoot']);
+    const restClasses = omit(classes, ['formHelpTextContainer', 'formHelperTextRoot']);
 
     return (
       <React.Fragment>
@@ -90,10 +90,14 @@ class Input extends Component {
           {...rest}
         />
         <div className={classes.formHelpTextContainer}>
-          {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
+          {error && (
+            <FormHelperText classes={helpTextClasses} error>
+              {helperText}
+            </FormHelperText>
+          )}
         </div>
       </React.Fragment>
-    )
+    );
   }
 
   render() {
@@ -105,15 +109,18 @@ Input.displayName = 'Input';
 
 Input.propTypes = {
   classes: PropTypes.object.isRequired,
-  ...propTypes
+  ...propTypes,
 };
 
 Input.defaultProps = {
-  formInputRef: React.createRef()
+  formInputRef: React.createRef(),
 };
 
-
-const FormComponent = compose(withFormsy, withFormItem, withStyles(style, { name: 'RMInput' }))(Input);
+const FormComponent = compose(
+  withFormsy,
+  withFormItem,
+  withStyles(style, { name: 'RMInput' }),
+)(Input);
 
 export default compose(withForm)(FormComponent, InputStandalone);
 

@@ -1,9 +1,9 @@
-import defaultLocal from './default'
-import React from 'react'
+import defaultLocal from './default';
+import React from 'react';
 const locale = {
-  changeLocale: ()=>{},
+  changeLocale: () => {},
   locale: defaultLocal,
-}
+};
 
-const LocaleContext = React.createContext(locale)
-export default LocaleContext
+const LocaleContext = React.createContext(locale);
+export default LocaleContext;

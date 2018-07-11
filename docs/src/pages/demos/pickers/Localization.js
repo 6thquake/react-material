@@ -9,23 +9,23 @@ import ButtonGroup from 'react-material/ButtonGroup';
 import Grid from 'react-material/Grid';
 import LocaleProvider, { withLocale, LocaleConsumer } from 'react-material/LocaleProvider';
 
-const radio = true
+const radio = true;
 
 class BasicDatePicker extends PureComponent {
-  constructor(props){
-    super(props)
-    this.state={
+  constructor(props) {
+    super(props);
+    this.state = {
       selectedDate: new Date(),
-    }
+    };
   }
 
-  handleDateChange = (data) =>{
-    this.setState({selectedDate: date});
-  }
+  handleDateChange = data => {
+    this.setState({ selectedDate: date });
+  };
 
-  render(){
-    const { selectedDate } = this.state.selectedDate
-    
+  render() {
+    const { selectedDate } = this.state.selectedDate;
+
     return (
       <Fragment>
         <div className="picker">
@@ -64,52 +64,53 @@ class BasicDatePicker extends PureComponent {
   }
 }
 
-class App extends Component{
-  constructor(props){
+class App extends Component {
+  constructor(props) {
     super(props);
-  }  
+  }
 
-  render(){
-    return(
+  render() {
+    return (
       <LocaleProvider>
-        <Grid container
+        <Grid
+          container
           spacing={16}
           alignItems={'center'}
           direction={'column'}
           justify={'space-around'}
-          >
+        >
           <Grid item>
             <BasicDatePicker />
           </Grid>
           <Grid item>
             <LocaleConsumer>
-              {(value) => {
+              {value => {
                 const { locale, changeLocale } = value;
                 return (
                   <ButtonGroup>
-                    <Button onClick={changeLocale('zh-cn')} variant="raised" color="primary">中文</Button>
-                    <Button onClick={changeLocale('en-us')} radio={radio} variant="raised" color="primary">EN</Button>
-                    <Button onClick={changeLocale('zh-tw')} variant="raised" color="primary">繁体中文</Button>
+                    <Button onClick={changeLocale('zh-cn')} variant="raised" color="primary">
+                      中文
+                    </Button>
+                    <Button
+                      onClick={changeLocale('en-us')}
+                      radio={radio}
+                      variant="raised"
+                      color="primary"
+                    >
+                      EN
+                    </Button>
+                    <Button onClick={changeLocale('zh-tw')} variant="raised" color="primary">
+                      繁体中文
+                    </Button>
                   </ButtonGroup>
-                )
+                );
               }}
             </LocaleConsumer>
           </Grid>
         </Grid>
       </LocaleProvider>
-    )
+    );
   }
 }
 
-export default App
-
-
-
-
-
-
-
-
-
-
-
+export default App;

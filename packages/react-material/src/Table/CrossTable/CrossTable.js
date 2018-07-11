@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { CrossTableData } from './CrossTableUtilities';
 import CrossTableRenderers from './CrossTableRenderers';
 
-
 class CrossTable extends React.PureComponent {
   render() {
     const Renderer = this.props.renderers[

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Message from 'react-material/Message';
-import Button from 'react-material/Button'
+import Button from 'react-material/Button';
 import { withStyles } from 'react-material/styles';
 import FormControl from 'react-material/FormControl';
 import FormLabel from 'react-material/FormLabel';
@@ -9,7 +9,6 @@ import Radio from 'react-material/Radio';
 import RadioGroup from 'react-material/RadioGroup';
 import Grid from 'react-material/Grid';
 
-
 const styles = theme => ({
   box: {
     marginBottom: theme.spacing.unit * 6,
@@ -17,12 +16,12 @@ const styles = theme => ({
 });
 
 class MessageTest extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       open: false,
-      anchorOrigin:{ vertical: 'top', horizontal: 'center'},
-      animation:'fade'
+      anchorOrigin: { vertical: 'top', horizontal: 'center' },
+      animation: 'fade',
     };
   }
 
@@ -33,42 +32,40 @@ class MessageTest extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
-  handleChangevertical =(event, value) => {
+  handleChangevertical = (event, value) => {
     console.log(value);
     this.setState({
-      anchorOrigin:{
+      anchorOrigin: {
         ...this.state.anchorOrigin,
-        vertical: value
-      }
+        vertical: value,
+      },
     });
   };
-  handleChangehorizontal =(event, value) => {
+  handleChangehorizontal = (event, value) => {
     console.log(value);
     this.setState({
-      anchorOrigin:{
+      anchorOrigin: {
         ...this.state.anchorOrigin,
-        horizontal: value
-      }
+        horizontal: value,
+      },
     });
   };
-  handleChangeanimation=(event, value)=>{
+  handleChangeanimation = (event, value) => {
     console.log(value);
     this.setState({
-      animation:value
+      animation: value,
     });
-  }
+  };
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.box}>
-        <Button
-          onClick={this.handleOpen}>
-          Open Message
-        </Button>
-        <Message open={this.state.open}
-                 onClose={this.handleClose}
-                 anchorOrigin={this.state.anchorOrigin}
-                 animation={this.state.animation}
+        <Button onClick={this.handleOpen}>Open Message</Button>
+        <Message
+          open={this.state.open}
+          onClose={this.handleClose}
+          anchorOrigin={this.state.anchorOrigin}
+          animation={this.state.animation}
         >
           <div>it is a test</div>
         </Message>

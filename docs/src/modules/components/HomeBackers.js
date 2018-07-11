@@ -38,50 +38,65 @@ thanks to the support of these awesome [backers](/discover-more/backers).
 <table cellspacing="0" cellspadding="0">
   <tbody>
       ${[
-          [{
+        [
+          {
             id: 'liujc',
-            name: '刘继超'
-          }, {
+            name: '刘继超',
+          },
+          {
             id: 'honggc',
-            name: '洪国超'
-          }, {
-            id:'wgshao',
-            name: '邵文广'
-          }, {
-            id:'liubz',
-            name: '刘必洲'
-          }, {
+            name: '洪国超',
+          },
+          {
+            id: 'wgshao',
+            name: '邵文广',
+          },
+          {
+            id: 'liubz',
+            name: '刘必洲',
+          },
+          {
             id: 'jxzhuang',
-            name: '庄嘉祥'
-          }, {
-            id:  'wmhuang',
-            name: '黄伟民'
-          }],
-          [{
+            name: '庄嘉祥',
+          },
+          {
+            id: 'wmhuang',
+            name: '黄伟民',
+          },
+        ],
+        [
+          {
             id: 'liyn',
-            name: '李雅男'
-          }, {
+            name: '李雅男',
+          },
+          {
             id: 'yh.tang',
-            name: '汤雨欢'
-          }, {
+            name: '汤雨欢',
+          },
+          {
             id: 'sy.tang',
-            name: '唐思雨'
-          }, {
+            name: '唐思雨',
+          },
+          {
             id: 'slfan',
-            name: '范世丽'
-          }, {
+            name: '范世丽',
+          },
+          {
             id: 'zhangzhea',
-            name: '张哲'
-          }]
-        ]
-        .map(
-          users => {
-            return [
-              '<tr>',
-              users.map(user =>
-              `
+            name: '张哲',
+          },
+        ],
+      ].map(users => {
+        return [
+          '<tr>',
+          users
+            .map(
+              user =>
+                `
               <td align="center" valign="middle" style="text-align: center; padding: 16px;">
-                <a href="http://git.dev.sh.ctripcorp.com/u/${user.id}" rel="noopener" target="_blank">
+                <a href="http://git.dev.sh.ctripcorp.com/u/${
+                  user.id
+                }" rel="noopener" target="_blank">
                   <img
                     width="80"
                     height="80"
@@ -90,12 +105,12 @@ thanks to the support of these awesome [backers](/discover-more/backers).
                     title="${user.name}"
                   ><p>${user.name}</p></a>
               </td>
-              `  
-              ).join(''),
-              '</tr>'
-            ].join('')
-        })
-      }
+              `,
+            )
+            .join(''),
+          '</tr>',
+        ].join('');
+      })}
   </tbody>
 </table>
 

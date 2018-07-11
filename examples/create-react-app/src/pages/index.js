@@ -89,9 +89,9 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
   },
-  docked:{
-    overflow:'scroll'
-  }
+  docked: {
+    overflow: 'scroll',
+  },
 });
 
 class MiniDrawer extends React.Component {
@@ -134,7 +134,7 @@ class MiniDrawer extends React.Component {
           variant="permanent"
           classes={{
             paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-            docked:classes.docked
+            docked: classes.docked,
           }}
           open={this.state.open}
         >
@@ -143,7 +143,7 @@ class MiniDrawer extends React.Component {
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </div>
-          <Divider/>
+          <Divider />
           <TreeMenu list={data} />
           <Divider />
           <List>{mailFolderListItems}</List>

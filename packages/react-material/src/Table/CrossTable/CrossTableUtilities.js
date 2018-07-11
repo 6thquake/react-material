@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import "babel-polyfill";
+import 'babel-polyfill';
 
 /*
  * decaffeinate suggestions:
@@ -41,7 +41,7 @@ const numberFormat = function(opts_in) {
     const result = addSeparators(
       (opts.scaler * x).toFixed(opts.digitsAfterDecimal),
       opts.thousandsSep,
-      opts.decimalSep
+      opts.decimalSep,
     );
     return `${opts.prefix}${result}${opts.suffix}`;
   };
@@ -168,7 +168,7 @@ const getSort = function(sorters, attr) {
 
 // aggregator templates default to US number formatting but this is overrideable
 const usFmt = numberFormat();
-const usFmtInt = numberFormat({digitsAfterDecimal: 0});
+const usFmtInt = numberFormat({ digitsAfterDecimal: 0 });
 const usFmtPct = numberFormat({
   digitsAfterDecimal: 1,
   scaler: 100,
@@ -237,10 +237,7 @@ const aggregatorTemplates = {
       return function(data) {
         return {
           val: null,
-          sorter: getSort(
-            typeof data !== 'undefined' ? data.sorters : null,
-            attr
-          ),
+          sorter: getSort(typeof data !== 'undefined' ? data.sorters : null, attr),
           push(record) {
             let x = record[attr];
             if (['min', 'max'].includes(mode)) {
@@ -249,16 +246,10 @@ const aggregatorTemplates = {
                 this.val = Math[mode](x, this.val !== null ? this.val : x);
               }
             }
-            if (
-              mode === 'first' &&
-              this.sorter(x, this.val !== null ? this.val : x) <= 0
-            ) {
+            if (mode === 'first' && this.sorter(x, this.val !== null ? this.val : x) <= 0) {
               this.val = x;
             }
-            if (
-              mode === 'last' &&
-              this.sorter(x, this.val !== null ? this.val : x) >= 0
-            ) {
+            if (mode === 'last' && this.sorter(x, this.val !== null ? this.val : x) >= 0) {
               this.val = x;
             }
           },
@@ -367,8 +358,7 @@ const aggregatorTemplates = {
             return this.sumNum / this.sumDenom;
           },
           format: formatter,
-          numInputs:
-            typeof num !== 'undefined' && typeof denom !== 'undefined' ? 0 : 2,
+          numInputs: typeof num !== 'undefined' && typeof denom !== 'undefined' ? 0 : 2,
         };
       };
     };
@@ -378,9 +368,7 @@ const aggregatorTemplates = {
     return (...x) =>
       function(data, rowKey, colKey) {
         return {
-          selector: {total: [[], []], row: [rowKey, []], col: [[], colKey]}[
-            type
-          ],
+          selector: { total: [[], []], row: [rowKey, []], col: [[], colKey] }[type],
           inner: wrapped(...Array.from(x || []))(data, rowKey, colKey),
           push(record) {
             this.inner.push(record);
@@ -389,9 +377,7 @@ const aggregatorTemplates = {
           value() {
             return (
               this.inner.value() /
-              data
-                .getAggregator(...Array.from(this.selector || []))
-                .inner.value()
+              data.getAggregator(...Array.from(this.selector || [])).inner.value()
             );
           },
           numInputs: wrapped(...Array.from(x || []))().numInputs,
@@ -400,21 +386,16 @@ const aggregatorTemplates = {
   },
 };
 
-aggregatorTemplates.countUnique = f =>
-  aggregatorTemplates.uniques(x => x.length, f);
-aggregatorTemplates.listUnique = s =>
-  aggregatorTemplates.uniques(x => x.join(s), x => x);
+aggregatorTemplates.countUnique = f => aggregatorTemplates.uniques(x => x.length, f);
+aggregatorTemplates.listUnique = s => aggregatorTemplates.uniques(x => x.join(s), x => x);
 aggregatorTemplates.max = f => aggregatorTemplates.extremes('max', f);
 aggregatorTemplates.min = f => aggregatorTemplates.extremes('min', f);
 aggregatorTemplates.first = f => aggregatorTemplates.extremes('first', f);
 aggregatorTemplates.last = f => aggregatorTemplates.extremes('last', f);
 aggregatorTemplates.median = f => aggregatorTemplates.quantile(0.5, f);
-aggregatorTemplates.average = f =>
-  aggregatorTemplates.runningStat('mean', 1, f);
-aggregatorTemplates.var = (ddof, f) =>
-  aggregatorTemplates.runningStat('var', ddof, f);
-aggregatorTemplates.stdev = (ddof, f) =>
-  aggregatorTemplates.runningStat('stdev', ddof, f);
+aggregatorTemplates.average = f => aggregatorTemplates.runningStat('mean', 1, f);
+aggregatorTemplates.var = (ddof, f) => aggregatorTemplates.runningStat('var', ddof, f);
+aggregatorTemplates.stdev = (ddof, f) => aggregatorTemplates.runningStat('stdev', ddof, f);
 
 // default aggregators & renderers use US naming and number formatting
 const aggregators = (tpl => ({
@@ -480,15 +461,9 @@ const zeroPad = number => `0${number}`.substr(-2, 2); // eslint-disable-line no-
 
 const derivers = {
   bin(col, binWidth) {
-    return record => record[col] - record[col] % binWidth;
+    return record => record[col] - (record[col] % binWidth);
   },
-  dateFormat(
-    col,
-    formatString,
-    utcOutput = false,
-    mthNames = mthNamesEn,
-    dayNames = dayNamesEn
-  ) {
+  dateFormat(col, formatString, utcOutput = false, mthNames = mthNamesEn, dayNames = dayNamesEn) {
     const utc = utcOutput ? 'UTC' : '';
     return function(record) {
       const date = new Date(Date.parse(record[col]));
@@ -530,16 +505,9 @@ Data Model class
 class CrossTableData {
   constructor(inputProps = {}) {
     this.props = Object.assign({}, CrossTableData.defaultProps, inputProps);
-    PropTypes.checkPropTypes(
-      CrossTableData.propTypes,
-      this.props,
-      'prop',
-      'CrossTableData'
-    );
+    PropTypes.checkPropTypes(CrossTableData.propTypes, this.props, 'prop', 'CrossTableData');
 
-    this.aggregator = this.props.aggregators[this.props.aggregatorName](
-      this.props.vals
-    );
+    this.aggregator = this.props.aggregators[this.props.aggregatorName](this.props.vals);
     this.tree = {};
     this.rowKeys = [];
     this.colKeys = [];
@@ -549,15 +517,11 @@ class CrossTableData {
     this.sorted = false;
 
     // iterate through input, accumulating data for cells
-    CrossTableData.forEachRecord(
-      this.props.data,
-      this.props.derivedAttributes,
-      record => {
-        if (this.filter(record)) {
-          this.processRecord(record);
-        }
+    CrossTableData.forEachRecord(this.props.data, this.props.derivedAttributes, record => {
+      if (this.filter(record)) {
+        this.processRecord(record);
       }
-    );
+    });
   }
 
   filter(record) {
@@ -570,22 +534,18 @@ class CrossTableData {
   }
 
   forEachMatchingRecord(criteria, callback) {
-    return CrossTableData.forEachRecord(
-      this.props.data,
-      this.props.derivedAttributes,
-      record => {
-        if (!this.filter(record)) {
+    return CrossTableData.forEachRecord(this.props.data, this.props.derivedAttributes, record => {
+      if (!this.filter(record)) {
+        return;
+      }
+      for (const k in criteria) {
+        const v = criteria[k];
+        if (v !== (k in record ? record[k] : 'null')) {
           return;
         }
-        for (const k in criteria) {
-          const v = criteria[k];
-          if (v !== (k in record ? record[k] : 'null')) {
-            return;
-          }
-        }
-        callback(record);
       }
-    );
+      callback(record);
+    });
   }
 
   arrSort(attrs) {
@@ -682,11 +642,7 @@ class CrossTableData {
         this.tree[flatRowKey] = {};
       }
       if (!this.tree[flatRowKey][flatColKey]) {
-        this.tree[flatRowKey][flatColKey] = this.aggregator(
-          this,
-          rowKey,
-          colKey
-        );
+        this.tree[flatRowKey][flatColKey] = this.aggregator(this, rowKey, colKey);
       }
       this.tree[flatRowKey][flatColKey].push(record);
     }
@@ -784,17 +740,13 @@ CrossTableData.defaultProps = {
 };
 
 CrossTableData.propTypes = {
-  data: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.func])
-    .isRequired,
+  data: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.func]).isRequired,
   aggregatorName: PropTypes.string,
   cols: PropTypes.arrayOf(PropTypes.string),
   rows: PropTypes.arrayOf(PropTypes.string),
   vals: PropTypes.arrayOf(PropTypes.string),
   valueFilter: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool)),
-  sorters: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.objectOf(PropTypes.func),
-  ]),
+  sorters: PropTypes.oneOfType([PropTypes.func, PropTypes.objectOf(PropTypes.func)]),
   derivedAttributes: PropTypes.objectOf(PropTypes.object),
   rowOrder: PropTypes.oneOf(['key_a_to_z', 'value_a_to_z', 'value_z_to_a']),
   colOrder: PropTypes.oneOf(['key_a_to_z', 'value_a_to_z', 'value_z_to_a']),
@@ -815,4 +767,3 @@ export {
 /**
  * @ignore - do not document.
  */
-

@@ -16,43 +16,43 @@ module.exports = require('fs')
 `,
         },
         'pages/demos/pickers/TimePickerBasic.js': {
-                  js: require('docs/src/pages/demos/pickers/TimePickerBasic').default,
-                  raw: preval`
+          js: require('docs/src/pages/demos/pickers/TimePickerBasic').default,
+          raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/pickers/TimePickerBasic'), 'utf8')
 `,
         },
         'pages/demos/pickers/BasicDateTimePicker.js': {
-                  js: require('docs/src/pages/demos/pickers/BasicDateTimePicker').default,
-                  raw: preval`
+          js: require('docs/src/pages/demos/pickers/BasicDateTimePicker').default,
+          raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/pickers/BasicDateTimePicker'), 'utf8')
 `,
         },
         'pages/demos/pickers/CustomDateTimePicker.js': {
-                  js: require('docs/src/pages/demos/pickers/CustomDateTimePicker').default,
-                  raw: preval`
+          js: require('docs/src/pages/demos/pickers/CustomDateTimePicker').default,
+          raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/pickers/CustomDateTimePicker'), 'utf8')
 `,
         },
         'pages/demos/pickers/CustomElementsDatePicker.js': {
-                  js: require('docs/src/pages/demos/pickers/CustomElementsDatePicker').default,
-                  raw: preval`
+          js: require('docs/src/pages/demos/pickers/CustomElementsDatePicker').default,
+          raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/pickers/CustomElementsDatePicker'), 'utf8')
 `,
         },
         'pages/demos/pickers/KeyboardDatePicker.js': {
-                  js: require('docs/src/pages/demos/pickers/KeyboardDatePicker').default,
-                  raw: preval`
+          js: require('docs/src/pages/demos/pickers/KeyboardDatePicker').default,
+          raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/pickers/KeyboardDatePicker'), 'utf8')
 `,
         },
         'pages/demos/pickers/KeyboardTimePicker.js': {
-                  js: require('docs/src/pages/demos/pickers/KeyboardTimePicker').default,
-                  raw: preval`
+          js: require('docs/src/pages/demos/pickers/KeyboardTimePicker').default,
+          raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/pickers/KeyboardTimePicker'), 'utf8')
 `,

@@ -7,10 +7,6 @@ import Grid from '../Grid/Grid';
 
 // import Divider from '@material-ui/core/Divider';
 
-
-
-
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -47,7 +43,7 @@ function FullWidthGrid(props) {
           <Paper className={classes.paper}>xs=6 sm=3</Paper>
         </Grid>
         <Grid item xs={6} sm={3} push={3}>
-            <Paper className={classes.paper}>4: xs=6 sm=3 push=3</Paper>
+          <Paper className={classes.paper}>4: xs=6 sm=3 push=3</Paper>
         </Grid>
         <Grid item xs={12} sm={6}>
           <Grid container spacing={24}>
@@ -65,7 +61,6 @@ function FullWidthGrid(props) {
             </Grid>
           </Grid>
         </Grid>
-        
       </Grid>
 
       <Grid container spacing={24}>
@@ -114,10 +109,8 @@ function FullWidthGrid(props) {
             <Grid item xs={6} sm={3} offset={3}>
               <Paper className={classes.paper}>xs=6 sm=3</Paper>
             </Grid>
-            
           </Grid>
         </Grid>
-        
       </Grid>
 
       <Grid container spacing={24}>
@@ -139,12 +132,12 @@ function FullWidthGrid(props) {
         <Grid item xs={6} sm={3}>
           <Paper className={classes.paper}>xs=6 sm=3</Paper>
         </Grid>
-        <Grid item xs={{span: 6, offset:2, push: 2}} sm={{span:3, offset: 3, push: 3}} >
-            <Paper className={classes.paper}>4: xs=6 sm=3 push=3 before</Paper>
+        <Grid item xs={{ span: 6, offset: 2, push: 2 }} sm={{ span: 3, offset: 3, push: 3 }}>
+          <Paper className={classes.paper}>4: xs=6 sm=3 push=3 before</Paper>
         </Grid>
-        <Grid item xs={6} sm={{span:3, pull:3}}  md={{span:9, push:3}}>
-            <Paper className={classes.paper}>4: xs=6 sm=3 push=3 after</Paper>
-        </Grid>         
+        <Grid item xs={6} sm={{ span: 3, pull: 3 }} md={{ span: 9, push: 3 }}>
+          <Paper className={classes.paper}>4: xs=6 sm=3 push=3 after</Paper>
+        </Grid>
       </Grid>
     </div>
   );

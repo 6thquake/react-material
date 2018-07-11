@@ -9,26 +9,26 @@ import Divider from '../Divider';
 import MenuItem from '../MenuItem';
 const styles = theme => ({
   root: {
-   flexGrow: 1,
+    flexGrow: 1,
   },
   container: {
-   flexGrow: 1,
-   position: 'relative'
+    flexGrow: 1,
+    position: 'relative',
   },
-  textarea:{
+  textarea: {
     width: '100%',
   },
-  modal:{
+  modal: {
     position: 'fixed',
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
-    overflow:'hidden',
+    overflow: 'hidden',
     outline: 0,
     backgroundColor: 'rgb(0, 0, 0)',
     opacity: 0,
-    zIndex: 1
+    zIndex: 1,
   },
   paper: {
     position: 'absolute',
@@ -36,7 +36,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     left: 0,
     right: 0,
-    padding:'10px'
+    padding: '10px',
   },
   chip: {
     margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
@@ -45,20 +45,20 @@ const styles = theme => ({
     flexGrow: 1,
     flexWrap: 'wrap',
   },
-  inputHold:{
-    padding:'10px 0 7px'
-  }
+  inputHold: {
+    padding: '10px 0 7px',
+  },
 });
 class AutoComplete extends Component {
   static propTypes = {
     /**
      * input change ,callback to parent component
      */
-    inputChangeCb : PropTypes.func.isRequired,
+    inputChangeCb: PropTypes.func.isRequired,
     /**
      * pagination change ,callback to parent component
      */
-    pageChangeCb : PropTypes.func.isRequired,
+    pageChangeCb: PropTypes.func.isRequired,
     /**
      * pagination component config
      */
@@ -74,53 +74,53 @@ class AutoComplete extends Component {
     /**
      * when select one item,callback
      */
-    onChange : PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     /**
      * 用于回显
      */
-    value : PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     /**
      * decided autocomplete is disabled
      */
-    disabled : PropTypes.bool,
+    disabled: PropTypes.bool,
   };
   static defaultProps = {
-    inputChangeCb:function () {
-      console.log("need cb function")
+    inputChangeCb: function() {
+      console.log('need cb function');
     },
-    pageChangeCb:function () {
-      console.log("need cb function")
+    pageChangeCb: function() {
+      console.log('need cb function');
     },
-    pageConfig:{
+    pageConfig: {
       currentPage: 1,
       pageSize: 5,
-      total:0
+      total: 0,
     },
-    placeHold:'please input something',
-    multiple:false,
-    onChange:function () {
-      console.log("need cb function")
+    placeHold: 'please input something',
+    multiple: false,
+    onChange: function() {
+      console.log('need cb function');
     },
-    disabled:false
+    disabled: false,
   };
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      open:false,
+      open: false,
       inputValue: '',
       selectedItem: [],
-      currentPage:1
-    }
+      currentPage: 1,
+    };
   }
-  handleChange (event) {
+  handleChange(event) {
     this.setState({
       open: true,
-      inputValue:event.target.value
+      inputValue: event.target.value,
     });
     this.props.inputChangeCb(event);
-  };
-  handleDelete = item =>event => {
-    if(this.props.disabled){
+  }
+  handleDelete = item => event => {
+    if (this.props.disabled) {
       return;
     }
     const value = [...this.props.value];
@@ -135,10 +135,10 @@ class AutoComplete extends Component {
   };
   handleItemClick = child => event => {
     this.setState({
-      inputValue:''
+      inputValue: '',
     });
     if (!this.props.multiple) {
-      this.setState({ open :false})
+      this.setState({ open: false });
     }
     const { onChange } = this.props;
     if (onChange) {
@@ -147,7 +147,7 @@ class AutoComplete extends Component {
       if (event.target) {
         target = event.target;
       }
-      const selecttext = child?child.props.value:event.target.textContent;
+      const selecttext = child ? child.props.value : event.target.textContent;
       if (this.props.multiple) {
         value = Array.isArray(this.props.value) ? [...this.props.value] : [];
         const itemIndex = value.indexOf(selecttext);
@@ -159,7 +159,7 @@ class AutoComplete extends Component {
       } else {
         value = selecttext;
         this.setState({
-          inputValue:value
+          inputValue: value,
         });
       }
       event.persist();
@@ -170,162 +170,187 @@ class AutoComplete extends Component {
   handleBlur = event => {
     if (this.props.onBlur) {
       this.props.onBlur(event);
-    }else{
-        const {onChange}=this.props;
-        if (onChange) {
-          let value;
-          let target;
-          if (event.target) {
-            target = event.target;
-          }
-          const selecttext = this.state.inputValue;
-          if(this.props.multiple){
-            value = Array.isArray(this.props.value) ? [...this.props.value] : [];
-            const itemIndex = value.indexOf(selecttext);
-            if (itemIndex === -1) {
-              if(selecttext){
-                value.push(selecttext);
-              }
-            }
-            this.setState({ open :false,inputValue:''});
-            }else {
-              value = selecttext;
-              this.setState({
-                open :false,
-                inputValue:value
-              });
-            }
-          event.persist();
-          event.target = { ...target, value };
-          onChange(event);
+    } else {
+      const { onChange } = this.props;
+      if (onChange) {
+        let value;
+        let target;
+        if (event.target) {
+          target = event.target;
         }
+        const selecttext = this.state.inputValue;
+        if (this.props.multiple) {
+          value = Array.isArray(this.props.value) ? [...this.props.value] : [];
+          const itemIndex = value.indexOf(selecttext);
+          if (itemIndex === -1) {
+            if (selecttext) {
+              value.push(selecttext);
+            }
+          }
+          this.setState({ open: false, inputValue: '' });
+        } else {
+          value = selecttext;
+          this.setState({
+            open: false,
+            inputValue: value,
+          });
+        }
+        event.persist();
+        event.target = { ...target, value };
+        onChange(event);
+      }
     }
   };
-  componentDidMount () {
-    if(!this.props.multiple){
+  componentDidMount() {
+    if (!this.props.multiple) {
       this.setState({
-        inputValue:this.props.value
+        inputValue: this.props.value,
       });
     }
   }
   render() {
-    const {pageConfig,pageChangeCb,classes,placeHold ,children,multiple,value,dataSource,keyValue,disabled} = this.props;
-    const {open,inputValue} = this.state;
+    const {
+      pageConfig,
+      pageChangeCb,
+      classes,
+      placeHold,
+      children,
+      multiple,
+      value,
+      dataSource,
+      keyValue,
+      disabled,
+    } = this.props;
+    const { open, inputValue } = this.state;
     let items;
-    if(dataSource){
-      items = dataSource ? dataSource.map((item) => {
-        let selected=false;
+    if (dataSource) {
+      items = dataSource
+        ? dataSource.map(item => {
+            let selected = false;
 
-        switch (typeof item) {
-          case 'string':
-            if (multiple) {
-              if (!Array.isArray(value)) {
-                throw new Error(
-                  'React-Material: the `value` property must be an array ' +
-                  'when using the `AutoComplete` component with `multiple`.',
+            switch (typeof item) {
+              case 'string':
+                if (multiple) {
+                  if (!Array.isArray(value)) {
+                    throw new Error(
+                      'React-Material: the `value` property must be an array ' +
+                        'when using the `AutoComplete` component with `multiple`.',
+                    );
+                  }
+                  selected = value.indexOf(item) !== -1;
+                } else {
+                  selected = value === item;
+                }
+                return (
+                  <MenuItem
+                    key={item}
+                    value={item}
+                    selected={selected}
+                    onClick={this.handleItemClick(null)}
+                  >
+                    {item}
+                  </MenuItem>
                 );
-              }
-              selected = value.indexOf(item) !== -1;
-            } else {
-              selected = (value === item);
-            }
-            return <MenuItem key={item} value={item} selected={selected}
-                             onClick={this.handleItemClick(null)}>{item}</MenuItem>;
-          case 'object':
-            if (multiple) {
-              if (!Array.isArray(value)) {
-                throw new Error(
-                  'React-Material: the `value` property must be an array ' +
-                  'when using the `AutoComplete` component with `multiple`.',
+              case 'object':
+                if (multiple) {
+                  if (!Array.isArray(value)) {
+                    throw new Error(
+                      'React-Material: the `value` property must be an array ' +
+                        'when using the `AutoComplete` component with `multiple`.',
+                    );
+                  }
+                  selected = value.indexOf(item[keyValue[1]]) !== -1;
+                } else {
+                  selected = value === item[keyValue[1]];
+                }
+                return (
+                  <MenuItem
+                    key={item[keyValue[0]]}
+                    value={item[keyValue[1]]}
+                    selected={selected}
+                    onClick={this.handleItemClick(null)}
+                  >
+                    {item[keyValue[0]]}
+                  </MenuItem>
                 );
-              }
-              selected = value.indexOf(item[keyValue[1]]) !== -1;
-            } else {
-              selected = (value === item[keyValue[1]]);
+              default:
+                throw new Error(
+                  'AutoComplete[dataSource] only supports type `string[] | Object[]`.',
+                );
             }
-            return (
-              <MenuItem  key={item[keyValue[0]]} value={item[keyValue[1]]} selected={selected}
-                         onClick={this.handleItemClick(null)}>{item[keyValue[0]]}</MenuItem>
-            );
-          default:
-            throw new Error('AutoComplete[dataSource] only supports type `string[] | Object[]`.');
-        }
-      }) : [];
+          })
+        : [];
     } else {
-        items = React.Children.map(children, child => {
-          if (!React.isValidElement(child)) {
-            return null;
-          }
-          let selected=false;
-          if (multiple) {
-            if (!Array.isArray(value)) {
-              throw new Error(
-                'React-Material: the `value` property must be an array ' +
+      items = React.Children.map(children, child => {
+        if (!React.isValidElement(child)) {
+          return null;
+        }
+        let selected = false;
+        if (multiple) {
+          if (!Array.isArray(value)) {
+            throw new Error(
+              'React-Material: the `value` property must be an array ' +
                 'when using the `AutoComplete` component with `multiple`.',
-              );
-            }
-            selected = value.indexOf(child.props.value) !== -1;
-          } else {
-            selected = (value === child.props.value);
+            );
           }
-          return React.cloneElement(child, {
-            onClick: this.handleItemClick(child),
-            role: 'option',
-            selected,
-            value: undefined, // The value is most likely not a valid HTML attribute.
-            'data-value': child.props.value, // Instead, we provide it as a data attribute.
-          });
+          selected = value.indexOf(child.props.value) !== -1;
+        } else {
+          selected = value === child.props.value;
+        }
+        return React.cloneElement(child, {
+          onClick: this.handleItemClick(child),
+          role: 'option',
+          selected,
+          value: undefined, // The value is most likely not a valid HTML attribute.
+          'data-value': child.props.value, // Instead, we provide it as a data attribute.
         });
+      });
     }
     return (
       <div className={classes.root}>
-        {open?
-          <div
-            onClick={this.handleBlur}
-            className={classes.modal}>
-          </div>:null}
-          <div className={classes.container}>
-            {multiple?
-              <TextField
-                disabled={disabled}
-                className={classes.textarea}
-                onChange={this.handleChange.bind(this)}
-                value={inputValue}
-                multiline
-                rows='1'
-                InputProps={{
-                  classes: {
-                    root: classes.inputRoot,
-                    input:classes.inputHold
-                  },
-                  startAdornment:value.map(item => (
-                    <Chip
-                      key={item}
-                      label={item}
-                      className={classes.chip}
-                      onDelete={this.handleDelete(item)}
-                    />
-                  )),
-                  placeholder:value.length>0?'':placeHold
-                }}
-            />: <TextField
-                disabled={disabled}
-                className={classes.textarea}
-                onChange={this.handleChange.bind(this)}
-                value={inputValue}
-                placeholder={placeHold}
-              />}
-            {open? (
-              <Paper className={classes.paper} square>
-                {items}
-                <Divider/>
-                  <Pagination
-                    {...pageConfig}
-                    pageCallbackFn ={pageChangeCb}
+        {open ? <div onClick={this.handleBlur} className={classes.modal} /> : null}
+        <div className={classes.container}>
+          {multiple ? (
+            <TextField
+              disabled={disabled}
+              className={classes.textarea}
+              onChange={this.handleChange.bind(this)}
+              value={inputValue}
+              multiline
+              rows="1"
+              InputProps={{
+                classes: {
+                  root: classes.inputRoot,
+                  input: classes.inputHold,
+                },
+                startAdornment: value.map(item => (
+                  <Chip
+                    key={item}
+                    label={item}
+                    className={classes.chip}
+                    onDelete={this.handleDelete(item)}
                   />
-              </Paper>
-            ) : null}
-          </div>
+                )),
+                placeholder: value.length > 0 ? '' : placeHold,
+              }}
+            />
+          ) : (
+            <TextField
+              disabled={disabled}
+              className={classes.textarea}
+              onChange={this.handleChange.bind(this)}
+              value={inputValue}
+              placeholder={placeHold}
+            />
+          )}
+          {open ? (
+            <Paper className={classes.paper} square>
+              {items}
+              <Divider />
+              <Pagination {...pageConfig} pageCallbackFn={pageChangeCb} />
+            </Paper>
+          ) : null}
+        </div>
       </div>
     );
   }

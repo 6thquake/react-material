@@ -2,15 +2,14 @@ import React, { Fragment, PureComponent } from 'react';
 import { TimePicker } from 'react-material/Picker';
 import LocaleProvider from 'react-material/LocaleProvider';
 
-
 class BasicUsage extends PureComponent {
   state = {
     selectedDate: new Date(),
-  }
+  };
 
-  handleDateChange = (date) => {
+  handleDateChange = date => {
     this.setState({ selectedDate: date });
-  }
+  };
 
   render() {
     const { selectedDate } = this.state;
@@ -19,11 +18,7 @@ class BasicUsage extends PureComponent {
       <LocaleProvider>
         <Fragment>
           <div className="picker">
-            <TimePicker
-              label="12 hours"
-              value={selectedDate}
-              onChange={this.handleDateChange}
-            />
+            <TimePicker label="12 hours" value={selectedDate} onChange={this.handleDateChange} />
           </div>
 
           <div className="picker">
@@ -51,4 +46,4 @@ class BasicUsage extends PureComponent {
   }
 }
 
-export default BasicUsage
+export default BasicUsage;

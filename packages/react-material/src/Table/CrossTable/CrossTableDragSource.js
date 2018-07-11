@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 
 import { DragSource } from 'react-dnd';
 
-
 const ItemTypes = {
-  COLUMN:'column',
-  CHIP: 'chip'
+  COLUMN: 'column',
+  CHIP: 'chip',
 };
 
 const columnSource = {
   beginDrag(props, monitor, component) {
-    console.log(props)
-    return {name: props.name};
+    console.log(props);
+    return { name: props.name };
   },
 
   endDrag(props, monitor, component) {
@@ -26,25 +25,22 @@ const columnSource = {
     const dropResult = monitor.getDropResult();
 
     component.props.dragOut();
-  }
+  },
 };
 
 function chipDragcollect(connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
     connectDragPreview: connect.dragPreview(),
-    isDragging: monitor.isDragging()
-  }
+    isDragging: monitor.isDragging(),
+  };
 }
-
 
 class CrossTableDragSource extends React.Component {
   render() {
     const { connectDragSource, connectDragPreview, children } = this.props;
 
-    return connectDragSource(
-          <div style={{display:'inline-block'}}>{children}</div>
-    );
+    return connectDragSource(<div style={{ display: 'inline-block' }}>{children}</div>);
   }
 }
 

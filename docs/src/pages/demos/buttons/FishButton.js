@@ -15,42 +15,41 @@ const styles = theme => ({
 });
 
 function FishButtons(props) {
-  const {classes} = props;
+  const { classes } = props;
   return (
-        <div>
-          <FishButton size='lg'>
-            <IconButton className={classes.button} aria-label="Delete">
-              <DeleteIcon />
-            </IconButton>
-          </FishButton>
-          <FishButton size='md'>
-            <IconButton className={classes.button} aria-label="Delete" disabled color="primary">
-              <DeleteIcon />
-            </IconButton>
-          </FishButton>
-          <FishButton>
-            <IconButton color="secondary" className={classes.button} aria-label="Add an alarm">
-              <Icon>alarm</Icon>
-            </IconButton>
-          </FishButton>
-          <FishButton>
-            <IconButton color="primary" className={classes.button} aria-label="Add to shopping cart">
-              <AddShoppingCartIcon />
-            </IconButton>
-          </FishButton>
-          <FishButton>
-            <label htmlFor="icon-button-file">
-              <IconButton color="primary" className={classes.button} component="span">
-                <PhotoCamera />
-              </IconButton>
-            </label>
-          </FishButton>
-        </div>
-      )
+    <div>
+      <FishButton size="lg">
+        <IconButton className={classes.button} aria-label="Delete">
+          <DeleteIcon />
+        </IconButton>
+      </FishButton>
+      <FishButton size="md">
+        <IconButton className={classes.button} aria-label="Delete" disabled color="primary">
+          <DeleteIcon />
+        </IconButton>
+      </FishButton>
+      <FishButton>
+        <IconButton color="secondary" className={classes.button} aria-label="Add an alarm">
+          <Icon>alarm</Icon>
+        </IconButton>
+      </FishButton>
+      <FishButton>
+        <IconButton color="primary" className={classes.button} aria-label="Add to shopping cart">
+          <AddShoppingCartIcon />
+        </IconButton>
+      </FishButton>
+      <FishButton>
+        <label htmlFor="icon-button-file">
+          <IconButton color="primary" className={classes.button} component="span">
+            <PhotoCamera />
+          </IconButton>
+        </label>
+      </FishButton>
+    </div>
+  );
 }
 
 FishButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 export default withStyles(styles)(FishButtons);
-

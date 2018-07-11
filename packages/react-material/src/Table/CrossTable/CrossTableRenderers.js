@@ -9,34 +9,34 @@ import TableRow from '../../TableRow';
 
 import { withStyles } from '../../styles';
 
-const styles = (theme) => ({
-  table:{
+const styles = theme => ({
+  table: {
     fontSize: '8pt',
     textAlign: 'left',
     borderCollapse: 'collapse',
     marginTop: '3px',
     marginLeft: '3px',
-    fontFamily: theme.typography.fontFamily
+    fontFamily: theme.typography.fontFamily,
   },
-  th:{
+  th: {
     backgroundColor: '#ebf0f8',
     border: '1px solid #c8d4e3',
     fontSize: '8pt',
-    padding: '5px !important'
+    padding: '5px !important',
   },
-  td:{
+  td: {
     color: '#2a3f5f',
     padding: '5px !important',
     backgroundColor: '#fff',
     border: '1px solid #c8d4e3',
     verticalAlign: 'top',
-    textAlign: 'right'
+    textAlign: 'right',
   },
-  tf:{
+  tf: {
     backgroundColor: '#ebf0f8',
     border: '1px solid #c8d4e3',
     fontSize: '8pt',
-    padding: '5px !important'
+    padding: '5px !important',
   },
 });
 
@@ -46,11 +46,7 @@ const spanSize = function(arr, i, j) {
   if (i !== 0) {
     let asc, end;
     let noDraw = true;
-    for (
-      x = 0, end = j, asc = end >= 0;
-      asc ? x <= end : x >= end;
-      asc ? x++ : x--
-    ) {
+    for (x = 0, end = j, asc = end >= 0; asc ? x <= end : x >= end; asc ? x++ : x--) {
       if (arr[i - 1][x] !== arr[i][x]) {
         noDraw = false;
       }
@@ -63,11 +59,7 @@ const spanSize = function(arr, i, j) {
   while (i + len < arr.length) {
     let asc1, end1;
     let stop = false;
-    for (
-      x = 0, end1 = j, asc1 = end1 >= 0;
-      asc1 ? x <= end1 : x >= end1;
-      asc1 ? x++ : x--
-    ) {
+    for (x = 0, end1 = j, asc1 = end1 >= 0; asc1 ? x <= end1 : x >= end1; asc1 ? x++ : x--) {
       if (arr[i][x] !== arr[i + len][x]) {
         stop = true;
       }
@@ -85,8 +77,8 @@ function redColorScaleGenerator(values) {
   const max = Math.max.apply(Math, values);
   return x => {
     // eslint-disable-next-line no-magic-numbers
-    const nonRed = 255 - Math.round(255 * (x - min) / (max - min));
-    return {backgroundColor: `rgb(255,${nonRed},${nonRed})`};
+    const nonRed = 255 - Math.round((255 * (x - min)) / (max - min));
+    return { backgroundColor: `rgb(255,${nonRed},${nonRed})` };
   };
 }
 
@@ -107,39 +99,29 @@ function makeRenderer(opts = {}) {
       let colTotalColors = () => {};
       if (opts.heatmapMode) {
         const colorScaleGenerator = this.props.tableColorScaleGenerator;
-        const rowTotalValues = colKeys.map(x =>
-          crossTableData.getAggregator([], x).value()
-        );
+        const rowTotalValues = colKeys.map(x => crossTableData.getAggregator([], x).value());
         rowTotalColors = colorScaleGenerator(rowTotalValues);
-        const colTotalValues = rowKeys.map(x =>
-          crossTableData.getAggregator(x, []).value()
-        );
+        const colTotalValues = rowKeys.map(x => crossTableData.getAggregator(x, []).value());
         colTotalColors = colorScaleGenerator(colTotalValues);
 
         if (opts.heatmapMode === 'full') {
           const allValues = [];
           rowKeys.map(r =>
-            colKeys.map(c =>
-              allValues.push(crossTableData.getAggregator(r, c).value())
-            )
+            colKeys.map(c => allValues.push(crossTableData.getAggregator(r, c).value())),
           );
           const colorScale = colorScaleGenerator(allValues);
           valueCellColors = (r, c, v) => colorScale(v);
         } else if (opts.heatmapMode === 'row') {
           const rowColorScales = {};
           rowKeys.map(r => {
-            const rowValues = colKeys.map(x =>
-              crossTableData.getAggregator(r, x).value()
-            );
+            const rowValues = colKeys.map(x => crossTableData.getAggregator(r, x).value());
             rowColorScales[r] = colorScaleGenerator(rowValues);
           });
           valueCellColors = (r, c, v) => rowColorScales[r](v);
         } else if (opts.heatmapMode === 'col') {
           const colColorScales = {};
           colKeys.map(c => {
-            const colValues = rowKeys.map(x =>
-              crossTableData.getAggregator(x, c).value()
-            );
+            const colValues = rowKeys.map(x => crossTableData.getAggregator(x, c).value());
             colColorScales[c] = colorScaleGenerator(colValues);
           });
           valueCellColors = (r, c, v) => colColorScales[c](v);
@@ -162,13 +144,7 @@ function makeRenderer(opts = {}) {
                   filters[attr] = rowValues[i];
                 }
               }
-              return e =>
-                this.props.tableOptions.clickCallback(
-                  e,
-                  value,
-                  filters,
-                  crossTableData
-                );
+              return e => this.props.tableOptions.clickCallback(e, value, filters, crossTableData);
             }
           : null;
 
@@ -180,7 +156,11 @@ function makeRenderer(opts = {}) {
                 <TableRow key={`colAttr${j}`}>
                   {j === 0 &&
                     rowAttrs.length !== 0 && (
-                      <TableCell className={classes.th} colSpan={rowAttrs.length} rowSpan={colAttrs.length} />
+                      <TableCell
+                        className={classes.th}
+                        colSpan={rowAttrs.length}
+                        rowSpan={colAttrs.length}
+                      />
                     )}
                   <TableCell className={classes.th}>{c}</TableCell>
                   {colKeys.map(function(colKey, i) {
@@ -193,11 +173,7 @@ function makeRenderer(opts = {}) {
                         className={classes.th}
                         key={`colKey${i}`}
                         colSpan={x}
-                        rowSpan={
-                          j === colAttrs.length - 1 && rowAttrs.length !== 0
-                            ? 2
-                            : 1
-                        }
+                        rowSpan={j === colAttrs.length - 1 && rowAttrs.length !== 0 ? 2 : 1}
                       >
                         {colKey[j]}
                       </TableCell>
@@ -207,9 +183,7 @@ function makeRenderer(opts = {}) {
                   {j === 0 && (
                     <TableCell
                       className={classes.th}
-                      rowSpan={
-                        colAttrs.length + (rowAttrs.length === 0 ? 0 : 1)
-                      }
+                      rowSpan={colAttrs.length + (rowAttrs.length === 0 ? 0 : 1)}
                     >
                       Totals
                     </TableCell>
@@ -249,11 +223,7 @@ function makeRenderer(opts = {}) {
                         key={`rowKeyLabel${i}-${j}`}
                         className={classes.td}
                         rowSpan={x}
-                        colSpan={
-                          j === rowAttrs.length - 1 && colAttrs.length !== 0
-                            ? 2
-                            : 1
-                        }
+                        colSpan={j === rowAttrs.length - 1 && colAttrs.length !== 0 ? 2 : 1}
                       >
                         {txt}
                       </TableCell>
@@ -266,14 +236,9 @@ function makeRenderer(opts = {}) {
                         className={classes.td}
                         key={`rm-ct-td-${i}-${j}`}
                         onClick={
-                          getClickHandler &&
-                          getClickHandler(aggregator.value(), rowKey, colKey)
+                          getClickHandler && getClickHandler(aggregator.value(), rowKey, colKey)
                         }
-                        style={valueCellColors(
-                          rowKey,
-                          colKey,
-                          aggregator.value()
-                        )}
+                        style={valueCellColors(rowKey, colKey, aggregator.value())}
                       >
                         {aggregator.format(aggregator.value())}
                       </TableCell>
@@ -282,8 +247,7 @@ function makeRenderer(opts = {}) {
                   <TableCell
                     className={classes.td}
                     onClick={
-                      getClickHandler &&
-                      getClickHandler(totalAggregator.value(), rowKey, [null])
+                      getClickHandler && getClickHandler(totalAggregator.value(), rowKey, [null])
                     }
                     style={colTotalColors(totalAggregator.value())}
                   >
@@ -308,8 +272,7 @@ function makeRenderer(opts = {}) {
                     className={classes.tf}
                     key={`total${i}`}
                     onClick={
-                      getClickHandler &&
-                      getClickHandler(totalAggregator.value(), [null], colKey)
+                      getClickHandler && getClickHandler(totalAggregator.value(), [null], colKey)
                     }
                     style={rowTotalColors(totalAggregator.value())}
                   >
@@ -320,8 +283,7 @@ function makeRenderer(opts = {}) {
 
               <TableCell
                 onClick={
-                  getClickHandler &&
-                  getClickHandler(grandTotalAggregator.value(), [null], [null])
+                  getClickHandler && getClickHandler(grandTotalAggregator.value(), [null], [null])
                 }
                 className={classes.tf}
               >
@@ -336,12 +298,12 @@ function makeRenderer(opts = {}) {
 
   TableRenderer.defaultProps = Object.assign({}, CrossTableData.defaultProps, {
     tableColorScaleGenerator: redColorScaleGenerator,
-    tableOptions: {}
+    tableOptions: {},
   });
 
   TableRenderer.propTypes = Object.assign({}, CrossTableData.defaultProps, {
     tableColorScaleGenerator: PropTypes.func,
-    tableOptions: PropTypes.object
+    tableOptions: PropTypes.object,
   });
 
   return withStyles(styles, { name: 'RMTableRenderer' })(TableRenderer);
@@ -380,7 +342,7 @@ class TSVExportRenderer extends React.PureComponent {
     return (
       <textarea
         value={result.map(r => r.join('\t')).join('\n')}
-        style={{width: window.innerWidth / 2, height: window.innerHeight / 2}}
+        style={{ width: window.innerWidth / 2, height: window.innerHeight / 2 }}
         readOnly={true}
       />
     );
@@ -392,13 +354,12 @@ TSVExportRenderer.propTypes = CrossTableData.propTypes;
 
 export default {
   Table: makeRenderer(),
-  'Table Heatmap': makeRenderer({heatmapMode: 'full'}),
-  'Table Col Heatmap': makeRenderer({heatmapMode: 'col'}),
-  'Table Row Heatmap': makeRenderer({heatmapMode: 'row'}),
+  'Table Heatmap': makeRenderer({ heatmapMode: 'full' }),
+  'Table Col Heatmap': makeRenderer({ heatmapMode: 'col' }),
+  'Table Row Heatmap': makeRenderer({ heatmapMode: 'row' }),
   'Exportable TSV': TSVExportRenderer,
 };
 
 /**
  * @ignore - do not document.
  */
-

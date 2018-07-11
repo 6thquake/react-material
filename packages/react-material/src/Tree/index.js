@@ -1,5 +1,5 @@
 import * as React from 'react';
-import RcTree, {TreeNode} from 'rc-tree';
+import RcTree, { TreeNode } from 'rc-tree';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import styles from './styles';
@@ -60,13 +60,13 @@ class Tree extends React.Component {
 
   render() {
     const props = this.props;
-    const {prefixCls, className} = props;
+    const { prefixCls, className } = props;
     let checkable = props.checkable;
     return (
       <RcTree
         {...props}
         className={className}
-        checkable={checkable ? <span className={`${prefixCls}-checkbox-inner`}/> : checkable}
+        checkable={checkable ? <span className={`${prefixCls}-checkbox-inner`} /> : checkable}
       >
         {/*<style dangerouslySetInnerHTML={{ __html: STYLE }}/>*/}
         {this.props.children}
@@ -131,4 +131,3 @@ class Tree extends React.Component {
 // };
 // console.log(styles)
 export default withStyles(styles, { name: 'RMTree' })(Tree);
-

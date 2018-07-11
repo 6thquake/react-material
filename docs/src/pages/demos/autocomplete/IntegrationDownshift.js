@@ -256,7 +256,7 @@ function IntegrationDownshift(props) {
           </div>
         )}
       </Downshift>
-      <br/>
+      <br />
       <DownshiftMultiple classes={classes} />
     </div>
   );

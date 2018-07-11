@@ -9,14 +9,14 @@ import { ItemTypes } from './Constants';
 const cardSource = {
   beginDrag(props) {
     return {
-      text: props.text
+      text: props.text,
     };
-  }
+  },
 };
 
 @DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
+  isDragging: monitor.isDragging(),
 }))
 export default class Card extends Component {
   static propTypes = {
@@ -24,15 +24,11 @@ export default class Card extends Component {
 
     // Injected by React DnD:
     connectDragSource: PropTypes.func.isRequired,
-    isDragging: PropTypes.bool.isRequired
+    isDragging: PropTypes.bool.isRequired,
   };
 
   render() {
     const { isDragging, connectDragSource, text } = this.props;
-    return connectDragSource(
-      <div style={{ opacity: isDragging ? 0.5 : 1 }}>
-        {text}
-      </div>
-    );
+    return connectDragSource(<div style={{ opacity: isDragging ? 0.5 : 1 }}>{text}</div>);
   }
 }

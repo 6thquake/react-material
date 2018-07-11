@@ -1,28 +1,23 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Paper from '../Paper'
-import {
-  withStyles,
-  createMuiTheme
-} from '../styles'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Paper from '../Paper';
+import { withStyles, createMuiTheme } from '../styles';
 
-import Button from '../Button'
-import classNames from 'classnames'
-import deepmerge from 'deepmerge'
-import {
-  fade
-} from '../styles/colorManipulator';
+import Button from '../Button';
+import classNames from 'classnames';
+import deepmerge from 'deepmerge';
+import { fade } from '../styles/colorManipulator';
 
-const theme = createMuiTheme()
-const styles = (theme) => ({
-  box:{
+const theme = createMuiTheme();
+const styles = theme => ({
+  box: {
     position: 'relative',
     display: 'flex',
     overflow: 'hidden',
-    width: '100%'
-  }, 
+    width: '100%',
+  },
 
-  anchorWrapper:{
+  anchorWrapper: {
     marginTop: 0,
     marginBottom: 0,
     paddingLeft: 0,
@@ -39,12 +34,12 @@ const styles = (theme) => ({
   li: {},
 
   active: {
-    color:` ${theme.palette.primary.dark} !important`
+    color: ` ${theme.palette.primary.dark} !important`,
   },
-  
+
   wrapper: {
     position: 'relative',
-    paddingRight: 0
+    paddingRight: 0,
   },
 
   activeMask: {
@@ -56,7 +51,7 @@ const styles = (theme) => ({
     width: '100%',
     right: 0,
     // height: 40,
-    left: -2
+    left: -2,
   },
 
   link: {
@@ -83,313 +78,301 @@ const styles = (theme) => ({
   line: {
     height: 'inherit',
     backgroundColor: theme.palette.grey['300'],
-    marginLeft:0,
+    marginLeft: 0,
     marginTop: 0,
     marginBottom: 0,
     paddingLeft: 2,
   },
 
   horizontalAnchor: {
-    display: 'flex'
-  }
-})
+    display: 'flex',
+  },
+});
 
-const throttling = (fn, wait, maxTimelong) =>{
-  wait = wait || 100
-  maxTimelong = maxTimelong || 300
-  var timeout = null
-  var  startTime = Date.now()
+const throttling = (fn, wait, maxTimelong) => {
+  wait = wait || 100;
+  maxTimelong = maxTimelong || 300;
+  var timeout = null;
+  var startTime = Date.now();
 
-  return function (e) {
-    if (timeout !== null) clearTimeout(timeout)
-    var curTime = Date.now()
+  return function(e) {
+    if (timeout !== null) clearTimeout(timeout);
+    var curTime = Date.now();
     if (curTime - startTime >= maxTimelong) {
-      fn(e)
-      startTime = curTime
+      fn(e);
+      startTime = curTime;
     } else {
-      timeout = setTimeout((e) => { fn(e)}, wait)
+      timeout = setTimeout(e => {
+        fn(e);
+      }, wait);
+    }
+  };
+};
+
+export const scrollToAnchor = anchorName => {
+  if (anchorName) {
+    let anchorElement = document.querySelector(anchorName);
+    if (anchorElement) {
+      anchorElement.scrollIntoView();
     }
   }
-}
-
- export const scrollToAnchor = (anchorName) => {
-   if (anchorName) {
-     let anchorElement = document.querySelector(anchorName)
-     if (anchorElement) {
-       anchorElement.scrollIntoView()
-     }
-   }
- }
+};
 
 class Anchor extends React.Component {
   state = {
     linkToTop: 10,
-    linkHeight:40,
+    linkHeight: 40,
     links: {},
     active: '',
-  }
-  level = 0
-  container = null
-  wrapper = null
+  };
+  level = 0;
+  container = null;
+  wrapper = null;
   componentDidMount() {
-    let sel = this.props.container 
-    this.container = document.querySelector(sel) || window
-    this.ths = throttling(this.scrollHandle, 5, 20)
-    this.container.addEventListener('scroll', this.ths)
-    this.setLinks(this.props.links)
+    let sel = this.props.container;
+    this.container = document.querySelector(sel) || window;
+    this.ths = throttling(this.scrollHandle, 5, 20);
+    this.container.addEventListener('scroll', this.ths);
+    this.setLinks(this.props.links);
   }
-  componentWillUnmount(){
-    this.container.removeEventListener('scroll', this.ths, false)
+  componentWillUnmount() {
+    this.container.removeEventListener('scroll', this.ths, false);
   }
-  scrollHandle = (e) => {
-    let { links } = this.props
-    this.setLinks(links)
-  }
+  scrollHandle = e => {
+    let { links } = this.props;
+    this.setLinks(links);
+  };
 
   // find the nearest link to the contianer
-  nearestLink = (links) => {
+  nearestLink = links => {
     let min = {
       key: '',
-      value: Infinity
-    }
-    for(let link of links){
-      let sel = link.href
-    let ele = document.querySelector(sel)
-      let dh = ele ? this.getOffsetTop(ele, this.container) : Infinity
-      if(dh > 50 && sel === this.props.links[0].href){
-        sel = ''
+      value: Infinity,
+    };
+    for (let link of links) {
+      let sel = link.href;
+      let ele = document.querySelector(sel);
+      let dh = ele ? this.getOffsetTop(ele, this.container) : Infinity;
+      if (dh > 50 && sel === this.props.links[0].href) {
+        sel = '';
       }
-      let absDh = Math.abs(dh)
+      let absDh = Math.abs(dh);
       if (absDh < min.value) {
-
         min = {
           key: sel,
-          value: absDh
+          value: absDh,
+        };
+      }
+      if (link.children) {
+        let m = this.nearestLink(link.children);
+        if (m.value < min.value) {
+          min = m;
         }
       }
-      if(link.children){
-        let m = this.nearestLink(link.children)
-        if(m.value < min.value){
-          min = m
-        }
     }
-    }
-    return min
-  }
+    return min;
+  };
   // 激活高亮选项
-  changeActiveLink = (sel) => {
-    let {
-      onChange,
-    } = this.props
+  changeActiveLink = sel => {
+    let { onChange } = this.props;
     if (this.state.active !== sel) {
-      let dir = this.scrollDirection(this.state.active, sel)
-      onChange && onChange({
-        name: sel,
-        direction: dir
-      })
-      this.state.active = sel
+      let dir = this.scrollDirection(this.state.active, sel);
+      onChange &&
+        onChange({
+          name: sel,
+          direction: dir,
+        });
+      this.state.active = sel;
     }
 
     let activeLink = {
-      [sel]: true
-    }
-    this.setMask(sel)
+      [sel]: true,
+    };
+    this.setMask(sel);
     this.setState({
-      links: activeLink
-    })
-    return true
-  }
+      links: activeLink,
+    });
+    return true;
+  };
   // 计算滚动条的滚动方向
   scrollDirection = (pre, cur) => {
-    if(pre === ''){
-      return 'down'
+    if (pre === '') {
+      return 'down';
     }
-    if(cur === ''){
-      return 'up'
+    if (cur === '') {
+      return 'up';
     }
-    let preHeight = document.querySelector(pre).getBoundingClientRect().top
-    let curHeight = document.querySelector(cur).getBoundingClientRect().top
-    let dh = preHeight - curHeight
-    if(dh > 0){
-      return 'up'
-    }else{
-      return 'down'
+    let preHeight = document.querySelector(pre).getBoundingClientRect().top;
+    let curHeight = document.querySelector(cur).getBoundingClientRect().top;
+    let dh = preHeight - curHeight;
+    if (dh > 0) {
+      return 'up';
+    } else {
+      return 'down';
     }
-  }
+  };
 
   // 设置高亮 mask 的高度
-  setMask = (sel) => {
-    let { orientation } = this.props
+  setMask = sel => {
+    let { orientation } = this.props;
     if (orientation != 'horizontal') {
-      let links = this.wrapper.querySelectorAll('a')
-      let target = null
+      let links = this.wrapper.querySelectorAll('a');
+      let target = null;
       for (let link of links) {
         if (link.name === sel) {
-          target = link
-          break
+          target = link;
+          break;
         }
       }
-      let top = target && this.getOffsetTop(target, this.wrapper)
-      let height = target && target.getBoundingClientRect().height
+      let top = target && this.getOffsetTop(target, this.wrapper);
+      let height = target && target.getBoundingClientRect().height;
       this.setState({
         linkToTop: top,
         linkHeight: height,
-      })
+      });
     }
-  }
+  };
 
-  setLinks(links){
-    let nearestLink = this.nearestLink(links)
-    this.changeActiveLink(nearestLink.key)
+  setLinks(links) {
+    let nearestLink = this.nearestLink(links);
+    this.changeActiveLink(nearestLink.key);
   }
 
   // 找到子元素在父元素中的相对位置
   getOffsetTop(element, container) {
-    let eleRectTop = element.getBoundingClientRect().top 
+    let eleRectTop = element.getBoundingClientRect().top;
     if (container === window) {
       container = element.ownerDocument.documentElement;
       return eleRectTop - container.clientTop;
     }
-    let containerRectTop = container.getBoundingClientRect().top
-    return (eleRectTop - containerRectTop)
+    let containerRectTop = container.getBoundingClientRect().top;
+    return eleRectTop - containerRectTop;
   }
 
-  handleLinkClick = (index)=>(e) => {
-    let ele = e.target
+  handleLinkClick = index => e => {
+    let ele = e.target;
     let links = {
-      [ele.name]: true
-    }
+      [ele.name]: true,
+    };
 
-    this.setMask(ele, this.wrapper)
+    this.setMask(ele, this.wrapper);
     this.setState({
       activeLinkIndex: index,
-      links: links
-    })
-  }
+      links: links,
+    });
+  };
 
-  renderItem = (link, index, children)=>{
-    let {
-      classes,
-      linkStyle,
-      linkActiveStyle,
-      type
-    } = this.props
+  renderItem = (link, index, children) => {
+    let { classes, linkStyle, linkActiveStyle, type } = this.props;
 
-    let selected = this.state.links[link.href]
+    let selected = this.state.links[link.href];
     let defaultActiveStyle = {
-      color: theme.palette.primary.dark
-    }
-    let activeStyle = selected ? deepmerge(defaultActiveStyle, linkActiveStyle) : {}
-    let style = deepmerge(linkStyle, activeStyle)
-    const prop = {}
-    if(type !== 'hash'){
-      prop.href = link.href
+      color: theme.palette.primary.dark,
+    };
+    let activeStyle = selected ? deepmerge(defaultActiveStyle, linkActiveStyle) : {};
+    let style = deepmerge(linkStyle, activeStyle);
+    const prop = {};
+    if (type !== 'hash') {
+      prop.href = link.href;
     }
     return (
       <li key={index} className={classes.li}>
-        <a 
+        <a
           name={link.href}
-          onClick={this.handleLinkClick(index)} 
-          className={classes.link} 
-          style= {style}
-          onClick={(e)=>this.scrollToAnchor(link.href)}
+          onClick={this.handleLinkClick(index)}
+          className={classes.link}
+          style={style}
+          onClick={e => this.scrollToAnchor(link.href)}
           {...prop}
-          >
+        >
           {link.label}
         </a>
         {children && this.renderLinks(children)}
       </li>
-    )
-  }
+    );
+  };
 
   renderLink = (link, index) => {
-    return this.renderItem(link, index, link.children)
-  }
+    return this.renderItem(link, index, link.children);
+  };
 
-  renderLinks = (links) => {
-    let {classes} = this.props
-    let result = links.map((link, index)=>{
-      return this.renderLink(link, index)
-    })
-    return <ul className={classes.ul}>{result}</ul>
-  }
-
-  renderHorizontalLinks = (links) => {
-    let {
-      classes,
-      linkStyle,
-      linkActiveStyle,
-      type
-    } = this.props
-    
+  renderLinks = links => {
+    let { classes } = this.props;
     let result = links.map((link, index) => {
-      let selected = this.state.links[link.href]
+      return this.renderLink(link, index);
+    });
+    return <ul className={classes.ul}>{result}</ul>;
+  };
+
+  renderHorizontalLinks = links => {
+    let { classes, linkStyle, linkActiveStyle, type } = this.props;
+
+    let result = links.map((link, index) => {
+      let selected = this.state.links[link.href];
       let defaultActiveStyle = {
         transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         borderBottom: `2px solid ${theme.palette.primary.main}`,
-        color: theme.palette.primary.main
-      }
-      let activeStyle = selected ? deepmerge(defaultActiveStyle, linkActiveStyle):{}
-      let style = deepmerge(linkStyle,activeStyle)
-      const prop = {}
-      if(type !== 'hash'){
-        prop.href = link.href
+        color: theme.palette.primary.main,
+      };
+      let activeStyle = selected ? deepmerge(defaultActiveStyle, linkActiveStyle) : {};
+      let style = deepmerge(linkStyle, activeStyle);
+      const prop = {};
+      if (type !== 'hash') {
+        prop.href = link.href;
       }
       return (
-        <a 
+        <a
           key={link.href}
           name={link.href}
-          onClick={this.handleLinkClick(index)} 
-          className={classes.hoLink} 
-          style= {style}
-          onClick={(e)=>this.scrollToAnchor(link.href)}
+          onClick={this.handleLinkClick(index)}
+          className={classes.hoLink}
+          style={style}
+          onClick={e => this.scrollToAnchor(link.href)}
           {...prop}
-          >{link.label}
+        >
+          {link.label}
         </a>
-      )
-    })
-    return <div ref={(e)=> {this.setRef(e)}} className={classes.horizontalAnchor}>{result}</div>
-  }
-
-  scrollToAnchor = (id)=> {
-    if(this.props.type === 'hash'){
-      return scrollToAnchor(id)
-    }
-  }
-  setRef =(e)=> {
-    this.wrapper = e
-  }
-  render() {
-    const {
-      classes,
-      links,
-      style,
-      orientation
-    } = this.props
-    const {
-      active,
-      linkToTop,
-      linkHeight
-    } = this.state
-    const maskStyle  = {
-      top: linkToTop,
-      height: linkHeight
-    }
-    
+      );
+    });
     return (
-      orientation == 'horizontal' ? this.renderHorizontalLinks(links) :
+      <div
+        ref={e => {
+          this.setRef(e);
+        }}
+        className={classes.horizontalAnchor}
+      >
+        {result}
+      </div>
+    );
+  };
+
+  scrollToAnchor = id => {
+    if (this.props.type === 'hash') {
+      return scrollToAnchor(id);
+    }
+  };
+  setRef = e => {
+    this.wrapper = e;
+  };
+  render() {
+    const { classes, links, style, orientation } = this.props;
+    const { active, linkToTop, linkHeight } = this.state;
+    const maskStyle = {
+      top: linkToTop,
+      height: linkHeight,
+    };
+
+    return orientation == 'horizontal' ? (
+      this.renderHorizontalLinks(links)
+    ) : (
       <div className={classes.box} style={style}>
-        <div className={classes.line}></div>
+        <div className={classes.line} />
         <div ref={this.setRef} className={classes.wrapper}>
-          {active && <div className={classes.activeMask} style={maskStyle}></div>}
-          <div className={classes.anchorWrapper}>
-            {
-              this.renderLinks(links)
-            }
-          </div>
+          {active && <div className={classes.activeMask} style={maskStyle} />}
+          <div className={classes.anchorWrapper}>{this.renderLinks(links)}</div>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -398,15 +381,15 @@ Anchor.propTypes = {
   container: PropTypes.string,
   style: PropTypes.object,
   linkStyle: PropTypes.object,
-  linkActiveStyle:PropTypes.object,
+  linkActiveStyle: PropTypes.object,
   orientation: PropTypes.string,
   onChange: PropTypes.func,
   type: PropTypes.string,
-}
+};
 
 Anchor.defaultProps = {
   linkStyle: {},
-  linkActiveStyle: {}
-}
+  linkActiveStyle: {},
+};
 
-export default withStyles(styles, { name: 'RMAnchor' })(Anchor)
+export default withStyles(styles, { name: 'RMAnchor' })(Anchor);

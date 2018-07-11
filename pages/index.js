@@ -76,11 +76,7 @@ function PageHome(props) {
       </Head>
       <div className={classes.hero}>
         <div className={classes.content}>
-          <img
-            src="/static/images/logo.svg"
-            alt="React-Material Logo"
-            className={classes.logo}
-          />
+          <img src="/static/images/logo.svg" alt="React-Material Logo" className={classes.logo} />
           <div className={classes.text}>
             <Typography variant="display2" component="h1" color="inherit" gutterBottom>
               {'React-Material'}
@@ -121,4 +117,7 @@ PageHome.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(withRoot, withStyles(styles))(PageHome);
+export default compose(
+  withRoot,
+  withStyles(styles),
+)(PageHome);

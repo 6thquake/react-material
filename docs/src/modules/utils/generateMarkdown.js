@@ -3,7 +3,8 @@ import recast from 'recast';
 import kebabCase from 'lodash/kebabCase';
 import { pageToTitle } from './helpers';
 
-const SOURCE_CODE_ROOT_URL = 'http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop';
+const SOURCE_CODE_ROOT_URL =
+  'http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 
@@ -173,7 +174,7 @@ function generateProps(reactAPI) {
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|\n`;
 
-  if(reactAPI.props){
+  if (reactAPI.props) {
     text = Object.keys(reactAPI.props).reduce((textProps, propRaw) => {
       const prop = getProp(reactAPI.props, propRaw);
 
@@ -222,7 +223,7 @@ function generateClasses(reactAPI) {
   if (!reactAPI.styles.classes.length) {
     return '';
   }
-  
+
   if (!reactAPI.styles.name) {
     throw new Error(`Missing styles name on ${reactAPI.name} component`);
   }

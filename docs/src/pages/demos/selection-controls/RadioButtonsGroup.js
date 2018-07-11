@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Radio,{ RadioButton } from 'react-material/Radio';
+import Radio, { RadioButton } from 'react-material/Radio';
 import RadioGroup from 'react-material/RadioGroup';
 import FormLabel from 'react-material/FormLabel';
 import FormControl from 'react-material/FormControl';
@@ -12,27 +12,26 @@ import Grid from 'react-material/Grid';
 const styles = theme => ({
   root: {
     display: 'flex',
-    flexWrap:'wrap'
+    flexWrap: 'wrap',
   },
   formControl: {
     margin: theme.spacing.unit * 3,
   },
-  button:{
-    margin: theme.spacing.unit
+  button: {
+    margin: theme.spacing.unit,
   },
   group: {
     margin: `${theme.spacing.unit}px 0`,
   },
-  checked:{
+  checked: {
     //todo remove span important
     '&+span': {
       color: 'red !important',
       background: 'green !important',
-      border:`1px solid black !important`
-    }
-  }
+      border: `1px solid black !important`,
+    },
+  },
 });
-
 
 class RadioButtonsGroup extends React.Component {
   state = {
@@ -48,7 +47,7 @@ class RadioButtonsGroup extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Grid container spacing={12} alignItems={ 'center' } justify={'center'}>
+        <Grid container spacing={12} alignItems={'center'} justify={'center'}>
           <Grid item xs="6">
             <FormControl component="fieldset" required className={classes.formControl}>
               <FormLabel component="legend">Gender</FormLabel>
@@ -82,7 +81,11 @@ class RadioButtonsGroup extends React.Component {
                 onChange={this.handleChange}
               >
                 <FormControlLabel value="male" control={<Radio color="primary" />} label="Male" />
-                <FormControlLabel value="female" control={<Radio color="primary" />} label="Female" />
+                <FormControlLabel
+                  value="female"
+                  control={<Radio color="primary" />}
+                  label="Female"
+                />
                 <FormControlLabel value="other" control={<Radio color="primary" />} label="Other" />
                 <FormControlLabel
                   value="disabled"
@@ -95,92 +98,174 @@ class RadioButtonsGroup extends React.Component {
             </FormControl>
           </Grid>
           <Grid item xs="2">
-            <RadioGroup circular size='large' onChange={this.handleChange} value={this.state.value} name="gender1">
+            <RadioGroup
+              circular
+              size="large"
+              onChange={this.handleChange}
+              value={this.state.value}
+              name="gender1"
+            >
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
           <Grid item xs="2">
-            <RadioGroup size='large' onChange={this.handleChange} value={this.state.value} name="gender1">
+            <RadioGroup
+              size="large"
+              onChange={this.handleChange}
+              value={this.state.value}
+              name="gender1"
+            >
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
           <Grid item xs="2">
-            <RadioGroup circular onChange={this.handleChange} value={this.state.value} name="gender1">
+            <RadioGroup
+              circular
+              onChange={this.handleChange}
+              value={this.state.value}
+              name="gender1"
+            >
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
           <Grid item xs="2">
             <RadioGroup onChange={this.handleChange} value={this.state.value} name="gender1">
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
           <Grid item xs="2">
-            <RadioGroup circular size='small' onChange={this.handleChange} value={this.state.value} name="gender1">
+            <RadioGroup
+              circular
+              size="small"
+              onChange={this.handleChange}
+              value={this.state.value}
+              name="gender1"
+            >
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
           <Grid item xs="2">
-            <RadioGroup size='small' onChange={this.handleChange} value={this.state.value} name="gender1">
+            <RadioGroup
+              size="small"
+              onChange={this.handleChange}
+              value={this.state.value}
+              name="gender1"
+            >
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
 
           <Grid item xs="6">
-            <RadioGroup row size='large' onChange={this.handleChange} value={this.state.value} name="gender1">
+            <RadioGroup
+              row
+              size="large"
+              onChange={this.handleChange}
+              value={this.state.value}
+              name="gender1"
+            >
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
           <Grid item xs="6">
             <RadioGroup row onChange={this.handleChange} value={this.state.value} name="gender1">
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
           <Grid item xs="6">
-            <RadioGroup row size='small'onChange={this.handleChange} value={this.state.value} name="gender1">
+            <RadioGroup
+              row
+              size="small"
+              onChange={this.handleChange}
+              value={this.state.value}
+              name="gender1"
+            >
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
           <Grid item xs="6">
-            <RadioGroup row circular size='large' onChange={this.handleChange} value={this.state.value} name="gender1">
+            <RadioGroup
+              row
+              circular
+              size="large"
+              onChange={this.handleChange}
+              value={this.state.value}
+              name="gender1"
+            >
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
           <Grid item xs="6">
-            <RadioGroup row circular onChange={this.handleChange} value={this.state.value} name="gender1">
+            <RadioGroup
+              row
+              circular
+              onChange={this.handleChange}
+              value={this.state.value}
+              name="gender1"
+            >
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
           <Grid item xs="6">
             <RadioGroup
               classes={{
-                checked:classes.checked
+                checked: classes.checked,
               }}
-              row circular size='small' onChange={this.handleChange} value={this.state.value} name="gender1">
+              row
+              circular
+              size="small"
+              onChange={this.handleChange}
+              value={this.state.value}
+              name="gender1"
+            >
               <RadioButton value="female">female</RadioButton>
               <RadioButton value="male">male</RadioButton>
-              <RadioButton value="other" disabled>other</RadioButton>
+              <RadioButton value="other" disabled>
+                other
+              </RadioButton>
             </RadioGroup>
           </Grid>
         </Grid>

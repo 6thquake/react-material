@@ -7,13 +7,13 @@ const TreeNode = Tree.TreeNode;
 class Demo extends React.Component {
   onSelect = (selectedKeys, info) => {
     console.log('selected', selectedKeys, info);
-  }
+  };
   onCheck = (checkedKeys, info) => {
     console.log('onCheck', checkedKeys, info);
-  }
+  };
   render() {
     return (
-      <div style={{width:'100%'}}>
+      <div style={{ width: '100%' }}>
         <Tree
           checkable
           defaultExpandedKeys={['0-0-0', '0-0-1']}
@@ -38,4 +38,3 @@ class Demo extends React.Component {
 }
 
 export default withStyles()(Demo);
-

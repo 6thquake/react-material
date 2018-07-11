@@ -1,24 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {SubMenu as RcSubMenu} from 'rc-menu';
+import { SubMenu as RcSubMenu } from 'rc-menu';
 import classNames from 'classnames';
-import {withStyles, createMuiTheme} from '../styles';
+import { withStyles, createMuiTheme } from '../styles';
 const styles = theme => ({});
 
-class SubMenu extends React.Component{
+class SubMenu extends React.Component {
   static contextTypes = {
     rMMenuTheme: PropTypes.string,
   };
   static subMenu;
-  onKeyDown = (e) => {
+  onKeyDown = e => {
     this.subMenu.onKeyDown(e);
-  }
-  saveSubMenu = (subMenu) => {
+  };
+  saveSubMenu = subMenu => {
     this.subMenu = subMenu;
-  }
+  };
   render() {
     const { rootPrefixCls, className } = this.props;
-    const {classes,...props} = this.props;
+    const { classes, ...props } = this.props;
     const theme = this.context.rMMenuTheme;
     return (
       <RcSubMenu
@@ -32,4 +32,3 @@ class SubMenu extends React.Component{
 SubMenu.isSubMenu = true;
 
 export default withStyles(styles, { name: 'RMSubMenu' })(SubMenu);
-

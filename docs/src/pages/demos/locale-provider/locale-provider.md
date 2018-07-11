@@ -1,5 +1,5 @@
 ---
-components: LocaleContext
+components: LocaleContext, LocaleProvider
 ---
 
 # LocalProvider

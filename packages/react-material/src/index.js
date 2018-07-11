@@ -10,7 +10,15 @@ export {
   withStyles,
   withTheme,
 } from './styles';
-
+export {
+  LocaleProvider,
+  LocaleConsumer,
+  LocaleContext,
+  withLocale,
+  getLanguage,
+  getLocale,
+  getDefaultLocale,
+} from './LocaleProvider'
 export { default as Anchor } from './Anchor';
 export { default as AppBar } from './AppBar';
 export { default as AutoComplete } from './AutoComplete';

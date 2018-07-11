@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from './locale-context.md';
+import markdown from './locale-provider.md';
 
 function Page() {
   return <MarkdownDocs markdown={markdown} />;

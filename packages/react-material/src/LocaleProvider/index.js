@@ -1,12 +1,12 @@
 import withLocale from './withLocale';
 import {
-  LocaleContext,
   LocaleProvider,
+  LocaleContext,
   LocaleConsumer,
   getLanguage,
   getLocale,
   getDefaultLocale,
-} from './LocaleContext';
+} from './LocaleProvider';
 
 export {
   LocaleProvider,

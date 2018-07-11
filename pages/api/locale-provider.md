@@ -1,10 +1,10 @@
 ---
-filename: /packages/react-material/src/LocaleProvider/LocaleContext.js
+filename: /packages/react-material/src/LocaleProvider/LocaleProvider.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# LocaleContext
+# LocaleProvider
 
 
 
@@ -21,4 +21,5 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 ## Demos
 
 - [Locale Provider](/demos/locale-provider)
+- [Pickers](/demos/pickers)
 

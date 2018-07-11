@@ -14,16 +14,14 @@ function Page() {
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/transfer/Transfer'), 'utf8')
 `,
-        }
-      ,
+        },
         'pages/demos/transfer/Transferdrag.js': {
           js: require('docs/src/pages/demos/transfer/Transferdrag').default,
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/transfer/Transferdrag'), 'utf8')
 `,
-        }
-        ,
+        },
         'pages/demos/transfer/AsyncTransfer.js': {
           js: require('docs/src/pages/demos/transfer/AsyncTransfer').default,
           raw: preval`

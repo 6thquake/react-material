@@ -23,14 +23,7 @@ class CheckboxGroupStandalone extends Component {
   };
 
   render() {
-    const {
-      classes,
-      value,
-      name,
-      children,
-      onChange,
-      ...rest
-    } = this.props;
+    const { classes, value, name, children, onChange, ...rest } = this.props;
 
     this.checkboxs = [];
     return (
@@ -50,18 +43,18 @@ class CheckboxGroupStandalone extends Component {
               }
             },
             checked: v.includes(child.props.value),
-            onChange: this.onChange
+            onChange: this.onChange,
           });
         })}
       </FormGroup>
-    )
+    );
   }
 }
 
 CheckboxGroupStandalone.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 CheckboxGroupStandalone.defaultProps = {};
 
-export default withStyles(style)(CheckboxGroupStandalone)
+export default withStyles(style)(CheckboxGroupStandalone);

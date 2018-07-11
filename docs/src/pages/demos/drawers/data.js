@@ -12,18 +12,18 @@ export default [
   {
     //path: '/',
     component: 'App',
-    icon: <StarIcon/>,
-    indexRoute: {component: 'Dashboard'},
+    icon: <StarIcon />,
+    indexRoute: { component: 'Dashboard' },
     childRoutes: [
       {
         //path: 'about',
-        icon: <SendIcon/>,
-        component: 'About'
+        icon: <SendIcon />,
+        component: 'About',
       },
       {
         path: 'inbox11',
         component: 'Inbox',
-        icon: <ReportIcon/>,
+        icon: <ReportIcon />,
         // beforeChildren:function () {
         //   return false
         // },
@@ -31,59 +31,59 @@ export default [
         childRoutes: [
           {
             path: '/messages/123',
-            icon:<MailIcon />,
+            icon: <MailIcon />,
             component: 'Message',
-            before:function () {
-              return false
+            before: function() {
+              return false;
             },
           },
           {
-            icon:<MailIcon />,
+            icon: <MailIcon />,
             component: 'Message',
           },
           {
             path: '/messages/222',
             component: 'DeleteIcon',
-            icon: <DeleteIcon/>,
-            onEnter: function (nextState, replaceState) {
-              replaceState(null, '/messages/' + nextState.params.id)
-            }
-          }
-        ]
-      }
-    ]
+            icon: <DeleteIcon />,
+            onEnter: function(nextState, replaceState) {
+              replaceState(null, '/messages/' + nextState.params.id);
+            },
+          },
+        ],
+      },
+    ],
   },
   {
     path: '/',
     component: 'App',
-    icon: <StarIcon/>,
-    indexRoute: {component: 'Dashboard'},
+    icon: <StarIcon />,
+    indexRoute: { component: 'Dashboard' },
     childRoutes: [
       {
         path: 'about',
-        icon: <SendIcon/>,
-        component: 'About'
+        icon: <SendIcon />,
+        component: 'About',
       },
       {
         path: 'inbox',
         component: 'Inbox',
-        icon: <ReportIcon/>,
+        icon: <ReportIcon />,
         childRoutes: [
           {
             path: '/messages/:id',
-            icon:<MailIcon />,
-            component: 'Message'
+            icon: <MailIcon />,
+            component: 'Message',
           },
           {
             path: 'messages/:id',
             component: 'DeleteIcon',
-            icon: <DeleteIcon/>,
-            onEnter: function (nextState, replaceState) {
-              replaceState(null, '/messages/' + nextState.params.id)
-            }
-          }
-        ]
-      }
-    ]
-  }
-]
+            icon: <DeleteIcon />,
+            onEnter: function(nextState, replaceState) {
+              replaceState(null, '/messages/' + nextState.params.id);
+            },
+          },
+        ],
+      },
+    ],
+  },
+];

@@ -70,7 +70,9 @@ function HomeFooter(props) {
       </Typography>
       <Typography className={classes.version}>
         {`Currently v${process.env.LIB_VERSION}. Released under the `}
-        <Link href="http://git.dev.sh.ctripcorp.com/sixthquake/react-material/blob/develop/LICENSE">MIT License</Link>
+        <Link href="http://git.dev.sh.ctripcorp.com/sixthquake/react-material/blob/develop/LICENSE">
+          MIT License
+        </Link>
         {'.'}
       </Typography>
     </footer>

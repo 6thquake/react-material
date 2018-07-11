@@ -1,4 +1,4 @@
-import React ,{ Component }from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MenuList from '../MenuList';
 import MenuItem from '../MenuItem';
@@ -17,7 +17,7 @@ const styles = theme => ({
       },
     },
   },
-  menuItemSelect:{
+  menuItemSelect: {
     backgroundColor: '#eee',
     '& $primary, & $icon': {
       color: 'blue',
@@ -27,56 +27,57 @@ const styles = theme => ({
   icon: {},
 });
 
-class CascadeOption  extends Component {
+class CascadeOption extends Component {
   constructor(props) {
     super(props);
   }
 
   toMenuItem = (data, classes) => {
-    let {renderLabel = 'text', renderValue = 'value' } = this.props
+    let { renderLabel = 'text', renderValue = 'value' } = this.props;
     let list = data.map((item, index) => {
-      let hasSub = item.subItems && item.subItems.length > 0
-      let checked = this.props.checkedIndex === index
+      let hasSub = item.subItems && item.subItems.length > 0;
+      let checked = this.props.checkedIndex === index;
       return (
-        <MenuItem 
-          key = {index} 
-          className={checked?classes.menuItemSelect: ''}
+        <MenuItem
+          key={index}
+          className={checked ? classes.menuItemSelect : ''}
           onClick={this.handleItemClick(item, index)}
         >
-          
           <ListItemText classes={{ primary: classes.primary }} inset primary={item[renderLabel]} />
-          {hasSub?(<ListItemIcon className={classes.icon}>
+          {hasSub ? (
+            <ListItemIcon className={classes.icon}>
               <PlayArrow />
-          </ListItemIcon>):''}
+            </ListItemIcon>
+          ) : (
+            ''
+          )}
         </MenuItem>
-      )
-    })
-    return list
-  }
+      );
+    });
+    return list;
+  };
 
   // Event zoom
-  handleItemClick = (item, index) =>(e)=> {
+  handleItemClick = (item, index) => e => {
     let info = {
       level: this.props.level,
       index: index,
       next: this.props.dataSource[index].subItems || [],
-      item: this.props.dataSource
-    }
-    this.props.onChange(info)
-  }
+      item: this.props.dataSource,
+    };
+    this.props.onChange(info);
+  };
   render() {
-    const { classes, dataSource, open} = this.props;
-    let t = null
-    if (dataSource && dataSource.length > 0 && open){
+    const { classes, dataSource, open } = this.props;
+    let t = null;
+    if (dataSource && dataSource.length > 0 && open) {
       t = (
         <Paper>
-          <MenuList>
-            {this.toMenuItem(dataSource, classes)}
-          </MenuList>
+          <MenuList>{this.toMenuItem(dataSource, classes)}</MenuList>
         </Paper>
-      )
+      );
     }
-    return t
+    return t;
   }
 }
 

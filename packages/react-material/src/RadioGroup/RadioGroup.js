@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import RadioGroupStandalone from '@material-ui/core/RadioGroup';
 import FormHelperText from '../FormHelperText';
-import {withFormsy, propTypes} from 'formsy-react';
-import {compose} from 'recompose';
+import { withFormsy, propTypes } from 'formsy-react';
+import { compose } from 'recompose';
 import withFormItem from '../Form/withFormItem';
 import withForm from '../Form/withForm';
 import omit from '../utils/omit';
@@ -12,15 +12,15 @@ import omit from '../utils/omit';
 const style = theme => ({
   formHelpTextContainer: {
     marginTop: '-8px',
-    minHeight: '12px'
+    minHeight: '12px',
   },
   formHelperTextRoot: {
-    marginTop: 0
-  }
+    marginTop: 0,
+  },
 });
 
 class RadioGroup extends Component {
-  onChange = (event) => {
+  onChange = event => {
     // setValue() will set the value of the component, which in
     // turn will validate it and the rest of the form
     // Important: Don't skip this step. This pattern is required
@@ -28,7 +28,7 @@ class RadioGroup extends Component {
     const value = event.target.value;
     this.props.setValue(value);
 
-    const {onChange} = this.props;
+    const { onChange } = this.props;
     onChange && onChange(event, value);
   };
 
@@ -75,7 +75,7 @@ class RadioGroup extends Component {
     }
 
     const helpTextClasses = {
-      root: classes.formHelperTextRoot
+      root: classes.formHelperTextRoot,
     };
 
     const restClasses = omit(classes, ['formHelpTextContainer', 'formHelperTextRoot']);
@@ -93,10 +93,14 @@ class RadioGroup extends Component {
           {children}
         </RadioGroupStandalone>
         <div className={classes.formHelpTextContainer}>
-          {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
+          {error && (
+            <FormHelperText classes={helpTextClasses} error>
+              {helperText}
+            </FormHelperText>
+          )}
         </div>
       </React.Fragment>
-    )
+    );
   }
 
   render() {
@@ -108,28 +112,35 @@ RadioGroup.displayName = 'RadioGroup';
 
 RadioGroup.propTypes = {
   classes: PropTypes.object.isRequired,
-  ...propTypes
+  ...propTypes,
 };
 
 RadioGroup.defaultProps = {
-  formInputRef: React.createRef()
+  formInputRef: React.createRef(),
 };
 
-const FormComponent = compose(withFormsy, withFormItem, withStyles(style))(RadioGroup);
+const FormComponent = compose(
+  withFormsy,
+  withFormItem,
+  withStyles(style),
+)(RadioGroup);
 
 class C extends Component {
   getChildContext() {
-    const {row, size, circular, classes} = this.props;
+    const { row, size, circular, classes } = this.props;
     return {
-      row, size, circular, classes
+      row,
+      size,
+      circular,
+      classes,
     };
   }
 
   render() {
-    let {circular, size, classes, ...props} = this.props;
+    let { circular, size, classes, ...props } = this.props;
     classes = classes ? classes : {};
-    const {checked, ...classesPro} = classes;
-    return <RadioGroupStandalone {...props} classes={classesPro}/>;
+    const { checked, ...classesPro } = classes;
+    return <RadioGroupStandalone {...props} classes={classesPro} />;
   }
 }
 
@@ -137,17 +148,16 @@ C.childContextTypes = {
   row: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   circular: PropTypes.bool,
-  classes: PropTypes.object
+  classes: PropTypes.object,
 };
 C.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   circular: PropTypes.bool,
-  classes: PropTypes.object
+  classes: PropTypes.object,
 };
 C.defaultProps = {
   size: 'medium',
-  circular: false
+  circular: false,
 };
-
 
 export default compose(withForm)(FormComponent, C);

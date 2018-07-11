@@ -6,10 +6,10 @@ import { StatusButton } from 'react-material/Button';
 import { StepperPane, StepPane } from 'react-material/Stepper';
 
 const styles = {
-  pane:{},
-  step:{
-    padding: 16
-  }
+  pane: {},
+  step: {
+    padding: 16,
+  },
 };
 
 function getSteps() {
@@ -27,7 +27,7 @@ This example also shows the use of an optional step by placing the optional prop
 
 This example is similar to the regular horizontal stepper, except steps are no longer automatically set to disabled={true} based on the activeStep property.
 
-We've used the StepButton here to demonstrate clickable step labels as well as setting the completed flag however because steps can be accessed in a non-linear fashion it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).;`
+We've used the StepButton here to demonstrate clickable step labels as well as setting the completed flag however because steps can be accessed in a non-linear fashion it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).;`;
     case 2:
       return `This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.`;
     default:
@@ -41,14 +41,14 @@ class App extends React.Component {
   };
 
   handle = () => {
-    return new Promise(function (resolve, reject) {
-      setTimeout(function () {
-        Math.random() > .5 ? reject('err') : resolve('ok');
+    return new Promise(function(resolve, reject) {
+      setTimeout(function() {
+        Math.random() > 0.5 ? reject('err') : resolve('ok');
       }, 1000);
-    }).then(function (r) {
+    }).then(function(r) {
       return true;
     });
-  }
+  };
 
   render() {
     const { classes, theme } = this.props;
@@ -56,20 +56,22 @@ class App extends React.Component {
     const steps = getSteps();
 
     return (
-      <StepperPane className={classes.pane} unmountAfterBack={false} finishButton={
-        <StatusButton size="small" color="primary" variant="raised" onHandler={this.handle}>
-        SAVE
-        </StatusButton>
-      }>
-        {
-          steps.map((label, index) => {
-            return (
-              <StepPane key={label} className={classes.step}>
-                <p>{getStepContent(index)}</p>
-              </StepPane>
-            )
-          })
+      <StepperPane
+        className={classes.pane}
+        unmountAfterBack={false}
+        finishButton={
+          <StatusButton size="small" color="primary" variant="raised" onHandler={this.handle}>
+            SAVE
+          </StatusButton>
         }
+      >
+        {steps.map((label, index) => {
+          return (
+            <StepPane key={label} className={classes.step}>
+              <p>{getStepContent(index)}</p>
+            </StepPane>
+          );
+        })}
       </StepperPane>
     );
   }

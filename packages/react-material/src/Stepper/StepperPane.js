@@ -11,34 +11,32 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { withLocale } from '../LocaleProvider';
 
 const styles = theme => ({
-  root:{
-  	overflowX: 'hidden',
-  	width: '100%',
+  root: {
+    overflowX: 'hidden',
+    width: '100%',
     height: '100%',
-    position: 'relative'
+    position: 'relative',
   },
-  mobileStepper: {
-  }
+  mobileStepper: {},
 });
 
 class StepperPane extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-	    activeStep: this.props.activeStep || 0,
-	    allowToNext: false,
-	    direction: 'next'
-	  };
+      activeStep: this.props.activeStep || 0,
+      allowToNext: false,
+      direction: 'next',
+    };
   }
-  
+
   allowToNext = (index, allow) => {
-	if(this.state.activeStep === index){
-		this.setState({
-			activeStep: index,
-			allowToNext: !!allow
-		});
-	}
+    if (this.state.activeStep === index) {
+      this.setState({
+        activeStep: index,
+        allowToNext: !!allow,
+      });
+    }
   };
 
   handleNext = () => {
@@ -46,7 +44,7 @@ class StepperPane extends React.Component {
 
     this.setState({
       activeStep: activeStep + 1,
-      direction: 'next'
+      direction: 'next',
     });
   };
 
@@ -54,102 +52,98 @@ class StepperPane extends React.Component {
     const { activeStep } = this.state;
     this.setState({
       activeStep: activeStep - 1,
-      direction: 'prev'
+      direction: 'prev',
     });
   };
 
   render() {
-  	const { 
-  		activeStep,
-  		allowToNext,
-  		direction
-  	} = this.state;
+    const { activeStep, allowToNext, direction } = this.state;
 
     const {
-	    alternativeLabel,
-	    children,
-	    classes,
-	    className: classNameProp,
-	    theme,
-	    unmountAfterBack,
-	    finishButton,
-	    next,
-		back,
-		finish,
-	    ...other
-	  } = this.props;
+      alternativeLabel,
+      children,
+      classes,
+      className: classNameProp,
+      theme,
+      unmountAfterBack,
+      finishButton,
+      next,
+      back,
+      finish,
+      ...other
+    } = this.props;
 
-	const className = classNames(
-		classes.root,
-	    classNameProp,
-	  );
+    const className = classNames(classes.root, classNameProp);
 
-	const childrenArray = React.Children.toArray(children);
-  	const steps = childrenArray.map((step, index) => {
-	    const controlProps = {
-	      index,
-	      active: false,
-	      completed: false,
-	      disabled: false,
-	      last: index + 1 === childrenArray.length,
-	      alternativeLabel,
-	      direction: direction,
-	      unmountAfterBack: unmountAfterBack,
-	      allowToNext: this.allowToNext.bind(this)
-	    };
+    const childrenArray = React.Children.toArray(children);
+    const steps = childrenArray.map((step, index) => {
+      const controlProps = {
+        index,
+        active: false,
+        completed: false,
+        disabled: false,
+        last: index + 1 === childrenArray.length,
+        alternativeLabel,
+        direction: direction,
+        unmountAfterBack: unmountAfterBack,
+        allowToNext: this.allowToNext.bind(this),
+      };
 
-	    if (activeStep === index) {
-	      controlProps.active = true;
-	    } else if (activeStep > index) {
-	      controlProps.completed = true;
-	    } else if (activeStep < index) {
-	      controlProps.disabled = true;
-	    }
+      if (activeStep === index) {
+        controlProps.active = true;
+      } else if (activeStep > index) {
+        controlProps.completed = true;
+      } else if (activeStep < index) {
+        controlProps.disabled = true;
+      }
 
-	    return [
-	      React.cloneElement(step, { ...controlProps, ...step.props }),
-	    ];
+      return [React.cloneElement(step, { ...controlProps, ...step.props })];
+    });
 
-	});
-
-  	return (
-    	<Paper square elevation={0} className={className} {...other}>
-    		{steps}
-    		<MobileStepper
-		        variant="text"
-		        steps={steps.length}
-		        position="static"
-		        activeStep={this.state.activeStep}
-		        className={classes.mobileStepper}
-		        nextButton={
-		        	this.state.activeStep === steps.length - 1 ? 
-					(finishButton ? finishButton : (<Button size="small" disabled={this.state.allowToNext} onClick={this.props.finish}>
-		            	{finish}
-		            	{theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-		          	</Button>))
-		        	:
-		          	(<Button size="small" onClick={this.handleNext} disabled={this.state.allowToNext}>
-		            	{next}
-		            	{theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-		          	</Button>)
-		        }
-		        backButton={
-		        	this.state.activeStep === 0 ? 
-					(<span></span>)
-		        	:
-		          	(<Button size="small" onClick={this.handleBack}>
-		            	{theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-		           		{back}
-		          	</Button>)
-		        }
-	      	/>
-    	</Paper>
-  	);
+    return (
+      <Paper square elevation={0} className={className} {...other}>
+        {steps}
+        <MobileStepper
+          variant="text"
+          steps={steps.length}
+          position="static"
+          activeStep={this.state.activeStep}
+          className={classes.mobileStepper}
+          nextButton={
+            this.state.activeStep === steps.length - 1 ? (
+              finishButton ? (
+                finishButton
+              ) : (
+                <Button size="small" disabled={this.state.allowToNext} onClick={this.props.finish}>
+                  {finish}
+                  {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                </Button>
+              )
+            ) : (
+              <Button size="small" onClick={this.handleNext} disabled={this.state.allowToNext}>
+                {next}
+                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+              </Button>
+            )
+          }
+          backButton={
+            this.state.activeStep === 0 ? (
+              <span />
+            ) : (
+              <Button size="small" onClick={this.handleBack}>
+                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                {back}
+              </Button>
+            )
+          }
+        />
+      </Paper>
+    );
   }
 }
 
 StepperPane.propTypes = {
-	/**
+  /**
    * Set the active step (zero based index).
    */
   activeStep: PropTypes.number,
@@ -172,16 +166,17 @@ StepperPane.propTypes = {
   className: PropTypes.string,
 
   finish: PropTypes.func,
-  
+
   finishButton: PropTypes.node,
 
-  unmountAfterBack: PropTypes.bool
+  unmountAfterBack: PropTypes.bool,
 };
 
 StepperPane.defaultProps = {
-	activeStep: 0,
-  	alternativeLabel: false,
+  activeStep: 0,
+  alternativeLabel: false,
 };
 
-
-export default withStyles(styles, { withTheme: true })(withLocale({name: 'StepperPane'})(StepperPane));
+export default withStyles(styles, { withTheme: true })(
+  withLocale({ name: 'StepperPane' })(StepperPane),
+);

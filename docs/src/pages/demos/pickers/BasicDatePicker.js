@@ -2,15 +2,14 @@ import React, { Fragment, PureComponent } from 'react';
 import DatePicker from 'react-material/Picker';
 import LocaleProvider from 'react-material/LocaleProvider';
 
-
 class BasicDatePicker extends PureComponent {
   state = {
     selectedDate: new Date(),
-  }
+  };
 
-  handleDateChange = (date) => {
+  handleDateChange = date => {
     this.setState({ selectedDate: date });
-  }
+  };
 
   render() {
     const { selectedDate } = this.state;
@@ -55,4 +54,4 @@ class BasicDatePicker extends PureComponent {
   }
 }
 
-export default BasicDatePicker
+export default BasicDatePicker;

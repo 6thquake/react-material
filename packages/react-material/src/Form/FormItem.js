@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
-import {PercentageGrid as Grid} from '../Grid';
+import { PercentageGrid as Grid } from '../Grid';
 // import Grid from '../Grid';
 
 const style = theme => ({
@@ -10,14 +10,14 @@ const style = theme => ({
     lineHeight: '48px',
     '&:before,&:after': {
       content: '""',
-      display: 'table'
+      display: 'table',
     },
     '&:after': {
-      clear: 'both'
-    }
+      clear: 'both',
+    },
   },
   'form-item-direction-column': {
-    lineHeight: 'normal'
+    lineHeight: 'normal',
   },
   'form-item-label': {
     height: '48px',
@@ -29,9 +29,9 @@ const style = theme => ({
     '& label': {
       '&:after': {
         content: '":"',
-        margin: '0 10px 0 4px'
-      }
-    }
+        margin: '0 10px 0 4px',
+      },
+    },
   },
   'form-item-label-required': {
     '& label': {
@@ -39,26 +39,26 @@ const style = theme => ({
         marginRight: '4px',
         content: '"*"',
         fontSize: '14px',
-        color: '#f5222d'
-      }
-    }
+        color: '#f5222d',
+      },
+    },
   },
   'form-item-label-direction-column': {
     width: '100%',
     height: 'auto',
-    textAlign: 'left'
+    textAlign: 'left',
   },
-  'form-item-wrapper': {}
+  'form-item-wrapper': {},
 });
 
 class FormItem extends Component {
   state = {};
 
   renderLabel() {
-    const {classes, colon, label, formItemLayout, required, labelDirection} = this.props;
+    const { classes, colon, label, formItemLayout, required, labelDirection } = this.props;
 
     if (!label) {
-      return <React.Fragment key="label"/>
+      return <React.Fragment key="label" />;
     }
 
     let labelChildren = label;
@@ -69,49 +69,46 @@ class FormItem extends Component {
 
     const requiredClass = typeof label === 'string' ? !!label.trim().length : true;
 
-    const className = classnames(
-      classes['form-item-label'],
-      {
-        [classes['form-item-label-colon']]: colon,
-        [classes['form-item-label-required']]: requiredClass && required,
-        [classes['form-item-label-direction-column']]: labelDirection === 'column'
-      }
-    );
+    const className = classnames(classes['form-item-label'], {
+      [classes['form-item-label-colon']]: colon,
+      [classes['form-item-label-required']]: requiredClass && required,
+      [classes['form-item-label-direction-column']]: labelDirection === 'column',
+    });
 
     return (
       <Grid className={className} item xs={12} sm={formItemLayout['label']} key="label">
         <label>{labelChildren}</label>
       </Grid>
-    )
+    );
   }
 
   renderWrapper() {
-    const {classes, children, formItemLayout, label} = this.props;
+    const { classes, children, formItemLayout, label } = this.props;
     const sm = label ? formItemLayout['content'] : 12;
 
     return (
       <Grid className={classes['form-item-wrapper']} item xs={12} sm={sm} key="wrapper">
         {children}
       </Grid>
-    )
+    );
   }
 
   renderChildren() {
-    return [this.renderLabel(), this.renderWrapper()]
+    return [this.renderLabel(), this.renderWrapper()];
   }
 
   renderFormItem(children) {
-    const {classes, labelDirection} = this.props;
+    const { classes, labelDirection } = this.props;
     const className = classnames(
       classes['form-item'],
-      labelDirection === 'column' ? classes['form-item-direction-column'] : ''
+      labelDirection === 'column' ? classes['form-item-direction-column'] : '',
     );
 
     return (
       <Grid container className={className}>
         {children}
       </Grid>
-    )
+    );
   }
 
   render() {
@@ -127,8 +124,8 @@ FormItem.propTypes = {
   label: PropTypes.any,
   formItemLayout: PropTypes.shape({
     label: PropTypes.number,
-    content: PropTypes.number
-  })
+    content: PropTypes.number,
+  }),
 };
 
 FormItem.defaultProps = {
@@ -138,8 +135,8 @@ FormItem.defaultProps = {
   labelDirection: 'row',
   formItemLayout: {
     label: 3,
-    content: 9
-  }
+    content: 9,
+  },
 };
 
-export default withStyles(style)(FormItem)
+export default withStyles(style)(FormItem);

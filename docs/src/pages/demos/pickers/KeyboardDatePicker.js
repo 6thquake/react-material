@@ -2,15 +2,14 @@ import React, { Fragment, PureComponent } from 'react';
 import DatePicker from 'react-material/Picker';
 import LocaleProvider from 'react-material/LocaleProvider';
 
-
 class BasicUsage extends PureComponent {
   state = {
     selectedDate: new Date(),
-  }
+  };
 
-  handleDateChange = (date) => {
+  handleDateChange = date => {
     this.setState({ selectedDate: date });
-  }
+  };
 
   render() {
     const { selectedDate } = this.state;
@@ -36,7 +35,9 @@ class BasicUsage extends PureComponent {
               format="DD/MM/YYYY"
               placeholder="10/10/2018"
               // handle clearing outside => pass plain array if you are not controlling value outside
-              mask={value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : [])}
+              mask={value =>
+                value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : []
+              }
               value={selectedDate}
               onChange={this.handleDateChange}
               disableOpenOnEnter
@@ -49,4 +50,4 @@ class BasicUsage extends PureComponent {
   }
 }
 
-export default BasicUsage
+export default BasicUsage;

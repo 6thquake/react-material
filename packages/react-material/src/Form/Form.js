@@ -1,5 +1,5 @@
 import React from 'react';
-import Formsy, {addValidationRule, validationRules, withFormsy, propTypes} from 'formsy-react';
+import Formsy, { addValidationRule, validationRules, withFormsy, propTypes } from 'formsy-react';
 
 // required
 addValidationRule('isRequired', (values, value) => {
@@ -22,11 +22,6 @@ class Form extends Formsy {
   }
 }
 
-export {
-  addValidationRule,
-  validationRules,
-  withFormsy,
-  propTypes
-}
+export { addValidationRule, validationRules, withFormsy, propTypes };
 
 export default Form;

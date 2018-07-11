@@ -2,7 +2,6 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Menu, { MenuItem } from '@material-ui/core/Menu';
 
-
 const style = {
   display: 'inline-block',
   margin: '16px 32px 16px 0',

@@ -1,28 +1,28 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'react-material/styles';
+import { withStyles } from 'react-material/styles';
 import Filters from 'react-material/Filters';
 
 const style = theme => ({
   mt: {
-    marginTop: theme.spacing.unit * 3
+    marginTop: theme.spacing.unit * 3,
   },
   btn: {
-    borderRadius:'20px'
+    borderRadius: '20px',
   },
   active: {
     backgroundColor: '#2196f3',
-    '&:hover':{
+    '&:hover': {
       backgroundColor: '#419ae0',
-    }
-  }
+    },
+  },
 });
 
 function createData(label, value) {
   return {
     label,
-    value
-  }
+    value,
+  };
 }
 
 class CustomFiltersDemo extends Component {
@@ -43,18 +43,18 @@ class CustomFiltersDemo extends Component {
     mapProps: {
       label: 'label',
       value: 'value',
-    }
+    },
   };
 
-  onChange = (value) => {
+  onChange = value => {
     this.setState({
-      value
-    })
+      value,
+    });
   };
 
   render() {
-    const {classes} = this.props;
-    const {label, multi, options, value} = this.state;
+    const { classes } = this.props;
+    const { label, multi, options, value } = this.state;
     const selected = JSON.stringify(value);
     return (
       <div>
@@ -68,20 +68,18 @@ class CustomFiltersDemo extends Component {
             onChange={this.onChange}
             classes={{
               btn: classes.btn,
-              active: classes.active
+              active: classes.active,
             }}
           />
         </div>
-        <div className={classes.mt}>
-          selected values:{selected}
-        </div>
+        <div className={classes.mt}>selected values:{selected}</div>
       </div>
-    )
+    );
   }
 }
 
 CustomFiltersDemo.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 CustomFiltersDemo.defaultProps = {};

@@ -1,20 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import classNames from 'classnames'
-import withStyles from '../styles/withStyles'
-import {keys as breakpointKeys} from '../styles/createBreakpoints'
-import requirePropFactory from '../utils/requirePropFactory'
-import Hidden from '../Hidden'
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
+import { keys as breakpointKeys } from '../styles/createBreakpoints';
+import requirePropFactory from '../utils/requirePropFactory';
+import Hidden from '../Hidden';
 
-const GUTTERS = [0, 8, 16, 24, 40]
-const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+const GUTTERS = [0, 8, 16, 24, 40];
+const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const breakpointValues = {
   xs: 0,
   sm: 600,
   md: 960,
   lg: 1280,
   xl: 1920,
-}
+};
 
 function generateGrid(globalStyles, theme, breakpoint) {
   // For the auto layouting
@@ -33,7 +33,7 @@ function generateGrid(globalStyles, theme, breakpoint) {
     }
 
     // Only keep 6 significant numbers.
-    const width = `${Math.round(size / 12 * 10e6) / 10e4}%`;
+    const width = `${Math.round((size / 12) * 10e6) / 10e4}%`;
 
     /* eslint-disable max-len */
     // Close to the bootstrap implementation:
@@ -43,18 +43,17 @@ function generateGrid(globalStyles, theme, breakpoint) {
       position: 'relative',
       float: 'left',
       minHeight: 1,
-      width: width
+      width: width,
     };
     styles[`offset-${breakpoint}-${size}`] = {
-      marginLeft: width
+      marginLeft: width,
     };
     styles[`push-${breakpoint}-${size}`] = {
-      left: width
+      left: width,
     };
     styles[`pull-${breakpoint}-${size}`] = {
-      right: width
+      right: width,
     };
-
   });
 
   // No need for a media query for the first size.
@@ -80,22 +79,21 @@ function generateGutter(theme, breakpoint) {
       '& > $item': {
         padding: spacing / 2,
       },
-    }
-  })
+    };
+  });
   return styles;
 }
-
 
 export const styles = theme => ({
   container: {
     boxSizing: 'border-box',
     marginRight: 'auto',
     marginLeft: 'auto',
-    '&:after, &:before':{
+    '&:after, &:before': {
       display: 'table',
-      content: "close-quote",
+      content: 'close-quote',
       clear: 'both',
-    }
+    },
   },
   item: {
     boxSizing: 'border-box',
@@ -104,16 +102,16 @@ export const styles = theme => ({
   ...generateGutter(theme, 'xs'),
   ...breakpointKeys.reduce((accumulator, key) => {
     // Use side effect over immutability for better performance.
-    generateGrid(accumulator, theme, key)
+    generateGrid(accumulator, theme, key);
     return accumulator;
   }, {}),
-})
+});
 
 function Grid(props) {
   const {
     classes,
     className: classNameProp,
-    component: Component ,
+    component: Component,
     container,
     hidden,
     item,
@@ -128,51 +126,51 @@ function Grid(props) {
     push,
     ...other
   } = props;
-  let sizeClassObj = {}
+  let sizeClassObj = {};
   breakpointKeys.forEach(size => {
-    let sizeProps = {}
+    let sizeProps = {};
     if (typeof props[size] === 'number') {
-      sizeProps.span = props[size]
-      sizeProps.offset = props.offset
-      sizeProps.push = props.push
-      sizeProps.pull = props.pull
+      sizeProps.span = props[size];
+      sizeProps.offset = props.offset;
+      sizeProps.push = props.push;
+      sizeProps.pull = props.pull;
     } else if (typeof props[size] === 'object') {
       sizeProps = props[size] || {};
     }
     sizeClassObj = {
       ...sizeClassObj,
       [classes[`grid-${size}-${sizeProps.span}`]]: item && sizeProps.span,
-      [classes[`offset-${size}-${sizeProps.offset}`]]: item && sizeProps.offset ,
+      [classes[`offset-${size}-${sizeProps.offset}`]]: item && sizeProps.offset,
       [classes[`push-${size}-${sizeProps.push}`]]: item && sizeProps.push,
       [classes[`pull-${size}-${sizeProps.pull}`]]: item && sizeProps.pull,
     };
   });
-  const className = classNames({
+  const className = classNames(
+    {
       [classes.container]: container,
       [classes.item]: item,
       [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
     },
-    classNameProp, 
+    classNameProp,
     sizeClassObj,
   );
   const gridProps = {
     className,
-    ...other
+    ...other,
   };
 
   if (hidden) {
-    return ( 
-      <Hidden { ...hidden} >
-        <Component { ...gridProps}/> 
+    return (
+      <Hidden {...hidden}>
+        <Component {...gridProps} />
       </Hidden>
     );
   }
 
-  return <Component { ...gridProps}/>;
+  return <Component {...gridProps} />;
 }
 
 Grid.propTypes = {
-  
   /**
    * The content of the component.
    */
@@ -204,25 +202,34 @@ Grid.propTypes = {
    * You should be wrapping *items* with a *container*.
    */
   item: PropTypes.bool,
-  
+
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
    */
-  lg: PropTypes.oneOfType([PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), PropTypes.object]),
+  lg: PropTypes.oneOfType([
+    PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.object,
+  ]),
 
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `md` breakpoint and wider screens if not overridden.
    */
-  md: PropTypes.oneOfType([PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), PropTypes.object]),
+  md: PropTypes.oneOfType([
+    PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.object,
+  ]),
 
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    */
   // sm: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, PropTypes.object]),
-  sm: PropTypes.oneOfType([PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), PropTypes.object]),
+  sm: PropTypes.oneOfType([
+    PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.object,
+  ]),
 
   /**
    * Defines the space between the type `item` component.
@@ -234,12 +241,18 @@ Grid.propTypes = {
    * Defines the number of grids the component is going to use.
    * It's applied for the `xl` breakpoint and wider screens.
    */
-  xl: PropTypes.oneOfType([PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), PropTypes.object]),
+  xl: PropTypes.oneOfType([
+    PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.object,
+  ]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
    */
-  xs: PropTypes.oneOfType([PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), PropTypes.object]),
+  xs: PropTypes.oneOfType([
+    PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.object,
+  ]),
   /**
    * the marginLeft of item
    */
@@ -259,7 +272,7 @@ Grid.propTypes = {
    */
 
   span: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-}
+};
 
 Grid.defaultProps = {
   component: 'div',
@@ -271,10 +284,8 @@ Grid.defaultProps = {
   spacing: 0,
   xl: 0,
   xs: 0,
-}
+};
 
 export default withStyles(styles, {
-  name: 'MuiGrid'
-})(Grid)
-
-
+  name: 'MuiGrid',
+})(Grid);

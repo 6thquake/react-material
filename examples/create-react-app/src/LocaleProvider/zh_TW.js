@@ -1,8 +1,6 @@
-
-
 export default {
   locale: 'zh-tw',
-  
+
   Table: {
     filterTitle: '篩選器',
     filterConfirm: '確 定',

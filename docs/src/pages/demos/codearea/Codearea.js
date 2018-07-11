@@ -10,7 +10,6 @@ import Divider from 'react-material/Divider';
 import FormControlLabel from 'react-material/FormControlLabel';
 import Radio from 'react-material/Radio';
 
-
 const styles = theme => ({
   root: theme.mixins.gutters({
     paddingTop: 16,
@@ -19,36 +18,31 @@ const styles = theme => ({
   }),
 });
 
-
 class SimpleCodearea extends React.Component {
-
   handleChange = key => (event, value) => {
     this.setState({
-      theme: value
-    })
+      theme: value,
+    });
     if (value == 'dark') {
-      console.log("-------")
+      console.log('-------');
       setPrismTheme(darkTheme);
     } else {
-      console.log("++++++")
+      console.log('++++++');
       setPrismTheme(lightTheme);
     }
-  }
+  };
 
-  state={
-    theme: 'light'
-  }
+  state = {
+    theme: 'light',
+  };
 
   render() {
-    const { classes } = this.props
-    const {orientation} = this.state
+    const { classes } = this.props;
+    const { orientation } = this.state;
 
     return (
       <React.Fragment>
-        <Grid container 
-              alignItems={'stretch'}
-              direction={'column'}
-              justify={'space-between'}>
+        <Grid container alignItems={'stretch'} direction={'column'} justify={'space-between'}>
           <Grid item>
             <FormControl component="fieldset">
               <FormLabel component="legend">theme: </FormLabel>
@@ -65,9 +59,7 @@ class SimpleCodearea extends React.Component {
             <Divider />
           </Grid>
           <Grid item>
-            <Codearea  
-             language="js"
-            >
+            <Codearea language="js">
               {`
                 import React from 'react';
 
@@ -80,14 +72,12 @@ class SimpleCodearea extends React.Component {
                     );
                   }
                 }
-            ` }
+            `}
             </Codearea>
           </Grid>
           <Grid item>
-            <Codearea
-              language='css'
-              >
-                {`
+            <Codearea language="css">
+              {`
                   body {
                     font: 100%/1.5 Questrial, sans-serif;
                     tab-size: 4;
@@ -109,9 +99,7 @@ class SimpleCodearea extends React.Component {
             </Codearea>
           </Grid>
           <Grid item>
-            <Codearea
-            language='diff'
-            >
+            <Codearea language="diff">
               {`                  
  'use strict';
  

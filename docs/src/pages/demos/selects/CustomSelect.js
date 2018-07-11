@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncSelect } from 'react-material/Select'
+import { AsyncSelect } from 'react-material/Select';
 import InputLabel from 'react-material/InputLabel';
 import { withStyles } from 'react-material/styles';
 import FormControl from 'react-material/FormControl';
@@ -16,7 +16,7 @@ const styles = theme => ({
   formControl: {
     margin: theme.spacing.unit,
     maxWidth: 300,
-    minWidth:120
+    minWidth: 120,
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
@@ -25,9 +25,9 @@ const styles = theme => ({
 
 class App extends Component {
   state = {
-    values:['Afghanistan','Aland Islands'],
-    valuestem:'Afghanistan',
-    name:'',
+    values: ['Afghanistan', 'Aland Islands'],
+    valuestem: 'Afghanistan',
+    name: '',
     optionstem: [
       { label: 'Afghanistan' },
       { label: 'Aland Islands' },
@@ -64,29 +64,31 @@ class App extends Component {
       { label: 'British Indian Ocean Territory' },
       { label: 'Brunei Darussalam' },
     ],
-    pageConfig : {
+    pageConfig: {
       pageSize: 5,
-      currentPage:1,
-      total:34
-    }
+      currentPage: 1,
+      total: 34,
+    },
   };
-  autoCb(i){
-    console.log('item',i);
-    this.setState({pageConfig:{
-      ...this.state.pageConfig,
-      currentPage:i
-    }});
-  };
-  selectCb(i){
-    console.log('event.target.value', i)
+  autoCb(i) {
+    console.log('item', i);
+    this.setState({
+      pageConfig: {
+        ...this.state.pageConfig,
+        currentPage: i,
+      },
+    });
   }
-  filterChangeCb(i){
-    console.log('text', i)
+  selectCb(i) {
+    console.log('event.target.value', i);
+  }
+  filterChangeCb(i) {
+    console.log('text', i);
   }
   render() {
-    const { classes ,theme} = this.props;
-    const {optionstem}= this.state;
-    const {currentPage,pageSize}= this.state.pageConfig;
+    const { classes, theme } = this.props;
+    const { optionstem } = this.state;
+    const { currentPage, pageSize } = this.state.pageConfig;
     const total = optionstem.length;
     return (
       <div className={classes.root}>
@@ -101,18 +103,19 @@ class App extends Component {
             selectCb={this.selectCb.bind(this)}
             pageChangeCb={this.autoCb.bind(this)}
           >
-            {this.state.optionstem.slice(total===0?total:(currentPage-1)*pageSize,
-              currentPage*pageSize>total?total:currentPage*pageSize).map(item => (
-              <MenuItem
-                key={item.label}
-                value={item.label}
-              >
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <ListItemText primary={item.label} />
-              </MenuItem>
-            ))}
+            {this.state.optionstem
+              .slice(
+                total === 0 ? total : (currentPage - 1) * pageSize,
+                currentPage * pageSize > total ? total : currentPage * pageSize,
+              )
+              .map(item => (
+                <MenuItem key={item.label} value={item.label}>
+                  <ListItemIcon>
+                    <StarBorder />
+                  </ListItemIcon>
+                  <ListItemText primary={item.label} />
+                </MenuItem>
+              ))}
           </AsyncSelect>
         </FormControl>
         <FormControl className={classes.formControl}>
@@ -126,18 +129,19 @@ class App extends Component {
             selectCb={this.selectCb.bind(this)}
             pageChangeCb={this.autoCb.bind(this)}
           >
-            {this.state.optionstem.slice(total===0?total:(currentPage-1)*pageSize,
-              currentPage*pageSize>total?total:currentPage*pageSize).map(item => (
-              <MenuItem
-                key={item.label}
-                value={item.label}
-              >
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <ListItemText primary={item.label} />
-              </MenuItem>
-            ))}
+            {this.state.optionstem
+              .slice(
+                total === 0 ? total : (currentPage - 1) * pageSize,
+                currentPage * pageSize > total ? total : currentPage * pageSize,
+              )
+              .map(item => (
+                <MenuItem key={item.label} value={item.label}>
+                  <ListItemIcon>
+                    <StarBorder />
+                  </ListItemIcon>
+                  <ListItemText primary={item.label} />
+                </MenuItem>
+              ))}
           </AsyncSelect>
         </FormControl>
       </div>

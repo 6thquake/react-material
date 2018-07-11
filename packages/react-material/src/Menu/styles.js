@@ -1,61 +1,63 @@
 import dark from './dark';
-import {fade, emphasize} from '../styles/colorManipulator';
+import { fade, emphasize } from '../styles/colorManipulator';
 
 const menuPrefixCls = 'rm-menu';
 
 const styles = theme => {
   const menu = {
-    menuCollapsedWidth:'72',
-    fontSizeBase:'14px',
-    textColor:fade('#000',.65),
-    lineHeightBase:1.5,
-    boxShadowBase:'0 2px 8px rgba(0, 0, 0, .15)',
+    menuCollapsedWidth: '72',
+    fontSizeBase: '14px',
+    textColor: fade('#000', 0.65),
+    lineHeightBase: 1.5,
+    boxShadowBase: '0 2px 8px rgba(0, 0, 0, .15)',
 
     borderColorSplit: 'border-color-split',
-    menuItemColor: fade('#000', .65),
+    menuItemColor: fade('#000', 0.65),
     menuBg: '#fff',
-    menuItemGroupTitleColor: fade('#000', .45),
+    menuItemGroupTitleColor: fade('#000', 0.45),
 
-    menuItemActiveBg: fade(theme.palette.primary.main, .1),
-    menuHoverBg: fade('#000', .08),
+    menuItemActiveBg: fade(theme.palette.primary.main, 0.1),
+    menuHoverBg: fade('#000', 0.08),
     // menuHoverBg: fade(theme.palette.primary.main, .05),
 
     menuHighlightColor: theme.palette.primary.main,
-    disabledColor: fade('#000', .25),
-    textColorDark: fade('#fff', .85),
+    disabledColor: fade('#000', 0.25),
+    textColorDark: fade('#fff', 0.85),
 
-    menuDarkColor:'#fff',
-    menuDarkBg:fade('#000', .87),
+    menuDarkColor: '#fff',
+    menuDarkBg: fade('#000', 0.87),
     menuDarkArrowColor: '#fff',
-    menuDarkSubmenuBg:fade('#000', .87),
-    menuDarkHoverBg:fade('#9e9e9e', .3),
+    menuDarkSubmenuBg: fade('#000', 0.87),
+    menuDarkHoverBg: fade('#9e9e9e', 0.3),
     menuDarkHighlightColor: '#fff',
 
-    menuDarkItemSelectedBg:theme.palette.primary.main,
+    menuDarkItemSelectedBg: theme.palette.primary.main,
 
-    disabledColorDark    : fade('#fff', .35),
-    easeInOut         : 'cubic-bezier(0.645, 0.045, 0.355, 1)',
-    border:{
+    disabledColorDark: fade('#fff', 0.35),
+    easeInOut: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
+    border: {
       width: '1px',
       style: 'solid',
       color: '#e8e8e8',
       radius: '4px',
-      colorSplit:'#e8e8e8'    //todo @border-color-split;
+      colorSplit: '#e8e8e8', //todo @border-color-split;
     },
-    menuItem:{
-      height:'40px',
+    menuItem: {
+      height: '40px',
       lineHeight: '40px',
-      fontSize: '14px'
+      fontSize: '14px',
     },
-    iconStyle:{
+    iconStyle: {
       fontSize: 'inherit',
       marginRight: '8px',
-      verticalAlign: 'text-bottom'
+      verticalAlign: 'text-bottom',
     },
-    ...theme.menu
+    ...theme.menu,
   };
 
-  const border = menu.border,menuItem = menu.menuItem,iconStyle = menu.iconStyle;
+  const border = menu.border,
+    menuItem = menu.menuItem,
+    iconStyle = menu.iconStyle;
 
   const iconfontCssPrefix = 'material-icons';
 
@@ -64,8 +66,8 @@ const styles = theme => {
       [`.${menuPrefixCls}`]: {
         ...theme.typography.body1,
         boxShadow: menu.boxShadowBase,
-        color:menu.menuItemColor,
-        background:menu.menuBg,
+        color: menu.menuItemColor,
+        background: menu.menuBg,
         outline: 'none',
         margin: 0,
         padding: 0,
@@ -75,10 +77,10 @@ const styles = theme => {
         transition: 'background .3s, width .2s',
         zoom: 1,
         '@global .material-icons, svg': {
-          ...iconStyle
+          ...iconStyle,
         },
-        '& *':{
-          boxSizing:'border-box'
+        '& *': {
+          boxSizing: 'border-box',
         },
         '&:before, &:after': {
           content: "' '",
@@ -88,27 +90,29 @@ const styles = theme => {
           clear: 'both',
           visibility: 'hidden',
           fontSize: 0,
-          height: 0
+          height: 0,
         },
         '& ul,& ol': {
           listStyle: 'none',
           margin: 0,
-          padding: 0
+          padding: 0,
         },
 
         '&-hidden': {
-          display: 'none'
+          display: 'none',
         },
 
         '&-item-group-title': {
-          color:menu.menuItemGroupTitleColor,
-          fontSize:menu.fontSizeBase,
-          lineHeight:menu.lineHeightBase,
+          color: menu.menuItemGroupTitleColor,
+          fontSize: menu.fontSizeBase,
+          lineHeight: menu.lineHeightBase,
           padding: '8px 16px',
-          transition: 'all .3s'
+          transition: 'all .3s',
         },
         '&-submenu, &-submenu-inline': {
-          transition: `border-color .3s ${menu.easeInOut}, background .3s ${menu.easeInOut}, padding .15s ${menu.easeInOut}`
+          transition: `border-color .3s ${menu.easeInOut}, background .3s ${
+            menu.easeInOut
+          }, padding .15s ${menu.easeInOut}`,
         },
 
         '&-item:active, &-submenu-title:active': {
@@ -116,16 +120,16 @@ const styles = theme => {
         },
         '&-submenu &-sub': {
           cursor: 'initial',
-          transition: `background .3s ${menu.easeInOut}, padding .3s ${menu.easeInOut}`
+          transition: `background .3s ${menu.easeInOut}, padding .3s ${menu.easeInOut}`,
         },
         '&-item > a': {
           display: 'block',
           color: menu.menuItemColor,
           '&:hover': {
-            color: menu.menuHighlightColor
+            color: menu.menuHighlightColor,
           },
           '&:focus': {
-            textDecoration: 'none'
+            textDecoration: 'none',
           },
           '&:before': {
             position: 'absolute',
@@ -134,42 +138,42 @@ const styles = theme => {
             left: 0,
             bottom: 0,
             right: 0,
-            content: "' '"
-          }
+            content: "' '",
+          },
         },
         '&-item-divider': {
           height: 1,
           overflow: 'hidden',
-          backgroundColor: '#e8e8e8',//theme.palette.divider,
+          backgroundColor: '#e8e8e8', //theme.palette.divider,
           lineHeight: 0,
         },
         '&-item:hover, &-item-active, &:not(&-inline) &-submenu-open, &-submenu-active': {
           color: menu.menuHighlightColor,
-          background:menu.menuHoverBg
+          background: menu.menuHoverBg,
         },
-        '&-submenu-title:hover':{
-          color: menu.menuHighlightColor
+        '&-submenu-title:hover': {
+          color: menu.menuHighlightColor,
         },
         '&-horizontal &-item, &-horizontal &-submenu': {
-          marginTop: -1
+          marginTop: -1,
         },
         '&-horizontal > &-item:hover, &-horizontal > &-item-active, &-horizontal > &-submenu &-submenu-title:hover': {
-          backgroundColor: 'transparent'
+          backgroundColor: 'transparent',
         },
         '&-item-selected': {
           color: menu.menuHighlightColor,
           '&> a, > a:hover': {
-            color: menu.menuHighlightColor
-          }
+            color: menu.menuHighlightColor,
+          },
         },
         '&:not(&-horizontal) &-item-selected': {
-          backgroundColor: menu.menuItemActiveBg
+          backgroundColor: menu.menuItemActiveBg,
         },
         '&-inline, &-vertical, &-vertical-left': {
-          borderRight: `${border.width} ${border.style} ${border.color}`
+          borderRight: `${border.width} ${border.style} ${border.color}`,
         },
         '&-vertical-right': {
-          borderLeft: `${border.width} ${border.style} ${border.color}`
+          borderLeft: `${border.width} ${border.style} ${border.color}`,
         },
         '&-vertical&-sub, &-vertical-left&-sub, &-vertical-right&-sub': {
           borderRight: 0,
@@ -180,15 +184,15 @@ const styles = theme => {
             marginLeft: 0,
             left: 0,
             '&:after': {
-              borderRight: 0
-            }
+              borderRight: 0,
+            },
           },
           [`&> .${menuPrefixCls}-item,&> .${menuPrefixCls}-submenu`]: {
-            transformOrigin: '0 0'
-          }
+            transformOrigin: '0 0',
+          },
         },
         '&-horizontal&-sub, &-vertical&-sub, &-vertical-left&-sub, &-vertical-right&-sub': {
-          minWidth: 160
+          minWidth: 160,
         },
         '&-item, &-submenu-title': {
           cursor: 'pointer',
@@ -197,16 +201,18 @@ const styles = theme => {
           position: 'relative',
           display: 'block',
           whiteSpace: 'nowrap',
-          transition: `color .3s ${menu.easeInOut}, border-color .3s ${menu.easeInOut}, background .3s ${menu.easeInOut}, padding .15s ${menu.easeInOut}`,
+          transition: `color .3s ${menu.easeInOut}, border-color .3s ${
+            menu.easeInOut
+          }, background .3s ${menu.easeInOut}, padding .15s ${menu.easeInOut}`,
           [`& .${iconfontCssPrefix}`]: {
             minWidth: 14,
             marginRight: 10,
             transition: `font-size .15s ${menu.easeInOut}, margin .3s ${menu.easeInOut}`,
             '&+ span': {
               transition: `opacity .3s ${menu.easeInOut}, width .3s ${menu.easeInOut}`,
-              opacity: 1
-            }
-          }
+              opacity: 1,
+            },
+          },
         },
         '& > &-item-divider': {
           height: 1,
@@ -214,41 +220,41 @@ const styles = theme => {
           overflow: 'hidden',
           padding: 0,
           lineHeight: 0,
-          backgroundColor: border.colorSplit
+          backgroundColor: border.colorSplit,
         },
 
         '&-submenu': {
           '&-popup': {
             position: 'absolute',
             borderRadius: border.radius,
-            zIndex: theme.zIndex.drawer
+            zIndex: theme.zIndex.drawer,
           },
           [`& > .${menuPrefixCls}`]: {
             backgroundColor: menu.menuBg,
             borderRadius: border.radius,
             '&-submenu-title:after': {
-              transition: `transform .3s ${menu.easeInOut}`
-            }
+              transition: `transform .3s ${menu.easeInOut}`,
+            },
           },
 
           [`&-inline > .${menuPrefixCls}-submenu-title .${menuPrefixCls}-submenu-arrow`]: {
             '&:before': {
-              transform: 'rotate(-45deg) translateX(2px)'
+              transform: 'rotate(-45deg) translateX(2px)',
             },
             '&:after': {
-              transform: 'rotate(45deg) translateX(-2px)'
-            }
+              transform: 'rotate(45deg) translateX(-2px)',
+            },
           },
           '&-open': {
             [`&.${menuPrefixCls}-submenu-inline > .${menuPrefixCls}-submenu-title .${menuPrefixCls}-submenu-arrow`]: {
               transform: 'translateY(-2px)',
               '&:after': {
-                transform: 'rotate(-45deg) translateX(-2px)'
+                transform: 'rotate(-45deg) translateX(-2px)',
               },
               '&:before': {
-                transform: 'rotate(45deg) translateX(2px)'
-              }
-            }
+                transform: 'rotate(45deg) translateX(2px)',
+              },
+            },
           },
           '&-vertical, &-vertical-left, &-vertical-right, &-inline': {
             [`&> .${menuPrefixCls}-submenu-title .${menuPrefixCls}-submenu-arrow`]: {
@@ -262,33 +268,36 @@ const styles = theme => {
                 position: 'absolute',
                 verticalAlign: 'baseline',
                 background: menu.menuItemColor,
-                backgroundImage: `linear-gradient(to right, ${menu.menuItemColor}, ${menu.menuItemColor})`,
+                backgroundImage: `linear-gradient(to right, ${menu.menuItemColor}, ${
+                  menu.menuItemColor
+                })`,
                 width: 6,
                 height: 1.5,
                 borderRadius: 2,
-                transition: `background .3s ${menu.easeInOut}, transform .3s ${menu.easeInOut}, top .3s ${menu.easeInOut}`
+                transition: `background .3s ${menu.easeInOut}, transform .3s ${
+                  menu.easeInOut
+                }, top .3s ${menu.easeInOut}`,
               },
               '&:before': {
-                transform: 'rotate(45deg) translateY(-2px)'
+                transform: 'rotate(45deg) translateY(-2px)',
               },
               '&:after': {
-                transform: 'rotate(-45deg) translateY(2px)'
-              }
+                transform: 'rotate(-45deg) translateY(2px)',
+              },
             },
             [`&> .${menuPrefixCls}-submenu-title:hover .${menuPrefixCls}-submenu-arrow`]: {
               '&:after, &:before': {
-                background: `${menu.menuHighlightColor}`
-              }
-            }
+                background: `${menu.menuHighlightColor}`,
+              },
+            },
           },
         },
-
 
         '&-vertical &-submenu-selected, &-vertical-left &-submenu-selected, &-vertical-right &-submenu-selected': {
           color: menu.menuHighlightColor,
           '&> a': {
-            color: menu.menuHighlightColor
-          }
+            color: menu.menuHighlightColor,
+          },
         },
         '&-horizontal': {
           border: 0,
@@ -302,25 +311,25 @@ const styles = theme => {
             borderBottom: '2px solid transparent',
             [`&:hover,&-active,&-open,&-selected`]: {
               borderBottom: `2px solid ${menu.menuHighlightColor}`,
-              color: menu.menuHighlightColor
+              color: menu.menuHighlightColor,
             },
             '& > a': {
               display: 'block',
               color: menu.menuItemColor,
               '&:hover': {
-                color: menu.menuHighlightColor
+                color: menu.menuHighlightColor,
               },
               '&:before': {
-                bottom: -2
-              }
-            }
+                bottom: -2,
+              },
+            },
           },
           '&:after': {
             content: "'\\20'",
             display: 'block',
             height: 0,
-            clear: 'both'
-          }
+            clear: 'both',
+          },
         },
         '&-inline': {
           width: '100%',
@@ -328,15 +337,15 @@ const styles = theme => {
             '&:after': {
               transition: `transform .15s ${menu.easeInOut}, opacity .15s ${menu.easeInOut}`,
               opacity: 1,
-              transform: 'scaleY(1)'
-            }
+              transform: 'scaleY(1)',
+            },
           },
           [`& .${menuPrefixCls}-item,& .${menuPrefixCls}-submenu-title`]: {
-            width: "calc(100% + 1px)"
+            width: 'calc(100% + 1px)',
           },
           [`& .${menuPrefixCls}-submenu-title`]: {
-            paddingRight: 34
-          }
+            paddingRight: 34,
+          },
         },
         '&-vertical, &-vertical-left, &-vertical-right, &-inline': {
           [`& .${menuPrefixCls}-item`]: {
@@ -350,31 +359,31 @@ const styles = theme => {
               borderRight: `3px solid ${menu.menuHighlightColor}`,
               transform: 'scaleY(.0001)',
               opacity: 0,
-              transition: `transform .15s ${menu.easeInOut}, opacity .15s ${menu.easeInOut}`
-            }
+              transition: `transform .15s ${menu.easeInOut}, opacity .15s ${menu.easeInOut}`,
+            },
           },
           [`& .${menuPrefixCls}-item,& .${menuPrefixCls}-submenu-title`]: {
             padding: '0 16px',
-            fontSize:menu.fontSizeBase,
-            lineHeight:menuItem.height,
-            height:menuItem.height,
+            fontSize: menu.fontSizeBase,
+            lineHeight: menuItem.height,
+            height: menuItem.height,
             marginTop: 4,
             marginBottom: 4,
             overflow: 'hidden',
-            textOverflow: 'ellipsis'
+            textOverflow: 'ellipsis',
           },
           // disable margin collapsed
           [`& .${menuPrefixCls}-submenu`]: {
-            paddingBottom: 0.01
+            paddingBottom: 0.01,
           },
           [`& .${menuPrefixCls}-item:not(:last-child)`]: {
-            marginBottom: theme.spacing.unit
+            marginBottom: theme.spacing.unit,
           },
           [`&> .${menuPrefixCls}-item,
     > .${menuPrefixCls}-submenu > .${menuPrefixCls}-submenu-title`]: {
             lineHeight: menuItem.lineHeight,
-            height: menuItem.height
-          }
+            height: menuItem.height,
+          },
         },
 
         '&-inline-collapsed': {
@@ -385,9 +394,9 @@ const styles = theme => {
           &> .${menuPrefixCls}-submenu > .${menuPrefixCls}-submenu-title`]: {
             left: 0,
             textOverflow: 'clip',
-            padding: `0 ${( menu.menuCollapsedWidth - 24) / 2}px !important`,
+            padding: `0 ${(menu.menuCollapsedWidth - 24) / 2}px !important`,
             [`& .${menuPrefixCls}-submenu-arrow`]: {
-              display: 'none'
+              display: 'none',
             },
 
             [`& .${iconfontCssPrefix},svg`]: {
@@ -397,37 +406,37 @@ const styles = theme => {
               '&+ span': {
                 maxWidth: 0,
                 display: 'inline-block',
-                opacity: 0
-              }
-            }
+                opacity: 0,
+              },
+            },
           },
           '&-tooltip': {
             pointerEvents: 'none',
             [`& .${iconfontCssPrefix}`]: {
-              display: 'none'
+              display: 'none',
             },
             '& a': {
-              color: menu.textColorDark
-            }
+              color: menu.textColorDark,
+            },
           },
           [`& .${menuPrefixCls}-item-group-title`]: {
             overflow: 'hidden',
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
             paddingLeft: 4,
-            paddingRight: 4
-          }
+            paddingRight: 4,
+          },
         },
         '&-item-group-list': {
           margin: 0,
           padding: 0,
           [`& .${menuPrefixCls}-item,
           & .${menuPrefixCls}-submenu-title`]: {
-            padding: '0 16px 0 28px'
-          }
+            padding: '0 16px 0 28px',
+          },
         },
         '&-root&-vertical, &-root&-vertical-left, &-root&-vertical-right, &-root&-inline': {
-          boxShadow: 'none'
+          boxShadow: 'none',
         },
         '&-sub&-inline': {
           padding: 0,
@@ -439,11 +448,11 @@ const styles = theme => {
             lineHeight: menuItem.lineHeight,
             height: menuItem.height,
             listStyleType: 'disc',
-            listStylePosition: 'inside'
+            listStylePosition: 'inside',
           },
           [`& .${menuPrefixCls}-item-group-title`]: {
-            paddingLeft: 32
-          }
+            paddingLeft: 32,
+          },
         },
         // Disabled state sets text to gray and nukes hover/tab effects
         '&-item-disabled, &-submenu-disabled': {
@@ -453,17 +462,17 @@ const styles = theme => {
           borderColor: 'transparent !important',
           '&> a': {
             color: `${menu.disabledColor} !important`,
-            pointerEvents: 'none'
+            pointerEvents: 'none',
           },
           [`&> .${menuPrefixCls}-submenu-title`]: {
             color: `${menu.disabledColor} !important`,
-            cursor: 'not-allowed'
-          }
+            cursor: 'not-allowed',
+          },
         },
-        ...dark(menu, menuPrefixCls)
-      }
-    }
-  }
+        ...dark(menu, menuPrefixCls),
+      },
+    },
+  };
 };
 
 export default styles;

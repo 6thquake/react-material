@@ -5,9 +5,8 @@ import {
   LocaleConsumer,
   getLanguage,
   getLocale,
-  getDefaultLocale
-} from './LocaleContext'
-
+  getDefaultLocale,
+} from './LocaleContext';
 
 export {
   LocaleProvider,
@@ -16,7 +15,6 @@ export {
   withLocale,
   getLanguage,
   getLocale,
-  getDefaultLocale
-}
-export default LocaleProvider
-
+  getDefaultLocale,
+};
+export default LocaleProvider;

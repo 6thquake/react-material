@@ -20,20 +20,20 @@ const defaultItemKeysMap = {
   className: 'className',
   open: 'open',
   selected: 'selected',
-  key:'key'
+  key: 'key',
 };
 const theme = createMuiTheme();
 const styles = theme => ({
   '@media (max-width: 600px)': {
     MuiListItemButton: {
       paddingLeft: theme.spacing.unit * 2 + 'px !important',
-      paddingRight: theme.spacing.unit * 2 + 'px !important'
-    }
+      paddingRight: theme.spacing.unit * 2 + 'px !important',
+    },
   },
   '@global .selected': {
     fontWeight: theme.typography.fontWeightMedium,
-    color: theme.palette.primary.main
-  }
+    color: theme.palette.primary.main,
+  },
 });
 
 /**
@@ -51,23 +51,25 @@ const styles = theme => ({
  *
  */
 
-
 class Item extends React.Component {
   static contextTypes = {
     level: PropTypes.number,
     inlineIndent: PropTypes.number,
-    root: PropTypes.object
-  }
+    root: PropTypes.object,
+  };
 
   renderItem() {
-    const {name, key, children} = this.props;
+    const { name, key, children } = this.props;
     if (this.isRenderItem()) {
-      return <React.Fragment>
-        <MenuItem key={key}>
-          {renderIcon(this.props)}{name}
-        </MenuItem>
-        {children ? <MenuList list={children}/> : null}
-      </React.Fragment>
+      return (
+        <React.Fragment>
+          <MenuItem key={key}>
+            {renderIcon(this.props)}
+            {name}
+          </MenuItem>
+          {children ? <MenuList list={children} /> : null}
+        </React.Fragment>
+      );
     } else {
       return null;
     }
@@ -84,10 +86,7 @@ class Item extends React.Component {
       className: classNamePro,
       classes,
     } = this.props;
-    const {
-      level,
-      inlineIndent
-    } = this.context;
+    const { level, inlineIndent } = this.context;
 
     return this.renderItem();
   }
@@ -111,7 +110,7 @@ Item.defaultProps = {
   beforeChildren: () => true,
   onClick: () => true,
   onHandle: () => true,
-  selected: false
+  selected: false,
 };
 
 class TreeMenu extends React.Component {
@@ -120,13 +119,13 @@ class TreeMenu extends React.Component {
     itemKeysMap: PropTypes.object,
     inlineIndent: PropTypes.number,
     // root:PropTypes.object
-  }
+  };
   state = {
-    itemKeysMap: {...defaultItemKeysMap, ...this.props.itemKeysMap}
-  }
+    itemKeysMap: { ...defaultItemKeysMap, ...this.props.itemKeysMap },
+  };
 
   itemKeyToProps(item) {
-    const {itemKeysMap} = this.state;
+    const { itemKeysMap } = this.state;
     let result = {};
     for (const key in itemKeysMap) {
       const resultKey = itemKeysMap[key];
@@ -140,8 +139,7 @@ class TreeMenu extends React.Component {
    * @param item
    */
   isRenderItem(item) {
-    if (item.before)
-      return item.before();
+    if (item.before) return item.before();
     return true;
   }
 
@@ -152,9 +150,7 @@ class TreeMenu extends React.Component {
   renderIcon(icon) {
     if (icon) {
       if (typeof icon === 'string') {
-        return <i className="material-icons">
-          {icon}
-        </i>
+        return <i className="material-icons">{icon}</i>;
       } else {
         return icon;
       }
@@ -166,10 +162,10 @@ class TreeMenu extends React.Component {
   getChildContext() {
     return {
       level: 0,
-      itemKeysMap: {...defaultItemKeysMap, ...this.props.itemKeysMap},
+      itemKeysMap: { ...defaultItemKeysMap, ...this.props.itemKeysMap },
       inlineIndent: this.props.inlineIndent,
       // root:this
-    }
+    };
   }
 
   /**
@@ -179,10 +175,8 @@ class TreeMenu extends React.Component {
    */
   isRenderChildren(item) {
     if (item.children && item.children !== 0) {
-      if (item.beforeChildren)
-        return item.beforeChildren();
-      else
-        return true;
+      if (item.beforeChildren) return item.beforeChildren();
+      else return true;
     } else {
       return false;
     }
@@ -193,25 +187,35 @@ class TreeMenu extends React.Component {
 
     return list.map((item, index) => {
       const result = this.itemKeyToProps(item);
-      const {icon, name, children,key} = result;
+      const { icon, name, children, key } = result;
       let _key;
       if (key) {
         _key = key;
-      }else {
+      } else {
         _key = parentKey === undefined ? index : `${parentKey}-${index}`;
       }
       if (this.isRenderItem(item)) {
         if (this.isRenderChildren(result)) {
-          return <SubMenu key={_key} title={<span>
-            {this.renderIcon(icon)}<span>{name}</span> {this.props.debugger?_key:null}
+          return (
+            <SubMenu
+              key={_key}
+              title={
+                <span>
+                  {this.renderIcon(icon)}
+                  <span>{name}</span> {this.props.debugger ? _key : null}
                 </span>
-          }>
-            {this.renderMenu(children, _key)}
-          </SubMenu>
+              }
+            >
+              {this.renderMenu(children, _key)}
+            </SubMenu>
+          );
         } else {
-          return <MenuItem key={_key}>
-            {this.renderIcon(icon)}<span>{name}</span> {this.props.debugger?_key:null}
-          </MenuItem>
+          return (
+            <MenuItem key={_key}>
+              {this.renderIcon(icon)}
+              <span>{name}</span> {this.props.debugger ? _key : null}
+            </MenuItem>
+          );
         }
       } else {
         return null;
@@ -220,14 +224,8 @@ class TreeMenu extends React.Component {
   }
 
   render() {
-    const {list,itemKeysMap,debugger:d,...props} = this.props;
-    return (
-      <Menu
-        {...props}
-      >
-        {this.renderMenu(list)}
-      </Menu>
-    );
+    const { list, itemKeysMap, debugger: d, ...props } = this.props;
+    return <Menu {...props}>{this.renderMenu(list)}</Menu>;
   }
 }
 
@@ -254,12 +252,12 @@ TreeMenu.propTypes = {
     style: PropTypes.string,
     className: PropTypes.string,
     open: PropTypes.string,
-    key: PropTypes.string
+    key: PropTypes.string,
   }),
-  debugger:PropTypes.bool
+  debugger: PropTypes.bool,
 };
 TreeMenu.defaultProps = {
-  debugger:false,
-  itemKeysMap: defaultItemKeysMap
+  debugger: false,
+  itemKeysMap: defaultItemKeysMap,
 };
 export default withStyles()(TreeMenu);

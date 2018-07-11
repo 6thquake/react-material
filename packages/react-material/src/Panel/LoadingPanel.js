@@ -1,20 +1,20 @@
-import React , { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import Progress from '../Progress';
 
 const styles = theme => ({
-  root:{
-    width:'100%',
-    backgroundColor:'white',
+  root: {
+    width: '100%',
+    backgroundColor: 'white',
     position: 'relative',
   },
-  progress:{
+  progress: {
     position: 'relative',
-    top:0,
-    zIndex:99999
+    top: 0,
+    zIndex: 99999,
   },
-  mask:{
+  mask: {
     position: 'absolute',
     top: 0,
     right: 0,
@@ -27,97 +27,101 @@ const styles = theme => ({
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
     zIndex: 9999,
   },
-  loading:{
-    position:'absolute',
+  loading: {
+    position: 'absolute',
     marginLeft: -40,
     marginTop: -20,
-    top:'50%',
-    left:'50%',
+    top: '50%',
+    left: '50%',
     width: 80,
     height: 40,
     margin: '0 auto',
-    '@global span':{
+    '@global span': {
       display: 'inline-block',
       width: 8,
       height: '100%',
       borderRadius: 4,
-      marginLeft:6,
+      marginLeft: 6,
       background: 'lightgreen',
       animation: 'load 1s ease infinite',
-      '&:nth-child(2)':{
-          animationDelay:'0.2s',
+      '&:nth-child(2)': {
+        animationDelay: '0.2s',
       },
-      '&:nth-child(3)':{
-        animationDelay:'0.4s',
+      '&:nth-child(3)': {
+        animationDelay: '0.4s',
       },
-      '&:nth-child(4)':{
-        animationDelay:'0.6s',
+      '&:nth-child(4)': {
+        animationDelay: '0.6s',
       },
-      '&:nth-child(5)':{
-        animationDelay:'0.8s',
-      }
-    }
-},
+      '&:nth-child(5)': {
+        animationDelay: '0.8s',
+      },
+    },
+  },
 
-'@keyframes load':{
-  '0%,100%':{
+  '@keyframes load': {
+    '0%,100%': {
       height: 40,
       background: 'lightgreen',
-  },
-  '50%':{
+    },
+    '50%': {
       height: 70,
       margin: '-15px 0',
       background: 'lightblue',
- }
-},
+    },
+  },
 });
 class LoadingPanel extends Component {
   static propTypes = {
     /**
      * loading 类型，progress为无遮罩层的loading，mask为有遮罩层的loading
      */
-    type : PropTypes.string,
+    type: PropTypes.string,
     /**
      * loading 是否完成
      */
-    loaded : PropTypes.bool,
+    loaded: PropTypes.bool,
     /**
      * loading 预估时间
      */
-    estimatedTime : PropTypes.number,
+    estimatedTime: PropTypes.number,
   };
 
   static defaultProps = {
     type: 'progress',
-    loaded:false,
-    estimatedTime:1
+    loaded: false,
+    estimatedTime: 1,
   };
-  constructor(props){
+  constructor(props) {
     super(props);
   }
-  loading(){
-    const { classes} = this.props;
+  loading() {
+    const { classes } = this.props;
     return (
       <div className={classes.mask}>
         <div className={classes.loading}>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
         </div>
       </div>
-    )
+    );
   }
   render() {
-    const {classes,children,type,loaded,estimatedTime} =this.props;
+    const { classes, children, type, loaded, estimatedTime } = this.props;
     return (
-            <div className={classes.root}>
-              {type==='progress'?<div className={classes.progress}><Progress isPromise={true} isFinish={loaded} estimatedTime={estimatedTime}/></div>:null}
-              {type==='mask'&&!loaded?this.loading():null}
-              {children}
-            </div>
-          )
+      <div className={classes.root}>
+        {type === 'progress' ? (
+          <div className={classes.progress}>
+            <Progress isPromise={true} isFinish={loaded} estimatedTime={estimatedTime} />
+          </div>
+        ) : null}
+        {type === 'mask' && !loaded ? this.loading() : null}
+        {children}
+      </div>
+    );
   }
 }
 export default withStyles(styles)(LoadingPanel);

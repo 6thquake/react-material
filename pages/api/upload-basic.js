@@ -8,6 +8,3 @@ function Page() {
 }
 
 export default withRoot(Page);
-
-
-

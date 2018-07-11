@@ -1,20 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 import { withStyles } from '../styles';
 
-
 const styles = {
-  imgwarp:{
-    float:'left',
-    overflow:'hidden',
+  imgwarp: {
+    float: 'left',
+    overflow: 'hidden',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    '@global img':{
-      width:'100%',
-      height:'auto',
-      display:'none'
-    }
-  }
+    '@global img': {
+      width: '100%',
+      height: 'auto',
+      display: 'none',
+    },
+  },
 };
 
 class CarouselItem extends React.Component {
@@ -22,9 +21,9 @@ class CarouselItem extends React.Component {
     super(props);
     this.itemRef = React.createRef();
   }
-  componentDidMount(){
+  componentDidMount() {
     // const itemEl = ReactDOM.findDOMNode(this.itemRef.current),
-    //   parentEl = itemEl.parentNode.parentNode, 
+    //   parentEl = itemEl.parentNode.parentNode,
     // h = parentEl.offsetHeight,
     // w = parentEl.offsetWidth;
     //itemEl.style.height= h+'px';
@@ -34,14 +33,22 @@ class CarouselItem extends React.Component {
   }
 
   render() {
-    const {data,index,classes,size} = this.props;
+    const { data, index, classes, size } = this.props;
     return (
-      <div ref={this.itemRef} style={{'width':size.width+'px','height':size.height+'px',backgroundImage:'url('+data.src+')'}} alt={data.alt} className={classes.imgwarp}>
-      <img src={data.src} alt={data.alt}/>
+      <div
+        ref={this.itemRef}
+        style={{
+          width: size.width + 'px',
+          height: size.height + 'px',
+          backgroundImage: 'url(' + data.src + ')',
+        }}
+        alt={data.alt}
+        className={classes.imgwarp}
+      >
+        <img src={data.src} alt={data.alt} />
       </div>
     );
   }
 }
-
 
 export default withStyles(styles)(CarouselItem);

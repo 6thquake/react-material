@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import RMC from './../RMcascadeSelect'
-
+import RMC from './../RMcascadeSelect';
 
 class Test extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       dataSource: [],
       cdata: [
@@ -27,14 +26,14 @@ class Test extends Component {
                 {
                   value: '113',
                   text: 'test111',
-                }
-              ]
+                },
+              ],
             },
             {
               value: '111',
               text: 'test22',
-            }
-          ]
+            },
+          ],
         },
         {
           value: '2',
@@ -55,14 +54,14 @@ class Test extends Component {
                 {
                   value: '113',
                   text: 'test111a',
-                }
-              ]
+                },
+              ],
             },
             {
               value: '111a',
               text: 'test22a',
-            }
-          ]
+            },
+          ],
         },
         {
           value: '3c',
@@ -88,14 +87,14 @@ class Test extends Component {
                 {
                   value: '113',
                   text: 'test111',
-                }
-              ]
+                },
+              ],
             },
             {
               value: '111',
               text: 'test22',
-            }
-          ]
+            },
+          ],
         },
         {
           value: '2',
@@ -116,37 +115,31 @@ class Test extends Component {
                 {
                   value: '113',
                   text: 'test111a',
-                }
-              ]
+                },
+              ],
             },
             {
               value: '111a',
               text: 'test22a',
-            }
-          ]
+            },
+          ],
         },
         {
           value: '3c',
           text: 'test3c',
-        }
-      ]
+        },
+      ],
     };
-
   }
-  handleChange = (e) =>{
-    console.log('change log', e)
-  }
+  handleChange = e => {
+    console.log('change log', e);
+  };
   render() {
-
     return (
-       <div>
-        <RMC
-          onChange={this.handleChange}
-          label={'Cascade Select'}
-          dataSource={this.state.cdata}
-        />
-        </div>
-  );
+      <div>
+        <RMC onChange={this.handleChange} label={'Cascade Select'} dataSource={this.state.cdata} />
+      </div>
+    );
   }
 }
 

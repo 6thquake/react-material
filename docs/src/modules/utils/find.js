@@ -10,7 +10,7 @@ const markdownRegex = /\.md$/;
 // }
 function findPagesMarkdown(
   directory = path.resolve(__dirname, '../../../src/pages'),
-  pagesMarkdown = []
+  pagesMarkdown = [],
 ) {
   const items = fs.readdirSync(directory);
 
@@ -83,7 +83,7 @@ const blackList = ['/.eslintrc', '/_document'];
 function findPages(
   options = {},
   directory = path.resolve(__dirname, '../../../../pages'),
-  pages = []
+  pages = [],
 ) {
   fs.readdirSync(directory).forEach(item => {
     const itemPath = path.resolve(directory, item);

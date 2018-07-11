@@ -21,19 +21,17 @@ function Button({ theme, ...rest }) {
       {theme}
       <button className={theme} {...rest} />;
     </div>
-  )
+  );
 }
 class Test extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    console.log('props in test theme', props)
+    console.log('props in test theme', props);
   }
   render() {
-    return (
-      <div>context: {this.props.locale}</div>
-    );
+    return <div>context: {this.props.locale}</div>;
   }
 }
 const ThemedButton = withTheme(Test);
-export default ThemedButton
+export default ThemedButton;

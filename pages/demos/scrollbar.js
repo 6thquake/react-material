@@ -39,8 +39,6 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/scrollbar/SpringScrollbar'), 'utf8')
 `,
         },
-
-
       }}
     />
   );

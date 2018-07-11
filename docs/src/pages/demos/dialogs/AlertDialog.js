@@ -6,7 +6,6 @@ import DialogContent from 'react-material/DialogContent';
 import DialogContentText from 'react-material/DialogContentText';
 import DialogTitle from 'react-material/DialogTitle';
 
-
 class AlertDialog extends React.Component {
   state = {
     open: false,

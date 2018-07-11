@@ -15,7 +15,7 @@ import RadioGroup from 'react-material/RadioGroup';
 // } from 'react-material/Anchor';
 // 滚动到某一个位置
 // console.log('scrollToAnchor', scrollToAnchor)
-export const styles = (theme)=> {
+export const styles = theme => {
   return {
     tBox: {
       overflow: 'scroll',
@@ -24,51 +24,51 @@ export const styles = (theme)=> {
       marginBottom: 0,
     },
     sub: {
-      marginRight: 50
+      marginRight: 50,
     },
     paper: {
       // background: theme.palette.primary.main
-    }
-  }
-}
+    },
+  };
+};
 
 class App extends React.Component {
-  target = null
+  target = null;
   handleChange = key => (event, value) => {
     this.setState({
       [key]: value,
-    })
-  }
-  handleAnchorChange=(e)=>{
-    console.log('anchor', e)
-  }
-  state={
-    orientation: 'vertical'
-  }
+    });
+  };
+  handleAnchorChange = e => {
+    console.log('anchor', e);
+  };
+  state = {
+    orientation: 'vertical',
+  };
   render() {
-    const { classes } = this.props
-    const {orientation} = this.state
+    const { classes } = this.props;
+    const { orientation } = this.state;
     let a = {
       fontSize: 40,
       display: 'block',
-    }
+    };
     let p = {
       margin: 100,
       padding: 50,
-    }
+    };
 
     let p1 = {
       margin: 100,
       padding: 50,
-    }
+    };
     const links = [
       {
         href: '#a1',
-        label: '#1dsdss'
+        label: '#1dsdss',
       },
       {
         href: '#a2',
-        label: '#2ewrwrwe'
+        label: '#2ewrwrwe',
       },
       {
         href: '#a3',
@@ -77,46 +77,52 @@ class App extends React.Component {
           {
             href: '#sub31',
             label: 'sub31',
-            children: [{
-              href: '#sub311',
-              label: 'sub311'
-            }, {
-              href: '#sub321',
-              label: 'sub321'
-            }, {
-              href: '#sub331',
-              label: 'sub331'
-            }, ]
-
-          }, {
-            href: '#sub32',
-            label: 'sub32'
-          }, {
-            href: '#sub33',
-            label: 'sub33'
+            children: [
+              {
+                href: '#sub311',
+                label: 'sub311',
+              },
+              {
+                href: '#sub321',
+                label: 'sub321',
+              },
+              {
+                href: '#sub331',
+                label: 'sub331',
+              },
+            ],
           },
-        ]
+          {
+            href: '#sub32',
+            label: 'sub32',
+          },
+          {
+            href: '#sub33',
+            label: 'sub33',
+          },
+        ],
       },
       {
         href: '#a4',
-        label: '#4'
+        label: '#4',
       },
       {
         href: '#a5',
-        label: '#5'
+        label: '#5',
       },
       {
         href: '#a6',
-        label: '#6'
-      }
-    ]
-    const links2= [{
+        label: '#6',
+      },
+    ];
+    const links2 = [
+      {
         href: '#a1',
-        label: '#1dsdss'
+        label: '#1dsdss',
       },
       {
         href: '#a2',
-        label: '#2ewrwrwe'
+        label: '#2ewrwrwe',
       },
       {
         href: '#a3',
@@ -124,17 +130,17 @@ class App extends React.Component {
       },
       {
         href: '#a4',
-        label: '#4'
+        label: '#4',
       },
       {
         href: '#a5',
-        label: '#5'
+        label: '#5',
       },
       {
         href: '#a6',
-        label: '#6'
-      }
-    ]
+        label: '#6',
+      },
+    ];
 
     let style = {
       position: 'fixed',
@@ -143,21 +149,20 @@ class App extends React.Component {
       top: 80,
       width: 260,
       zIndex: 20,
-      // background: 
-    }
+      // background:
+    };
     let style2 = {
-      position:'fixed',
-       top: 70,
-       left: 250,
-       zIndex: 20
-    }
-    let linkStyle ={
-      color: "teal",
-
-    }
+      position: 'fixed',
+      top: 70,
+      left: 250,
+      zIndex: 20,
+    };
+    let linkStyle = {
+      color: 'teal',
+    };
     let linkActiveStyle = {
-      color: 'red'
-    }
+      color: 'red',
+    };
 
     return (
       <div>
@@ -175,231 +180,240 @@ class App extends React.Component {
         </FormControl>
         <Divider />
 
-        <Grid container 
-          alignItems={'stretch'}
-          direction={'row'}
-          justify={'flex-start'}
-          >
+        <Grid container alignItems={'stretch'} direction={'row'} justify={'flex-start'}>
           <Grid item>
-            {
-              orientation == 'horizontal' && 
-              (
-                <Anchor
-                  // type={'hash'}
-                  // linkStyle={linkStyle}
-                  orientation='horizontal'
-                  container={'#t-box'}
-                  links={links2}
-                  linkActiveStyle={{}}
-                  onChange={this.handleAnchorChange}
-                ></Anchor>
-              ) 
-            }
+            {orientation == 'horizontal' && (
+              <Anchor
+                // type={'hash'}
+                // linkStyle={linkStyle}
+                orientation="horizontal"
+                container={'#t-box'}
+                links={links2}
+                linkActiveStyle={{}}
+                onChange={this.handleAnchorChange}
+              />
+            )}
           </Grid>
-          <Grid item 
-            container 
+          <Grid
+            item
+            container
             alignItems={'stretch'}
             direction={'row'}
             justify={'flex-start'}
             spacing={16}
-            >
+          >
             <Grid item xs>
               <Paper id={'t-box'} className={classes.tBox}>
                 <p style={p}>
-                  <a style={a} ></a>
-                  <a style={a} ></a>
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
+                  <a style={a} />
+                  <a style={a} />
+                  The TextField is a convenience wrapper for the most common cases (80%). It cannot
+                  be all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control.
                 </p>
                 <Divider />
 
                 <p id="a1" style={p}>
-                  <a style={a} href="#a1">1</a>
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
+                  <a style={a} href="#a1">
+                    1
+                  </a>
+                  The TextField is a convenience wrapper for the most common cases (80%). It cannot
+                  be all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control.
                 </p>
                 <Divider />
-                
-                <p id="a2" style={p}>
-                  <a style={a} href="#a2">2</a>
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                </p>
-                <div  style={p}>
-                  <a id="a3" style={a} href="#a3">3</a>
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  <Grid container className={classes.sub}>
-                    <Grid item  xs={12}>
-                      <a id='sub31' href="#sub31">sub31</a>
-                      The TextField is a convenience wrapper<br/>
-                      for the most common cases(80 % ).It cannot be all things to all people,<br/>
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      he TextField is a convenience wrapper < br / >
-                        for the most common cases(80 % ).It cannot be all things to all people, <
-                        br / >
-                        otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                        otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                        otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                        otherwise the API would grow out of control.
-                        he TextField is a convenience wrapper < br / >
-                          for the most common cases(80 % ).It cannot be all things to all people, <
-                          br / >
-                          otherwise the API would grow out of control.
-                        The TextField is a convenience wrapper
-                        for the most common cases(80 % ).It cannot be all things to all people,
-                          otherwise the API would grow out of control.
-                        The TextField is a convenience wrapper
-                        for the most common cases(80 % ).It cannot be all things to all people,
-                          otherwise the API would grow out of control.
-                        The TextField is a convenience wrapper
-                        for the most common cases(80 % ).It cannot be all things to all people,
-                          otherwise the API would grow out of control.
-                          he TextField is a convenience wrapper<br/>
-                      for the most common cases(80 % ).It cannot be all things to all people,<br/>
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      otherwise the API would grow out of control.
-                    </Grid>
-                    <Grid  item  xs={12}>
-                      <a id='sub311'  href="#sub311">sub311</a>
-                      The TextField is a convenience wrapper<br/>
-                      for the most common cases(80 % ).It cannot be all things to all people,<br/>
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                    </Grid>
-                    <Grid  item xs={12}>
-                      <a id='sub321'  href="#sub321">sub321</a>
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                    </Grid>
-                    <Grid  item xs={12}>
-                      <a id='sub331'  href="#sub331">sub331</a>
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                    </Grid>
-                    <Grid   item xs={12}>
-                      <a id='sub32' href="#sub32">sub32</a>
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                    </Grid>
-                    <Grid  item xs={12}>
-                      <a  id='sub33' href="#sub33">sub33</a>
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                      The TextField is a convenience wrapper
-                      for the most common cases(80 % ).It cannot be all things to all people,
-                      otherwise the API would grow out of control.
-                    </Grid>
-                    
-                  </Grid>
 
+                <p id="a2" style={p}>
+                  <a style={a} href="#a2">
+                    2
+                  </a>
+                  The TextField is a convenience wrapper for the most common cases (80%). It cannot
+                  be all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control.
+                </p>
+                <div style={p}>
+                  <a id="a3" style={a} href="#a3">
+                    3
+                  </a>
+                  The TextField is a convenience wrapper for the most common cases (80%). It cannot
+                  be all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control.
+                  <Grid container className={classes.sub}>
+                    <Grid item xs={12}>
+                      <a id="sub31" href="#sub31">
+                        sub31
+                      </a>
+                      The TextField is a convenience wrapper<br />
+                      for the most common cases(80 % ).It cannot be all things to all people,<br />
+                      otherwise the API would grow out of control. The TextField is a convenience
+                      wrapper for the most common cases(80 % ).It cannot be all things to all
+                      people, otherwise the API would grow out of control. The TextField is a
+                      convenience wrapper for the most common cases(80 % ).It cannot be all things
+                      to all people, otherwise the API would grow out of control. The TextField is a
+                      convenience wrapper for the most common cases(80 % ).It cannot be all things
+                      to all people, he TextField is a convenience wrapper <br />
+                      for the most common cases(80 % ).It cannot be all things to all people, <br />
+                      otherwise the API would grow out of control. The TextField is a convenience
+                      wrapper for the most common cases(80 % ).It cannot be all things to all
+                      people, otherwise the API would grow out of control. The TextField is a
+                      convenience wrapper for the most common cases(80 % ).It cannot be all things
+                      to all people, otherwise the API would grow out of control. The TextField is a
+                      convenience wrapper for the most common cases(80 % ).It cannot be all things
+                      to all people, otherwise the API would grow out of control. he TextField is a
+                      convenience wrapper <br />
+                      for the most common cases(80 % ).It cannot be all things to all people, <br />
+                      otherwise the API would grow out of control. The TextField is a convenience
+                      wrapper for the most common cases(80 % ).It cannot be all things to all
+                      people, otherwise the API would grow out of control. The TextField is a
+                      convenience wrapper for the most common cases(80 % ).It cannot be all things
+                      to all people, otherwise the API would grow out of control. The TextField is a
+                      convenience wrapper for the most common cases(80 % ).It cannot be all things
+                      to all people, otherwise the API would grow out of control. he TextField is a
+                      convenience wrapper<br />
+                      for the most common cases(80 % ).It cannot be all things to all people,<br />
+                      otherwise the API would grow out of control. The TextField is a convenience
+                      wrapper for the most common cases(80 % ).It cannot be all things to all
+                      people, otherwise the API would grow out of control. The TextField is a
+                      convenience wrapper for the most common cases(80 % ).It cannot be all things
+                      to all people, otherwise the API would grow out of control. The TextField is a
+                      convenience wrapper for the most common cases(80 % ).It cannot be all things
+                      to all people, otherwise the API would grow out of control. otherwise the API
+                      would grow out of control.
+                    </Grid>
+                    <Grid item xs={12}>
+                      <a id="sub311" href="#sub311">
+                        sub311
+                      </a>
+                      The TextField is a convenience wrapper<br />
+                      for the most common cases(80 % ).It cannot be all things to all people,<br />
+                      otherwise the API would grow out of control. The TextField is a convenience
+                      wrapper for the most common cases(80 % ).It cannot be all things to all
+                      people, otherwise the API would grow out of control. The TextField is a
+                      convenience wrapper for the most common cases(80 % ).It cannot be all things
+                      to all people, otherwise the API would grow out of control. The TextField is a
+                      convenience wrapper for the most common cases(80 % ).It cannot be all things
+                      to all people, otherwise the API would grow out of control.
+                    </Grid>
+                    <Grid item xs={12}>
+                      <a id="sub321" href="#sub321">
+                        sub321
+                      </a>
+                      The TextField is a convenience wrapper for the most common cases(80 % ).It
+                      cannot be all things to all people, otherwise the API would grow out of
+                      control. The TextField is a convenience wrapper for the most common cases(80 %
+                      ).It cannot be all things to all people, otherwise the API would grow out of
+                      control. The TextField is a convenience wrapper for the most common cases(80 %
+                      ).It cannot be all things to all people, otherwise the API would grow out of
+                      control.
+                    </Grid>
+                    <Grid item xs={12}>
+                      <a id="sub331" href="#sub331">
+                        sub331
+                      </a>
+                      The TextField is a convenience wrapper for the most common cases(80 % ).It
+                      cannot be all things to all people, otherwise the API would grow out of
+                      control. The TextField is a convenience wrapper for the most common cases(80 %
+                      ).It cannot be all things to all people, otherwise the API would grow out of
+                      control. The TextField is a convenience wrapper for the most common cases(80 %
+                      ).It cannot be all things to all people, otherwise the API would grow out of
+                      control. The TextField is a convenience wrapper for the most common cases(80 %
+                      ).It cannot be all things to all people, otherwise the API would grow out of
+                      control.
+                    </Grid>
+                    <Grid item xs={12}>
+                      <a id="sub32" href="#sub32">
+                        sub32
+                      </a>
+                      The TextField is a convenience wrapper for the most common cases(80 % ).It
+                      cannot be all things to all people, otherwise the API would grow out of
+                      control. The TextField is a convenience wrapper for the most common cases(80 %
+                      ).It cannot be all things to all people, otherwise the API would grow out of
+                      control. The TextField is a convenience wrapper for the most common cases(80 %
+                      ).It cannot be all things to all people, otherwise the API would grow out of
+                      control.
+                    </Grid>
+                    <Grid item xs={12}>
+                      <a id="sub33" href="#sub33">
+                        sub33
+                      </a>
+                      The TextField is a convenience wrapper for the most common cases(80 % ).It
+                      cannot be all things to all people, otherwise the API would grow out of
+                      control. The TextField is a convenience wrapper for the most common cases(80 %
+                      ).It cannot be all things to all people, otherwise the API would grow out of
+                      control.
+                    </Grid>
+                  </Grid>
                 </div>
                 <Divider />
 
                 <p id="a4" style={p}>
-                  <a style={a} href="#a4">4</a>
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
+                  <a style={a} href="#a4">
+                    4
+                  </a>
+                  The TextField is a convenience wrapper for the most common cases (80%). It cannot
+                  be all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control.
                 </p>
                 <Divider />
                 <p id="a5" style={p}>
-                  <a style={a} href="#a5">5</a>
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
+                  <a style={a} href="#a5">
+                    5
+                  </a>
+                  The TextField is a convenience wrapper for the most common cases (80%). It cannot
+                  be all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control.
                 </p>
-                  <Divider />
-                  <p id="a6" style={p}>
-                    <a style={a} href="#a6">6</a>
-                    The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                    The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                    The TextField is a convenience wrapper for the most common cases (80%). It cannot be all things to all people, otherwise the API would grow out of control.
-                  </p>
+                <Divider />
+                <p id="a6" style={p}>
+                  <a style={a} href="#a6">
+                    6
+                  </a>
+                  The TextField is a convenience wrapper for the most common cases (80%). It cannot
+                  be all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control. The
+                  TextField is a convenience wrapper for the most common cases (80%). It cannot be
+                  all things to all people, otherwise the API would grow out of control.
+                </p>
                 <Divider />
               </Paper>
             </Grid>
             <Grid item>
-              {
-                orientation == 'vertical' &&
-                (
-                  <Anchor
-                    type='hash'
-                    linkStyle={{}}
-                    container={'#t-box'}
-                    linkActiveStyle={{}}
-                    orientation='vertical'
-                    links={links}
-                    onChange={this.handleAnchorChange}
-                  ></Anchor>
-                )
-              }
+              {orientation == 'vertical' && (
+                <Anchor
+                  type="hash"
+                  linkStyle={{}}
+                  container={'#t-box'}
+                  linkActiveStyle={{}}
+                  orientation="vertical"
+                  links={links}
+                  onChange={this.handleAnchorChange}
+                />
+              )}
             </Grid>
           </Grid>
         </Grid>
       </div>
-    )
+    );
   }
 }
 
-export default withStyles(styles)(App)
+export default withStyles(styles)(App);

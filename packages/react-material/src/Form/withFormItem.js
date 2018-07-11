@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import FormItem from './FormItem';
 
-const convertValidationsToObject = (validations) => {
+const convertValidationsToObject = validations => {
   if (typeof validations === 'string') {
     return validations.split(/,(?![^{[]*[}\]])/g).reduce((validationsAccumulator, validation) => {
       let args = validation.split(':');
       const validateMethod = args.shift();
 
-      args = args.map((arg) => {
+      args = args.map(arg => {
         try {
           return JSON.parse(arg);
         } catch (e) {
@@ -16,7 +16,9 @@ const convertValidationsToObject = (validations) => {
       });
 
       if (args.length > 1) {
-        throw new Error('Formsy does not support multiple args on string validations. Use object format of validations instead.');
+        throw new Error(
+          'Formsy does not support multiple args on string validations. Use object format of validations instead.',
+        );
       }
 
       // Avoid parameter reassignment
@@ -32,7 +34,7 @@ const convertValidationsToObject = (validations) => {
 function withFormItem(WrappedComponent) {
   class FormItemComponent extends Component {
     render() {
-      const {colon, labelDirection, formItemLayout, ...rest} = this.props;
+      const { colon, labelDirection, formItemLayout, ...rest } = this.props;
       let required = false;
       if (this.props.required) {
         required = true;
@@ -42,15 +44,23 @@ function withFormItem(WrappedComponent) {
       }
 
       return (
-        <FormItem label={this.props.label} required={required} formItemLayout={formItemLayout} colon={colon}
-                  labelDirection={labelDirection}>
-          <WrappedComponent {...rest}/>
+        <FormItem
+          label={this.props.label}
+          required={required}
+          formItemLayout={formItemLayout}
+          colon={colon}
+          labelDirection={labelDirection}
+        >
+          <WrappedComponent {...rest} />
         </FormItem>
-      )
+      );
     }
   }
 
-  const name = WrappedComponent.displayName || WrappedComponent.name || (typeof WrappedComponent === 'string' ? WrappedComponent : 'Component');
+  const name =
+    WrappedComponent.displayName ||
+    WrappedComponent.name ||
+    (typeof WrappedComponent === 'string' ? WrappedComponent : 'Component');
   FormItemComponent.displayName = `formItemHOC-${name}`;
 
   return FormItemComponent;

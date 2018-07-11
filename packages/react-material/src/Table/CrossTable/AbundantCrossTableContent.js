@@ -10,20 +10,20 @@ import CrossTable from './CrossTable';
 import CrossTableAttribute from './CrossTableAttribute';
 import DropZone from './CrossTableDropZone';
 import { withStyles } from '../../styles';
-import "babel-polyfill";
+import 'babel-polyfill';
 
-const styles = (theme) => ({
+const styles = theme => ({
   table: {
     color: '#2a3f5f',
     fontFamily: theme.typography.fontFamily,
-    borderCollapse: 'collapse'
+    borderCollapse: 'collapse',
   },
 
-  renderers:{
+  renderers: {
     border: '1px solid #a2b1c6',
     background: '#f2f5fa',
     paddingLeft: '5px',
-    userSelect: 'none'
+    userSelect: 'none',
   },
 
   axis: {
@@ -32,20 +32,20 @@ const styles = (theme) => ({
     padding: '5px',
     minWidth: '20px',
     minHeight: '20px',
-    height: '20px'
+    height: '20px',
   },
-  vaxis:{
-    verticalAlign: 'top'
+  vaxis: {
+    verticalAlign: 'top',
   },
 
-  orders:{
+  orders: {
     cursor: 'pointer',
     width: '15px',
     marginLeft: '5px',
     display: 'inline-block',
     userSelect: 'none',
-    textDecoration: 'none !important'
-  }
+    textDecoration: 'none !important',
+  },
 });
 
 class AbundantCrossTableContent extends React.PureComponent {
@@ -54,7 +54,7 @@ class AbundantCrossTableContent extends React.PureComponent {
     this.state = {
       unusedOrder: [],
       zIndices: {},
-      maxZIndex: 1000
+      maxZIndex: 1000,
     };
   }
 
@@ -75,9 +75,7 @@ class AbundantCrossTableContent extends React.PureComponent {
     const attrValues = {};
     const materializedInput = [];
     let recordsProcessed = 0;
-    CrossTableData.forEachRecord(this.data, this.props.derivedAttributes, function(
-      record
-    ) {
+    CrossTableData.forEachRecord(this.data, this.props.derivedAttributes, function(record) {
       materializedInput.push(record);
       for (const attr of Object.keys(record)) {
         if (!(attr in attrValues)) {
@@ -106,7 +104,7 @@ class AbundantCrossTableContent extends React.PureComponent {
   }
 
   propUpdater(key) {
-    return value => this.sendPropUpdate({[key]: {$set: value}});
+    return value => this.sendPropUpdate({ [key]: { $set: value } });
   }
 
   setValuesInFilter(attribute, values) {
@@ -127,7 +125,7 @@ class AbundantCrossTableContent extends React.PureComponent {
       this.sendPropUpdate({
         valueFilter: {
           [attribute]: values.reduce((r, v) => {
-            r[v] = {$set: true};
+            r[v] = { $set: true };
             return r;
           }, {}),
         },
@@ -139,26 +137,26 @@ class AbundantCrossTableContent extends React.PureComponent {
 
   removeValuesFromFilter(attribute, values) {
     this.sendPropUpdate({
-      valueFilter: {[attribute]: {$unset: values}},
+      valueFilter: { [attribute]: { $unset: values } },
     });
   }
 
   makeDnDCell(items, onChange, classes) {
     return (
-      <td 
-        className={classes}
-        >
-        <DropZone items={items} onDrop={onChange} 
-              attrValuess={this.attrValues}
-              valueFilters={this.props.valueFilter}
-              sorters={this.props.sorters}
-              menuLimit={this.props.menuLimit}
-              setValuesInFilter={this.setValuesInFilter.bind(this)}
-              addValuesToFilter={this.addValuesToFilter.bind(this)}
-              removeValuesFromFilter={this.removeValuesFromFilter.bind(this)}
-              zIndices={this.state.zIndices}
-              maxZIndex={this.state.maxZIndex}>
-        </DropZone>
+      <td className={classes}>
+        <DropZone
+          items={items}
+          onDrop={onChange}
+          attrValuess={this.attrValues}
+          valueFilters={this.props.valueFilter}
+          sorters={this.props.sorters}
+          menuLimit={this.props.menuLimit}
+          setValuesInFilter={this.setValuesInFilter.bind(this)}
+          addValuesToFilter={this.addValuesToFilter.bind(this)}
+          removeValuesFromFilter={this.removeValuesFromFilter.bind(this)}
+          zIndices={this.state.zIndices}
+          maxZIndex={this.state.maxZIndex}
+        />
       </td>
     );
   }
@@ -166,8 +164,7 @@ class AbundantCrossTableContent extends React.PureComponent {
   render() {
     let { classes } = this.props;
 
-    const numValsAllowed =
-      this.props.aggregators[this.props.aggregatorName]([])().numInputs || 0;
+    const numValsAllowed = this.props.aggregators[this.props.aggregatorName]([])().numInputs || 0;
 
     const rendererName =
       this.props.rendererName in this.props.renderers
@@ -196,12 +193,10 @@ class AbundantCrossTableContent extends React.PureComponent {
         colSymbol: '→',
         next: 'value_z_to_a',
       },
-      value_z_to_a: {rowSymbol: '↑', colSymbol: '←', next: 'key_a_to_z'},
+      value_z_to_a: { rowSymbol: '↑', colSymbol: '←', next: 'key_a_to_z' },
     };
 
-
     const aggregatorCell = (
-
       <td className={classes.axis}>
         <CrossTableAttribute
           label="aggregators"
@@ -212,18 +207,14 @@ class AbundantCrossTableContent extends React.PureComponent {
         <a
           role="button"
           className={classes.orders}
-          onClick={() =>
-            this.propUpdater('rowOrder')(sortIcons[this.props.rowOrder].next)
-          }
+          onClick={() => this.propUpdater('rowOrder')(sortIcons[this.props.rowOrder].next)}
         >
           {sortIcons[this.props.rowOrder].rowSymbol}
         </a>
         <a
           role="button"
           className={classes.orders}
-          onClick={() =>
-            this.propUpdater('colOrder')(sortIcons[this.props.colOrder].next)
-          }
+          onClick={() => this.propUpdater('colOrder')(sortIcons[this.props.colOrder].next)}
         >
           {sortIcons[this.props.colOrder].colSymbol}
         </a>
@@ -236,11 +227,11 @@ class AbundantCrossTableContent extends React.PureComponent {
             values={Object.keys(this.attrValues).filter(
               e =>
                 !this.props.hiddenAttributes.includes(e) &&
-                !this.props.hiddenFromAggregators.includes(e)
+                !this.props.hiddenFromAggregators.includes(e),
             )}
             setValue={value =>
               this.sendPropUpdate({
-                vals: {$splice: [[i, 1, value]]},
+                vals: { $splice: [[i, 1, value]] },
               })
             }
           />,
@@ -255,7 +246,7 @@ class AbundantCrossTableContent extends React.PureComponent {
           !this.props.rows.includes(e) &&
           !this.props.cols.includes(e) &&
           !this.props.hiddenAttributes.includes(e) &&
-          !this.props.hiddenFromDragDrop.includes(e)
+          !this.props.hiddenFromDragDrop.includes(e),
       )
       .sort(sortAs(this.state.unusedOrder));
 
@@ -264,37 +255,33 @@ class AbundantCrossTableContent extends React.PureComponent {
 
     const unusedAttrsCell = this.makeDnDCell(
       unusedAttrs,
-      order => this.setState({unusedOrder: order}),
-      classes.axis
+      order => this.setState({ unusedOrder: order }),
+      classes.axis,
     );
 
     const colAttrs = this.props.cols.filter(
-      e =>
-        !this.props.hiddenAttributes.includes(e) &&
-        !this.props.hiddenFromDragDrop.includes(e)
+      e => !this.props.hiddenAttributes.includes(e) && !this.props.hiddenFromDragDrop.includes(e),
     );
 
     const colAttrsCell = this.makeDnDCell(
       colAttrs,
       this.propUpdater('cols').bind(this),
-      classes.axis
+      classes.axis,
     );
 
     const rowAttrs = this.props.rows.filter(
-      e =>
-        !this.props.hiddenAttributes.includes(e) &&
-        !this.props.hiddenFromDragDrop.includes(e)
+      e => !this.props.hiddenAttributes.includes(e) && !this.props.hiddenFromDragDrop.includes(e),
     );
     const rowAttrsCell = this.makeDnDCell(
       rowAttrs,
       this.propUpdater('rows').bind(this),
-      classes.axis
+      classes.axis,
     );
     const outputCell = (
       <td>
         <CrossTable
           {...update(this.props, {
-            data: {$set: this.materializedInput},
+            data: { $set: this.materializedInput },
           })}
         />
       </td>

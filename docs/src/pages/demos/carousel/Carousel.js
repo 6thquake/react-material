@@ -4,12 +4,12 @@ import { withStyles } from 'react-material/styles';
 import Carousel from 'react-material/Carousel';
 import { Home, Grade, Lock } from '@material-ui/icons';
 
-const style={
-  wrap:{
-    width:'700px',
-    height:'300px'
-  }
-}
+const style = {
+  wrap: {
+    width: '700px',
+    height: '300px',
+  },
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -30,24 +30,24 @@ class App extends React.Component {
       {
         src: '/static/images/grid-list/morning.jpg',
         alt: 'images-4',
-      }
+      },
     ];
   }
 
   render() {
     return (
-      <div style={style.wrap} >
-        <Carousel items={this.IMAGE_DATA}
+      <div style={style.wrap}>
+        <Carousel
+          items={this.IMAGE_DATA}
           speed={1.5}
           delay={2.1}
           pause={true}
           autoplay={true}
           dots={true}
-          arrows={true}>
-        </Carousel>
+          arrows={true}
+        />
       </div>
     );
   }
 }
 export default App;
-

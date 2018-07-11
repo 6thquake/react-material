@@ -4,13 +4,10 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { withStyles } from '../styles';
 
 const styles = theme => {
-	return {};
-}
+  return {};
+};
 
-class Scrollbar extends Scrollbars {
-
-}
-
+class Scrollbar extends Scrollbars {}
 
 // export default withStyles(styles)(Scrollbar);
 

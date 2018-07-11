@@ -22,9 +22,8 @@ if (process.browser) {
 }
 
 export function setPrismTheme(theme) {
-	console.log(theme)
+  console.log(theme);
   styleNode.textContent = theme;
 }
 
 export default prism;
-

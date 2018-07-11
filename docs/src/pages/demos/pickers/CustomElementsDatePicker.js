@@ -14,20 +14,18 @@ import endOfWeek from 'date-fns/endOfWeek';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import LocaleProvider from 'react-material/LocaleProvider';
 
-
-
 class CustomElements extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-  }
+  };
 
   state = {
     selectedDate: new Date(),
-  }
+  };
 
-  handleWeekChange = (date) => {
+  handleWeekChange = date => {
     this.setState({ selectedDate: startOfWeek(date) });
-  }
+  };
 
   formatWeekSelectLabel = (date, invalidLabel) => {
     if (date === null) {
@@ -38,10 +36,8 @@ class CustomElements extends PureComponent {
       date = date.toDate();
     }
 
-    return date && isValid(date)
-      ? `Week of ${format(startOfWeek(date), 'MMM Do')}`
-      : invalidLabel;
-  }
+    return date && isValid(date) ? `Week of ${format(startOfWeek(date), 'MMM Do')}` : invalidLabel;
+  };
 
   renderWrappedWeekDay = (date, selectedDate, dayInCurrentMonth) => {
     const { classes } = this.props;
@@ -53,7 +49,7 @@ class CustomElements extends PureComponent {
     const start = startOfWeek(selectedDate);
     const end = endOfWeek(selectedDate);
 
-    const dayIsBetween = isWithinInterval(date, {start, end});
+    const dayIsBetween = isWithinInterval(date, { start, end });
     const isFirstDay = isSameDay(date, start);
     const isLastDay = isSameDay(date, end);
 
@@ -71,11 +67,11 @@ class CustomElements extends PureComponent {
     return (
       <div className={wrapperClassName}>
         <IconButton className={dayClassName}>
-          <span> { format(date, 'D')} </span>
+          <span> {format(date, 'D')} </span>
         </IconButton>
       </div>
     );
-  }
+  };
 
   render() {
     const { selectedDate } = this.state;

@@ -3,7 +3,6 @@ import Popover from '@material-ui/core/Popover';
 import Menu, { MenuItem } from '@material-ui/core/Menu';
 
 export default class PopoverExampleSimple extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -12,7 +11,7 @@ export default class PopoverExampleSimple extends React.Component {
     };
   }
 
-  handleClick = (event) => {
+  handleClick = event => {
     // This prevents ghost click.
     event.preventDefault();
 
@@ -34,8 +33,8 @@ export default class PopoverExampleSimple extends React.Component {
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+          targetOrigin={{ horizontal: 'left', vertical: 'top' }}
           onRequestClose={this.handleRequestClose}
         >
           <Menu>

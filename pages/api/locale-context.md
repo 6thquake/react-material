@@ -18,3 +18,7 @@ filename: /packages/react-material/src/LocaleProvider/LocaleContext.js
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
+## Demos
+
+- [Locale Provider](/demos/locale-provider)
+

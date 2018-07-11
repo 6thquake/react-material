@@ -9,6 +9,7 @@ import deepmerge from 'deepmerge';
 import { fade } from '../styles/colorManipulator';
 
 const theme = createMuiTheme();
+
 export const styles = theme => ({
   box: {
     position: 'relative',
@@ -390,6 +391,7 @@ Anchor.propTypes = {
    * The style will be spread to links
    */
   linkStyle: PropTypes.object,
+
   /**
    * The style will be spread to the active link
    */

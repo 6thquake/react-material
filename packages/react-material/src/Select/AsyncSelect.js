@@ -42,7 +42,7 @@ class AsyncSelect extends Component {
      */
     multiple: PropTypes.bool,
     /**
-     * Callback fired when the current page of pagination  is changed.
+     * Callback fired when the current page of pagination is changed.
      */
     pageChangeCb: PropTypes.func,
     /**
@@ -55,6 +55,16 @@ class AsyncSelect extends Component {
     disabled: PropTypes.bool,
   };
   static defaultProps = {
+    selectCb: function() {
+      console.log('need cb function');
+    },
+    pageChangeCb: function() {
+      console.log('need cb function');
+    },
+    filterChangeCb: function() {
+      console.log('need cb function');
+    },
+
     pageConfig: {
       currentPage: 1,
       pageSize: 5,

@@ -4,20 +4,25 @@ import { withStyles, createMuiTheme } from '../styles';
 import PropTypes from 'prop-types';
 import Tooltip from '../Tooltip';
 
+
 const styles = theme => ({});
 
 class MenuItem extends React.Component {
   static contextTypes = {
     inlineCollapsed: PropTypes.bool,
-  };
-  static isMenuItem = true;
-  static menuItem;
+  }
+
+  static isMenuItem = true
+
+  static menuItem
+
   onKeyDown = e => {
     this.menuItem.onKeyDown(e);
-  };
+  }
+
   saveMenuItem = menuItem => {
     this.menuItem = menuItem;
-  };
+  }
 
   render() {
     const { inlineCollapsed } = this.context;
@@ -51,5 +56,7 @@ MenuItem.propTypes = {
 MenuItem.defaultProps = {
   disabled: false,
 };
+
 MenuItem.isMenuItem = true;
+
 export default withStyles(styles, { name: 'RMMenuItem' })(MenuItem);

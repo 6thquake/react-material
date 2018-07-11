@@ -148,6 +148,7 @@ Group.propTypes = {
    * 横向或纵向排列
    */
   position: PropTypes.oneOf(['vertical', 'horizontal']),
+
   /**
    * 设置按钮大小
    */

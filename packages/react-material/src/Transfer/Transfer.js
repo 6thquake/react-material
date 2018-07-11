@@ -111,12 +111,33 @@ class Transfer extends React.Component {
     paginationOption: false,
   };
   static propTypes = {
+    /**
+     * choose to generate filter box
+     */
     filterOption: PropTypes.boolean,
+    /**
+     * placeholder in filter box
+     */
     placeholder: PropTypes.string,
+    /**
+     * the data in the left box
+     */
     left: PropTypes.array.isRequired,
+    /**
+     * the data in the right box
+     */
     right: PropTypes.array.isRequired,
+    /**
+     * choose to generate pagination
+     */
     paginationOption: PropTypes.boolean,
+    /**
+     * pageConfig should contain total,pageSize,currentPage
+     */
     pageConfig: PropTypes.object,
+    /**
+     * call-back function when data change
+     */
     onChange: PropTypes.func,
   };
   //数组去重

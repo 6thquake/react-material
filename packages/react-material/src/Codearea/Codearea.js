@@ -14,7 +14,13 @@ const styles = theme => ({
 
 class Codearea extends React.Component {
   static propTypes = {
+    /**
+     * content that needs formatting
+     */
     children: PropTypes.node.isRequired,
+    /**
+     * language that needs formating
+     */
     language: PropTypes.string,
   };
 

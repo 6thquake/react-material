@@ -85,9 +85,22 @@ class AutoComplete extends Component {
     disabled: PropTypes.bool,
   };
   static defaultProps = {
-    pageConfig: { currentPage: 1, pageSize: 5, total: 0 },
+    inputChangeCb: function() {
+      console.log('need cb function');
+    },
+    pageChangeCb: function() {
+      console.log('need cb function');
+    },
+    pageConfig: {
+      currentPage: 1,
+      pageSize: 5,
+      total: 0,
+    },
     placeHold: 'please input something',
     multiple: false,
+    onChange: function() {
+      console.log('need cb function');
+    },
     disabled: false,
   };
   constructor() {

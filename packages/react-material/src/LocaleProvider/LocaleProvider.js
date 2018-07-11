@@ -100,6 +100,7 @@ class LocaleProvider extends React.Component {
     );
   }
 }
+
 LocaleProvider.propTypes = {
   /**
    * The International resources
@@ -114,4 +115,5 @@ LocaleProvider.propTypes = {
    */
   children: PropTypes.node,
 };
-export { LocaleContext,LocaleProvider, LocaleConsumer, getLanguage, getLocale, getDefaultLocale };
+
+export { LocaleContext, LocaleProvider, LocaleConsumer, getLanguage, getLocale, getDefaultLocale };

@@ -109,11 +109,29 @@ class AsyncTransfer extends React.Component {
   };
 
   static propTypes = {
+    /**
+     * choose to generate filter box
+     */
     filterOption: PropTypes.boolean,
+    /**
+     * placeholder in filter box
+     */
     placeholder: PropTypes.string,
+    /**
+     * the data in the left box
+     */
     left: PropTypes.array.isRequired,
+    /**
+     * the data in the right box
+     */
     right: PropTypes.array.isRequired,
+    /**
+     * choose to generate pagination
+     */
     paginationOption: PropTypes.boolean,
+    /**
+     *
+     */
     onChange: PropTypes.func,
   };
 

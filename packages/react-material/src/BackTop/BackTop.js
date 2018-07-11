@@ -42,6 +42,7 @@ function getScrollTop() {
 }
 
 class BackTop extends React.Component {
+
   scrollHandler = this.handleScroll.bind(this);
 
   constructor(props) {

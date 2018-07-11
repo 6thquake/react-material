@@ -121,7 +121,8 @@ class CascadeSelect extends React.Component {
   };
   //
   setTextFieldValue = () => {
-    let separator = this.props.separator;
+    let separator = this.props.separator || '/';
+
     let text = this.series
       .map((item, index) => {
         return item.text;
@@ -134,7 +135,9 @@ class CascadeSelect extends React.Component {
 
   renderMenuItems() {
     let levels = [0, 1, 2, 3, 4];
-    let { children, renderLabel, renderValue } = this.props;
+
+    let { children, renderLabel = 'label', renderValue = 'value' } = this.props;
+
     let list = levels.map((item, index) => {
       return (
         <CascadeOption
@@ -224,6 +227,12 @@ CascadeSelect.propTypes = {
    * The key in dataSoure , which will be used to display
    */
   renderLabel: PropTypes.string,
+
+  /**
+   *
+   */
+  notFound: PropTypes.string,
+
   /**
    * The key in dataSoure, which will be used to distinguish items
    */

@@ -1,5 +1,5 @@
 ---
-components: Grid
+components: Grid, PercentageGrid
 ---
 
 # Grid

@@ -17,7 +17,7 @@ filename: /packages/react-material/src/Transfer/AsyncTransfer.js
 | <span class="prop-name required">left *</span> | <span class="prop-type">array |  |  |
 | <span class="prop-name required">right *</span> | <span class="prop-type">array |  |  |
 | <span class="prop-name">paginationOption</span> | <span class="prop-type">PropTypes.boolean | <span class="prop-default">false</span> |  |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func | <span class="prop-default">function () {  console.log("need cb function")}</span> |  |
+| <span class="prop-name">onChange</span> | <span class="prop-type">func | <span class="prop-default">function () {  console.log("need cb function")}</span> |  |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

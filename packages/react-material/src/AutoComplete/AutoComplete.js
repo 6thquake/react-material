@@ -52,55 +52,42 @@ const styles = theme => ({
 class AutoComplete extends Component {
   static propTypes = {
     /**
-     * input change ,callback to parent component
+     * Callback fired when the input value is changed.
      */
-    inputChangeCb : PropTypes.func.isRequired,
+    inputChangeCb : PropTypes.func,
     /**
-     * pagination change ,callback to parent component
+     * Callback fired when the current page of pagination  is changed.
      */
-    pageChangeCb : PropTypes.func.isRequired,
+    pageChangeCb : PropTypes.func,
     /**
-     * pagination component config
+     * Pagination component config
      */
     pageConfig: PropTypes.object,
     /**
-     * placeHold
+     * PlaceHold
      */
     placeHold: PropTypes.string,
     /**
-     * decided multiple select
+     * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
      */
     multiple: PropTypes.bool,
     /**
-     * when select one item,callback
+     * Callback function fired when a menu item is selected.
      */
     onChange : PropTypes.func.isRequired,
     /**
-     * 用于回显
+     * 	The value of the Input element, required for a controlled component.
      */
     value : PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     /**
-     * decided autocomplete is disabled
+     * Decided autocomplete is disabled
      */
     disabled : PropTypes.bool,
   };
   static defaultProps = {
-    inputChangeCb:function () {
-      console.log("need cb function")
-    },
-    pageChangeCb:function () {
-      console.log("need cb function")
-    },
-    pageConfig:{
-      currentPage: 1,
-      pageSize: 5,
-      total:0
-    },
+    pageConfig:{currentPage: 1, pageSize: 5, total:0},
     placeHold:'please input something',
     multiple:false,
-    onChange:function () {
-      console.log("need cb function")
-    },
     disabled:false
   };
   constructor(){

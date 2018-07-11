@@ -140,14 +140,23 @@ class Group extends Component {
 }
 
 Group.propTypes = {
-  position: PropTypes.oneOf(['vertical', 'horizontal']),
+  /**
+   * 是否显示圆角
+   */
   circular: PropTypes.bool,
+  /**
+   * 横向或纵向排列
+   */
+  position: PropTypes.oneOf(['vertical', 'horizontal']),
+  /**
+   * 设置按钮大小
+   */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 Group.defaultProps = {
-  position: 'horizontal',
   circular: false,
+  position: 'horizontal',
   size: 'medium',
 };
 

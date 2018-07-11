@@ -12,7 +12,7 @@ filename: /packages/react-material/src/Upload/Upload.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">acceptType</span> | <span class="prop-type">string | <span class="prop-default">"*"</span> |  |
+| <span class="prop-name">acceptType</span> | <span class="prop-type">string | <span class="prop-default">'*'</span> |  |
 | <span class="prop-name">multiple</span> | <span class="prop-type">bool | <span class="prop-default">true</span> |  |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> |  |
 

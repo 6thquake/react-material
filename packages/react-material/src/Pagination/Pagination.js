@@ -331,7 +331,6 @@ class Pagination extends Component {
     }
     this.pageClick(currentPage);
   }
-
   goEnd(param) {
     console.log(param);
     const { pageSize, total, pageCallbackFn } = this.props,
@@ -344,7 +343,6 @@ class Pagination extends Component {
       getCurrentPage(totalPage - 1);
     }
   }
-
   jumpTo(e) {
     const { pageSize, total, pageCallbackFn } = this.props,
       value = e.target.value,

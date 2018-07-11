@@ -9,5 +9,4 @@ function Grid(props) {
 
   return <Component {...other} />;
 }
-
 export default Grid;

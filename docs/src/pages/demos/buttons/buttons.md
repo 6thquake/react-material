@@ -1,5 +1,5 @@
 ---
-components: Button, IconButton, ButtonBase
+components: Button, IconButton, ButtonBase, ButtonGroup, StatusButton
 ---
 
 # Buttons
@@ -15,10 +15,10 @@ Status buttons 是触发一个方法的button，方法执行时button的状态�
 
 {{"demo": "pages/demos/buttons/StatusButtons.js"}}
 
-## Group Buttons
-Group buttons 是一组button，可以选中某个button。
+## Button Group
+Button Group 是一组button，可以选中某个button。
 
-{{"demo": "pages/demos/buttons/GroupButtons.js"}}
+{{"demo": "pages/demos/buttons/ButtonGroup.js"}}
 
 
 ## Flat Buttons

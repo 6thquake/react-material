@@ -133,6 +133,10 @@ const pages = [
         title: 'API Design Approach',
       },
       {
+        pathname: '/guides/airbnb-react-style-guide',
+        title: 'Airbnb React/JSX Style Guide',
+      },
+      {
         pathname: '/guides/minimizing-bundle-size',
       },
       {

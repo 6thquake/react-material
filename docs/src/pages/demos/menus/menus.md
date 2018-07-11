@@ -1,5 +1,5 @@
 ---
-components: Menu, MenuItem, MenuList
+components: Menu, MenuItem, MenuList, SubMenu
 ---
 # Menus
 {{"demo": "pages/demos/menus/Menus.js"}}

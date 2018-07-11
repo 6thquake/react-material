@@ -62,7 +62,6 @@ class Upload extends Component {
     disabled: PropTypes.bool,
   };
 
-
   static defaultProps = {
     acceptType: '*',
     multiple: true,

@@ -94,6 +94,7 @@ class Search extends Component {
       self.ok();
     });
   }
+
   autoCb(i) {
     console.log('item', i);
     this.setState({
@@ -103,15 +104,18 @@ class Search extends Component {
       },
     });
   }
+
   inputChangeCb(event) {
     console.log('item', event);
     this.setState({ inputText: event.target.value });
   }
+
   ok() {
     const { onChange } = this.props;
     const { search } = this.state;
     onChange && typeof onChange === 'function' && onChange(search);
   }
+
   render() {
     const { classes, type, direction, placeholder } = this.props;
     const { search } = this.state;

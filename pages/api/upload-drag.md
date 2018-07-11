@@ -1,10 +1,10 @@
 ---
-filename: /packages/react-material/src/Upload/UploadBasic.js
+filename: /packages/react-material/src/Upload/UploadDrag.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# UploadBasic
+# UploadDrag
 
 
 

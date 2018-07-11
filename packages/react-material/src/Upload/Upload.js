@@ -44,8 +44,21 @@ const styles = theme => ({
 
 class Upload extends Component {
   static propTypes = {
+    /**
+     * 接受上传的文件类型
+     */
     acceptType: PropTypes.string,
+    /**
+     * 点击status button 触发的函数，返回一个promise实例
+     */
+    actionFunc: PropTypes.func.isRequired,
+    /**
+     * 可选参数, 是否允许同时上传多个文件
+     */
     multiple: PropTypes.bool,
+    /**
+     * 可选参数, 是否禁用
+     */
     disabled: PropTypes.bool,
   };
 

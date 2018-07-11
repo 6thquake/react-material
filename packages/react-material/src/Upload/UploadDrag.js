@@ -62,8 +62,25 @@ const styles = theme => ({
 
 class UploadDrag extends Component {
   static propTypes = {
+    /**
+     * 接受上传的文件类型
+     */
     acceptType: PropTypes.string,
+    /**
+     * 点击status button 触发的函数，返回一个promise实例
+     */
+    actionFunc: PropTypes.func.isRequired,
+    /**
+     * 点击删除某个文件时触发的函数
+     */
+    deleteFile: PropTypes.func.isRequired,
+    /**
+     * 可选参数, 是否允许同时上传多个文件
+     */
     multiple: PropTypes.bool,
+    /**
+     * 可选参数, 是否禁用
+     */
     disabled: PropTypes.bool,
   };
   static defaultProps = {
@@ -204,8 +221,6 @@ class UploadDrag extends Component {
   }
 }
 
-let c = DragDropContext(HTML5Backend)(UploadDrag);
-export default withStyles(styles, { name: 'RMUploadDrag' })(c);
-/**
- * @ignore - do not document.
- */
+export default withStyles(styles, { name: 'RMUploadDrag' })(
+  DragDropContext(HTML5Backend)(UploadDrag),
+);

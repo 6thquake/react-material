@@ -12,12 +12,12 @@ filename: /packages/react-material/src/Progress/Progress.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">completed</span> | <span class="prop-type">PropTypes.num | <span class="prop-default">0</span> | 进度百分比,当isPromise为false时props取 |
-| <span class="prop-name">error</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | 进度是否出错 |
-| <span class="prop-name">isPromise</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | 是否是根据promise模拟进度 |
-| <span class="prop-name">isFinish</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | 当isPromise为true时，父组件传回完成，则progress完成 |
-| <span class="prop-name">estimatedTime</span> | <span class="prop-type">PropTypes.num | <span class="prop-default">2</span> | 当isPromise为true时，预估几秒完成，设定合适的进度速度,单位为秒 |
-| <span class="prop-name">baseProgress</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | 当baseProgress为true时，为普通的progress，不带百分比。 |
+| <span class="prop-name">completed</span> | <span class="prop-type">PropTypes.num | <span class="prop-default">0</span> | Progress percentage,only when isPromise is false. |
+| <span class="prop-name">error</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If true,progress wrong. |
+| <span class="prop-name">isPromise</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If true,simulation progress. |
+| <span class="prop-name">isFinish</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If true,progress finish when isPromise is true. |
+| <span class="prop-name">estimatedTime</span> | <span class="prop-type">PropTypes.num | <span class="prop-default">2</span> | Estimated time of the progress,when isPromise is true,the units is seconds. |
+| <span class="prop-name">baseProgress</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If true,it is a normal progress without percentage. |
 | <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br> |  | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">valueBuffer</span> | <span class="prop-type">PropTypes.num | <span class="prop-default">10</span> | The value for the buffer variant. Value between 0 and 100. |
 | <span class="prop-name">variant</span> | <span class="prop-type">string |  | The variant of progress indicator. Use indeterminate or query when there is no progress value. |

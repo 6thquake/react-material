@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import Popover from '../Popover';
 import PopoverContent from './content';
+import { withLocale } from '../LocaleProvider';
 
-const styles = theme => ({
+export const styles = theme => ({
   box: {
     display: 'inline-block',
   },
@@ -23,16 +24,6 @@ class Popconfirm extends React.Component {
     anchorReference: 'anchorEl',
   };
 
-  static defaultProps = {
-    anchorOrigin: {
-      vertical: 'top',
-      horizontal: 'center',
-    },
-    transformOrigin: {
-      vertical: 'bottom',
-      horizontal: 'center',
-    },
-  };
   anchorEl = null;
   anchorRef = React.createRef();
 
@@ -118,19 +109,89 @@ class Popconfirm extends React.Component {
     );
   }
 }
-
 Popconfirm.propTypes = {
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
+   */
   classes: PropTypes.object.isRequired,
 
+  children: PropTypes.node,
+  /**
+   * This is the point on the popconfirm where the popconfirm's children will attach to.
+   */
   anchorOrigin: PropTypes.shape({
     vertical: PropTypes.oneOf(['top', 'center', 'bottom']),
     horizontal: PropTypes.oneOf(['left', 'center', 'right']),
   }),
+  /**
+   * This is the point on the popconfirm which will attach to the children
+   */
 
   transformOrigin: PropTypes.shape({
     vertical: PropTypes.oneOf(['top', 'center', 'bottom']),
     horizontal: PropTypes.oneOf(['left', 'center', 'right']),
   }),
+  /**
+   * The color of the confirm button,
+   */
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  /**
+   * The size of buttons
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * The type of the confirm button.
+   */
+  variant: PropTypes.oneOf([
+    'text',
+    'flat',
+    'outlined',
+    'contained',
+    'raised',
+    'fab',
+    'extendedFab',
+  ]),
+  /**
+   * @ignore will be spread to the confirm button
+   */
+  type: PropTypes.string,
+  /**
+   * The name of the confirm button
+   */
+  okText: PropTypes.string,
+  /**
+   * The name of the cancel button
+   */
+  cancelText: PropTypes.string,
+  /**
+   * The content of popconfirm
+   */
+  content: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
+  /**
+   * Callback fired when confirmed
+   */
+  onConfirm: PropTypes.func,
+  /**
+   * Callback fired when canceled
+   */
+  onCancel: PropTypes.func,
 };
 
-export default withStyles(styles, { name: 'RMPopconfirm' })(Popconfirm);
+Popconfirm.defaultProps = {
+  anchorOrigin: {
+    vertical: 'top',
+    horizontal: 'center',
+  },
+  transformOrigin: {
+    vertical: 'bottom',
+    horizontal: 'center',
+  },
+  color: 'primary',
+  size: 'small',
+  variant: 'text',
+};
+
+export default withStyles(styles, {
+  name: 'RMPopconfirm',
+})(Popconfirm);

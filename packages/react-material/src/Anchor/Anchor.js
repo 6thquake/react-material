@@ -9,7 +9,8 @@ import deepmerge from 'deepmerge';
 import { fade } from '../styles/colorManipulator';
 
 const theme = createMuiTheme();
-const styles = theme => ({
+
+export const styles = theme => ({
   box: {
     position: 'relative',
     display: 'flex',
@@ -377,19 +378,49 @@ class Anchor extends React.Component {
 }
 
 Anchor.propTypes = {
+  /**
+   * The links you want to render on Anchor
+   */
   links: PropTypes.array.isRequired,
+  /**
+   * Id selector, which will be used to find The scope of the anchors,
+   * the default value is window
+   */
   container: PropTypes.string,
-  style: PropTypes.object,
+  /**
+   * The style will be spread to links
+   */
   linkStyle: PropTypes.object,
+
+  /**
+   * The style will be spread to the active link
+   */
   linkActiveStyle: PropTypes.object,
-  orientation: PropTypes.string,
+  /**
+   * The orientation of Anchor
+   */
+  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
+  /**
+   * Callback fired when the active link changed
+   */
   onChange: PropTypes.func,
-  type: PropTypes.string,
+  /**
+   * The type of Anchor, you will consider this only in SPA
+   */
+  type: PropTypes.oneOf(['normal', 'hash']),
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
+   */
+  classes: PropTypes.object,
 };
 
 Anchor.defaultProps = {
   linkStyle: {},
   linkActiveStyle: {},
+  orientation: 'vertical',
+  type: 'normal',
+  // container: window,
 };
 
 export default withStyles(styles, { name: 'RMAnchor' })(Anchor);

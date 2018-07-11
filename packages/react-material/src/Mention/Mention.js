@@ -119,15 +119,15 @@ class Mention extends Component {
     readOnly: PropTypes.bool,
   };
   static defaultProps = {
-    // inputChangeCb: function () {
-    //   console.log("need cb function");
-    // },
-    // onChange: function () {
-    //   console.log("need cb function");
-    // },
-    // onSelect:function(){
-    //   console.log('need cb function');
-    // },
+    inputChangeCb: function() {
+      console.log('need cb function');
+    },
+    onChange: function() {
+      console.log('need cb function');
+    },
+    onSelect: function() {
+      console.log('need cb function');
+    },
     disabled: false,
     triggerOptions: ['@'], //默认的触发符号
     pageConfig: {

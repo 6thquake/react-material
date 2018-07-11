@@ -22,11 +22,11 @@ const styles = theme => ({
 class AsyncSelect extends Component {
   static propTypes = {
     /**
-     * callback to parent component when select option
+     * Callback function fired when a menu item is selected.
      */
-    selectCb: PropTypes.func.isRequired,
+    selectCb: PropTypes.func,
     /**
-     * default select value,用于回显
+     * Selected value
      */
     value: PropTypes.array,
     /**
@@ -34,23 +34,23 @@ class AsyncSelect extends Component {
      */
     pageConfig: PropTypes.object,
     /**
-     * placeHold
+     * placeholder
      */
     placeHold: PropTypes.string,
     /**
-     * decided multiple select
+     * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
      */
     multiple: PropTypes.bool,
     /**
-     * callback to parent component when currentpage change
+     * Callback fired when the current page of pagination is changed.
      */
     pageChangeCb: PropTypes.func,
     /**
-     * callback to parent component when  filter change
+     * Callback fired when the input value is changed.
      */
     filterChangeCb: PropTypes.func,
     /**
-     * decided select is disabled
+     * Decided select is disabled
      */
     disabled: PropTypes.bool,
   };
@@ -64,6 +64,7 @@ class AsyncSelect extends Component {
     filterChangeCb: function() {
       console.log('need cb function');
     },
+
     pageConfig: {
       currentPage: 1,
       pageSize: 5,

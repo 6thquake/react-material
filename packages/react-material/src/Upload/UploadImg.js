@@ -44,6 +44,22 @@ const styles = theme => ({
   },
 });
 class UploadImg extends Component {
+
+  static propTypes = {
+    /**
+     * 点击status button 触发的函数，返回一个promise实例
+     */
+    actionFunc: PropTypes.func.isRequired,
+    /**
+     * 可选参数, 是否禁用
+     */
+    disabled: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    disabled: false,
+  };
+  
   constructor(props) {
     super(props);
     this.state = {

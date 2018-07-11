@@ -35,27 +35,27 @@ const styles = theme => ({
 class Progress extends Component {
   static propTypes = {
     /**
-     * 进度百分比,当isPromise为false时props取
+     * Progress percentage,only when isPromise is false.
      */
     completed: PropTypes.num,
     /**
-     * 进度是否出错
+     * If true,progress wrong.
      */
     error: PropTypes.bool,
     /**
-     * 是否是根据promise模拟进度
+     * If true,simulation progress.
      */
     isPromise: PropTypes.bool,
     /**
-     * 当isPromise为true时，父组件传回完成，则progress完成
+     * If true,progress finish when isPromise is true.
      */
     isFinish: PropTypes.bool,
     /**
-     * 当isPromise为true时，预估几秒完成，设定合适的进度速度,单位为秒
+     * Estimated time of the progress,when isPromise is true,the units is seconds.
      */
     estimatedTime: PropTypes.num,
     /**
-     * 当baseProgress为true时，为普通的progress，不带百分比。
+     * If true,it is a normal progress without percentage.
      */
     baseProgress: PropTypes.bool,
     /**

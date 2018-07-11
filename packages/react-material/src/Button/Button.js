@@ -15,7 +15,7 @@ import { fade } from '../styles/colorManipulator';
 import Button from '@material-ui/core/Button/Button';
 import classNames from 'classnames';
 import addonRmTheme from '../styles/addonRmTheme';
-export const styles = theme => {
+const styles = theme => {
   theme = addonRmTheme(theme);
   const defaultStyle = {
     flat: {
@@ -195,6 +195,10 @@ class CreateButton extends Component {
 }
 
 CreateButton.propTypes = {
+
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
   color: PropTypes.oneOf([
     'default',
     'inherit',
@@ -205,6 +209,10 @@ CreateButton.propTypes = {
     'waring',
     'progress',
   ]),
+
+  /**
+   * The type of button.
+   */
   variant: PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab']),
 };
 CreateButton.defaultProps = {

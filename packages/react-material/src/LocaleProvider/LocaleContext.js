@@ -1,7 +1,6 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import en, { en_us, zh_cn, zh_tw } from './languages';
-
 import DateTimePickersProvider from '../Picker/DateTimePickersProvider';
 import MomentUtils from '../Picker/utils/moment-utils';
 import moment from 'moment';
@@ -101,5 +100,20 @@ class LocaleProvider extends React.Component {
     );
   }
 }
+
+LocaleProvider.propTypes = {
+  /**
+   * The International resources
+   */
+  value: PropTypes.object,
+  /**
+   * Type of locale, such as en, zh, en_us...
+   */
+  locale: PropTypes.string,
+  /**
+   * You can wrap a node.
+   */
+  children: PropTypes.node,
+};
 
 export { LocaleContext, LocaleProvider, LocaleConsumer, getLanguage, getLocale, getDefaultLocale };

@@ -196,6 +196,12 @@ class RadioButton extends Component {
     );
   }
 }
+RadioButton.propTypes = {
+  /**
+   *  RadioButton 的value
+   */
+  value: PropTypes.string,
+};
 
 RadioButton.contextTypes = {
   row: PropTypes.bool,

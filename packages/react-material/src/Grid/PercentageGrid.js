@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
-import requirePropFactory from '../utils/requirePropFactory';
 import Hidden from '../Hidden';
 
 const GUTTERS = [0, 8, 16, 24, 40];
@@ -176,7 +175,8 @@ Grid.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -254,21 +254,21 @@ Grid.propTypes = {
     PropTypes.object,
   ]),
   /**
-   * the marginLeft of item
+   * The number of cells to offset Col from the left
    */
   offset: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
-   * the right of item
+   * The number of cells that raster is moved to the left
    */
 
   pull: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
-   * the left of item
+   * The number of cells that raster is moved to the right
    */
 
   push: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
-   * the width of item
+   * Raster number of cells to occupy
    */
 
   span: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),

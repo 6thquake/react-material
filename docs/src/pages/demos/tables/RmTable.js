@@ -20,7 +20,7 @@ const styles = theme => ({
 const columns = [
   { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
   { title: 'Age', width: 100, dataIndex: 'age', key: 'age', fixed: 'left' },
-  { title: 'Column 1', dataIndex: 'address', key: '1', width: 150 },
+  { title: 'Column 1', dataIndex: 'address', key: '1', width: 150, resizable: true },
   { title: 'Column 2', dataIndex: 'address', key: '2', width: 150 },
   { title: 'Column 3', dataIndex: 'address', key: '3', width: 150 },
   { title: 'Gender', dataIndex: 'gender', key: '4', width: 150 },
@@ -80,11 +80,10 @@ class RmTableEXample extends React.Component {
     let sourceData = data[sourceIndex]
     columns[sourceIndex] = columns[targetIndex]
     columns[targetIndex] = sourceColumn
-
+    
     data[sourceIndex] = data[targetIndex]
     data[targetIndex] = sourceData
-    console.log('column', columns)
-    console.log('data',data)
+
     this.setState({
       columns,
       data,
@@ -100,17 +99,6 @@ class RmTableEXample extends React.Component {
     );
   }
 }
-
-// export default RmTableEXample;
-// function RmTableEXample(props) {
-//   const { classes } = props;
-
-//   return (
-//     <Paper className={classes.root}>
-//       <RmTable columns={columns} data={data}/>
-//     </Paper>
-//   );
-// }
 
 RmTableEXample.propTypes = {
   classes: PropTypes.object.isRequired,

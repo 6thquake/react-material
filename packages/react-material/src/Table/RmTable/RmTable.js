@@ -56,7 +56,13 @@ class RmTable extends React.Component {
     this.dragIndex.sourceIndex = index
   }
   dragEnd = (index) => {
-    console.log('end index', index)
+    // todo ： 每次拖拽执行了两次， 多执行了一次。而且返回值不对
+    // 这里先用类型过滤掉多余的一次
+    console.log('end index=========', index)
+    if(typeof(index) === 'object'){
+      console.log('end index=========', index.target)
+      return 
+    }
     const {
       onColDrag
     } = this.props
@@ -69,6 +75,7 @@ class RmTable extends React.Component {
     return result
   }
   renderLeftTable =()=> {
+    // console.log('columns', co)
     let columns = this.props.columns.filter((column)=>{
       return column.fixed === 'left'
     })
@@ -85,7 +92,9 @@ class RmTable extends React.Component {
       classes,
       data,
       onColResize,
-      onColDrag
+      onColDrag,
+      resizable,
+      dragable,
     } = this.props
 
     let width = type === 'main'? '': columns.reduce((pre, cur) => {
@@ -100,6 +109,8 @@ class RmTable extends React.Component {
         columns={columns}
         onResize={onColResize}
         onColDrag ={onColDrag}
+        resizable={resizable}
+        dragable={dragable}
         onDragStart = {
           this.dragSatrt
         }

@@ -6,7 +6,7 @@ import TableBody from '../../TableBody';
 import TableCell from '../../TableCell';
 import TableHead from '../../TableHead';
 import TableRow from '../../TableRow';
-import HeadCell from './HeadCell'
+import HeadCell from './Cell'
 import withDragAndDrop from '../../DragAndDrop/withDragAndDrop'
 
 import {
@@ -66,15 +66,36 @@ class Head extends React.Component {
     } = this.props
     onResize && onResize(...args, size)
   }
-  dragSatrt = (index)=> {
-    console.log('start index',index)
-    this.dragIndex.sourceIndex = index
-  }
-  dragEnd =(index) => {
-    console.log('end index', index)
-    const { onColDrag } = this.props 
-    this.dragIndex.targetIndex = index
-    onColDrag && onColDrag(this.dragIndex)
+  renderTableHeadCell = (column, index) => {
+    const {
+      classes,
+      onDragStart,
+      onDragEnd,
+      resizable,
+      dragable,
+    } = this.props
+    let cell = (
+      <TableCell 
+        onDragStart={onDragStart} 
+        onDragEnd={onDragEnd} 
+        index={index} 
+        component={dragable?HeadCell: 'th'}
+        className={classes.tableCell}
+      >
+        {column.title || ''}
+      </TableCell>
+    )
+    const C = (
+      resizable || column.resizable?
+      <Resizable
+        width={column.width} 
+        height={0}
+        onResize={this.handleResize(index, column)}
+      >
+        {cell}
+      </Resizable> : cell
+    )
+    return C
   }
   render() {
     const {
@@ -82,8 +103,10 @@ class Head extends React.Component {
       data,
       columns,
       onDragStart,
-      onDragEnd
+      onDragEnd,
+      resizable,
     } = this.props
+    
     return (
       <div className={classes.root}>
         <Table 
@@ -99,19 +122,7 @@ class Head extends React.Component {
           <TableHead>
             <TableRow>
               {columns.map((column, index) => {
-                return (
-                  <Resizable
-                    width={column.width} 
-                    height={0}
-                    onResize={this.handleResize(index, column)}
-                  >
-                    <TableCell className={classes.tableCell}>
-                      <HeadCell onDragStart={onDragStart} onDragEnd={onDragEnd} index={index}>
-                        {column.title || ''}
-                      </HeadCell>
-                    </TableCell>
-                  </Resizable>
-                )
+                return this.renderTableHeadCell(column, index)
               })}
             </TableRow>
           </TableHead>

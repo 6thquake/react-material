@@ -1,5 +1,5 @@
 import React from 'react';
-import { LocaleContext } from './LocaleContext';
+import { LocaleContext } from './LocaleProvider';
 
 // 当 存在于 y 中的key，在x 中值为 undefined 时，则取 y[key]
 const merge = (x, y) => {

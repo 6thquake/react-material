@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '../styles';
-
+import PropTypes from 'prop-types';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '../Button';
 
@@ -141,4 +141,25 @@ class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  /**
+   *'right/left' direction of this search float;
+   */
+  direction: PropTypes.enum,
+  /**
+   *when background is light color please use 'dark'
+   *
+   */
+  type: PropTypes.enum,
+  /**
+   *placeholder
+   */
+  placeholder: PropTypes.string,
+  /**
+   * onchange callback function
+   */
+  onChange: PropTypes.func.isRequired,
+};
+
 export default withStyles(styles, { name: 'RMSearch' })(Search);

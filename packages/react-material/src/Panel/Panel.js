@@ -293,7 +293,18 @@ let Panel = DropTarget(['DRAGANDDROP'], boxTarget, (connect, monitor) => {
     itemType: monitor.getItemType(),
   };
 })(_Panel);
-
+Panel.propTypes = {
+  /**
+  *Array of Jsx，it will be render in this panel eg.
+  *[(<div cols={4} rows={2}>
+        <StatusButton color="primary">默认的button</StatusButton>
+      </div>),
+      (<div cols={5} rows={2}>
+        <div>默认的div1</div>
+      </div>)]
+  */
+  defaultChildren: PropTypes.array.isRequired,
+};
 export default withStyles(styles, { name: 'RMPanel' })(withDragAndDrop()(Panel));
 
 /**

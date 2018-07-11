@@ -198,5 +198,9 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "size-limit": [{
+    "path": "packages/react-material/src/index.js",
+    "limit": "800 KB"
+  }]
 }

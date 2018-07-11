@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import Input from '../Input';
@@ -9,6 +9,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import IconButton from '../IconButton';
 import {withLocale} from '../LocaleProvider';
+
 const styles = theme => ({
   root: {
     fontSize: theme.typography.pxToRem(12),
@@ -83,6 +84,7 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 2.5,
   },
 });
+
 class Pagination extends Component {
 
   static propTypes = {
@@ -143,7 +145,8 @@ class Pagination extends Component {
      * show jump to first and last page button.
      */
     showTwoEnds: PropTypes.bool
-  };
+  }
+
   static defaultProps = {
     currentPage: 1,
     pageSize: 5,
@@ -152,6 +155,7 @@ class Pagination extends Component {
     rowsPerPageOptions:	[5, 10, 25],
     labelDisplayedRows: ({ from, to, total }) => `${from}-${to} of ${total}`,
   }
+
   constructor(props){
     super(props);
     this.state={
@@ -159,6 +163,7 @@ class Pagination extends Component {
       value:1
     }
   }
+
   componentDidMount() {
       console.log(this.div.clientWidth);
       //分页的宽度小于200px时，只显示前后页按钮
@@ -169,6 +174,7 @@ class Pagination extends Component {
       }
       this.props.pageCallbackFn (this.props.currentPage)
   }
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if(nextProps!==prevState.preProps){
       return {
@@ -178,6 +184,7 @@ class Pagination extends Component {
     }
     return null;
   }
+
   componentDidUpdate() {
     const { total, pageCallbackFn, currentPage, pageSize } = this.props;
     const newLastPage = Math.max(0, Math.ceil(total / pageSize) - 1);
@@ -185,6 +192,7 @@ class Pagination extends Component {
       pageCallbackFn( newLastPage);
     }
   }
+
   createPage(){
       const { classes,
         currentPage,
@@ -273,11 +281,13 @@ class Pagination extends Component {
                 </div>
               </div>
   }
+
   pageClick(currentPage) {
       const getCurrentPage = this.props.pageCallbackFn ;
       //将当前页码返回父组件
       getCurrentPage(currentPage)
   }
+
   prePageHandeler() {
       let {currentPage} = this.props;
       if (--currentPage === -1) {
@@ -294,6 +304,7 @@ class Pagination extends Component {
       }
       this.pageClick(currentPage)
   }
+
   goEnd(param){
     console.log(param);
     const {pageSize, total,pageCallbackFn} = this.props,
@@ -306,6 +317,7 @@ class Pagination extends Component {
       getCurrentPage(totalPage-1)
     }
   }
+
   jumpTo(e){
     const {pageSize, total,pageCallbackFn} = this.props,
       value=e.target.value,
@@ -330,6 +342,7 @@ class Pagination extends Component {
       }
     })
   }
+  
   render() {
       return this.createPage();
   }

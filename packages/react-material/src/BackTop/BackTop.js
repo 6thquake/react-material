@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withStyles } from '../styles';
-import { Publish } from '@material-ui/icons'
+import { Publish } from '@material-ui/icons';
 
 const styles = {
     rmBackTop: {
@@ -23,7 +23,7 @@ const styles = {
         color: '#fff',
         textAlign: 'center'
     }
-}
+};
 
 function hasScrollbar() {
     return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
@@ -40,6 +40,8 @@ function getScrollTop() {
 }
 
 class BackTop extends React.Component {
+    scrollHandler = this.handleScroll.bind(this);
+
     constructor(props) {
         super(props);
         this.state = {
@@ -76,8 +78,6 @@ class BackTop extends React.Component {
         }
     }
 
-    scrollHandler = this.handleScroll.bind(this);
-
     componentDidMount() {
         if (hasScrollbar()) {
             const scrollTop = getScrollTop();
@@ -95,7 +95,6 @@ class BackTop extends React.Component {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         //  this.state.onClick(e);
     }
-
 
     render() {
         const classes = this.props.classes;

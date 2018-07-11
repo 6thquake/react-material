@@ -1,8 +1,8 @@
-import React, { Component, ComponentClass } from 'react'
-import PropTypes from 'prop-types'
-import { DragDropManager, IBackend, BackendFactory } from 'dnd-core'
-import invariant from 'invariant'
-import hoistStatics from 'hoist-non-react-statics'
+import React, { Component, ComponentClass } from 'react';
+import PropTypes from 'prop-types';
+import { DragDropManager, IBackend, BackendFactory } from 'dnd-core';
+import invariant from 'invariant';
+import hoistStatics from 'hoist-non-react-statics';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 function checkDecoratorArguments(
@@ -26,16 +26,16 @@ function checkDecoratorArguments(
 }
 
 
- const CHILD_CONTEXT_TYPES = {
+const CHILD_CONTEXT_TYPES = {
 	dragDropManager: PropTypes.object.isRequired,
 }
 
 let defaultManager;
- function createChildContext (
+function createChildContext (
 	backend: BackendFactory,
 	context: Context,
 ) {
-	 if (!defaultManager) {
+	if (!defaultManager) {
         defaultManager = new DragDropManager(HTML5Backend);
     }
 	return {
@@ -43,7 +43,7 @@ let defaultManager;
 	}
 }
 
- function DragDropContext(
+function DragDropContext(
 	backendFactory,
 	context
 ) {

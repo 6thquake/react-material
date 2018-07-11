@@ -29,7 +29,7 @@ class CheckboxGroup extends Component {
 
     const {onChange} = this.props;
     onChange && onChange(event, value);
-  };
+  }
 
   renderFormComponent() {
     const {

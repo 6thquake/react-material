@@ -93,7 +93,6 @@ const throttling = (fn, wait, maxTimeLong) => {
 }
 class AsyncTransfer extends React.Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       leftChecked: [],   //左边选中的item
@@ -102,6 +101,7 @@ class AsyncTransfer extends React.Component {
       pageConfigRight: props.pageConfigR
     };
   }
+
   static defaultProps = {
     placeholder: 'please input something',
     onChange: function () {
@@ -110,6 +110,7 @@ class AsyncTransfer extends React.Component {
     filterOption: false,
     paginationOption: false
   }
+
   static propTypes = {
     filterOption: PropTypes.boolean,
     placeholder: PropTypes.string,
@@ -118,6 +119,7 @@ class AsyncTransfer extends React.Component {
     paginationOption: PropTypes.boolean,
     onChange: PropTypes.func
   }
+  
   //数组去重
   subSet = (arr1, arr2) => {
     var set1 = new Set(arr1);
@@ -132,7 +134,7 @@ class AsyncTransfer extends React.Component {
     }
 
     return subset;
-  };
+  }
 
   transferToggle = position => () => {     //左右移动选中部分
     const { leftChecked, rightChecked } = this.state;
@@ -155,7 +157,7 @@ class AsyncTransfer extends React.Component {
       }
     });
      this.props.onChange(newData);
-  };
+  }
 
   transferAllToggle = position => () => {    //左右移动所有
     const { left, right } = this.props;
@@ -178,7 +180,7 @@ class AsyncTransfer extends React.Component {
       }
     });
     this.props.onChange(newData);
-  };
+  }
 
   handleToggle = (value, position) => () => {
     const { leftChecked, rightChecked } = this.state;
@@ -202,12 +204,13 @@ class AsyncTransfer extends React.Component {
         rightChecked: newChecked,
       });
     }
-  };
+  }
 
   //过滤文本改変的函数
   textchange = position => (e) => {
    this.props.filterChangeCb(position,e.target.value);
   }
+
   pageCallbackFnLeft(currentPage1) {  //左边的分页参数改变回调
     this.setState({
       pageConfigLeft: {
@@ -216,6 +219,7 @@ class AsyncTransfer extends React.Component {
       }
     });
   }
+
   pageCallbackFnRight(currentPage1) {
     this.setState({
       pageConfigRight: {
@@ -224,6 +228,7 @@ class AsyncTransfer extends React.Component {
       }
     });
   }
+
   listItem(options, pageConfig) {  //只渲染属于该页面的item
     console.log(pageConfig);
   
@@ -237,6 +242,7 @@ class AsyncTransfer extends React.Component {
       );
     }
   }
+
   static getDerivedStateFromProps(newprops, prestate){
     if(newprops.pageConfigL!==prestate.pageConfigLeft){
       return newprops.pageConfigL;
@@ -246,6 +252,7 @@ class AsyncTransfer extends React.Component {
       return null;
     }
   }
+
   render() {
     const { classes, filterOption, placeholder, paginationOption } = this.props;
     return (

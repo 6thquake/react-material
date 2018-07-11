@@ -61,16 +61,16 @@ class StepPane extends React.Component {
 
 	  let _direction;
 	  if(direction === 'prev'){
-		_direction = theme.direction === 'rtl' ? 'left' : 'right';
+		  _direction = theme.direction === 'rtl' ? 'left' : 'right';
 	  }else{
-        _direction = theme.direction === 'rtl' ? 'right' : 'left'
+      _direction = theme.direction === 'rtl' ? 'right' : 'left'
 	  }
 		
 	  return (
-	  	<Slide direction={ active? _direction : negative(_direction) } in={active} {...mount} >
+	  	<Slide direction={ active ? _direction : negative(_direction) } in={active} {...mount} >
 	  		<div className={className} {...other}>
-				{children}
-			</div>
+				  {children}
+			  </div>
 	  	</Slide>
 	  );
 	}

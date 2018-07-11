@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { withStyles } from '../styles';
                        
 import SearchIcon from '@material-ui/icons/Search';
-import Button from '../Button'
+import Button from '../Button';
 
 const styles = theme => ({
     root: {
@@ -86,30 +86,34 @@ class Search extends Component {
             pageSize: 5,
             total:34,
         },
-    };
+    }
 
     handleChangeSingle(event,child) {
         let self =this;
         this.setState({search:event.target.value},()=>{
             self.ok();
         });
-    };
+    }
+
     autoCb(i){
         console.log('item',i);
         this.setState({   pageConfig:{
             ...this.state.pageConfig,
             currentPage:i
         }});
-    };
+    }
+
     inputChangeCb(event){
         console.log('item',event);
         this.setState({inputText:event.target.value});
     }
+
     ok(){
         const {onChange} =this.props;
         const {search} =this.state;
         onChange&&typeof onChange === 'function'&&onChange(search);
     }
+    
     render() {
         const { classes,type,direction,placeholder } = this.props;
         const {search} = this.state;

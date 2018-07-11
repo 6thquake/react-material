@@ -50,7 +50,7 @@ const styles = theme => {
             backgroundColor: 'transparent',
           },
         },
-      }
+      },
     },
     raised: {
       waring: {
@@ -92,8 +92,8 @@ const styles = theme => {
             backgroundColor: theme.palette.progress.main,
           },
         },
-      }
-    }
+      },
+    },
   };
   return {
     flatWaring: defaultStyle.flat.waring,
@@ -109,8 +109,8 @@ const styles = theme => {
     icon: {
       fontSize: theme.typography.pxToRem(15),
       marginRight: theme.spacing.unit,
-    }
-  }
+    },
+  };
 };
 
 /**
@@ -119,32 +119,33 @@ const styles = theme => {
  * fail
  */
 class StatusButton extends Component {
-
   state = {
-      color: this.props.color
-  }
+    color: this.props.color,
+  };
 
   status = {
     status: '',
     text: '',
     //statusButton: this.props.statusButton,
-  }
+  };
 
   getStatusIcon(classes) {
     switch (this.status.status) {
       case 'progress':
         //todo button loading styles
-        return <CircularProgress className={classes.icon} size={15} style={{color: common.white}}/>;
+        return (
+          <CircularProgress className={classes.icon} size={15} style={{ color: common.white }} />
+        );
       case 'success':
-        return <Done className={classes.icon}/>;
+        return <Done className={classes.icon} />;
       case 'false':
-        return <Replay className={classes.icon}/>;
+        return <Replay className={classes.icon} />;
       default:
         return null;
     }
   }
   onHandler = () => {
-    const {onHandler, onClick} = this.props;
+    const { onHandler, onClick } = this.props;
     let result;
     if (typeof onClick === 'function') {
       onClick.apply(this);
@@ -159,61 +160,66 @@ class StatusButton extends Component {
     if (result instanceof Promise) {
       this.status.status = 'progress';
       this.setState({
-        color: 'progress'
+        color: 'progress',
       });
-      result.then((r) => {
-        this.status.status = 'success';
-        this.setState({
-          color: 'success'
+      result
+        .then(r => {
+          this.status.status = 'success';
+          this.setState({
+            color: 'success',
+          });
+        })
+        .catch(r => {
+          this.status.status = 'false';
+          this.setState({
+            color: 'error',
+          });
         });
-      }).catch(r => {
-        this.status.status = 'false';
-        this.setState({
-          color: 'error'
-        });
-      });
     }
-  }
+  };
 
   render() {
-    let {children, className: classNamePro, classes, onHandler, ...other} = this.props;
+    let { children, className: classNamePro, classes, onHandler, ...other } = this.props;
     other.color = this.state.color;
-    const {color} = other;
+    const { color } = other;
     const customColors = ['waring', 'error', 'success', 'progress'];
     if (customColors.indexOf(color) !== -1) {
       other.color = 'default';
     }
     const flat = this.props.variant === 'flat';
 
-    const className = classNames({
-      [classes.raisedProgress]: !flat && color === 'progress',
-      [classes.raisedError]: !flat && color === 'error',
-      [classes.raisedSuccess]: !flat && color === 'success',
-      [classes.raisedWaring]: !flat && color === 'waring',
+    const className = classNames(
+      {
+        [classes.raisedProgress]: !flat && color === 'progress',
+        [classes.raisedError]: !flat && color === 'error',
+        [classes.raisedSuccess]: !flat && color === 'success',
+        [classes.raisedWaring]: !flat && color === 'waring',
 
-      [classes.flatProgress]: flat && color === 'progress',
-      [classes.flatError]: flat && color === 'error',
-      [classes.flatSuccess]: flat && color === 'success',
-      [classes.flatWaring]: flat && color === 'waring',
-
-    }, classNamePro);
+        [classes.flatProgress]: flat && color === 'progress',
+        [classes.flatError]: flat && color === 'error',
+        [classes.flatSuccess]: flat && color === 'success',
+        [classes.flatWaring]: flat && color === 'waring',
+      },
+      classNamePro,
+    );
 
     return (
       <Button {...other} className={className} onClick={this.onHandler}>
-        {this.getStatusIcon(classes)}{children}
+        {this.getStatusIcon(classes)}
+        {children}
       </Button>
     );
   }
 }
 
 StatusButton.propTypes = {
-    onHandler: PropTypes.func
+  onHandler: PropTypes.func,
 };
 
 StatusButton.defaultProps = {
-    color: 'default',
-    variant: 'flat',
-    //statusButton: true
+  color: 'default',
+  variant: 'flat',
+  //statusButton: true
 };
 
 export default withStyles(styles)(StatusButton);

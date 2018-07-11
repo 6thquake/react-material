@@ -15,11 +15,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/buttons/StatusButtons'), 'utf8')
 `,
         },
-        'pages/demos/buttons/GroupButtons.js': {
-          js: require('docs/src/pages/demos/buttons/GroupButtons').default,
+        'pages/demos/buttons/ButtonGroup.js': {
+          js: require('docs/src/pages/demos/buttons/ButtonGroup').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/GroupButtons'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/ButtonGroup'), 'utf8')
 `,
         },
         'pages/demos/buttons/FlatButtons.js': {

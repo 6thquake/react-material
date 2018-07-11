@@ -196,7 +196,7 @@ Menu.propTypes = {
   /**
    * @ignore
    */
-  className: PropTypes.object,
+  className: PropTypes.string,
   /**
    * inline 时菜单是否收起状态
    */

@@ -30,7 +30,7 @@ const defaultItemKeysMap = {
   style: 'style',
   className: 'className',
   open: 'open',
-  selected: 'selected'
+  selected: 'selected',
 };
 
 const styles = theme => ({
@@ -74,7 +74,7 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    height: '100%'
+    height: '100%',
   },
   drawerPaperClose: {
     overflowX: 'hidden',
@@ -101,66 +101,70 @@ const styles = theme => ({
   },
   docked: {
     overflow: 'hidden',
-    height: '100%'
-  }
+    height: '100%',
+  },
 });
 
 const logoStyles = {
   cl1: {
     fill: 'rgb(132, 241, 246)',
     opacity: 0.55,
-    isolation: 'isolate'
+    isolation: 'isolate',
   },
   cl2: {
-    fill: 'rgb(36, 136, 199)'
+    fill: 'rgb(36, 136, 199)',
   },
   cl3: {
     fill: 'rgb(132, 241, 246)',
     stroke: 'rgb(132, 241, 246)',
     strokeMiterlimit: 10,
-    strokeWidth: '0.06px'
-  }
+    strokeWidth: '0.06px',
+  },
 };
 
-const Logo = (props) => (
+const Logo = props => (
   <SvgIcon {...props}>
-    <polygon style={logoStyles.cl1} points="5.6 9.8 6.8 11.6 5.6 9.8 5.6 9.8"/>
-    <polygon style={logoStyles.cl2} points="1 0.4 0.1 1 0.5 14.3 1.4 15.6 1 0.4"/>
-    <polygon style={logoStyles.cl2} points="5.6 8 5.6 9.8 6.8 11.6 9 12.9 5.6 8"/>
-    <polygon style={logoStyles.cl2} points="12.3 7.6 10 11.4 10.1 13.2 12.1 14.3 12.3 7.6"/>
-    <polygon style={logoStyles.cl2} points="12.6 0.9 10.2 1.5 8 4.8 9.1 6.5 12.6 0.9"/>
-    <polygon style={logoStyles.cl3} points="12.6 0.9 9.1 6.5 8 4.8 5.4 0.6 1 0.4 1.4 15.6 5.6 15.1 5.6 9.8 5.6 9.8 5.6 8 9 12.9 10 11.4 12.3 7.6 12.1 14.3 15.4 13.9 15.9 0.9 12.6 0.9"/>
+    <polygon style={logoStyles.cl1} points="5.6 9.8 6.8 11.6 5.6 9.8 5.6 9.8" />
+    <polygon style={logoStyles.cl2} points="1 0.4 0.1 1 0.5 14.3 1.4 15.6 1 0.4" />
+    <polygon style={logoStyles.cl2} points="5.6 8 5.6 9.8 6.8 11.6 9 12.9 5.6 8" />
+    <polygon style={logoStyles.cl2} points="12.3 7.6 10 11.4 10.1 13.2 12.1 14.3 12.3 7.6" />
+    <polygon style={logoStyles.cl2} points="12.6 0.9 10.2 1.5 8 4.8 9.1 6.5 12.6 0.9" />
+    <polygon
+      style={logoStyles.cl3}
+      points="12.6 0.9 9.1 6.5 8 4.8 5.4 0.6 1 0.4 1.4 15.6 5.6 15.1 5.6 9.8 5.6 9.8 5.6 8 9 12.9 10 11.4 12.3 7.6 12.1 14.3 15.4 13.9 15.9 0.9 12.6 0.9"
+    />
   </SvgIcon>
 );
 
 class MiniDrawer extends React.Component {
   state = {
     open: true,
-  }
+  };
 
   handleDrawerOpen = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   handleDrawerClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   toggleDrawer = () => {
-    this.setState({open: !this.state.open});
+    this.setState({ open: !this.state.open });
   };
 
   onClick(info) {
     console.log('click ', info);
   }
   render() {
-    const {classes, theme} = this.props;
+    const { classes, theme } = this.props;
 
     return (
       <div className={classes.root}>
         <AppBar
           position="absolute"
-          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
+          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+        >
           <Toolbar disableGutters={!this.state.open}>
             <IconButton
               color="inherit"
@@ -168,7 +172,7 @@ class MiniDrawer extends React.Component {
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, this.state.open && classes.hide)}
             >
-              <MenuIcon/>
+              <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
               Mini variant drawer
@@ -179,53 +183,66 @@ class MiniDrawer extends React.Component {
           variant="permanent"
           classes={{
             paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-            docked: classes.docked
+            docked: classes.docked,
           }}
-          open={this.state.open}>
-          <Grid container
+          open={this.state.open}
+        >
+          <Grid
+            container
             direction="column"
             alignItems="stretch"
             justify="space-between"
             spacing="0"
             style={{
               height: '100%',
-              backgroundColor: 'rgba(0, 0, 0, 0.87)'
-            }}>
-            <Grid item container 
+              backgroundColor: 'rgba(0, 0, 0, 0.87)',
+            }}
+          >
+            <Grid
+              item
+              container
               style={{
-                height: "100px"
-              }} 
+                height: '100px',
+              }}
               direction="row"
               alignItems="stretch"
               justify="center"
-              spacing="2">
+              spacing="2"
+            >
               <Grid item>
-                <Logo style={{
-                  height: '48px',
-                  fontSize: '48px',
-                  marginTop: '32px'
-                }}></Logo>
+                <Logo
+                  style={{
+                    height: '48px',
+                    fontSize: '48px',
+                    marginTop: '32px',
+                  }}
+                />
               </Grid>
-              { this.state.open ? (
+              {this.state.open ? (
                 <Grid item>
-                  <Typography variant="title" style={{
-                    lineHeight: '100px',
-                    color: common.white
-                  }}>
+                  <Typography
+                    variant="title"
+                    style={{
+                      lineHeight: '100px',
+                      color: common.white,
+                    }}
+                  >
                     React-Material
                   </Typography>
-                </Grid>) : null
-              }
+                </Grid>
+              ) : null}
             </Grid>
             <Grid item>
-              <Divider/>
+              <Divider />
             </Grid>
             <Grid item xs style={{ position: 'relative' }}>
-              <Scrollbar style={{ position:'initial', height: '100%'}}>
-                <TreeMenu list={data} itemKeysMap={{
+              <Scrollbar style={{ position: 'initial', height: '100%' }}>
+                <TreeMenu
+                  list={data}
+                  itemKeysMap={{
                     name: 'component',
                     children: 'childRoutes',
-                    key:'path'
+                    key: 'path',
                   }}
                   onClick={this.onClick}
                   mode="inline"
@@ -234,15 +251,11 @@ class MiniDrawer extends React.Component {
                 />
               </Scrollbar>
             </Grid>
-            <Grid item container
-              direction="row"
-              alignItems="stretch"
-              justify="center"
-              spacing="0">
+            <Grid item container direction="row" alignItems="stretch" justify="center" spacing="0">
               <Grid item>
                 <div className={classes.toolbar}>
-                  <IconButton onClick={this.toggleDrawer} style={{color: common.white}}>
-                    {this.state.open ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+                  <IconButton onClick={this.toggleDrawer} style={{ color: common.white }}>
+                    {this.state.open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                   </IconButton>
                 </div>
               </Grid>
@@ -250,10 +263,8 @@ class MiniDrawer extends React.Component {
           </Grid>
         </Drawer>
         <main className={classes.content}>
-          <div className={classes.toolbar}/>
-          <Typography noWrap>
-            xxx
-          </Typography>
+          <div className={classes.toolbar} />
+          <Typography noWrap>xxx</Typography>
         </main>
       </div>
     );
@@ -265,4 +276,4 @@ MiniDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, {withTheme: true})(MiniDrawer);
+export default withStyles(styles, { withTheme: true })(MiniDrawer);

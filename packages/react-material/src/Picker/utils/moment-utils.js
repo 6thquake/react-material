@@ -3,18 +3,17 @@ import { getLocale } from '../../LocaleProvider';
 import defaultMoment from 'moment';
 
 class ExMomentUtils extends MomentUtils {
-	
-	constructor({ locale, moment } = {}) {
-		super({locale, moment});
-	    this.moment = moment || defaultMoment
-	    this.locale =  locale || this.moment.locale();
-	}
+  constructor({ locale, moment } = {}) {
+    super({ locale, moment });
+    this.moment = moment || defaultMoment;
+    this.locale = locale || this.moment.locale();
+  }
 
-	getMeridiemText(ampm) {
-		let text = getLocale(this.locale ||  this.moment.locale()).MomentUtils;
+  getMeridiemText(ampm) {
+    let text = getLocale(this.locale || this.moment.locale()).MomentUtils;
 
-    	return ampm === 'am' ? (text.am || 'AM') : (text.pm || 'PM');
-  	}
+    return ampm === 'am' ? text.am || 'AM' : text.pm || 'PM';
+  }
 }
 
 export default ExMomentUtils;

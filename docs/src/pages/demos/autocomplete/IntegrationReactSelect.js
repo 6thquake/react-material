@@ -258,8 +258,8 @@ class IntegrationReactSelect extends React.Component {
             options: suggestions,
           }}
         />
-        <br/>
-        <br/>
+        <br />
+        <br />
         <Input
           fullWidth
           inputComponent={SelectWrapped}
@@ -276,8 +276,8 @@ class IntegrationReactSelect extends React.Component {
             options: suggestions,
           }}
         />
-        <br/>
-        <br/>
+        <br />
+        <br />
         <TextField
           fullWidth
           value={this.state.multiLabel}

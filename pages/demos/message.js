@@ -14,7 +14,7 @@ function Page() {
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/message/Message'), 'utf8')
 `,
-        }
+        },
       }}
     />
   );

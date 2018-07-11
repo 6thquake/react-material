@@ -6,7 +6,7 @@ import DialogActions from 'react-material/DialogActions';
 import DialogContent from 'react-material/DialogContent';
 import DialogContentText from 'react-material/DialogContentText';
 import DialogTitle from 'react-material/DialogTitle';
-import withMobileDialog from 'react-material/withMobileDialog'
+import withMobileDialog from 'react-material/withMobileDialog';
 
 class ResponsiveDialog extends React.Component {
   state = {

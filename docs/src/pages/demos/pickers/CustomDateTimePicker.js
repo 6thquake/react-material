@@ -3,20 +3,19 @@ import { DateTimePicker } from 'react-material/Picker';
 import { IconButton, Icon, InputAdornment } from 'react-material';
 import LocaleProvider from 'react-material/LocaleProvider';
 
-
 class CustomDateTimePicker extends PureComponent {
   state = {
     selectedDate: new Date('2018-01-01T18:54'),
     clearedDate: null,
-  }
+  };
 
-  handleDateChange = (date) => {
+  handleDateChange = date => {
     this.setState({ selectedDate: date });
-  }
+  };
 
-  handleClearedDateChange = (date) => {
+  handleClearedDateChange = date => {
     this.setState({ clearedDate: date });
-  }
+  };
 
   render() {
     const { selectedDate, clearedDate } = this.state;
@@ -59,7 +58,27 @@ class CustomDateTimePicker extends PureComponent {
               onChange={this.handleDateChange}
               format="YYYY/MM/DD hh:mm A"
               disableOpenOnEnter
-              mask={[/\d/, /\d/, /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
+              mask={[
+                /\d/,
+                /\d/,
+                /\d/,
+                /\d/,
+                '/',
+                /\d/,
+                /\d/,
+                '/',
+                /\d/,
+                /\d/,
+                ' ',
+                /\d/,
+                /\d/,
+                ':',
+                /\d/,
+                /\d/,
+                ' ',
+                /a|p/i,
+                'M',
+              ]}
             />
           </div>
 
@@ -77,5 +96,4 @@ class CustomDateTimePicker extends PureComponent {
   }
 }
 
-export default CustomDateTimePicker
-
+export default CustomDateTimePicker;

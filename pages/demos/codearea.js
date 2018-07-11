@@ -14,7 +14,7 @@ function Page() {
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/codearea/Codearea'), 'utf8')
 `,
-        }
+        },
       }}
     />
   );

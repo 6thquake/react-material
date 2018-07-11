@@ -1,184 +1,193 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import SelectStandalone from '@material-ui/core/Select';
 import Menu from '../Menu';
 import MenuItem from '../MenuItem';
-import Pagination from '../Pagination/Pagination'
-import AsyncSelectFilter from './AsyncSelectFilter'
+import Pagination from '../Pagination/Pagination';
+import AsyncSelectFilter from './AsyncSelectFilter';
 import Divider from '../Divider';
 import Chip from '../Chip';
 import { withStyles } from '../styles';
 
-
 const styles = theme => ({
-  selectMenu:{
+  selectMenu: {
     whiteSpace: 'pre-wrap',
   },
-  root:{
-    width:'100%'
+  root: {
+    width: '100%',
   },
 });
 
 class AsyncSelect extends Component {
-    static propTypes = {
-      /**
-       * Callback function fired when a menu item is selected.
-       */
-      selectCb : PropTypes.func,
-      /**
-       * Selected value
-       */
-      value : PropTypes.array,
-      /**
-       * pagination component config
-       */
-      pageConfig: PropTypes.object,
-      /**
-       * placeholder
-       */
-      placeHold: PropTypes.string,
-      /**
-       * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
-       */
-      multiple: PropTypes.bool,
-      /**
-       * Callback fired when the current page of pagination  is changed.
-       */
-      pageChangeCb : PropTypes.func,
-      /**
-       * Callback fired when the input value is changed.
-       */
-      filterChangeCb : PropTypes.func,
-      /**
-       * Decided select is disabled
-       */
-      disabled : PropTypes.bool,
+  static propTypes = {
+    /**
+     * Callback function fired when a menu item is selected.
+     */
+    selectCb: PropTypes.func,
+    /**
+     * Selected value
+     */
+    value: PropTypes.array,
+    /**
+     * pagination component config
+     */
+    pageConfig: PropTypes.object,
+    /**
+     * placeholder
+     */
+    placeHold: PropTypes.string,
+    /**
+     * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
+     */
+    multiple: PropTypes.bool,
+    /**
+     * Callback fired when the current page of pagination  is changed.
+     */
+    pageChangeCb: PropTypes.func,
+    /**
+     * Callback fired when the input value is changed.
+     */
+    filterChangeCb: PropTypes.func,
+    /**
+     * Decided select is disabled
+     */
+    disabled: PropTypes.bool,
+  };
+  static defaultProps = {
+    pageConfig: {
+      currentPage: 1,
+      pageSize: 5,
+      total: 0,
+    },
+    placeHold: 'please input something',
+    multiple: false,
+    value: '',
+    disabled: false,
+  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      values: [],
+    };
+  }
+  handleChange(event) {
+    if (event.target)
+      if (event.target.value) {
+        this.props.selectCb(event.target.value);
+        this.setState({ values: event.target.value });
+      }
+  }
+  handleDelete = data => () => {
+    const chipData = [...this.state.values];
+    const chipToDelete = chipData.indexOf(data);
+    chipData.splice(chipToDelete, 1);
+    this.props.selectCb(chipData);
+    this.setState({ values: chipData });
+  };
 
-    };
-    static defaultProps = {
-      pageConfig:{
-        currentPage: 1,
-        pageSize: 5,
-        total:0
-      },
-      placeHold:'please input something',
-      multiple:false,
-      value:'',
-      disabled:false
-    };
-    constructor(props) {
-        super(props);
-        this.state = {
-            values: [],
-        };
-    }
-    handleChange(event) {
-        if(event.target)
-        if(event.target.value){
-            this.props.selectCb(event.target.value);
-            this.setState({values:event.target.value});
-        }
-    };
-    handleDelete= data => () => {
-        const chipData = [...this.state.values];
-        const chipToDelete = chipData.indexOf(data);
-        chipData.splice(chipToDelete, 1);
-        this.props.selectCb(chipData);
-        this.setState({ values:chipData });
-    };
-
-    pageCallbackFn(currentPage1) {
-      this.props.pageChangeCb(currentPage1);
-    }
-    textchange(e) {
-        // const filteString = e.target.value;
-        // const filterData=this.props.options.filter(
-        //     item => {
-        //         return !filteString || item.toLowerCase().indexOf(filteString.toLowerCase()) !== -1;
-        //     }
-        // );
-        // this.setState({
-        //     currentPage:1,
-        //     options: filterData
-        // });
-      this.props.filterChangeCb(e.target.value);
-    }
-    menuItems(values) {
-        const {pageConfig,options,children,keyValue} = this.props;
-        if(children){
-          return children
-        }else{
-          if(Array.isArray(options)){
-            let start = (pageConfig.currentPage - 1) * pageConfig.pageSize;
-            let end = pageConfig.currentPage * pageConfig.pageSize > options.length ? undefined :pageConfig.currentPage * pageConfig.pageSize;
-            return options.slice(start, end).map((name) => {
-              switch (typeof name) {
-                case 'string':
-                  return <MenuItem key={name} value={name}>{name}</MenuItem>;
-                case 'object':
-                  return <MenuItem key={name[keyValue[0]]} value={name[keyValue[1]]}>{name[keyValue[0]]}</MenuItem>;
-                default:
-                  throw new Error('select[dataSource] only supports type `string[] | Object[]`.');
-              }
-            });
-          } else {
-            throw new Error(
-              'React-Material: the `options` property must be an array '
-            );
+  pageCallbackFn(currentPage1) {
+    this.props.pageChangeCb(currentPage1);
+  }
+  textchange(e) {
+    // const filteString = e.target.value;
+    // const filterData=this.props.options.filter(
+    //     item => {
+    //         return !filteString || item.toLowerCase().indexOf(filteString.toLowerCase()) !== -1;
+    //     }
+    // );
+    // this.setState({
+    //     currentPage:1,
+    //     options: filterData
+    // });
+    this.props.filterChangeCb(e.target.value);
+  }
+  menuItems(values) {
+    const { pageConfig, options, children, keyValue } = this.props;
+    if (children) {
+      return children;
+    } else {
+      if (Array.isArray(options)) {
+        let start = (pageConfig.currentPage - 1) * pageConfig.pageSize;
+        let end =
+          pageConfig.currentPage * pageConfig.pageSize > options.length
+            ? undefined
+            : pageConfig.currentPage * pageConfig.pageSize;
+        return options.slice(start, end).map(name => {
+          switch (typeof name) {
+            case 'string':
+              return (
+                <MenuItem key={name} value={name}>
+                  {name}
+                </MenuItem>
+              );
+            case 'object':
+              return (
+                <MenuItem key={name[keyValue[0]]} value={name[keyValue[1]]}>
+                  {name[keyValue[0]]}
+                </MenuItem>
+              );
+            default:
+              throw new Error('select[dataSource] only supports type `string[] | Object[]`.');
           }
-        }
-    };
-    componentDidMount () {
-      if(!this.props.multiple){
-        this.setState({
-          values:this.props.value
         });
-      }else{
-        this.setState({
-          values:[...this.props.value]
-        });
+      } else {
+        throw new Error('React-Material: the `options` property must be an array ');
       }
     }
-    render() {
-        const {pageConfig, placeholder, multiple,classes,disabled,htmlFor,...other} = this.props;
-        return (
-            <SelectStandalone
-                {...other}
-                multiple={multiple}
-                value={this.state.values}
-                onChange={this.handleChange.bind(this)}
-                classes={{
-                  ...classes,
-                  root: classes.root,
-                  selectMenu: classes.selectMenu,
-                }}
-                inputProps={{
-                    placeholder: placeholder,
-                    id:htmlFor
-                }}
-                disabled={disabled}
-                renderValue={selected => (
-                    multiple? <div className={classes.chips}>{
-                      selected.map(value => <Chip key={value}  onDelete={this.handleDelete(value).bind(this)} label={value} />)}
-                      </div>:selected
-                )}
-            >
-                <AsyncSelectFilter
-                    fullWidth={true}
-                    autoFocus={true}
-                    placeholder={placeholder}
-                    onChange={this.textchange.bind(this)}
-                />
-                {this.menuItems(this.state.values)}
-                <Divider/>
-                <Pagination
-                    {...pageConfig}
-                    pageCallbackFn={this.pageCallbackFn.bind(this)}
-                >
-                </Pagination>
-            </SelectStandalone>
-        );
+  }
+  componentDidMount() {
+    if (!this.props.multiple) {
+      this.setState({
+        values: this.props.value,
+      });
+    } else {
+      this.setState({
+        values: [...this.props.value],
+      });
     }
+  }
+  render() {
+    const { pageConfig, placeholder, multiple, classes, disabled, htmlFor, ...other } = this.props;
+    return (
+      <SelectStandalone
+        {...other}
+        multiple={multiple}
+        value={this.state.values}
+        onChange={this.handleChange.bind(this)}
+        classes={{
+          ...classes,
+          root: classes.root,
+          selectMenu: classes.selectMenu,
+        }}
+        inputProps={{
+          placeholder: placeholder,
+          id: htmlFor,
+        }}
+        disabled={disabled}
+        renderValue={selected =>
+          multiple ? (
+            <div className={classes.chips}>
+              {selected.map(value => (
+                <Chip key={value} onDelete={this.handleDelete(value).bind(this)} label={value} />
+              ))}
+            </div>
+          ) : (
+            selected
+          )
+        }
+      >
+        <AsyncSelectFilter
+          fullWidth={true}
+          autoFocus={true}
+          placeholder={placeholder}
+          onChange={this.textchange.bind(this)}
+        />
+        {this.menuItems(this.state.values)}
+        <Divider />
+        <Pagination {...pageConfig} pageCallbackFn={this.pageCallbackFn.bind(this)} />
+      </SelectStandalone>
+    );
+  }
 }
 export default withStyles(styles, { name: 'RMAsyncSelect' })(AsyncSelect);

@@ -12,7 +12,7 @@ const styles = theme => ({
   },
 });
 function onClick() {
-  console.log(this,arguments)
+  console.log(this, arguments);
 }
 function RaisedButtons(props) {
   const { classes } = props;

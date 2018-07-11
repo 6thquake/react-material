@@ -64,11 +64,7 @@ class InteractiveGrid extends React.Component {
             ))}
 
             <Grid key={3} item xs>
-              <Paper
-                className={classes.paper}
-              >
-                {'Cell 4'}
-              </Paper>
+              <Paper className={classes.paper}>{'Cell 4'}</Paper>
             </Grid>
           </Grid>
         </Grid>
@@ -94,11 +90,7 @@ class InteractiveGrid extends React.Component {
             ))}
 
             <CompatibleGrid key={3} item xs>
-              <Paper
-                className={classes.paper}
-              >
-                {'Cell 4'}
-              </Paper>
+              <Paper className={classes.paper}>{'Cell 4'}</Paper>
             </CompatibleGrid>
           </CompatibleGrid>
         </CompatibleGrid>
@@ -172,11 +164,9 @@ class InteractiveGrid extends React.Component {
           </Paper>
         </Grid>
       </Grid>
-
     );
   }
 }
-
 
 InteractiveGrid.propTypes = {
   classes: PropTypes.object.isRequired,

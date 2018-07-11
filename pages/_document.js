@@ -42,10 +42,7 @@ class MyDocument extends Document {
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
-          <link
-            rel="stylesheet"
-            href="/static/fonts/Roboto/css.css"
-          />
+          <link rel="stylesheet" href="/static/fonts/Roboto/css.css" />
           <style id="insertion-point-jss" />
           {/* Twitter */}
           <meta name="twitter:card" content="summary" />
@@ -70,12 +67,10 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Main />
-          {
-            /* Global Site Tag (gtag.js) - Google Analytics */
-            /*
+          {/* Global Site Tag (gtag.js) - Google Analytics */
+          /*
                <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.google.id}`} />
-            */
-          }
+            */}
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{

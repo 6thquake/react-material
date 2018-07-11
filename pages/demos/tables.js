@@ -42,7 +42,7 @@ module.exports = require('fs')
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/CrossTable'), 'utf8')
 `,
-        }
+        },
       }}
     />
   );

@@ -4,7 +4,6 @@ import { withStyles } from 'react-material/styles';
 import TextField from 'react-material/TextField';
 import LocaleProvider from 'react-material/LocaleProvider';
 
-
 const styles = theme => ({
   container: {
     display: 'flex',

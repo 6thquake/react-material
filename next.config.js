@@ -1,11 +1,7 @@
 const webpack = require('webpack');
 const pkg = require('./package.json');
-const {
-  BundleAnalyzerPlugin
-} = require('webpack-bundle-analyzer');
-const {
-  findPages
-} = require('./docs/src/modules/utils/find');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { findPages } = require('./docs/src/modules/utils/find');
 
 process.env.LIB_VERSION = pkg.version;
 
@@ -31,27 +27,30 @@ module.exports = {
           generateStatsFile: true,
           // Will be available at `.next/stats.json`
           statsFilename: 'stats.json',
-        })
+        }),
       );
     }
 
     return Object.assign({}, config, {
       plugins,
       module: Object.assign({}, config.module, {
-        rules: config.module.rules.concat([{
-          test: /\.(css|md)$/,
-          loader: 'emit-file-loader',
-          options: {
-            name: 'dist/[path][name].[ext]',
+        rules: config.module.rules.concat([
+          {
+            test: /\.(css|md)$/,
+            loader: 'emit-file-loader',
+            options: {
+              name: 'dist/[path][name].[ext]',
+            },
           },
-        }, {
-          test: /\.(css|md)$/,
-          loader: 'raw-loader',
-        }, {
-        test:/\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader'
-      }
-      ]),
+          {
+            test: /\.(css|md)$/,
+            loader: 'raw-loader',
+          },
+          {
+            test: /\.(png|jpg|gif|svg)$/,
+            loader: 'file-loader',
+          },
+        ]),
       }),
     });
   },

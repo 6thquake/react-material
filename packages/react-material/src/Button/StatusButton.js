@@ -147,13 +147,13 @@ class StatusButton extends Component {
     const {onHandler, onClick} = this.props;
     let result;
     if (typeof onClick === 'function') {
-      onClick.apply(this, arguments);
+      onClick.apply(this);
     }
     if (this.status.status === 'progress') {
       return void 0;
     }
     if (typeof onHandler === 'function') {
-      result = onHandler.apply(this, arguments);
+      result = onHandler.apply(this);
     }
     //if (!this.status.statusButton) return;
     if (result instanceof Promise) {

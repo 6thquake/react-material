@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {withStyles} from 'react-material/styles';
-import List, {ListItem, ListItemText, ListItemIcon} from 'react-material/List';
-import {createMuiTheme} from 'react-material/styles';
+import { withStyles } from 'react-material/styles';
+import List, { ListItem, ListItemText, ListItemIcon } from 'react-material/List';
+import { createMuiTheme } from 'react-material/styles';
 import Collapse from 'react-material/transitions/Collapse';
 import classNames from 'classnames';
 
@@ -12,32 +12,32 @@ const styles = theme => ({
   '@media (max-width: 600px)': {
     MuiListItemButton: {
       paddingLeft: theme.spacing.unit * 2 + 'px !important',
-      paddingRight: theme.spacing.unit * 2 + 'px !important'
-    }
+      paddingRight: theme.spacing.unit * 2 + 'px !important',
+    },
   },
   '@global .selected': {
     fontWeight: theme.typography.fontWeightMedium,
-    color: theme.palette.primary.main
-  }
+    color: theme.palette.primary.main,
+  },
 });
 
 class MenuList extends React.Component {
   static childContextTypes = {
     level: PropTypes.number,
-  }
+  };
   static contextTypes = {
     level: PropTypes.number,
     itemKeysMap: PropTypes.object,
-  }
+  };
 
   getChildContext() {
     return {
-      level: this.context.level + 1
-    }
+      level: this.context.level + 1,
+    };
   }
 
   itemKeyToProps(item) {
-    const {itemKeysMap} = this.context;
+    const { itemKeysMap } = this.context;
     let result = {};
     for (const key in itemKeysMap) {
       const resultKey = itemKeysMap[key];
@@ -47,35 +47,34 @@ class MenuList extends React.Component {
   }
 
   render() {
-    const {list} = this.props;
-    return list ? <List>
-      {
-        list.map((item, index) => {
+    const { list } = this.props;
+    return list ? (
+      <List>
+        {list.map((item, index) => {
           const Component = withStyles(styles)(Item);
-          return <Component key={index} {...this.itemKeyToProps(item)}/>
-        })
-      }
-
-    </List> : null;
+          return <Component key={index} {...this.itemKeyToProps(item)} />;
+        })}
+      </List>
+    ) : null;
   }
 }
 
 MenuList.propTypes = {
-  list: PropTypes.array.isRequired
+  list: PropTypes.array.isRequired,
 };
 
 class Item extends React.Component {
   static contextTypes = {
     level: PropTypes.number,
     inlineIndent: PropTypes.number,
-    root:PropTypes.object
-  }
+    root: PropTypes.object,
+  };
   state = {
     open: this.props.open,
-    selected: this.selected()
-  }
-  selected(selected = this.props.selected){
-    const {children, beforeChildren, before} = this.props;
+    selected: this.selected(),
+  };
+  selected(selected = this.props.selected) {
+    const { children, beforeChildren, before } = this.props;
     if (!selected) return false;
     if (children) {
       //有子节点
@@ -92,34 +91,35 @@ class Item extends React.Component {
     }
   }
 
-  handleClick = (e) => {
-    const {
-      onClick,
-      onHandle
-    } = this.props;
+  handleClick = e => {
+    const { onClick, onHandle } = this.props;
     if (this.handle !== 'pending') {
       let result = onHandle();
       if (result instanceof Promise || typeof result.then === 'function') {
         this.handle = 'pending';
-        result.then(() => {
-          this.handle = 'resolve';
-        }, () => {
-          this.handle = 'reject';
-        }).catch(() => {
-          this.handle = 'reject';
-        });
+        result
+          .then(
+            () => {
+              this.handle = 'resolve';
+            },
+            () => {
+              this.handle = 'reject';
+            },
+          )
+          .catch(() => {
+            this.handle = 'reject';
+          });
       }
     }
     onClick();
     let root = ReactDOM.findDOMNode(this.context.root);
     let ele = root.getElementsByClassName('selected')[0];
-    if(ele){
-      ele.className = ele.className.replace('selected','');
+    if (ele) {
+      ele.className = ele.className.replace('selected', '');
     }
     this.state.selected = this.selected(true);
-    this.setState({open: !this.state.open});
-  }
-
+    this.setState({ open: !this.state.open });
+  };
 
   render() {
     const {
@@ -132,32 +132,39 @@ class Item extends React.Component {
       className: classNamePro,
       classes,
     } = this.props;
-    const {selected} = this.state;
-    const {
-      level,
-      inlineIndent
-    } = this.context;
-    const className = classNames({
-      [classes.MuiListItemButton]: true
-    }, classNamePro);
+    const { selected } = this.state;
+    const { level, inlineIndent } = this.context;
+    const className = classNames(
+      {
+        [classes.MuiListItemButton]: true,
+      },
+      classNamePro,
+    );
 
-    return before() ? <React.Fragment>
-      <ListItem onClick={this.handleClick}
-                className={className}
-                button
-                style={{paddingLeft: level * inlineIndent * theme.spacing.unit, ...style}}>
-        {icon && <ListItemIcon>
-          {icon}
-        </ListItemIcon>}
-        <ListItemText classes={{
-          primary: selected && 'selected'
-        }} primary={name}
-        />
-      </ListItem>
-      {beforeChildren() && children && <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-        <MenuList list={children}/>
-      </Collapse>}
-    </React.Fragment> : null;
+    return before() ? (
+      <React.Fragment>
+        <ListItem
+          onClick={this.handleClick}
+          className={className}
+          button
+          style={{ paddingLeft: level * inlineIndent * theme.spacing.unit, ...style }}
+        >
+          {icon && <ListItemIcon>{icon}</ListItemIcon>}
+          <ListItemText
+            classes={{
+              primary: selected && 'selected',
+            }}
+            primary={name}
+          />
+        </ListItem>
+        {beforeChildren() &&
+          children && (
+            <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+              <MenuList list={children} />
+            </Collapse>
+          )}
+      </React.Fragment>
+    ) : null;
   }
 }
 
@@ -179,7 +186,7 @@ Item.propTypes = {
   /**
    * 是否被选中
    */
-  selected: PropTypes.bool
+  selected: PropTypes.bool,
 };
 Item.defaultProps = {
   open: false,
@@ -187,7 +194,7 @@ Item.defaultProps = {
   beforeChildren: () => true,
   onClick: () => true,
   onHandle: () => true,
-  selected: false
+  selected: false,
 };
 
 class TreeMenu extends React.Component {
@@ -195,24 +202,20 @@ class TreeMenu extends React.Component {
     level: PropTypes.number,
     itemKeysMap: PropTypes.object,
     inlineIndent: PropTypes.number,
-    root:PropTypes.object
-  }
+    root: PropTypes.object,
+  };
 
   getChildContext() {
     return {
       level: 0,
       itemKeysMap: this.props.itemKeysMap,
       inlineIndent: this.props.inlineIndent,
-      root:this
-    }
+      root: this,
+    };
   }
 
-
-
   render() {
-    return (
-      <MenuList ref={e=>this.e=e} list={this.props.list}/>
-    );
+    return <MenuList ref={e => (this.e = e)} list={this.props.list} />;
   }
 }
 
@@ -239,12 +242,12 @@ TreeMenu.propTypes = {
     onHandle: PropTypes.string,
     style: PropTypes.string,
     className: PropTypes.string,
-    open: PropTypes.string
+    open: PropTypes.string,
   }),
   /**
    * 选中的样式，class
    */
-  selected: PropTypes.string
+  selected: PropTypes.string,
 };
 TreeMenu.defaultProps = {
   inlineIndent: 3,
@@ -259,11 +262,8 @@ TreeMenu.defaultProps = {
     style: 'style',
     className: 'className',
     open: 'open',
-    selected: 'selected'
-  }
+    selected: 'selected',
+  },
 };
 
 export default withStyles()(TreeMenu);
-
-
-

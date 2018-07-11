@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import Popover from '../Popover';
 import { withStyles } from '../styles';
 import TextField from '../TextField';
-import CascadeOption from './CascadeOption'
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown'
+import CascadeOption from './CascadeOption';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import InputAdornment from '../InputAdornment';
-
 
 const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
 
   textField: {
@@ -23,118 +22,119 @@ const styles = theme => ({
   arrowDown: {
     color: 'rgba(0, 0, 0, 0.54)',
   },
-  menuBox:{
+  menuBox: {
     // width: 200,
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
-  noData:{
+  noData: {
     padding: theme.spacing.unit,
     minWidth: 200,
-  }
+  },
 });
 
-
 class CascadeSelect extends React.Component {
-  constructor(props){
-    super(props)
-    this.series = []
+  constructor(props) {
+    super(props);
+    this.series = [];
   }
   state = {
     open: false,
     opens: [true, false, false, false, false],
     data: [this.props.dataSource],
     textFieldValue: '',
-    checkes:[-1, -1, -1, -1, -1],
-  }
+    checkes: [-1, -1, -1, -1, -1],
+  };
 
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
-    })
-  }
+    });
+  };
 
-  handleInputClick = (e) =>{
+  handleInputClick = e => {
     this.setState({
       open: true,
       anchorEl: e.currentTarget,
-    })
-  }
-  handlePopOverClose=()=>{
+    });
+  };
+  handlePopOverClose = () => {
     this.setState({
       open: false,
-    })
-  }
+    });
+  };
 
-  handelMenuChange = (e) => {
-    let {level, next } = e
-    this.updateSeries(e)
-    this.updateMenuData(next, level)
-    this.updateNextMenu(e)
-    this.setTextFieldValue()
-    this.checkChange(e)
+  handelMenuChange = e => {
+    let { level, next } = e;
+    this.updateSeries(e);
+    this.updateMenuData(next, level);
+    this.updateNextMenu(e);
+    this.setTextFieldValue();
+    this.checkChange(e);
     // 将信息传给父组件
-    this.props.onChange && this.props.onChange(this.series)
-  }
+    this.props.onChange && this.props.onChange(this.series);
+  };
 
-  updateSeries = (e) => {
+  updateSeries = e => {
     // 清空当前级之后的数据 并更新当前级数据
-    let { item, level, index } = e
-    this.series.splice(level)
-    this.series[level] = item[index]
-  }
+    let { item, level, index } = e;
+    this.series.splice(level);
+    this.series[level] = item[index];
+  };
 
   checkChange(e) {
-    let {level, index } = e
-    let checkes = this.state.checkes
+    let { level, index } = e;
+    let checkes = this.state.checkes;
     for (let i = level; i < checkes.length - 1; i++) {
-      checkes[i + 1] = -1
+      checkes[i + 1] = -1;
     }
-    checkes[level] = index
+    checkes[level] = index;
 
     this.setState({
-      checkes: checkes
-    })
+      checkes: checkes,
+    });
   }
 
   updateMenuData = (next, level) => {
-    let opens = this.state.opens
+    let opens = this.state.opens;
     for (let i = level; i < opens.length - 1; i++) {
-      opens[i + 1] = false
+      opens[i + 1] = false;
     }
     this.setState({
-      opens: opens
-    })
-  }
+      opens: opens,
+    });
+  };
 
-  updateNextMenu = (e) => {
-    let { level, next } = e
-    let data = next
+  updateNextMenu = e => {
+    let { level, next } = e;
+    let data = next;
     if (this.state.opens[level + 1] === false && data.length > 0) {
-      let opens = this.state.opens
-      opens[level + 1] = true
-      let items = this.state.data
-      items[level + 1] = data
+      let opens = this.state.opens;
+      opens[level + 1] = true;
+      let items = this.state.data;
+      items[level + 1] = data;
       this.setState({
         opens: opens,
-        data: items
-      })
+        data: items,
+      });
     }
-  }
-  // 
+  };
+  //
   setTextFieldValue = () => {
-    let separator = this.props.separator || '/'
-    let text = this.series.map((item, index) => {
-      return item.text
-    }).join(` ${separator} `)
+    let separator = this.props.separator || '/';
+    let text = this.series
+      .map((item, index) => {
+        return item.text;
+      })
+      .join(` ${separator} `);
     this.setState({
-      textFieldValue: text
-    })
-  }
+      textFieldValue: text,
+    });
+  };
 
   renderMenuItems() {
-    let levels = [0, 1, 2, 3, 4]
-    let { children, renderLabel = 'label', renderValue = 'value'} = this.props
+    let levels = [0, 1, 2, 3, 4];
+    let { children, renderLabel = 'label', renderValue = 'value' } = this.props;
     let list = levels.map((item, index) => {
       return (
         <CascadeOption
@@ -144,35 +144,31 @@ class CascadeSelect extends React.Component {
           open={this.state.opens[item]}
           dataSource={this.state.data[item]}
           onChange={this.handelMenuChange}
-          checkedIndex={this.state.checkes[item]} 
+          checkedIndex={this.state.checkes[item]}
           renderLabel={renderLabel}
           renderValue={renderValue}
-        >
-        </CascadeOption>
-      )
-    })
-    return list
+        />
+      );
+    });
+    return list;
   }
   render() {
-    const { classes , label, dataSource, notFound , width} = this.props
-    const { open, anchorEl} = this.state
-    const hasData = dataSource && dataSource.length > 0
-    const t = <div className={classes.noData}>{notFound}</div>
+    const { classes, label, dataSource, notFound, width } = this.props;
+    const { open, anchorEl } = this.state;
+    const hasData = dataSource && dataSource.length > 0;
+    const t = <div className={classes.noData}>{notFound}</div>;
     return (
       <div className={classes.container}>
         <div className={classes.inputBox}>
           <TextField
-            InputProps = {
-              {
-                endAdornment: ( <
-                  InputAdornment position = "end" >
-                    <ArrowDropDown className={classes.arrowDown}/ >
-                  </InputAdornment>
-                ),
-              }
-            }
-            style = {{width}}
-
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <ArrowDropDown className={classes.arrowDown} />
+                </InputAdornment>
+              ),
+            }}
+            style={{ width }}
             onClick={this.handleInputClick}
             id="select"
             label={label}
@@ -180,10 +176,9 @@ class CascadeSelect extends React.Component {
             value={this.state.textFieldValue}
             onChange={this.handleChange()}
             margin="normal"
-          >
-          </TextField>
+          />
         </div>
-        <Popover 
+        <Popover
           anchorEl={anchorEl}
           anchorOrigin={{
             vertical: 'bottom',
@@ -194,13 +189,9 @@ class CascadeSelect extends React.Component {
             horizontal: 'left',
           }}
           open={open}
-          onClose = {
-            this.handlePopOverClose
-          }
+          onClose={this.handlePopOverClose}
         >
-          <div className={classes.menuBox}>
-            {hasData?this.renderMenuItems(): t}
-          </div>
+          <div className={classes.menuBox}>{hasData ? this.renderMenuItems() : t}</div>
         </Popover>
       </div>
     );
@@ -214,7 +205,7 @@ CascadeSelect.propTypes = {
   dataSource: PropTypes.array.isRequired,
   renderLabel: PropTypes.string,
   notFound: PropTypes.string,
-  width: PropTypes.number
-}
+  width: PropTypes.number,
+};
 
 export default withStyles(styles, { name: 'RMCascadeSelect' })(CascadeSelect);

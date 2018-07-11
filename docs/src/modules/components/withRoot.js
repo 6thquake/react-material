@@ -6,13 +6,10 @@ import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
-import "babel-polyfill";
+import 'babel-polyfill';
 
 if (process.browser) {
-  loadCSS(
-    '/static/fonts/Material+Icons/icon.css',
-    document.querySelector('#insertion-point-jss'),
-  );
+  loadCSS('/static/fonts/Material+Icons/icon.css', document.querySelector('#insertion-point-jss'));
   loadCSS(
     '/static/docsearch.js/2/docsearch.min.css',
     document.querySelector('#insertion-point-jss'),

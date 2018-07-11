@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import Input from '../Input';
@@ -8,7 +8,7 @@ import Typography from '../Typography';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import IconButton from '../IconButton';
-import {withLocale} from '../LocaleProvider';
+import { withLocale } from '../LocaleProvider';
 
 const styles = theme => ({
   root: {
@@ -32,36 +32,36 @@ const styles = theme => ({
   caption: {
     flexShrink: 0,
   },
-  firstpage:{
-    cursor:'pointer',
-    marginLeft:10
+  firstpage: {
+    cursor: 'pointer',
+    marginLeft: 10,
   },
-  lastpage:{
-    cursor:'pointer',
-    marginRight:10
+  lastpage: {
+    cursor: 'pointer',
+    marginRight: 10,
   },
   input: {
     fontSize: 'inherit',
     flexShrink: 0,
   },
-  pageinput:{
-    fontSize:12,
-    width:50,
-    height:28,
-    cursor:'text',
-    color:'#666',
-    padding:'0 7px',
+  pageinput: {
+    fontSize: 12,
+    width: 50,
+    height: 28,
+    cursor: 'text',
+    color: '#666',
+    padding: '0 7px',
     border: 'solid 1px #d9d9d9',
-    borderRadius:6,
-    margin:'0 8px',
-    '&:focus':{
+    borderRadius: 6,
+    margin: '0 8px',
+    '&:focus': {
       borderColor: 'blue',
       transition: 'all 0.3s',
     },
-    '&:hove':{
+    '&:hove': {
       transition: 'all 0.3s',
       borderColor: 'blue',
-    }
+    },
   },
   selectRoot: {
     marginRight: theme.spacing.unit * 4,
@@ -72,8 +72,8 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit,
     paddingRight: theme.spacing.unit * 2,
   },
-  jump:{
-    lineHeight:'28px',
+  jump: {
+    lineHeight: '28px',
   },
   selectIcon: {
     top: 1,
@@ -86,7 +86,6 @@ const styles = theme => ({
 });
 
 class Pagination extends Component {
-
   static propTypes = {
     /**
      * Properties applied to the back arrow `IconButton` component.
@@ -104,7 +103,7 @@ class Pagination extends Component {
     /**
      * The zero-based index of the current page.
      */
-    currentPage : PropTypes.number,
+    currentPage: PropTypes.number,
     /**
      * This is page size of pagination
      */
@@ -144,43 +143,43 @@ class Pagination extends Component {
     /**
      * show jump to first and last page button.
      */
-    showTwoEnds: PropTypes.bool
-  }
+    showTwoEnds: PropTypes.bool,
+  };
 
   static defaultProps = {
     currentPage: 1,
     pageSize: 5,
-    total:0,
-    labelRowsPerPage:'Rows per page:',
-    rowsPerPageOptions:	[5, 10, 25],
+    total: 0,
+    labelRowsPerPage: 'Rows per page:',
+    rowsPerPageOptions: [5, 10, 25],
     labelDisplayedRows: ({ from, to, total }) => `${from}-${to} of ${total}`,
-  }
+  };
 
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      minwidth:true,
-      value:1
-    }
+    this.state = {
+      minwidth: true,
+      value: 1,
+    };
   }
 
   componentDidMount() {
-      console.log(this.div.clientWidth);
-      //分页的宽度小于200px时，只显示前后页按钮
-      if(this.div.clientWidth<250){
-        this.setState({
-          minwidth:false
-        })
-      }
-      this.props.pageCallbackFn (this.props.currentPage)
+    console.log(this.div.clientWidth);
+    //分页的宽度小于200px时，只显示前后页按钮
+    if (this.div.clientWidth < 250) {
+      this.setState({
+        minwidth: false,
+      });
+    }
+    this.props.pageCallbackFn(this.props.currentPage);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if(nextProps!==prevState.preProps){
+    if (nextProps !== prevState.preProps) {
       return {
-        value: nextProps.currentPage+1,
-        preProps:nextProps
-      }
+        value: nextProps.currentPage + 1,
+        preProps: nextProps,
+      };
     }
     return null;
   }
@@ -189,162 +188,196 @@ class Pagination extends Component {
     const { total, pageCallbackFn, currentPage, pageSize } = this.props;
     const newLastPage = Math.max(0, Math.ceil(total / pageSize) - 1);
     if (currentPage > newLastPage) {
-      pageCallbackFn( newLastPage);
+      pageCallbackFn(newLastPage);
     }
   }
 
-  createPage(){
-      const { classes,
-        currentPage,
-        pageSize,
-        total,
-        backIconButtonProps,
-        nextIconButtonProps,
-        labelDisplayedRows,
-        labelRowsPerPage,
-        onChangeRowsPerPage,
-        rowsPerPageOptions,
-        SelectProps,
-        showSizeChanger,
-        showQuickJumper,
-        showTwoEnds,
-        homePage,
-        lastPage,
-        jumpTo,
-        page,
-        } = this.props;
-      const {minwidth,value}=this.state;
-      const totalPage = Math.ceil(total/pageSize);
-      return <div className={classes.root} ref={(div) => this.div = div}>
-                <div className={classes.toolbar}>
-                    <div className={classes.spacer} />
-                  {rowsPerPageOptions.length > 1&&showSizeChanger && (
-                      <Typography variant="caption" className={classes.caption}>
-                        {labelRowsPerPage}
-                      </Typography>
-                    )}
-                    {rowsPerPageOptions.length > 1&&showSizeChanger && (
-                      <Select
-                        classes={{
-                          root: classes.selectRoot,
-                          select: classes.select,
-                          icon: classes.selectIcon,
-                        }}
-                        input={<Input className={classes.input} disableUnderline />}
-                        value={pageSize}
-                        onChange={onChangeRowsPerPage}
-                        {...SelectProps}
-                      >
-                        {rowsPerPageOptions.map(rowsPerPageOption => (
-                          <MenuItem
-                            className={classes.menuItem}
-                            key={rowsPerPageOption}
-                            value={rowsPerPageOption}
-                          >
-                            {rowsPerPageOption}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    )}
-                  <Typography variant="caption" className={classes.caption}>
-                        {minwidth?labelDisplayedRows({
-                          from: total === 0 ? 0 : currentPage * pageSize + 1,
-                          to: Math.min(total, (currentPage + 1) * pageSize),
-                          total,
-                          currentPage,
-                        }):null}
-                  </Typography>
-                  {showTwoEnds?<Typography variant="caption" className={classes.caption + ' '+ classes.jump+' '+ classes.firstpage} onClick={this.goEnd.bind(this,'first')}>
-                    {homePage}
-                  </Typography>:null}
-                  <IconButton
-                    onClick={this.prePageHandeler.bind(this)}
-                    disabled={currentPage === 0}
-                    {...backIconButtonProps}
+  createPage() {
+    const {
+      classes,
+      currentPage,
+      pageSize,
+      total,
+      backIconButtonProps,
+      nextIconButtonProps,
+      labelDisplayedRows,
+      labelRowsPerPage,
+      onChangeRowsPerPage,
+      rowsPerPageOptions,
+      SelectProps,
+      showSizeChanger,
+      showQuickJumper,
+      showTwoEnds,
+      homePage,
+      lastPage,
+      jumpTo,
+      page,
+    } = this.props;
+    const { minwidth, value } = this.state;
+    const totalPage = Math.ceil(total / pageSize);
+    return (
+      <div className={classes.root} ref={div => (this.div = div)}>
+        <div className={classes.toolbar}>
+          <div className={classes.spacer} />
+          {rowsPerPageOptions.length > 1 &&
+            showSizeChanger && (
+              <Typography variant="caption" className={classes.caption}>
+                {labelRowsPerPage}
+              </Typography>
+            )}
+          {rowsPerPageOptions.length > 1 &&
+            showSizeChanger && (
+              <Select
+                classes={{
+                  root: classes.selectRoot,
+                  select: classes.select,
+                  icon: classes.selectIcon,
+                }}
+                input={<Input className={classes.input} disableUnderline />}
+                value={pageSize}
+                onChange={onChangeRowsPerPage}
+                {...SelectProps}
+              >
+                {rowsPerPageOptions.map(rowsPerPageOption => (
+                  <MenuItem
+                    className={classes.menuItem}
+                    key={rowsPerPageOption}
+                    value={rowsPerPageOption}
                   >
-                    <KeyboardArrowLeft />
-                  </IconButton>
-                  <IconButton
-                    onClick={this.nextPageHandeler.bind(this)}
-                    disabled={currentPage >= totalPage - 1}
-                    {...nextIconButtonProps}
-                  >
-                    <KeyboardArrowRight />
-                  </IconButton>
-                  {showTwoEnds?<Typography variant="caption" className={classes.caption + ' '+ classes.jump+' '+ classes.lastpage} onClick={this.goEnd.bind(this,'last')}>
-                    {lastPage}
-                  </Typography>:null}
-                  {showQuickJumper?<Typography variant="caption"
-                              className={classes.caption + ' '+ classes.jump}>
-                    {jumpTo}<Input className={classes.pageinput} disableUnderline  type='number' value={value} onChange={this.jumpTo.bind(this)}/>{page}
-                  </Typography>:null}
-                </div>
-              </div>
+                    {rowsPerPageOption}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+          <Typography variant="caption" className={classes.caption}>
+            {minwidth
+              ? labelDisplayedRows({
+                  from: total === 0 ? 0 : currentPage * pageSize + 1,
+                  to: Math.min(total, (currentPage + 1) * pageSize),
+                  total,
+                  currentPage,
+                })
+              : null}
+          </Typography>
+          {showTwoEnds ? (
+            <Typography
+              variant="caption"
+              className={classes.caption + ' ' + classes.jump + ' ' + classes.firstpage}
+              onClick={this.goEnd.bind(this, 'first')}
+            >
+              {homePage}
+            </Typography>
+          ) : null}
+          <IconButton
+            onClick={this.prePageHandeler.bind(this)}
+            disabled={currentPage === 0}
+            {...backIconButtonProps}
+          >
+            <KeyboardArrowLeft />
+          </IconButton>
+          <IconButton
+            onClick={this.nextPageHandeler.bind(this)}
+            disabled={currentPage >= totalPage - 1}
+            {...nextIconButtonProps}
+          >
+            <KeyboardArrowRight />
+          </IconButton>
+          {showTwoEnds ? (
+            <Typography
+              variant="caption"
+              className={classes.caption + ' ' + classes.jump + ' ' + classes.lastpage}
+              onClick={this.goEnd.bind(this, 'last')}
+            >
+              {lastPage}
+            </Typography>
+          ) : null}
+          {showQuickJumper ? (
+            <Typography variant="caption" className={classes.caption + ' ' + classes.jump}>
+              {jumpTo}
+              <Input
+                className={classes.pageinput}
+                disableUnderline
+                type="number"
+                value={value}
+                onChange={this.jumpTo.bind(this)}
+              />
+              {page}
+            </Typography>
+          ) : null}
+        </div>
+      </div>
+    );
   }
 
   pageClick(currentPage) {
-      const getCurrentPage = this.props.pageCallbackFn ;
-      //将当前页码返回父组件
-      getCurrentPage(currentPage)
+    const getCurrentPage = this.props.pageCallbackFn;
+    //将当前页码返回父组件
+    getCurrentPage(currentPage);
   }
 
   prePageHandeler() {
-      let {currentPage} = this.props;
-      if (--currentPage === -1) {
-          return false
-      }
-      this.pageClick(currentPage)
+    let { currentPage } = this.props;
+    if (--currentPage === -1) {
+      return false;
+    }
+    this.pageClick(currentPage);
   }
 
   nextPageHandeler() {
-      let {currentPage,total,pageSize} = this.props;
-      const totalPage = Math.ceil(total/pageSize);
-      if (++currentPage > totalPage) {
-          return false
-      }
-      this.pageClick(currentPage)
+    let { currentPage, total, pageSize } = this.props;
+    const totalPage = Math.ceil(total / pageSize);
+    if (++currentPage > totalPage) {
+      return false;
+    }
+    this.pageClick(currentPage);
   }
 
-  goEnd(param){
+  goEnd(param) {
     console.log(param);
-    const {pageSize, total,pageCallbackFn} = this.props,
-      totalPage = Math.ceil(total/pageSize),
+    const { pageSize, total, pageCallbackFn } = this.props,
+      totalPage = Math.ceil(total / pageSize),
       getCurrentPage = pageCallbackFn;
-    if(param==='first'){
-      getCurrentPage(0)
+    if (param === 'first') {
+      getCurrentPage(0);
     }
-    if(param==='last'){
-      getCurrentPage(totalPage-1)
+    if (param === 'last') {
+      getCurrentPage(totalPage - 1);
     }
   }
 
-  jumpTo(e){
-    const {pageSize, total,pageCallbackFn} = this.props,
-      value=e.target.value,
-      totalPage = Math.ceil(total/pageSize);
-    this.setState({
-      value
-    },()=>{
-      const value = this.state.value;
-      if(value<1){
-        pageCallbackFn(0);this.setState({
-          value:1
-        })
-      }
-      if(value>0&&value<=totalPage){
-        pageCallbackFn(value-1)
-      }
-      if(value>totalPage){
-        pageCallbackFn(totalPage-1);
-        this.setState({
-          value:totalPage
-        })
-      }
-    })
+  jumpTo(e) {
+    const { pageSize, total, pageCallbackFn } = this.props,
+      value = e.target.value,
+      totalPage = Math.ceil(total / pageSize);
+    this.setState(
+      {
+        value,
+      },
+      () => {
+        const value = this.state.value;
+        if (value < 1) {
+          pageCallbackFn(0);
+          this.setState({
+            value: 1,
+          });
+        }
+        if (value > 0 && value <= totalPage) {
+          pageCallbackFn(value - 1);
+        }
+        if (value > totalPage) {
+          pageCallbackFn(totalPage - 1);
+          this.setState({
+            value: totalPage,
+          });
+        }
+      },
+    );
   }
-  
+
   render() {
-      return this.createPage();
+    return this.createPage();
   }
 }
-export default withStyles(styles, { name: 'RMPagination' })(withLocale({name:'Pagination'})(Pagination));
+export default withStyles(styles, { name: 'RMPagination' })(
+  withLocale({ name: 'Pagination' })(Pagination),
+);

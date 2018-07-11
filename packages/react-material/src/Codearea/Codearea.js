@@ -12,15 +12,15 @@ const styles = theme => ({
   },
 });
 
-class Codearea extends React.Component{
+class Codearea extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     language: PropTypes.string,
-  }
+  };
 
-  render () {
+  render() {
     let lang = '';
-    switch((this.props.language || '').toLowerCase()){
+    switch ((this.props.language || '').toLowerCase()) {
       case 'css':
         lang = 'css';
         break;
@@ -45,36 +45,34 @@ class Codearea extends React.Component{
       'classes.root': true,
       'react-prism': true,
       // [`language-${this.props.language}`]: !!this.props.language
-      [`language-${lang}`]: true
-    })
+      [`language-${lang}`]: true,
+    });
 
     return (
       <pre ref={ref => (this.el = ref)} className={className}>
-        <code>
-          {this.props.children}
-        </code>
+        <code>{this.props.children}</code>
       </pre>
-    )
+    );
   }
 
-  componentDidMount () {
-    this.highlightCode()
+  componentDidMount() {
+    this.highlightCode();
   }
 
-  componentDidUpdate () {
-    this.highlightCode()
+  componentDidUpdate() {
+    this.highlightCode();
   }
 
-  highlightCode () {
-    prism.highlightElement(this.el)
+  highlightCode() {
+    prism.highlightElement(this.el);
   }
 }
 
 Codearea.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  texttype:PropTypes.string
+  texttype: PropTypes.string,
 };
 
 export default withStyles(styles, { flip: false, name: 'RMCodearea' })(Codearea);
-export { lightTheme, darkTheme, setPrismTheme }
+export { lightTheme, darkTheme, setPrismTheme };

@@ -1,22 +1,22 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import CheckboxGroupStandalone from './CheckboxGroupStandalone';
 import FormHelperText from '../FormHelperText';
-import {withFormsy, propTypes} from 'formsy-react';
-import {compose} from 'recompose';
+import { withFormsy, propTypes } from 'formsy-react';
+import { compose } from 'recompose';
 import withFormItem from '../Form/withFormItem';
 import withForm from '../Form/withForm';
-import omit from "../utils/omit";
+import omit from '../utils/omit';
 
 const style = theme => ({
   formHelpTextContainer: {
     marginTop: '-8px',
-    minHeight: '12px'
+    minHeight: '12px',
   },
   formHelperTextRoot: {
-    marginTop: 0
-  }
+    marginTop: 0,
+  },
 });
 
 class CheckboxGroup extends Component {
@@ -27,9 +27,9 @@ class CheckboxGroup extends Component {
     // for Formsy to work.
     this.props.setValue(value);
 
-    const {onChange} = this.props;
+    const { onChange } = this.props;
     onChange && onChange(event, value);
-  }
+  };
 
   renderFormComponent() {
     const {
@@ -74,7 +74,7 @@ class CheckboxGroup extends Component {
     }
 
     const helpTextClasses = {
-      root: classes.formHelperTextRoot
+      root: classes.formHelperTextRoot,
     };
 
     const restClasses = omit(classes, ['formHelpTextContainer', 'formHelperTextRoot']);
@@ -92,10 +92,14 @@ class CheckboxGroup extends Component {
           {children}
         </CheckboxGroupStandalone>
         <div className={classes.formHelpTextContainer}>
-          {error && <FormHelperText classes={helpTextClasses} error>{helperText}</FormHelperText>}
+          {error && (
+            <FormHelperText classes={helpTextClasses} error>
+              {helperText}
+            </FormHelperText>
+          )}
         </div>
       </React.Fragment>
-    )
+    );
   }
 
   render() {
@@ -111,14 +115,17 @@ CheckboxGroup.propTypes = {
 };
 
 CheckboxGroup.defaultProps = {
-  formInputRef: React.createRef()
+  formInputRef: React.createRef(),
 };
 
-const FormComponent = compose(withFormsy, withFormItem, withStyles(style, { name: 'RMCheckboxGroup' }))(CheckboxGroup);
+const FormComponent = compose(
+  withFormsy,
+  withFormItem,
+  withStyles(style, { name: 'RMCheckboxGroup' }),
+)(CheckboxGroup);
 
 export default compose(withForm)(FormComponent, CheckboxGroupStandalone);
 
 /**
  * @ignore - do not document.
  */
-

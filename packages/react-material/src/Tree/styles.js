@@ -1,22 +1,22 @@
-import {fade} from '../styles/colorManipulator';
+import { fade } from '../styles/colorManipulator';
 
 const treePrefixCls = 'rm-tree';
-const treeDefaultOpenIcon = "arrow_drop_down";
-const treeShowlineOpenIcon = "remove";
-const treeShowlineCloseIcon = "add";
+const treeDefaultOpenIcon = 'arrow_drop_down';
+const treeShowlineOpenIcon = 'remove';
+const treeShowlineCloseIcon = 'add';
 // const treeDocIcon = "brightness_1";
-const treeDocIcon = "folder_open";
+const treeDocIcon = 'folder_open';
 const borderColorBase = '#d9d9d9';
 function checkboxFn(checkboxPrefixCls, theme) {
   const checkboxSize = 16;
   const inputDisabledBg = '#f5f5f5',
-    borderColorSplit = fade('#000', .91);  // split border inside a component
-  const borderWidthBase = '1px';            // width of the border for a component
+    borderColorSplit = fade('#000', 0.91); // split border inside a component
+  const borderWidthBase = '1px'; // width of the border for a component
   const borderStyleBase = 'solid';
-  const checkWidth = checkboxSize / 14 * 5;
-  const checkHeight = checkboxSize / 14 * 8;
+  const checkWidth = (checkboxSize / 14) * 5;
+  const checkHeight = (checkboxSize / 14) * 8;
   const checkboxInnerPrefixCls = `${checkboxPrefixCls}-inner`;
-  const indeterminateWidth = checkboxSize / 14 * 8;
+  const indeterminateWidth = (checkboxSize / 14) * 8;
   const indeterminateHeight = checkboxSize / 14;
   // 一般状态
   return {
@@ -31,7 +31,7 @@ function checkboxFn(checkboxPrefixCls, theme) {
       verticalAlign: 'middle',
       top: '-0.09em',
       [`& .${checkboxPrefixCls}-wrapper:hover &-inner,&:hover &-inner,&-input:focus + &-inner`]: {
-        borderColor: theme.palette.primary.main
+        borderColor: theme.palette.primary.main,
       },
       '&-checked:after': {
         position: 'absolute',
@@ -44,18 +44,18 @@ function checkboxFn(checkboxPrefixCls, theme) {
         content: '""',
         animation: 'antCheckboxEffect 0.36s ease-in-out',
         animationFillMode: 'both',
-        visibility: 'hidden'
+        visibility: 'hidden',
       },
       [`&:hover:after,.${checkboxPrefixCls}-wrapper:hover &:after`]: {
-        visibility: 'visible'
+        visibility: 'visible',
       },
       '&-inner': {
         position: 'relative',
         top: 0,
         left: 0,
         display: 'block',
-        width: checkboxSize+'px',
-        height: checkboxSize+'px',
+        width: checkboxSize + 'px',
+        height: checkboxSize + 'px',
         border: `${borderWidthBase} ${borderStyleBase} ${borderColorBase}`,
         borderRadius: '2px',
         backgroundColor: '#fff',
@@ -63,7 +63,7 @@ function checkboxFn(checkboxPrefixCls, theme) {
         '&:after': {
           transform: 'rotate(45deg) scale(0)',
           position: 'absolute',
-          left: (checkboxSize - checkWidth ) / 2 - 0.5 * (checkboxSize / 14) + 'px',
+          left: (checkboxSize - checkWidth) / 2 - 0.5 * (checkboxSize / 14) + 'px',
           top: (checkboxSize - checkHeight) / 2 - 2 * (checkboxSize / 14) + 'px',
           display: 'table',
           width: checkWidth + 'px',
@@ -73,7 +73,7 @@ function checkboxFn(checkboxPrefixCls, theme) {
           borderLeft: 0,
           content: '" "',
           transition: 'all .1s @ease-in-back',
-        }
+        },
       },
       '&-input': {
         position: 'absolute',
@@ -85,8 +85,8 @@ function checkboxFn(checkboxPrefixCls, theme) {
         bottom: 0,
         right: 0,
         width: '100%',
-        height: '100%'
-      }
+        height: '100%',
+      },
     },
     // 半选状态
     [`.${checkboxPrefixCls}-indeterminate .${checkboxInnerPrefixCls}:after`]: {
@@ -96,10 +96,10 @@ function checkboxFn(checkboxPrefixCls, theme) {
       left: (checkboxSize - 2 - indeterminateWidth) / 2,
       top: (checkboxSize - 3 - indeterminateHeight) / 2,
       width: indeterminateWidth,
-      height: indeterminateHeight
+      height: indeterminateHeight,
     },
     [`.${checkboxPrefixCls}-indeterminate.${checkboxPrefixCls}-disabled .${checkboxInnerPrefixCls}:after`]: {
-      borderColor: fade('#000', .25)
+      borderColor: fade('#000', 0.25),
     },
     // 选中状态
     [`.${checkboxPrefixCls}-checked .${checkboxInnerPrefixCls}:after `]: {
@@ -110,37 +110,37 @@ function checkboxFn(checkboxPrefixCls, theme) {
       borderTop: 0,
       borderLeft: 0,
       content: '" "',
-      transition: 'all .2s @ease-out-back .1s'
+      transition: 'all .2s @ease-out-back .1s',
     },
     [`.${checkboxPrefixCls}-checked,.${checkboxPrefixCls}-indeterminate`]: {
       [`& .${checkboxInnerPrefixCls}`]: {
         backgroundColor: theme.palette.primary.main,
-        borderColor: theme.palette.primary.main
-      }
+        borderColor: theme.palette.primary.main,
+      },
     },
     [`.${checkboxPrefixCls}-disabled`]: {
       cursor: 'not-allowed',
       [`&.${checkboxPrefixCls}-checked`]: {
         [`& .${checkboxInnerPrefixCls}:after`]: {
           animationName: 'none',
-          borderColor: fade('#000', .25)
-        }
+          borderColor: fade('#000', 0.25),
+        },
       },
       [`& .${checkboxPrefixCls}-input`]: {
-        cursor: 'not-allowed'
+        cursor: 'not-allowed',
       },
       [`& .${checkboxInnerPrefixCls}`]: {
         borderColor: `${borderColorBase} !important`,
         backgroundColor: inputDisabledBg,
         '&:after': {
           animationName: 'none',
-          borderColor: inputDisabledBg
-        }
+          borderColor: inputDisabledBg,
+        },
       },
       '& + span': {
-        color: fade('#000', .25),
-        cursor: 'not-allowed'
-      }
+        color: fade('#000', 0.25),
+        cursor: 'not-allowed',
+      },
     },
     [`.${checkboxPrefixCls}-wrapper`]: {
       // .reset-component;
@@ -148,12 +148,12 @@ function checkboxFn(checkboxPrefixCls, theme) {
       cursor: 'pointer',
       display: 'inline-block',
       '& + &': {
-        marginLeft: '8px'
-      }
+        marginLeft: '8px',
+      },
     },
     [`.${checkboxPrefixCls}-wrapper + span,.${checkboxPrefixCls} + span`]: {
       paddingLeft: '8px',
-      paddingRight: '8px'
+      paddingRight: '8px',
     },
     [`.${checkboxPrefixCls}-group`]: {
       // .reset-component;
@@ -162,21 +162,21 @@ function checkboxFn(checkboxPrefixCls, theme) {
         display: 'inline-block',
         marginRight: '8px',
         '&:last-child': {
-          marginRight: 0
-        }
+          marginRight: 0,
+        },
       },
       '&-item + &-item': {
-        marginLeft: 0
-      }
-    }
+        marginLeft: 0,
+      },
+    },
   };
 }
 
 function iconFont(content) {
   return {
     fontFamily: "'Material Icons'",
-    content: `"${content}"`
-  }
+    content: `"${content}"`,
+  };
 }
 
 function treeSwitcherIcon(type = treeDefaultOpenIcon) {
@@ -189,7 +189,7 @@ function treeSwitcherIcon(type = treeDefaultOpenIcon) {
       ...iconFont(type),
       fontWeight: 'bold',
       transition: 'transform .3s',
-    }
+    },
   };
 }
 
@@ -202,20 +202,20 @@ function treeShowLineIcon(type) {
       ...iconFont(type),
       verticalAlign: 'baseline',
       fontWeight: 'normal',
-      transition: 'transform .3s'
-    }
+      transition: 'transform .3s',
+    },
   };
 }
 
 const styles = theme => {
   const highlightColor = '#f5222d',
-    textColor = fade('#000', .65),
-    itemHoverBg = fade(theme.palette.primary.main, .1),
-    disabledColor = fade('#000', .25),
-    treeAhowlineIconColor = fade('#000', .45);
+    textColor = fade('#000', 0.65),
+    itemHoverBg = fade(theme.palette.primary.main, 0.1),
+    disabledColor = fade('#000', 0.25),
+    treeAhowlineIconColor = fade('#000', 0.45);
   return {
     '@global': {
-      ...checkboxFn(`${treePrefixCls}-checkbox`,theme),
+      ...checkboxFn(`${treePrefixCls}-checkbox`, theme),
       [`.${treePrefixCls}`]: {
         fontSize: '14px',
         lineHeight: 1.5,
@@ -252,7 +252,7 @@ const styles = theme => {
             marginTop: '-2px',
             /* Required to make elements draggable in old WebKit */
             '-khtml-user-drag': 'element',
-            '-webkit-user-drag': 'element'
+            '-webkit-user-drag': 'element',
           },
           '&.drag-over': {
             '& > span[draggable]': {
@@ -263,23 +263,23 @@ const styles = theme => {
           },
           '&.drag-over-gap-top': {
             '& > span[draggable]': {
-              borderTopColor: theme.palette.primary.main
-            }
+              borderTopColor: theme.palette.primary.main,
+            },
           },
           '&.drag-over-gap-bottom': {
             '& > span[draggable]': {
-              borderBottomColor: theme.palette.primary.main
-            }
+              borderBottomColor: theme.palette.primary.main,
+            },
           },
           '&.filter-node': {
             '& > span': {
               color: `${highlightColor} !important`,
-              fontWeight: '500 !important'
-            }
+              fontWeight: '500 !important',
+            },
           },
           '& ul': {
             margin: 0,
-            padding: '0 0 0 18px'
+            padding: '0 0 0 18px',
           },
           [`& .${treePrefixCls}-node-content-wrapper`]: {
             display: 'inline-block',
@@ -295,15 +295,15 @@ const styles = theme => {
             height: '24px',
             lineHeight: '24px',
             '&:hover': {
-              backgroundColor: itemHoverBg
+              backgroundColor: itemHoverBg,
             },
             [`&.${treePrefixCls}-node-selected`]: {
-              backgroundColor: fade(theme.palette.primary.main, .2)
-            }
+              backgroundColor: fade(theme.palette.primary.main, 0.2),
+            },
           },
           '& span': {
             [`&.${treePrefixCls}-checkbox`]: {
-              margin: '4px 4px 0 2px'
+              margin: '4px 4px 0 2px',
             },
             [`&.${treePrefixCls}-switcher,&.${treePrefixCls}-iconEle`]: {
               margin: 0,
@@ -316,11 +316,11 @@ const styles = theme => {
               cursor: 'pointer',
               outline: 'none',
               textAlign: 'center',
-              '& .material-icons':{
-                verticalAlign:'baseline',
-                fontSize:'inherit',
-                lineHeight:'inherit',
-              }
+              '& .material-icons': {
+                verticalAlign: 'baseline',
+                fontSize: 'inherit',
+                lineHeight: 'inherit',
+              },
             },
             [`&.${treePrefixCls}-icon_loading`]: {
               position: 'absolute',
@@ -331,71 +331,71 @@ const styles = theme => {
               transition: 'all .3s',
               '&:after': {
                 display: 'inline-block',
-                ...iconFont("\E64D"),
+                ...iconFont('E64D'),
                 animation: 'loadingCircle 1s infinite linear',
                 color: theme.palette.primary.main,
-              }
+              },
             },
             [`&.${treePrefixCls}-switcher`]: {
               [`&.${treePrefixCls}-switcher-noop `]: {
-                cursor: 'default'
+                cursor: 'default',
               },
               [`&.${treePrefixCls}-switcher_open`]: {
-                ...treeSwitcherIcon()
+                ...treeSwitcherIcon(),
               },
-              [`&.${treePrefixCls}-switcher_close`]:(()=>{
+              [`&.${treePrefixCls}-switcher_close`]: (() => {
                 let styles = treeSwitcherIcon();
                 styles['&:after'].transform = 'rotate(270deg) scale(1)';
-                return {...styles};
-              })()
+                return { ...styles };
+              })(),
               //   [`&.${treePrefixCls}-switcher_close`]: {
               //   ...treeSwitcherIcon(),
               //   // '&:after': {
               //   //   transform: 'rotate(270deg) scale(0.59)'
               //   // }
               // }
-            }
+            },
           },
           '&:last-child > span': {
             [`&.${treePrefixCls}-switcher,&.${treePrefixCls}-iconEle`]: {
               '&:before': {
-                display: 'none'
-              }
-            }
-          }
+                display: 'none',
+              },
+            },
+          },
         },
         '&> li': {
           '&:first-child': {
-            paddingTop: '7px'
+            paddingTop: '7px',
           },
           '&:last-child': {
-            paddingBottom: '7px'
-          }
+            paddingBottom: '7px',
+          },
         },
         '&-child-tree': {
           display: 'none',
           '&-open': {
-            display: 'block'
-          }
+            display: 'block',
+          },
         },
         'li&-treenode-disabled': {
           [`&> span:not(.${treePrefixCls}-switcher),
   > .${treePrefixCls}-node-content-wrapper,
   > .${treePrefixCls}-node-content-wrapper span`]: {
             color: disabledColor,
-            cursor: 'not-allowed'
+            cursor: 'not-allowed',
           },
           [`&> .${treePrefixCls}-node-content-wrapper:hover`]: {
-            background: 'transparent'
-          }
+            background: 'transparent',
+          },
         },
         '&-icon__open': {
           marginRight: '2px',
-          verticalAlign: 'top'
+          verticalAlign: 'top',
         },
         '&-icon__close': {
           marginRight: '2px',
-          verticalAlign: 'top'
+          verticalAlign: 'top',
         },
         '&&-show-line': {
           '& li': {
@@ -404,44 +404,43 @@ const styles = theme => {
               [`&.${treePrefixCls}-switcher`]: {
                 background: '#fff',
                 color: treeAhowlineIconColor,
-                '&:after':{
-                  lineHeight:1,
-                  border:`1px solid ${treeAhowlineIconColor}`,
-                  borderRadius:'2px'
+                '&:after': {
+                  lineHeight: 1,
+                  border: `1px solid ${treeAhowlineIconColor}`,
+                  borderRadius: '2px',
                 },
                 [`&.${treePrefixCls}-switcher-noop`]: {
                   ...treeShowLineIcon(treeDocIcon),
                 },
-                [`&.${treePrefixCls}-switcher-noop:after`]:{
-                  border:'none'
+                [`&.${treePrefixCls}-switcher-noop:after`]: {
+                  border: 'none',
                 },
                 [`&.${treePrefixCls}-switcher_open`]: {
-                  ...treeShowLineIcon(treeShowlineOpenIcon)
+                  ...treeShowLineIcon(treeShowlineOpenIcon),
                 },
                 [`&.${treePrefixCls}-switcher_close`]: {
-                  ...treeShowLineIcon(treeShowlineCloseIcon)
-                }
-              }
-            }
+                  ...treeShowLineIcon(treeShowlineCloseIcon),
+                },
+              },
+            },
           },
           '& li:not(:last-child):before': {
             content: '"  "',
             width: '1px',
-            borderLeft:  `1px solid ${borderColorBase}`,
+            borderLeft: `1px solid ${borderColorBase}`,
             height: '100%',
             position: 'absolute',
             left: '12px',
-            margin: '22px 0'
-          }
-        }
-      }
-// .@{tree-prefix-cls} {
-//   .reset-component;
-//
-//
-//   }
-    }
-  }
+            margin: '22px 0',
+          },
+        },
+      },
+      // .@{tree-prefix-cls} {
+      //   .reset-component;
+      //
+      //
+      //   }
+    },
+  };
 };
 export default styles;
-

@@ -9,14 +9,13 @@ import MenuItem from '../../MenuItem';
 import Input from '../../Input';
 import InputLabel from '../../InputLabel';
 
-
 class CrossTableAttribute extends React.PureComponent {
   handleChange = event => {
     this.props.setValue(event.target.value);
-  }
+  };
 
   render() {
-    let id = `select-${new Date().getTime()}${Math.floor(Math.random()*1000)}`;
+    let id = `select-${new Date().getTime()}${Math.floor(Math.random() * 1000)}`;
     return (
       <FormControl>
         <InputLabel htmlFor={id}>{this.props.label}</InputLabel>

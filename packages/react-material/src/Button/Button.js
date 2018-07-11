@@ -195,7 +195,6 @@ class CreateButton extends Component {
 }
 
 CreateButton.propTypes = {
-
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */

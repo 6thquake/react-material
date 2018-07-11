@@ -1,131 +1,159 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
+
 import { withStyles } from '../styles';
-import { Clear } from '@material-ui/icons';
-import Slide from '../transitions/Slide';
-import Fade from '../transitions/Fade';
 
-const styles = {
-  rmTag: {
-    display: 'inline-block',
-    lineHeight: '22px',
-    height: '22px',
-    padding: '0 8px',
-    borderRadius: '6px',
-    border: '1px solid #e9e9e9',
-    background: '#f7f7f7',
-    fontSize: '12px',
-    transition: 'all .3s cubic-bezier(.78,.14,.15,.86)',
-    verticalAlign: 'middle',
-    opacity: '1',
-    overflow: 'hidden',
-    margin: '2px 4px 2px 0',
-    cursor: 'pointer',
-  },
+import Chip from '../Chip';
 
-  clearTag: {
-    fontSize: '12px',
-    marginLeft: '3px',
-    verticalAlign: 'middle',
-  },
+let styles = {
+  color: {
+    primaryLight: {
+      background: '#7986cb',
+      border: '0',
+      color: '#fff',
+      '&:focus': {
+        background: '#7986cb',
+      },
+    },
+    primaryMain: {
+      background: '#3f51b5',
+      border: '0',
+      color: '#fff',
 
-  primaryLight: {
-    background: '#7986cb',
-    border: '0',
-    color: '#fff',
+      '&:focus': {
+        background: '#3f51b5',
+      },
+    },
+    primaryDark: {
+      background: '#303f9f',
+      border: '0',
+      color: '#fff',
+      '&:focus': {
+        background: '#303f9f',
+      },
+    },
+    secondaryLight: {
+      background: '#ff4081',
+      border: '0',
+      color: '#fff',
+      '&:focus': {
+        background: '#ff4081',
+      },
+    },
+    secondaryMain: {
+      background: '#f50057',
+      border: '0',
+      color: '#fff',
+      '&:focus': {
+        background: '#f50057',
+      },
+    },
+    secondaryDark: {
+      background: '#c51162',
+      border: '0',
+      color: '#fff',
+      '&:focus': {
+        background: '#c51162',
+      },
+    },
+    errorLight: {
+      background: '#e57373',
+      border: '0',
+      color: '#fff',
+      '&:focus': {
+        background: '#e57373',
+      },
+    },
+    errorMain: {
+      background: '#f44336',
+      border: '0',
+      color: '#fff',
+      '&:focus': {
+        background: '#e57373',
+      },
+    },
+    errorDark: {
+      background: '#d32f2f',
+      border: '0',
+      color: '#fff',
+      '&:focus': {
+        background: '#d32f2f',
+      },
+    },
   },
-  primaryMain: {
-    background: '#3f51b5',
-    border: '0',
-    color: '#fff',
+  size: {
+    small: {
+      minHeight: '28px',
+      fontSize: '0.8125rem',
+    },
+    medium: {
+      minHeight: '32px',
+      fontSize: '0.875rem',
+    },
+    large: {
+      minHeight: '36px',
+      fontSize: '0.9375rem',
+    },
   },
-  primaryDark: {
-    background: '#303f9f',
-    border: '0',
-    color: '#fff',
-  },
-
-  secondaryLight: {
-    background: '#ff4081',
-    border: '0',
-    color: '#fff',
-  },
-  secondaryMain: {
-    background: '#f50057',
-    border: '0',
-    color: '#fff',
-  },
-  secondaryDark: {
-    background: '#c51162',
-    border: '0',
-    color: '#fff',
-  },
-
-  errorLight: {
-    background: '#e57373',
-    border: '0',
-    color: '#fff',
-  },
-  errorMain: {
-    background: '#f44336',
-    border: '0',
-    color: '#fff',
-  },
-  errorDark: {
-    background: '#d32f2f',
-    border: '0',
-    color: '#fff',
-  },
+  mixin: {},
 };
+
+for (let color in styles.color) {
+  for (let size in styles.size) {
+    let _key = color + size;
+    styles.mixin[_key] = { ...styles.color[color], ...styles.size[size] };
+  }
+}
 
 class Tag extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      close: true,
-      closable: props.closable,
+      close: false,
       onClose: props.onClose,
-      afterClose: props.afterClose,
       color: props.color,
-      children: props.children,
+      size: props.size,
+      closable: props.closable,
     };
-    try {
-      if (!this.state.closable) {
-        this.state.closable = false;
-      }
-
-      if (this.state.children) {
-        React.Children.only(this.state.children); //验证标签内容是否只有唯一的根元素
-      }
-    } catch (err) {
-      console.log(err);
-    }
   }
 
   componentDidMount() {}
 
-  onClick = e => {
-    this.setState({ close: false });
+  handleDelete = e => {
+    this.setState({ close: true });
     this.props.onClose(e);
+    e.nativeEvent.stopImmediatePropagation();
+    e.stopPropagation();
+    e.preventDefault();
   };
 
   render() {
-    const classes = this.props.classes;
-    const color = this.state.color;
-    const { close, closable } = this.state;
-    const clear = closable ? (
-      <Clear onClick={e => this.onClick(e)} className={classes.clearTag} />
-    ) : null;
+    const { label, classes, ...props } = this.props;
 
-    return close ? (
-      <Fade in={close}>
-        <div className={classes.rmTag + ' ' + classes[color]}>
-          <span>{this.state.children}</span>
-          {clear}
-        </div>
-      </Fade>
-    ) : null;
+    props.color = this.state.color;
+    props.size = this.state.size;
+    props.closable = this.state.closable;
+
+    const { close } = this.state;
+
+    const { color, size, closable } = props;
+
+    const ChipShow = closable ? (
+      <Chip
+        classes={{ root: classes[color + size] }}
+        onDelete={this.handleDelete.bind(this)}
+        label={label}
+      />
+    ) : (
+      <Chip classes={{ root: classes[color + size] }} label={label} />
+    );
+    return !close ? ChipShow : null;
   }
 }
 
-export default withStyles(styles)(Tag);
+Tag.defaultProps = {
+  size: 'medium',
+  closable: false,
+  color: 'primaryMain',
+};
+
+export default withStyles(styles.mixin)(Tag);

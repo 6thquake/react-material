@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withStyles } from '../styles';
 // import './StarVote.css';
-
+import PropTypes from 'prop-types';
 import { StarBorder } from '@material-ui/icons';
 import { StarHalf } from '@material-ui/icons';
 import { Star } from '@material-ui/icons';
@@ -55,6 +55,40 @@ const styles = {
 };
 
 class StarVote extends React.Component {
+  static propTypes = {
+    /**
+     *  total count of star
+     */
+    count: PropTypes.func,
+    /**
+     *   current value，controlled value
+     */
+    value: PropTypes.number,
+
+    /**
+     *   The default value
+     */
+    defaultValue: PropTypes.number,
+    /**
+     * onChange callback function
+     */
+    onChange: PropTypes.func,
+    /**
+     * if allowed half
+     */
+    allowHalf: PropTypes.bool,
+    /**
+     * read only,can not interact
+     */
+    disabled: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    count: 5,
+    defaultValue: 0,
+    allowHalf: false,
+    disabled: false,
+  };
   constructor(props) {
     super(props);
     this.state = {

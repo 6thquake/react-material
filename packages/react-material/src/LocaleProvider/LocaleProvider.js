@@ -115,5 +115,4 @@ LocaleProvider.propTypes = {
    */
   children: PropTypes.node,
 };
-
 export { LocaleContext, LocaleProvider, LocaleConsumer, getLanguage, getLocale, getDefaultLocale };

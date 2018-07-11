@@ -14,6 +14,7 @@ const effect = {
   animationFillMode: 'both',
   transformOrigin: '0 0',
 };
+
 function leave(node, done) {
   done();
 }
@@ -53,6 +54,7 @@ class Menu extends React.Component {
       rMMenuTheme: this.props.theme,
     };
   }
+
   //  todo remove unsafe life
   componentWillReceiveProps(nextProps, nextContext) {
     // componentWillReceiveProps(nextProps, nextContext) {
@@ -184,15 +186,63 @@ Menu.SubMenu = SubMenu;
 Menu.ItemGroup = ItemGroup;
 Menu.propTypes = {
   /**
-   *
+   * 初始展开的 SubMenu 菜单项 key 数组
+   */
+  defaultOpenKeys: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * 初始选中的菜单项 key 数组
+   */
+  defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * @ignore
+   */
+  className: PropTypes.object,
+  /**
+   * inline 时菜单是否收起状态
+   */
+  inlineCollapsed: PropTypes.bool,
+  /**
+   * 菜单类型，现在支持垂直、水平、和内嵌模式三种
+   */
+  mode: PropTypes.oneOf(['vertical', 'horizontal', 'inline']),
+  /**
+   * 是否允许多选
+   */
+  multiple: PropTypes.bool,
+  /**
+   * 点击 MenuItem 调用此函数 ，参数 ({item, key, keyPath})
+   */
+  onClick: PropTypes.func,
+  /**
+   * 取消选中时调用，仅在 multiple 生效，参数 ({item, key, selectedKeys})
+   */
+  onDeselect: PropTypes.func,
+  /**
+   * SubMenu 展开/关闭的回调，参数 (openKeys)
+   */
+  onOpenChange: PropTypes.func,
+  /**
+   * 被选中时调用，参数 ({item, key, selectedKeys})
+   */
+  onSelect: PropTypes.func,
+  /**
+   * 当前展开的 SubMenu 菜单项 key 数组
+   */
+  openKeys: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * @ignore
    */
   prefixCls: PropTypes.string,
   /**
-   *
+   * 是否允许选中
    */
-  className: PropTypes.string,
+  selectable: PropTypes.bool,
   /**
-   *
+   * 当前选中的菜单项 key 数组
+   */
+  selectedKeys: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * 主题颜色
    */
   theme: PropTypes.oneOf(['light', 'dark']),
 };
@@ -212,4 +262,3 @@ Menu.contextTypes = {
 
 export { SubMenu, Item, ItemGroup };
 export default withStyles(styles, { name: 'RMMenu' })(Menu);
-//前缀

@@ -396,5 +396,19 @@ class Transfer extends React.Component {
     );
   }
 }
-
+Transfer.propTypes = {
+  /**
+   *Array of Object，in the Object, props 'name' and 'id' is required
+   */
+  left: PropTypes.array.isRequired,
+  /**
+   *Array of Object，in the Object, props 'name' and 'id' is required
+   *
+   */
+  right: PropTypes.array.isRequired,
+  /**
+   * onchange callback function
+   */
+  onChange: PropTypes.func.isRequired,
+};
 export default withStyles(styles, { name: 'RMTransfer' })(Transfer);

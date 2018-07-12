@@ -4,8 +4,8 @@ import { withStyles } from 'react-material/styles';
 import BackTop from 'react-material/BackTop';
 
 const style = {
-  height: 40,
-  width: 40,
+  height: '40px',
+  width: '40px',
   lineHeight: '40px',
   borderRadius: 4,
   backgroundColor: '#57c5f7',
@@ -22,13 +22,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <BackTop visibilityHeight = {450} onClick={this.doSomething.bind(this)} ></BackTop> */}
-
-        <BackTop onChange={this.doSomething.bind(this)} />
+        <BackTop onClick={this.doSomething.bind(this)} />
 
         <p>默认按钮，向下滚动页面后，见右下角灰色按钮</p>
 
-        <BackTop visibilityHeight={550} onChange={this.doSomething.bind(this)}>
+        <BackTop visibilityHeight={550} onClick={this.doSomething.bind(this)}>
           <div style={style}>UP</div>
         </BackTop>
 

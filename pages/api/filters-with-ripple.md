@@ -18,7 +18,7 @@ filename: /packages/react-material/src/Filters/FiltersWithRipple.js
 | <span class="prop-name">multi</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | singleSelect or multiSelect default is singleSelect. |
 | <span class="prop-name">value</span> | <span class="prop-type">array | <span class="prop-default">[]</span> |  |
 | <span class="prop-name">label</span> | <span class="prop-type">string | <span class="prop-default">''</span> | label name |
-| <span class="prop-name">mapProps</span> | <span class="prop-type">{label?: string, value?: union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br>} | <span class="prop-default">{  label: 'label',  value: 'value'}</span> | map data options struct |
+| <span class="prop-name">mapProps</span> | <span class="prop-type">{label?: string, value?: union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br>} | <span class="prop-default">{  label: 'label',  value: 'value',}</span> | map data options struct |
 | <span class="prop-name">spacing</span> | <span class="prop-type">number | <span class="prop-default">8</span> |  |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

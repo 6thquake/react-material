@@ -15,6 +15,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/locale-provider/LocaleProvider'), 'utf8')
 `,
         },
+        'pages/demos/locale-provider/withLocale.js': {
+          js: require('docs/src/pages/demos/locale-provider/withLocale').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/locale-provider/withLocale'), 'utf8')
+`,
+        },
       }}
     />
   );

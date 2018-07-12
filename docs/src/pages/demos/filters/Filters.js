@@ -8,7 +8,7 @@ import FormControl from 'react-material/FormControl';
 import MenuItem from 'react-material/MenuItem';
 import Select from 'react-material/Select';
 import InputLabel from 'react-material/InputLabel';
-import Filters from 'react-material/Filters';
+import {Filters} from 'react-material/Filters';
 
 const style = theme => ({
   mt: {

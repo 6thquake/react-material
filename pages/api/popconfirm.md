@@ -45,5 +45,6 @@ you need to use the following style sheet name: `RMPopconfirm`.
 
 ## Demos
 
+- [Locale Provider](/demos/locale-provider)
 - [Popconfirm](/demos/popconfirm)
 

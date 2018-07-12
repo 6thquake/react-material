@@ -21,4 +21,5 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 ## Demos
 
 - [Buttons](/demos/buttons)
+- [Locale Provider](/demos/locale-provider)
 

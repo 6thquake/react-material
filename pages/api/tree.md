@@ -29,14 +29,14 @@ filename: /packages/react-material/src/Tree/Tree.js
 | <span class="prop-name">showIcon</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | 是否展示 TreeNode title 前的图标，没有默认样式，如设置为 true，需要自行定义图标相关样式 |
 | <span class="prop-name">showLine</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | 是否展示连接线 |
 | <span class="prop-name">onCheck</span> | <span class="prop-type">(checkedKeys, e) => null |  | 点击复选框触发 |
-| <span class="prop-name">onDragEnter</span> | <span class="prop-type">(options) => null |  | dragenter 触发时调用 |
-| <span class="prop-name">onDragLeave</span> | <span class="prop-type">(options) => null |  | dragleave 触发时调用 |
-| <span class="prop-name">onDragOver</span> | <span class="prop-type">(options) => null |  | dragover 触发时调用 |
-| <span class="prop-name">onDragStart</span> | <span class="prop-type">(options) => null |  | 开始拖拽时调用 |
-| <span class="prop-name">onDrop</span> | <span class="prop-type">(options) => null |  | drop 触发时调用 |
+| <span class="prop-name">onDragEnter</span> | <span class="prop-type">options => null |  | dragenter 触发时调用 |
+| <span class="prop-name">onDragLeave</span> | <span class="prop-type">options => null |  | dragleave 触发时调用 |
+| <span class="prop-name">onDragOver</span> | <span class="prop-type">options => null |  | dragover 触发时调用 |
+| <span class="prop-name">onDragStart</span> | <span class="prop-type">options => null |  | 开始拖拽时调用 |
+| <span class="prop-name">onDrop</span> | <span class="prop-type">options => null |  | drop 触发时调用 |
 | <span class="prop-name">onExpand</span> | <span class="prop-type">(expandedKeys, info) => null |  | 展开/收起节点时触发 |
 | <span class="prop-name">onSelect</span> | <span class="prop-type">(selectedKeys, e) => null |  | 点击树节点触发 |
-| <span class="prop-name">onRightClick</span> | <span class="prop-type">(options) => null |  | 响应右键点击 |
+| <span class="prop-name">onRightClick</span> | <span class="prop-type">options => null |  | 响应右键点击 |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

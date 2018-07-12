@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Filters from 'react-material/Filters';
+import {Filters} from 'react-material/Filters';
 
 const style = theme => ({
   mt: {

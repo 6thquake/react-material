@@ -8,7 +8,7 @@ import FormControl from 'react-material/FormControl';
 import MenuItem from 'react-material/MenuItem';
 import Select from 'react-material/Select';
 import InputLabel from 'react-material/InputLabel';
-import Filters from 'react-material/Filters';
+import {FiltersWithRipple} from 'react-material/Filters';
 
 const style = theme => ({
   mt: {
@@ -93,7 +93,7 @@ class FiltersDemo extends Component {
           <FormControlLabel value={'2'} control={<Radio />} label="多选" />
         </RadioGroup>
         <div className={classes.mt}>
-          <Filters
+          <FiltersWithRipple
             type={'dark'}
             label={label}
             multi={multi}
@@ -104,7 +104,7 @@ class FiltersDemo extends Component {
           />
         </div>
         <div className={classes.mt} style={{ background: '#3fa4f6' }}>
-          <Filters
+          <FiltersWithRipple
             label={label}
             multi={multi}
             options={options}

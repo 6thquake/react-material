@@ -53,7 +53,7 @@ const style = theme => ({
     paddingRight: theme.spacing.unit * 2,
     cursor: 'pointer',
     color: 'rgba(0,0,0,0.7)',
-    background: 'rgba(0,0,0,0.1) !important',
+    background: 'rgba(0,0,0,0.2) !important',
     '&:hover': {
       background: 'rgba(0,0,0,0.15)',
     },

@@ -53,6 +53,10 @@ class BackTop extends React.Component {
      * callback function when click BackTop button
      */
     onClick: PropTypes.func,
+    /**
+     * custom BackTop button,must hava only child
+     */
+    children: PropTypes.node,
   };
 
   static defaultProps = {
@@ -71,12 +75,6 @@ class BackTop extends React.Component {
     };
 
     try {
-      if (!this.state.visibilityHeight) {
-        this.state.visibilityHeight = 300; // 未提供总数 默认 为 300
-      } else if (!parseInt(this.state.visibilityHeight)) {
-        throw new Error('the attribute visibilityHeight must be integer type!');
-      }
-
       if (this.state.customButton) {
         React.Children.only(this.state.customButton); //如果自定义按钮，验证是否只有唯一的根元素
       }
@@ -103,7 +101,7 @@ class BackTop extends React.Component {
         this.setState({ showBackTop: true });
       }
     }
-    window.addEventListener('scroll', this.scrollHandler); //
+    window.addEventListener('scroll', this.scrollHandler);
   }
 
   returnTop = e => {
@@ -111,41 +109,35 @@ class BackTop extends React.Component {
     e.nativeEvent.stopImmediatePropagation();
     e.stopPropagation();
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-    //  this.state.onClick(e);
+    this.props.onClick(e);
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
+    const { showBackTop, customButton } = this.state;
 
-    if (this.state.showBackTop) {
-      //show backtop
-      if (this.state.customButton) {
-        return (
-          <div>
-            <div
-              style={{ bottom: '100px' }}
-              onClick={e => this.returnTop(e)}
-              className={classes.rmBackTop}
-            >
-              {this.state.customButton}
-            </div>
+    const backTopButton = customButton ? (
+      <div>
+        <div
+          style={{ bottom: '100px' }}
+          onClick={e => this.returnTop(e)}
+          className={classes.rmBackTop}
+        >
+          {customButton}
+        </div>
+      </div>
+    ) : (
+      <div>
+        <div onClick={e => this.returnTop(e)} className={classes.rmBackTop}>
+          <div className={classes.rmBackTopContent}>
+            <Publish />
           </div>
-        );
-      } else {
-        return (
-          <div>
-            <div onClick={e => this.returnTop(e)} className={classes.rmBackTop}>
-              <div className={classes.rmBackTopContent}>
-                <Publish />
-              </div>
-            </div>
-          </div>
-        );
-      }
-    } else {
-      return null;
-    }
+        </div>
+      </div>
+    );
+
+    return showBackTop ? backTopButton : null;
   }
 }
 
-export default withStyles(styles, { name: 'RMBackTop' })(BackTop);
+export default withStyles(styles)(BackTop);

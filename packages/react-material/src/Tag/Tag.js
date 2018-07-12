@@ -4,6 +4,8 @@ import { withStyles } from '../styles';
 
 import Chip from '../Chip';
 
+import PropTypes from 'prop-types';
+
 let styles = {
   color: {
     primaryLight: {
@@ -105,6 +107,30 @@ for (let color in styles.color) {
 }
 
 class Tag extends Component {
+  static propTypes = {
+
+     /**
+     * the content of tag
+     */
+    label:PropTypes.string,
+    /**
+     * if close the tag, set true to show close icon button.default value is false.
+     */
+    closable:PropTypes.bool,
+    /**
+     * size of the tag,support for three sizes:'small，medium, large',defalut value is medium.
+     */
+    size:PropTypes.string,
+    /**
+     * color of the tag,support for:'primaryLight, primaryMain,primaryDark,secondaryLight,secondaryMain,secondaryDark,errorLight,errorMain,errorDark',defalut is primaryMain.
+     */
+    color:PropTypes.string,
+     /**
+     *  callback function when delete the tag
+     */
+    onClose:PropTypes.func,
+   
+  }
   constructor(props) {
     super(props);
     this.state = {

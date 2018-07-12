@@ -27,7 +27,6 @@ const styles = theme => ({
 });
 
 class UploadBasic extends Component {
-
   static propTypes = {
     /**
      * 接受上传的文件类型

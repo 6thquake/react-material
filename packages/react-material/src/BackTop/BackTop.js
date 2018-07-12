@@ -43,7 +43,6 @@ function getScrollTop() {
 }
 
 class BackTop extends React.Component {
-
   static propTypes = {
     /**
      * show BackTop button when scroll to this height

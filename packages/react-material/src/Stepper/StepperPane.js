@@ -177,7 +177,6 @@ StepperPane.defaultProps = {
   alternativeLabel: false,
 };
 
-
 export default withStyles(styles, { withTheme: true, name: 'RMStepperPane' })(
   withLocale({ name: 'StepperPane' })(StepperPane),
 );

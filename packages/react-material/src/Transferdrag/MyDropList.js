@@ -60,7 +60,6 @@ let C = DropTarget(['just-transfer'], boxTarget, connect => {
   };
 })(DL);
 
-
 export default withStyles(styles, { name: 'RMDropList' })(C);
 
 /**

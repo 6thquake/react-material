@@ -77,7 +77,6 @@ const styles = theme => ({
   },
 });
 
-
 class Search extends Component {
   state = {
     search: '',

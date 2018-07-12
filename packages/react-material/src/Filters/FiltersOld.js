@@ -9,8 +9,8 @@ import classnames from 'classnames';
 //颜色需要替换
 const style = theme => ({
   normalTagLight: {
-    paddingLeft:theme.spacing.unit *2,
-    paddingRight:theme.spacing.unit *2,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
     cursor: 'pointer',
     color: 'rgba(255,255,255,0.8)',
     background: 'none',
@@ -22,8 +22,8 @@ const style = theme => ({
     },
   },
   normalTagDark: {
-    paddingLeft:theme.spacing.unit *2,
-    paddingRight:theme.spacing.unit *2,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
     cursor: 'pointer',
     color: 'rgba(0,0,0,0.7)',
     background: 'none',
@@ -35,8 +35,8 @@ const style = theme => ({
     },
   },
   activedTagLight: {
-    paddingLeft:theme.spacing.unit *2,
-    paddingRight:theme.spacing.unit *2,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
     cursor: 'pointer',
     color: 'rgba(255,255,255,0.8)',
     background: 'rgba(0,0,0,0.1) !important',
@@ -49,8 +49,8 @@ const style = theme => ({
   },
 
   activedTagDark: {
-    paddingLeft:theme.spacing.unit *2,
-    paddingRight:theme.spacing.unit *2,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
     cursor: 'pointer',
     color: 'rgba(0,0,0,0.7)',
     background: 'rgba(0,0,0,0.1) !important',

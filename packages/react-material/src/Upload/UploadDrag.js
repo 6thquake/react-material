@@ -61,7 +61,6 @@ const styles = theme => ({
 });
 
 class UploadDrag extends Component {
-
   static propTypes = {
     /**
      * 接受上传的文件类型

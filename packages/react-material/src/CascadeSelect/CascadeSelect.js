@@ -228,20 +228,13 @@ CascadeSelect.propTypes = {
    */
   renderLabel: PropTypes.string,
   /**
-   *
-   */
-  notFound: PropTypes.string,
-  /**
-   *
-   */
-  width: PropTypes.number,
-};
-
-
-  /**
    * The key in dataSoure, which will be used to distinguish items
    */
   renderValue: PropTypes.string,
+  /**
+   *
+   */
+  notFound: PropTypes.string,
   /**
    * The width of cascader
    */

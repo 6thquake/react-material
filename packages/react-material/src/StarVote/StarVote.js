@@ -55,7 +55,6 @@ const styles = {
 };
 
 class StarVote extends React.Component {
-
   static propTypes = {
     /**
      *  total count of star

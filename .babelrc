@@ -1,7 +1,8 @@
 {
   "presets": ["./scripts/babel-preset", "stage-1", "react"],
   "plugins": [
-    "transform-object-assign"
+    "transform-object-assign",
+    "css-modules-transform"
   ],
   "env": {
     "coverage": {
@@ -40,8 +41,7 @@
             }
           }
         ],
-        "transform-flow-strip-types",
-        "css-modules-transform"
+        "transform-flow-strip-types"
       ]
     },
     "docs-production": {
@@ -63,7 +63,6 @@
         "transform-react-constant-elements",
         "transform-dev-warning",
         ["transform-runtime", {"polyfill": false}],
-        "css-modules-transform",
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
         ["transform-react-remove-prop-types", {"mode": "remove"}]
       ]

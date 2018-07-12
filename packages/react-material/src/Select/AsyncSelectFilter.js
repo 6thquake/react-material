@@ -31,4 +31,4 @@ class AsyncSelectFilter extends Component {
     );
   }
 }
-export default withStyles(styles)(AsyncSelectFilter);
+export default withStyles(styles, { name: 'RMAsyncSelectFilter' })(AsyncSelectFilter);

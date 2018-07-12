@@ -24,15 +24,15 @@ const styles = theme => ({
 class Modal extends Component {
   static propTypes = {
     /**
-     * This is usually about modal open or close
+     * Decide modal open or close,	If true, the modal is open.
      */
     open: PropTypes.bool.isRequired,
     /**
-     * This is usually about modal title
+     * This is  modal title
      */
     label: PropTypes.string,
     /**
-     * This is usually about modal animation,slide、collapse、fade、grow、zoom
+     * This is usually an animation of open or close the modal,include slide、collapse、fade、grow、zoom
      */
     animation: PropTypes.string,
   };
@@ -81,4 +81,4 @@ class Modal extends Component {
     );
   }
 }
-export default withStyles(styles)(Modal);
+export default withStyles(styles, { name: 'RMModal' })(Modal);

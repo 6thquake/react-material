@@ -52,35 +52,35 @@ const styles = theme => ({
 class AutoComplete extends Component {
   static propTypes = {
     /**
-     * input change ,callback to parent component
+     * Callback fired when the input value is changed.
      */
-    inputChangeCb: PropTypes.func.isRequired,
+    inputChangeCb: PropTypes.func,
     /**
-     * pagination change ,callback to parent component
+     * Callback fired when the current page of pagination  is changed.
      */
-    pageChangeCb: PropTypes.func.isRequired,
+    pageChangeCb: PropTypes.func,
     /**
-     * pagination component config
+     * Pagination component config
      */
     pageConfig: PropTypes.object,
     /**
-     * placeHold
+     * PlaceHold
      */
     placeHold: PropTypes.string,
     /**
-     * decided multiple select
+     * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
      */
     multiple: PropTypes.bool,
     /**
-     * when select one item,callback
+     * Callback function fired when a menu item is selected.
      */
     onChange: PropTypes.func.isRequired,
     /**
-     * 用于回显
+     * 	The value of the Input element, required for a controlled component.
      */
-    value: PropTypes.oneOfType(PropTypes.string, PropTypes.array),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     /**
-     * decided autocomplete is disabled
+     * Decided autocomplete is disabled
      */
     disabled: PropTypes.bool,
   };
@@ -355,4 +355,4 @@ class AutoComplete extends Component {
     );
   }
 }
-export default withStyles(styles)(AutoComplete);
+export default withStyles(styles, { name: 'RMAutoComplete' })(AutoComplete);

@@ -76,6 +76,30 @@ const style = theme => ({
   content: {
     flex: 1,
   },
+  btn: {
+    fontSize: '13px',
+    lineHeight: '2.6em',
+    padding: '0 8px',
+    minHeight: '0',
+    background: 'none',
+    boxShadow: 'none',
+    borderRadius: '1.3em',
+    color: 'rgba(255,255,255,0.8)',
+    fontWeight: '400',
+    '&:hover': {
+      background: 'rgba(0,0,0,0.05)',
+    },
+  },
+  btnDark: {
+    color: 'rgba(0,0,0,0.7)',
+  },
+  active: {
+    background: 'rgba(0,0,0,0.2)',
+    '&:hover': {
+      background: 'rgba(0,0,0,0.15)',
+    },
+  },
+  activeDark: {},
 });
 
 class Filters extends Component {
@@ -203,4 +227,4 @@ Filters.defaultProps = {
   spacing: 8,
 };
 
-export default withStyles(style)(Filters);
+export default withStyles(style, { name: 'RMFilters' })(Filters);

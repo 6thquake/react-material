@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '../styles';
-
+import PropTypes from 'prop-types';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '../Button';
 
@@ -77,7 +77,8 @@ const styles = theme => ({
   },
 });
 
-class search extends Component {
+
+class Search extends Component {
   state = {
     search: '',
     options: [],
@@ -94,6 +95,7 @@ class search extends Component {
       self.ok();
     });
   }
+
   autoCb(i) {
     console.log('item', i);
     this.setState({
@@ -103,15 +105,18 @@ class search extends Component {
       },
     });
   }
+
   inputChangeCb(event) {
     console.log('item', event);
     this.setState({ inputText: event.target.value });
   }
+
   ok() {
     const { onChange } = this.props;
     const { search } = this.state;
     onChange && typeof onChange === 'function' && onChange(search);
   }
+
   render() {
     const { classes, type, direction, placeholder } = this.props;
     const { search } = this.state;
@@ -137,4 +142,25 @@ class search extends Component {
     );
   }
 }
-export default withStyles(styles)(search);
+
+Search.propTypes = {
+  /**
+   *'right/left' direction of this search float;
+   */
+  direction: PropTypes.enum,
+  /**
+   *when background is light color please use 'dark'
+   *
+   */
+  type: PropTypes.enum,
+  /**
+   *placeholder
+   */
+  placeholder: PropTypes.string,
+  /**
+   * onchange callback function
+   */
+  onChange: PropTypes.func.isRequired,
+};
+
+export default withStyles(styles, { name: 'RMSearch' })(Search);

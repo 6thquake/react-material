@@ -113,11 +113,6 @@ const styles = theme => {
   };
 };
 
-/**
- * success
- * progress
- * fail
- */
 class StatusButton extends Component {
   state = {
     color: this.props.color,
@@ -144,6 +139,7 @@ class StatusButton extends Component {
         return null;
     }
   }
+
   onHandler = () => {
     const { onHandler, onClick } = this.props;
     let result;
@@ -213,13 +209,32 @@ class StatusButton extends Component {
 }
 
 StatusButton.propTypes = {
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf([
+    'default',
+    'inherit',
+    'primary',
+    'secondary',
+    'error',
+    'success',
+    'waring',
+    'progress',
+  ]),
+  /**
+   *  Promise实例，控制StatusButton的状态
+   */
   onHandler: PropTypes.func,
+  /**
+   * The type of button.
+   */
+  variant: PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab']),
 };
 
 StatusButton.defaultProps = {
   color: 'default',
   variant: 'flat',
-  //statusButton: true
 };
 
-export default withStyles(styles)(StatusButton);
+export default withStyles(styles, { name: 'RMStatusButton' })(StatusButton);

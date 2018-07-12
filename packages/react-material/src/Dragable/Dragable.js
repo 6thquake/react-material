@@ -84,3 +84,7 @@ let C = DropTarget(ItemTypes.BOX, boxTarget, connect => {
   };
 })(Container);
 export default DragDropContext(HTML5Backend)(C);
+
+/**
+ * @ignore - do not document.
+ */

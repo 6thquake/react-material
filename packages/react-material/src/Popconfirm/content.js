@@ -72,4 +72,5 @@ class PopOverContent extends Component {
   }
 }
 const PopContent = withLocale({ name: 'Popconfirm' })(PopOverContent);
-export default withStyles(styles)(PopContent);
+
+export default withStyles(styles, { name: 'RMPopContent' })(PopContent);

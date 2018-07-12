@@ -6,6 +6,7 @@ function Grid(props) {
   const { type, ...other } = props;
   const Component =
     type === 'float' || type === 'percentage' || type === 'compatible' ? PercentageGrid : FlexGrid;
+
   return <Component {...other} />;
 }
 export default Grid;

@@ -170,4 +170,9 @@ class Transfer extends React.Component {
 }
 
 let C = DragDropContext(HTML5Backend)(Transfer);
-export default withStyles(styles)(C);
+
+export default withStyles(styles, { name: 'RMTransferdrag' })(C);
+
+/**
+ * @ignore - do not document.
+ */

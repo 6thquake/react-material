@@ -64,4 +64,4 @@ class FishButton extends Component {
     return <div className={className}>{children}</div>;
   }
 }
-export default withStyles(styles)(FishButton);
+export default withStyles(styles, { name: 'RMFishButton' })(FishButton);

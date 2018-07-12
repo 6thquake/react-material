@@ -30,26 +30,12 @@ const styles = theme => ({
       paddingRight: theme.spacing.unit * 2 + 'px !important',
     },
   },
+
   '@global .selected': {
     fontWeight: theme.typography.fontWeightMedium,
     color: theme.palette.primary.main,
   },
 });
-
-/**
- * Menu
- *    SubMenu
- *        MenuItem
- *        MenuItem
- *        MenuItem
- *            SubMenu
- *   SubMenu
- *   SubMenu
- *   SubMenu
- *   MenuItem
- *   MenuItem
- *
- */
 
 class Item extends React.Component {
   static contextTypes = {
@@ -235,10 +221,6 @@ TreeMenu.propTypes = {
    */
   list: PropTypes.array.isRequired,
   /**
-   * 缩进
-   */
-  //inlineIndent: PropTypes.number,
-  /**
    * menu的每一项数据的key值
    */
   itemKeysMap: PropTypes.shape({
@@ -254,10 +236,14 @@ TreeMenu.propTypes = {
     open: PropTypes.string,
     key: PropTypes.string,
   }),
+
+  /**
+   * @ignore
+   */
   debugger: PropTypes.bool,
 };
 TreeMenu.defaultProps = {
   debugger: false,
   itemKeysMap: defaultItemKeysMap,
 };
-export default withStyles()(TreeMenu);
+export default withStyles(styles, { name: 'RMTreeMenu' })(TreeMenu);

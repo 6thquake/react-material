@@ -306,7 +306,7 @@ function makeRenderer(opts = {}) {
     tableOptions: PropTypes.object,
   });
 
-  return withStyles(styles)(TableRenderer);
+  return withStyles(styles, { name: 'RMTableRenderer' })(TableRenderer);
 }
 
 class TSVExportRenderer extends React.PureComponent {
@@ -359,3 +359,7 @@ export default {
   'Table Row Heatmap': makeRenderer({ heatmapMode: 'row' }),
   'Exportable TSV': TSVExportRenderer,
 };
+
+/**
+ * @ignore - do not document.
+ */

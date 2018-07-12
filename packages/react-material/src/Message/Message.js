@@ -16,7 +16,7 @@ class Message extends Component {
      */
     open: PropTypes.bool.isRequired,
     /**
-     * This is usually about message animation,slide、collapse、fade、grow、zoom
+     * This is usually an animation of open or close the message,include slide、collapse、fade、grow、zoom
      */
     animation: PropTypes.string,
     /**
@@ -70,4 +70,4 @@ class Message extends Component {
     );
   }
 }
-export default withStyles(styles)(Message);
+export default withStyles(styles, { name: 'RMMessage' })(Message);

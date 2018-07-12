@@ -51,4 +51,4 @@ class CarouselItem extends React.Component {
   }
 }
 
-export default withStyles(styles)(CarouselItem);
+export default withStyles(styles, { name: 'RMCarouselItem' })(CarouselItem);

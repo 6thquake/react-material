@@ -29,6 +29,27 @@ class SubMenu extends React.Component {
     );
   }
 }
+SubMenu.propTypes = {
+  /**
+   * 是否禁用
+   */
+  disabled: PropTypes.bool,
+  /**
+   * 唯一标志
+   */
+  key: PropTypes.string,
+  /**
+   * 子菜单项值
+   */
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  /**
+   * 点击子菜单标题，参数 ({ key, domEvent })
+   */
+  onTitleClick: PropTypes.func,
+};
+SubMenu.defaultProps = {
+  disabled: false,
+};
 SubMenu.isSubMenu = true;
 
-export default withStyles(styles)(SubMenu);
+export default withStyles(styles, { name: 'RMSubMenu' })(SubMenu);

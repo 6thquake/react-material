@@ -90,7 +90,6 @@ const throttling = (fn, wait, maxTimeLong) => {
 };
 class AsyncTransfer extends React.Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       leftChecked: [], //左边选中的item
@@ -99,6 +98,7 @@ class AsyncTransfer extends React.Component {
       pageConfigRight: props.pageConfigR,
     };
   }
+
   static defaultProps = {
     placeholder: 'please input something',
     onChange: function() {
@@ -107,14 +107,34 @@ class AsyncTransfer extends React.Component {
     filterOption: false,
     paginationOption: false,
   };
+
   static propTypes = {
+    /**
+     * choose to generate filter box
+     */
     filterOption: PropTypes.boolean,
+    /**
+     * placeholder in filter box
+     */
     placeholder: PropTypes.string,
+    /**
+     * the data in the left box
+     */
     left: PropTypes.array.isRequired,
+    /**
+     * the data in the right box
+     */
     right: PropTypes.array.isRequired,
+    /**
+     * choose to generate pagination
+     */
     paginationOption: PropTypes.boolean,
+    /**
+     *
+     */
     onChange: PropTypes.func,
   };
+
   //数组去重
   subSet = (arr1, arr2) => {
     var set1 = new Set(arr1);
@@ -207,6 +227,7 @@ class AsyncTransfer extends React.Component {
   textchange = position => e => {
     this.props.filterChangeCb(position, e.target.value);
   };
+
   pageCallbackFnLeft(currentPage1) {
     //左边的分页参数改变回调
     this.setState({
@@ -216,6 +237,7 @@ class AsyncTransfer extends React.Component {
       },
     });
   }
+
   pageCallbackFnRight(currentPage1) {
     this.setState({
       pageConfigRight: {
@@ -224,6 +246,7 @@ class AsyncTransfer extends React.Component {
       },
     });
   }
+
   listItem(options, pageConfig) {
     //只渲染属于该页面的item
     console.log(pageConfig);
@@ -239,6 +262,7 @@ class AsyncTransfer extends React.Component {
       throw new Error('React-Material: the `options` property must be an array ');
     }
   }
+
   static getDerivedStateFromProps(newprops, prestate) {
     if (newprops.pageConfigL !== prestate.pageConfigLeft) {
       return newprops.pageConfigL;
@@ -248,6 +272,7 @@ class AsyncTransfer extends React.Component {
       return null;
     }
   }
+
   render() {
     const { classes, filterOption, placeholder, paginationOption } = this.props;
     return (
@@ -348,4 +373,4 @@ class AsyncTransfer extends React.Component {
   }
 }
 
-export default withStyles(styles)(AsyncTransfer);
+export default withStyles(styles, { name: 'RMAsyncTransfer' })(AsyncTransfer);

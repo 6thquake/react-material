@@ -139,4 +139,8 @@ FormItem.defaultProps = {
   },
 };
 
-export default withStyles(style)(FormItem);
+export default withStyles(style, { name: 'RMFormItem' })(FormItem);
+
+/**
+ * @ignore - do not document.
+ */

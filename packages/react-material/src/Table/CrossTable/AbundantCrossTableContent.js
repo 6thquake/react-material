@@ -344,4 +344,6 @@ AbundantCrossTableContent.defaultProps = Object.assign({}, CrossTable.defaultPro
   menuLimit: 500,
 });
 
-export default withStyles(styles)(AbundantCrossTableContent);
+export default withStyles(styles, { name: 'RMAbundantCrossTableContent' })(
+  AbundantCrossTableContent,
+);

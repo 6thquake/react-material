@@ -8,6 +8,7 @@ const styles = () => ({
     marginTop: '10px',
   },
 });
+
 class App extends React.Component {
   onClose = key => {
     console.log(key);
@@ -137,3 +138,4 @@ class App extends React.Component {
     }
 } */
 export default withStyles(styles)(App);
+

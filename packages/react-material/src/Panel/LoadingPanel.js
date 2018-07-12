@@ -74,15 +74,15 @@ const styles = theme => ({
 class LoadingPanel extends Component {
   static propTypes = {
     /**
-     * loading 类型，progress为无遮罩层的loading，mask为有遮罩层的loading
+     * Loading type;if progress,loading without mask，if mask,loading with mask
      */
     type: PropTypes.string,
     /**
-     * loading 是否完成
+     * If true,loading is finish.
      */
     loaded: PropTypes.bool,
     /**
-     * loading 预估时间
+     * Loading estimated time
      */
     estimatedTime: PropTypes.number,
   };
@@ -124,4 +124,4 @@ class LoadingPanel extends Component {
     );
   }
 }
-export default withStyles(styles)(LoadingPanel);
+export default withStyles(styles, { name: 'RMLoadingPanel' })(LoadingPanel);

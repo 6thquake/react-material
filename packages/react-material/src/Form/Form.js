@@ -25,3 +25,7 @@ class Form extends Formsy {
 export { addValidationRule, validationRules, withFormsy, propTypes };
 
 export default Form;
+
+/**
+ * @ignore - do not document.
+ */

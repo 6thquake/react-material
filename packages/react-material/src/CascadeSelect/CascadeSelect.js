@@ -7,7 +7,7 @@ import CascadeOption from './CascadeOption';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import InputAdornment from '../InputAdornment';
 
-const styles = theme => ({
+export const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -122,6 +122,7 @@ class CascadeSelect extends React.Component {
   //
   setTextFieldValue = () => {
     let separator = this.props.separator || '/';
+
     let text = this.series
       .map((item, index) => {
         return item.text;
@@ -134,7 +135,9 @@ class CascadeSelect extends React.Component {
 
   renderMenuItems() {
     let levels = [0, 1, 2, 3, 4];
+
     let { children, renderLabel = 'label', renderValue = 'value' } = this.props;
+
     let list = levels.map((item, index) => {
       return (
         <CascadeOption
@@ -199,13 +202,56 @@ class CascadeSelect extends React.Component {
 }
 
 CascadeSelect.propTypes = {
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
+   */
   classes: PropTypes.object.isRequired,
+  /**
+   * The separator between different levels
+   */
   separator: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  /**
+   * Callback when finishing cascader select
+   */
+  onChange: PropTypes.func,
+  /**
+   * The label content.
+   */
+  label: PropTypes.node,
+  /**
+   * data options of cascade
+   */
   dataSource: PropTypes.array.isRequired,
+  /**
+   * The key in dataSoure , which will be used to display
+   */
   renderLabel: PropTypes.string,
+  /**
+   *
+   */
   notFound: PropTypes.string,
+  /**
+   *
+   */
   width: PropTypes.number,
 };
 
-export default withStyles(styles)(CascadeSelect);
+
+  /**
+   * The key in dataSoure, which will be used to distinguish items
+   */
+  renderValue: PropTypes.string,
+  /**
+   * The width of cascader
+   */
+  width: PropTypes.number,
+};
+CascadeSelect.defaultProps = {
+  separator: '/',
+  renderLabel: 'label',
+  renderValue: 'value',
+  width: 150,
+  // onChange: e => console.log(e),
+};
+export default withStyles(styles, { name: 'RMCascadeSelect' })(CascadeSelect);

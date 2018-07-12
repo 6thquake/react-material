@@ -10,7 +10,7 @@ We monitor the size of the bundle at each commit:
 
 ## How to reduce the bundle size?
 
-For convenience, React-Material exposes its full API on the top-level `material-ui` import.
+For convenience, React-Material exposes its full API on the top-level `react-material` import.
 This will work fine if you have tree shaking working.
 
 However, in the case where tree shaking is not supported or configured in your build chain, **this causes the entire library and its dependencies to be included** in client bundles that include code that imports from the top-level bundle.
@@ -19,7 +19,7 @@ You have couple of options to overcome this situation:
 
 ### Option 1
 
-You can import directly from `material-ui/` to avoid pulling in unused modules. For instance, instead of:
+You can import directly from `react-material/` to avoid pulling in unused modules. For instance, instead of:
 
 ```js
 import { Button, TextField } from 'react-material';
@@ -32,7 +32,7 @@ import Button from 'react-material/Button';
 import TextField from 'react-material/TextField';
 ```
 
-While importing directly in this manner doesn't use the exports in [`material-ui/index.js`](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/blob/develop/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
+While importing directly in this manner doesn't use the exports in [`react-material/index.js`](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/blob/develop/packages/react-material/src/index.js), this file can serve as a handy reference as to which modules are public.
 Anything not listed there should be considered **private**, and subject to change without notice.
 For instance, the `Tabs` component is a public module while `TabIndicator` is private.
 
@@ -58,7 +58,7 @@ Pick one of the following plugins:
 The published package on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms).
 
 We also publish a second version of the components to target **evergreen browsers**.
-You can find this version under the [`/es` folder](https://unpkg.com/material-ui@next/es/).
+You can find this version under the [`/es` folder](https://unpkg.com/react-material@next/es/).
 We transpile all the non-official syntax to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more.
 It can be used to make separate bundles targeting different browsers.
 Old browsers will require more JavaScript features to be transpiled.

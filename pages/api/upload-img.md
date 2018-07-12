@@ -1,25 +1,23 @@
 ---
-filename: /packages/material-ui/src/UploadImg/UploadImg.js
+filename: /packages/react-material/src/Upload/UploadImg.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # UploadImg
 
-UploadImg 是一个用户头像上传预览控件。
 
 
 ## Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">actionFunc</span> | <span class="prop-type">func</span> | <span class="prop-default"></span> |  点击上传图片时触发的函数 |
-| <span class="prop-name">disabled</span> | <span class="prop-type">Boolean</span> | <span class="prop-default">false</span> |  可选参数, 是否禁用 |
+| <span class="prop-name required">actionFunc *</span> | <span class="prop-type">func |  | 点击status button 触发的函数，返回一个promise实例 |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | 可选参数, 是否禁用 |
+
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## Demos
 
-- [UploadBasic](/demos/upload)
-
-
-
+- [Upload](/demos/upload)
 

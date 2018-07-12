@@ -69,50 +69,54 @@ const throttling = (fn, wait, maxTimeLong) => {
 class Mention extends Component {
   static propTypes = {
     /**
-     * 输入变化时用来从父组件获取显示的选项
+     * Callback when input changes
      */
     inputChangeCb: PropTypes.func.isRequired,
     /**
-     * 输入变化时用来传递给父组件当前输入值
+     * now text value
      */
     onChange: PropTypes.func.isRequired,
 
     /**
-     * 分页的参数
+     * pagination config
      */
     pageConfig: PropTypes.object,
     /**
-     * 提示值
+     * text palcehold
      */
     placeHold: PropTypes.string,
     /**
-     * 当选中某个选项时传递给父组件
+     * callback when select value change
      */
     onSelect: PropTypes.func.isRequired,
     /**
-     * 默认值
+     * default value
      */
     value: PropTypes.string,
     /**
-     * 是否禁用
+     * should component disabled
      */
     disabled: PropTypes.bool,
     /**
-     * 用于设置触发符号
+     * set char of trigger
      */
-    triggerOptions: PropTypes.oneOfType(PropTypes.string, PropTypes.array),
+    triggerOptions: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     /**
-     * 用于设置可选项目
+     * set the option to  be selected
      */
-    dataSource: PropTypes.oneOfType(PropTypes.object, PropTypes.array),
+    dataSource: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     /**
-     * 外部传入数据是否出错
+     * show error
      */
     showError: PropTypes.bool,
     /**
-     * 初始的选中值
+     * initial selected value
      */
     selected: PropTypes.array,
+    /**
+     * set if the text can only be read
+     */
+    readOnly: PropTypes.bool,
   };
   static defaultProps = {
     inputChangeCb: function() {
@@ -310,4 +314,5 @@ class Mention extends Component {
     );
   }
 }
-export default withStyles(styles)(Mention);
+
+export default withStyles(styles, { name: 'RMMention' })(Mention);

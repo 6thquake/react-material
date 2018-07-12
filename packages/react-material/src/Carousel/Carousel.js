@@ -166,5 +166,52 @@ class Carousel extends React.Component {
     );
   }
 }
+Carousel.propTypes = {
+  /**
+  *imageUrl list, eg.[
+      {
+        src: '/static/images/grid-list/bike.jpg',
+        alt: 'images-1',
+      },
+      {
+        src: '/static/images/grid-list/mushroom.jpg',
+        alt: 'images-2',
+      },
+      {
+        src: '/static/images/grid-list/burgers.jpg',
+        alt: 'images-3',
+      },
+      {
+        src: '/static/images/grid-list/morning.jpg',
+        alt: 'images-4',
+      }
+    ]
+  */
+  items: PropTypes.array.isRequired,
+  /**
+   *speed of pictrue slide，unit second
+   */
+  speed: PropTypes.float,
+  /**
+   *delay of pictrue slide，unit second
+   */
+  delay: PropTypes.float,
+  /**
+   *pause when mouseover
+   */
+  pause: PropTypes.bool,
+  /**
+   *autoplay
+   */
+  autoplay: PropTypes.bool,
+  /**
+   *is dots showed
+   */
+  dots: PropTypes.bool,
+  /**
+   *is arrows showed
+   */
+  arrows: PropTypes.bool,
+};
 
-export default withStyles(styles)(Carousel);
+export default withStyles(styles, { name: 'RMCarousel' })(Carousel);

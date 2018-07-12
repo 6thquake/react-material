@@ -31,4 +31,4 @@ class SelectFilter extends Component {
     );
   }
 }
-export default withStyles(styles)(SelectFilter);
+export default withStyles(styles, { name: 'RMSelectFilter' })(SelectFilter);

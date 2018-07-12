@@ -156,4 +156,4 @@ Tag.defaultProps = {
   color: 'primaryMain',
 };
 
-export default withStyles(styles.mixin)(Tag);
+export default withStyles(styles.mixin, { name: 'RMTag' })(Tag);

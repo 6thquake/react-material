@@ -122,7 +122,7 @@ RadioGroup.defaultProps = {
 const FormComponent = compose(
   withFormsy,
   withFormItem,
-  withStyles(style),
+  withStyles(style, { name: 'RMRadioGroup' }),
 )(RadioGroup);
 
 class C extends Component {
@@ -151,7 +151,13 @@ C.childContextTypes = {
   classes: PropTypes.object,
 };
 C.propTypes = {
+  /**
+   *  大小，只对按钮样式生效
+   */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   *  是否圆角，只对按钮样式生效
+   */
   circular: PropTypes.bool,
   classes: PropTypes.object,
 };

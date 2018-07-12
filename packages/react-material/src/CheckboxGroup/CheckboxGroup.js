@@ -121,7 +121,11 @@ CheckboxGroup.defaultProps = {
 const FormComponent = compose(
   withFormsy,
   withFormItem,
-  withStyles(style),
+  withStyles(style, { name: 'RMCheckboxGroup' }),
 )(CheckboxGroup);
 
 export default compose(withForm)(FormComponent, CheckboxGroupStandalone);
+
+/**
+ * @ignore - do not document.
+ */

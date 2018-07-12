@@ -99,5 +99,30 @@ class Breadcrumb extends React.Component {
     return <div className={classes.root}>{extraBreadcrumbItems}</div>;
   }
 }
+Breadcrumb.propTypes = {
+  /**
+  *The map of all websites, eg. {
+      '/': {name:'home',icon:(<Home/>)},
+      '/apps': {name:'Application List',icon:(<Home/>)},
+      '/apps/1': {name:'Application1',icon:(<Grade/>)},
+      '/apps/2': {name:'Application2',icon:(<Lock/>)},
+      '/apps/1/detail': {name:'Detail',icon:''},
+      '/apps/2/detail': {name:'Detail',icon:''},
+    }
+  */
+  nameMap: PropTypes.object.isRequired,
+  /**
+   *the Url of current Page,one of the keys of nameMap;
+   */
+  currUrl: PropTypes.string.isRequired,
+  /**
+   *Show icons before name
+   */
+  showIcon: PropTypes.bool,
+  /**
+   *the separator of breadcrumb
+   */
+  separator: PropTypes.string,
+};
 
-export default withStyles(styles)(Breadcrumb);
+export default withStyles(styles, { name: 'RMBreadcrumb' })(Breadcrumb);

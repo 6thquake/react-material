@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withStyles } from '../styles';
 import { Publish } from '@material-ui/icons';
+import PropTypes from 'prop-types';
 
 const styles = {
   rmBackTop: {
@@ -42,6 +43,25 @@ function getScrollTop() {
 }
 
 class BackTop extends React.Component {
+
+  static propTypes = {
+    /**
+     * show BackTop button when scroll to this height
+     */
+    visibilityHeight: PropTypes.number,
+
+    /**
+     * callback function when click BackTop button
+     */
+    onClick: PropTypes.func,
+  };
+
+  static defaultProps = {
+    visibilityHeight: 300,
+  };
+
+  scrollHandler = this.handleScroll.bind(this);
+
   constructor(props) {
     super(props);
     this.state = {
@@ -76,8 +96,6 @@ class BackTop extends React.Component {
       }
     }
   }
-
-  scrollHandler = this.handleScroll.bind(this);
 
   componentDidMount() {
     if (hasScrollbar()) {
@@ -131,4 +149,4 @@ class BackTop extends React.Component {
   }
 }
 
-export default withStyles(styles)(BackTop);
+export default withStyles(styles, { name: 'RMBackTop' })(BackTop);

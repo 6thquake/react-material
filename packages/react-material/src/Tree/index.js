@@ -130,4 +130,6 @@ class Tree extends React.Component {
 //   filterTreeNode: (node) => false
 // };
 // console.log(styles)
-export default withStyles(styles)(Tree);
+//export default withStyles(styles)(Tree);
+export default from './Tree';
+export { default as TreeNode } from './TreeNode';

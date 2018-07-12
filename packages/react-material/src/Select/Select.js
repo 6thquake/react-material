@@ -122,7 +122,11 @@ Select.defaultProps = {
 const FormComponent = compose(
   withFormsy,
   withFormItem,
-  withStyles(style),
+  withStyles(style, { name: 'RMSelect' }),
 )(Select);
 
 export default compose(withForm)(FormComponent, SelectStandalone);
+
+/**
+ * @ignore - do not document.
+ */

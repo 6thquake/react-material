@@ -1,5 +1,5 @@
 ---
-components: Tree
+components: Tree, TreeNode
 ---
 
 #  Tree

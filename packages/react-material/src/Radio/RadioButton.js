@@ -196,6 +196,12 @@ class RadioButton extends Component {
     );
   }
 }
+RadioButton.propTypes = {
+  /**
+   *  RadioButton 的value
+   */
+  value: PropTypes.string,
+};
 
 RadioButton.contextTypes = {
   row: PropTypes.bool,
@@ -240,7 +246,7 @@ function getLabel(props) {
     );
   }
 
-  return withStyles(styles)(Label);
+  return withStyles(styles, { name: 'RMLabel' })(Label);
 }
 
 function getRadio(props) {
@@ -276,7 +282,7 @@ function getRadio(props) {
   R.contextTypes = {
     classes: PropTypes.object,
   };
-  return withStyles(styles)(R);
+  return withStyles(styles, { name: 'RMRadio' })(R);
 }
 
-export default withStyles(styles)(RadioButton);
+export default withStyles(styles, { name: 'RMRadioButton' })(RadioButton);

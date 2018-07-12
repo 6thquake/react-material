@@ -129,3 +129,7 @@ class Tag extends Component {
 }
 
 export default withStyles(styles)(Tag);
+
+/**
+ * @ignore - do not document.
+ */

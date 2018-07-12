@@ -18,8 +18,8 @@ filename: /packages/react-material/src/CascadeSelect/CascadeSelect.js
 | <span class="prop-name">label</span> | <span class="prop-type">node |  | The label content. |
 | <span class="prop-name required">dataSource *</span> | <span class="prop-type">array |  | data options of cascade |
 | <span class="prop-name">renderLabel</span> | <span class="prop-type">string | <span class="prop-default">'label'</span> | The key in dataSoure , which will be used to display |
-| <span class="prop-name">notFound</span> | <span class="prop-type">string |  |  |
 | <span class="prop-name">renderValue</span> | <span class="prop-type">string | <span class="prop-default">'value'</span> | The key in dataSoure, which will be used to distinguish items |
+| <span class="prop-name">notFound</span> | <span class="prop-type">string |  |  |
 | <span class="prop-name">width</span> | <span class="prop-type">number | <span class="prop-default">150</span> | The width of cascader |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

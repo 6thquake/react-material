@@ -157,3 +157,7 @@ Tag.defaultProps = {
 };
 
 export default withStyles(styles.mixin, { name: 'RMTag' })(Tag);
+
+/**
+ * @ignore - do not document.
+ */

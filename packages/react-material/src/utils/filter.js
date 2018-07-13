@@ -1,29 +1,28 @@
 const findInObject = (object, value) => {
-  for (const key in object) {
-    if (object.hasOwnProperty(key)) {
-      const element = object[key];
-      return String(element).indexOf(String(value))
-    }
-  }
-  return false
+  let keys = Object.keys(object)
+  let result = keys.some((key) => {
+    return String(object[key]).indexOf(value) !== -1
+  })
+  return result
 }
 
 const find = (content, value) => {
   const type = typeof content
-  if (type === 'object'){
+  if (type === 'object') {
     return findInObject(content, value)
-  }else{
-    return String(content).indexOf(String(value))
+  } else {
+    return String(content).indexOf(String(value)) !== -1
   }
-}
-
-const compare = (item, value) =>{
-  return find(item, value)
 }
 
 const filter = (data, value) => {
   const type = typeof value
-  let callback = type === 'function' ? value : compare
-  let result = data.filter(callback)
+  let callback = type === 'function' ? value : find
+  let result = data.filter((item) => {
+    return callback(item, value)
+  })
   return result
 }
+
+export { filter, find }
+export default filter

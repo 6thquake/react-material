@@ -45,7 +45,7 @@ class App extends React.Component {
       <div style={renderStyle}>
         <Bubble
           isLeft={false}
-          content=" "
+          content="Hello, this is simply a test bubble dialog conversation."
           alt="Remy Sharp"
           src="/static/images/remy.jpg/"
           classes={{ rRectangle: classes.rRectangle, rTriangle: classes.rTriangle }}

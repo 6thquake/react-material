@@ -25,6 +25,37 @@ const styles = theme => ({
   }
 });
 
+const findInObject = (object, value) => {
+  let keys = Object.keys(object)
+  let result = keys.some((key)=>{
+    return String(object[key]).indexOf(value) !== -1
+  })
+  return result
+}
+
+const find = (content, value) => {
+  const type = typeof content
+  if (type === 'object') {
+    return findInObject(content, value)
+  } else {
+    return String(content).indexOf(String(value)) !== -1
+  }
+}
+
+const compare = (item, value) => {
+  let result = find(item, value)
+  return result
+}
+
+const filter = (data, value) => {
+  const type = typeof value
+  let callback = type === 'function' ? value : compare
+  let result = data.filter((item)=>{
+    return callback(item, value)
+  })
+  return result
+}
+
 const columns = [
   { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
   { title: 'Age', width: 100, dataIndex: 'age', key: 'age', fixed: 'left' },
@@ -46,7 +77,7 @@ const columns = [
 ];
 
 const data = [];
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 10; i++) {
 
   data.push({
     key: i,
@@ -56,6 +87,10 @@ for (let i = 0; i < 3; i++) {
     gender: i % 2 === 0 ? 'male' : "female"
   });
 }
+
+// console.log('calll filter', filter(data,(item, index)=>{
+//   return item.indexOf('0')
+// }))
 class RmTableEXample extends React.Component {
   constructor(props) {
     super(props);
@@ -103,6 +138,10 @@ class RmTableEXample extends React.Component {
     this.setState({
       value,
     })
+    console.log('filter data===========', filter(data, 'London0'))
+    console.log('filter data===========222', filter(data, (item, index)=>{
+      return find(item, 'London0')
+    }))
   }
   render() {
     const { classes } = this.props

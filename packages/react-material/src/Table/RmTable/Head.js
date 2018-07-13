@@ -23,6 +23,26 @@ import {
   withStyles
 } from 'react-material/styles';
 
+const throttling = (fn, wait, maxTimelong) => {
+  wait = wait || 100;
+  maxTimelong = maxTimelong || 300;
+  var timeout = null;
+  var startTime = Date.now();
+
+  return function (...arg) {
+    if (timeout !== null) clearTimeout(timeout);
+    var curTime = Date.now();
+    if (curTime - startTime >= maxTimelong) {
+      fn(...arg);
+      startTime = curTime;
+    } else {
+      timeout = setTimeout(e => {
+        fn(...arg);
+      }, wait);
+    }
+  };
+};
+
 const styles = (theme)=> ({
   root: {
 
@@ -60,11 +80,23 @@ class Head extends React.Component {
     targetIndex: '',
     sourceIndex: '',
   }
+  componentDidMount(){
+    this.throttleResize = throttling(this.resize)
+  }
   handleResize =(...args) =>(e, {size})=> {
     const {
       onResize
     } = this.props
+    console.log('resize')
     onResize && onResize(...args, size)
+    // this.throttleResize(...args,size)
+  }
+  resize = (...args) => {
+    const {
+      onResize
+    } = this.props
+    console.log('resize')
+    onResize && onResize(...args)
   }
   renderTableHeadCell = (column, index) => {
     const {

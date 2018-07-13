@@ -1,20 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Table from 'react-material/Table';
+import Divider from 'react-material/Divider';
 import TableBody from 'react-material/TableBody';
 import TableCell from 'react-material/TableCell';
 import TableHead from 'react-material/TableHead';
 import TableRow from 'react-material/TableRow';
+import {
+  RadioButton
+} from 'react-material/Radio';
+import RadioGroup from 'react-material/RadioGroup';
 // import ScrollBar from ''
 import Paper from 'react-material/Paper';
 import RmTable from 'react-material/Table/RmTable'
+// import { Divider } from 'rc-menu/lib';
 const styles = theme => ({
   root: {
     // width: '100%',
     marginTop: theme.spacing.unit * 3,
-    overflowX: 'hidden'
+    // overflowX: 'hidden'
   },
+  radioButtons: {
+    margin: theme.spacing.unit * 2
+  }
 });
 
 const columns = [
@@ -38,7 +46,7 @@ const columns = [
 ];
 
 const data = [];
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 3; i++) {
 
   data.push({
     key: i,
@@ -53,7 +61,8 @@ class RmTableEXample extends React.Component {
     super(props);
     this.state = {  
       columns: columns,
-      data: data
+      data: data,
+      value: 'scoll'
     };
   }
   handleResize =(index, colomn, size)=> {
@@ -89,12 +98,38 @@ class RmTableEXample extends React.Component {
       data,
     })
   }
+  handleChange = (e) => {
+    let value = e.target.value
+    this.setState({
+      value,
+    })
+  }
   render() {
     const { classes } = this.props
-    const { data, columns } = this.state
+    const { data, columns, value } = this.state
+    const options = {
+      value
+    }
     return (
       <Paper className={classes.root}>
-        <RmTable onColDrag={this.handleColDrag} onColResize={this.handleResize} columns={columns} data={data}/>
+        <div className={classes.radioButtons}>
+           <RadioGroup
+            row
+            circular
+            onChange={this.handleChange}
+            value={this.state.value}
+            name="gender1"
+          >
+            <RadioButton value="scoll">scoll</RadioButton>
+            <RadioButton value="fixed">fixed</RadioButton>
+            <RadioButton value="resizable">resizable</RadioButton>
+            <RadioButton value="dragable">
+              dragable
+            </RadioButton>
+          </RadioGroup>
+        </div>
+        <Divider></Divider>
+        <RmTable {...options} onColDrag={this.handleColDrag} onColResize={this.handleResize} columns={columns} data={data}/>
       </Paper>
     );
   }

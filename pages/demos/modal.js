@@ -15,6 +15,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/modal/Modal'), 'utf8')
 `,
         },
+        'pages/demos/modal/Confirm.js': {
+          js: require('docs/src/pages/demos/modal/Confirm').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/modal/Confirm'), 'utf8')
+`,
+        },
       }}
     />
   );

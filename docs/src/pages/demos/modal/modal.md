@@ -20,3 +20,13 @@ Touch mechanics:
 - Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
 
 {{"demo": "pages/demos/modal/Modal.js"}}
+
+##  Modal method
+
+Modal method include:
+ * Modal.info
+ * Modal.success
+ * Modal.error
+ * Modal.warning
+ * Modal.confirm
+{{"demo": "pages/demos/modal/Confirm.js"}}

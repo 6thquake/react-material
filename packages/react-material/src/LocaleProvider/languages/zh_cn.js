@@ -80,4 +80,8 @@ export default {
     page: '页',
     jumpTo: '跳至',
   },
+  Confirm: {
+    cancelText: '取消',
+    okText: '确认',
+  },
 };

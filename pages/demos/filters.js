@@ -22,13 +22,6 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/filters/CustomFilters'), 'utf8')
 `,
         },
-        'pages/demos/filters/FiltersWithRipple.js': {
-          js: require('docs/src/pages/demos/filters/FiltersWithRipple').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/filters/FiltersWithRipple'), 'utf8')
-`,
-        },
       }}
     />
   );

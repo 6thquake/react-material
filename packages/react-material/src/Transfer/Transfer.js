@@ -13,6 +13,7 @@ import { ChevronRight, ChevronLeft, LastPage, FirstPage } from '@material-ui/ico
 import { Select } from '@material-ui/core';
 import Pagination from '../Pagination/Pagination';
 import Divider from '../Divider';
+import throttling from '../utils/throttling.js';
 const styles = {
   root: {
     minWidth: '700px',
@@ -32,8 +33,8 @@ const styles = {
     maxWidth: '300px',
     position: 'absolute',
   },
-  leftLists: {},
-  rightLists: {
+  dataSourceLists: {},
+  selectedKeysLists: {
     right: '0',
     top: '0',
   },
@@ -44,99 +45,89 @@ const styles = {
     top: '50%',
     transform: 'translateY(-50%)',
   },
-  devideleft: {
+  devideDataSource: {
     position: 'absolute',
     top: '250px',
     left: '0',
     width: '100%',
   },
-  devideright: {
+  devideSelectedKeys: {
     position: 'absolute',
     top: '250px',
     right: '0',
     width: '100%',
   },
-  paginationleft: {
+  paginationDataSource: {
     position: 'absolute',
-    top: '250px ',
+    top: '240px ',
     left: '0',
     width: '100%',
   },
-  paginationright: {
+  paginationSelectedKeys: {
     position: 'absolute',
-    top: '250px',
+    top: '240px',
     right: '0',
     width: '100%',
   },
 };
-//过滤文本的防抖函数
-const throttling = (fn, wait, maxTimeLong) => {
-  wait = wait || 100;
-  maxTimeLong = maxTimeLong || 300;
-  let timeout = null;
-  let start = new Date();
-  return function(e) {
-    if (timeout) {
-      clearTimeout(timeout);
-    }
-    let now = new Date();
-    if (now - start >= maxTimeLong) {
-      fn(e);
-      start = now;
-    } else {
-      timeout = setTimeout(e => fn(e), wait);
-    }
-  };
-};
+
 class Transfer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      leftChecked: [], //左边选中的item
-      rightChecked: [],
+      dataSourceChecked: [], //左边选中的item
+      selectedKeysChecked: [],
       temp: {
-        left: props.left, //左边渲染的数据
-        right: props.right,
+        dataSource: props.dataSource, //左边渲染的数据
+        selectedKeys: props.selectedKeys,
       },
-      pageConfigLeft: props.pageConfig, //左边的分页参数
-      pageConfigRight: props.pageConfig,
+      pageConfigDataSource:{
+        currentPage:props.pageConfig.currentPage||0,
+        pageSize:props.pageConfig.pageSize||5,
+        total:props.pageConfig.total||5,
+      } , //左边的分页参数
+      pageConfigSelectedKeys: {
+        currentPage:props.pageConfig.currentPage||0,
+        pageSize:props.pageConfig.pageSize||5,
+        total:props.pageConfig.total||5,
+      } , 
     };
   }
   static defaultProps = {
-    placeholder: 'please input something',
+    searchPlaceholder: 'please input something',
     onChange: function() {
       console.log('need cb function');
     },
-    filterOption: false,
+    showSearch: false,
     paginationOption: false,
   };
   static propTypes = {
     /**
      * choose to generate filter box
      */
-    filterOption: PropTypes.boolean,
+    showSearch: PropTypes.bool,
     /**
      * placeholder in filter box
      */
-    placeholder: PropTypes.string,
+    searchPlaceholder: PropTypes.string,
     /**
-     * the data in the left box
+     * the data in the source box
      */
-    left: PropTypes.array.isRequired,
+    dataSource: PropTypes.array.isRequired,
     /**
-     * the data in the right box
+     * the data in the target box
      */
-    right: PropTypes.array.isRequired,
-    /**
-     * choose to generate pagination
-     */
-    paginationOption: PropTypes.boolean,
+    targetKeys: PropTypes.array.isRequired,
     /**
      * pageConfig should contain total,pageSize,currentPage
      */
-    pageConfig: PropTypes.object,
+    pageConfig:  PropTypes.shape({
+      currentPage:PropTypes.number,
+      pageSize:PropTypes.number,
+      total:PropTypes.number,
+    }),
     /**
-     * call-back function when data change
+     * call-back function when data change,parameters are (targetKeys,direction,moveKeys)
      */
     onChange: PropTypes.func,
   };
@@ -158,63 +149,67 @@ class Transfer extends React.Component {
 
   transferToggle = position => () => {
     //左右移动选中部分
-    const { leftChecked, rightChecked } = this.state;
-    let _checked = position == 'left' ? leftChecked : position == 'right' ? rightChecked : '';
+    const { dataSourceChecked, selectedKeysChecked } = this.state;
+    let _checked = position == 'left' ? dataSourceChecked : position == 'right' ? selectedKeysChecked : '';
     let _otherPos = position == 'left' ? 'right' : 'left';
-    let aaa = this.subSet(this.props[position], _checked);
+    let chooseBox=position==='left'?'dataSource':'selectedKeys';
+    let otherBox=position==='left'?'selectedKeys':'dataSource';
+    let aaa = this.subSet(this.props[chooseBox], _checked);
     let newData = {};
-    newData[position] = aaa;
-    newData[_otherPos] = [].concat(this.props[_otherPos], _checked);
+    newData[chooseBox] = aaa;
+    newData[otherBox] = [].concat(this.props[otherBox], _checked);
     this.setState({
-      leftChecked: [],
-      rightChecked: [],
+      dataSourceChecked: [],
+      selectedKeysChecked: [],
       temp: {
-        left: [...newData['left']],
-        right: [...newData['right']],
+        dataSource: [...newData['dataSource']],
+        selectedKeys: [...newData['selectedKeys']],
       },
-      pageConfigLeft: {
+      pageConfigDataSource: {
         ...this.props.pageConfig,
-        total: newData.left.length,
+        total: newData.dataSource.length,
       },
-      pageConfigRight: {
+      pageConfigSelectedKeys: {
         ...this.props.pageConfig,
-        total: newData.right.length,
+        total: newData.selectedKeys.length,
       },
     });
-    this.props.onChange(newData);
+    this.props.onChange(newData.selectedKeys,_otherPos,_checked);
   };
 
   transferAllToggle = position => () => {
     //左右移动所有
-    const { left, right } = this.props;
-    let _checked = position == 'left' ? left : position == 'right' ? right : '';
+    const { dataSource, selectedKeys } = this.props;
+    let _checked = position == 'left' ? dataSourceChecked : position == 'right' ? selectedKeysChecked : '';
     let _otherPos = position == 'left' ? 'right' : 'left';
-    let aaa = this.subSet(this.props[position], _checked);
+    let chooseBox=position==='left'?'dataSource':'selectedKeys';
+    let otherBox=position==='left'?'selectedKeys':'dataSource';
+    let aaa = this.subSet(this.props[chooseBox], _checked);
     let newData = {};
-    newData[position] = aaa;
-    newData[_otherPos] = [].concat(this.props[_otherPos], _checked);
+    newData[chooseBox] = aaa;
+    newData[otherBox] = [].concat(this.props[otherBox], _checked);
     this.setState({
-      leftChecked: [],
-      rightChecked: [],
+      dataSourceChecked: [],
+      selectedKeysChecked: [],
       temp: {
-        left: [...newData['left']],
-        right: [...newData['right']],
+        dataSource: [...newData['dataSource']],
+        selectedKeys: [...newData['selectedKeys']],
       },
-      pageConfigLeft: {
+      pageConfigdataSource: {
         ...this.props.pageConfig,
-        total: newData.left.length,
+        total: newData.dataSource.length,
       },
-      pageConfigRight: {
+      pageConfigSelectedKeys: {
         ...this.props.pageConfig,
-        total: newData.right.length,
+        total: newData.selectedKeys.length,
       },
     });
-    this.props.onChange(newData);
+    this.props.onChange(newData.selectedKeys,_otherPos,_checked);
   };
 
   handleToggle = (value, position) => () => {
-    const { leftChecked, rightChecked } = this.state;
-    let _checked = position == 'left' ? leftChecked : position == 'right' ? rightChecked : '';
+    const { dataSourceChecked, selectedKeysChecked } = this.state;
+    let _checked = position == 'left' ? dataSourceChecked : position == 'right' ? selectedKeysChecked : '';
 
     const currentIndex = _checked.indexOf(value);
     const newChecked = [..._checked];
@@ -226,59 +221,60 @@ class Transfer extends React.Component {
     }
     if (position == 'left') {
       this.setState({
-        leftChecked: newChecked,
+        dataSourceChecked: newChecked,
       });
     }
     if (position == 'right') {
       this.setState({
-        rightChecked: newChecked,
+        selectedKeysChecked: newChecked,
       });
     }
   };
 
   //过滤文本改変的函数
   textchange = position => e => {
-    let _otherPos = position == 'left' ? 'right' : 'left';
+    let chooseBox=position=='left'?'dataSource':'selectedKeys';
+    let otherBox = position == 'left' ? 'selectedKeys' : 'dataSource';
     const filterString = e.target.value;
-    const filterData = this.props[position].filter(item => {
+    const filterData = this.props[chooseBox].filter(item => {
       return !filterString || item.name.toLowerCase().indexOf(filterString.toLowerCase()) !== -1;
     });
     let newData = {};
-    newData[position] = filterData;
-    newData[_otherPos] = this.state.temp[_otherPos];
-    if (position == 'left') {
+    newData[chooseBox] = filterData;
+    newData[otherBox] = this.state.temp[otherBox];
+    if (chooseBox == 'dataSource') {
       this.setState({
         temp: newData,
-        pageConfigLeft: {
+        pageConfigDataSource: {
           ...this.props.pageConfig,
-          currentPage: 1,
-          total: newData.left.length,
+          currentPage: 0,
+          total: newData.dataSource.length,
         },
       });
-    } else if (position == 'right') {
+    } else if (chooseBox == 'selectedKeys') {
       this.setState({
         temp: newData,
-        pageConfigRight: {
+        pageConfigSelectedKeys: {
           ...this.props.pageConfig,
-          currentPage: 1,
-          total: newData.right.length,
+          currentPage: 0,
+          total: newData.selectedKeys.length,
         },
       });
     }
   };
-  pageCallbackFnLeft(currentPage1) {
+  pageCallbackFndataSource(currentPage1) {
     //左边的分页参数改变回调
     this.setState({
-      pageConfigLeft: {
-        ...this.state.pageConfigLeft,
+      pageConfigDataSource: {
+        ...this.state.pageConfigDataSource,
         currentPage: currentPage1,
       },
     });
   }
-  pageCallbackFnRight(currentPage1) {
+  pageCallbackFnselectedKeys(currentPage1) {
     this.setState({
-      pageConfigRight: {
-        ...this.state.pageConfigRight,
+      pageConfigSelectedKeys: {
+        ...this.state.pageConfigSelectedKeys,
         currentPage: currentPage1,
       },
     });
@@ -286,11 +282,11 @@ class Transfer extends React.Component {
   listItem(options, pageConfig) {
     //只渲染属于该页面的item
     if (Array.isArray(options)) {
-      let start = (pageConfig.currentPage - 1) * pageConfig.pageSize;
+      let start = (pageConfig.currentPage ) * pageConfig.pageSize;
       let end =
-        pageConfig.currentPage * pageConfig.pageSize > options.length
+        (pageConfig.currentPage+1) * pageConfig.pageSize > options.length
           ? undefined
-          : pageConfig.currentPage * pageConfig.pageSize;
+          : (pageConfig.currentPage+1) * pageConfig.pageSize;
       return options.slice(start, end);
     } else {
       throw new Error('React-Material: the `options` property must be an array ');
@@ -298,7 +294,11 @@ class Transfer extends React.Component {
   }
 
   render() {
-    const { classes, filterOption, placeholder, paginationOption } = this.props;
+    const { classes, showSearch, searchPlaceholder, pageConfig} = this.props;
+    let showPagination=false;
+    if(pageConfig){
+      showPagination=true;     
+    }  
     return (
       <div className={classes.root}>
         <div className={classes.btngrp}>
@@ -319,17 +319,17 @@ class Transfer extends React.Component {
           </Button>
         </div>
 
-        <div className={classes.lists + ' ' + classes.leftLists}>
+        <div className={classes.lists + ' ' + classes.dataSourceLists}>
           <List>
-            {filterOption && (
+            {showSearch && (
               <SelectFilter
                 fullWidth={true}
                 autoFocus={true}
-                placeholder={placeholder}
+                placeholder={searchPlaceholder}
                 onChange={throttling(this.textchange('left')).bind(this)}
               />
             )}
-            {this.listItem(this.state.temp.left, this.state.pageConfigLeft).map(value => (
+            {this.listItem(this.state.temp.dataSource, this.state.pageConfigDataSource).map(value => (
               <ListItem
                 key={value.id}
                 role={undefined}
@@ -338,35 +338,36 @@ class Transfer extends React.Component {
                 onClick={this.handleToggle(value, 'left')}
               >
                 <Checkbox
-                  checked={this.state.leftChecked.indexOf(value) !== -1}
+                  checked={this.state.dataSourceChecked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
                 />
                 <ListItemText primary={`${value.name}`} />
               </ListItem>
             ))}
-            <Divider className={classes.devideleft} />
-            {paginationOption && (
-              <Pagination
-                classes={{ paginationDiv: classes.paginationleft }}
-                {...this.state.pageConfigLeft}
-                pageCallbackFn={this.pageCallbackFnLeft.bind(this)}
+            <Divider className={classes.devideDataSource} />
+            {showPagination && (
+              <div className={classes.paginationDataSource }>
+                <Pagination
+                {...this.state.pageConfigDataSource}
+                pageCallbackFn={this.pageCallbackFndataSource.bind(this)}
               />
+              </div>              
             )}
           </List>
         </div>
 
-        <div className={classes.lists + ' ' + classes.rightLists}>
+        <div className={classes.lists + ' ' + classes.selectedKeysLists}>
           <List>
-            {filterOption && (
+            {showSearch && (
               <SelectFilter
                 fullWidth={true}
                 autoFocus={true}
-                placeholder={placeholder}
+                placeholder={searchPlaceholder}
                 onChange={throttling(this.textchange('right')).bind(this)}
               />
             )}
-            {this.listItem(this.state.temp.right, this.state.pageConfigRight).map(value => (
+            {this.listItem(this.state.temp.selectedKeys, this.state.pageConfigSelectedKeys).map(value => (
               <ListItem
                 key={value.id}
                 role={undefined}
@@ -375,20 +376,22 @@ class Transfer extends React.Component {
                 onClick={this.handleToggle(value, 'right')}
               >
                 <Checkbox
-                  checked={this.state.rightChecked.indexOf(value) !== -1}
+                  checked={this.state.selectedKeysChecked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
                 />
                 <ListItemText primary={`${value.name}`} />
               </ListItem>
             ))}
-            <Divider className={classes.devideright} />
-            {paginationOption && (
-              <Pagination
-                classes={{ paginationDiv: classes.paginationright }}
-                {...this.state.pageConfigRight}
-                pageCallbackFn={this.pageCallbackFnRight.bind(this)}
+            <Divider className={classes.devideSelectedKeys} />
+            {showPagination && (
+              <div className={classes.paginationDataSource }>
+                <Pagination
+                {...this.state.pageConfigSelectedKeys}
+                pageCallbackFn={this.pageCallbackFnselectedKeys.bind(this)}
               />
+              </div>
+              
             )}
           </List>
         </div>
@@ -401,12 +404,12 @@ Transfer.propTypes = {
   /**
    *Array of Object，in the Object, props 'name' and 'id' is required
    */
-  left: PropTypes.array.isRequired,
+  dataSource: PropTypes.array.isRequired,
   /**
    *Array of Object，in the Object, props 'name' and 'id' is required
    *
    */
-  right: PropTypes.array.isRequired,
+  selectedKeys: PropTypes.array.isRequired,
   /**
    * onchange callback function
    */

@@ -26,7 +26,7 @@ class MultiMentionTest extends Component {
     super();
     this.state = {
       pageConfig: {
-        currentPage: 1,
+        currentPage: 0,
         pageSize: 4,
         total: 12,
       },
@@ -67,14 +67,14 @@ class MultiMentionTest extends Component {
     return (
       <div className={classes.root}>
         <Mention
-          placeHold={'input @ to mention people,input # to mention tag'}
-          value={this.state.inputValue}
+          placeholder={'input @ to mention people,input # to mention tag'}
+          defaultValue={this.state.inputValue}
           selected={this.state.selectedItem}
           pageConfig={this.state.pageConfig}
-          inputChangeCb={this.inputChangeCb.bind(this)}
+          onSearchChange={this.inputChangeCb.bind(this)}
           onChange={this.onChange.bind(this)}
           onSelect={this.onSelect.bind(this)}
-          triggerOptions={['@', '#']}
+          prefix={['@', '#']}
           dataSource={this.state.dataSource}
         />
       </div>

@@ -6,6 +6,7 @@ import Paper from '../Paper';
 import Pagination from '../Pagination/Pagination';
 import Divider from '../Divider';
 import MenuItem from '../MenuItem';
+import throttling from '../utils/throttling.js';
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -47,44 +48,35 @@ const styles = theme => ({
   inputHold: {
     padding: '10px 0 7px',
   },
+  notFound:{
+    padding:'10px',
+    color:'rgba(0,0,0,0.5)'
+  }
 });
-const throttling = (fn, wait, maxTimeLong) => {
-  wait = wait || 100;
-  maxTimeLong = maxTimeLong || 300;
-  let timeout = null;
-  let start = new Date();
-  return function(e) {
-    if (timeout) {
-      clearTimeout(timeout);
-    }
-    let now = new Date();
-    if (now - start >= maxTimeLong) {
-      fn(e);
-      start = now;
-    } else {
-      timeout = setTimeout(e => fn(e), wait);
-    }
-  };
-};
 class Mention extends Component {
   static propTypes = {
     /**
-     * Callback when input changes
+     * Callback when input @ content changes,parameters are (value,trigger)
      */
-    inputChangeCb: PropTypes.func.isRequired,
+    // inputChangeCb: PropTypes.func.isRequired,
+    onSearchChange:PropTypes.func.isRequired,
     /**
-     * now text value
+     * Callback when input content changes
      */
     onChange: PropTypes.func.isRequired,
 
     /**
      * pagination config
      */
-    pageConfig: PropTypes.object,
+    pageConfig:  PropTypes.shape({
+      currentPage:PropTypes.number,
+      pageSize:PropTypes.number,
+      total:PropTypes.number,
+    }),
     /**
      * text palcehold
      */
-    placeHold: PropTypes.string,
+    placeholder: PropTypes.string,
     /**
      * callback when select value change
      */
@@ -92,7 +84,7 @@ class Mention extends Component {
     /**
      * default value
      */
-    value: PropTypes.string,
+    defaultValue: PropTypes.string,
     /**
      * should component disabled
      */
@@ -100,7 +92,8 @@ class Mention extends Component {
     /**
      * set char of trigger
      */
-    triggerOptions: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    //triggerOptions: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    prefix:PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     /**
      * set the option to  be selected
      */
@@ -112,14 +105,14 @@ class Mention extends Component {
     /**
      * initial selected value
      */
-    selected: PropTypes.array,
+     selected: PropTypes.array,
     /**
      * set if the text can only be read
      */
     readOnly: PropTypes.bool,
   };
   static defaultProps = {
-    inputChangeCb: function() {
+    onSearchChange: function() {
       console.log('need cb function');
     },
     onChange: function() {
@@ -129,25 +122,24 @@ class Mention extends Component {
       console.log('need cb function');
     },
     disabled: false,
-    triggerOptions: ['@'], //默认的触发符号
-    pageConfig: {
-      currentPage: 1,
-      pageSize: 5,
-      total: 0,
-    },
-    placeHold: 'please input something',
+    prefix: ['@'], //默认的触发符号
+    placeholder: 'please input something',
     readOnly: false,
-    value: '',
+    defaultValue: '',
     selected: [], //初始化传入的item
   };
   constructor(props) {
     super();
     this.state = {
       open: false,
-      inputValue: props.value,
+      inputValue: props.defaultValue,
       selectedItem: props.selected,
       triggerOption: '',
-      pageConfig: props.pageConfig,
+      pageConfig:{
+        currentPage:props.pageConfig.currentPage||0,
+        pageSize:props.pageConfig.pageSize||5,
+        total:props.pageConfig.total||5,
+      } , 
     };
   }
   handleChange = e => {
@@ -156,7 +148,7 @@ class Mention extends Component {
       //可选框未打开时打开可选框
       if (
         e.target.value.indexOf(' ') === -1 &&
-        this.props.triggerOptions.indexOf(e.target.value.charAt(0)) > -1
+        this.props.prefix.indexOf(e.target.value.charAt(0)) > -1
       ) {
         //标志符在开头
         trigger = e.target.value[0];
@@ -164,11 +156,11 @@ class Mention extends Component {
           open: true,
           triggerOption: trigger,
         });
-        this.props.inputChangeCb(e.target.value.slice(1, e.target.value.length), trigger); //让外部传入可选的项目
+        this.props.onSearchChange(e.target.value.slice(1, e.target.value.length), trigger); //让外部传入可选的项目
       } else if (e.target.value.indexOf(' ') > -1) {
         //标志符在中间但是前面有空格
         let stringForComplete = e.target.value.split(' ').pop();
-        if (this.props.triggerOptions.indexOf(stringForComplete[0]) > -1) {
+        if (this.props.prefix.indexOf(stringForComplete[0]) > -1) {
           trigger = stringForComplete[0];
         }
         if (trigger) {
@@ -176,7 +168,7 @@ class Mention extends Component {
             open: true,
             triggerOption: trigger,
           });
-          this.props.inputChangeCb(stringForComplete.slice(1, stringForComplete.length), trigger); //让外部传入可选的项目
+          this.props.onSearchChange(stringForComplete.slice(1, stringForComplete.length), trigger); //让外部传入可选的项目
         }
       }
     } else {
@@ -184,7 +176,7 @@ class Mention extends Component {
       let targetOptionIndex = e.target.value.lastIndexOf(this.state.triggerOption);
       let searchLength = e.target.value.length;
       let filterOption = e.target.value.slice(targetOptionIndex + 1, searchLength);
-      this.props.inputChangeCb(filterOption, this.state.triggerOption);
+      this.props.onSearchChange(filterOption, this.state.triggerOption);
     }
     this.setState({
       inputValue: e.target.value,
@@ -208,9 +200,9 @@ class Mention extends Component {
       open: false,
     });
   }
-  pageChangeCb(i) {
+  pageCallbackFn(i) {
     //切换页面的函数
-    console.log('item', i);
+   // console.log('item', i);
     this.setState({
       pageConfig: {
         ...this.state.pageConfig,
@@ -229,10 +221,17 @@ class Mention extends Component {
     }
   }
   render() {
-    const { classes, placeHold, children, dataSource, disabled, showError } = this.props;
+    const { classes, placeholder, children, dataSource, disabled, showError,pageConfig} = this.props;
     const { total, currentPage, pageSize } = this.state.pageConfig;
     const { open, inputValue, selectedItem } = this.state;
     let items;
+    let showPagination=false;
+    let noItemPatterned=false;
+    noItemPatterned=((dataSource && dataSource.length==0 ) || (!dataSource && !React.children));
+   // console.log(noItemPatterned)
+    if(pageConfig){
+      showPagination=true;     
+    }  
     if (dataSource) {
       //通过dataSource传参的情况
       items = dataSource
@@ -260,10 +259,10 @@ class Mention extends Component {
               throw new Error('AutoComplete[dataSource] only supports type `string[] | Object[]`.');
             }
           })
-        : [];
-    } else {
+        :[ ]
+    } else  if (React.Children){
       //通过child传参的情况
-      items = React.Children.map(children, child => {
+      items = React.Children ? React.Children.map(children, child => {
         if (!React.isValidElement(child)) {
           return null;
         }
@@ -282,7 +281,7 @@ class Mention extends Component {
           value: undefined, // The value is most likely not a valid HTML attribute.
           'data-value': child.props.value, // Instead, we provide it as a data attribute.
         });
-      });
+      }): [] 
     }
     return (
       <div className={classes.root}>
@@ -293,22 +292,30 @@ class Mention extends Component {
             className={classes.textarea}
             onChange={throttling(this.handleChange).bind(this)}
             value={inputValue}
-            placeholder={placeHold}
+            placeholder={placeholder}
             error={showError}
           />
-          {open ? (
+          {open && !noItemPatterned && (
             <Paper className={classes.paper} square>
-              {items.slice(
-                total == 0 ? total : (currentPage - 1) * pageSize,
-                currentPage * pageSize > total ? total : currentPage * pageSize,
-              )}
-              <Divider />
+            {items.slice(
+              total == 0 ? total : currentPage * pageSize,
+              (currentPage+1) * pageSize > total ? total : (currentPage+1) * pageSize,
+            )}
+            <Divider />
+            {showPagination && (
               <Pagination
-                {...this.state.pageConfig}
-                pageCallbackFn={this.pageChangeCb.bind(this)}
-              />
+              {...this.state.pageConfig}
+              pageCallbackFn={this.pageCallbackFn.bind(this)}
+            />
+            )}
             </Paper>
-          ) : null}
+
+          )}
+          {open && noItemPatterned && (
+            <Paper className={classes.notFound}>
+              {'no patterned result, press space to end'}
+            </Paper>
+          )}
         </div>
       </div>
     );

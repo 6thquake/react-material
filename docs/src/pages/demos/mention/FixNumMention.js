@@ -26,7 +26,7 @@ class FixNumMentionTest extends Component {
     super();
     this.state = {
       pageConfig: {
-        currentPage: 1,
+        currentPage: 0,
         pageSize: 4,
         total: 12,
       },
@@ -50,11 +50,13 @@ class FixNumMentionTest extends Component {
     });
   }
   onChange(value) {
+    console.log(value);
     this.setState({
       inputValue: value,
     });
   }
   onSelect(items) {
+    console.log(items);
     this.setState({
       selectedItem: items,
     });
@@ -73,11 +75,11 @@ class FixNumMentionTest extends Component {
     return (
       <div className={classes.root}>
         <Mention
-          placeHold={'input @ to mention'}
-          value={this.state.inputValue}
+          placeholder={'input @ to mention'}
+          defaultValue={this.state.inputValue}
           selected={this.state.selectedItem}
           pageConfig={this.state.pageConfig}
-          inputChangeCb={this.inputChangeCb.bind(this)}
+          onSearchChange={this.inputChangeCb.bind(this)}
           onChange={this.onChange.bind(this)}
           onSelect={this.onSelect.bind(this)}
           dataSource={this.state.dataSource}

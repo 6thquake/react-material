@@ -7,28 +7,42 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      right: [
+      selectedKeys: [
         { name: 'this is right one', id: 'r1' },
         { name: 'and this is right two', id: 'r2' },
         { name: 'right three is here', id: 'r3' },
       ],
-      left: [
+      dataSource: [
         { name: 'left one is left one ', id: 'l1' },
         { name: 'show the left two', id: 'l2' },
         { name: 'you get left three', id: 'l3' },
       ],
       pageConfig: {
-        currentPage: 1,
+        currentPage: 0,
         pageSize: 3,
         total: 3,
       },
     };
   }
+  subSet = (arr1, arr2) => {
+    var set1 = new Set(arr1);
+    var set2 = new Set(arr2);
 
-  changeListTest = data => {
+    var subset = [];
+
+    for (let item of set1) {
+      if (!set2.has(item)) {
+        subset.push(item);
+      }
+    }
+
+    return subset;
+  };
+
+  changeListTest = (targetKeys,direction,moveKeys) => {
+    console.log(targetKeys,direction,moveKeys);
     this.setState({
-      right: data.right,
-      left: data.left,
+      selectedKeys: targetKeys,
     });
   };
 
@@ -36,8 +50,8 @@ class App extends React.Component {
     return (
       <div>
         <Transfer
-          left={this.state.left}
-          right={this.state.right}
+          dataSource={this.state.dataSource}
+          selectedKeys={this.state.selectedKeys}
           filterOption={true}
           paginationOption={true}
           pageConfig={this.state.pageConfig}

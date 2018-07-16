@@ -54,6 +54,11 @@ class BackTop extends React.Component {
      * Id selector, element that needs to be listened the scroll event, the default value is window
      */
     container: PropTypes.string,
+    /**
+     * Override or extend the styles applied to the component.
+     * See [CSS API](#css-api) below for more details.
+     */
+    classes: PropTypes.object.isRequired,
   };
 
   static defaultProps = {

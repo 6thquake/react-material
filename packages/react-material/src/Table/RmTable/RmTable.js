@@ -13,6 +13,7 @@ import Head from './Head'
 import Body from './Body'
 import Toolbar from './TableToolbar'
 import Manager from './Manager'
+import filter from '../../utils/filter'
 import {
   TableProvider
 } from './Context'
@@ -57,7 +58,8 @@ class RmTable extends React.Component {
     this.state = {  
       hasLeft: false,
       hasRight: true,
-      columns: columns
+      columns: columns,
+      search: ''
     }
   }
 
@@ -94,7 +96,9 @@ class RmTable extends React.Component {
   }
 
   syncTableRowHeight = () => {
-    let headHeight = this.tableRefs.head.current.getBoundingClientRect().height
+    let head = this.tableRefs.head.current
+    let headDom = ReactDOM.findDOMNode(head)
+    let headHeight = headDom.getBoundingClientRect().height
     let body = this.tableRefs.body.current
     let bodyDom = ReactDOM.findDOMNode(body)
     let bodyHeight = bodyDom.getBoundingClientRect().height
@@ -140,12 +144,14 @@ class RmTable extends React.Component {
   }
 
   onSearch = (text) => {
-    console.log('search ', text)
+    this.setState({
+      search: text
+    })
   }
   dragSatrt = (index) => {
     this.dragIndex.sourceIndex = index
   }
-
+  _cached = {}
   dragEnd = (index) => {
     // todo ： 每次拖拽执行了两次， 多执行了一次。而且返回值不对
     // 这里先用类型过滤掉多余的一次
@@ -158,12 +164,44 @@ class RmTable extends React.Component {
     this.dragIndex.targetIndex = index
     onColDrag && onColDrag(this.dragIndex)
     this.handleColDrag(this.dragIndex)
+    
   }
+  filteredData = (data ) => {
+    const {search} = this.state
+    if(!search){
+      return data
+    }
+    let result = filter(data, search)
+    this._cached.data = result
+    return result
+  } 
+  createCsv = ()=> {
+    let head = this.state.columns.reduce((pre,cur)=> {
+      if (cur.render || !cur.title) {
+        return pre
+      }else{
+        return pre + ',' + cur.title
+      }
+    }, '')
+    let csv = head.slice(1) + '\r\n'
+    let columns = this.state.columns
+    let data = this._cached.data || this.filteredData(this.props.data)
+    data.map((entry)=> {
+      let row = ''
+      columns.map((column)=>{
+        row += (entry[column.dataIndex] || ' ') + ','
+      })
+      csv += row + '\r\n'
+    })
+    return csv
+  }
+
   renderMainTable=()=> {
     let { columns } = this.state
     let result = this.renderTable(columns ,'main')
     return result
   }
+  
   renderLeftTable =()=> {
     let columns = this.state.columns.filter((column)=>{
       return column.fixed === 'left'
@@ -197,12 +235,11 @@ class RmTable extends React.Component {
     let style = {
       width,
     }
-
+    let bodyData = this.filteredData(data)
     const head = (
       <Head
         baseLength={baseLength}
         headRef={type === 'main'? this.tableRefs.head : ''}
-        data={data}
         columns={columns}
         onResize={this.handleResize}
         resizable={resizable}
@@ -219,7 +256,7 @@ class RmTable extends React.Component {
     const body = (
       <Body
         bodyRef ={type === 'main'?this.tableRefs.body: ''}
-        data={data}
+        data={bodyData}
         columns={columns}
         type={type}
         scroll = {
@@ -231,7 +268,6 @@ class RmTable extends React.Component {
     )
     const table = [head, body]
     const className = classNames(classes[type], {[classes.leftShadow]: type==='left' && hasLeft}, {[classes.rightShadow]: type==='right' && hasRight})
-    // if(type === left )
     const result = (
       <div style={style} ref={type === 'main'?this.tableRefs.root: null} className={className}>
         {table}
@@ -274,7 +310,13 @@ class RmTable extends React.Component {
     } = this.props
     return (
       <React.Fragment>
-        <Toolbar onSearch={this.onSearch} width={width}></Toolbar>
+        <Toolbar 
+          onSearch={this.onSearch} 
+          headRef ={this.tableRefs.head}
+          bodyRef = {this.tableRefs.body}
+          createCsv = {this.createCsv}
+          width={width}>
+        </Toolbar>
         <div 
           style = {{width}}
           className={classes.root}

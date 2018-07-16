@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react';
 import Toolbar from 'react-material/Toolbar'
+import ReactDOM from 'react-dom'
 import {
   Search
 } from 'react-material/Search';
@@ -40,6 +41,10 @@ class TableToolbar extends Component {
       anchorEl: null
     };
   }
+  componentDidMount(){
+    
+  }
+  excelRef = React.createRef('excel')
   onChange = (e) =>{
     console.log('se', e)
     let { onSearch } = this.props
@@ -51,11 +56,34 @@ class TableToolbar extends Component {
 
   handleClose = () => {
     this.setState({ anchorEl: null });
-  };
+  }
+
   handleItemClick = (value) => (e) => {
     console.log('vale', value)
+    const {
+      createCsv
+    } = this.props
     this.handleClose()
+    let csv = createCsv()
+    this.generateCsvFile(csv)
   }
+
+  generateCsvFile(CSV, fileName ='table') {
+    var link = document.createElement("a");
+    var csvData = new Blob(["\uFEFF" + CSV], {
+      type: 'text/csv'
+    });
+    var csvUrl = URL.createObjectURL(csvData);
+    link.href = csvUrl;
+    link.style = "visibility:hidden";
+    link.download = fileName + ".csv";
+
+    //this part will append the anchor tag and remove it after automatic click
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  
   render() {
     const {width, classes} = this.props
     const {
@@ -64,7 +92,7 @@ class TableToolbar extends Component {
     return (
       <div className={classes.root} style={{width}}>
         <Toolbar>
-          <div style={{ width: '50%' }}>
+          <div style={{ width: '80%' }}>
             <Search classes={{input:classes.searchInput}} type={'dark'} direction={'left'} placeholder={'搜索'} onChange={this.onChange} />
           </div>
           <div className={classes.spacer}></div>
@@ -83,7 +111,9 @@ class TableToolbar extends Component {
               open={Boolean(anchorEl)}
               onClose={this.handleClose}
             >
-              <MenuItem onClick={this.handleItemClick('excel')}>excel</MenuItem>
+              <MenuItem onClick={this.handleItemClick('excel')}>
+                <a ref={this.excelRef}>Excel</a>
+              </MenuItem>
             </Menu>
           </div>
 

@@ -152,7 +152,6 @@ class Head extends React.Component {
   render() {
     const {
       classes,
-      data,
       columns,
       onDragStart,
       onDragEnd,
@@ -164,9 +163,9 @@ class Head extends React.Component {
       height: headRowHeight
     }
     return (
-      <div ref={headRef} className={classes.root}>
+      <div className={classes.root}>
         <Table 
-          // innerRef={headRef}
+          innerRef={headRef}
           classes={{root:classes.layoutFixed}} 
           className={classes.table}>
           <colgroup>

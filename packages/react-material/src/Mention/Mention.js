@@ -48,10 +48,10 @@ const styles = theme => ({
   inputHold: {
     padding: '10px 0 7px',
   },
-  notFound:{
-    padding:'10px',
-    color:'rgba(0,0,0,0.5)'
-  }
+  notFound: {
+    padding: '10px',
+    color: 'rgba(0,0,0,0.5)',
+  },
 });
 class Mention extends Component {
   static propTypes = {
@@ -59,7 +59,7 @@ class Mention extends Component {
      * Callback when input @ content changes,parameters are (value,trigger)
      */
     // inputChangeCb: PropTypes.func.isRequired,
-    onSearchChange:PropTypes.func.isRequired,
+    onSearchChange: PropTypes.func.isRequired,
     /**
      * Callback when input content changes
      */
@@ -68,10 +68,10 @@ class Mention extends Component {
     /**
      * pagination config
      */
-    pageConfig:  PropTypes.shape({
-      currentPage:PropTypes.number,
-      pageSize:PropTypes.number,
-      total:PropTypes.number,
+    pageConfig: PropTypes.shape({
+      currentPage: PropTypes.number,
+      pageSize: PropTypes.number,
+      total: PropTypes.number,
     }),
     /**
      * text palcehold
@@ -93,7 +93,7 @@ class Mention extends Component {
      * set char of trigger
      */
     //triggerOptions: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-    prefix:PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    prefix: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     /**
      * set the option to  be selected
      */
@@ -105,7 +105,7 @@ class Mention extends Component {
     /**
      * initial selected value
      */
-     selected: PropTypes.array,
+    selected: PropTypes.array,
     /**
      * set if the text can only be read
      */
@@ -135,11 +135,11 @@ class Mention extends Component {
       inputValue: props.defaultValue,
       selectedItem: props.selected,
       triggerOption: '',
-      pageConfig:{
-        currentPage:props.pageConfig.currentPage||0,
-        pageSize:props.pageConfig.pageSize||5,
-        total:props.pageConfig.total||5,
-      } , 
+      pageConfig: {
+        currentPage: props.pageConfig.currentPage || 0,
+        pageSize: props.pageConfig.pageSize || 5,
+        total: props.pageConfig.total || 5,
+      },
     };
   }
   handleChange = e => {
@@ -202,7 +202,7 @@ class Mention extends Component {
   }
   pageCallbackFn(i) {
     //切换页面的函数
-   // console.log('item', i);
+    // console.log('item', i);
     this.setState({
       pageConfig: {
         ...this.state.pageConfig,
@@ -221,17 +221,25 @@ class Mention extends Component {
     }
   }
   render() {
-    const { classes, placeholder, children, dataSource, disabled, showError,pageConfig} = this.props;
+    const {
+      classes,
+      placeholder,
+      children,
+      dataSource,
+      disabled,
+      showError,
+      pageConfig,
+    } = this.props;
     const { total, currentPage, pageSize } = this.state.pageConfig;
     const { open, inputValue, selectedItem } = this.state;
     let items;
-    let showPagination=false;
-    let noItemPatterned=false;
-    noItemPatterned=((dataSource && dataSource.length==0 ) || (!dataSource && !React.children));
-   // console.log(noItemPatterned)
-    if(pageConfig){
-      showPagination=true;     
-    }  
+    let showPagination = false;
+    let noItemPatterned = false;
+    noItemPatterned = (dataSource && dataSource.length == 0) || (!dataSource && !React.children);
+    // console.log(noItemPatterned)
+    if (pageConfig) {
+      showPagination = true;
+    }
     if (dataSource) {
       //通过dataSource传参的情况
       items = dataSource
@@ -259,29 +267,31 @@ class Mention extends Component {
               throw new Error('AutoComplete[dataSource] only supports type `string[] | Object[]`.');
             }
           })
-        :[ ]
-    } else  if (React.Children){
+        : [];
+    } else if (React.Children) {
       //通过child传参的情况
-      items = React.Children ? React.Children.map(children, child => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-        let selected = false;
-        if (!Array.isArray(selectedItem)) {
-          throw new Error(
-            'React-Material: the `value` property must be an array ' +
-              'when using the `AutoComplete` component with `multiple`.',
-          );
-        }
-        selected = selectedItem.indexOf(child.props.value) !== -1;
-        return React.cloneElement(child, {
-          onClick: this.handleItemClick(child.props.value),
-          role: 'option',
-          selected,
-          value: undefined, // The value is most likely not a valid HTML attribute.
-          'data-value': child.props.value, // Instead, we provide it as a data attribute.
-        });
-      }): [] 
+      items = React.Children
+        ? React.Children.map(children, child => {
+            if (!React.isValidElement(child)) {
+              return null;
+            }
+            let selected = false;
+            if (!Array.isArray(selectedItem)) {
+              throw new Error(
+                'React-Material: the `value` property must be an array ' +
+                  'when using the `AutoComplete` component with `multiple`.',
+              );
+            }
+            selected = selectedItem.indexOf(child.props.value) !== -1;
+            return React.cloneElement(child, {
+              onClick: this.handleItemClick(child.props.value),
+              role: 'option',
+              selected,
+              value: undefined, // The value is most likely not a valid HTML attribute.
+              'data-value': child.props.value, // Instead, we provide it as a data attribute.
+            });
+          })
+        : [];
     }
     return (
       <div className={classes.root}>
@@ -295,27 +305,28 @@ class Mention extends Component {
             placeholder={placeholder}
             error={showError}
           />
-          {open && !noItemPatterned && (
-            <Paper className={classes.paper} square>
-            {items.slice(
-              total == 0 ? total : currentPage * pageSize,
-              (currentPage+1) * pageSize > total ? total : (currentPage+1) * pageSize,
+          {open &&
+            !noItemPatterned && (
+              <Paper className={classes.paper} square>
+                {items.slice(
+                  total == 0 ? total : currentPage * pageSize,
+                  (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+                )}
+                <Divider />
+                {showPagination && (
+                  <Pagination
+                    {...this.state.pageConfig}
+                    pageCallbackFn={this.pageCallbackFn.bind(this)}
+                  />
+                )}
+              </Paper>
             )}
-            <Divider />
-            {showPagination && (
-              <Pagination
-              {...this.state.pageConfig}
-              pageCallbackFn={this.pageCallbackFn.bind(this)}
-            />
+          {open &&
+            noItemPatterned && (
+              <Paper className={classes.notFound}>
+                {'no patterned result, press space to end'}
+              </Paper>
             )}
-            </Paper>
-
-          )}
-          {open && noItemPatterned && (
-            <Paper className={classes.notFound}>
-              {'no patterned result, press space to end'}
-            </Paper>
-          )}
         </div>
       </div>
     );

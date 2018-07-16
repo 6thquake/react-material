@@ -39,8 +39,8 @@ class App extends React.Component {
     return subset;
   };
 
-  changeListTest = (targetKeys,direction,moveKeys) => {
-    console.log(targetKeys,direction,moveKeys);
+  changeListTest = (targetKeys, direction, moveKeys) => {
+    console.log(targetKeys, direction, moveKeys);
     this.setState({
       selectedKeys: targetKeys,
     });

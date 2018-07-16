@@ -30,7 +30,7 @@ class IconMentionTest extends Component {
     super();
     this.state = {
       pageConfig: {
-        currentPage: 1,
+        currentPage: 0,
         pageSize: 4,
         total: 12,
       },
@@ -67,11 +67,11 @@ class IconMentionTest extends Component {
     return (
       <div className={classes.root}>
         <Mention
-          placeHold={'input @ to mention'}
-          value={this.state.inputValue}
+          placeholder={'input @ to mention'}
+          defaultValue={this.state.inputValue}
           selected={this.state.selectedItem}
           pageConfig={this.state.pageConfig}
-          inputChangeCb={this.inputChangeCb.bind(this)}
+          onSearchChange={this.inputChangeCb.bind(this)}
           onChange={this.onChange.bind(this)}
           onSelect={this.onSelect.bind(this)}
         >

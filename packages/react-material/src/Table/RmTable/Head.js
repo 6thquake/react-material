@@ -75,6 +75,9 @@ const colStyle = {
 class Head extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      undragable: false
+    }
   }
   dragIndex = {
     targetIndex: '',
@@ -83,14 +86,27 @@ class Head extends React.Component {
   componentDidMount(){
     this.throttleResize = throttling(this.resize)
   }
+
+  handleResizeStart = () => {
+    // this.undragable = true
+    this.setState({
+      undragable: true
+    })
+  }
+
+  handleDragStop = () => {
+    this.setState({
+      undragable: false
+    })
+  }
   handleResize =(...args) =>(e, {size})=> {
     const {
       onResize
     } = this.props
-    console.log('resize')
     onResize && onResize(...args, size)
     // this.throttleResize(...args,size)
   }
+  
   resize = (...args) => {
     const {
       onResize
@@ -105,13 +121,15 @@ class Head extends React.Component {
       onDragEnd,
       resizable,
       dragable,
+      baseLength
     } = this.props
+    
     let cell = (
       <TableCell 
         onDragStart={onDragStart} 
         onDragEnd={onDragEnd} 
-        index={index} 
-        component={dragable?HeadCell: 'th'}
+        index={index + baseLength} 
+        component={dragable && !this.state.undragable? HeadCell: 'th'}
         className={classes.tableCell}
       >
         {column.title || ''}
@@ -120,6 +138,8 @@ class Head extends React.Component {
     const C = (
       resizable || column.resizable?
       <Resizable
+        onResizeStart = { this.handleResizeStart}
+        onResizeStop = {this.handleDragStop}
         width={column.width} 
         height={0}
         onResize={this.handleResize(index, column)}
@@ -137,11 +157,16 @@ class Head extends React.Component {
       onDragStart,
       onDragEnd,
       resizable,
+      headRef,
+      headRowHeight
     } = this.props
-    
+    const rowStyle = {
+      height: headRowHeight
+    }
     return (
-      <div className={classes.root}>
+      <div ref={headRef} className={classes.root}>
         <Table 
+          // innerRef={headRef}
           classes={{root:classes.layoutFixed}} 
           className={classes.table}>
           <colgroup>
@@ -152,7 +177,7 @@ class Head extends React.Component {
             }
           </colgroup>
           <TableHead>
-            <TableRow>
+            <TableRow style={rowStyle}>
               {columns.map((column, index) => {
                 return this.renderTableHeadCell(column, index)
               })}

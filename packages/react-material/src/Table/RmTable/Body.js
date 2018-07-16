@@ -70,9 +70,9 @@ class Body extends React.Component {
     super(props);
     this.state = {  };
   }
-  tableRef = React.createRef()
   componentDidMount(){
     // tableRef.addEventListener('wheel', this.handleWheel)
+    
   }
   handleWheel =()=>{
     console.log('on wheel')
@@ -87,8 +87,13 @@ class Body extends React.Component {
       columns,
       type,
       scroll,
-      tableRef
+      tableRef,
+      bodyRef,
+      bodyRowHeight
     } = this.props
+    const rowStyle = {
+      height: bodyRowHeight
+    }
     return (
       <div 
         ref = {
@@ -108,7 +113,7 @@ class Body extends React.Component {
           classes.root
         }
       >
-        <Table classes={{root:classes.layoutFixed}}  className={classes.table}>
+        <Table innerRef={bodyRef} classes={{root:classes.layoutFixed}}  className={classes.table}>
           <colgroup>
             {
               columns.map((item) => {
@@ -119,7 +124,7 @@ class Body extends React.Component {
           <TableBody>
             {data.map(entry => {
               return (
-                <TableRow key={entry.key}>
+                <TableRow style={rowStyle} key={entry.key}>
                   {columns.map((column) => {
                     return (
                       <TableCell>

@@ -25,48 +25,29 @@ const styles = theme => ({
   }
 });
 
-const findInObject = (object, value) => {
-  let keys = Object.keys(object)
-  let result = keys.some((key)=>{
-    return String(object[key]).indexOf(value) !== -1
-  })
-  return result
-}
-
-const find = (content, value) => {
-  const type = typeof content
-  if (type === 'object') {
-    return findInObject(content, value)
-  } else {
-    return String(content).indexOf(String(value)) !== -1
-  }
-}
-
-const compare = (item, value) => {
-  let result = find(item, value)
-  return result
-}
-
-const filter = (data, value) => {
-  const type = typeof value
-  let callback = type === 'function' ? value : compare
-  let result = data.filter((item)=>{
-    return callback(item, value)
-  })
-  return result
-}
 
 const columns = [
-  { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
+  { title: 'Name', width: 100, dataIndex: 'name', key: 'name' },
   { title: 'Age', width: 100, dataIndex: 'age', key: 'age', fixed: 'left' },
-  { title: 'Column 1', dataIndex: 'address', key: '1', width: 150, resizable: true },
-  { title: 'Column 2', dataIndex: 'address', key: '2', width: 150 },
+  {
+    title: 'Column 1',
+    dataIndex: 'address',
+    key: '1',
+    width: 150,
+    resizable: true
+  },
+  {
+    title: 'Column 2',
+    dataIndex: 'address',
+    key: '2',
+    width: 150
+  },
   { title: 'Column 3', dataIndex: 'address', key: '3', width: 150 },
   { title: 'Gender', dataIndex: 'gender', key: '4', width: 150 },
   { title: 'Column 5', dataIndex: 'address', key: '5', width: 150 },
   { title: 'Column 6', dataIndex: 'address', key: '6', width: 150 },
   { title: 'Column 7', dataIndex: 'address', key: '7', width: 150 },
-  { title: 'Column 8', dataIndex: 'address', key: '8' },
+  { title: 'Column 8', dataIndex: 'address', key: '8', width: 150 },
   {
     title: 'Action',
     key: 'operation',
@@ -83,14 +64,11 @@ for (let i = 0; i < 10; i++) {
     key: i,
     name: `Edrward ${i}`,
     age: 32,
-    address: `London${i}`,
+    address: `London Park no.${i}`,
     gender: i % 2 === 0 ? 'male' : "female"
   });
 }
 
-// console.log('calll filter', filter(data,(item, index)=>{
-//   return item.indexOf('0')
-// }))
 class RmTableEXample extends React.Component {
   constructor(props) {
     super(props);
@@ -100,55 +78,19 @@ class RmTableEXample extends React.Component {
       value: 'scoll'
     };
   }
-  handleResize =(index, colomn, size)=> {
-    this.setState(({ columns }) => {
-      const nextColumns = [...columns];
-      nextColumns[index] = {
-        ...nextColumns[index],
-        width: size.width,
-      };
-      return { columns: nextColumns };
-    });
-  }
-  handleColDrag = (config) => {
-    console.log('config', config)
-    let {
-      targetIndex,
-      sourceIndex
-    } = config
-    let {
-      columns,
-      data
-    } = this.state
-    let sourceColumn = columns[sourceIndex]
-    let sourceData = data[sourceIndex]
-    columns[sourceIndex] = columns[targetIndex]
-    columns[targetIndex] = sourceColumn
-    
-    data[sourceIndex] = data[targetIndex]
-    data[targetIndex] = sourceData
-
-    this.setState({
-      columns,
-      data,
-    })
-  }
   handleChange = (e) => {
     let value = e.target.value
     this.setState({
-      value,
+      value
     })
-    console.log('filter data===========', filter(data, 'London0'))
-    console.log('filter data===========222', filter(data, (item, index)=>{
-      return find(item, 'London0')
-    }))
   }
   render() {
     const { classes } = this.props
     const { data, columns, value } = this.state
     const options = {
-      value
+      [value] : value
     }
+    console.log('value 444444', options, value)
     return (
       <Paper className={classes.root}>
         <div className={classes.radioButtons}>
@@ -157,9 +99,9 @@ class RmTableEXample extends React.Component {
             circular
             onChange={this.handleChange}
             value={this.state.value}
-            name="gender1"
+            name="type2"
           >
-            <RadioButton value="scoll">scoll</RadioButton>
+            <RadioButton value="scoll">scroll</RadioButton>
             <RadioButton value="fixed">fixed</RadioButton>
             <RadioButton value="resizable">resizable</RadioButton>
             <RadioButton value="dragable">
@@ -168,7 +110,7 @@ class RmTableEXample extends React.Component {
           </RadioGroup>
         </div>
         <Divider></Divider>
-        <RmTable {...options} onColDrag={this.handleColDrag} onColResize={this.handleResize} columns={columns} data={data}/>
+        <RmTable {...options} width={800} columns={columns} data={data} />
       </Paper>
     );
   }

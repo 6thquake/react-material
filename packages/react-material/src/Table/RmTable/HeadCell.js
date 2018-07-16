@@ -38,12 +38,10 @@ const styles = (theme) =>({
 })
 const columnSource = {
   beginDrag(props, monitor, component) {
-    console.log(props)
     const {
       onDragStart,
       index
     } = props
-    console.log('drag start', onDragStart)
     onDragStart && onDragStart(index)
     return {name: props.name};
   },

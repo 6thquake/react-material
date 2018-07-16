@@ -1,84 +1,75 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
-import Dialog from '../Dialog';
-import DialogContent from '../DialogContent';
-import DialogTitle from '../DialogTitle';
-import { Clear } from '@material-ui/icons';
-import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Modal from './ModalBase';
+import ConfirmDialog from './Confirm';
 
-const styles = theme => ({
-  headtitle: {
-    backgroundColor: 'rgb(16,108,200)',
-    color: 'white',
-  },
-  icon: {
-    marginRight: theme.spacing.unit * 2,
-    color: 'white',
-    float: 'right',
-    '&:hover': {
-      opacity: 0.5,
-    },
-  },
-});
-class Modal extends Component {
-  static propTypes = {
-    /**
-     * Decide modal open or close,	If true, the modal is open.
-     */
-    open: PropTypes.bool.isRequired,
-    /**
-     * This is  modal title
-     */
-    label: PropTypes.string,
-    /**
-     * This is usually an animation of open or close the modal,include slide、collapse、fade、grow、zoom
-     */
-    animation: PropTypes.string,
-  };
-  static defaultProps = {
-    open: false,
-    label: '',
-    animation: 'fade',
-  };
-  _transition = props => {
-    console.log(props);
-    switch (this.props.animation) {
-      case 'fade':
-        return <Fade {...props} />;
-        break;
-      case 'slide':
-        return <Slide direction="up" {...props} />;
-        break;
-      case 'collapse':
-        return <Collapse {...props} />;
-        break;
-      case 'grow':
-        return <Grow {...props} />;
-        break;
-      case 'zoom':
-        return <Zoom {...props} />;
-        break;
-      default:
-        return <Fade {...props} />;
-    }
-  };
-  render() {
-    const { classes, label, onClose, ...other } = this.props;
-    return (
-      <Dialog
-        TransitionComponent={this._transition}
-        aria-labelledby="alert-dialog-slide-title"
-        aria-describedby="alert-dialog-slide-description"
-        {...this.props}
-      >
-        <DialogTitle className={classes.headtitle} disableTypography={true}>
-          {label}
-          <Clear className={classes.icon} onClick={onClose} />
-        </DialogTitle>
-        {this.props.children}
-      </Dialog>
-    );
+function confirm(config) {
+  let div = document.createElement('div');
+  document.body.appendChild(div);
+  function onClose(...args) {
+    destroy(...args);
   }
+  function destroy(...args) {
+    const unmountResult = ReactDOM.unmountComponentAtNode(div);
+    if (unmountResult && div.parentNode) {
+      div.parentNode.removeChild(div);
+    }
+    const triggerCancel = args && args.length && args.some(param => param && param.triggerCancel);
+    if (config.onCancel && triggerCancel) {
+      config.onCancel(...args);
+    }
+  }
+  function render(props) {
+    ReactDOM.render(<ConfirmDialog {...props} />, div);
+  }
+  render(Object.assign({}, config, { open: true, onClose }));
+  return {
+    destroy: onClose,
+  };
 }
-export default withStyles(styles, { name: 'RMModal' })(Modal);
+Modal.info = function(props) {
+  const config = {
+    type: 'info',
+    okCancel: false,
+    ...props,
+  };
+  return confirm(config);
+};
+
+Modal.success = function(props) {
+  const config = {
+    type: 'done',
+    okCancel: false,
+    ...props,
+  };
+  return confirm(config);
+};
+
+Modal.error = function(props) {
+  const config = {
+    type: 'cancel',
+    okCancel: false,
+    ...props,
+  };
+  return confirm(config);
+};
+
+Modal.warning = Modal.warn = function(props) {
+  const config = {
+    type: 'error',
+    okCancel: false,
+    ...props,
+  };
+  return confirm(config);
+};
+
+Modal.confirm = function(props) {
+  const config = {
+    type: 'contact_support',
+    okCancel: true,
+    ...props,
+  };
+  return confirm(config);
+};
+
+export default Modal;

@@ -80,4 +80,8 @@ export default {
     page: '頁',
     jumpTo: '跳至',
   },
+  Confirm: {
+    cancelText: '取消',
+    okText: '確認',
+  },
 };

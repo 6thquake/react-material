@@ -20,7 +20,6 @@ const styles = theme => ({
     minWidth: 1000,
   },
 });
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +43,6 @@ class App extends Component {
   handleClose() {
     this.setState({ open: false });
   }
-
   render() {
     const { classes } = this.props;
     let { open, animation, ...other } = this.state;

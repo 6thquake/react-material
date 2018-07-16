@@ -81,4 +81,8 @@ export default {
     page: 'page',
     jumpTo: 'jump to',
   },
+  Confirm: {
+    cancelText: 'cancel',
+    okText: 'ok',
+  },
 };

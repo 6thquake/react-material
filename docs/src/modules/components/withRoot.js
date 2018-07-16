@@ -79,6 +79,10 @@ const pages = [
         pathname: '/layout/css-in-js',
         title: 'CSS in JS',
       },
+      {
+        pathname: '/layout/pro',
+        title: 'Pro',
+      },
     ],
   },
   {

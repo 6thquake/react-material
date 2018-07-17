@@ -5,9 +5,12 @@ import classNames from 'classnames';
 const styles = theme => ({
   common: {
     display: 'inline-block',
-    '&:hove': {
-      transition: 'none 86ms ease-out',
-    },
+    transform: 'scale3d(1,1,1)',
+    '-ms-transform': 'scale3d(1,1,1)' /* IE 9 */,
+    '-moz-transform': 'scale3d(1,1,1)' /* Firefox */,
+    '-webkit-transform': 'scale3d(1,1,1)' /* Safari 和 Chrome */,
+    '-o-transform': 'scale3d(1,1,1)',
+    transition: 'all 86ms ease-out',
   },
   sm: {
     '&:hover': {

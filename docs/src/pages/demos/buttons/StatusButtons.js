@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import { StatusButton } from 'react-material/Button';
+import Button, { StatusButton } from 'react-material/Button';
+import AddIcon from '@material-ui/icons/Add';
 
 function handle() {
   return new Promise(function(resolve, reject) {
@@ -37,6 +38,24 @@ function StatusButtons(props) {
       <StatusButton color="primary" onHandler={handle} className={classes.button}>
         开始扩容
       </StatusButton>
+      <Button color="primary" onClick={handle} variant="raised" className={classes.button}>
+        开始扩容
+      </Button>
+      <Button color="primary" onClick={handle} className={classes.button}>
+        开始扩容
+      </Button>
+      <Button color="primary" onClick={onClick} className={classes.button}>
+        only Click
+      </Button>
+      <Button
+        variant="fab"
+        color="primary"
+        onClick={handle}
+        aria-label="add"
+        className={classes.button}
+      >
+        <AddIcon />
+      </Button>
     </div>
   );
 }

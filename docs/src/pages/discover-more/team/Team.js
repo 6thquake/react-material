@@ -1,82 +1,93 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import { CardMedia } from 'react-material/Card';
+import CardMedia from 'react-material/CardMedia';
 import Grid from 'react-material/Grid';
 import Paper from 'react-material/Paper';
 import Typography from 'react-material/Typography';
 import IconButton from 'react-material/IconButton';
 import Github from '@material-ui/docs/svgIcons/GitHub';
 import Twitter from '@material-ui/docs/svgIcons/Twitter';
+import Weibo from '../../../svgIcons/Weibo';
 
 const members = [
   {
-    name: 'Hai Nguyen',
-    github: 'hai-cea',
-    twitter: 'haicea',
-    flag: 'v0.x creator',
-    city: 'Dallas, Texas, US',
+    name: '洪国超<gc.hong>',
+    github: 'Hahet',
+    flag: 'developer',
+    city: 'shanghai, China',
   },
   {
-    name: 'Olivier Tassinari',
-    github: 'oliviertassinari',
-    twitter: 'olivtassinari',
-    flag: 'v1.x co-creator',
-    city: 'Paris, France',
+    name: '黄伟民<wm.huang>',
+    github: 'tykdn',
+    flag: 'developer',
+    city: 'shanghai, China',
   },
   {
-    name: 'Matt Brookes',
-    github: 'mbrookes',
-    twitter: 'randomtechdude',
-    flag: 'Documentation wizard 📖',
-    city: 'London, UK',
+    name: '刘必洲<bz.liu>',
+    github: 'HelloLove',
+    flag: 'developer',
+    city: 'shanghai, China',
   },
   {
-    name: 'Kevin Ross',
-    github: 'rosskevin',
-    twitter: 'rosskevin',
-    flag: 'Core focus',
-    city: 'Franklin, Tennessee, US',
+    name: '李丹阳<dy.li>',
+    github: 'JaneLee0324',
+    twitter: 'Danyang0324',
+    flag: 'developer',
+    city: 'shanghai, China',
   },
   {
-    name: 'Nathan Marks',
-    github: 'nathanmarks',
-    flag: 'v1.x co-creator',
-    city: 'Toronto, ON',
+    name: '刘继超<lico.liu>',
+    github: 'licoliu',
+    twitter: 'lico_liu',
+    weibo: '3608313977',
+    flag: 'master',
+    city: 'shanghai, China',
   },
   {
-    name: 'Sebastian Sebald',
-    github: 'sebald',
-    twitter: 'sebastiansebald',
-    flag: 'Community partner, TypeScript',
-    city: 'Freiburg, Germany',
+    name: '李雅男<yn.ya>',
+    github: 'liyanangrace',
+    flag: 'developer',
+    city: 'shanghai, China',
   },
   {
-    name: 'Maik Marschner',
-    github: 'leMaik',
-    twitter: 'leMaikOfficial',
-    flag: 'Community partner',
-    city: 'Hannover, Germany',
+    name: '邵文广<wg.shao>',
+    github: 'GrumpyOnes',
+    twitter: 'tomatocd',
+    flag: 'developer',
+    city: 'shanghai, China',
   },
   {
-    name: 'Oleg Slobodskoi',
-    github: 'kof',
-    twitter: 'oleg008',
-    flag: 'Community partner, JSS',
-    city: 'Berlin, Germany',
+    name: '唐可珂<kk.tang>',
+    github: 'vvke',
+    flag: 'developer',
+    city: 'shanghai, China',
   },
   {
-    name: 'Ken Gregory',
-    github: 'kgregory',
-    flag: 'Community partner',
-    city: 'New Jersey, US',
+    name: '唐思雨<sy.tang>',
+    github: 'atangsy',
+    flag: 'developer',
+    city: 'shanghai, China',
   },
   {
-    name: 'Tom Crockett',
-    github: 'pelotom',
-    twitter: 'pelotom',
-    flag: 'Community partner',
-    city: 'Los Angeles, California, US',
+    name: '汤雨欢<yh.tang>',
+    github: 'tangyuhuan',
+    twitter: 'yuhuan13235884',
+    flag: 'developer',
+    city: 'shanghai, China',
+  },
+  {
+    name: '袁锁云<sy.yuan>',
+    github: 'everyapple',
+    flag: 'developer',
+    city: 'shanghai, China',
+  },
+  {
+    name: '庄嘉祥<jx.zhuang>',
+    github: 'JX-Zhuang',
+    weibo: '2253567214',
+    flag: 'developer',
+    city: 'shanghai, China',
   },
 ];
 
@@ -149,6 +160,16 @@ function Team(props) {
                         className={classes.icon}
                       >
                         <Twitter />
+                      </IconButton>
+                    )}
+                    {member.weibo && (
+                      <IconButton
+                        aria-label="twitter"
+                        component="a"
+                        href={`https://weibo.com/${member.weibo}`}
+                        className={classes.icon}
+                      >
+                        <Weibo />
                       </IconButton>
                     )}
                   </div>

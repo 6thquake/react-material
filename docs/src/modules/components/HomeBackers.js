@@ -33,57 +33,90 @@ thanks to the support of these awesome [backers](/discover-more/backers).
 
 <h3>Maintainers</h3>
 
-#### via [Sixthquake](http://git.dev.sh.ctripcorp.com/sixthquake/react-material)
+#### via [6thquake](http://git.dev.sh.ctripcorp.com/sixthquake/react-material)
 
 <table cellspacing="0" cellspadding="0">
   <tbody>
       ${[
         [
           {
-            id: 'liujc',
-            name: '刘继超',
+            name: '刘继超<lico.liu>',
+            github: 'licoliu',
+            twitter: 'lico_liu',
+            weibo: '3608313977',
+            flag: 'master',
+            city: 'shanghai, China',
           },
           {
-            id: 'honggc',
-            name: '洪国超',
+            name: '洪国超<gc.hong>',
+            github: 'Hahet',
+            flag: 'developer',
+            city: 'shanghai, China',
           },
           {
-            id: 'wgshao',
-            name: '邵文广',
+            name: '黄伟民<wm.huang>',
+            github: 'tykdn',
+            flag: 'developer',
+            city: 'shanghai, China',
           },
           {
-            id: 'liubz',
-            name: '刘必洲',
+            name: '刘必洲<bz.liu>',
+            github: 'HelloLove',
+            flag: 'developer',
+            city: 'shanghai, China',
           },
           {
-            id: 'jxzhuang',
-            name: '庄嘉祥',
+            name: '邵文广<wg.shao>',
+            github: 'GrumpyOnes',
+            twitter: 'tomatocd',
+            flag: 'developer',
+            city: 'shanghai, China',
           },
           {
-            id: 'wmhuang',
-            name: '黄伟民',
+            name: '庄嘉祥<jx.zhuang>',
+            github: 'JX-Zhuang',
+            flag: 'developer',
+            city: 'shanghai, China',
           },
         ],
         [
           {
-            id: 'liyn',
-            name: '李雅男',
+            name: '李丹阳<dy.li>',
+            github: 'JaneLee0324',
+            twitter: 'Danyang0324',
+            flag: 'developer',
+            city: 'shanghai, China',
           },
           {
-            id: 'yh.tang',
-            name: '汤雨欢',
+            name: '李雅男<yn.ya>',
+            github: 'liyanangrace',
+            flag: 'developer',
+            city: 'shanghai, China',
           },
           {
-            id: 'sy.tang',
-            name: '唐思雨',
+            name: '唐可珂<kk.tang>',
+            github: 'vvke',
+            flag: 'developer',
+            city: 'shanghai, China',
           },
           {
-            id: 'slfan',
-            name: '范世丽',
+            name: '唐思雨<sy.tang>',
+            github: 'atangsy',
+            flag: 'developer',
+            city: 'shanghai, China',
           },
           {
-            id: 'zhangzhea',
-            name: '张哲',
+            name: '汤雨欢<yh.tang>',
+            github: 'tangyuhuan',
+            twitter: 'yuhuan13235884',
+            flag: 'developer',
+            city: 'shanghai, China',
+          },
+          {
+            name: '袁锁云<sy.yuan>',
+            github: 'everyapple',
+            flag: 'developer',
+            city: 'shanghai, China',
           },
         ],
       ].map(users => {
@@ -94,13 +127,11 @@ thanks to the support of these awesome [backers](/discover-more/backers).
               user =>
                 `
               <td align="center" valign="middle" style="text-align: center; padding: 16px;">
-                <a href="http://git.dev.sh.ctripcorp.com/u/${
-                  user.id
-                }" rel="noopener" target="_blank">
+                <a href="https://github.com/${user.github}" rel="noopener" target="_blank">
                   <img
                     width="80"
                     height="80"
-                    src="https://www.ctripteam.com/avatar/${user.id}?_dc=0"
+                    src="https://github.com/${user.github}.png"
                     alt="${user.name}"
                     title="${user.name}"
                   ><p>${user.name}</p></a>

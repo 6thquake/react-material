@@ -136,9 +136,9 @@ class Transfer extends React.Component {
      *Array of Object，in the Object, props 'name' and 'id' is required
      */
     selectedKeys: PropTypes.array.isRequired,
-    
+
     /**
-     * 
+     *
      */
     paginationOption: PropTypes.bool,
   };

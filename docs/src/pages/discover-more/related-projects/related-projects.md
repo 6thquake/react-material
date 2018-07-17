@@ -6,7 +6,7 @@ We have built a carefully curated collection of libraries that worth giving a lo
 Feel free to submit a pull-request to add more projects; we will accept them if they match our criteria.
 
 ## React-Material Specific Projects
-
+- [material-ui](https://material-ui.com/) React components that implement Google's Material Design.
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for React-Material with paging, sorting, filtering, grouping and editing features.
 - [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) A fuzzy-search component for React and React-Material.
 - [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Components that implement Material Design date and time pickers for React-Material.

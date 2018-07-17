@@ -9,17 +9,20 @@ We are just at the beginning, we hope to make it:
 - the **simplest** React UI library available for new Front-End developers to start with.
 - **very customizable** so highly UI demanding production applications can save time building on top of it.
 
-Material-UI was started [3 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
+React-Material was started at 2018.
 The ecosystem has evolved a lot since then, we have also learned a lot.
-[@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up**
+[@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding React-Material from the **ground-up**
 taking advantage of this knowledge to address long-standing issues.
 Expect various **breaking changes**.
 
 The core team has been dedicated to the rewrite effort for one and a half years.
 If you are interested in following our progress or if you want to help us reach that goal faster, you can have a look at the following milestones:
-- ~~[v1.0.0-beta](https://github.com/mui-org/material-ui/milestone/22?closed=1)~~ - reached!
-- [v1.0.0-prerelease](https://github.com/mui-org/material-ui/milestone/14)
-- [v1.0.0](https://github.com/mui-org/material-ui/milestone/23)
+- ~~[v0.1.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/1)~~ - reached!
+- ~~[v0.2.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/6)~~ - reached!
+- ~~[v0.3.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/2)~~ - reached!
+- [v0.4.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/3)
+- ~~[v0.5.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/4)~~ - reached!
+- ~~[v0.6.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/5)~~ - reached!
 
 ## Q&A with the v1 version
 
@@ -33,7 +36,7 @@ It was the cascading concept that made CSS succeed over its competitors, by allo
 That feature was removed 2 years ago from the most popular browser.
 My point is, our needs have evolved quite a bit since then.
 
-Back in the beginning of Material-UI, we had many issues with the first **LESS approach**.
+Back in the beginning of React-Material, we had many issues with the first **LESS approach**.
 Aside from [the problem with CSS at scale](https://speakerdeck.com/vjeux/react-css-in-js) raised by @vjeux, we had the following ones:
 - We had a **dependency** on the LESS build chain with no way to abstract it away.
 Users needed to change their theme variables. @gpbl was maintaining a [SASS version]( https://github.com/gpbl/material-ui-sass). (Today, we could be using *[cssnext](http://cssnext.io/)*).
@@ -67,7 +70,7 @@ We don't have an ETA for the release of the `v1`, however, we are going to try t
 5. We publish our first pre-releases, if all goes well, we move to the next step.
 6. We publish v1 🎉
 
-At that point, some features and components from Material-UI v0.x will be missing in the v1.
+At that point, some features and components from React-Material v0.x will be missing in the v1.
 So, what about them?
 - First, both versions can be used at the same time, people can progressively migrate, one component at the time.
 - Then, **with the help of the community** and over time, we will support more and more components.
@@ -89,45 +92,18 @@ On the other hand, using a smart date library for the DatePicker / TimePicker wo
 
 ## Breaking changes before v1
 
-It's time to look at the last breaking changes needed before releasing Material-UI v1.
+It's time to look at the last breaking changes needed before releasing React-Material v1.
 Users trying out and using v1-beta and giving feedback has been a tremendous help. Thank you!
-
-This feedback has guided the following list of important breaking changes
-that **are needed for the stable version**:
-
-- [ ] Flatten the import path [#9532](https://github.com/mui-org/material-ui/issues/9532).
-  Knowing the component name should be enough for being able to import it.
-
-  ```diff
-  -import CircularProgress from 'material-ui/Progress/CircularProgress';
-  +import CircularProgress from 'material-ui/CircularProgress';
-  ```
-
-  ```diff
-  -import { ListItem } from 'material-ui/List';
-  +import ListItem from 'material-ui/ListItem';
-  ```
-
-- [ ] Use `@material-ui npm scope name` #9673. The pros have been raised in the linked issue.
-
-```diff
--import Button from 'material-ui/Button';
-+import Button from '@material-ui/core/Button';
-```
 
 - [ ] Look into the Render Props API over the Component Injection API. This one is an area of investigation. For instance, there is potential for simplifying the customization of the transitions.
 
 These breaking changes will be spread into different releases over the next few months to make the upgrade path as smooth as possible.
-Not only does the Material-UI project have to be upgraded for each breaking change,
+Not only does the React-Material project have to be upgraded for each breaking change,
 but we also have to upgrade our own projects.
-**We don't take making breaking changes lightly**, it's very costly with UI components.
-For users, test coverage is hard to raise without tools like [visual regression tests](https://www.argos-ci.com/mui-org/material-ui).
-
-**Let us know** by [commenting on this PR](https://github.com/mui-org/material-ui/pull/10348) what you think we should or shouldn't do, what's important, and what's missing!
 
 ## After stable v1
 
-- **Theming**. We will invest in the theming solution. We would love to see **non Material Design UI** built with Material-UI. [@oliviertassinari](https://github.com/oliviertassinari/) is working on a proof of concept.
+- **Theming**. We will invest in the theming solution. We would love to see **non Material Design UI** built with React-Material. [@oliviertassinari](https://github.com/oliviertassinari/) is working on a proof of concept.
 - **Type checking**. We need to improve TypeScript and Flow coverage of the library.
 - **Bundle size**. We need the library to be as small as possible. We already monitor the bundle size with size-limit. We need to think of the solutions. For instance, supporting preact can help.
 - **Performance**. We can't optimize something we can't measure. We don't have any CI performance benchmark. We will need to build one and start investigating bottlenecks.

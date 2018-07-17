@@ -1,7 +1,7 @@
 {
-  "name": "react-material-workspace",
+  "name": "@6thquake/react-material-workspace",
   "private": true,
-  "author": "Sixquake Team",
+  "author": "6thquake Team",
   "version": "0.2.0",
   "description": "React-Material's workspace package",
   "keywords": [
@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues"
   },
-  "homepage": "http://material-ui.com/",
+  "homepage": "https://git.dev.sh.ctripcorp.com/sixthquake/react-material",
   "scripts": {
     "start": "yarn docs:dev",
     "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev",

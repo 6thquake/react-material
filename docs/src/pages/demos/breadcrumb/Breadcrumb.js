@@ -9,13 +9,14 @@ class App extends React.Component {
     super(props);
     this.breadcrumbNameMap = {
       '/': { name: 'home', icon: <Home /> },
-      '/apps': { name: 'Application List', icon: <Home /> },
-      '/apps/1': { name: 'Application1', icon: <Grade /> },
-      '/apps/2': { name: 'Application2', icon: <Lock /> },
-      '/apps/1/detail': { name: 'Detail', icon: '' },
-      '/apps/2/detail': { name: 'Detail', icon: '' },
+      '/demos': { name: 'Demo' },
+      '/api': { name: 'Api', icon: <Home /> },
+      '/demos/breadcrumb': { name: 'breadcrumb', icon: <Grade /> },
+      '/demos/Anchor': { name: 'Anchor', icon: <Lock /> },
+      '/api/breadcrumb': { name: 'breadcrumb', icon: '' },
+      '/api/Anchor': { name: 'Anchor', icon: '' },
     };
-    this._url = '/apps/2/detail';
+    this._url = '/api/breadcrumb';
   }
 
   render() {
@@ -23,9 +24,8 @@ class App extends React.Component {
       <div>
         <Breadcrumb
           nameMap={this.breadcrumbNameMap}
-          currUrl={this._url}
-          showIcon={true}
           separator=">"
+          currUrl={this._url}
         />
       </div>
     );

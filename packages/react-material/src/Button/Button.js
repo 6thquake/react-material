@@ -1,13 +1,3 @@
-/**
- *  属性
- *      状态
- *      外观
- *  行为
- *
- *  button 组，状态, icon, 级别
- *  icon：svg
- */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
@@ -15,6 +5,11 @@ import { fade } from '../styles/colorManipulator';
 import Button from '@material-ui/core/Button/Button';
 import classNames from 'classnames';
 import addonRmTheme from '../styles/addonRmTheme';
+import Done from '@material-ui/icons/Done';
+import Replay from '@material-ui/icons/Replay';
+import CircularProgress from '../CircularProgress';
+import common from '../colors/common';
+
 const styles = theme => {
   theme = addonRmTheme(theme);
   const defaultStyle = {
@@ -131,8 +126,15 @@ const styles = theme => {
       fontSize: theme.typography.pxToRem(15),
       marginRight: theme.spacing.unit,
     },
+    fabStatus: {
+      fontSize: theme.typography.pxToRem(24),
+    },
+    progress: {
+      color: common.white,
+    },
   };
 };
+
 class CreateButton extends Component {
   firstRender = true;
   state = {
@@ -143,15 +145,88 @@ class CreateButton extends Component {
     text: '',
   };
 
+  getStatusIcon(classes) {
+    const { variant } = this.props;
+    const className = classNames({
+      [classes.icon]: variant !== 'fab',
+      [classes.fabStatus]: variant === 'fab',
+    });
+    switch (this.status.status) {
+      case 'progress':
+        //todo button loading styles
+        return this.renderProgress(className);
+      case 'success':
+        return <Done className={className} />;
+      case 'false':
+        return <Replay className={className} />;
+      default:
+        return null;
+    }
+  }
+
+  renderProgress(className) {
+    const { variant, classes } = this.props;
+    let size = variant === 'fab' ? 24 : 15;
+    const classesPro = classNames(
+      {
+        [classes.progress]: variant !== 'flat' && variant !== 'outlined',
+        [classes.flatProgress]: variant === 'flat' || variant === 'outlined',
+      },
+      className,
+    );
+    return <CircularProgress className={classesPro} size={size} />;
+  }
+
+  onHandler = () => {
+    const { onClick } = this.props;
+    let result;
+    if (this.status.status === 'progress') {
+      return void 0;
+    }
+    if (typeof onClick === 'function') {
+      result = onClick.apply(this);
+    }
+    if (result) {
+      if (result instanceof Promise || typeof result.then === 'function') {
+        this.status.status = 'progress';
+        this.setState({
+          color: 'progress',
+        });
+        result
+          .then(r => {
+            this.status.status = 'success';
+            this.setState({
+              color: 'success',
+            });
+          })
+          .catch(r => {
+            this.status.status = 'false';
+            this.setState({
+              color: 'error',
+            });
+          });
+      }
+    }
+  };
+
   resetActive() {
     this.setState({
       active: false,
     });
   }
-  getButtonStyle() {}
+
+  renderChildren() {
+    const { children, variant } = this.props;
+    if (variant === 'fab') {
+      if (this.status.status !== '') {
+        return null;
+      }
+    }
+    return children;
+  }
 
   render() {
-    let { children, className: classNamePro, classes, ...props } = this.props;
+    let { children, className: classNamePro, classes, onClick, ...props } = this.props;
     let {
       raisedProgress,
       raisedError,
@@ -162,6 +237,8 @@ class CreateButton extends Component {
       flatSuccess,
       flatWaring,
       icon,
+      fabStatus,
+      progress,
       ...classesPro
     } = classes;
     props.color = this.state.color;
@@ -187,8 +264,9 @@ class CreateButton extends Component {
     );
 
     return (
-      <Button {...props} classes={classesPro} className={className}>
-        {children}
+      <Button {...props} classes={classesPro} className={className} onClick={this.onHandler}>
+        {this.getStatusIcon(classes)}
+        {this.renderChildren()}
       </Button>
     );
   }
@@ -208,11 +286,14 @@ CreateButton.propTypes = {
     'waring',
     'progress',
   ]),
-
   /**
    * The type of button.
    */
   variant: PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab']),
+  /**
+   * Button 的回掉函数，函数的返回值如果是Promise，Button变为带反馈的样子。
+   */
+  onClick: PropTypes.func,
 };
 CreateButton.defaultProps = {
   color: 'default',

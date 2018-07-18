@@ -73,3 +73,7 @@ Modal.confirm = function(props) {
 };
 
 export default Modal;
+
+/**
+ * @ignore - do not document.
+ */

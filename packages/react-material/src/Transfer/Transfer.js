@@ -101,6 +101,7 @@ class Transfer extends React.Component {
     showSearch: false,
     paginationOption: false,
   };
+
   static propTypes = {
     /**
      * choose to generate filter box
@@ -111,7 +112,7 @@ class Transfer extends React.Component {
      */
     searchPlaceholder: PropTypes.string,
     /**
-     * the data in the source box
+     * the data in the source box, Array of Object，in the Object, props 'name' and 'id' is required
      */
     dataSource: PropTypes.array.isRequired,
     /**
@@ -130,6 +131,16 @@ class Transfer extends React.Component {
      * call-back function when data change,parameters are (targetKeys,direction,moveKeys)
      */
     onChange: PropTypes.func,
+
+    /**
+     *Array of Object，in the Object, props 'name' and 'id' is required
+     */
+    selectedKeys: PropTypes.array.isRequired,
+    
+    /**
+     * 
+     */
+    paginationOption: PropTypes.bool,
   };
   //数组去重
   subSet = (arr1, arr2) => {
@@ -405,21 +416,5 @@ class Transfer extends React.Component {
     );
   }
 }
-
-Transfer.propTypes = {
-  /**
-   *Array of Object，in the Object, props 'name' and 'id' is required
-   */
-  dataSource: PropTypes.array.isRequired,
-  /**
-   *Array of Object，in the Object, props 'name' and 'id' is required
-   *
-   */
-  selectedKeys: PropTypes.array.isRequired,
-  /**
-   * onchange callback function
-   */
-  onChange: PropTypes.func.isRequired,
-};
 
 export default withStyles(styles, { name: 'RMTransfer' })(Transfer);

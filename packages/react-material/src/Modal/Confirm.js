@@ -82,6 +82,22 @@ class ConfirmDialog extends Component {
      * Confirm button callback
      */
     onOk: PropTypes.func,
+    /**
+     *
+     */
+    okType: PropTypes.string,
+    /**
+     *
+     */
+    cancelType: PropTypes.string,
+    /**
+     *
+     */
+    variant: PropTypes.string,
+    /**
+     *
+     */
+    size: PropTypes.string,
   };
   static defaultProps = {
     open: false,

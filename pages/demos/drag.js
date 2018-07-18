@@ -16,6 +16,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/drag/DragToolBox'), 'utf8')
 `,
         },
+        'pages/demos/drag/DragManually.js': {
+          js: require('docs/src/pages/demos/drag/DragManually').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/drag/DragManually'), 'utf8')
+`,
+        },
         'pages/demos/drag/DragList.js': {
             js: require('docs/src/pages/demos/drag/DragList').default,
             raw: preval`

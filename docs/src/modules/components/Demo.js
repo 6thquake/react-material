@@ -6,7 +6,7 @@ import copy from 'clipboard-copy';
 import { withStyles } from 'react-material/styles';
 import IconButton from 'react-material/IconButton';
 import Collapse from 'react-material/Collapse';
-import ModeEditIcon from '@material-ui/icons/ModeEdit';
+import ModeEditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
 import Menu from 'react-material/Menu';
 import MenuItem from 'react-material/MenuItem';

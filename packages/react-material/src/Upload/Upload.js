@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button, { StatusButton } from '../Button';
 import classNames from 'classnames';
 import { withStyles } from '../styles';
-import FileUpload from '@material-ui/icons/FileUpload';
+import FileUpload from '@material-ui/icons/CloudUpload';
 import Icon from '../Icon';
 
 import Avatar from '../Avatar';

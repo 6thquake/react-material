@@ -10,7 +10,7 @@ import Typography from 'react-material/Typography';
 import Zoom from 'react-material/Zoom';
 import Button from 'react-material/Button';
 import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/ModeEdit';
+import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import green from 'react-material/colors/green';
 

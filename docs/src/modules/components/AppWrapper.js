@@ -65,8 +65,7 @@ class AppWrapper extends React.Component {
 
     if (
       'serviceWorker' in navigator &&
-      process.env.NODE_ENV === 'production' &&
-      window.location.host === 'material-ui-next.com'
+      process.env.NODE_ENV === 'production'
     ) {
       navigator.serviceWorker.register('/sw.js');
     }

@@ -5,7 +5,7 @@ import Typography from 'react-material/Typography';
 import Grid from 'react-material/Grid';
 import Button from 'react-material/Button';
 import Divider from 'react-material/Divider';
-import FileDownloadIcon from '@material-ui/icons/FileDownload';
+import FileDownloadIcon from 'docs/src/svgIcons/FileDownload';
 import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';

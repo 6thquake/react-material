@@ -19,7 +19,3 @@ filename: /packages/react-material/src/Codearea/Codearea.js
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
-## Demos
-
-- [Codearea](/demos/codearea)
-

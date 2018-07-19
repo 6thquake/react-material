@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import Dialog from '../Dialog';
 import DialogTitle from '../DialogTitle';
-import Button from 'react-material/Button';
-import DialogActions from 'react-material/DialogActions';
-import DialogContent from 'react-material/DialogContent';
-import DialogContentText from 'react-material/DialogContentText';
+import Button from '../Button';
+import DialogActions from '../DialogActions';
+import DialogContent from '../DialogContent';
+import DialogContentText from '../DialogContentText';
 
 import { Clear } from '@material-ui/icons';
 import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';

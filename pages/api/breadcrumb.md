@@ -1,4 +1,6 @@
-
+---
+filename: /packages/react-material/src/Breadcrumb/Breadcrumb.js
+---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 

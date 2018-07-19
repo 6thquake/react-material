@@ -1,10 +1,6 @@
 import React from 'react';
 import Formsy, { addValidationRule, validationRules, withFormsy, propTypes } from 'formsy-react';
-
-// required
-addValidationRule('isRequired', (values, value) => {
-  return !(value === undefined || value === null || value === '');
-});
+import './validationRules';
 
 class Form extends Formsy {
   isValid() {

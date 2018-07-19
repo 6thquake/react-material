@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Modal, { Modal2, ModalManager } from 'react-material/Modal';
 import Button from 'react-material/Button';
 import { withStyles } from 'react-material/styles';
-import DialogActions from 'react-material/DialogActions';
-import DialogContent from 'react-material/DialogContent';
+
 import DialogContentText from 'react-material/DialogContentText';
 import FormControl from 'react-material/FormControl';
 import FormLabel from 'react-material/FormLabel';
@@ -21,6 +20,7 @@ const styles = theme => ({
   },
 });
 class App extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,6 @@ class App extends Component {
   }
 
   handleChange = (event, value) => {
-    console.log(value);
     this.setState({
       animation: value,
     });
@@ -40,15 +39,19 @@ class App extends Component {
     this.setState({ open: true });
   };
 
-  handleClose() {
+  handleClose = (key) => {
+    console.log(key);
     this.setState({ open: false });
-  }
+  };
+
   render() {
     const { classes } = this.props;
     let { open, animation, ...other } = this.state;
     return (
       <div>
-        <Button onClick={this.handleOpen}>Open Modal</Button>
+
+        <Button onClick={this.handleOpen} variant="raised" color="primary" >Open Modal</Button>
+
         <Modal2
           classes={{
             paperWidthSm: classes.paperWidthSm,
@@ -58,27 +61,23 @@ class App extends Component {
           label={'this is a modal test'}
           animation={this.state.animation}
         >
-          <div>
-            <DialogContent>
-              <DialogContentText>
-                Let Google help apps determine location. This means sending anonymous location data
-                to Google, even when no apps are running.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleClose.bind(this)} color="primary">
-                Disagree
-              </Button>
-              <Button onClick={this.handleClose.bind(this)} color="primary" autoFocus>
-                Agree
-              </Button>
-            </DialogActions>
-          </div>
+          <DialogContentText>
+            Let Google help apps determine location. This means sending anonymous location data
+            to Google, even when no apps are running.
+            Let Google help apps determine location. This means sending anonymous location data
+            to Google, even when no apps are running.
+            Let Google help apps determine location. This means sending anonymous location data
+            to Google, even when no apps are running.
+            Let Google help apps determine location. This means sending anonymous location data
+            to Google, even when no apps are running.
+
+          </DialogContentText>
         </Modal2>
+
         <Grid container spacing={16}>
           <Grid item xs={12} sm={12}>
             <FormControl component="fieldset">
-              <FormLabel component="legend">open animation</FormLabel>
+              {/* <FormLabel component="legend">open animation</FormLabel> */}
               <RadioGroup
                 row
                 aria-label="anchorOriginVertical"
@@ -92,6 +91,7 @@ class App extends Component {
                 <FormControlLabel value="grow" control={<Radio />} label="grow" />
                 <FormControlLabel value="zoom" control={<Radio />} label="zoom" />
               </RadioGroup>
+              <h4>your choose animation is :{this.state.animation}</h4>
             </FormControl>
           </Grid>
         </Grid>

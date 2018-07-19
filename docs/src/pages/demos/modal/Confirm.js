@@ -140,6 +140,8 @@ class App extends Component {
                 <FormControlLabel value="grow" control={<Radio />} label="grow" />
                 <FormControlLabel value="zoom" control={<Radio />} label="zoom" />
               </RadioGroup>
+
+              <h4>your choose animation is :{this.state.animation}</h4>
             </FormControl>
           </Grid>
         </Grid>

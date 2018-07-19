@@ -41,14 +41,14 @@ class Item extends React.Component {
     this.state = {};
   }
   render() {
-    const { url, msg, noLink, showIcon, classes } = this.props;
+    const { url, msg, noLink, classes } = this.props;
     let _jsx = '';
     if (!noLink) {
       _jsx = (
         <span>
           <a href={url}>
             {' '}
-            {showIcon ? <i className={classes.icon}>{msg.icon}</i> : null}
+            {!!msg.icon ? <i className={classes.icon}>{msg.icon}</i> : null}
             <font>{msg.name}</font>
           </a>
         </span>
@@ -73,7 +73,11 @@ class Breadcrumb extends React.Component {
     const { nameMap, currUrl, showIcon, separator, classes } = this.props;
 
     const _separator = separator || '/';
-    let pathSnippets = currUrl.split('/').filter(i => i);
+    let _currUrl=currUrl;
+    if(!_currUrl){
+      _currUrl = !!window && !!window.location?window.location.pathname:'';
+    }
+    let pathSnippets = _currUrl.split('/').filter(i => i);
     pathSnippets.unshift('');
 
     const extraBreadcrumbItems = pathSnippets.map((_, index) => {
@@ -82,13 +86,12 @@ class Breadcrumb extends React.Component {
         return null;
       }
       return (
-        <div className={classes.item}>
+        <div className={classes.item} key={url+index}>
           <Item
             key={url}
             url={url}
             msg={nameMap[url]}
             noLink={pathSnippets.length == index + 1}
-            showIcon={showIcon}
             classes={classes}
           />
           <i className={classes.separator}>{pathSnippets.length != index + 1 ? _separator : ''}</i>
@@ -113,16 +116,16 @@ Breadcrumb.propTypes = {
   nameMap: PropTypes.object.isRequired,
   /**
    *the Url of current Page,one of the keys of nameMap;
+   *Not required. when leaveout it will get window.location.url
    */
-  currUrl: PropTypes.string.isRequired,
-  /**
-   *Show icons before name
-   */
-  showIcon: PropTypes.bool,
+  currUrl: PropTypes.string,
   /**
    *the separator of breadcrumb
    */
   separator: PropTypes.string,
+};
+Breadcrumb.defaultProps = {
+  separator: '/'
 };
 
 export default withStyles(styles, { name: 'RMBreadcrumb' })(Breadcrumb);

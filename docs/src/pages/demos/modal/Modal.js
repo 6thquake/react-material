@@ -20,7 +20,6 @@ const styles = theme => ({
   },
 });
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -39,7 +38,7 @@ class App extends Component {
     this.setState({ open: true });
   };
 
-  handleClose = (key) => {
+  handleClose = key => {
     console.log(key);
     this.setState({ open: false });
   };
@@ -49,8 +48,9 @@ class App extends Component {
     let { open, animation, ...other } = this.state;
     return (
       <div>
-
-        <Button onClick={this.handleOpen} variant="raised" color="primary" >Open Modal</Button>
+        <Button onClick={this.handleOpen} variant="raised" color="primary">
+          Open Modal
+        </Button>
 
         <Modal2
           classes={{
@@ -62,15 +62,12 @@ class App extends Component {
           animation={this.state.animation}
         >
           <DialogContentText>
-            Let Google help apps determine location. This means sending anonymous location data
-            to Google, even when no apps are running.
-            Let Google help apps determine location. This means sending anonymous location data
-            to Google, even when no apps are running.
-            Let Google help apps determine location. This means sending anonymous location data
-            to Google, even when no apps are running.
-            Let Google help apps determine location. This means sending anonymous location data
-            to Google, even when no apps are running.
-
+            Let Google help apps determine location. This means sending anonymous location data to
+            Google, even when no apps are running. Let Google help apps determine location. This
+            means sending anonymous location data to Google, even when no apps are running. Let
+            Google help apps determine location. This means sending anonymous location data to
+            Google, even when no apps are running. Let Google help apps determine location. This
+            means sending anonymous location data to Google, even when no apps are running.
           </DialogContentText>
         </Modal2>
 

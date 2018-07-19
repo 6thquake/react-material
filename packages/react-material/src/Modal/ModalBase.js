@@ -15,8 +15,8 @@ const styles = theme => ({
   title: {
     backgroundColor: 'rgb(16,108,200)',
     color: 'white',
-    fontSize:'1rem',
-    fontWeight:'700',
+    fontSize: '1rem',
+    fontWeight: '700',
   },
   icon: {
     color: 'white',
@@ -25,22 +25,19 @@ const styles = theme => ({
       opacity: 0.5,
     },
   },
-  contentRoot:{
-    paddingTop:theme.spacing.unit * 3
+  contentRoot: {
+    paddingTop: theme.spacing.unit * 3,
   },
-  actionRoot:{
-    margin:0,
-    padding:`${theme.spacing.unit}px  ${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px 0`
+  actionRoot: {
+    margin: 0,
+    padding: `${theme.spacing.unit}px  ${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px 0`,
   },
-  actionRootBtn:{
-    margin:`0 0 0 ${theme.spacing.unit}px`
-  }
-
-
+  actionRootBtn: {
+    margin: `0 0 0 ${theme.spacing.unit}px`,
+  },
 });
 
 class Modal extends Component {
-
   static propTypes = {
     /**
      * Decide modal open or close,	If true, the modal is open.
@@ -58,14 +55,14 @@ class Modal extends Component {
      * onClose callback function
      */
     onClose: PropTypes.func,
-     /**
+    /**
      * max content height
      */
-    maxHeight:PropTypes.number,
+    maxHeight: PropTypes.number,
   };
 
   static defaultProps = {
-    maxHeight:500,
+    maxHeight: 500,
     open: false,
     label: '',
     animation: 'fade',
@@ -95,14 +92,14 @@ class Modal extends Component {
 
   handleCancel() {
     this.props.onClose('cancel');
-  };
+  }
 
   handleOK() {
     this.props.onClose('ok');
-  };
+  }
 
   render() {
-    const { classes, label, onClose,maxHeight, ...other } = this.props;
+    const { classes, label, onClose, maxHeight, ...other } = this.props;
 
     return (
       <Dialog
@@ -111,27 +108,36 @@ class Modal extends Component {
         aria-describedby="alert-dialog-slide-description"
         {...this.props}
       >
-
         <DialogTitle className={classes.title} disableTypography={true}>
           {label}
           <Clear className={classes.icon} onClick={onClose} />
         </DialogTitle>
 
-        <DialogContent style = {{maxHeight:`${maxHeight}px`}} classes = {{root:classes.contentRoot}}>
-          
-            {this.props.children}
-        
+        <DialogContent
+          style={{ maxHeight: `${maxHeight}px` }}
+          classes={{ root: classes.contentRoot }}
+        >
+          {this.props.children}
         </DialogContent>
 
-        <DialogActions classes = {{root:classes.actionRoot}}>
-          <Button onClick={this.handleCancel.bind(this)} color="primary" classes = {{root:classes.actionRootBtn}}>
+        <DialogActions classes={{ root: classes.actionRoot }}>
+          <Button
+            onClick={this.handleCancel.bind(this)}
+            color="primary"
+            classes={{ root: classes.actionRootBtn }}
+          >
             Disagree
-            </Button>
-          <Button onClick={this.handleOK.bind(this)} variant="raised" color="primary" autoFocus classes = {{root:classes.actionRootBtn}}>
+          </Button>
+          <Button
+            onClick={this.handleOK.bind(this)}
+            variant="raised"
+            color="primary"
+            autoFocus
+            classes={{ root: classes.actionRootBtn }}
+          >
             Agree
-            </Button>
+          </Button>
         </DialogActions>
-
       </Dialog>
     );
   }

@@ -50,7 +50,6 @@ const styles = theme => ({
 });
 
 class ConfirmDialog extends Component {
-
   static propTypes = {
     /**
      * Decide modal open or close,	If true, the modal is open.
@@ -157,14 +156,9 @@ class ConfirmDialog extends Component {
     } = this.props;
 
     const okCancel = 'okCancel' in this.props ? this.props.okCancel : true;
-    
+
     const cancelButton = okCancel && (
-      <ActionButton
-        actionFn={onCancel}
-        closeModal={onClose}
-        type={cancelType}
-        size={size}
-      >
+      <ActionButton actionFn={onCancel} closeModal={onClose} type={cancelType} size={size}>
         {cancelText}
       </ActionButton>
     );
@@ -175,7 +169,6 @@ class ConfirmDialog extends Component {
       [classes.error]: type === 'error',
       [classes.warning]: type === 'contact_support',
     });
-
 
     return (
       <Dialog

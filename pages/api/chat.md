@@ -1,6 +1,4 @@
----
-filename: /packages/react-material/src/Chat/Chat.js
----
+
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 

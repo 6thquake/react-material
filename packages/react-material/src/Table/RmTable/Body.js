@@ -10,7 +10,7 @@ import Scrollbar from '../../Scrollbar'
 
 import {
   withStyles
-} from 'react-material/styles';
+} from '../../styles';
 
 const styles = (theme)=> ({
   root: {
@@ -103,6 +103,7 @@ class Body extends React.Component {
 }
 
 Body.propTypes = {
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   classes: PropTypes.object.isRequired,
 }
 Body.defaultProps = {

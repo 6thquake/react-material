@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 import {
   withStyles
-} from 'react-material/styles';
+} from '../../styles';
 
 const styles = (theme) => ({
   root: {},

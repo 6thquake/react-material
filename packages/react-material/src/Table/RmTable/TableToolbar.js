@@ -1,16 +1,16 @@
 
 import React, {Component} from 'react';
-import Toolbar from 'react-material/Toolbar'
+import Toolbar from '../../Toolbar'
 import ReactDOM from 'react-dom'
 import {
   Search
-} from 'react-material/Search';
-import IconButton from 'react-material/IconButton';
+} from '../../Search';
+import IconButton from '../../IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {
   withStyles
-} from 'react-material/styles';
-import Menu from 'react-material/Menu';
+} from '../../styles';
+import Menu from '../../Menu';
 import MenuItem from '../../MenuItem';
 import {
   darken,

@@ -11,7 +11,7 @@ import filter from '../../utils/filter'
 
 import {
   withStyles
-} from 'react-material/styles';
+} from '../../styles';
 import {
   darken,
   fade,

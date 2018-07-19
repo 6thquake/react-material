@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {
   withStyles
-} from 'react-material/styles';
+} from '../../styles';
 import classNames  from 'classnames'
 
 import ThCell from './ThCell'
@@ -37,7 +37,7 @@ class Cell extends React.Component {
 
   render() {
     const {
-      children,classes, fixed, index,...other,
+      children, classes, fixed, index, ...other
     } = this.props;
     const { show } = this.state
 

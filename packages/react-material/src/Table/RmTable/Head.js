@@ -22,7 +22,7 @@ import {
 
 import {
   withStyles
-} from 'react-material/styles';
+} from '../../styles';
 
 const throttling = (fn, wait, maxTimelong) => {
   wait = wait || 100;

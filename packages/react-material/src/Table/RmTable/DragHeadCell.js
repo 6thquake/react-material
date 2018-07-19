@@ -1,9 +1,13 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {
   withStyles
-} from 'react-material/styles';
+} from '../../styles';
 import classNames  from 'classnames'
 import {
   DragSource,
@@ -96,7 +100,7 @@ class Cell extends React.Component {
   }
   render() {
     const {
-      connectDropTarget, connectDragSource, connectDragPreview, children,classes, fixed, index, onColumnFixChange,...other,
+      connectDropTarget, connectDragSource, connectDragPreview, children,classes, fixed, index, onColumnFixChange, ...other
     } = this.props;
     const { show } = this.state
 

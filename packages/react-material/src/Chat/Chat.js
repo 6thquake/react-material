@@ -147,7 +147,7 @@ Chat.propTypes = {
   /**
    *
    */
-   content: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles, { name: 'RMChat' })(Chat);

@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
@@ -153,7 +157,3 @@ class _DragSouce extends Component {
 const _mc = DropTargetBase('DRAGANDDROP', _target, _dropCollect)(_DragSouce);
 const DragSouce = DragSourceBase('DRAGANDDROP', _source, _dragCollect)(_mc);
 export default withStyles(styles, { name: 'RMDragSouce' })(DragSouce);
-
-/**
- * @ignore - do not document.
- */

@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
@@ -140,7 +144,3 @@ FormItem.defaultProps = {
 };
 
 export default withStyles(style, { name: 'RMFormItem' })(FormItem);
-
-/**
- * @ignore - do not document.
- */

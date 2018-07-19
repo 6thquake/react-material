@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
@@ -307,7 +311,3 @@ Panel.propTypes = {
   defaultChildren: PropTypes.array.isRequired,
 };
 export default withStyles(styles, { name: 'RMPanel' })(withDragAndDrop()(Panel));
-
-/**
- * @ignore - do not document.
- */

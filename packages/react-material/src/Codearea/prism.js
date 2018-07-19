@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import prism from 'prismjs';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-diff';

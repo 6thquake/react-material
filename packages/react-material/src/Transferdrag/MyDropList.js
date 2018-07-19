@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
@@ -61,7 +65,3 @@ let C = DropTarget(['just-transfer'], boxTarget, connect => {
 })(DL);
 
 export default withStyles(styles, { name: 'RMDropList' })(C);
-
-/**
- * @ignore - do not document.
- */

@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
@@ -172,7 +176,3 @@ class Transfer extends React.Component {
 let C = DragDropContext(HTML5Backend)(Transfer);
 
 export default withStyles(styles, { name: 'RMTransferdrag' })(C);
-
-/**
- * @ignore - do not document.
- */

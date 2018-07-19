@@ -1,9 +1,10 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React, { Component } from 'react';
-
 import { withStyles } from '../styles';
-
 import Chip from '../Chip';
-
 import PropTypes from 'prop-types';
 
 let styles = {
@@ -181,7 +182,3 @@ Tag.defaultProps = {
 };
 
 export default withStyles(styles.mixin, { name: 'RMTag' })(Tag);
-
-/**
- * @ignore - do not document.
- */

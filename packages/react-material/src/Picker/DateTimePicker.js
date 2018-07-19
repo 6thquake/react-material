@@ -1,9 +1,9 @@
+/**
+ * @ignore - do not document.
+ */
+
 import { DateTimePicker } from 'material-ui-pickers';
 
 import { withLocale } from '../LocaleProvider';
 
 export default withLocale({ name: 'DateTimePicker' })(DateTimePicker);
-
-/**
- * @ignore - do not document.
- */

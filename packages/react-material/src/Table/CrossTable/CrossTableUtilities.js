@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import PropTypes from 'prop-types';
 import 'babel-polyfill';
 
@@ -763,7 +767,3 @@ export {
   sortAs,
   CrossTableData,
 };
-
-/**
- * @ignore - do not document.
- */

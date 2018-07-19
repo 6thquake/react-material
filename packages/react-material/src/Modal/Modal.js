@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from './ModalBase';
@@ -73,7 +77,3 @@ Modal.confirm = function(props) {
 };
 
 export default Modal;
-
-/**
- * @ignore - do not document.
- */

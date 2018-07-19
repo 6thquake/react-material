@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
@@ -96,7 +100,3 @@ const FormComponent = compose(
 )(TextField);
 
 export default compose(withForm)(FormComponent, TextFieldStandalone);
-
-/**
- * @ignore - do not document.
- */

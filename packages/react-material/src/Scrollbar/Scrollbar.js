@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -12,7 +16,3 @@ class Scrollbar extends Scrollbars {}
 // export default withStyles(styles)(Scrollbar);
 
 export default Scrollbar;
-
-/**
- * @ignore - do not document.
- */

@@ -1,6 +1,8 @@
 ---
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, AbundantCrossTable, CrossTable
 ---
+## Rm Table
+{{"demo": "pages/demos/tables/RmTable.js"}}
 
 ## Cross Table
 {{"demo": "pages/demos/tables/CrossTable.js"}}

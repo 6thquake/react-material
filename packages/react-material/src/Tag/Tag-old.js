@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import { withStyles } from '../styles';
@@ -129,7 +133,3 @@ class Tag extends Component {
 }
 
 export default withStyles(styles)(Tag);
-
-/**
- * @ignore - do not document.
- */

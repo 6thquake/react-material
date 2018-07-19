@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
-import Codearea, { lightTheme, darkTheme, setPrismTheme } from 'react-material/Codearea';
+import Codearea from 'react-material/Codearea';
 import Grid from 'react-material/Grid';
 import RadioGroup from 'react-material/RadioGroup';
 import FormControl from 'react-material/FormControl';
@@ -23,11 +23,6 @@ class SimpleCodearea extends React.Component {
     this.setState({
       theme: value,
     });
-    if (value == 'dark') {
-      setPrismTheme(darkTheme);
-    } else {
-      setPrismTheme(lightTheme);
-    }
   };
 
   state = {
@@ -57,7 +52,7 @@ class SimpleCodearea extends React.Component {
             <Divider />
           </Grid>
           <Grid item>
-            <Codearea language="js">
+            <Codearea language="js" theme={this.state.theme}>
               {`
                 import React from 'react';
 
@@ -74,7 +69,7 @@ class SimpleCodearea extends React.Component {
             </Codearea>
           </Grid>
           <Grid item>
-            <Codearea language="css">
+            <Codearea language="css" theme={this.state.theme}>
               {`
                   body {
                     font: 100%/1.5 Questrial, sans-serif;
@@ -97,7 +92,7 @@ class SimpleCodearea extends React.Component {
             </Codearea>
           </Grid>
           <Grid item>
-            <Codearea language="diff">
+            <Codearea language="diff" theme={this.state.theme}>
               {`                  
  'use strict';
  

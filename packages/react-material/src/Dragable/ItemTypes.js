@@ -1,7 +1,7 @@
-export default {
-  BOX: 'box',
-};
-
 /**
  * @ignore - do not document.
  */
+
+export default {
+  BOX: 'box',
+};

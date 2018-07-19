@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import update from 'immutability-helper'
@@ -84,7 +88,3 @@ let C = DropTarget(ItemTypes.BOX, boxTarget, connect => {
   };
 })(Container);
 export default DragDropContext(HTML5Backend)(C);
-
-/**
- * @ignore - do not document.
- */

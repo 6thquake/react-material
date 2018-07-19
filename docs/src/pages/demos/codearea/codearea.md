@@ -1,6 +1,4 @@
----
-components: Codearea
----
+
 
 # Codearea
 This element can highlight javascript code or css code.

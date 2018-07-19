@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -362,7 +366,3 @@ TreeList.propTypes = {
 };
 
 exports.default = TreeList;
-
-/**
- * @ignore - do not document.
- */

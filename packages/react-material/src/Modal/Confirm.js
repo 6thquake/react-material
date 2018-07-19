@@ -10,7 +10,7 @@ import { withLocale } from '../LocaleProvider';
 
 const styles = theme => ({
   root: {
-    padding: '20px',
+    padding: '20px 20px 0 20px',
   },
   title: {
     color: 'rgba(0,0,0,.85)',
@@ -28,9 +28,9 @@ const styles = theme => ({
     marginTop: '8px',
   },
   icon: {
-    fontSize: '22px',
+    fontSize: `${theme.spacing.unit * 3}px`,
     float: 'left',
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 1,
   },
   info: {
     color: '#1890ff',
@@ -48,6 +48,7 @@ const styles = theme => ({
     color: '#faad14',
   },
 });
+
 class ConfirmDialog extends Component {
   static propTypes = {
     /**
@@ -99,6 +100,7 @@ class ConfirmDialog extends Component {
      */
     size: PropTypes.string,
   };
+
   static defaultProps = {
     open: false,
     title: '',
@@ -108,7 +110,8 @@ class ConfirmDialog extends Component {
     variant: 'raised',
     size: 'small',
   };
-  _transition = props => {
+
+  transition = props => {
     switch (this.props.animation) {
       case 'fade':
         return <Fade {...props} />;
@@ -129,6 +132,7 @@ class ConfirmDialog extends Component {
         return <Fade {...props} />;
     }
   };
+
   render() {
     const {
       onCancel,
@@ -150,15 +154,11 @@ class ConfirmDialog extends Component {
       classes,
       ...other
     } = this.props;
+
     const okCancel = 'okCancel' in this.props ? this.props.okCancel : true;
+
     const cancelButton = okCancel && (
-      <ActionButton
-        actionFn={onCancel}
-        closeModal={onClose}
-        type={cancelType}
-        variant={variant}
-        size={size}
-      >
+      <ActionButton actionFn={onCancel} closeModal={onClose} type={cancelType} size={size}>
         {cancelText}
       </ActionButton>
     );
@@ -169,9 +169,10 @@ class ConfirmDialog extends Component {
       [classes.error]: type === 'error',
       [classes.warning]: type === 'contact_support',
     });
+
     return (
       <Dialog
-        TransitionComponent={this._transition}
+        TransitionComponent={this.transition}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
         {...this.props}

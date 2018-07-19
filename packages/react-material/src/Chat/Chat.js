@@ -13,7 +13,7 @@ export const renderStyle = {
   width: '100%',
 };
 
-export var styles = theme => ({
+export const styles = theme => ({
   /*
    * Part of bubble rectangle & triangle style which will remain unchangeable.
    */
@@ -71,7 +71,7 @@ export var styles = theme => ({
   },
 });
 
-class Chart extends React.Component {
+class Chat extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -139,9 +139,15 @@ class Chart extends React.Component {
   }
 }
 
-Chart.propTypes = {
+Chat.propTypes = {
+  /**
+   *
+   */
   isLeft: PropTypes.bool.isRequired,
+  /**
+   *
+   */
   content: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(Chart);
+export default withStyles(styles, { name: 'RMChat' })(Chat);

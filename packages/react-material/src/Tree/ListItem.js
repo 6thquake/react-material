@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -132,7 +136,3 @@ ListItem.propTypes = {
 };
 
 exports.default = ListItem;
-
-/**
- * @ignore - do not document.
- */

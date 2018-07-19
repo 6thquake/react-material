@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import prism from 'prismjs';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-diff';
@@ -8,26 +12,24 @@ import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-diff';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 
-import lightTheme from 'prismjs/themes/prism.css';
-import darkTheme from 'prismjs/themes/prism-okaidia.css';
-import lineNumbers from 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+// import lightTheme from 'prismjs/themes/prism.css';
+// import darkTheme from 'prismjs/themes/prism-okaidia.css';
+// import lineNumbers from 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+// export { lightTheme, darkTheme };
 
-export { lightTheme, darkTheme };
+// let styleNode;
 
-let styleNode;
+// if (process.browser) {
+//   styleNode = document.createElement('style');
+//   styleNode.setAttribute('data-prism', 'true');
+//   if (document.head) {
+//     document.head.appendChild(styleNode);
+//     setPrismTheme(lightTheme);
+//   }
+// }
 
-if (process.browser) {
-  styleNode = document.createElement('style');
-  styleNode.setAttribute('data-prism', 'true');
-  if (document.head) {
-    document.head.appendChild(styleNode);
-    setPrismTheme(lightTheme);
-  }
-}
-
-export function setPrismTheme(theme) {
-  console.log(theme);
-  styleNode.textContent = theme + lineNumbers;
-}
+// export function setPrismTheme(theme) {
+//   styleNode.textContent = theme + lineNumbers;
+// }
 
 export default prism;

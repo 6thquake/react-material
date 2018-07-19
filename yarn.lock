@@ -8537,6 +8537,13 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+"react-draggable@^2.2.6 || ^3.0.3":
+  version "3.0.5"
+  resolved "http://registry.npm.release.ctripcorp.com/react-draggable/download/react-draggable-3.0.5.tgz#c031e0ed4313531f9409d6cd84c8ebcec0ddfe2d"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+
 react-event-listener@^0.5.1:
   version "0.5.9"
   resolved "http://registry.npm.release.ctripcorp.com/react-event-listener/download/react-event-listener-0.5.9.tgz#c64e84f77156a682614835bdc1bc7ba00912df97"
@@ -8632,6 +8639,13 @@ react-redux@^5.0.6:
     lodash-es "^4.17.5"
     loose-envify "^1.1.0"
     prop-types "^15.6.0"
+
+react-resizable@^1.0.0:
+  version "1.7.5"
+  resolved "http://registry.npm.release.ctripcorp.com/react-resizable/download/react-resizable-1.7.5.tgz#83eb75bb3684da6989bbbf4f826e1470f0af902e"
+  dependencies:
+    prop-types "15.x"
+    react-draggable "^2.2.6 || ^3.0.3"
 
 react-router-dom@^4.2.2:
   version "4.3.1"

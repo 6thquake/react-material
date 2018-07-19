@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CrossTableData } from './CrossTableUtilities';
@@ -359,7 +363,3 @@ export default {
   'Table Row Heatmap': makeRenderer({ heatmapMode: 'row' }),
   'Exportable TSV': TSVExportRenderer,
 };
-
-/**
- * @ignore - do not document.
- */

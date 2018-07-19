@@ -1,3 +1,7 @@
+/**
+ * @ignore - do not document.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
@@ -125,7 +129,3 @@ const FormComponent = compose(
 )(CheckboxGroup);
 
 export default compose(withForm)(FormComponent, CheckboxGroupStandalone);
-
-/**
- * @ignore - do not document.
- */

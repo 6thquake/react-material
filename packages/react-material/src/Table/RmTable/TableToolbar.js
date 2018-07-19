@@ -116,6 +116,7 @@ class TableToolbar extends Component {
     }
     return (
       <div className={classes.root} style={{width}}>
+        
         <Toolbar>
           <div style={{ width: '80%' }}>
            {searchable &&  <Search classes={{input:classes.searchInput}} {...searchProps} onChange={this.onChange} />}

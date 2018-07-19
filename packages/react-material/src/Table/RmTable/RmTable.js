@@ -455,8 +455,7 @@ RmTable.defaultProps = {
   },
   width: 'auto',
   searchProps: {
-    direction: 'left',
-    type: 'dark',
+    isDark: true
   },
   paginatable: false,
   searchable: false,

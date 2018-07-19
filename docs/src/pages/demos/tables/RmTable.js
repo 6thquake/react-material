@@ -99,8 +99,7 @@ class RmTableEXample extends React.Component {
     }
     const searchProps = {
       placeholder: 'search',
-      direction: 'left',
-      type: 'dark',
+      isDark: true,
     }
     const options = {
       [value] : value,

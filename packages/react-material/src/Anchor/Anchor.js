@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createMuiTheme } from '../styles';
+import { withStyles } from '../styles';
 import classNames from 'classnames';
 import { fade } from '../styles/colorManipulator';
 
@@ -354,39 +354,46 @@ class Anchor extends React.Component {
 
 Anchor.propTypes = {
   /**
-   * The links you want to render on Anchor,
-   * 
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
    */
-  links: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.node,
-    value: PropTypes.string,
-    children: PropTypes.array,
-  })).isRequired,
+  classes: PropTypes.object,
   /**
    * selector, which will be used to find The scope of the anchors,
    * the default value is window
    */
   container: PropTypes.string,
-  
+
+  /**
+   * The mode of Anchor, you will consider this only in SPA
+   */
+  hash: PropTypes.bool,
+
   /**
    * The orientation of Anchor,
    * if true, the orientation will be horizontal,
    * if false, the orientation will be vertical
    */
   horizontal: PropTypes.bool,
+
+  /**
+   * The links you want to render on Anchor,
+   * links: PropTypes.arrayOf(PropTypes.shape({
+   *  label: PropTypes.node,
+   *  value: PropTypes.string,
+   *  children: PropTypes.array,
+   * })).isRequired,
+   * 
+   */
+  
+  links: PropTypes.array.isRequired,
+  
   /**
    * Callback fired when the active link changed
    */
   onChange: PropTypes.func,
-  /**
-   * The mode of Anchor, you will consider this only in SPA
-   */
-  hash: PropTypes.bool,
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
-   */
-  classes: PropTypes.object,
+  
+  
 };
 
 Anchor.defaultProps = {

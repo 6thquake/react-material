@@ -12,10 +12,28 @@ import {
 } from 'react-material/styles';
 import Menu from 'react-material/Menu';
 import MenuItem from '../../MenuItem';
+import {
+  darken,
+  fade,
+  lighten
+} from '../../styles/colorManipulator';
 
 const styles = theme => ({
   root: {
-    
+    borderTop:
+      `1px solid
+    ${
+      theme.palette.type === 'light'
+        ? lighten(fade(theme.palette.divider, 1), 0.88)
+        : darken(fade(theme.palette.divider, 1), 0.8)
+    }`,
+    borderBottom:
+      `1px solid
+    ${
+      theme.palette.type === 'light'
+        ? lighten(fade(theme.palette.divider, 1), 0.88)
+        : darken(fade(theme.palette.divider, 1), 0.8)
+    }`,
   },
   spacer: {
     flex: '1 1 100%',
@@ -46,7 +64,6 @@ class TableToolbar extends Component {
   }
   excelRef = React.createRef('excel')
   onChange = (e) =>{
-    console.log('se', e)
     let { onSearch } = this.props
     onSearch && onSearch(e)
   }
@@ -58,8 +75,7 @@ class TableToolbar extends Component {
     this.setState({ anchorEl: null });
   }
 
-  handleItemClick = (value) => (e) => {
-    console.log('vale', value)
+  handleItemClick =(e) => {
     const {
       createCsv
     } = this.props
@@ -85,18 +101,27 @@ class TableToolbar extends Component {
   }
   
   render() {
-    const {width, classes} = this.props
+    const {
+      width,
+      classes,
+      searchable,
+      exportProps,
+      searchProps 
+    } = this.props
     const {
       anchorEl
     } = this.state
+    if (!searchable && !exportProps){
+      return null
+    }
     return (
       <div className={classes.root} style={{width}}>
         <Toolbar>
           <div style={{ width: '80%' }}>
-            <Search classes={{input:classes.searchInput}} type={'dark'} direction={'left'} placeholder={'搜索'} onChange={this.onChange} />
+           {searchable &&  <Search classes={{input:classes.searchInput}} {...searchProps} onChange={this.onChange} />}
           </div>
           <div className={classes.spacer}></div>
-          <div>
+          {exportProps && <div>
             <IconButton
               aria-label="More"
               aria-owns={anchorEl ? 'long-menu' : null}
@@ -111,11 +136,11 @@ class TableToolbar extends Component {
               open={Boolean(anchorEl)}
               onClose={this.handleClose}
             >
-              <MenuItem onClick={this.handleItemClick('excel')}>
-                <a ref={this.excelRef}>Excel</a>
-              </MenuItem>
+              {exportProps.type === 'csv' &&<MenuItem onClick={this.handleItemClick}>
+                <a ref={this.excelRef}>CSV</a>
+              </MenuItem>}
             </Menu>
-          </div>
+          </div>}
 
         </Toolbar>
       </div>

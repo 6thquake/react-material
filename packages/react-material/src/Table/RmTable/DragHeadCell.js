@@ -1,26 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import TableCell from '../../TableCell';
 import {
   withStyles
 } from 'react-material/styles';
-
+import classNames  from 'classnames'
 import {
   DragSource,
   DropTarget
 } from 'react-dnd';
-import { debug } from 'util';
-import {
-  Resizable,
-} from 'react-resizable';
+import ThCell from './ThCell'
 
 const ItemTypes = {
   COLUMN:'column',
   CHIP: 'chip'
 };
 const styles = (theme) =>({
-
+  root: {},
+  actionTopRight: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    borderTop: `10px solid ${theme.palette.grey[500]}`,
+    borderLeft: `10px solid transparent`,
+    width: 0,
+    height: 0,
+  }, 
+  actionTopLeft: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    borderTop: `10px solid ${theme.palette.grey[500]}`,
+    borderRight: `10px solid transparent`,
+    width: 0,
+    height: 0,
+  },
+  active: {
+    borderTop: `10px solid ${theme.palette.primary.main}`,
+  }
 })
 const columnSource = {
   beginDrag(props, monitor, component) {
@@ -57,13 +74,38 @@ function targetCollect(connect, monitor) {
   };
 }
 class Cell extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      show: false,
+      topRight: false,
+      topLeft: false
+    }
+  }
+  handleDoubleClick=(e)=> {
+    this.setState({
+      show: true
+    })
+  }
+  handleClick = (index, fixed)=> {
+    const { onColumnFixChange } = this.props
+    this.setState({
+      show: false
+    })
+    onColumnFixChange && onColumnFixChange(index, fixed)
+  }
   render() {
     const {
-      connectDropTarget, connectDragSource, connectDragPreview, children,classes, ...other
+      connectDropTarget, connectDragSource, connectDragPreview, children,classes, fixed, index, onColumnFixChange,...other,
     } = this.props;
+    const { show } = this.state
+
     return connectDragSource(
       connectDropTarget(
-        <th className={classes.root} {...other}>{children}</th>
+        <th onDoubleClick={this.handleDoubleClick} className={classes.root} {...other}>
+          {children}
+          <ThCell fixed={fixed} index={index} show={show} onColumnFixChange={this.handleClick}></ThCell>
+        </th>
       )
     ) ;
   }
@@ -72,5 +114,6 @@ class Cell extends React.Component {
 Cell = DropTarget(ItemTypes.COLUMN, columnTarget, targetCollect)(
   DragSource(ItemTypes.COLUMN, columnSource, sourceCollect)(Cell)
 );
+
 export default withStyles(styles)(Cell)
 

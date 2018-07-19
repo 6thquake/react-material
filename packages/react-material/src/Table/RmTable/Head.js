@@ -6,7 +6,8 @@ import TableBody from '../../TableBody';
 import TableCell from '../../TableCell';
 import TableHead from '../../TableHead';
 import TableRow from '../../TableRow';
-import HeadCell from './Cell'
+import HeadCell from './HeadCell'
+import DragHeadCell from './DragHeadCell'
 import withDragAndDrop from '../../DragAndDrop/withDragAndDrop'
 
 import {
@@ -84,7 +85,7 @@ class Head extends React.Component {
     sourceIndex: '',
   }
   componentDidMount(){
-    this.throttleResize = throttling(this.resize)
+    // this.throttleResize = throttling(this.resize)
   }
 
   handleResizeStart = () => {
@@ -111,7 +112,6 @@ class Head extends React.Component {
     const {
       onResize
     } = this.props
-    console.log('resize')
     onResize && onResize(...args)
   }
   renderTableHeadCell = (column, index) => {
@@ -121,7 +121,8 @@ class Head extends React.Component {
       onDragEnd,
       resizable,
       dragable,
-      baseLength
+      baseLength,
+      onColumnFixChange
     } = this.props
     
     let cell = (
@@ -129,8 +130,11 @@ class Head extends React.Component {
         onDragStart={onDragStart} 
         onDragEnd={onDragEnd} 
         index={index + baseLength} 
-        component={dragable && !this.state.undragable? HeadCell: 'th'}
+        onColumnFixChange={onColumnFixChange}
+        component={dragable && !this.state.undragable? DragHeadCell: HeadCell}
         className={classes.tableCell}
+        key={column.key || column.title}
+        fixed = {column.fixed}
       >
         {column.title || ''}
       </TableCell>
@@ -138,6 +142,7 @@ class Head extends React.Component {
     const C = (
       resizable || column.resizable?
       <Resizable
+        key={column.key || column.title}
         onResizeStart = { this.handleResizeStart}
         onResizeStop = {this.handleDragStop}
         width={column.width} 
@@ -171,7 +176,7 @@ class Head extends React.Component {
           <colgroup>
             {
               columns.map((item) => {
-                return <col key={item.title} width={item.width} style={colStyle}></col>
+                return <col key={item.key || item.title} width={item.width} style={colStyle}></col>
               })
             }
           </colgroup>

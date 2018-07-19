@@ -22,6 +22,9 @@ const styles = theme => ({
   },
   radioButtons: {
     margin: theme.spacing.unit * 2
+  },
+  paginatableButton: {
+    width: 120
   }
 });
 
@@ -58,7 +61,7 @@ const columns = [
 ];
 
 const data = [];
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 40; i++) {
 
   data.push({
     key: i,
@@ -75,7 +78,7 @@ class RmTableEXample extends React.Component {
     this.state = {  
       columns: columns,
       data: data,
-      value: 'scoll'
+      value: 'dragable'
     };
   }
   handleChange = (e) => {
@@ -87,10 +90,24 @@ class RmTableEXample extends React.Component {
   render() {
     const { classes } = this.props
     const { data, columns, value } = this.state
-    const options = {
-      [value] : value
+    const paginationProps = {
+      rowsPerPage: 5,
+      page: 0
     }
-    console.log('value 444444', options, value)
+    const exportProps = {
+      type: 'csv'
+    }
+    const searchProps = {
+      placeholder: 'search',
+      direction: 'left',
+      type: 'dark',
+    }
+    const options = {
+      [value] : value,
+      paginationProps,
+      exportProps,
+      searchProps
+    }
     return (
       <Paper className={classes.root}>
         <div className={classes.radioButtons}>
@@ -102,15 +119,15 @@ class RmTableEXample extends React.Component {
             name="type2"
           >
             <RadioButton value="scoll">scroll</RadioButton>
-            <RadioButton value="fixed">fixed</RadioButton>
             <RadioButton value="resizable">resizable</RadioButton>
             <RadioButton value="dragable">
               dragable
             </RadioButton>
+           
           </RadioGroup>
         </div>
-        <Divider></Divider>
-        <RmTable {...options} width={800} columns={columns} data={data} />
+        {/* <Divider></Divider> */}
+        <RmTable {...options} width={800} height={300} columns={columns} data={data} searchable paginatable/>
       </Paper>
     );
   }

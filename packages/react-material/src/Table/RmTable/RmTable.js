@@ -3,30 +3,26 @@ import ReactDOM from 'react-dom'
 import classNames from 'classnames'
 import PropTypes from 'prop-types';
 import update from 'immutability-helper';
-import Table from '../../Table';
-import TableBody from '../../TableBody';
-import TableCell from '../../TableCell';
-import TableHead from '../../TableHead';
-import TableRow from '../../TableRow';
-import Scrollbar from '../../Scrollbar'
 import Head from './Head'
 import Body from './Body'
 import Toolbar from './TableToolbar'
-import Manager from './Manager'
+import Pagination from './Pagination'
 import filter from '../../utils/filter'
-import {
-  TableProvider
-} from './Context'
+
 import {
   withStyles
 } from 'react-material/styles';
+import {
+  darken,
+  fade,
+  lighten
+} from '../../styles/colorManipulator';
 
 const styles = (theme)=> ({
   root: {
     position: 'relative'
   },
   main:{
-    // position: 'relative',
     overflowX: 'auto',
     width: '100%'
   },
@@ -48,9 +44,21 @@ const styles = (theme)=> ({
   },
   rightShadow: {
     'box-shadow': '-6px 0 6px -4px rgba(0,0,0,.2)'
-  }
+  },
+  pagination: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    borderTop:
+      `1px solid
+    ${
+      theme.palette.type === 'light'
+        ? lighten(fade(theme.palette.divider, 1), 0.88)
+        : darken(fade(theme.palette.divider, 1), 0.8)
+    }`,
+  },
 })
-let manager = Manager.instance()
+
+
 class RmTable extends React.Component {
   constructor(props) {
     super(props)
@@ -59,10 +67,16 @@ class RmTable extends React.Component {
       hasLeft: false,
       hasRight: true,
       columns: columns,
-      search: ''
+      search: '',
+      page: props.paginationProps.page,
+      rowsPerPage: props.paginationProps.rowsPerPage,
+      data: props.data
     }
   }
-
+  searchedData = {
+    data: this.props.data,
+  }
+  
   tableRefs = {
     root: React.createRef('root'),
     left: React.createRef('left'),
@@ -75,16 +89,35 @@ class RmTable extends React.Component {
     targetIndex: '',
     sourceIndex: '',
   }
+  propsCached = {
 
+  }
   componentDidMount(){
     this.setTableShadow()
     this.syncTableRowHeight()
+    this.handlePaginteData()
   }
   
-  static getDerivedStateFromProps(props){
-    const { data, columns } = props
-    if(manager.changed(columns,data)){
+  componentDidUpdate(nextProps, nextState) {
+    const {
+      data,
+      paginatable,
+      searchable
+    } = this.props
 
+    if (data !== this.propsCached.data) {
+      this.propsCached.data = data
+      this.filteredData()
+    }
+
+    if (searchable !== this.propsCached.searchable ) {
+      this.propsCached.searchable = searchable
+      this.filteredData()
+    }
+
+    if (paginatable !== this.propsCached.paginatable) {
+      this.propsCached.paginatable = paginatable
+      this.filteredData()
     }
   }
 
@@ -146,12 +179,14 @@ class RmTable extends React.Component {
   onSearch = (text) => {
     this.setState({
       search: text
+    }, ()=> {
+      this.filteredData()
     })
   }
   dragSatrt = (index) => {
     this.dragIndex.sourceIndex = index
   }
-  _cached = {}
+  
   dragEnd = (index) => {
     // todo ： 每次拖拽执行了两次， 多执行了一次。而且返回值不对
     // 这里先用类型过滤掉多余的一次
@@ -164,17 +199,32 @@ class RmTable extends React.Component {
     this.dragIndex.targetIndex = index
     onColDrag && onColDrag(this.dragIndex)
     this.handleColDrag(this.dragIndex)
-    
   }
-  filteredData = (data ) => {
+  filteredData = ( ) => {
+    const {data} = this.props
     const {search} = this.state
-    if(!search){
-      return data
+    let searchData = data
+    if(search){
+      searchData = filter(data, search)
     }
-    let result = filter(data, search)
-    this._cached.data = result
+    this.searchedData.data = searchData
+    const result = this.handlePaginteData()
     return result
   } 
+  handlePaginteData = () => {
+    let data = this.searchedData.data
+    const { paginatable } = this.props
+    const { page, rowsPerPage } = this.state
+
+    if(paginatable){
+      data = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    }else{
+      return data
+    }
+    this.setState({
+      data,
+    })
+  }
   createCsv = ()=> {
     let head = this.state.columns.reduce((pre,cur)=> {
       if (cur.render || !cur.title) {
@@ -185,7 +235,7 @@ class RmTable extends React.Component {
     }, '')
     let csv = head.slice(1) + '\r\n'
     let columns = this.state.columns
-    let data = this._cached.data || this.filteredData(this.props.data)
+    let data = this.searchedData.data 
     data.map((entry)=> {
       let row = ''
       columns.map((column)=>{
@@ -201,7 +251,7 @@ class RmTable extends React.Component {
     let result = this.renderTable(columns ,'main')
     return result
   }
-  
+
   renderLeftTable =()=> {
     let columns = this.state.columns.filter((column)=>{
       return column.fixed === 'left'
@@ -218,8 +268,7 @@ class RmTable extends React.Component {
   renderTable = (columns, type, baseLength = 0) => {
      const {
       classes,
-      data,
-      onColDrag,
+      height,
       resizable,
       dragable,
     } = this.props
@@ -227,7 +276,8 @@ class RmTable extends React.Component {
       bodyRowHeight,
       headRowHeight,
       hasLeft,
-      hasRight
+      hasRight,
+      data: bodyData
     } = this.state
     let width = type === 'main'? '': columns.reduce((pre, cur) => {
       return pre + cur.width
@@ -235,7 +285,6 @@ class RmTable extends React.Component {
     let style = {
       width,
     }
-    let bodyData = this.filteredData(data)
     const head = (
       <Head
         baseLength={baseLength}
@@ -251,6 +300,7 @@ class RmTable extends React.Component {
           this.dragEnd
         }
         headRowHeight = {headRowHeight}
+        onColumnFixChange = {this.handleColumnFixSwitch}
       />
     )
     const body = (
@@ -262,6 +312,7 @@ class RmTable extends React.Component {
         scroll = {
           this.handlScrollY
         }
+        height={height}
         tableRef={this.tableRefs[type]}
         bodyRowHeight={bodyRowHeight}
       />
@@ -275,21 +326,45 @@ class RmTable extends React.Component {
     )
     return result
   }
-
+  handleColumnFixSwitch =(index, fixed)=>{
+    let {columns} = this.state
+    columns[index].fixed = fixed
+    this.setState({
+      columns: this.normalizeColumns(columns)
+    })
+  }
   handlScrollY = (e, t) => {
     let scrollTop = e.target.scrollTop
     t!== 'left' && (this.tableRefs.left.current.scrollTop = scrollTop)
     t!== 'right' && (this.tableRefs.right.current.scrollTop = scrollTop)
     t!== 'main' && (this.tableRefs.main.current.scrollTop = scrollTop)
   }
+
   handleScrollX = (e) => {
     let scrollLeft = e.target.scrollLeft
     if (e.target !== this.tableRefs.root.current){
       return
     }
     this.setTableShadow(scrollLeft)
-    // this.syncTableRowHeight()
   }
+  handleChangePage = (event, page) => {
+    this.setState({
+      page
+    }, ()=> {
+      this.handlePaginteData()
+    });
+    
+  };
+
+  handleChangeRowsPerPage = event => {
+    this.setState({
+      rowsPerPage: event.target.value
+    }, ()=> {
+      this.handlePaginteData()
+    });
+    
+  };
+
   setTableShadow = (left) => {
     let {
       scrollLeft,
@@ -307,7 +382,12 @@ class RmTable extends React.Component {
     const {
       classes,
       width,
+      paginatable,
+      searchable,
+      exportProps,
+      searchProps
     } = this.props
+    const { page, rowsPerPage } = this.state
     return (
       <React.Fragment>
         <Toolbar 
@@ -315,24 +395,72 @@ class RmTable extends React.Component {
           headRef ={this.tableRefs.head}
           bodyRef = {this.tableRefs.body}
           createCsv = {this.createCsv}
+          searchable={searchable}
+          exportProps={exportProps}
+          searchProps={searchProps}
           width={width}>
+          
         </Toolbar>
         <div 
           style = {{width}}
           className={classes.root}
           onScroll = {this.handleScrollX}
         >
-          
           {[
             this.renderMainTable(),
             this.renderLeftTable(),
             this.renderRightTable(),
           ]}
         </div>
+        {paginatable && <div className={classes.pagination} style = {{width}}>
+          <Pagination 
+            page={page}
+            rowsPerPage={rowsPerPage}
+            count={this.searchedData.data.length} 
+            onChangePage={this.handleChangePage} 
+            onChangeRowsPerPage={this.handleChangeRowsPerPage}>
+          </Pagination>
+        </div>}
       </React.Fragment>
       
     );
   }
 }
 
-export default withStyles(styles)(RmTable);
+RmTable.propTypes = {
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
+   */
+  classes: PropTypes.object.isRequired,
+  columns: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
+
+  paginationProps: PropTypes.object,
+  exportProps: PropTypes.object,
+  searchProps: PropTypes.object,
+
+  paginatable: PropTypes.bool,
+  searchable: PropTypes.bool,
+  resizable: PropTypes.bool,
+  dragable: PropTypes.bool,
+  width: PropTypes.width,
+  height: PropTypes.height,
+  onColDrag: PropTypes.func,
+}
+RmTable.defaultProps = {
+  paginationProps: {
+    rowsPerPage: 10,
+    page: 0
+  },
+  width: 'auto',
+  searchProps: {
+    direction: 'left',
+    type: 'dark',
+  },
+  paginatable: false,
+  searchable: false,
+  resizable: false,
+  dragable: false,
+}
+export default withStyles(styles, {withTheme: true})(RmTable);

@@ -57,7 +57,7 @@
     "material-ui-pickers": "^1.0.0-rc.9",
     "moment": "^2.22.2",
     "normalize-scroll-left": "^0.1.2",
-    "prismjs": "^1.8.4",
+    "prismjs": "^1.14.0",
     "prop-types": "^15.6.0",
     "rc-menu": "^7.0.4",
     "rc-tree": "^1.12.0",

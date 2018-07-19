@@ -24,10 +24,8 @@ class SimpleCodearea extends React.Component {
       theme: value,
     });
     if (value == 'dark') {
-      console.log('-------');
       setPrismTheme(darkTheme);
     } else {
-      console.log('++++++');
       setPrismTheme(lightTheme);
     }
   };

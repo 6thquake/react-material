@@ -2,7 +2,6 @@
   "presets": ["./scripts/babel-preset", "stage-1", "react"],
   "plugins": [
     "transform-object-assign",
-    "css-modules-transform"
   ],
   "env": {
     "coverage": {

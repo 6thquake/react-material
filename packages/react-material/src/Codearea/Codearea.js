@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '../styles';
-import prism, { lightTheme, darkTheme, setPrismTheme } from './prism';
+import Prism, { lightTheme, darkTheme, setPrismTheme } from './Prism';
 
 const styles = theme => ({
   root: {
@@ -22,6 +22,14 @@ class Codearea extends React.Component {
      * language that needs formating
      */
     language: PropTypes.string,
+    /**
+     * show line numbers whether or not
+     */
+    lineNumbers: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    lineNumbers: true,
   };
 
   render() {
@@ -49,14 +57,15 @@ class Codearea extends React.Component {
 
     const className = classNames({
       'classes.root': true,
-      'react-prism': true,
+      'react-Prism': true,
+      'line-numbers': !!this.props.lineNumbers,
       // [`language-${this.props.language}`]: !!this.props.language
       [`language-${lang}`]: true,
     });
 
     return (
-      <pre ref={ref => (this.el = ref)} className={className}>
-        <code>{this.props.children}</code>
+      <pre className={className}>
+        <code ref={ref => (this.el = ref)} >{this.props.children}</code>
       </pre>
     );
   }
@@ -70,15 +79,9 @@ class Codearea extends React.Component {
   }
 
   highlightCode() {
-    prism.highlightElement(this.el);
+    Prism.highlightElement(this.el);
   }
 }
-
-Codearea.propTypes = {
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  texttype: PropTypes.string,
-};
 
 export default withStyles(styles, { flip: false, name: 'RMCodearea' })(Codearea);
 export { lightTheme, darkTheme, setPrismTheme };

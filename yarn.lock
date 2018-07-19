@@ -8091,6 +8091,12 @@ pretty-bytes@^4.0.2:
   version "4.0.2"
   resolved "http://registry.npm.release.ctripcorp.com/pretty-bytes/download/pretty-bytes-4.0.2.tgz#b2bf82e7350d65c6c33aa95aaa5a4f6327f61cd9"
 
+prismjs@^1.14.0:
+  version "1.15.0"
+  resolved "http://registry.npm.release.ctripcorp.com/prismjs/download/prismjs-1.15.0.tgz#8801d332e472091ba8def94976c8877ad60398d9"
+  optionalDependencies:
+    clipboard "^2.0.0"
+
 prismjs@^1.8.4:
   version "1.14.0"
   resolved "http://registry.npm.release.ctripcorp.com/prismjs/download/prismjs-1.14.0.tgz#bbccfdb8be5d850d26453933cb50122ca0362ae0"

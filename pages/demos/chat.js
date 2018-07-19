@@ -8,11 +8,11 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/demos/chart/Chart.js': {
-          js: require('docs/src/pages/demos/chart/Chart').default,
+        'pages/demos/chart/Chat.js': {
+          js: require('docs/src/pages/demos/chart/Chat').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/chart/Chart'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/chart/Chat'), 'utf8')
 `,
         },
       }}

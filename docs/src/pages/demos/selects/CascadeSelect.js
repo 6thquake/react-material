@@ -8,19 +8,19 @@ class App extends Component {
       cdata: [
         {
           value: '1',
-          text: 'test1test1test1',
+          text: '河北',
           subItems: [
             {
               value: '12',
-              text: 'test11',
+              text: '石家庄',
               subItems: [
                 {
                   value: '13',
-                  text: 'test111test111test111',
+                  text: '平山县',
                 },
                 {
                   value: '112',
-                  text: 'test111',
+                  text: '赵县',
                 },
                 {
                   value: '113',
@@ -36,7 +36,7 @@ class App extends Component {
         },
         {
           value: '2',
-          text: 'test2',
+          text: '江苏',
           subItems: [
             {
               value: '12',
@@ -63,13 +63,13 @@ class App extends Component {
           ],
         },
         {
-          value: '3c',
-          text: 'test3c',
+          value: '3',
+          text: '福建',
         },
 
         {
-          value: '1',
-          text: 'test1',
+          value: '4',
+          text: '陕西',
           subItems: [
             {
               value: '12',
@@ -96,8 +96,8 @@ class App extends Component {
           ],
         },
         {
-          value: '2',
-          text: 'test2',
+          value: '云南',
+          text: '云南',
           subItems: [
             {
               value: '12',
@@ -140,7 +140,7 @@ class App extends Component {
       <div>
         <CascadeSelect
           onChange={this.handleChange}
-          label={'Cascade Select'}
+          label={'地域'}
           dataSource={this.state.cdata}
           renderLabel="text"
           separator="|"

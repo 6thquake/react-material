@@ -6,23 +6,16 @@ import TableBody from '../../TableBody';
 import TableCell from '../../TableCell';
 import TableHead from '../../TableHead';
 import TableRow from '../../TableRow';
-import HeadCell from './HeadCell'
-import DragHeadCell from './DragHeadCell'
-import withDragAndDrop from '../../DragAndDrop/withDragAndDrop'
+import HeadCell from './HeadCell';
+import DragHeadCell from './DragHeadCell';
+import withDragAndDrop from '../../DragAndDrop/withDragAndDrop';
 
-import {
-  DropTarget,
-  DropSource
-} from 'react-dnd';
+import { DropTarget, DropSource } from 'react-dnd';
 
 // import Resizable from 're-resizable';
-import {
-  Resizable,
-} from 'react-resizable';
+import { Resizable } from 'react-resizable';
 
-import {
-  withStyles
-} from '../../styles';
+import { withStyles } from '../../styles';
 
 const throttling = (fn, wait, maxTimelong) => {
   wait = wait || 100;
@@ -30,7 +23,7 @@ const throttling = (fn, wait, maxTimelong) => {
   var timeout = null;
   var startTime = Date.now();
 
-  return function (...arg) {
+  return function(...arg) {
     if (timeout !== null) clearTimeout(timeout);
     var curTime = Date.now();
     if (curTime - startTime >= maxTimelong) {
@@ -44,76 +37,71 @@ const throttling = (fn, wait, maxTimelong) => {
   };
 };
 
-const styles = (theme)=> ({
-  root: {
-
-  },
+const styles = theme => ({
+  root: {},
   layoutFixed: {
-    tableLayout: 'fixed'
+    tableLayout: 'fixed',
   },
   tableCell: {
     position: 'relative',
     '@global span': {
-      'position': 'absolute',
-      'width': 20,
-      'height': 20,
-      'bottom': 0,
-      'right': 0,
-      'background': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2IDYiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmYwMCIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iNnB4Ij48ZyBvcGFjaXR5PSIwLjMwMiI+PHBhdGggZD0iTSA2IDYgTCAwIDYgTCAwIDQuMiBMIDQgNC4yIEwgNC4yIDQuMiBMIDQuMiAwIEwgNiAwIEwgNiA2IEwgNiA2IFoiIGZpbGw9IiMwMDAwMDAiLz48L2c+PC9zdmc+')",
+      position: 'absolute',
+      width: 20,
+      height: 20,
+      bottom: 0,
+      right: 0,
+      background:
+        "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2IDYiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmYwMCIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iNnB4Ij48ZyBvcGFjaXR5PSIwLjMwMiI+PHBhdGggZD0iTSA2IDYgTCAwIDYgTCAwIDQuMiBMIDQgNC4yIEwgNC4yIDQuMiBMIDQuMiAwIEwgNiAwIEwgNiA2IEwgNiA2IFoiIGZpbGw9IiMwMDAwMDAiLz48L2c+PC9zdmc+')",
       'background-position': 'bottom right',
-      'padding': '0 3px 3px 0',
+      padding: '0 3px 3px 0',
       'background-repeat': 'no-repeat',
       'background-origin': 'content-box',
       'box-sizing': 'border-box',
-      'cursor': 'se-resize',
-    }
-  }
-})
+      cursor: 'se-resize',
+    },
+  },
+});
 const colStyle = {
   // width: 150,
-  minWidth: 100
-}
+  minWidth: 100,
+};
 class Head extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      undragable: false
-    }
+      undragable: false,
+    };
   }
   dragIndex = {
     targetIndex: '',
     sourceIndex: '',
-  }
-  componentDidMount(){
+  };
+  componentDidMount() {
     // this.throttleResize = throttling(this.resize)
   }
 
   handleResizeStart = () => {
     // this.undragable = true
     this.setState({
-      undragable: true
-    })
-  }
+      undragable: true,
+    });
+  };
 
   handleDragStop = () => {
     this.setState({
-      undragable: false
-    })
-  }
-  handleResize =(...args) =>(e, {size})=> {
-    const {
-      onResize
-    } = this.props
-    onResize && onResize(...args, size)
+      undragable: false,
+    });
+  };
+  handleResize = (...args) => (e, { size }) => {
+    const { onResize } = this.props;
+    onResize && onResize(...args, size);
     // this.throttleResize(...args,size)
-  }
-  
+  };
+
   resize = (...args) => {
-    const {
-      onResize
-    } = this.props
-    onResize && onResize(...args)
-  }
+    const { onResize } = this.props;
+    onResize && onResize(...args);
+  };
   renderTableHeadCell = (column, index) => {
     const {
       classes,
@@ -122,38 +110,40 @@ class Head extends React.Component {
       resizable,
       dragable,
       baseLength,
-      onColumnFixChange
-    } = this.props
-    
+      onColumnFixChange,
+    } = this.props;
+
     let cell = (
-      <TableCell 
-        onDragStart={onDragStart} 
-        onDragEnd={onDragEnd} 
-        index={index + baseLength} 
+      <TableCell
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+        index={index + baseLength}
         onColumnFixChange={onColumnFixChange}
-        component={dragable && !this.state.undragable? DragHeadCell: HeadCell}
+        component={dragable && !this.state.undragable ? DragHeadCell : HeadCell}
         className={classes.tableCell}
         key={column.key || column.title}
-        fixed = {column.fixed}
+        fixed={column.fixed}
       >
         {column.title || ''}
       </TableCell>
-    )
-    const C = (
-      resizable || column.resizable?
-      <Resizable
-        key={column.key || column.title}
-        onResizeStart = { this.handleResizeStart}
-        onResizeStop = {this.handleDragStop}
-        width={column.width} 
-        height={0}
-        onResize={this.handleResize(index, column)}
-      >
-        {cell}
-      </Resizable> : cell
-    )
-    return C
-  }
+    );
+    const C =
+      resizable || column.resizable ? (
+        <Resizable
+          key={column.key || column.title}
+          onResizeStart={this.handleResizeStart}
+          onResizeStop={this.handleDragStop}
+          width={column.width}
+          height={0}
+          onResize={this.handleResize(index, column)}
+        >
+          {cell}
+        </Resizable>
+      ) : (
+        cell
+      );
+    return C;
+  };
   render() {
     const {
       classes,
@@ -162,28 +152,23 @@ class Head extends React.Component {
       onDragEnd,
       resizable,
       headRef,
-      headRowHeight
-    } = this.props
+      headRowHeight,
+    } = this.props;
     const rowStyle = {
-      height: headRowHeight
-    }
+      height: headRowHeight,
+    };
     return (
       <div className={classes.root}>
-        <Table 
-          innerRef={headRef}
-          classes={{root:classes.layoutFixed}} 
-          className={classes.table}>
+        <Table innerRef={headRef} classes={{ root: classes.layoutFixed }} className={classes.table}>
           <colgroup>
-            {
-              columns.map((item) => {
-                return <col key={item.key || item.title} width={item.width} style={colStyle}></col>
-              })
-            }
+            {columns.map(item => {
+              return <col key={item.key || item.title} width={item.width} style={colStyle} />;
+            })}
           </colgroup>
           <TableHead>
             <TableRow style={rowStyle}>
               {columns.map((column, index) => {
-                return this.renderTableHeadCell(column, index)
+                return this.renderTableHeadCell(column, index);
               })}
             </TableRow>
           </TableHead>

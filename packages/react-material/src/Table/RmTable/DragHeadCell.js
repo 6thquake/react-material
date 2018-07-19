@@ -5,21 +5,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {
-  withStyles
-} from '../../styles';
-import classNames  from 'classnames'
-import {
-  DragSource,
-  DropTarget
-} from 'react-dnd';
-import ThCell from './ThCell'
+import { withStyles } from '../../styles';
+import classNames from 'classnames';
+import { DragSource, DropTarget } from 'react-dnd';
+import ThCell from './ThCell';
 
 const ItemTypes = {
-  COLUMN:'column',
-  CHIP: 'chip'
+  COLUMN: 'column',
+  CHIP: 'chip',
 };
-const styles = (theme) =>({
+const styles = theme => ({
   root: {},
   actionTopRight: {
     position: 'absolute',
@@ -29,7 +24,7 @@ const styles = (theme) =>({
     borderLeft: `10px solid transparent`,
     width: 0,
     height: 0,
-  }, 
+  },
   actionTopLeft: {
     position: 'absolute',
     top: 0,
@@ -41,16 +36,13 @@ const styles = (theme) =>({
   },
   active: {
     borderTop: `10px solid ${theme.palette.primary.main}`,
-  }
-})
+  },
+});
 const columnSource = {
   beginDrag(props, monitor, component) {
-    const {
-      onDragStart,
-      index
-    } = props
-    onDragStart && onDragStart(index)
-    return {name: props.name};
+    const { onDragStart, index } = props;
+    onDragStart && onDragStart(index);
+    return { name: props.name };
   },
 };
 
@@ -58,66 +50,70 @@ const sourceCollect = (connect, monitor) => {
   return {
     connectDragSource: connect.dragSource(),
     connectDragPreview: connect.dragPreview(),
-    isDragging: monitor.isDragging()
-  }
-}
+    isDragging: monitor.isDragging(),
+  };
+};
 
 const columnTarget = {
   drop(props, monitor, component) {
-    const {
-      onDragEnd,
-      index
-    } = props
-    onDragEnd && onDragEnd(index)
-  }
+    const { onDragEnd, index } = props;
+    onDragEnd && onDragEnd(index);
+  },
 };
 
 function targetCollect(connect, monitor) {
   return {
-    connectDropTarget: connect.dropTarget()
+    connectDropTarget: connect.dropTarget(),
   };
 }
 class Cell extends React.Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
       show: false,
       topRight: false,
-      topLeft: false
-    }
+      topLeft: false,
+    };
   }
-  handleDoubleClick=(e)=> {
+  handleDoubleClick = e => {
     this.setState({
-      show: true
-    })
-  }
-  handleClick = (index, fixed)=> {
-    const { onColumnFixChange } = this.props
+      show: true,
+    });
+  };
+  handleClick = (index, fixed) => {
+    const { onColumnFixChange } = this.props;
     this.setState({
-      show: false
-    })
-    onColumnFixChange && onColumnFixChange(index, fixed)
-  }
+      show: false,
+    });
+    onColumnFixChange && onColumnFixChange(index, fixed);
+  };
   render() {
     const {
-      connectDropTarget, connectDragSource, connectDragPreview, children,classes, fixed, index, onColumnFixChange, ...other
+      connectDropTarget,
+      connectDragSource,
+      connectDragPreview,
+      children,
+      classes,
+      fixed,
+      index,
+      onColumnFixChange,
+      ...other
     } = this.props;
-    const { show } = this.state
+    const { show } = this.state;
 
     return connectDragSource(
       connectDropTarget(
         <th onDoubleClick={this.handleDoubleClick} className={classes.root} {...other}>
           {children}
-          <ThCell fixed={fixed} index={index} show={show} onColumnFixChange={this.handleClick}></ThCell>
-        </th>
-      )
-    ) ;
+          <ThCell fixed={fixed} index={index} show={show} onColumnFixChange={this.handleClick} />
+        </th>,
+      ),
+    );
   }
 }
 // Cell = DragSource(ItemTypes.COLUMN, columnSource, sourceCollect)(Cell)
 Cell = DropTarget(ItemTypes.COLUMN, columnTarget, targetCollect)(
-  DragSource(ItemTypes.COLUMN, columnSource, sourceCollect)(Cell)
+  DragSource(ItemTypes.COLUMN, columnSource, sourceCollect)(Cell),
 );
 
-export default withStyles(styles)(Cell)
-
+export default withStyles(styles)(Cell);

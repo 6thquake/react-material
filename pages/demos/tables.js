@@ -10,7 +10,7 @@ function Page() {
       demos={{
         'pages/demos/tables/RmTable.js': {
           js: require('docs/src/pages/demos/tables/RmTable').default,
-          raw: preval `
+          raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/RmTable'), 'utf8')
 `,

@@ -6,13 +6,11 @@ import TableBody from 'react-material/TableBody';
 import TableCell from 'react-material/TableCell';
 import TableHead from 'react-material/TableHead';
 import TableRow from 'react-material/TableRow';
-import {
-  RadioButton
-} from 'react-material/Radio';
+import { RadioButton } from 'react-material/Radio';
 import RadioGroup from 'react-material/RadioGroup';
 // import ScrollBar from ''
 import Paper from 'react-material/Paper';
-import RmTable from 'react-material/Table/RmTable'
+import RmTable from 'react-material/Table/RmTable';
 // import { Divider } from 'rc-menu/lib';
 const styles = theme => ({
   root: {
@@ -21,13 +19,12 @@ const styles = theme => ({
     // overflowX: 'hidden'
   },
   radioButtons: {
-    margin: theme.spacing.unit * 2
+    margin: theme.spacing.unit * 2,
   },
   paginatableButton: {
-    width: 120
-  }
+    width: 120,
+  },
 });
-
 
 const columns = [
   { title: 'Name', width: 100, dataIndex: 'name', key: 'name' },
@@ -37,13 +34,13 @@ const columns = [
     dataIndex: 'address',
     key: '1',
     width: 150,
-    resizable: true
+    resizable: true,
   },
   {
     title: 'Column 2',
     dataIndex: 'address',
     key: '2',
-    width: 150
+    width: 150,
   },
   { title: 'Column 3', dataIndex: 'address', key: '3', width: 150 },
   { title: 'Gender', dataIndex: 'gender', key: '4', width: 150 },
@@ -62,55 +59,54 @@ const columns = [
 
 const data = [];
 for (let i = 0; i < 40; i++) {
-
   data.push({
     key: i,
     name: `Edrward ${i}`,
     age: 32,
     address: `London Park no.${i}`,
-    gender: i % 2 === 0 ? 'male' : "female"
+    gender: i % 2 === 0 ? 'male' : 'female',
   });
 }
 
 class RmTableEXample extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {  
+    this.state = {
       columns: columns,
       data: data,
-      value: 'dragable'
+      value: 'dragable',
     };
   }
-  handleChange = (e) => {
-    let value = e.target.value
+  handleChange = e => {
+    let value = e.target.value;
     this.setState({
-      value
-    })
-  }
+      value,
+    });
+  };
   render() {
-    const { classes } = this.props
-    const { data, columns, value } = this.state
+    const { classes } = this.props;
+    const { data, columns, value } = this.state;
     const paginationProps = {
       rowsPerPage: 5,
-      page: 0
-    }
+      page: 0,
+    };
     const exportProps = {
-      type: 'csv'
-    }
+      type: 'csv',
+    };
     const searchProps = {
       placeholder: 'search',
       isDark: true,
-    }
+    };
     const options = {
-      [value] : value,
+      [value]: value,
       paginationProps,
       exportProps,
-      searchProps
-    }
+      searchProps,
+    };
     return (
       <Paper className={classes.root}>
         <div className={classes.radioButtons}>
-           <RadioGroup
+          <RadioGroup
             row
             circular
             onChange={this.handleChange}
@@ -119,14 +115,19 @@ class RmTableEXample extends React.Component {
           >
             <RadioButton value="scoll">scroll</RadioButton>
             <RadioButton value="resizable">resizable</RadioButton>
-            <RadioButton value="dragable">
-              dragable
-            </RadioButton>
-           
+            <RadioButton value="dragable">dragable</RadioButton>
           </RadioGroup>
         </div>
         {/* <Divider></Divider> */}
-        <RmTable {...options} width={800} height={300} columns={columns} data={data} searchable paginatable/>
+        <RmTable
+          {...options}
+          width={800}
+          height={300}
+          columns={columns}
+          data={data}
+          searchable
+          paginatable
+        />
       </Paper>
     );
   }

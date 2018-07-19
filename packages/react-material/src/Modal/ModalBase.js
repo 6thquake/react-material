@@ -99,7 +99,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { classes, label, onClose, maxHeight, ...other } = this.props;
+    const { classes, label, onClose, maxHeight,actions, ...other} = this.props;
 
     return (
       <Dialog
@@ -121,22 +121,9 @@ class Modal extends Component {
         </DialogContent>
 
         <DialogActions classes={{ root: classes.actionRoot }}>
-          <Button
-            onClick={this.handleCancel.bind(this)}
-            color="primary"
-            classes={{ root: classes.actionRootBtn }}
-          >
-            Disagree
-          </Button>
-          <Button
-            onClick={this.handleOK.bind(this)}
-            variant="raised"
-            color="primary"
-            autoFocus
-            classes={{ root: classes.actionRootBtn }}
-          >
-            Agree
-          </Button>
+         {actions.map(actionBtn => {
+           return actionBtn
+         })}
         </DialogActions>
       </Dialog>
     );

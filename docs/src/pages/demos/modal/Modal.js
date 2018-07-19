@@ -18,6 +18,9 @@ const styles = theme => ({
   paperWidthSm: {
     minWidth: 1000,
   },
+  actionRootBtn: {
+    margin: `0 0 0 ${theme.spacing.unit}px`,
+  },
 });
 class App extends Component {
   constructor(props) {
@@ -43,9 +46,36 @@ class App extends Component {
     this.setState({ open: false });
   };
 
+  handleCancel() {
+    this.setState({ open: false });
+  }
+
+  handleOK() {
+    this.setState({ open: false });
+  }
+
   render() {
     const { classes } = this.props;
     let { open, animation, ...other } = this.state;
+
+    let actions = [<Button
+      onClick={this.handleCancel.bind(this)}
+      color="primary"
+      classes={{ root: classes.actionRootBtn }}
+    >
+      Disagree
+  </Button>,
+      <Button
+        onClick={this.handleOK.bind(this)}
+        variant="raised"
+        color="primary"
+        autoFocus
+        classes={{ root: classes.actionRootBtn }}
+      >
+        Agree
+  </Button>]
+
+
     return (
       <div>
         <Button onClick={this.handleOpen} variant="raised" color="primary">
@@ -60,6 +90,7 @@ class App extends Component {
           onClose={this.handleClose.bind(this)}
           label={'this is a modal test'}
           animation={this.state.animation}
+          actions={actions}
         >
           <DialogContentText>
             Let Google help apps determine location. This means sending anonymous location data to
@@ -69,6 +100,7 @@ class App extends Component {
             Google, even when no apps are running. Let Google help apps determine location. This
             means sending anonymous location data to Google, even when no apps are running.
           </DialogContentText>
+
         </Modal2>
 
         <Grid container spacing={16}>

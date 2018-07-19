@@ -1,7 +1,6 @@
 import React from 'react';
 import Paper from 'react-material/Paper';
 import Grid from 'react-material/Grid';
-import PropTypes from 'prop-types';
 import { withStyles } from 'react-material/styles';
 import Divider from 'react-material/Divider';
 import Anchor from 'react-material/Anchor';
@@ -10,11 +9,7 @@ import FormLabel from 'react-material/FormLabel';
 import FormControlLabel from 'react-material/FormControlLabel';
 import Radio from 'react-material/Radio';
 import RadioGroup from 'react-material/RadioGroup';
-// import {
-//   scrollToAnchor
-// } from 'react-material/Anchor';
-// 滚动到某一个位置
-// console.log('scrollToAnchor', scrollToAnchor)
+
 export const styles = theme => {
   return {
     tBox: {
@@ -61,109 +56,88 @@ class App extends React.Component {
       margin: 100,
       padding: 50,
     };
+    
     const links = [
       {
-        href: '#a1',
+        value: '#a1',
         label: '#1dsdss',
       },
       {
-        href: '#a2',
+        value: '#a2',
         label: '#2ewrwrwe',
       },
       {
-        href: '#a3',
+        value: '#a3',
         label: '#3',
         children: [
           {
-            href: '#sub31',
+            value: '#sub31',
             label: 'sub31',
             children: [
               {
-                href: '#sub311',
+                value: '#sub311',
                 label: 'sub311',
               },
               {
-                href: '#sub321',
+                value: '#sub321',
                 label: 'sub321',
               },
               {
-                href: '#sub331',
+                value: '#sub331',
                 label: 'sub331',
               },
             ],
           },
           {
-            href: '#sub32',
+            value: '#sub32',
             label: 'sub32',
           },
           {
-            href: '#sub33',
+            value: '#sub33',
             label: 'sub33',
           },
         ],
       },
       {
-        href: '#a4',
+        value: '#a4',
         label: '#4',
       },
       {
-        href: '#a5',
+        value: '#a5',
         label: '#5',
       },
       {
-        href: '#a6',
+        value: '#a6',
         label: '#6',
       },
     ];
     const links2 = [
       {
-        href: '#a1',
+        value: '#a1',
         label: '#1dsdss',
       },
       {
-        href: '#a2',
+        value: '#a2',
         label: '#2ewrwrwe',
       },
       {
-        href: '#a3',
+        value: '#a3',
         label: '#3',
       },
       {
-        href: '#a4',
+        value: '#a4',
         label: '#4',
       },
       {
-        href: '#a5',
+        value: '#a5',
         label: '#5',
       },
       {
-        href: '#a6',
+        value: '#a6',
         label: '#6',
       },
     ];
-
-    let style = {
-      position: 'fixed',
-      top: 100,
-      right: '0',
-      top: 80,
-      width: 260,
-      zIndex: 20,
-      // background:
-    };
-    let style2 = {
-      position: 'fixed',
-      top: 70,
-      left: 250,
-      zIndex: 20,
-    };
-    let linkStyle = {
-      color: 'teal',
-    };
-    let linkActiveStyle = {
-      color: 'red',
-    };
-
+  
     return (
       <div>
         <FormControl component="fieldset">
@@ -184,13 +158,10 @@ class App extends React.Component {
           <Grid item>
             {orientation == 'horizontal' && (
               <Anchor
-                // type={'hash'}
-                // linkStyle={linkStyle}
-                orientation="horizontal"
                 container={'#t-box'}
-                links={links2}
-                linkActiveStyle={{}}
                 onChange={this.handleAnchorChange}
+                links={links2}
+                horizontal
               />
             )}
           </Grid>
@@ -399,13 +370,10 @@ class App extends React.Component {
             <Grid item>
               {orientation == 'vertical' && (
                 <Anchor
-                  type="hash"
-                  linkStyle={{}}
                   container={'#t-box'}
-                  linkActiveStyle={{}}
-                  orientation="vertical"
                   links={links}
                   onChange={this.handleAnchorChange}
+                  // hash
                 />
               )}
             </Grid>

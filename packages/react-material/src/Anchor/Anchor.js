@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from '../Paper';
 import { withStyles, createMuiTheme } from '../styles';
-
-import Button from '../Button';
 import classNames from 'classnames';
-import deepmerge from 'deepmerge';
 import { fade } from '../styles/colorManipulator';
 
-const theme = createMuiTheme();
-
 export const styles = theme => ({
-  box: {
+
+  verticalAnchorRoot: {
     position: 'relative',
     display: 'flex',
     overflow: 'hidden',
@@ -31,8 +26,6 @@ export const styles = theme => ({
     listStyleType: 'none',
     paddingLeft: theme.spacing.unit * 4,
   },
-
-  li: {},
 
   active: {
     color: ` ${theme.palette.primary.dark} !important`,
@@ -63,7 +56,9 @@ export const styles = theme => ({
     cursor: 'pointer',
     height: 40,
   },
-
+  veLinkActive: {
+    color: theme.palette.primary.dark,
+  },
   hoLink: {
     color: theme.palette.common.black,
     textDecoration: 'none',
@@ -75,6 +70,11 @@ export const styles = theme => ({
     cursor: 'pointer',
     minWidth: 120,
   },
+  hoLinkActive: {
+    // transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    borderBottom: `2px solid ${theme.palette.primary.main}`,
+    color: theme.palette.primary.main,
+  },
 
   line: {
     height: 'inherit',
@@ -85,9 +85,10 @@ export const styles = theme => ({
     paddingLeft: 2,
   },
 
-  horizontalAnchor: {
+  horizontalAnchorRoot: {
     display: 'flex',
   },
+
 });
 
 const throttling = (fn, wait, maxTimelong) => {
@@ -151,10 +152,10 @@ class Anchor extends React.Component {
       value: Infinity,
     };
     for (let link of links) {
-      let sel = link.href;
+      let sel = link.value;
       let ele = document.querySelector(sel);
       let dh = ele ? this.getOffsetTop(ele, this.container) : Infinity;
-      if (dh > 50 && sel === this.props.links[0].href) {
+      if (dh > 50 && sel === this.props.links[0].value) {
         sel = '';
       }
       let absDh = Math.abs(dh);
@@ -185,7 +186,6 @@ class Anchor extends React.Component {
         });
       this.state.active = sel;
     }
-
     let activeLink = {
       [sel]: true,
     };
@@ -215,8 +215,8 @@ class Anchor extends React.Component {
 
   // 设置高亮 mask 的高度
   setMask = sel => {
-    let { orientation } = this.props;
-    if (orientation != 'horizontal') {
+    let { horizontal } = this.props;
+    if (!horizontal) {
       let links = this.wrapper.querySelectorAll('a');
       let target = null;
       for (let link of links) {
@@ -250,40 +250,20 @@ class Anchor extends React.Component {
     return eleRectTop - containerRectTop;
   }
 
-  handleLinkClick = index => e => {
-    let ele = e.target;
-    let links = {
-      [ele.name]: true,
-    };
-
-    this.setMask(ele, this.wrapper);
-    this.setState({
-      activeLinkIndex: index,
-      links: links,
-    });
-  };
-
   renderItem = (link, index, children) => {
-    let { classes, linkStyle, linkActiveStyle, type } = this.props;
-
-    let selected = this.state.links[link.href];
-    let defaultActiveStyle = {
-      color: theme.palette.primary.dark,
-    };
-    let activeStyle = selected ? deepmerge(defaultActiveStyle, linkActiveStyle) : {};
-    let style = deepmerge(linkStyle, activeStyle);
+    let { classes, hash } = this.props;
+    let selected = this.state.links[link.value];
+    let mergeClassName = classNames( classes.link,{[classes.veLinkActive]: selected})
     const prop = {};
-    if (type !== 'hash') {
-      prop.href = link.href;
+    if (!hash) {
+      prop.href = link.value;
     }
     return (
       <li key={index} className={classes.li}>
         <a
-          name={link.href}
-          onClick={this.handleLinkClick(index)}
-          className={classes.link}
-          style={style}
-          onClick={e => this.scrollToAnchor(link.href)}
+          name={link.value}
+          className={mergeClassName}
+          onClick={e => this.scrollToAnchor(link.value)}
           {...prop}
         >
           {link.label}
@@ -306,67 +286,62 @@ class Anchor extends React.Component {
   };
 
   renderHorizontalLinks = links => {
-    let { classes, linkStyle, linkActiveStyle, type } = this.props;
+    let { classes, hash } = this.props;
 
     let result = links.map((link, index) => {
-      let selected = this.state.links[link.href];
-      let defaultActiveStyle = {
-        transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-        borderBottom: `2px solid ${theme.palette.primary.main}`,
-        color: theme.palette.primary.main,
-      };
-      let activeStyle = selected ? deepmerge(defaultActiveStyle, linkActiveStyle) : {};
-      let style = deepmerge(linkStyle, activeStyle);
-      const prop = {};
-      if (type !== 'hash') {
-        prop.href = link.href;
-      }
-      return (
-        <a
-          key={link.href}
-          name={link.href}
-          onClick={this.handleLinkClick(index)}
-          className={classes.hoLink}
-          style={style}
-          onClick={e => this.scrollToAnchor(link.href)}
-          {...prop}
-        >
-          {link.label}
-        </a>
-      );
+    let selected = this.state.links[link.value];
+    let mergeClassName = classNames(classes.hoLink, {
+      [classes.hoLinkActive]: selected
+    })
+    const prop = {};
+    if (!hash) {
+      prop.href = link.value;
+    }
+    return (
+      <a
+        key={link.value}
+        name={link.value}
+        className={mergeClassName}
+        onClick={e => this.scrollToAnchor(link.value)}
+        {...prop}
+      >
+        {link.label}
+      </a>
+    );
     });
     return (
       <div
         ref={e => {
           this.setRef(e);
         }}
-        className={classes.horizontalAnchor}
+        className={classes.horizontalAnchorRoot}
       >
         {result}
       </div>
     );
   };
 
-  scrollToAnchor = id => {
-    if (this.props.type === 'hash') {
+  scrollToAnchor = (id, index)=> {
+    if (this.props.hash) {
       return scrollToAnchor(id);
     }
+    console.log('scrollToAnchor')
   };
   setRef = e => {
     this.wrapper = e;
   };
   render() {
-    const { classes, links, style, orientation } = this.props;
+    const { classes, links, style, horizontal } = this.props;
     const { active, linkToTop, linkHeight } = this.state;
     const maskStyle = {
       top: linkToTop,
       height: linkHeight,
     };
 
-    return orientation == 'horizontal' ? (
+    return horizontal ? (
       this.renderHorizontalLinks(links)
     ) : (
-      <div className={classes.box} style={style}>
+      <div className={classes.verticalAnchorRoot} style={style}>
         <div className={classes.line} />
         <div ref={this.setRef} className={classes.wrapper}>
           {active && <div className={classes.activeMask} style={maskStyle} />}
@@ -379,34 +354,34 @@ class Anchor extends React.Component {
 
 Anchor.propTypes = {
   /**
-   * The links you want to render on Anchor
+   * The links you want to render on Anchor,
+   * 
    */
-  links: PropTypes.array.isRequired,
+  links: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.node,
+    value: PropTypes.string,
+    children: PropTypes.array,
+  })).isRequired,
   /**
-   * Id selector, which will be used to find The scope of the anchors,
+   * selector, which will be used to find The scope of the anchors,
    * the default value is window
    */
   container: PropTypes.string,
+  
   /**
-   * The style will be spread to links
+   * The orientation of Anchor,
+   * if true, the orientation will be horizontal,
+   * if false, the orientation will be vertical
    */
-  linkStyle: PropTypes.object,
-  /**
-   * The style will be spread to the active link
-   */
-  linkActiveStyle: PropTypes.object,
-  /**
-   * The orientation of Anchor
-   */
-  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
+  horizontal: PropTypes.bool,
   /**
    * Callback fired when the active link changed
    */
   onChange: PropTypes.func,
   /**
-   * The type of Anchor, you will consider this only in SPA
+   * The mode of Anchor, you will consider this only in SPA
    */
-  type: PropTypes.oneOf(['normal', 'hash']),
+  hash: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
@@ -415,11 +390,8 @@ Anchor.propTypes = {
 };
 
 Anchor.defaultProps = {
-  linkStyle: {},
-  linkActiveStyle: {},
-  orientation: 'vertical',
-  type: 'normal',
-  // container: window,
+  horizontal: false,
+  hash: false
 };
 
 export default withStyles(styles, { name: 'RMAnchor' })(Anchor);

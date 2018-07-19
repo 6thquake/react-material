@@ -1,4 +1,4 @@
-import {addValidationRule} from 'formsy-react';
+import { addValidationRule } from 'formsy-react';
 
 // required
 addValidationRule('isRequired', (values, value) => {

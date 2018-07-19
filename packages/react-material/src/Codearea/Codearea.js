@@ -65,7 +65,7 @@ class Codearea extends React.Component {
 
     return (
       <pre className={className}>
-        <code ref={ref => (this.el = ref)} >{this.props.children}</code>
+        <code ref={ref => (this.el = ref)}>{this.props.children}</code>
       </pre>
     );
   }

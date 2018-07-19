@@ -73,9 +73,9 @@ class Breadcrumb extends React.Component {
     const { nameMap, currUrl, showIcon, separator, classes } = this.props;
 
     const _separator = separator || '/';
-    let _currUrl=currUrl;
-    if(!_currUrl){
-      _currUrl = !!window && !!window.location?window.location.pathname:'';
+    let _currUrl = currUrl;
+    if (!_currUrl) {
+      _currUrl = !!window && !!window.location ? window.location.pathname : '';
     }
     let pathSnippets = _currUrl.split('/').filter(i => i);
     pathSnippets.unshift('');
@@ -86,7 +86,7 @@ class Breadcrumb extends React.Component {
         return null;
       }
       return (
-        <div className={classes.item} key={url+index}>
+        <div className={classes.item} key={url + index}>
           <Item
             key={url}
             url={url}
@@ -125,7 +125,7 @@ Breadcrumb.propTypes = {
   separator: PropTypes.string,
 };
 Breadcrumb.defaultProps = {
-  separator: '/'
+  separator: '/',
 };
 
 export default withStyles(styles, { name: 'RMBreadcrumb' })(Breadcrumb);

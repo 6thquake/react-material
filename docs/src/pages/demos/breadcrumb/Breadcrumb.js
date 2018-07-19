@@ -22,11 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Breadcrumb
-          nameMap={this.breadcrumbNameMap}
-          separator=">"
-          currUrl={this._url}
-        />
+        <Breadcrumb nameMap={this.breadcrumbNameMap} separator=">" currUrl={this._url} />
       </div>
     );
   }

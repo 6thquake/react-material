@@ -78,18 +78,23 @@ const styles = theme => ({
 });
 
 class Search extends Component {
-  state = {
-    search: '',
-    options: [],
-    pageConfig: {
-      currentPage: 1,
-      pageSize: 5,
-      total: 34,
-    },
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      search: this.props.defaultValue || '',
+      options: [],
+      pageConfig: {
+        currentPage: 1,
+        pageSize: 5,
+        total: 34,
+      },
+    };
+  }
 
   handleChangeSingle(event, child) {
     let self = this;
+    this.typeIn = true;
     this.setState({ search: event.target.value }, () => {
       self.ok();
     });
@@ -116,26 +121,42 @@ class Search extends Component {
     onChange && typeof onChange === 'function' && onChange(search);
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps !== prevState.preProps) {
+      //说明是props变化了
+      return {
+        preProps: nextProps,
+      };
+    }
+    return null;
+  }
+  componentDidUpdate() {
+    this.typeIn = false;
+  }
+
   render() {
-    const { classes, type, direction, placeholder } = this.props;
-    const { search } = this.state;
+    const { classes, isDark, floatRight, defaultValue, placeholder } = this.props;
+    let search = this.state.preProps.defaultValue;
+    if (this.typeIn) {
+      search = this.state.search;
+    }
     const { currentPage, pageSize, total } = this.state.pageConfig;
     return (
-      <div className={classes.root + ' ' + (direction == 'right' ? classes.right : '')}>
+      <div className={classes.root + ' ' + (!!floatRight ? classes.right : '')}>
         <input
           className={
             classes.input +
             ' ' +
-            (type == 'dark' ? classes.darkFont : '') +
+            (!!isDark ? classes.darkFont : '') +
             ' ' +
             (!!search ? classes.hasValue : '')
           }
-          value={this.state.search}
+          value={search}
           onChange={this.handleChangeSingle.bind(this)}
           placeholder={placeholder}
         />
         <div className={classes.iconWrap}>
-          <SearchIcon className={classes.icon + ' ' + (type == 'dark' ? classes.darkIcon : '')} />
+          <SearchIcon className={classes.icon + ' ' + (!!isDark ? classes.darkIcon : '')} />
         </div>
       </div>
     );
@@ -144,22 +165,31 @@ class Search extends Component {
 
 Search.propTypes = {
   /**
-   *'right/left' direction of this search float;
+   * float to right
    */
-  direction: PropTypes.enum,
+  floatRight: PropTypes.bool,
   /**
-   *when background is light color please use 'dark'
-   *
-   */
-  type: PropTypes.enum,
-  /**
-   *placeholder
+   * placeholder
    */
   placeholder: PropTypes.string,
   /**
-   * onchange callback function
+   * defaultValue for search
    */
-  onChange: PropTypes.func.isRequired,
+  defaultValue: PropTypes.string,
+  /**
+   * callback function for search value changed;
+   */
+  onChange: PropTypes.function,
+  /**
+   * dark theme for light background
+   */
+  isDark: PropTypes.bool, //'dark'
+};
+
+Search.defaultProps = {
+  defaultValue: '',
+  floatRight: false,
+  isDark: false,
 };
 
 export default withStyles(styles, { name: 'RMSearch' })(Search);

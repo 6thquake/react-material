@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'react-material/styles';
+import { withStyles } from 'react-material/styles';
 import Grid from 'react-material/Grid';
 import Form from 'react-material/Form';
-import {addValidationRule} from 'react-material/Form';
+import { addValidationRule } from 'react-material/Form';
 import Input from 'react-material/Input';
 import TextField from 'react-material/TextField';
 import Select from 'react-material/Select';
@@ -75,7 +75,7 @@ class FormDemo extends Component {
     textarea: '',
     canSubmit: false,
     formRef: React.createRef(),
-    minAndMax: ''
+    minAndMax: '',
   };
 
   onChange = key => (event, value) => {
@@ -105,17 +105,17 @@ class FormDemo extends Component {
   };
 
   otherReset = () => {
-    const {formRef} = this.state;
+    const { formRef } = this.state;
     formRef.current.reset();
   };
 
   otherSubmit = () => {
-    const {formRef} = this.state;
+    const { formRef } = this.state;
     formRef.current.submit();
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     const {
       canSubmit,
       input,
@@ -145,8 +145,8 @@ class FormDemo extends Component {
               label="input"
               value={input}
               onChange={this.onChange('input')}
-              validations={{isRequired: true}}
-              validationErrors={{isRequired: 'please enter'}}
+              validations={{ isRequired: true }}
+              validationErrors={{ isRequired: 'please enter' }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -156,8 +156,8 @@ class FormDemo extends Component {
               label="textField"
               value={textField}
               onChange={this.onChange('textField')}
-              validations={{isRequired: true}}
-              validationErrors={{isRequired: 'please enter'}}
+              validations={{ isRequired: true }}
+              validationErrors={{ isRequired: 'please enter' }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -165,8 +165,8 @@ class FormDemo extends Component {
               name="select"
               label="select"
               value={select}
-              validations={{isRequired: true}}
-              validationErrors={{isRequired: 'please select'}}
+              validations={{ isRequired: true }}
+              validationErrors={{ isRequired: 'please select' }}
               onChange={this.onChange('select')}
             >
               <MenuItem value="">none</MenuItem>
@@ -183,8 +183,8 @@ class FormDemo extends Component {
               name="radio"
               label="radio"
               value={radio}
-              validations={{isRequired: true}}
-              validationErrors={{isRequired: 'please choose'}}
+              validations={{ isRequired: true }}
+              validationErrors={{ isRequired: 'please choose' }}
               onChange={this.onChange('radio')}
             >
               {radioOptions.map(d => (
@@ -192,7 +192,7 @@ class FormDemo extends Component {
                   key={d.value}
                   label={d.label}
                   value={d.value}
-                  control={<Radio color="primary"/>}
+                  control={<Radio color="primary" />}
                 />
               ))}
             </RadioGroup>
@@ -203,8 +203,8 @@ class FormDemo extends Component {
               name="checkbox"
               label="checkbox"
               value={checkbox}
-              validations={{isRequired: true}}
-              validationErrors={{isRequired: 'please choose'}}
+              validations={{ isRequired: true }}
+              validationErrors={{ isRequired: 'please choose' }}
               onChange={this.onChange('checkbox')}
             >
               {checkboxOptions.map(d => (
@@ -212,7 +212,7 @@ class FormDemo extends Component {
                   key={d.value}
                   label={d.label}
                   value={d.value}
-                  control={<Checkbox color="primary"/>}
+                  control={<Checkbox color="primary" />}
                 />
               ))}
             </CheckboxGroup>
@@ -227,8 +227,8 @@ class FormDemo extends Component {
               multiline
               placeholder="请输入"
               rowsMax={4}
-              validations={{isRequired: true}}
-              validationErrors={{isRequired: 'please enter'}}
+              validations={{ isRequired: true }}
+              validationErrors={{ isRequired: 'please enter' }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -241,19 +241,19 @@ class FormDemo extends Component {
               validations={{
                 isRequired: true,
                 min: 1,
-                max: 10
+                max: 10,
               }}
               validationErrors={{
                 isRequired: 'please enter',
                 min: '值不能小于1',
-                max: '值不能大于10'
+                max: '值不能大于10',
               }}
             />
           </Grid>
           <Grid item xs={12} className={classes.mb}>
-            <br/>
+            <br />
             <Grid container>
-              <Grid item sm={3}/>
+              <Grid item sm={3} />
               <Grid item sm={9}>
                 <Grid container spacing={16}>
                   <Grid item>

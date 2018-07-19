@@ -8,7 +8,6 @@ import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-diff';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 
-
 import lightTheme from 'prismjs/themes/prism.css';
 import darkTheme from 'prismjs/themes/prism-okaidia.css';
 import lineNumbers from 'prismjs/plugins/line-numbers/prism-line-numbers.css';

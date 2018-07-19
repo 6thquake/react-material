@@ -66,7 +66,7 @@ class DragToolBox extends Component{
         return (
             <div className={classes.root}>
                 <div>
-                    <DragSource2 type='OUTITEM' dragSourceType='BUTTONB'>
+                    {/*<DragSource2 type='OUTITEM' dragSourceType='BUTTONB'>
                         <Button variant="fab" disabled aria-label="delete" className={classes.button}>
                              <DeleteIcon />
                         </Button>
@@ -75,14 +75,16 @@ class DragToolBox extends Component{
                         <IconButton color="primary" className={classes.button} component="span">
                             <PhotoCamera />
                         </IconButton>
-                    </DragSource2> 
+                    </DragSource2> */}
                    <DragSource2 type='OUTITEM' dragSourceType='BOXA'>
-                        <BoxA />
+                        {/*<BoxA />*/}
                     </DragSource2> 
                 </div>
 
 
-                <ManualDragTarget accepts={['BOXA','BUTTONB','BUTTONC']} snapToGrid={snapToGridAfterDrop} classes={{custom:classes.dropTarget}}>
+                {/*<ManualDragTarget accepts={['BOXA','BUTTONB','BUTTONC']} snapToGrid={snapToGridAfterDrop} classes={{custom:classes.dropTarget}}>*/}
+                <ManualDragTarget classes={{custom:classes.dropTarget}}>
+                        {/*<DropTargetBox />*/}
                 </ManualDragTarget>
                 <p>
                     <label htmlFor="snapToGridAfterDrop">

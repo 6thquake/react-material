@@ -42,7 +42,7 @@ class App extends Component {
   };
 
   handleClose = key => {
-    console.log(key);
+    
     this.setState({ open: false });
   };
 

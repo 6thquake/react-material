@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import Dialog from '../Dialog';
 import DialogTitle from '../DialogTitle';
-import Button from '../Button';
 import DialogActions from '../DialogActions';
 import DialogContent from '../DialogContent';
-import DialogContentText from '../DialogContentText';
-
 import { Clear } from '@material-ui/icons';
 import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
+import Button from 'react-material/Button';
 
 const styles = theme => ({
   title: {
@@ -54,11 +52,15 @@ class Modal extends Component {
     /**
      * onClose callback function
      */
-    onClose: PropTypes.func,
+    onClose: PropTypes.func.isRequired,
     /**
      * max content height
      */
     maxHeight: PropTypes.number,
+    /**
+     * actions button array
+     */
+    actions: PropTypes.array,
   };
 
   static defaultProps = {
@@ -66,8 +68,19 @@ class Modal extends Component {
     open: false,
     label: '',
     animation: 'fade',
-  };
+    onClose: () => { },
+    actions: [<Button
+      variant="raised"
+      color="primary"
+      autoFocus
+    >
+      Agree
+  </Button>]
 
+  };
+  handleOK() {
+    this.props.onClose;
+  }
   transition = props => {
     switch (this.props.animation) {
       case 'fade':
@@ -90,16 +103,22 @@ class Modal extends Component {
     }
   };
 
-  handleCancel() {
-    this.props.onClose('cancel');
-  }
+  renderActions() {
+    const { actions, onClose, classes } = this.props;
 
-  handleOK() {
-    this.props.onClose('ok');
+    if (actions === Modal.defaultProps.actions) {
+      //没传actions
+      return actions.map(Button => React.cloneElement(Button, {
+        onClick: onClose,
+        classes: {root:classes.actionRootBtn}
+      }));
+    } else {
+      return actions.map(actionBtn => actionBtn);
+    }
   }
 
   render() {
-    const { classes, label, onClose, maxHeight,actions, ...other} = this.props;
+    const { classes, label, onClose, maxHeight, actions, ...other } = this.props;
 
     return (
       <Dialog
@@ -121,9 +140,7 @@ class Modal extends Component {
         </DialogContent>
 
         <DialogActions classes={{ root: classes.actionRoot }}>
-         {actions.map(actionBtn => {
-           return actionBtn
-         })}
+          {this.renderActions()}
         </DialogActions>
       </Dialog>
     );

@@ -17,6 +17,8 @@ const styles = theme => ({
     minWidth: 1000,
   },
 });
+
+
 const confirm = Modal2.confirm;
 const info = Modal2.info;
 const success = Modal2.success;
@@ -24,6 +26,7 @@ const error = Modal2.error;
 const warning = Modal2.warning;
 
 class App extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +41,9 @@ class App extends Component {
       animation: value,
     });
   };
+
   showConfirm = () => {
+
     confirm({
       title: 'Do you want to delete these items?',
       content: 'When clicked the OK button, this dialog will be closed after 1 second',
@@ -55,8 +60,11 @@ class App extends Component {
         console.log('cancel');
       },
     });
+
   };
+
   showinfo = () => {
+
     info({
       title: 'Do you want to delete these items?',
       content: (
@@ -75,7 +83,9 @@ class App extends Component {
         console.log('cancel');
       },
     });
+    
   };
+
   showsuccess = () => {
     success({
       title: 'Do you want to delete these items?',
@@ -89,6 +99,7 @@ class App extends Component {
       },
     });
   };
+  
   showerror = () => {
     error({
       title: 'Do you want to delete these items?',
@@ -100,6 +111,7 @@ class App extends Component {
       },
     });
   };
+
   showwarning = () => {
     warning({
       title: 'Do you want to delete these items?',
@@ -113,6 +125,8 @@ class App extends Component {
       },
     });
   };
+
+
   render() {
     const { classes } = this.props;
     let { open, animation, ...other } = this.state;
@@ -123,6 +137,7 @@ class App extends Component {
         <Button onClick={this.showsuccess}>success</Button>
         <Button onClick={this.showerror}>error</Button>
         <Button onClick={this.showwarning}>warning</Button>
+
         <Grid container spacing={16}>
           <Grid item xs={12} sm={12}>
             <FormControl component="fieldset">
@@ -145,6 +160,7 @@ class App extends Component {
             </FormControl>
           </Grid>
         </Grid>
+
       </div>
     );
   }

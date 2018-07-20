@@ -33,17 +33,29 @@ class CascadeOption extends Component {
   }
 
   toMenuItem = (data, classes) => {
-    let { renderLabel = 'text', renderValue = 'value' } = this.props;
+    let {
+      mapper
+    } = this.props;
+
     let list = data.map((item, index) => {
+      let label = item[mapper.label || 'label'] 
+      let value = item[mapper.value || 'value']
+      if (typeof mapper.label === 'function') {
+        label = mapper.label(item, index)
+      }
+      if (typeof mapper.value === 'function') {
+        value = mapper.value(item, index)
+      }
       let hasSub = item.subItems && item.subItems.length > 0;
       let checked = this.props.checkedIndex === index;
       return (
         <MenuItem
-          key={index}
+          key={value}
+          value={value}
           className={checked ? classes.menuItemSelect : ''}
           onClick={this.handleItemClick(item, index)}
         >
-          <ListItemText classes={{ primary: classes.primary }} inset primary={item[renderLabel]} />
+          <ListItemText classes={{ primary: classes.primary }} inset primary={label} />
           {hasSub ? (
             <ListItemIcon className={classes.icon}>
               <PlayArrow />
@@ -62,18 +74,18 @@ class CascadeOption extends Component {
     let info = {
       level: this.props.level,
       index: index,
-      next: this.props.dataSource[index].subItems || [],
-      item: this.props.dataSource,
+      next: this.props.options[index].subItems || [],
+      item: this.props.options,
     };
     this.props.onChange(info);
   };
   render() {
-    const { classes, dataSource, open } = this.props;
+    const { classes, options, open } = this.props;
     let t = null;
-    if (dataSource && dataSource.length > 0 && open) {
+    if (options && options.length > 0 && open) {
       t = (
         <Paper>
-          <MenuList>{this.toMenuItem(dataSource, classes)}</MenuList>
+          <MenuList>{this.toMenuItem(options, classes)}</MenuList>
         </Paper>
       );
     }

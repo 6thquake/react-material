@@ -9,6 +9,10 @@ import MenuItem from '../../MenuItem';
 import Input from '../../Input';
 import InputLabel from '../../InputLabel';
 
+/**
+ * @ignore - internal component.
+ */
+
 class CrossTableAttribute extends React.PureComponent {
   handleChange = event => {
     this.props.setValue(event.target.value);

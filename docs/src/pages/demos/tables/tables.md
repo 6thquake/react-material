@@ -1,5 +1,5 @@
 ---
-components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, AbundantCrossTable, CrossTable
+components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, AbundantCrossTable, CrossTable, RmTable
 ---
 ## Rm Table
 {{"demo": "pages/demos/tables/RmTable.js"}}

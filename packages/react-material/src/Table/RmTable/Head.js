@@ -65,6 +65,11 @@ const colStyle = {
   // width: 150,
   minWidth: 100,
 };
+
+/**
+ * @ignore - internal component.
+ */
+
 class Head extends React.Component {
   constructor(props) {
     super(props);

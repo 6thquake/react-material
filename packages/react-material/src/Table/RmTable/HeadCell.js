@@ -10,6 +10,10 @@ const styles = theme => ({
   root: {},
 });
 
+/**
+ * @ignore - internal component.
+ */
+
 class Cell extends React.Component {
   constructor() {
     super();

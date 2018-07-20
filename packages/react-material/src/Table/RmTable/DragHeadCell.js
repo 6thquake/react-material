@@ -66,6 +66,9 @@ function targetCollect(connect, monitor) {
     connectDropTarget: connect.dropTarget(),
   };
 }
+/**
+ * @ignore - internal component.
+ */
 class Cell extends React.Component {
   constructor() {
     super();

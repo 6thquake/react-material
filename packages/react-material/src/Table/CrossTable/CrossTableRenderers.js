@@ -313,6 +313,10 @@ function makeRenderer(opts = {}) {
   return withStyles(styles, { name: 'RMTableRenderer' })(TableRenderer);
 }
 
+/**
+ * @ignore - internal component.
+ */
+
 class TSVExportRenderer extends React.PureComponent {
   render() {
     const crossTableData = new CrossTableData(this.props);

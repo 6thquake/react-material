@@ -24,7 +24,9 @@ const colStyle = {
   // width: 150,
   minWidth: 100,
 };
-
+/**
+ * @ignore - internal component.
+ */
 class Body extends React.Component {
   constructor(props) {
     super(props);

@@ -36,6 +36,10 @@ function chipDragcollect(connect, monitor) {
   };
 }
 
+/**
+ * @ignore - internal component.
+ */
+
 class CrossTableDragSource extends React.Component {
   render() {
     const { connectDragSource, connectDragPreview, children } = this.props;

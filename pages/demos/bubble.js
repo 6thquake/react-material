@@ -1,18 +1,18 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/style/color/color.md';
+import markdown from 'docs/src/pages/demos/bubble/bubble.md';
 
 function Page() {
   return (
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/style/color/Color.js': {
-          js: require('docs/src/pages/style/color/Color').default,
+        'pages/demos/bubble/Bubble.js': {
+          js: require('docs/src/pages/demos/bubble/Bubble').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/color/Color'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/bubble/Bubble'), 'utf8')
 `,
         },
       }}

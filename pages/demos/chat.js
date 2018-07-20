@@ -8,7 +8,7 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/demos/chart/Chat.js': {
+        'pages/demos/chat/Chat.js': {
           js: require('docs/src/pages/demos/chat/Chat').default,
           raw: preval`
 module.exports = require('fs')

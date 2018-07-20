@@ -32,17 +32,17 @@ class App extends React.Component {
           avatarAlt="Remy Sharp"
           avatarSrc="/static/images/remy.jpg/"
           triSize="12"
-          rBgColor="cyan"
-          classes={{ customization: classes.customization, triSize: classes.triSize }}
+          bgColor="cyan"
+          classes={{ customization: classes.customization }}
         />
         <Chat
           isLeft={true}
           content="Oh hi there. I see. So is there anything I can do for the test?"
           avatarAlt="Test Portrait"
           avatarSrc="/static/images/cards/live-from-space.jpg"
-          lBgColor="yellow"
+          bgColor="yellow"
           triSize="12"
-          classes={{ customization: classes.customization, triSize: classes.triSize }}
+          classes={{ customization: classes.customization }}
         />
         <Chat
           isLeft={true}
@@ -50,8 +50,8 @@ class App extends React.Component {
           avatarAlt="Test Portrait"
           avatarSrc="/static/images/cards/live-from-space.jpg"
           triSize="12"
-          lBgColor="yellow"
-          classes={{ customization: classes.customization, triSize: classes.triSize }}
+          bgColor="yellow"
+          classes={{ customization: classes.customization }}
         />
       </div>
     );

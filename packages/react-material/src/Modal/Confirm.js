@@ -3,22 +3,32 @@ import Dialog from '../Dialog';
 import PropTypes from 'prop-types';
 import ActionButton from './ActionButton';
 import DialogActions from '../DialogActions';
+import DialogTitle from '../DialogTitle';
+import DialogContent from '../DialogContent';
 import { withStyles } from '../styles';
 import classNames from 'classnames';
 import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
 import { withLocale } from '../LocaleProvider';
+import { Clear } from '@material-ui/icons';
 
 const styles = theme => ({
-  root: {
-    padding: '20px 20px 0 20px',
-  },
   title: {
-    color: 'rgba(0,0,0,.85)',
-    fontWeight: 500,
-    fontSize: '16px',
-    lineHeight: '22px',
-    display: 'block',
-    overflow: 'auto',
+    color: 'white',
+    fontSize: '1rem',
+    fontWeight: '700',
+  },
+  icon: {
+    color: 'white',
+    float: 'right',
+    '&:hover': {
+      opacity: 0.5,
+    },
+  },
+  contentRoot: {
+    paddingTop: theme.spacing.unit * 3,
+  },
+  actionsRoot: {
+    justifyContent: 'center',
   },
   head: {},
   content: {
@@ -27,25 +37,20 @@ const styles = theme => ({
     fontSize: '14px',
     marginTop: '8px',
   },
-  icon: {
-    fontSize: `${theme.spacing.unit * 3}px`,
-    float: 'left',
-    marginRight: theme.spacing.unit * 1,
-  },
   info: {
-    color: '#1890ff',
+    backgroundColor: '#1890ff',
   },
   done: {
-    color: '#52c41a',
+    backgroundColor: '#52c41a',
   },
   cancel: {
-    color: '#f5222d',
+    backgroundColor: '#f5222d',
   },
   error: {
-    color: '#faad14',
+    backgroundColor: '#faad14',
   },
   warning: {
-    color: '#faad14',
+    backgroundColor: '#faad14',
   },
 });
 
@@ -144,6 +149,7 @@ class ConfirmDialog extends Component {
       keyboard,
       cancelText,
       okText,
+      closeText,
       title,
       content,
       type,
@@ -177,26 +183,26 @@ class ConfirmDialog extends Component {
         aria-describedby="alert-dialog-slide-description"
         {...this.props}
       >
-        <div className={classes.root}>
-          <div className={classes.head}>
-            <i className={'material-icons' + ' ' + classes.icon + ' ' + classNameColor}>{type}</i>
-            <span className={classes.title}>{title}</span>
-            <div className={classes.content}>{content}</div>
-          </div>
-          <DialogActions>
-            {cancelButton}
-            <ActionButton
-              type={okType}
-              actionFn={onOk}
-              closeModal={onClose}
-              variant={variant}
-              size={size}
-              autoFocus
-            >
-              {okText}
-            </ActionButton>
-          </DialogActions>
-        </div>
+        <DialogTitle className={classes.title + ' ' + classNameColor} disableTypography={true}>
+          {title}
+          <Clear className={classes.icon} onClick={onClose} />
+        </DialogTitle>
+
+        <DialogContent classes={{ root: classes.contentRoot }}>{content}</DialogContent>
+
+        <DialogActions classes={{ root: classes.actionsRoot }}>
+          {cancelButton}
+          <ActionButton
+            type={type}
+            actionFn={onOk}
+            closeModal={onClose}
+            variant={variant}
+            size={size}
+            autoFocus
+          >
+            {type === 'contact_support' ? okText : closeText}
+          </ActionButton>
+        </DialogActions>
       </Dialog>
     );
   }

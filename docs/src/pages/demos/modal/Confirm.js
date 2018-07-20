@@ -17,6 +17,7 @@ const styles = theme => ({
     minWidth: 1000,
   },
 });
+
 const confirm = Modal2.confirm;
 const info = Modal2.info;
 const success = Modal2.success;
@@ -38,6 +39,7 @@ class App extends Component {
       animation: value,
     });
   };
+
   showConfirm = () => {
     confirm({
       title: 'Do you want to delete these items?',
@@ -56,6 +58,7 @@ class App extends Component {
       },
     });
   };
+
   showinfo = () => {
     info({
       title: 'Do you want to delete these items?',
@@ -76,6 +79,7 @@ class App extends Component {
       },
     });
   };
+
   showsuccess = () => {
     success({
       title: 'Do you want to delete these items?',
@@ -89,6 +93,7 @@ class App extends Component {
       },
     });
   };
+
   showerror = () => {
     error({
       title: 'Do you want to delete these items?',
@@ -100,6 +105,7 @@ class App extends Component {
       },
     });
   };
+
   showwarning = () => {
     warning({
       title: 'Do you want to delete these items?',
@@ -113,6 +119,7 @@ class App extends Component {
       },
     });
   };
+
   render() {
     const { classes } = this.props;
     let { open, animation, ...other } = this.state;
@@ -123,6 +130,7 @@ class App extends Component {
         <Button onClick={this.showsuccess}>success</Button>
         <Button onClick={this.showerror}>error</Button>
         <Button onClick={this.showwarning}>warning</Button>
+
         <Grid container spacing={16}>
           <Grid item xs={12} sm={12}>
             <FormControl component="fieldset">

@@ -387,19 +387,55 @@ RmTable.propTypes = {
    * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * Columns of table
+   */
   columns: PropTypes.array.isRequired,
+  /**
+   * Data record array to be displayed
+   */
   data: PropTypes.array.isRequired,
-
+  /**
+   * Properties applied to the TablePagination Component
+   */
   paginationProps: PropTypes.object,
-  exportProps: PropTypes.object,
+  /**
+   * export config
+   */
+  exportProps: PropTypes.shape({
+    type: PropTypes.oneOf(['csv'])
+  }),
+  /**
+   * Properties applied to the Search Component
+   */
   searchProps: PropTypes.object,
-
+  /**
+   *  if true, it will be a paginatable table
+   */
   paginatable: PropTypes.bool,
+  /**
+   *  if true, it will be a searchable table
+   */
   searchable: PropTypes.bool,
+  /**
+   *  if true, all the columns is resizable
+   */
   resizable: PropTypes.bool,
+  /**
+   *  if true, all the columns is dragable
+   */
   dragable: PropTypes.bool,
-  width: PropTypes.width,
-  height: PropTypes.height,
+  /**
+   * table width
+   */
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.number]),
+  /**
+   * table height
+   */
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.number]),
+  /**
+   * Callback fired when you drag the column
+   */
   onColDrag: PropTypes.func,
 };
 RmTable.defaultProps = {
@@ -408,6 +444,7 @@ RmTable.defaultProps = {
     page: 0,
   },
   width: 'auto',
+  height: 'auto',
   searchProps: {
     isDark: true,
   },

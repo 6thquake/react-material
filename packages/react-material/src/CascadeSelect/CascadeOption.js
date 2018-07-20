@@ -1,3 +1,5 @@
+
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MenuList from '../MenuList';
@@ -27,6 +29,9 @@ const styles = theme => ({
   icon: {},
 });
 
+/**
+ * @ignore - internal component.
+ */
 class CascadeOption extends Component {
   constructor(props) {
     super(props);

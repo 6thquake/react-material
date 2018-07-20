@@ -251,14 +251,11 @@ CascadeSelect.propTypes = {
  /**
   * Render the selected item.
   *
-  * @param {*} list The `list` provided to the component.
+  * @param {array} list The selected items `array`.
   * @returns {String}
   */
   renderValue: PropTypes.func,
-  /**
-   * @ignore - internal component.
-   */
-  notFound: PropTypes.string,
+  
   /**
    * The width of cascader
    */

@@ -83,6 +83,6 @@ export default {
   Confirm: {
     cancelText: '取消',
     okText: '确认',
-    closeText:'关闭',
+    closeText: '关闭',
   },
 };

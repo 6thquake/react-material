@@ -7,7 +7,7 @@ import DialogActions from '../DialogActions';
 import DialogContent from '../DialogContent';
 import { Clear } from '@material-ui/icons';
 import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
-import Button from 'react-material/Button';
+import Button from '../Button';
 
 const styles = theme => ({
   title: {
@@ -68,15 +68,12 @@ class Modal extends Component {
     open: false,
     label: '',
     animation: 'fade',
-    onClose: () => { },
-    actions: [<Button
-      variant="raised"
-      color="primary"
-      autoFocus
-    >
-      Agree
-  </Button>]
-
+    onClose: () => {},
+    actions: [
+      <Button variant="raised" color="primary" autoFocus>
+        Agree
+      </Button>,
+    ],
   };
   handleOK() {
     this.props.onClose;
@@ -108,10 +105,12 @@ class Modal extends Component {
 
     if (actions === Modal.defaultProps.actions) {
       //没传actions
-      return actions.map(Button => React.cloneElement(Button, {
-        onClick: onClose,
-        classes: {root:classes.actionRootBtn}
-      }));
+      return actions.map(Button =>
+        React.cloneElement(Button, {
+          onClick: onClose,
+          classes: { root: classes.actionRootBtn },
+        }),
+      );
     } else {
       return actions.map(actionBtn => actionBtn);
     }
@@ -139,9 +138,7 @@ class Modal extends Component {
           {this.props.children}
         </DialogContent>
 
-        <DialogActions classes={{ root: classes.actionRoot }}>
-          {this.renderActions()}
-        </DialogActions>
+        <DialogActions classes={{ root: classes.actionRoot }}>{this.renderActions()}</DialogActions>
       </Dialog>
     );
   }

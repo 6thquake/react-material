@@ -7,7 +7,6 @@ import ReactDOM from 'react-dom';
 import Modal from './ModalBase';
 import ConfirmDialog from './Confirm';
 
-
 function confirm(config) {
   let div = document.createElement('div');
 
@@ -24,7 +23,7 @@ function confirm(config) {
       div.parentNode.removeChild(div);
     }
     const triggerCancel = args && args.length && args.some(param => param && param.triggerCancel);
-    
+
     if (config.onCancel && triggerCancel) {
       config.onCancel(...args);
     }

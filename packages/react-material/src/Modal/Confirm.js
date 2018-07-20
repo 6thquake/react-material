@@ -13,7 +13,7 @@ import { Clear } from '@material-ui/icons';
 
 const styles = theme => ({
   title: {
-     color: 'white',
+    color: 'white',
     fontSize: '1rem',
     fontWeight: '700',
   },
@@ -27,8 +27,8 @@ const styles = theme => ({
   contentRoot: {
     paddingTop: theme.spacing.unit * 3,
   },
-  actionsRoot:{
-    justifyContent:'center',
+  actionsRoot: {
+    justifyContent: 'center',
   },
   head: {},
   content: {
@@ -183,14 +183,12 @@ class ConfirmDialog extends Component {
         aria-describedby="alert-dialog-slide-description"
         {...this.props}
       >
-        <DialogTitle  className={classes.title + ' ' + classNameColor} disableTypography={true}>
+        <DialogTitle className={classes.title + ' ' + classNameColor} disableTypography={true}>
           {title}
           <Clear className={classes.icon} onClick={onClose} />
         </DialogTitle>
-      
-        <DialogContent classes={{ root: classes.contentRoot }}>
-        {content}
-        </DialogContent>
+
+        <DialogContent classes={{ root: classes.contentRoot }}>{content}</DialogContent>
 
         <DialogActions classes={{ root: classes.actionsRoot }}>
           {cancelButton}
@@ -205,7 +203,6 @@ class ConfirmDialog extends Component {
             {type === 'contact_support' ? okText : closeText}
           </ActionButton>
         </DialogActions>
-
       </Dialog>
     );
   }

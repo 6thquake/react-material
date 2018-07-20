@@ -8,54 +8,50 @@ const styles = theme => ({
   info: {
     backgroundColor: '#1890ff',
     color: 'white',
-    '&:hover':{
+    '&:hover': {
       backgroundColor: '#1890ff',
       color: 'white',
-    }
+    },
   },
   done: {
     backgroundColor: '#52c41a',
     color: 'white',
-    '&:hover':{
+    '&:hover': {
       backgroundColor: '#52c41a',
       color: 'white',
-    }
+    },
   },
   cancel: {
     backgroundColor: '#f5222d',
     color: 'white',
-    '&:hover':{
+    '&:hover': {
       backgroundColor: '#f5222d',
       color: 'white',
-    }
+    },
   },
   error: {
     backgroundColor: '#faad14',
     color: 'white',
-    '&:hover':{
+    '&:hover': {
       backgroundColor: '#faad14',
       color: 'white',
-    }
+    },
   },
   warning: {
     backgroundColor: '#faad14',
     color: 'white',
-    '&:hover':{
+    '&:hover': {
       backgroundColor: '#faad14',
       color: 'white',
-    }
+    },
   },
-  
 });
 
-
- class ActionButton extends React.Component {
-
+class ActionButton extends React.Component {
   constructor(props) {
     super(props);
 
     this.onClick = () => {
-
       const { actionFn, closeModal } = this.props;
 
       if (actionFn) {
@@ -84,7 +80,6 @@ const styles = theme => ({
       } else {
         closeModal();
       }
-
     };
 
     this.state = {
@@ -104,9 +99,9 @@ const styles = theme => ({
   }
 
   render() {
-    const { type, children, variant, size ,classes } = this.props;
+    const { type, children, variant, size, classes } = this.props;
     const loading = this.state.loading;
-    
+
     //替换为statusbutton
     const classNameColor = classNames({
       [classes.info]: type === 'info',
@@ -120,7 +115,7 @@ const styles = theme => ({
       <Button
         variant={variant}
         size={size}
-        classes = {{root:classNameColor}}
+        classes={{ root: classNameColor }}
         style={{ marginLeft: '10px' }}
         onClick={this.onClick}
         loading={loading}
@@ -131,5 +126,4 @@ const styles = theme => ({
   }
 }
 
-
-export default withStyles(styles)(ActionButton);;
+export default withStyles(styles)(ActionButton);

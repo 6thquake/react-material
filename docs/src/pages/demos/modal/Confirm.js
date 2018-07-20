@@ -18,7 +18,6 @@ const styles = theme => ({
   },
 });
 
-
 const confirm = Modal2.confirm;
 const info = Modal2.info;
 const success = Modal2.success;
@@ -26,7 +25,6 @@ const error = Modal2.error;
 const warning = Modal2.warning;
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +41,6 @@ class App extends Component {
   };
 
   showConfirm = () => {
-
     confirm({
       title: 'Do you want to delete these items?',
       content: 'When clicked the OK button, this dialog will be closed after 1 second',
@@ -60,11 +57,9 @@ class App extends Component {
         console.log('cancel');
       },
     });
-
   };
 
   showinfo = () => {
-
     info({
       title: 'Do you want to delete these items?',
       content: (
@@ -83,7 +78,6 @@ class App extends Component {
         console.log('cancel');
       },
     });
-    
   };
 
   showsuccess = () => {
@@ -99,7 +93,7 @@ class App extends Component {
       },
     });
   };
-  
+
   showerror = () => {
     error({
       title: 'Do you want to delete these items?',
@@ -125,7 +119,6 @@ class App extends Component {
       },
     });
   };
-
 
   render() {
     const { classes } = this.props;
@@ -160,7 +153,6 @@ class App extends Component {
             </FormControl>
           </Grid>
         </Grid>
-
       </div>
     );
   }

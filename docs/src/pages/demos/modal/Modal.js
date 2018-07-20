@@ -42,7 +42,6 @@ class App extends Component {
   };
 
   handleClose = key => {
-    
     this.setState({ open: false });
   };
 
@@ -58,13 +57,14 @@ class App extends Component {
     const { classes } = this.props;
     let { open, animation, ...other } = this.state;
 
-    let actions = [<Button
-      onClick={this.handleCancel.bind(this)}
-      color="primary"
-      classes={{ root: classes.actionRootBtn }}
-    >
-      Disagree
-  </Button>,
+    let actions = [
+      <Button
+        onClick={this.handleCancel.bind(this)}
+        color="primary"
+        classes={{ root: classes.actionRootBtn }}
+      >
+        Disagree
+      </Button>,
       <Button
         onClick={this.handleOK.bind(this)}
         variant="raised"
@@ -73,8 +73,8 @@ class App extends Component {
         classes={{ root: classes.actionRootBtn }}
       >
         Agree
-  </Button>]
-
+      </Button>,
+    ];
 
     return (
       <div>
@@ -100,7 +100,6 @@ class App extends Component {
             Google, even when no apps are running. Let Google help apps determine location. This
             means sending anonymous location data to Google, even when no apps are running.
           </DialogContentText>
-
         </Modal2>
 
         <Grid container spacing={16}>

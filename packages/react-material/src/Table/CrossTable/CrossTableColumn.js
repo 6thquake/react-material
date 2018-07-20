@@ -96,6 +96,10 @@ const styles = theme => ({
   },
 });
 
+/**
+ * @ignore - internal component.
+ */
+
 class CrossCrossTableColumn extends React.Component {
   constructor(props) {
     super(props);

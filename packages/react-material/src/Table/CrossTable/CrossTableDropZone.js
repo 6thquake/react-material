@@ -35,6 +35,10 @@ function chipDropcollect(connect, monitor) {
   };
 }
 
+/**
+ * @ignore - internal component.
+ */
+
 class DropZone extends React.Component {
   constructor(props) {
     super(props);

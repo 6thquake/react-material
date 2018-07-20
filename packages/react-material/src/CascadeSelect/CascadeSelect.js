@@ -8,7 +8,7 @@ import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import InputAdornment from '../InputAdornment';
 
 export const styles = theme => ({
-  container: {
+  root: {
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'column',
@@ -41,7 +41,7 @@ class CascadeSelect extends React.Component {
   state = {
     open: false,
     opens: [true, false, false, false, false],
-    data: [this.props.dataSource],
+    data: [this.props.options],
     textFieldValue: '',
     checkes: [-1, -1, -1, -1, -1],
   };
@@ -121,23 +121,36 @@ class CascadeSelect extends React.Component {
   };
   //
   setTextFieldValue = () => {
-    let separator = this.props.separator || '/';
-
-    let text = this.series
-      .map((item, index) => {
-        return item.text;
-      })
-      .join(` ${separator} `);
+    const {mapper} = this.props
+    let selections = this.series.map((item, index)=> {
+      let {label, value} = item
+      if (typeof mapper.label === 'function') {
+        label = mapper.label(item, index)
+      }
+      return {value, label}
+    })
+    let node = this.renderSelections(selections)
     this.setState({
-      textFieldValue: text,
+      textFieldValue: node,
     });
   };
 
+  renderSelections = (list) => {
+    const {
+      separator,
+      renderValue
+    } = this.props
+    if (renderValue){
+      return renderValue(list)
+    }
+    return list.map(item => {
+      return item.label
+    }).join(` ${separator} `)
+  }
   renderMenuItems() {
     let levels = [0, 1, 2, 3, 4];
 
-    let { children, renderLabel = 'label', renderValue = 'value' } = this.props;
-
+    let { children, mapper, } = this.props;
     let list = levels.map((item, index) => {
       return (
         <CascadeOption
@@ -145,23 +158,22 @@ class CascadeSelect extends React.Component {
           key={item}
           level={item}
           open={this.state.opens[item]}
-          dataSource={this.state.data[item]}
+          options={this.state.data[item]}
           onChange={this.handelMenuChange}
           checkedIndex={this.state.checkes[item]}
-          renderLabel={renderLabel}
-          renderValue={renderValue}
+          mapper={mapper}
         />
       );
     });
     return list;
   }
   render() {
-    const { classes, label, dataSource, notFound, width } = this.props;
+    const { classes, label, options, notFound, width } = this.props;
     const { open, anchorEl } = this.state;
-    const hasData = dataSource && dataSource.length > 0;
+    const hasData = options && options.length > 0;
     const t = <div className={classes.noData}>{notFound}</div>;
     return (
-      <div className={classes.container}>
+      <div className={classes.root}>
         <div className={classes.inputBox}>
           <TextField
             InputProps={{
@@ -222,29 +234,39 @@ CascadeSelect.propTypes = {
   /**
    * data options of cascade
    */
-  dataSource: PropTypes.array.isRequired,
+  options: PropTypes.array.isRequired,
   /**
-   * The key in dataSoure , which will be used to display
+   * render maps,
    */
-  renderLabel: PropTypes.string,
-  /**
-   * The key in dataSoure, which will be used to distinguish items
-   */
-  renderValue: PropTypes.string,
-  /**
-   *
-   */
-  notFound: PropTypes.string,
+  mapper: PropTypes.shape({
+    label: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ])
+  }),
+ /**
+  * Render the selected item.
+  *
+  * @param {array} list The selected items `array`.
+  * @returns {String}
+  */
+  renderValue: PropTypes.func,
+  
   /**
    * The width of cascader
    */
   width: PropTypes.number,
 };
 CascadeSelect.defaultProps = {
-  separator: '/',
-  renderLabel: 'label',
-  renderValue: 'value',
+  mapper: {
+    label: 'label',
+    value: 'value'
+  },
   width: 150,
-  // onChange: e => console.log(e),
+  separator: '/'
 };
 export default withStyles(styles, { name: 'RMCascadeSelect' })(CascadeSelect);

@@ -8,124 +8,124 @@ class App extends Component {
       cdata: [
         {
           value: '1',
-          text: '河北',
+          label: '河北',
           subItems: [
             {
               value: '12',
-              text: '石家庄',
+              label: '石家庄',
               subItems: [
                 {
                   value: '13',
-                  text: '平山县',
+                  label: '平山县',
                 },
                 {
                   value: '112',
-                  text: '赵县',
+                  label: '赵县',
                 },
                 {
                   value: '113',
-                  text: 'test111',
+                  label: 'test111',
                 },
               ],
             },
             {
               value: '111',
-              text: 'test22',
+              label: 'test22',
             },
           ],
         },
         {
           value: '2',
-          text: '江苏',
+          label: '江苏',
           subItems: [
             {
               value: '12',
-              text: 'test11a',
+              label: 'test11a',
               subItems: [
                 {
                   value: '13a',
-                  text: 'test111a',
+                  label: 'test111a',
                 },
                 {
                   value: '112',
-                  text: 'test111a',
+                  label: 'test111a',
                 },
                 {
                   value: '113',
-                  text: 'test111a',
+                  label: 'test111a',
                 },
               ],
             },
             {
               value: '111a',
-              text: 'test22a',
+              label: 'test22a',
             },
           ],
         },
         {
           value: '3',
-          text: '福建',
+          label: '福建',
         },
 
         {
           value: '4',
-          text: '陕西',
+          label: '陕西',
           subItems: [
             {
               value: '12',
-              text: 'test11',
+              label: 'test11',
               subItems: [
                 {
                   value: '13',
-                  text: 'test111',
+                  label: 'test111',
                 },
                 {
                   value: '112',
-                  text: 'test111',
+                  label: 'test111',
                 },
                 {
                   value: '113',
-                  text: 'test111',
+                  label: 'test111',
                 },
               ],
             },
             {
               value: '111',
-              text: 'test22',
+              label: 'test22',
             },
           ],
         },
         {
           value: '云南',
-          text: '云南',
+          label: '云南',
           subItems: [
             {
               value: '12',
-              text: 'test11a',
+              label: 'test11a',
               subItems: [
                 {
                   value: '13a',
-                  text: 'test111a',
+                  label: 'test111a',
                 },
                 {
                   value: '112',
-                  text: 'test111a',
+                  label: 'test111a',
                 },
                 {
                   value: '113',
-                  text: 'test111a',
+                  label: 'test111a',
                 },
               ],
             },
             {
               value: '111a',
-              text: 'test22a',
+              label: 'test22a',
             },
           ],
         },
         {
           value: '3c',
-          text: 'test3c',
+          label: 'test3c',
         },
       ],
     };
@@ -136,15 +136,18 @@ class App extends Component {
   };
 
   render() {
+    let mapper = {
+      label: (item) => ('@ ' + item.label)
+    } 
     return (
       <div>
         <CascadeSelect
           onChange={this.handleChange}
           label={'地域'}
-          dataSource={this.state.cdata}
-          renderLabel="text"
-          separator="|"
+          options={this.state.cdata}
+          separator='>'
           width={400}
+          mapper = {mapper}
         />
       </div>
     );

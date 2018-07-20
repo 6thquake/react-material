@@ -32,6 +32,10 @@ const styles = theme => ({
   },
 });
 
+/**
+ * @ignore - internal component.
+ */
+
 class ThCell extends React.Component {
   state = {};
   handleClick = value => e => {

@@ -16,6 +16,10 @@ const actionsStyles = theme => ({
   },
 });
 
+/**
+ * @ignore - internal component.
+ */
+
 class TablePaginationActions extends React.Component {
   handleFirstPageButtonClick = event => {
     this.props.onChangePage(event, 0);

@@ -38,6 +38,11 @@ const styles = theme => ({
     minWidth: '10em',
   },
 });
+
+/**
+ * @ignore - internal component.
+ */
+
 class TableToolbar extends Component {
   constructor(props) {
     super(props);

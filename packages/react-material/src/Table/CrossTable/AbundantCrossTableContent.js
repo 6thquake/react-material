@@ -47,7 +47,9 @@ const styles = theme => ({
     textDecoration: 'none !important',
   },
 });
-
+/**
+ * @ignore - internal component.
+ */
 class AbundantCrossTableContent extends React.PureComponent {
   constructor(props) {
     super(props);

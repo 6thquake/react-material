@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import moment from 'moment';
 
 import DatePicker from '@6thquake/react-material/Picker';
-import { IconButton, withStyles } from 'react-material';
+import { IconButton, withStyles } from '@6thquake/react-material';
 
 import isValid from 'date-fns/isValid';
 import format from 'date-fns/format';

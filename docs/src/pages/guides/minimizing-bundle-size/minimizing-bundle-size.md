@@ -22,7 +22,7 @@ You have couple of options to overcome this situation:
 You can import directly from `react-material/` to avoid pulling in unused modules. For instance, instead of:
 
 ```js
-import { Button, TextField } from 'react-material';
+import { Button, TextField } from '@6thquake/react-material';
 ```
 
 use:
@@ -41,7 +41,7 @@ For instance, the `Tabs` component is a public module while `TabIndicator` is pr
 Another option is to keep using the shortened import like the following, but still have the size of the bundle optimized thanks to a **Babel plugin**:
 
 ```js
-import { Button, TextField } from 'react-material';
+import { Button, TextField } from '@6thquake/react-material';
 ```
 
 Pick one of the following plugins:

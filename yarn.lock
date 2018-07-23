@@ -207,6 +207,18 @@
   dependencies:
     csstype "^2.2.0"
 
+"@videojs/http-streaming@^1.0.2":
+  version "1.2.1"
+  resolved "http://registry.npm.release.ctripcorp.com/@videojs/http-streaming/download/@videojs/http-streaming-1.2.1.tgz#4a221359952c28b2ded2c612e677369a647cf57d"
+  dependencies:
+    aes-decrypter "3.0.0"
+    global "^4.3.0"
+    m3u8-parser "4.2.0"
+    mpd-parser "0.6.1"
+    mux.js "4.5.0"
+    url-toolkit "^2.1.3"
+    video.js "^6.8.0 || ^7.0.0"
+
 "@webassemblyjs/ast@1.5.12":
   version "1.5.12"
   resolved "http://registry.npm.release.ctripcorp.com/@webassemblyjs/ast/download/@webassemblyjs/ast-1.5.12.tgz#a9acbcb3f25333c4edfa1fdf3186b1ccf64e6664"
@@ -436,6 +448,14 @@ addressparser@1.0.1:
 adm-zip@^0.4.7:
   version "0.4.11"
   resolved "http://registry.npm.release.ctripcorp.com/adm-zip/download/adm-zip-0.4.11.tgz#2aa54c84c4b01a9d0fb89bb11982a51f13e3d62a"
+
+aes-decrypter@3.0.0:
+  version "3.0.0"
+  resolved "http://registry.npm.release.ctripcorp.com/aes-decrypter/download/aes-decrypter-3.0.0.tgz#7848a1c145b9fdbf57ae3e2b5b1bc7cf0644a8fb"
+  dependencies:
+    commander "^2.9.0"
+    global "^4.3.2"
+    pkcs7 "^1.0.2"
 
 after@0.8.2:
   version "0.8.2"
@@ -1086,6 +1106,13 @@ babel-plugin-check-es2015-constants@^6.22.0:
   resolved "http://registry.npm.release.ctripcorp.com/babel-plugin-check-es2015-constants/download/babel-plugin-check-es2015-constants-6.22.0.tgz#35157b101426fd2ffd3da3f75c7d1e91835bbf8a"
   dependencies:
     babel-runtime "^6.22.0"
+
+babel-plugin-css-modules-transform@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-css-modules-transform/-/babel-plugin-css-modules-transform-1.6.1.tgz#5af9483bd62d09af18eeebdc7e6c4370e5125eed"
+  dependencies:
+    css-modules-require-hook "^4.0.6"
+    mkdirp "^0.5.1"
 
 babel-plugin-istanbul@^4.1.5:
   version "4.1.6"
@@ -2956,6 +2983,23 @@ css-loader@^0.28.11:
     postcss-value-parser "^3.3.0"
     source-list-map "^2.0.0"
 
+css-modules-require-hook@^4.0.6:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/css-modules-require-hook/-/css-modules-require-hook-4.2.3.tgz#6792ca412b15e23e6f9be6a07dcef7f577ff904d"
+  dependencies:
+    debug "^2.2.0"
+    generic-names "^1.0.1"
+    glob-to-regexp "^0.3.0"
+    icss-replace-symbols "^1.0.2"
+    lodash "^4.3.0"
+    postcss "^6.0.1"
+    postcss-modules-extract-imports "^1.0.0"
+    postcss-modules-local-by-default "^1.0.1"
+    postcss-modules-resolve-imports "^1.3.0"
+    postcss-modules-scope "^1.0.0"
+    postcss-modules-values "^1.1.1"
+    seekout "^1.0.1"
+
 css-select@~1.2.0:
   version "1.2.0"
   resolved "http://registry.npm.release.ctripcorp.com/css-select/download/css-select-1.2.0.tgz#2b3a110539c5355f1cd8d314623e870b121ec858"
@@ -4274,7 +4318,7 @@ file-entry-cache@^2.0.0:
     flat-cache "^1.2.1"
     object-assign "^4.0.1"
 
-file-loader@^1.1.11, file-loader@^1.1.5:
+file-loader@^1.1.11:
   version "1.1.11"
   resolved "http://registry.npm.release.ctripcorp.com/file-loader/download/file-loader-1.1.11.tgz#6fe886449b0f2a936e43cabaac0cdbfb369506f8"
   dependencies:
@@ -4441,6 +4485,12 @@ follow-redirects@^1.0.0:
   resolved "http://registry.npm.release.ctripcorp.com/follow-redirects/download/follow-redirects-1.5.0.tgz#234f49cf770b7f35b40e790f636ceba0c3a0ab77"
   dependencies:
     debug "^3.1.0"
+
+for-each@^0.3.2:
+  version "0.3.3"
+  resolved "http://registry.npm.release.ctripcorp.com/for-each/download/for-each-0.3.3.tgz#69b447e88a0a5d32c3e7084f3f1710034b21376e"
+  dependencies:
+    is-callable "^1.1.3"
 
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
@@ -4654,6 +4704,12 @@ generate-object-property@^1.1.0:
   dependencies:
     is-property "^1.0.0"
 
+generic-names@^1.0.1:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/generic-names/-/generic-names-1.0.3.tgz#2d786a121aee508876796939e8e3bff836c20917"
+  dependencies:
+    loader-utils "^0.2.16"
+
 get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "http://registry.npm.release.ctripcorp.com/get-caller-file/download/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
@@ -4792,7 +4848,7 @@ global-dirs@^0.1.0:
   dependencies:
     ini "^1.3.4"
 
-global@^4.3.0, global@~4.3.0:
+global@4.3.2, global@^4.3.0, global@^4.3.1, global@^4.3.2, global@~4.3.0:
   version "4.3.2"
   resolved "http://registry.npm.release.ctripcorp.com/global/download/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
   dependencies:
@@ -5256,15 +5312,21 @@ iconv-lite@0.4.23, iconv-lite@^0.4.17, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
-icss-replace-symbols@^1.1.0:
+icss-replace-symbols@^1.0.2, icss-replace-symbols@^1.1.0:
   version "1.1.0"
-  resolved "http://registry.npm.release.ctripcorp.com/icss-replace-symbols/download/icss-replace-symbols-1.1.0.tgz#06ea6f83679a7749e386cfe1fe812ae5db223ded"
+  resolved "https://registry.yarnpkg.com/icss-replace-symbols/-/icss-replace-symbols-1.1.0.tgz#06ea6f83679a7749e386cfe1fe812ae5db223ded"
 
 icss-utils@^2.1.0:
   version "2.1.0"
   resolved "http://registry.npm.release.ctripcorp.com/icss-utils/download/icss-utils-2.1.0.tgz#83f0a0ec378bf3246178b6c2ad9136f135b1c962"
   dependencies:
     postcss "^6.0.1"
+
+icss-utils@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/icss-utils/-/icss-utils-3.0.1.tgz#ee70d3ae8cac38c6be5ed91e851b27eed343ad0f"
+  dependencies:
+    postcss "^6.0.2"
 
 ieee754@^1.1.11, ieee754@^1.1.4:
   version "1.1.12"
@@ -5332,6 +5394,10 @@ indexes-of@^1.0.1:
 indexof@0.0.1:
   version "0.0.1"
   resolved "http://registry.npm.release.ctripcorp.com/indexof/download/indexof-0.0.1.tgz#82dc336d232b9062179d05ab3293a66059fd435d"
+
+individual@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.release.ctripcorp.com/individual/download/individual-2.0.0.tgz#833b097dad23294e76117a98fb38e0d9ad61bb97"
 
 inflection@~1.12.0:
   version "1.12.0"
@@ -6338,6 +6404,15 @@ loader-utils@1.1.0, loader-utils@^1.0.0, loader-utils@^1.0.2, loader-utils@^1.1.
     emojis-list "^2.0.0"
     json5 "^0.5.0"
 
+loader-utils@^0.2.16:
+  version "0.2.17"
+  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-0.2.17.tgz#f86e6374d43205a6e6c60e9196f17c0299bfb348"
+  dependencies:
+    big.js "^3.1.3"
+    emojis-list "^2.0.0"
+    json5 "^0.5.0"
+    object-assign "^4.0.1"
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.release.ctripcorp.com/locate-path/download/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -6515,6 +6590,10 @@ lru-cache@^4.0.1, lru-cache@^4.1.1, lru-cache@^4.1.2:
 lz-string@^1.4.4:
   version "1.4.4"
   resolved "http://registry.npm.release.ctripcorp.com/lz-string/download/lz-string-1.4.4.tgz#c0d8eaf36059f705796e1e344811cf4c498d3a26"
+
+m3u8-parser@4.2.0:
+  version "4.2.0"
+  resolved "http://registry.npm.release.ctripcorp.com/m3u8-parser/download/m3u8-parser-4.2.0.tgz#c8e0785fd17f741f4408b49466889274a9e36447"
 
 mailcomposer@4.0.1:
   version "4.0.1"
@@ -6915,6 +6994,13 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
+mpd-parser@0.6.1:
+  version "0.6.1"
+  resolved "http://registry.npm.release.ctripcorp.com/mpd-parser/download/mpd-parser-0.6.1.tgz#27e7aafe075817846ce55406ac03711df1ce0eb7"
+  dependencies:
+    global "^4.3.0"
+    url-toolkit "^2.1.1"
+
 ms@0.7.1:
   version "0.7.1"
   resolved "http://registry.npm.release.ctripcorp.com/ms/download/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -6930,6 +7016,10 @@ ms@2.1.1:
 mute-stream@0.0.7:
   version "0.0.7"
   resolved "http://registry.npm.release.ctripcorp.com/mute-stream/download/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
+
+mux.js@4.5.0:
+  version "4.5.0"
+  resolved "http://registry.npm.release.ctripcorp.com/mux.js/download/mux.js-4.5.0.tgz#25bcb86c3f024cebbad8e82002f3aae433e23d18"
 
 mz@2.7.0, mz@^2.3.1, mz@^2.6.0:
   version "2.7.0"
@@ -7579,6 +7669,13 @@ parse-glob@^3.0.4:
     is-extglob "^1.0.0"
     is-glob "^2.0.0"
 
+parse-headers@^2.0.0:
+  version "2.0.1"
+  resolved "http://registry.npm.release.ctripcorp.com/parse-headers/download/parse-headers-2.0.1.tgz#6ae83a7aa25a9d9b700acc28698cd1f1ed7e9536"
+  dependencies:
+    for-each "^0.3.2"
+    trim "0.0.1"
+
 parse-json@^2.2.0:
   version "2.2.0"
   resolved "http://registry.npm.release.ctripcorp.com/parse-json/download/parse-json-2.2.0.tgz#f480f40434ef80741f8469099f8dea18f55a4dc9"
@@ -7750,6 +7847,10 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "http://registry.npm.release.ctripcorp.com/pinkie/download/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
+pkcs7@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.release.ctripcorp.com/pkcs7/download/pkcs7-1.0.2.tgz#b6dba527528c2942bfc122ce2dafcdb5e59074e7"
+
 pkg-dir@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.release.ctripcorp.com/pkg-dir/download/pkg-dir-1.0.0.tgz#7a4b508a8d5bb2d629d447056ff4e9c9314cf3d4"
@@ -7916,29 +8017,43 @@ postcss-minify-selectors@^2.0.4:
     postcss "^5.0.14"
     postcss-selector-parser "^2.0.0"
 
+postcss-modules-extract-imports@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-modules-extract-imports/-/postcss-modules-extract-imports-1.1.0.tgz#b614c9720be6816eaee35fb3a5faa1dba6a05ddb"
+  dependencies:
+    postcss "^6.0.1"
+
 postcss-modules-extract-imports@^1.2.0:
   version "1.2.0"
   resolved "http://registry.npm.release.ctripcorp.com/postcss-modules-extract-imports/download/postcss-modules-extract-imports-1.2.0.tgz#66140ecece38ef06bf0d3e355d69bf59d141ea85"
   dependencies:
     postcss "^6.0.1"
 
-postcss-modules-local-by-default@^1.2.0:
+postcss-modules-local-by-default@^1.0.1, postcss-modules-local-by-default@^1.2.0:
   version "1.2.0"
-  resolved "http://registry.npm.release.ctripcorp.com/postcss-modules-local-by-default/download/postcss-modules-local-by-default-1.2.0.tgz#f7d80c398c5a393fa7964466bd19500a7d61c069"
+  resolved "https://registry.yarnpkg.com/postcss-modules-local-by-default/-/postcss-modules-local-by-default-1.2.0.tgz#f7d80c398c5a393fa7964466bd19500a7d61c069"
   dependencies:
     css-selector-tokenizer "^0.7.0"
     postcss "^6.0.1"
 
-postcss-modules-scope@^1.1.0:
-  version "1.1.0"
-  resolved "http://registry.npm.release.ctripcorp.com/postcss-modules-scope/download/postcss-modules-scope-1.1.0.tgz#d6ea64994c79f97b62a72b426fbe6056a194bb90"
-  dependencies:
-    css-selector-tokenizer "^0.7.0"
-    postcss "^6.0.1"
-
-postcss-modules-values@^1.3.0:
+postcss-modules-resolve-imports@^1.3.0:
   version "1.3.0"
-  resolved "http://registry.npm.release.ctripcorp.com/postcss-modules-values/download/postcss-modules-values-1.3.0.tgz#ecffa9d7e192518389f42ad0e83f72aec456ea20"
+  resolved "https://registry.yarnpkg.com/postcss-modules-resolve-imports/-/postcss-modules-resolve-imports-1.3.0.tgz#398d3000b95ae969420cdf4cd83fa8067f1c5eae"
+  dependencies:
+    css-selector-tokenizer "^0.7.0"
+    icss-utils "^3.0.1"
+    minimist "^1.2.0"
+
+postcss-modules-scope@^1.0.0, postcss-modules-scope@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-modules-scope/-/postcss-modules-scope-1.1.0.tgz#d6ea64994c79f97b62a72b426fbe6056a194bb90"
+  dependencies:
+    css-selector-tokenizer "^0.7.0"
+    postcss "^6.0.1"
+
+postcss-modules-values@^1.1.1, postcss-modules-values@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/postcss-modules-values/-/postcss-modules-values-1.3.0.tgz#ecffa9d7e192518389f42ad0e83f72aec456ea20"
   dependencies:
     icss-replace-symbols "^1.1.0"
     postcss "^6.0.1"
@@ -8035,6 +8150,14 @@ postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0
 postcss@^6.0.1, postcss@^6.0.16, postcss@^6.0.22:
   version "6.0.22"
   resolved "http://registry.npm.release.ctripcorp.com/postcss/download/postcss-6.0.22.tgz#e23b78314905c3b90cbd61702121e7a78848f2a3"
+  dependencies:
+    chalk "^2.4.1"
+    source-map "^0.6.1"
+    supports-color "^5.4.0"
+
+postcss@^6.0.2:
+  version "6.0.23"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.23.tgz#61c82cc328ac60e677645f979054eb98bc0e3324"
   dependencies:
     chalk "^2.4.1"
     source-map "^0.6.1"
@@ -9266,6 +9389,12 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
+rust-result@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.release.ctripcorp.com/rust-result/download/rust-result-1.0.0.tgz#34c75b2e6dc39fe5875e5bdec85b5e0f91536f72"
+  dependencies:
+    individual "^2.0.0"
+
 rx-lite-aggregates@^4.0.8:
   version "4.0.8"
   resolved "http://registry.npm.release.ctripcorp.com/rx-lite-aggregates/download/rx-lite-aggregates-4.0.8.tgz#753b87a89a11c95467c4ac1626c4efc4e05c67be"
@@ -9283,6 +9412,12 @@ safe-buffer@5.1.1:
 safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "http://registry.npm.release.ctripcorp.com/safe-buffer/download/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
+
+safe-json-parse@4.0.0:
+  version "4.0.0"
+  resolved "http://registry.npm.release.ctripcorp.com/safe-json-parse/download/safe-json-parse-4.0.0.tgz#7c0f578cfccd12d33a71c0e05413e2eca171eaac"
+  dependencies:
+    rust-result "^1.0.0"
 
 safe-regex@^1.1.0:
   version "1.1.0"
@@ -9318,6 +9453,10 @@ scroll@^2.0.3:
 section-iterator@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.release.ctripcorp.com/section-iterator/download/section-iterator-2.0.0.tgz#bf444d7afeeb94ad43c39ad2fb26151627ccba2a"
+
+seekout@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/seekout/-/seekout-1.0.2.tgz#09ba9f1bd5b46fbb134718eb19a68382cbb1b9c9"
 
 select@^1.1.2:
   version "1.1.2"
@@ -10280,6 +10419,10 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.release.ctripcorp.com/trim-right/download/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
 
+trim@0.0.1:
+  version "0.0.1"
+  resolved "http://registry.npm.release.ctripcorp.com/trim/download/trim-0.0.1.tgz#5858547f6b290757ee95cccc666fb50084c460dd"
+
 tryer@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.release.ctripcorp.com/tryer/download/tryer-1.0.0.tgz#027b69fa823225e551cace3ef03b11f6ab37c1d7"
@@ -10287,6 +10430,10 @@ tryer@^1.0.0:
 tslib@^1.9.0:
   version "1.9.2"
   resolved "http://registry.npm.release.ctripcorp.com/tslib/download/tslib-1.9.2.tgz#8be0cc9a1f6dc7727c38deb16c2ebd1a2892988e"
+
+tsml@1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.release.ctripcorp.com/tsml/download/tsml-1.0.1.tgz#89f8218b9d9e257f47d7f6b56d01c5a4d2c68fc3"
 
 tsscmp@~1.0.0:
   version "1.0.5"
@@ -10561,6 +10708,10 @@ url-to-options@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.release.ctripcorp.com/url-to-options/download/url-to-options-1.0.1.tgz#1505a03a289a48cbd7a434efbaeec5055f5633a9"
 
+url-toolkit@^2.1.1, url-toolkit@^2.1.3:
+  version "2.1.4"
+  resolved "http://registry.npm.release.ctripcorp.com/url-toolkit/download/url-toolkit-2.1.4.tgz#e0dac60e5fdd50b8ac984307699e8b72439b3fd3"
+
 url@0.11.0, url@^0.11.0:
   version "0.11.0"
   resolved "http://registry.npm.release.ctripcorp.com/url/download/url-0.11.0.tgz#3838e97cfc60521eb73c525a8e55bfdd9e2e28f1"
@@ -10672,6 +10823,29 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
+
+"video.js@^6.8.0 || ^7.0.0", video.js@^7.0.5:
+  version "7.0.5"
+  resolved "http://registry.npm.release.ctripcorp.com/video.js/download/video.js-7.0.5.tgz#d4eda7963e869799e6afd26e225523d3781b49b8"
+  dependencies:
+    "@videojs/http-streaming" "^1.0.2"
+    babel-runtime "^6.9.2"
+    global "4.3.2"
+    safe-json-parse "4.0.0"
+    tsml "1.0.1"
+    videojs-font "3.0.0"
+    videojs-vtt.js "0.14.1"
+    xhr "2.4.0"
+
+videojs-font@3.0.0:
+  version "3.0.0"
+  resolved "http://registry.npm.release.ctripcorp.com/videojs-font/download/videojs-font-3.0.0.tgz#90eafddcf26b407448c833523f5ca4ad8d5cc1af"
+
+videojs-vtt.js@0.14.1:
+  version "0.14.1"
+  resolved "http://registry.npm.release.ctripcorp.com/videojs-vtt.js/download/videojs-vtt.js-0.14.1.tgz#da583eb1fc9c81c826a9432b706040e8dea49911"
+  dependencies:
+    global "^4.3.1"
 
 viz-annotation@0.0.1-3:
   version "0.0.1-3"
@@ -11159,6 +11333,15 @@ ws@~3.3.1:
 xdg-basedir@^3.0.0:
   version "3.0.0"
   resolved "http://registry.npm.release.ctripcorp.com/xdg-basedir/download/xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
+
+xhr@2.4.0:
+  version "2.4.0"
+  resolved "http://registry.npm.release.ctripcorp.com/xhr/download/xhr-2.4.0.tgz#e16e66a45f869861eeefab416d5eff722dc40993"
+  dependencies:
+    global "~4.3.0"
+    is-function "^1.0.1"
+    parse-headers "^2.0.0"
+    xtend "^4.0.0"
 
 xml-name-validator@^3.0.0:
   version "3.0.0"

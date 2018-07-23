@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MenuList from '../MenuList';
@@ -38,18 +36,16 @@ class CascadeOption extends Component {
   }
 
   toMenuItem = (data, classes) => {
-    let {
-      mapper
-    } = this.props;
+    let { mapper } = this.props;
 
     let list = data.map((item, index) => {
-      let label = item[mapper.label || 'label'] 
-      let value = item[mapper.value || 'value']
+      let label = item[mapper.label || 'label'];
+      let value = item[mapper.value || 'value'];
       if (typeof mapper.label === 'function') {
-        label = mapper.label(item, index)
+        label = mapper.label(item, index);
       }
       if (typeof mapper.value === 'function') {
-        value = mapper.value(item, index)
+        value = mapper.value(item, index);
       }
       let hasSub = item.subItems && item.subItems.length > 0;
       let checked = this.props.checkedIndex === index;

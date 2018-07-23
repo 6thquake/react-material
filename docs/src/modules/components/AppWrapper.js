@@ -63,10 +63,7 @@ class AppWrapper extends React.Component {
       jssStyles.parentNode.removeChild(jssStyles);
     }
 
-    if (
-      'serviceWorker' in navigator &&
-      process.env.NODE_ENV === 'production'
-    ) {
+    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
       navigator.serviceWorker.register('/sw.js');
     }
   }

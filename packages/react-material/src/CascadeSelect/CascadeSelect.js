@@ -121,36 +121,35 @@ class CascadeSelect extends React.Component {
   };
   //
   setTextFieldValue = () => {
-    const {mapper} = this.props
-    let selections = this.series.map((item, index)=> {
-      let {label, value} = item
+    const { mapper } = this.props;
+    let selections = this.series.map((item, index) => {
+      let { label, value } = item;
       if (typeof mapper.label === 'function') {
-        label = mapper.label(item, index)
+        label = mapper.label(item, index);
       }
-      return {value, label}
-    })
-    let node = this.renderSelections(selections)
+      return { value, label };
+    });
+    let node = this.renderSelections(selections);
     this.setState({
       textFieldValue: node,
     });
   };
 
-  renderSelections = (list) => {
-    const {
-      separator,
-      renderValue
-    } = this.props
-    if (renderValue){
-      return renderValue(list)
+  renderSelections = list => {
+    const { separator, renderValue } = this.props;
+    if (renderValue) {
+      return renderValue(list);
     }
-    return list.map(item => {
-      return item.label
-    }).join(` ${separator} `)
-  }
+    return list
+      .map(item => {
+        return item.label;
+      })
+      .join(` ${separator} `);
+  };
   renderMenuItems() {
     let levels = [0, 1, 2, 3, 4];
 
-    let { children, mapper, } = this.props;
+    let { children, mapper } = this.props;
     let list = levels.map((item, index) => {
       return (
         <CascadeOption
@@ -239,23 +238,17 @@ CascadeSelect.propTypes = {
    * render maps,
    */
   mapper: PropTypes.shape({
-    label: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ])
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }),
- /**
-  * Render the selected item.
-  *
-  * @param {array} list The selected items `array`.
-  * @returns {String}
-  */
+  /**
+   * Render the selected item.
+   *
+   * @param {array} list The selected items `array`.
+   * @returns {String}
+   */
   renderValue: PropTypes.func,
-  
+
   /**
    * The width of cascader
    */
@@ -264,9 +257,9 @@ CascadeSelect.propTypes = {
 CascadeSelect.defaultProps = {
   mapper: {
     label: 'label',
-    value: 'value'
+    value: 'value',
   },
   width: 150,
-  separator: '/'
+  separator: '/',
 };
 export default withStyles(styles, { name: 'RMCascadeSelect' })(CascadeSelect);

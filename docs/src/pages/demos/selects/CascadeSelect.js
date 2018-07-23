@@ -137,17 +137,17 @@ class App extends Component {
 
   render() {
     let mapper = {
-      label: (item) => ('@ ' + item.label)
-    } 
+      label: item => '@ ' + item.label,
+    };
     return (
       <div>
         <CascadeSelect
           onChange={this.handleChange}
           label={'地域'}
           options={this.state.cdata}
-          separator='>'
+          separator=">"
           width={400}
-          mapper = {mapper}
+          mapper={mapper}
         />
       </div>
     );

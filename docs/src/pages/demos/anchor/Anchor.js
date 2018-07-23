@@ -56,7 +56,7 @@ class App extends React.Component {
       margin: 100,
       padding: 50,
     };
-    
+
     const links = [
       {
         value: '#a1',
@@ -137,7 +137,7 @@ class App extends React.Component {
         label: '#6',
       },
     ];
-  
+
     return (
       <div>
         <FormControl component="fieldset">

@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { fade } from '../styles/colorManipulator';
 
 export const styles = theme => ({
-
   verticalAnchorRoot: {
     position: 'relative',
     display: 'flex',
@@ -88,7 +87,6 @@ export const styles = theme => ({
   horizontalAnchorRoot: {
     display: 'flex',
   },
-
 });
 
 const throttling = (fn, wait, maxTimelong) => {
@@ -253,7 +251,7 @@ class Anchor extends React.Component {
   renderItem = (link, index, children) => {
     let { classes, hash } = this.props;
     let selected = this.state.links[link.value];
-    let mergeClassName = classNames( classes.link,{[classes.veLinkActive]: selected})
+    let mergeClassName = classNames(classes.link, { [classes.veLinkActive]: selected });
     const prop = {};
     if (!hash) {
       prop.href = link.value;
@@ -289,25 +287,25 @@ class Anchor extends React.Component {
     let { classes, hash } = this.props;
 
     let result = links.map((link, index) => {
-    let selected = this.state.links[link.value];
-    let mergeClassName = classNames(classes.hoLink, {
-      [classes.hoLinkActive]: selected
-    })
-    const prop = {};
-    if (!hash) {
-      prop.href = link.value;
-    }
-    return (
-      <a
-        key={link.value}
-        name={link.value}
-        className={mergeClassName}
-        onClick={e => this.scrollToAnchor(link.value)}
-        {...prop}
-      >
-        {link.label}
-      </a>
-    );
+      let selected = this.state.links[link.value];
+      let mergeClassName = classNames(classes.hoLink, {
+        [classes.hoLinkActive]: selected,
+      });
+      const prop = {};
+      if (!hash) {
+        prop.href = link.value;
+      }
+      return (
+        <a
+          key={link.value}
+          name={link.value}
+          className={mergeClassName}
+          onClick={e => this.scrollToAnchor(link.value)}
+          {...prop}
+        >
+          {link.label}
+        </a>
+      );
     });
     return (
       <div
@@ -321,11 +319,11 @@ class Anchor extends React.Component {
     );
   };
 
-  scrollToAnchor = (id, index)=> {
+  scrollToAnchor = (id, index) => {
     if (this.props.hash) {
       return scrollToAnchor(id);
     }
-    console.log('scrollToAnchor')
+    console.log('scrollToAnchor');
   };
   setRef = e => {
     this.wrapper = e;
@@ -383,22 +381,20 @@ Anchor.propTypes = {
    *  value: PropTypes.string,
    *  children: PropTypes.array,
    * })).isRequired,
-   * 
+   *
    */
-  
+
   links: PropTypes.array.isRequired,
-  
+
   /**
    * Callback fired when the active link changed
    */
   onChange: PropTypes.func,
-  
-  
 };
 
 Anchor.defaultProps = {
   horizontal: false,
-  hash: false
+  hash: false,
 };
 
 export default withStyles(styles, { name: 'RMAnchor' })(Anchor);

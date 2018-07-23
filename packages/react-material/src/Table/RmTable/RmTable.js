@@ -403,7 +403,7 @@ RmTable.propTypes = {
    * export config
    */
   exportProps: PropTypes.shape({
-    type: PropTypes.oneOf(['csv'])
+    type: PropTypes.oneOf(['csv']),
   }),
   /**
    * Properties applied to the Search Component

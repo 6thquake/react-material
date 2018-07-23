@@ -42,8 +42,8 @@ class Bubble extends React.Component {
 
   render() {
     const { direction, floated, content, triSize, bgColor, classes } = this.props;
-    const halfSize = typeof(triSize) === "undefined" ? 6 : Number(triSize) / 2;
-    const transDis = typeof(triSize) === "undefined" ? 22: Number(triSize) + 10;
+    const halfSize = typeof triSize === 'undefined' ? 6 : Number(triSize) / 2;
+    const transDis = typeof triSize === 'undefined' ? 22 : Number(triSize) + 10;
 
     const recClassNames = classNames(classes.recStyle, classes.customization);
     const triClassNames = classNames(classes.triStyle);
@@ -61,16 +61,16 @@ class Bubble extends React.Component {
           <div
             className={triClassNames}
             style={{
-              borderRightWidth: (typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              borderRightWidth: (typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               borderRightStyle: 'solid',
-              borderRightColor: typeof(bgColor) === "undefined" ? 'white' : bgColor,
+              borderRightColor: typeof bgColor === 'undefined' ? 'white' : bgColor,
               borderTopWidth: halfSize + 'px',
               borderTopStyle: 'solid',
               borderTopColor: 'transparent',
               borderBottomWidth: halfSize + 'px',
               borderBottomStyle: 'solid',
               borderBottomColor: 'transparent',
-              left: -(typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              left: -(typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               position: 'absolute',
               top: '50%',
               transform: 'translate(0, -50%)',
@@ -79,34 +79,37 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div className={recClassNames} style={{
-            backgroundColor: typeof(bgColor) === "undefined" ? 'white' : bgColor,
-            position: 'absolute',
-            transform: 'translate(' + transDis + 'px, -50%)',
-            transform: 'translate(0, -50%)',}}>
+          <div
+            className={recClassNames}
+            style={{
+              backgroundColor: typeof bgColor === 'undefined' ? 'white' : bgColor,
+              position: 'absolute',
+              transform: 'translate(' + transDis + 'px, -50%)',
+              transform: 'translate(0, -50%)',
+            }}
+          >
             {triResult}
             {content}
           </div>
         );
-      }
+      } else if (direction == 'right') {
       /*
       * Right sided arrow
       */
-      else if (direction == "right") {
         triResult = (
           <div
             className={triClassNames}
             style={{
-              borderLeftWidth: (typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              borderLeftWidth: (typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               borderLeftStyle: 'solid',
-              borderLeftColor: typeof(bgColor) === "undefined" ? 'green' : bgColor,
+              borderLeftColor: typeof bgColor === 'undefined' ? 'green' : bgColor,
               borderTopWidth: halfSize + 'px',
               borderTopStyle: 'solid',
               borderTopColor: 'transparent',
               borderBottomWidth: halfSize + 'px',
               borderBottomStyle: 'solid',
               borderBottomColor: 'transparent',
-              right: -(typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              right: -(typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               position: 'absolute',
               top: '50%',
               transform: 'translate(0, -50%)',
@@ -115,33 +118,36 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div className={recClassNames} style={{
-            backgroundColor: typeof(bgColor) === "undefined" ? 'green' : bgColor,
-            position: 'absolute',
-            transform: 'translate(0, -50%)', }}>
+          <div
+            className={recClassNames}
+            style={{
+              backgroundColor: typeof bgColor === 'undefined' ? 'green' : bgColor,
+              position: 'absolute',
+              transform: 'translate(0, -50%)',
+            }}
+          >
             {triResult}
             {content}
           </div>
         );
-      }
+      } else if (direction == 'top') {
       /*
       * Bottom sided arrow
       */
-      else if (direction == "top") {
         triResult = (
           <div
             className={triClassNames}
             style={{
-              borderTopWidth: (typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              borderTopWidth: (typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               borderTopStyle: 'solid',
-              borderTopColor: typeof(bgColor) === "undefined" ? 'cyan' : bgColor,
+              borderTopColor: typeof bgColor === 'undefined' ? 'cyan' : bgColor,
               borderLeftWidth: halfSize + 'px',
               borderLeftStyle: 'solid',
               borderLeftColor: 'transparent',
               borderRightWidth: halfSize + 'px',
               borderRightStyle: 'solid',
               borderRightColor: 'transparent',
-              bottom: -(typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              bottom: -(typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               position: 'absolute',
               left: '50%',
               transform: 'translate(-50%, 0)',
@@ -150,33 +156,36 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div className={recClassNames} style={{
-            backgroundColor: typeof(bgColor) === "undefined" ? 'cyan' : bgColor,
-            position: 'absolute',
-            transform: 'translate(0, -150%)', }}>
+          <div
+            className={recClassNames}
+            style={{
+              backgroundColor: typeof bgColor === 'undefined' ? 'cyan' : bgColor,
+              position: 'absolute',
+              transform: 'translate(0, -150%)',
+            }}
+          >
             {triResult}
             {content}
           </div>
         );
-      }
+      } else if (direction == 'bottom') {
       /*
       * Top sided arrow
       */
-      else if (direction == "bottom") {
         triResult = (
           <div
             className={triClassNames}
             style={{
-              borderBottomWidth: (typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              borderBottomWidth: (typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               borderBottomStyle: 'solid',
-              borderBottomColor: typeof(bgColor) === "undefined" ? 'blue' : bgColor,
+              borderBottomColor: typeof bgColor === 'undefined' ? 'blue' : bgColor,
               borderLeftWidth: halfSize + 'px',
               borderLeftStyle: 'solid',
               borderLeftColor: 'transparent',
               borderRightWidth: halfSize + 'px',
               borderRightStyle: 'solid',
               borderRightColor: 'transparent',
-              top: -(typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              top: -(typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               position: 'absolute',
               left: '50%',
               transform: 'translate(-50%, 0)',
@@ -185,20 +194,23 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div className={recClassNames} style={{
-            backgroundColor: typeof(bgColor) === "undefined" ? 'blue' : bgColor,
-            position: 'absolute',
-            transform: 'translate(0, ' + transDis + 'px)', }}>
+          <div
+            className={recClassNames}
+            style={{
+              backgroundColor: typeof bgColor === 'undefined' ? 'blue' : bgColor,
+              position: 'absolute',
+              transform: 'translate(0, ' + transDis + 'px)',
+            }}
+          >
             {triResult}
             {content}
           </div>
         );
       }
-    }
+    } else {
     /*
     * Non-floated bubble
     */
-    else {
       /*
       * Left sided arrow
       */
@@ -207,9 +219,9 @@ class Bubble extends React.Component {
           <div
             className={triClassNames}
             style={{
-              borderRightWidth: (typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              borderRightWidth: (typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               borderRightStyle: 'solid',
-              borderRightColor: typeof(bgColor) === "undefined" ? 'white' : bgColor,
+              borderRightColor: typeof bgColor === 'undefined' ? 'white' : bgColor,
               borderTopWidth: halfSize + 'px',
               borderTopStyle: 'solid',
               borderTopColor: 'transparent',
@@ -221,25 +233,34 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: triSize + 'px'}}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginLeft: triSize + 'px',
+            }}
+          >
             {triResult}
-            <div className={recClassNames} style={{ backgroundColor: typeof(bgColor) === "undefined" ? 'white' : bgColor }}>
+            <div
+              className={recClassNames}
+              style={{ backgroundColor: typeof bgColor === 'undefined' ? 'white' : bgColor }}
+            >
               {content}
             </div>
           </div>
         );
-      }
+      } else if (direction == 'right') {
       /*
       * Right sided arrow
       */
-      else if (direction == 'right') {
         triResult = (
           <div
             className={triClassNames}
             style={{
-              borderLeftWidth: (typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              borderLeftWidth: (typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               borderLeftStyle: 'solid',
-              borderLeftColor: typeof(bgColor) === "undefined" ? 'green' : bgColor,
+              borderLeftColor: typeof bgColor === 'undefined' ? 'green' : bgColor,
               borderTopWidth: halfSize + 'px',
               borderTopStyle: 'solid',
               borderTopColor: 'transparent',
@@ -251,25 +272,34 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: triSize + 'px'}}>
-            <div className={recClassNames} style={{ backgroundColor: typeof(bgColor) === "undefined" ? 'green' : bgColor }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginRight: triSize + 'px',
+            }}
+          >
+            <div
+              className={recClassNames}
+              style={{ backgroundColor: typeof bgColor === 'undefined' ? 'green' : bgColor }}
+            >
               {content}
             </div>
             {triResult}
           </div>
         );
-      }
+      } else if (direction == 'top') {
       /*
       * Bottom sided arrow
       */
-      else if (direction == 'top') {
         triResult = (
           <div
             className={triClassNames}
             style={{
-              borderTopWidth: (typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              borderTopWidth: (typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               borderTopStyle: 'solid',
-              borderTopColor: typeof(bgColor) === "undefined" ? 'cyan' : bgColor,
+              borderTopColor: typeof bgColor === 'undefined' ? 'cyan' : bgColor,
               borderLeftWidth: halfSize + 'px',
               borderLeftStyle: 'solid',
               borderLeftColor: 'transparent',
@@ -281,25 +311,35 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: triSize + 'px'}}>
-            <div className={recClassNames} style={{ backgroundColor: typeof(bgColor) === "undefined" ? 'cyan' : bgColor }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: triSize + 'px',
+            }}
+          >
+            <div
+              className={recClassNames}
+              style={{ backgroundColor: typeof bgColor === 'undefined' ? 'cyan' : bgColor }}
+            >
               {content}
             </div>
             {triResult}
           </div>
         );
-      }
+      } else if (direction == 'bottom') {
       /*
       * Top sided arrow
       */
-      else if (direction == 'bottom') {
         triResult = (
           <div
             className={triClassNames}
             style={{
-              borderBottomWidth: (typeof(triSize) === "undefined" ? '12' : triSize) + 'px',
+              borderBottomWidth: (typeof triSize === 'undefined' ? '12' : triSize) + 'px',
               borderBottomStyle: 'solid',
-              borderBottomColor: typeof(bgColor) === "undefined" ? 'blue' : bgColor,
+              borderBottomColor: typeof bgColor === 'undefined' ? 'blue' : bgColor,
               borderLeftWidth: halfSize + 'px',
               borderLeftStyle: 'solid',
               borderLeftColor: 'transparent',
@@ -311,9 +351,20 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: triSize + 'px'}}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: triSize + 'px',
+            }}
+          >
             {triResult}
-            <div className={recClassNames} style={{ backgroundColor: typeof(bgColor) === "undefined" ? 'blue' : bgColor }}>
+            <div
+              className={recClassNames}
+              style={{ backgroundColor: typeof bgColor === 'undefined' ? 'blue' : bgColor }}
+            >
               {content}
             </div>
           </div>

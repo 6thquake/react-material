@@ -64,9 +64,9 @@ class AutoComplete extends Component {
      */
     pageConfig: PropTypes.object,
     /**
-     * PlaceHold
+     * placeholder
      */
-    placeHold: PropTypes.string,
+    placeholder: PropTypes.string,
     /**
      * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
      */
@@ -96,11 +96,8 @@ class AutoComplete extends Component {
       pageSize: 5,
       total: 0,
     },
-    placeHold: 'please input something',
+    placeholder: 'please input something',
     multiple: false,
-    onChange: function() {
-      console.log('need cb function');
-    },
     disabled: false,
   };
   constructor() {
@@ -213,7 +210,7 @@ class AutoComplete extends Component {
       pageConfig,
       pageChangeCb,
       classes,
-      placeHold,
+      placeholder,
       children,
       multiple,
       value,
@@ -331,7 +328,7 @@ class AutoComplete extends Component {
                     onDelete={this.handleDelete(item)}
                   />
                 )),
-                placeholder: value.length > 0 ? '' : placeHold,
+                placeholder: value.length > 0 ? '' : placeholder,
               }}
             />
           ) : (
@@ -340,7 +337,7 @@ class AutoComplete extends Component {
               className={classes.textarea}
               onChange={this.handleChange.bind(this)}
               value={inputValue}
-              placeholder={placeHold}
+              placeholder={placeholder}
             />
           )}
           {open ? (

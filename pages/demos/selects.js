@@ -15,11 +15,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/selects/AsyncSelect'), 'utf8')
 `,
         },
-        'pages/demos/selects/CustomSelect.js': {
-          js: require('docs/src/pages/demos/selects/CustomSelect').default,
+        'pages/demos/selects/FilterSelect.js': {
+          js: require('docs/src/pages/demos/selects/FilterSelect').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/CustomSelect'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/selects/FilterSelect'), 'utf8')
 `,
         },
         'pages/demos/selects/CascadeSelect.js': {

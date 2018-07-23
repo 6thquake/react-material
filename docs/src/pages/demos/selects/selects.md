@@ -1,16 +1,16 @@
 ---
 components: Select, Chip, AsyncSelect, CascadeSelect
 ---
-# Selects
-## Select with pagination、filter
-
-Select of dataSource
+# AsyncSelect
+Asynchronous select with pagination、filter
 
 {{"demo": "pages/demos/selects/AsyncSelect.js"}}
 
-Select of custom templete
+# SyncSelect
+Synchronize select with pagination、filter
 
-{{"demo": "pages/demos/selects/CustomSelect.js"}}
+{{"demo": "pages/demos/selects/FilterSelect.js"}}
+
 ## CascadeSelect
 
 Select items by Cascading

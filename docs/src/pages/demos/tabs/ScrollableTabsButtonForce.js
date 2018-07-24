@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import AppBar from 'react-material/AppBar';
-import Tabs from 'react-material/Tabs';
-import Tab from 'react-material/Tab';
+import { withStyles } from '@6thquake/react-material/styles';
+import AppBar from '@6thquake/react-material/AppBar';
+import Tabs from '@6thquake/react-material/Tabs';
+import Tab from '@6thquake/react-material/Tab';
 import PhoneIcon from '@material-ui/icons/Phone';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
@@ -11,7 +11,7 @@ import HelpIcon from '@material-ui/icons/Help';
 import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
-import Typography from 'react-material/Typography';
+import Typography from '@6thquake/react-material/Typography';
 
 function TabContainer(props) {
   return (

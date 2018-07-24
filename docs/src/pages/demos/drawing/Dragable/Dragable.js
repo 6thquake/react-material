@@ -7,8 +7,8 @@ import { DropTarget, DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import ItemTypes from './ItemTypes';
 import Box from './Box';
-import LineTo from 'react-material/Drawing/Line';
-import { Line } from 'react-material/Drawing/Line';
+import LineTo from '@6thquake/react-material/Drawing/Line';
+import { Line } from '@6thquake/react-material/Drawing/Line';
 import PubSub from 'pubsub-js';
 const styles = {
   width: 600,

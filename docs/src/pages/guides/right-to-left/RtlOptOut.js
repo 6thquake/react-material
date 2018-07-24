@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
+import { withStyles } from '@6thquake/react-material/styles';
 
 const styles = theme => ({
   root: {

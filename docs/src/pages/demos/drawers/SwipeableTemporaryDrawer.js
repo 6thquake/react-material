@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import SwipeableDrawer from 'react-material/SwipeableDrawer';
-import Button from 'react-material/Button';
-import List from 'react-material/List';
-import Divider from 'react-material/Divider';
+import { withStyles } from '@6thquake/react-material/styles';
+import SwipeableDrawer from '@6thquake/react-material/SwipeableDrawer';
+import Button from '@6thquake/react-material/Button';
+import List from '@6thquake/react-material/List';
+import Divider from '@6thquake/react-material/Divider';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const styles = {

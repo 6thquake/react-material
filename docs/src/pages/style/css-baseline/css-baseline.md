@@ -9,7 +9,7 @@ React-Material provides a `CssBaseline` component to kickstart an elegant, consi
 
 ```jsx
 import React from 'react';
-import CssBaseline from 'react-material/CssBaseline';
+import CssBaseline from '@6thquake/react-material/CssBaseline';
 
 function MyApp() {
   return (

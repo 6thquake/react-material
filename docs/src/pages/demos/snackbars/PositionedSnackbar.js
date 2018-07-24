@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from 'react-material/Button';
-import Snackbar from 'react-material/Snackbar';
+import Button from '@6thquake/react-material/Button';
+import Snackbar from '@6thquake/react-material/Snackbar';
 
 class PositionedSnackbar extends React.Component {
   state = {

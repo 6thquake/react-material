@@ -1,13 +1,13 @@
 import React from 'react';
-import Bubble from 'react-material/Bubble';
-import Button from 'react-material/Button';
-import FormControl from 'react-material/FormControl';
-import FormLabel from 'react-material/FormLabel';
-import FormControlLabel from 'react-material/FormControlLabel';
-import Radio from 'react-material/Radio';
-import RadioGroup from 'react-material/RadioGroup';
-import Grid from 'react-material/Grid';
-import { withStyles } from 'react-material/styles';
+import Bubble from '@6thquake/react-material/Bubble';
+import Button from '@6thquake/react-material/Button';
+import FormControl from '@6thquake/react-material/FormControl';
+import FormLabel from '@6thquake/react-material/FormLabel';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import Radio from '@6thquake/react-material/Radio';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
+import Grid from '@6thquake/react-material/Grid';
+import { withStyles } from '@6thquake/react-material/styles';
 
 /*
  * Left & Right sided rectangle styles that can be customized.

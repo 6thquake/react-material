@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Card from 'react-material/Card';
-import CardContent from 'react-material/CardContent';
-import CardMedia from 'react-material/CardContent';
-import IconButton from 'react-material/IconButton';
-import Typography from 'react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
+import Card from '@6thquake/react-material/Card';
+import CardContent from '@6thquake/react-material/CardContent';
+import CardMedia from '@6thquake/react-material/CardContent';
+import IconButton from '@6thquake/react-material/IconButton';
+import Typography from '@6thquake/react-material/Typography';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';

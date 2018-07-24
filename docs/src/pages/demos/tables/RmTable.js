@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Divider from 'react-material/Divider';
-import TableBody from 'react-material/TableBody';
-import TableCell from 'react-material/TableCell';
-import TableHead from 'react-material/TableHead';
-import TableRow from 'react-material/TableRow';
-import { RadioButton } from 'react-material/Radio';
-import RadioGroup from 'react-material/RadioGroup';
+import { withStyles } from '@6thquake/react-material/styles';
+import Divider from '@6thquake/react-material/Divider';
+import TableBody from '@6thquake/react-material/TableBody';
+import TableCell from '@6thquake/react-material/TableCell';
+import TableHead from '@6thquake/react-material/TableHead';
+import TableRow from '@6thquake/react-material/TableRow';
+import { RadioButton } from '@6thquake/react-material/Radio';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
 // import ScrollBar from ''
-import Paper from 'react-material/Paper';
-import RmTable from 'react-material/Table/RmTable';
+import Paper from '@6thquake/react-material/Paper';
+import RmTable from '@6thquake/react-material/Table/RmTable';
 // import { Divider } from 'rc-menu/lib';
 const styles = theme => ({
   root: {

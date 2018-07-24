@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import ButtonBase from 'react-material/ButtonBase';
-import Typography from 'react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
+import ButtonBase from '@6thquake/react-material/ButtonBase';
+import Typography from '@6thquake/react-material/Typography';
 
 const styles = theme => ({
   root: {

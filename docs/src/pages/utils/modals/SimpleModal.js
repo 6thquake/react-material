@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Typography from 'react-material/Typography';
-import Modal from 'react-material/Modal';
-import Button from 'react-material/Button';
+import { withStyles } from '@6thquake/react-material/styles';
+import Typography from '@6thquake/react-material/Typography';
+import Modal from '@6thquake/react-material/Modal';
+import Button from '@6thquake/react-material/Button';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;

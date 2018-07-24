@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Fade from 'react-material/Fade';
-import Button from 'react-material/Button';
-import { withStyles } from 'react-material/styles';
-import CircularProgress from 'react-material/CircularProgress';
-import Typography from 'react-material/Typography';
+import Fade from '@6thquake/react-material/Fade';
+import Button from '@6thquake/react-material/Button';
+import { withStyles } from '@6thquake/react-material/styles';
+import CircularProgress from '@6thquake/react-material/CircularProgress';
+import Typography from '@6thquake/react-material/Typography';
 
 const styles = theme => ({
   root: {

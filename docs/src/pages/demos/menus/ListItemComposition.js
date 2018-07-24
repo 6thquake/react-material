@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MenuList from 'react-material/MenuList';
-import MenuItem from 'react-material/MenuItem';
-import Paper from 'react-material/Paper';
-import { withStyles } from 'react-material/styles';
-import ListItemIcon from 'react-material/ListItemIcon';
-import ListItemText from 'react-material/ListItemText';
+import MenuList from '@6thquake/react-material/MenuList';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import Paper from '@6thquake/react-material/Paper';
+import { withStyles } from '@6thquake/react-material/styles';
+import ListItemIcon from '@6thquake/react-material/ListItemIcon';
+import ListItemText from '@6thquake/react-material/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';

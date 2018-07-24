@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import CardMedia from 'react-material/CardMedia';
-import Grid from 'react-material/Grid';
-import Paper from 'react-material/Paper';
-import Typography from 'react-material/Typography';
-import IconButton from 'react-material/IconButton';
+import { withStyles } from '@6thquake/react-material/styles';
+import CardMedia from '@6thquake/react-material/CardMedia';
+import Grid from '@6thquake/react-material/Grid';
+import Paper from '@6thquake/react-material/Paper';
+import Typography from '@6thquake/react-material/Typography';
+import IconButton from '@6thquake/react-material/IconButton';
 import Github from '@material-ui/docs/svgIcons/GitHub';
 import Twitter from '@material-ui/docs/svgIcons/Twitter';
 import Weibo from '../../../svgIcons/Weibo';

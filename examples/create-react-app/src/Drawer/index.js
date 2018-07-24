@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import List, { ListItem, ListItemText, ListItemIcon } from 'react-material/List';
-import { createMuiTheme } from 'react-material/styles';
-import Collapse from 'react-material/transitions/Collapse';
+import { withStyles } from '@6thquake/react-material/styles';
+import List, { ListItem, ListItemText, ListItemIcon } from '@6thquake/react-material/List';
+import { createMuiTheme } from '@6thquake/react-material/styles';
+import Collapse from '@6thquake/react-material/transitions/Collapse';
 import classNames from 'classnames';
 
 const theme = createMuiTheme();

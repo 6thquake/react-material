@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Card from 'react-material/Card';
-import CardActions from 'react-material/CardActions';
-import CardContent from 'react-material/CardContent';
-import CardMedia from 'react-material/CardMedia';
-import Button from 'react-material/Button';
-import Grid from 'react-material/Grid';
-import Typography from 'react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
+import Card from '@6thquake/react-material/Card';
+import CardActions from '@6thquake/react-material/CardActions';
+import CardContent from '@6thquake/react-material/CardContent';
+import CardMedia from '@6thquake/react-material/CardMedia';
+import Button from '@6thquake/react-material/Button';
+import Grid from '@6thquake/react-material/Grid';
+import Typography from '@6thquake/react-material/Typography';
 
 const styles = {
   card: {

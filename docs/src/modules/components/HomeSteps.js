@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Typography from 'react-material/Typography';
-import Grid from 'react-material/Grid';
-import Button from 'react-material/Button';
-import Divider from 'react-material/Divider';
+import { withStyles } from '@6thquake/react-material/styles';
+import Typography from '@6thquake/react-material/Typography';
+import Grid from '@6thquake/react-material/Grid';
+import Button from '@6thquake/react-material/Button';
+import Divider from '@6thquake/react-material/Divider';
 import FileDownloadIcon from 'docs/src/svgIcons/FileDownload';
 import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
 import WhatshotIcon from '@material-ui/icons/Whatshot';
@@ -77,7 +77,7 @@ function HomeSteps(props) {
             className={classes.markdownElement}
             text={`
   \`\`\`sh
-  $ npm install react-material@next
+  $ npm install @6thquake/react-material@next
   \`\`\`
                 `}
           />
@@ -116,7 +116,7 @@ function HomeSteps(props) {
             text={`
   \`\`\`jsx
   import React from 'react';
-  import Button from 'react-material/Button';
+  import Button from '@6thquake/react-material/Button';
 
   const App = () => (
     <Button variant="raised" color="primary">

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Input from 'react-material/Input';
-import InputLabel from 'react-material/InputLabel';
-import InputAdornment from 'react-material/InputAdornment';
-import FormControl from 'react-material/FormControl';
-import TextField from 'react-material/TextField';
-import Grid from 'react-material/Grid';
+import { withStyles } from '@6thquake/react-material/styles';
+import Input from '@6thquake/react-material/Input';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import InputAdornment from '@6thquake/react-material/InputAdornment';
+import FormControl from '@6thquake/react-material/FormControl';
+import TextField from '@6thquake/react-material/TextField';
+import Grid from '@6thquake/react-material/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 const styles = theme => ({

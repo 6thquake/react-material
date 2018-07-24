@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import NextLink from 'next/link';
-import { withStyles } from 'react-material/styles';
+import { withStyles } from '@6thquake/react-material/styles';
 
 const styles = theme => ({
   root: {

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import List from 'react-material/List';
-import ListItem from 'react-material/ListItem';
-import ListItemText from 'react-material/ListItemText';
-import Menu from 'react-material/Menu';
-import MenuItem from 'react-material/MenuItem';
+import { withStyles } from '@6thquake/react-material/styles';
+import List from '@6thquake/react-material/List';
+import ListItem from '@6thquake/react-material/ListItem';
+import ListItemText from '@6thquake/react-material/ListItemText';
+import Menu from '@6thquake/react-material/Menu';
+import MenuItem from '@6thquake/react-material/MenuItem';
 
 const styles = theme => ({
   root: {

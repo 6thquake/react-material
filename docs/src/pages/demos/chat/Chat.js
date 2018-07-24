@@ -1,7 +1,7 @@
 import React from 'react';
-import { renderStyle } from 'react-material/Chat';
-import Chat from 'react-material/Chat';
-import { withStyles } from 'react-material/styles';
+import { renderStyle } from '@6thquake/react-material/Chat';
+import Chat from '@6thquake/react-material/Chat';
+import { withStyles } from '@6thquake/react-material/styles';
 
 /*
  * Left & Right sided rectangle styles that can be customized.

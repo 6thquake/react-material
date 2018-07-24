@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Scrollbar from 'react-material/Scrollbar';
+import Scrollbar from '@6thquake/react-material/Scrollbar';
 
 class ShadowScrollbar extends Component {
   constructor(props, ...rest) {

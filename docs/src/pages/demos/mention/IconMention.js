@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Mention from 'react-material/Mention';
-import { withStyles } from 'react-material/styles';
-import MenuItem from 'react-material/MenuItem';
-import ListItemIcon from 'react-material/ListItemIcon';
+import Mention from '@6thquake/react-material/Mention';
+import { withStyles } from '@6thquake/react-material/styles';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import ListItemIcon from '@6thquake/react-material/ListItemIcon';
 import StarBorder from '@material-ui/icons/StarBorder';
-import ListItemText from 'react-material/ListItemText';
+import ListItemText from '@6thquake/react-material/ListItemText';
 const styles = theme => ({
   root: {
     flexGrow: 1,

@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Typography from 'react-material/Typography';
-import Input from 'react-material/Input';
-import TextField from 'react-material/TextField';
-import MenuItem from 'react-material/MenuItem';
+import { withStyles } from '@6thquake/react-material/styles';
+import Typography from '@6thquake/react-material/Typography';
+import Input from '@6thquake/react-material/Input';
+import TextField from '@6thquake/react-material/TextField';
+import MenuItem from '@6thquake/react-material/MenuItem';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import CancelIcon from '@material-ui/icons/Cancel';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ClearIcon from '@material-ui/icons/Clear';
-import Chip from 'react-material/Chip';
+import Chip from '@6thquake/react-material/Chip';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 

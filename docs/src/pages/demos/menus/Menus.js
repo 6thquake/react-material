@@ -1,9 +1,9 @@
 import React from 'react';
-import Menu from 'react-material/Menu/Menu';
-import Button from 'react-material/Button';
+import Menu from '@6thquake/react-material/Menu/Menu';
+import Button from '@6thquake/react-material/Button';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import Icon from 'react-material/Icon';
-import { withStyles } from 'react-material/styles';
+import Icon from '@6thquake/react-material/Icon';
+import { withStyles } from '@6thquake/react-material/styles';
 
 const styles = theme => ({
   root: {

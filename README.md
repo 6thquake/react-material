@@ -22,7 +22,7 @@ React-Material is available as an [npm package](http://npm.release.ctripcorp.com
 
 **[Stable channel (v0.x)](http://material-ui.com/)**
 ```sh
-npm install react-material
+npm install @6thquake/react-material
 ```
 
 **[Pre-release channel (v1-beta)](http://react-material.fat0.qa.nt.ctripcorp.com/)**
@@ -34,7 +34,7 @@ npm install @6thquake/react-material@next
 **v0.x(http://react-material.fat0.qa.nt.ctripcorp.com/)**
 ```sh
 // with npm
-npm install react-material
+npm install @6thquake/react-material
 
 // with yarn
 yarn add react-material
@@ -56,7 +56,7 @@ Here is a quick example to get you started, **it's all you need**:
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
-import Button from 'react-material/Button';
+import Button from '@6thquake/react-material/Button';
 
 function App() {
   return (

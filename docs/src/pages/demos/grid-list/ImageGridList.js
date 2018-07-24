@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import GridList from 'react-material/GridList';
-import GridListTile from 'react-material/GridListTile';
+import { withStyles } from '@6thquake/react-material/styles';
+import GridList from '@6thquake/react-material/GridList';
+import GridListTile from '@6thquake/react-material/GridListTile';
 import tileData from './tileData';
 
 const styles = theme => ({

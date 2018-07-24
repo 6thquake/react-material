@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Drawer from 'react-material/Drawer';
-import AppBar from 'react-material/AppBar';
-import Toolbar from 'react-material/Toolbar';
-import List from 'react-material/List';
-import Typography from 'react-material/Typography';
-import IconButton from 'react-material/IconButton';
-import Hidden from 'react-material/Hidden';
-import Divider from 'react-material/Divider';
+import { withStyles } from '@6thquake/react-material/styles';
+import Drawer from '@6thquake/react-material/Drawer';
+import AppBar from '@6thquake/react-material/AppBar';
+import Toolbar from '@6thquake/react-material/Toolbar';
+import List from '@6thquake/react-material/List';
+import Typography from '@6thquake/react-material/Typography';
+import IconButton from '@6thquake/react-material/IconButton';
+import Hidden from '@6thquake/react-material/Hidden';
+import Divider from '@6thquake/react-material/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
-import TextField from 'react-material/TextField';
-import Paper from 'react-material/Paper';
-import MenuItem from 'react-material/MenuItem';
-import { withStyles } from 'react-material/styles';
+import TextField from '@6thquake/react-material/TextField';
+import Paper from '@6thquake/react-material/Paper';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import { withStyles } from '@6thquake/react-material/styles';
 
 const suggestions = [
   { label: 'Afghanistan' },

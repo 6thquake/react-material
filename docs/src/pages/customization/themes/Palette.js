@@ -1,7 +1,7 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from 'react-material/styles';
-import purple from 'react-material/colors/purple';
-import Button from 'react-material/Button';
+import { MuiThemeProvider, createMuiTheme } from '@6thquake/react-material/styles';
+import purple from '@6thquake/react-material/colors/purple';
+import Button from '@6thquake/react-material/Button';
 
 const theme = createMuiTheme({
   palette: {

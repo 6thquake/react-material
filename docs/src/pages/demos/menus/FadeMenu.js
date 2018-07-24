@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from 'react-material/Button';
-import Menu from 'react-material/Menu';
-import MenuItem from 'react-material/MenuItem';
-import Fade from 'react-material/Fade';
+import Button from '@6thquake/react-material/Button';
+import Menu from '@6thquake/react-material/Menu';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import Fade from '@6thquake/react-material/Fade';
 
 class FadeMenu extends React.Component {
   state = {

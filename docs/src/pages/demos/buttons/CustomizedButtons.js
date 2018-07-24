@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles, MuiThemeProvider, createMuiTheme } from 'react-material/styles';
-import Button from 'react-material/Button';
-import purple from 'react-material/colors/purple';
-import green from 'react-material/colors/green';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@6thquake/react-material/styles';
+import Button from '@6thquake/react-material/Button';
+import purple from '@6thquake/react-material/colors/purple';
+import green from '@6thquake/react-material/colors/green';
 
 const styles = theme => ({
   container: {

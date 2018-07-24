@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import { withStyles } from 'react-material/styles';
-import Paper from 'react-material/Paper';
-import Grid from 'react-material/Grid';
-import withWidth from 'react-material/withWidth';
-import Typography from 'react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
+import Paper from '@6thquake/react-material/Paper';
+import Grid from '@6thquake/react-material/Grid';
+import withWidth from '@6thquake/react-material/withWidth';
+import Typography from '@6thquake/react-material/Typography';
 
 const styles = theme => ({
   root: {

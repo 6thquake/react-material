@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Mention from 'react-material/Mention';
-import { withStyles } from 'react-material/styles';
+import Mention from '@6thquake/react-material/Mention';
+import { withStyles } from '@6thquake/react-material/styles';
 const styles = theme => ({
   root: {
     flexGrow: 1,

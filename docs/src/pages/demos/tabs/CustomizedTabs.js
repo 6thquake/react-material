@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Tabs from 'react-material/Tabs';
-import Tab from 'react-material/Tab';
-import Typography from 'react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
+import Tabs from '@6thquake/react-material/Tabs';
+import Tab from '@6thquake/react-material/Tab';
+import Typography from '@6thquake/react-material/Typography';
 
 const styles = theme => ({
   root: {

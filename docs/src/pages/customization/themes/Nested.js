@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Checkbox from 'react-material/Checkbox';
-import { createMuiTheme, MuiThemeProvider, withStyles } from 'react-material/styles';
-import orange from 'react-material/colors/orange';
-import green from 'react-material/colors/green';
-import pink from 'react-material/colors/pink';
+import Checkbox from '@6thquake/react-material/Checkbox';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@6thquake/react-material/styles';
+import orange from '@6thquake/react-material/colors/orange';
+import green from '@6thquake/react-material/colors/green';
+import pink from '@6thquake/react-material/colors/pink';
 
 const styles = theme => ({
   root: {

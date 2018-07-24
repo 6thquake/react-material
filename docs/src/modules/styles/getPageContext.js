@@ -2,10 +2,10 @@
 
 import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
-import { createMuiTheme, createGenerateClassName, jssPreset } from 'react-material/styles';
-import blue from 'react-material/colors/blue';
-import pink from 'react-material/colors/pink';
-import { darken } from 'react-material/styles/colorManipulator';
+import { createMuiTheme, createGenerateClassName, jssPreset } from '@6thquake/react-material/styles';
+import blue from '@6thquake/react-material/colors/blue';
+import pink from '@6thquake/react-material/colors/pink';
+import { darken } from '@6thquake/react-material/styles/colorManipulator';
 
 function getTheme(uiTheme) {
   const theme = createMuiTheme({

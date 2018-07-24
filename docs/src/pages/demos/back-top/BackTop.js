@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import BackTop from 'react-material/BackTop';
-import Codearea from 'react-material/Codearea';
+import { withStyles } from '@6thquake/react-material/styles';
+import BackTop from '@6thquake/react-material/BackTop';
+import Codearea from '@6thquake/react-material/Codearea';
 
 const style = {
   height: '40px',

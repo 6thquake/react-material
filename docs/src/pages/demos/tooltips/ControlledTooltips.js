@@ -1,7 +1,7 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from 'react-material/IconButton';
-import Tooltip from 'react-material/Tooltip';
+import IconButton from '@6thquake/react-material/IconButton';
+import Tooltip from '@6thquake/react-material/Tooltip';
 
 class ControlledTooltips extends React.Component {
   state = {

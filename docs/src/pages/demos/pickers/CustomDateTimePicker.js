@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
-import { DateTimePicker } from 'react-material/Picker';
+import { DateTimePicker } from '@6thquake/react-material/Picker';
 import { IconButton, Icon, InputAdornment } from 'react-material';
-import LocaleProvider from 'react-material/LocaleProvider';
+import LocaleProvider from '@6thquake/react-material/LocaleProvider';
 
 class CustomDateTimePicker extends PureComponent {
   state = {

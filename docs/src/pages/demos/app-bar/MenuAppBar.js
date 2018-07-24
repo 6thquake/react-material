@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import AppBar from 'react-material/AppBar';
-import Toolbar from 'react-material/Toolbar';
-import Typography from 'react-material/Typography';
-import IconButton from 'react-material/IconButton';
+import { withStyles } from '@6thquake/react-material/styles';
+import AppBar from '@6thquake/react-material/AppBar';
+import Toolbar from '@6thquake/react-material/Toolbar';
+import Typography from '@6thquake/react-material/Typography';
+import IconButton from '@6thquake/react-material/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from 'react-material/Switch';
-import FormControlLabel from 'react-material/FormControlLabel';
-import FormGroup from 'react-material/FormGroup';
-import Menu from 'react-material/Menu';
-import MenuItem from 'react-material/MenuItem';
+import Switch from '@6thquake/react-material/Switch';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import FormGroup from '@6thquake/react-material/FormGroup';
+import Menu from '@6thquake/react-material/Menu';
+import MenuItem from '@6thquake/react-material/MenuItem';
 
 const styles = {
   root: {

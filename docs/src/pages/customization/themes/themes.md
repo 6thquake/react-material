@@ -69,8 +69,8 @@ The simplest way to customize an intention is to import one or more of the provi
 and apply them to a palette intention:
 
 ```js
-import { createMuiTheme } from 'react-material/styles';
-import blue from 'react-material/colors/blue';
+import { createMuiTheme } from '@6thquake/react-material/styles';
+import blue from '@6thquake/react-material/colors/blue';
 
 const theme = createMuiTheme({
   palette: {
@@ -108,10 +108,10 @@ palette: {
 This example illustrates how you could recreate the default palette values:
 
 ```js
-import { createMuiTheme } from 'react-material/styles';
-import indigo from 'react-material/colors/indigo';
-import pink from 'react-material/colors/pink';
-import red from 'react-material/colors/red';
+import { createMuiTheme } from '@6thquake/react-material/styles';
+import indigo from '@6thquake/react-material/colors/indigo';
+import pink from '@6thquake/react-material/colors/pink';
+import red from '@6thquake/react-material/colors/red';
 
 // All the following keys are optional.
 // We try our best to provide a great default value.
@@ -137,7 +137,7 @@ If you wish to provide more customized colors, you can either create your own co
 or directly supply colors to some or all of the intention's keys:
 
 ```js
-import { createMuiTheme } from 'react-material/styles';
+import { createMuiTheme } from '@6thquake/react-material/styles';
 
 const theme = createMuiTheme({
   palette: {
@@ -338,7 +338,7 @@ You can see the full properties API in [this dedicated page](/api/mui-theme-prov
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from 'react-material/styles';
+import { MuiThemeProvider, createMuiTheme } from '@6thquake/react-material/styles';
 import Root from './Root';
 
 const theme = createMuiTheme();
@@ -369,9 +369,9 @@ Generate a theme base on the options received.
 #### Examples
 
 ```js
-import { createMuiTheme } from 'react-material/styles';
-import purple from 'react-material/colors/purple';
-import green from 'react-material/colors/green';
+import { createMuiTheme } from '@6thquake/react-material/styles';
+import purple from '@6thquake/react-material/colors/purple';
+import green from '@6thquake/react-material/colors/green';
 
 const theme = createMuiTheme({
   palette: {
@@ -399,7 +399,7 @@ Provide the `theme` object as a property of the input component.
 #### Examples
 
 ```js
-import { withTheme } from 'react-material/styles'
+import { withTheme } from '@6thquake/react-material/styles'
 
 export default withTheme()(MyComponent);
 ```

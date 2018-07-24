@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Scrollbar from 'react-material/Scrollbar';
+import Scrollbar from '@6thquake/react-material/Scrollbar';
 
 class ColoredScrollbar extends Component {
   constructor(props, ...rest) {

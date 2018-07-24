@@ -1,10 +1,10 @@
 import React from 'react';
-import Switch from 'react-material/Switch';
-import FormControlLabel from 'react-material/FormControlLabel';
-import FormGroup from 'react-material/FormGroup';
-import { withStyles } from 'react-material/styles';
-import ButtonBase from 'react-material/ButtonBase';
-import MenuBar, { MenuBarItem, MenuBarItemGroup, SubMenuBar } from 'react-material/MenuBar';
+import Switch from '@6thquake/react-material/Switch';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import FormGroup from '@6thquake/react-material/FormGroup';
+import { withStyles } from '@6thquake/react-material/styles';
+import ButtonBase from '@6thquake/react-material/ButtonBase';
+import MenuBar, { MenuBarItem, MenuBarItemGroup, SubMenuBar } from '@6thquake/react-material/MenuBar';
 const styles = theme => ({
   root: {
     flexGrow: 1,

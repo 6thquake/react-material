@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import GridList from 'react-material/GridList';
-import GridListTile from 'react-material/GridListTile';
-import GridListTileBar from 'react-material/GridListTileBar';
-import IconButton from 'react-material/IconButton';
+import { withStyles } from '@6thquake/react-material/styles';
+import GridList from '@6thquake/react-material/GridList';
+import GridListTile from '@6thquake/react-material/GridListTile';
+import GridListTileBar from '@6thquake/react-material/GridListTileBar';
+import IconButton from '@6thquake/react-material/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import tileData from './tileData';
 

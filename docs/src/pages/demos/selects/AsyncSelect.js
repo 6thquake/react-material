@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { AsyncSelect } from 'react-material/Select';
-import InputLabel from 'react-material/InputLabel';
-import { withStyles } from 'react-material/styles';
-import FormControl from 'react-material/FormControl';
+import { AsyncSelect } from '@6thquake/react-material/Select';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import { withStyles } from '@6thquake/react-material/styles';
+import FormControl from '@6thquake/react-material/FormControl';
 import StarBorder from '@material-ui/icons/StarBorder';
-import MenuItem from 'react-material/MenuItem';
-import ListItemText from 'react-material/ListItemText';
-import ListItemIcon from 'react-material/ListItemIcon';
-import Typography from 'react-material/Typography';
-import Chip from 'react-material/Chip';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import ListItemText from '@6thquake/react-material/ListItemText';
+import ListItemIcon from '@6thquake/react-material/ListItemIcon';
+import Typography from '@6thquake/react-material/Typography';
+import Chip from '@6thquake/react-material/Chip';
 const styles = theme => ({
   root: {
     flexGrow: 1,

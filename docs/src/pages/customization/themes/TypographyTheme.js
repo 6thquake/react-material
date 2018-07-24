@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MuiThemeProvider, createMuiTheme, withStyles } from 'react-material/styles';
-import Typography from 'react-material/Typography';
-import Button from 'react-material/Button';
+import { MuiThemeProvider, createMuiTheme, withStyles } from '@6thquake/react-material/styles';
+import Typography from '@6thquake/react-material/Typography';
+import Button from '@6thquake/react-material/Button';
 
 const styles = {
   root: {

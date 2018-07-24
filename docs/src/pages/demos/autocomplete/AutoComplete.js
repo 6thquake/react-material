@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import AutoComplete from 'react-material/AutoComplete';
-import { withStyles } from 'react-material/styles';
-import Typography from 'react-material/Typography';
+import AutoComplete from '@6thquake/react-material/AutoComplete';
+import { withStyles } from '@6thquake/react-material/styles';
+import Typography from '@6thquake/react-material/Typography';
 import StarBorder from '@material-ui/icons/StarBorder';
-import ListItemText from 'react-material/ListItemText';
-import ListItemIcon from 'react-material/ListItemIcon';
+import ListItemText from '@6thquake/react-material/ListItemText';
+import ListItemIcon from '@6thquake/react-material/ListItemIcon';
 const styles = theme => ({
   root: {
     flexGrow: 1,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Progress from 'react-material/Progress';
-import { withStyles } from 'react-material/styles';
-import Button from 'react-material/Button';
+import Progress from '@6thquake/react-material/Progress';
+import { withStyles } from '@6thquake/react-material/styles';
+import Button from '@6thquake/react-material/Button';
 
 const styles = {
   root: {

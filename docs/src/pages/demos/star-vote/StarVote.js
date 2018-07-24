@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import StarVote from 'react-material/StarVote';
+import { withStyles } from '@6thquake/react-material/styles';
+import StarVote from '@6thquake/react-material/StarVote';
 
 class App extends React.Component {
   doSomething = key => {

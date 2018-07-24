@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Radio from 'react-material/Radio';
-import RadioGroup from 'react-material/RadioGroup';
-import FormControlLabel from 'react-material/FormControlLabel';
-import FormControl from 'react-material/FormControl';
-import MenuItem from 'react-material/MenuItem';
-import Select from 'react-material/Select';
-import InputLabel from 'react-material/InputLabel';
-import { Filters } from 'react-material/Filters';
+import { withStyles } from '@6thquake/react-material/styles';
+import Radio from '@6thquake/react-material/Radio';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import FormControl from '@6thquake/react-material/FormControl';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import Select from '@6thquake/react-material/Select';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import { Filters } from '@6thquake/react-material/Filters';
 
 const style = theme => ({
   mt: {

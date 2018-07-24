@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'react-material/styles';
-import Typography from 'react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
+import Typography from '@6thquake/react-material/Typography';
 
 // 1. We define the styles.
 const styles = theme => ({

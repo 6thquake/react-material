@@ -28,8 +28,8 @@ import { Button, TextField } from 'react-material';
 use:
 
 ```js
-import Button from 'react-material/Button';
-import TextField from 'react-material/TextField';
+import Button from '@6thquake/react-material/Button';
+import TextField from '@6thquake/react-material/TextField';
 ```
 
 While importing directly in this manner doesn't use the exports in [`react-material/index.js`](https://github.com/6thquake/react-material/blob/develop/packages/react-material/src/index.js), this file can serve as a handy reference as to which modules are public.

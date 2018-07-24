@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'react-material/Button';
+import Button from '@6thquake/react-material/Button';
 
 // We can use inline-style
 const style = {

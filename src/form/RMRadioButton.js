@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { RadioButton } from 'react-material/RadioButton';
+import { RadioButton } from '@6thquake/react-material/RadioButton';
 
 /* class RMRadioButton extends React.Component {
     constructor(props) {

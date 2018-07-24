@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Avatar from 'react-material/Avatar';
-import Chip from 'react-material/Chip';
-import Paper from 'react-material/Paper';
+import { withStyles } from '@6thquake/react-material/styles';
+import Avatar from '@6thquake/react-material/Avatar';
+import Chip from '@6thquake/react-material/Chip';
+import Paper from '@6thquake/react-material/Paper';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 
 const styles = theme => ({

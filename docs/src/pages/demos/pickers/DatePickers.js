@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import TextField from 'react-material/TextField';
-import LocaleProvider from 'react-material/LocaleProvider';
+import { withStyles } from '@6thquake/react-material/styles';
+import TextField from '@6thquake/react-material/TextField';
+import LocaleProvider from '@6thquake/react-material/LocaleProvider';
 
 const styles = theme => ({
   container: {

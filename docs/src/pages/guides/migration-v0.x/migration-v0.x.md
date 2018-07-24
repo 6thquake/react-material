@@ -10,18 +10,19 @@ We have been making lower-level components, abstracting less complexity.
 
 ### What motivated such large change?
 
-React-Material was started [3 years ago](https://github.com/6thquake/react-material/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
+React-Material was started at 2018.
 The ecosystem has evolved a lot since then, we have also learned a lot.
 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding React-Material from the **ground-up**
 taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
 - New styling solution using CSS-in-JS (better [customization](/customization/overrides) power, better performance)
 - New [theme handling](/customization/themes) (nesting, self-supporting, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/zeit/next.js)
-- Way better [test coverage](/guides/testing) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))
+- Way better [test coverage](/guides/testing) (99%+, run on all the major browsers, [visual regression tests])
 - Full [server-side rendering](/guides/server-rendering) support
 - Wide range of [supported browsers](/getting-started/supported-platforms)
 
 Curious to learn more about it? You can checkout our [Q&A on the v1 version](/discover-more/roadmap#q-amp-a-with-the-v1-version).
+
 
 ### Where should I start in a migration?
 
@@ -29,15 +30,15 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
    [**Yarn**](https://github.com/yarnpkg/yarn) provides an alias feature to do so:
 
   ```sh
-  yarn add material-ui@latest
-  yarn add material-ui-next@npm:material-ui@next
+  yarn add react-material@latest
+  yarn add @6thquake/react-material@next
   ```
 
   then
 
   ```js
-  import FlatButton from 'react-material/FlatButton'; // v0.x
-  import Button from 'react-material-next/Button'; // v1.x
+  import FlatButton from 'react-material/FlatButton'; // v0.1.x
+  import Button from '@6thquake/react-material/Button'; // v0.2.x
   ```
 
   If you can't use Yarn, we also provide a separate package for **NPM**.
@@ -46,95 +47,17 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
 
   ```sh
   npm install react-material@latest
-  npm install react-material-next@latest
+  npm install @6thquake/react-material@next
   ```
 
   then
 
   ```js
   import FlatButton from 'react-material/FlatButton'; // v0.x
-  import Button from 'react-material-next/Button'; // v1.x
+  import Button from '@6thquake/react-material/Button'; // v1.x
   ```
-
-2. Run [the migration helper](https://github.com/6thquake/react-material/tree/develop/packages/material-ui-codemod) on your project.
-3. `MuiThemeProvider` is optional for v1.x. Still, you are free to use v0.x and v1.x versions of the component at the same time like so:
-
-  ```jsx
-  import React from 'react';
-  import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'react-material-next/styles';
-  import { MuiThemeProvider } from 'react-material';
-  import getMuiTheme from 'react-material/styles/getMuiTheme';
-
-  const themeV1 = createMuiTheme({
-    /* theme for v1 */
-  });
-  const themeV0 = getMuiTheme({
-    /* theme v0.x */
-  });
-
-  function App() {
-    return (
-      <NewMuiThemeProvider theme={themeV1}>
-        <MuiThemeProvider muiTheme={themeV0}>{/*Components*/}</MuiThemeProvider>
-      </NewMuiThemeProvider>
-    );
-  }
-
-  export default App;
-  ```
-
-4. After that, you are free to migrate one component instance at the time.
-
-## Components
-
-### Autocomplete
-
-React-Material doesn't provide any high-level API for solving this problem.
-You're encouraged you to explore [the solutions the React community has built](/demos/autocomplete/).
-
-In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/6thquake/react-material/issues/9997).
-
-### Svg Icon
-
-First, run [the migration helper](https://github.com/6thquake/react-material/tree/develop/packages/material-ui-codemod) on your project.
-
-However, this might not be enough when using the svg icons.
-The `@material-ui/icons` package has a dependency on the `material-ui/SvgIcon` module.
-The `SvgIcon` component slightly changed between the two versions.
-You might see some missing context errors and wrong colors.
-
-You can fix those issues with the following code.
-Apply it before all the other imports:
-
-```js
-import SvgIcon from 'react-material-next/SvgIcon';
-
-// Tells `@material-ui/icons` to use `material-ui-next/SvgIcon` module
-// instead of `material-ui/SvgIcon`.
-global.__MUI_SvgIcon__ = SvgIcon;
-```
-
-### Flat Button
-
-```diff
--import FlatButton from 'react-material/FlatButton';
-+import Button from 'react-material-next/Button';
-
--<FlatButton />
-+<Button />
-```
-
-### Raised Button
-
-```diff
--import RaisedButton from 'react-material/RaisedButton';
-+import Button from 'react-material-next/Button';
-
--<RaisedButton />
-+<Button variant="raised" />
-```
 
 ### To be continued…
 
 You successfully migrated your app and wish to help the community?
-Please help us! We have an open issue in order to finish this migration guide [#7195](https://github.com/6thquake/react-material/issues/7195). Any pull request is welcomed 😊.
+Please help us! We have an open issue in order to finish this migration guide. Any pull request is welcomed 😊.

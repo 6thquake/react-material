@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
-import { withStyles } from 'react-material/styles';
-import Panel from 'react-material/Panel';
-import { StatusButton } from 'react-material/Button';
-import { DragSource, withDragAndDrop } from 'react-material/DragAndDrop';
+import { withStyles } from '@6thquake/react-material/styles';
+import Panel from '@6thquake/react-material/Panel';
+import { StatusButton } from '@6thquake/react-material/Button';
+import { DragSource, withDragAndDrop } from '@6thquake/react-material/DragAndDrop';
 import { Home, Grade, Lock } from '@material-ui/icons';
 
 const styles = {

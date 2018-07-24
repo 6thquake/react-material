@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'react-material/styles';
-import Avatar from 'react-material/Avatar';
+import { withStyles } from '@6thquake/react-material/styles';
+import Avatar from '@6thquake/react-material/Avatar';
 
 const styles = {
   row: {

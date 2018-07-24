@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Avatar from 'react-material/Avatar';
-import deepOrange from 'react-material/colors/deepOrange';
-import deepPurple from 'react-material/colors/deepPurple';
+import { withStyles } from '@6thquake/react-material/styles';
+import Avatar from '@6thquake/react-material/Avatar';
+import deepOrange from '@6thquake/react-material/colors/deepOrange';
+import deepPurple from '@6thquake/react-material/colors/deepPurple';
 
 const styles = {
   avatar: {

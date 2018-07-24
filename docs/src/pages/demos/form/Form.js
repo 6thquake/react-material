@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Grid from 'react-material/Grid';
-import Form from 'react-material/Form';
-import { addValidationRule } from 'react-material/Form';
-import Input from 'react-material/Input';
-import TextField from 'react-material/TextField';
-import Select from 'react-material/Select';
-import MenuItem from 'react-material/MenuItem';
-import RadioGroup from 'react-material/RadioGroup';
-import Radio from 'react-material/Radio';
-import FormControlLabel from 'react-material/FormControlLabel';
-import CheckboxGroup from 'react-material/CheckboxGroup';
-import Checkbox from 'react-material/Checkbox';
-import Button from 'react-material/Button';
+import { withStyles } from '@6thquake/react-material/styles';
+import Grid from '@6thquake/react-material/Grid';
+import Form from '@6thquake/react-material/Form';
+import { addValidationRule } from '@6thquake/react-material/Form';
+import Input from '@6thquake/react-material/Input';
+import TextField from '@6thquake/react-material/TextField';
+import Select from '@6thquake/react-material/Select';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
+import Radio from '@6thquake/react-material/Radio';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import CheckboxGroup from '@6thquake/react-material/CheckboxGroup';
+import Checkbox from '@6thquake/react-material/Checkbox';
+import Button from '@6thquake/react-material/Button';
 
 const style = theme => ({
   form: {

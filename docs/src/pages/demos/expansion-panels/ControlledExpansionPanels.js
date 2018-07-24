@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import ExpansionPanel from 'react-material/ExpansionPanel';
-import ExpansionPanelDetails from 'react-material/ExpansionPanelDetails';
-import ExpansionPanelSummary from 'react-material/ExpansionPanelSummary';
-import Typography from 'react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
+import ExpansionPanel from '@6thquake/react-material/ExpansionPanel';
+import ExpansionPanelDetails from '@6thquake/react-material/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@6thquake/react-material/ExpansionPanelSummary';
+import Typography from '@6thquake/react-material/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({

@@ -1,10 +1,10 @@
 import react, { Component } from 'react';
-import Divider from 'react-material/Divider';
-import LocaleProvider, { LocaleConsumer, withLocale } from 'react-material/LocaleProvider';
-import { withStyles } from 'react-material/styles';
-import Radio, { RadioButton } from 'react-material/Radio';
-import RadioGroup from 'react-material/RadioGroup';
-import Grid from 'react-material/Grid';
+import Divider from '@6thquake/react-material/Divider';
+import LocaleProvider, { LocaleConsumer, withLocale } from '@6thquake/react-material/LocaleProvider';
+import { withStyles } from '@6thquake/react-material/styles';
+import Radio, { RadioButton } from '@6thquake/react-material/Radio';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
+import Grid from '@6thquake/react-material/Grid';
 
 const styles = theme => ({
   box: {

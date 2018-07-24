@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import AutoComplete from 'react-material/AutoComplete';
-import { withStyles } from 'react-material/styles';
-import MenuItem from 'react-material/MenuItem';
-import ListItemText from 'react-material/ListItemText';
-import ListItemIcon from 'react-material/ListItemIcon';
+import AutoComplete from '@6thquake/react-material/AutoComplete';
+import { withStyles } from '@6thquake/react-material/styles';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import ListItemText from '@6thquake/react-material/ListItemText';
+import ListItemIcon from '@6thquake/react-material/ListItemIcon';
 import StarBorder from '@material-ui/icons/StarBorder';
-import Typography from 'react-material/Typography';
+import Typography from '@6thquake/react-material/Typography';
 
 const styles = theme => ({
   root: {

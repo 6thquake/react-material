@@ -1,6 +1,6 @@
 import React from 'react';
-import Tree from 'react-material/Tree';
-import { withStyles } from 'react-material/styles';
+import Tree from '@6thquake/react-material/Tree';
+import { withStyles } from '@6thquake/react-material/styles';
 const TreeNode = Tree.TreeNode;
 
 class Demo extends React.Component {

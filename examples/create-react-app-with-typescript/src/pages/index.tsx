@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Button from 'react-material/Button';
+import Button from '@6thquake/react-material/Button';
 import Dialog, {
   DialogTitle,
   DialogContent,
   DialogContentText,
   DialogActions,
-} from 'react-material/Dialog';
-import Typography from 'react-material/Typography';
-import withStyles, { WithStyles, StyleRulesCallback } from 'react-material/styles/withStyles';
+} from '@6thquake/react-material/Dialog';
+import Typography from '@6thquake/react-material/Typography';
+import withStyles, { WithStyles, StyleRulesCallback } from '@6thquake/react-material/styles/withStyles';
 import withRoot from '../withRoot';
 
 const styles: StyleRulesCallback<'root'> = theme => ({

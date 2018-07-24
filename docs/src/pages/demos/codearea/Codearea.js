@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Codearea from 'react-material/Codearea';
-import Grid from 'react-material/Grid';
-import RadioGroup from 'react-material/RadioGroup';
-import FormControl from 'react-material/FormControl';
-import FormLabel from 'react-material/FormLabel';
-import Divider from 'react-material/Divider';
-import FormControlLabel from 'react-material/FormControlLabel';
-import Radio from 'react-material/Radio';
+import { withStyles } from '@6thquake/react-material/styles';
+import Codearea from '@6thquake/react-material/Codearea';
+import Grid from '@6thquake/react-material/Grid';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
+import FormControl from '@6thquake/react-material/FormControl';
+import FormLabel from '@6thquake/react-material/FormLabel';
+import Divider from '@6thquake/react-material/Divider';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import Radio from '@6thquake/react-material/Radio';
 
 const styles = theme => ({
   root: theme.mixins.gutters({

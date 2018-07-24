@@ -2,19 +2,19 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Button from 'react-material/Button';
-import Avatar from 'react-material/Avatar';
-import List from 'react-material/List';
-import ListItem from 'react-material/List';
-import ListItemAvatar from 'react-material/List';
-import ListItemText from 'react-material/List';
-import Dialog from 'react-material/Dialog';
-import DialogTitle from 'react-material/DialogTitle';
+import { withStyles } from '@6thquake/react-material/styles';
+import Button from '@6thquake/react-material/Button';
+import Avatar from '@6thquake/react-material/Avatar';
+import List from '@6thquake/react-material/List';
+import ListItem from '@6thquake/react-material/List';
+import ListItemAvatar from '@6thquake/react-material/List';
+import ListItemText from '@6thquake/react-material/List';
+import Dialog from '@6thquake/react-material/Dialog';
+import DialogTitle from '@6thquake/react-material/DialogTitle';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
-import Typography from 'react-material/Typography';
-import blue from 'react-material/colors/blue';
+import Typography from '@6thquake/react-material/Typography';
+import blue from '@6thquake/react-material/colors/blue';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 const styles = {

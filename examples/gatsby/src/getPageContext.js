@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 
 import { SheetsRegistry } from 'jss';
-import { createMuiTheme, createGenerateClassName } from 'react-material/styles';
-import purple from 'react-material/colors/purple';
-import green from 'react-material/colors/green';
+import { createMuiTheme, createGenerateClassName } from '@6thquake/react-material/styles';
+import purple from '@6thquake/react-material/colors/purple';
+import green from '@6thquake/react-material/colors/green';
 
 // A theme with custom primary and secondary color.
 // It's optional.

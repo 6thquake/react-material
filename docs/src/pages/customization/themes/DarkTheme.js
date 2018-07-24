@@ -1,5 +1,5 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from 'react-material/styles';
+import { MuiThemeProvider, createMuiTheme } from '@6thquake/react-material/styles';
 import WithTheme from './WithTheme';
 
 const theme = createMuiTheme({

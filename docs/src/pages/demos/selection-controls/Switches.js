@@ -1,5 +1,5 @@
 import React from 'react';
-import Switch from 'react-material/Switch';
+import Switch from '@6thquake/react-material/Switch';
 
 class Switches extends React.Component {
   state = {

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Avatar from 'react-material/Avatar';
-import Chip from 'react-material/Chip';
+import { withStyles } from '@6thquake/react-material/styles';
+import Avatar from '@6thquake/react-material/Avatar';
+import Chip from '@6thquake/react-material/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 

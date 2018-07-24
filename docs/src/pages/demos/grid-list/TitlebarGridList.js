@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import GridList from 'react-material/GridList';
-import GridListTile from 'react-material/GridListTile';
-import GridListTileBar from 'react-material/GridListTileBar';
-import ListSubheader from 'react-material/ListSubheader';
-import IconButton from 'react-material/IconButton';
+import { withStyles } from '@6thquake/react-material/styles';
+import GridList from '@6thquake/react-material/GridList';
+import GridListTile from '@6thquake/react-material/GridListTile';
+import GridListTileBar from '@6thquake/react-material/GridListTileBar';
+import ListSubheader from '@6thquake/react-material/ListSubheader';
+import IconButton from '@6thquake/react-material/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import tileData from './tileData';
 

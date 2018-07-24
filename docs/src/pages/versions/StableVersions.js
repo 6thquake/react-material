@@ -1,13 +1,13 @@
 import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Table from 'react-material/Table';
-import TableBody from 'react-material/TableBody';
-import TableCell from 'react-material/TableCell';
-import TableRow from 'react-material/TableRow';
-import Paper from 'react-material/Paper';
-import Typography from 'react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
+import Table from '@6thquake/react-material/Table';
+import TableBody from '@6thquake/react-material/TableBody';
+import TableCell from '@6thquake/react-material/TableCell';
+import TableRow from '@6thquake/react-material/TableRow';
+import Paper from '@6thquake/react-material/Paper';
+import Typography from '@6thquake/react-material/Typography';
 import Link from 'docs/src/modules/components/Link';
 
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/6thquake/react-material/tags/';

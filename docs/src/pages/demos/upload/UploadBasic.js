@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import { UploadBasic } from 'react-material/Upload';
-import Button from 'react-material/Button';
+import { withStyles } from '@6thquake/react-material/styles';
+import { UploadBasic } from '@6thquake/react-material/Upload';
+import Button from '@6thquake/react-material/Button';
 class App extends React.Component {
   uploadFunc = data => {
     console.log(data);

@@ -1,6 +1,6 @@
 {
   "name": "react-material",
-  "version": "0.2.0",
+  "version": "0.2.0-beta.1",
   "private": false,
   "licenses": "MIT",
   "main": "index.js",
@@ -31,7 +31,7 @@
     "react-dom": "^15.3.0 || ^16.0.0"
   },
   "dependencies": {
-    "@material-ui/core": "^1.4.0",
+    "@material-ui/core": "^1.4.1",
     "@material-ui/icons": "^2.0.0-beta.1",
     "@types/jss": "^9.3.0",
     "@types/react-transition-group": "^2.0.8",

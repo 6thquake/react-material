@@ -1,6 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
-import DatePicker from 'react-material/Picker';
-import LocaleProvider from 'react-material/LocaleProvider';
+import DatePicker from '@6thquake/react-material/Picker';
+import LocaleProvider from '@6thquake/react-material/LocaleProvider';
 
 class BasicDatePicker extends PureComponent {
   state = {

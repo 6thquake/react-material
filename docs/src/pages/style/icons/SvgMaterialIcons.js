@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
-import { withStyles } from 'react-material/styles';
+import { withStyles } from '@6thquake/react-material/styles';
 
 const styles = theme => ({
   icon: {

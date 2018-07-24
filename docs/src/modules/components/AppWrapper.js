@@ -3,8 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { MuiThemeProvider } from 'react-material/styles';
-import CssBaseline from 'react-material/CssBaseline';
+import { MuiThemeProvider } from '@6thquake/react-material/styles';
+import CssBaseline from '@6thquake/react-material/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { polyfill } from 'react-lifecycles-compat';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';

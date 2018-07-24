@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import LinearProgress from 'react-material/LinearProgress';
+import { withStyles } from '@6thquake/react-material/styles';
+import LinearProgress from '@6thquake/react-material/LinearProgress';
 
 const styles = {
   root: {

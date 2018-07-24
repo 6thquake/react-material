@@ -1,6 +1,6 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from 'react-material/styles';
-import TextField from 'react-material/TextField';
+import { MuiThemeProvider, createMuiTheme } from '@6thquake/react-material/styles';
+import TextField from '@6thquake/react-material/TextField';
 
 const theme = createMuiTheme({
   direction: 'rtl', // Both here and <body dir="rtl">

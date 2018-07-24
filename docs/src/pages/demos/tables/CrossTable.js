@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
+import { withStyles } from '@6thquake/react-material/styles';
 
-import Grid from 'react-material/Grid';
+import Grid from '@6thquake/react-material/Grid';
 
 import tips from './tips';
-import { AbundantCrossTable } from 'react-material/Table/CrossTable';
-import { sortAs } from 'react-material/Table/CrossTable';
+import { AbundantCrossTable } from '@6thquake/react-material/Table/CrossTable';
+import { sortAs } from '@6thquake/react-material/Table/CrossTable';
 
 class App extends React.Component {
   constructor() {

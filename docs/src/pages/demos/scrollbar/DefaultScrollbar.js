@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Scrollbar from 'react-material/Scrollbar';
+import Scrollbar from '@6thquake/react-material/Scrollbar';
 
 export default class App extends Component {
   render() {

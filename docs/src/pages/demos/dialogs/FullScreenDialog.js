@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Button from 'react-material/Button';
-import Dialog from 'react-material/Dialog';
-import List from 'react-material/List';
-import ListItem from 'react-material/ListItem';
-import ListItemText from 'react-material/ListItemText';
-import Divider from 'react-material/Divider';
-import AppBar from 'react-material/AppBar';
-import Toolbar from 'react-material/Toolbar';
-import IconButton from 'react-material/IconButton';
-import Typography from 'react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
+import Button from '@6thquake/react-material/Button';
+import Dialog from '@6thquake/react-material/Dialog';
+import List from '@6thquake/react-material/List';
+import ListItem from '@6thquake/react-material/ListItem';
+import ListItemText from '@6thquake/react-material/ListItemText';
+import Divider from '@6thquake/react-material/Divider';
+import AppBar from '@6thquake/react-material/AppBar';
+import Toolbar from '@6thquake/react-material/Toolbar';
+import IconButton from '@6thquake/react-material/IconButton';
+import Typography from '@6thquake/react-material/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import Slide from 'react-material/Slide';
+import Slide from '@6thquake/react-material/Slide';
 
 const styles = {
   appBar: {

@@ -2,11 +2,11 @@ import React from 'react';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Input from 'react-material/Input';
-import InputLabel from 'react-material/InputLabel';
-import TextField from 'react-material/TextField';
-import FormControl from 'react-material/FormControl';
+import { withStyles } from '@6thquake/react-material/styles';
+import Input from '@6thquake/react-material/Input';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import TextField from '@6thquake/react-material/TextField';
+import FormControl from '@6thquake/react-material/FormControl';
 
 const styles = theme => ({
   container: {

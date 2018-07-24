@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
+import { withStyles } from '@6thquake/react-material/styles';
 import AddIcon from '@material-ui/icons/Add';
-import Button from 'react-material/Button';
+import Button from '@6thquake/react-material/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from 'react-material/IconButton';
-import Tooltip from 'react-material/Tooltip';
+import IconButton from '@6thquake/react-material/IconButton';
+import Tooltip from '@6thquake/react-material/Tooltip';
 
 const styles = theme => ({
   fab: {

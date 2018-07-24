@@ -1,6 +1,6 @@
 import React from 'react';
-import IconButton from 'react-material/IconButton';
-import Icon from 'react-material/Icon';
+import IconButton from '@6thquake/react-material/IconButton';
+import Icon from '@6thquake/react-material/Icon';
 
 const WrappedIcon = props => <Icon {...props} />;
 WrappedIcon.muiName = 'Icon';

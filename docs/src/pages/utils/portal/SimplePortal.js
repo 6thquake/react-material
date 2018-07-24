@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Portal from 'react-material/Portal';
-import Button from 'react-material/Button';
-import Typography from 'react-material/Typography';
-import { withStyles } from 'react-material/styles';
+import Portal from '@6thquake/react-material/Portal';
+import Button from '@6thquake/react-material/Button';
+import Typography from '@6thquake/react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
 
 const styles = theme => ({
   alert: {

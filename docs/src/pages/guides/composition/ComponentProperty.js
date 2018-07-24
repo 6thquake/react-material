@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import List from 'react-material/List';
-import ListItem from 'react-material/ListItem';
-import ListItemIcon from 'react-material/ListItemIcon';
-import ListItemText from 'react-material/ListItemText';
-import Divider from 'react-material/Divider';
+import { withStyles } from '@6thquake/react-material/styles';
+import List from '@6thquake/react-material/List';
+import ListItem from '@6thquake/react-material/ListItem';
+import ListItemIcon from '@6thquake/react-material/ListItemIcon';
+import ListItemText from '@6thquake/react-material/ListItemText';
+import Divider from '@6thquake/react-material/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
-import Typography from 'react-material/Typography';
+import Typography from '@6thquake/react-material/Typography';
 import { MemoryRouter, Route } from 'react-router';
 import { Link } from 'react-router-dom';
 

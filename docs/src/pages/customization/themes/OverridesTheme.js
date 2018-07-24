@@ -1,6 +1,6 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from 'react-material/styles';
-import Button from 'react-material/Button';
+import { MuiThemeProvider, createMuiTheme } from '@6thquake/react-material/styles';
+import Button from '@6thquake/react-material/Button';
 
 const theme = createMuiTheme({
   overrides: {

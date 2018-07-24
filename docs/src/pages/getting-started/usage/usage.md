@@ -15,7 +15,7 @@ Here's a quick example to get you started, **it's literally all you need**:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from 'react-material/Button';
+import Button from '@6thquake/react-material/Button';
 
 function App() {
   return (

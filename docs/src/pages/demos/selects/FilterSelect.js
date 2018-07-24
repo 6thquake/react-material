@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Select  from 'react-material/Select';
-import InputLabel from 'react-material/InputLabel';
-import { withStyles } from 'react-material/styles';
-import FormControl from 'react-material/FormControl';
-import MenuItem from 'react-material/MenuItem';
+import Select  from '@6thquake/react-material/Select';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import { withStyles } from '@6thquake/react-material/styles';
+import FormControl from '@6thquake/react-material/FormControl';
+import MenuItem from '@6thquake/react-material/MenuItem';
 
 const styles = theme => ({
   root: {

@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from 'react-material/Button';
-import Snackbar from 'react-material/Snackbar';
-import Slide from 'react-material/Slide';
+import Button from '@6thquake/react-material/Button';
+import Snackbar from '@6thquake/react-material/Snackbar';
+import Slide from '@6thquake/react-material/Slide';
 
 function TransitionLeft(props) {
   return <Slide direction="left" {...props} />;

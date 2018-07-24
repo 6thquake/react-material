@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import green from 'react-material/colors/green';
-import FormGroup from 'react-material/FormGroup';
-import FormControlLabel from 'react-material/FormControlLabel';
-import Switch from 'react-material/Switch';
+import { withStyles } from '@6thquake/react-material/styles';
+import green from '@6thquake/react-material/colors/green';
+import FormGroup from '@6thquake/react-material/FormGroup';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import Switch from '@6thquake/react-material/Switch';
 
 const styles = {
   switchBase: {

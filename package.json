@@ -2,7 +2,7 @@
   "name": "@6thquake/react-material-workspace",
   "private": true,
   "author": "6thquake Team",
-  "version": "0.2.0",
+  "version": "0.2.0-beta.1",
   "description": "React-Material's workspace package",
   "keywords": [
     "react",
@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "@material-ui/codemod": "^1.1.0",
-    "@material-ui/core": "^1.4.0",
+    "@material-ui/core": "^1.4.1",
     "@material-ui/docs": "^1.0.0-alpha.3",
     "@material-ui/icons": "^2.0.0-beta.1",
     "@material-ui/lab": "^1.0.0-alpha.6",
@@ -70,17 +70,18 @@
     "marked": "^0.4.0",
     "material-ui-pickers": "^1.0.0-rc.11",
     "moment": "^2.22.2",
+    "pubsub-js": "^1.6.0",
     "rc-menu": "^7.0.4",
     "rc-tree": "^1.12.0",
     "re-resizable": "^4.4.8",
-    "react-resizable": "^1.0.0",
     "react-addons-update": "^15.6.2",
     "react-annotation": "^1.2.1",
     "react-custom-scrollbars": "^4.2.1",
     "react-dnd": "^2.6.0",
     "react-dnd-html5-backend": "^2.6.0",
-    "rebound": "^0.1.0",
-    "pubsub-js": "^1.6.0"
+    "react-popper": "^1.0.0",
+    "react-resizable": "^1.0.0",
+    "rebound": "^0.1.0"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.4",
@@ -199,8 +200,10 @@
   "workspaces": [
     "packages/*"
   ],
-  "size-limit": [{
-    "path": "packages/react-material/src/index.js",
-    "limit": "800 KB"
-  }]
+  "size-limit": [
+    {
+      "path": "packages/react-material/src/index.js",
+      "limit": "800 KB"
+    }
+  ]
 }

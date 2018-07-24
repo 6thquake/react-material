@@ -1,5 +1,5 @@
 import React from 'react';
-import Typography from 'react-material/Typography';
+import Typography from '@6thquake/react-material/Typography';
 
 const style = {
   width: '100%',

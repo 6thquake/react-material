@@ -1,9 +1,9 @@
 import react, { Component } from 'react';
-import Popconfirm from 'react-material/Popconfirm';
-import { withStyles } from 'react-material/styles';
-import Button from 'react-material/Button';
-import ButtonGroup from 'react-material/ButtonGroup';
-import LocaleProvider, { LocaleConsumer } from 'react-material/LocaleProvider';
+import Popconfirm from '@6thquake/react-material/Popconfirm';
+import { withStyles } from '@6thquake/react-material/styles';
+import Button from '@6thquake/react-material/Button';
+import ButtonGroup from '@6thquake/react-material/ButtonGroup';
+import LocaleProvider, { LocaleConsumer } from '@6thquake/react-material/LocaleProvider';
 
 const radio = true;
 const styles = theme => ({

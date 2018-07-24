@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Transferdrag from 'react-material/Transferdrag';
+import { withStyles } from '@6thquake/react-material/styles';
+import Transferdrag from '@6thquake/react-material/Transferdrag';
 
 class App extends React.Component {
   constructor(props) {

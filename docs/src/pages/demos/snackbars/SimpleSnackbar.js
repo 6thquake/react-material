@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Button from 'react-material/Button';
-import Snackbar from 'react-material/Snackbar';
-import IconButton from 'react-material/IconButton';
+import { withStyles } from '@6thquake/react-material/styles';
+import Button from '@6thquake/react-material/Button';
+import Snackbar from '@6thquake/react-material/Snackbar';
+import IconButton from '@6thquake/react-material/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({

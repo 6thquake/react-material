@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import green from 'react-material/colors/green';
-import Radio from 'react-material/Radio';
+import { withStyles } from '@6thquake/react-material/styles';
+import green from '@6thquake/react-material/colors/green';
+import Radio from '@6thquake/react-material/Radio';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 

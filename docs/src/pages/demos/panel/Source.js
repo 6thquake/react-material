@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Panel from 'react-material/Panel';
+import { withStyles } from '@6thquake/react-material/styles';
+import Panel from '@6thquake/react-material/Panel';
 import { DragSource, DropTarget } from 'react-dnd';
-import { StatusButton } from 'react-material/Button';
+import { StatusButton } from '@6thquake/react-material/Button';
 
 /*type:
 position 对于panel中已存在的source 拖拽时会重新定位它的位置 当拖出panel以外时会删除

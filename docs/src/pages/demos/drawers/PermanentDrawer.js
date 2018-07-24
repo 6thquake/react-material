@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'react-material/styles';
-import Drawer from 'react-material/Drawer';
-import AppBar from 'react-material/AppBar';
-import Toolbar from 'react-material/Toolbar';
-import List from 'react-material/List';
-import MenuItem from 'react-material/MenuItem';
-import TextField from 'react-material/TextField';
-import Typography from 'react-material/Typography';
-import Divider from 'react-material/Divider';
+import { withStyles } from '@6thquake/react-material/styles';
+import Drawer from '@6thquake/react-material/Drawer';
+import AppBar from '@6thquake/react-material/AppBar';
+import Toolbar from '@6thquake/react-material/Toolbar';
+import List from '@6thquake/react-material/List';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import TextField from '@6thquake/react-material/TextField';
+import Typography from '@6thquake/react-material/Typography';
+import Divider from '@6thquake/react-material/Divider';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const drawerWidth = 240;

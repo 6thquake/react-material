@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
+import { withStyles } from '@6thquake/react-material/styles';
 import SwipeableViews from 'react-swipeable-views';
-import AppBar from 'react-material/AppBar';
-import Tabs from 'react-material/Tabs';
-import Tab from 'react-material/Tab';
-import Typography from 'react-material/Typography';
+import AppBar from '@6thquake/react-material/AppBar';
+import Tabs from '@6thquake/react-material/Tabs';
+import Tab from '@6thquake/react-material/Tab';
+import Typography from '@6thquake/react-material/Typography';
 
 function TabContainer({ children, dir }) {
   return (

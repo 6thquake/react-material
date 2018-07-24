@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import InputLabel from 'react-material/InputLabel';
-import MenuItem from 'react-material/MenuItem';
-import FormControl from 'react-material/FormControl';
-import Select from 'react-material/Select';
-import Button from 'react-material/Button';
+import { withStyles } from '@6thquake/react-material/styles';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import FormControl from '@6thquake/react-material/FormControl';
+import Select from '@6thquake/react-material/Select';
+import Button from '@6thquake/react-material/Button';
 
 const styles = theme => ({
   button: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss/lib/injectSheet';
-import Button from 'react-material/Button';
+import Button from '@6thquake/react-material/Button';
 
 const styles = {
   button: {

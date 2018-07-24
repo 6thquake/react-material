@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import { Search } from 'react-material/Search';
+import { withStyles } from '@6thquake/react-material/styles';
+import { Search } from '@6thquake/react-material/Search';
 import { Home, Grade, Lock } from '@material-ui/icons';
-import Icon from 'react-material/Icon';
-import IconButton from 'react-material/IconButton';
+import Icon from '@6thquake/react-material/Icon';
+import IconButton from '@6thquake/react-material/IconButton';
 
 class App extends React.Component {
   constructor(props) {

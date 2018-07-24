@@ -1,6 +1,6 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from 'react-material/styles';
-import Typography from 'react-material/Typography';
+import { MuiThemeProvider, createMuiTheme } from '@6thquake/react-material/styles';
+import Typography from '@6thquake/react-material/Typography';
 
 const theme = createMuiTheme({
   typography: {

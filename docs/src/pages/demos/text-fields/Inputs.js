@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Input from 'react-material/Input';
+import { withStyles } from '@6thquake/react-material/styles';
+import Input from '@6thquake/react-material/Input';
 
 const styles = theme => ({
   container: {

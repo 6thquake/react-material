@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import Downshift from 'downshift';
-import { withStyles } from 'react-material/styles';
-import TextField from 'react-material/TextField';
-import Paper from 'react-material/Paper';
-import MenuItem from 'react-material/MenuItem';
-import Chip from 'react-material/Chip';
+import { withStyles } from '@6thquake/react-material/styles';
+import TextField from '@6thquake/react-material/TextField';
+import Paper from '@6thquake/react-material/Paper';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import Chip from '@6thquake/react-material/Chip';
 
 const suggestions = [
   { label: 'Afghanistan' },

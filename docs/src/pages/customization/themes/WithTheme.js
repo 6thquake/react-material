@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from 'react-material/Typography';
-import { withTheme } from 'react-material/styles';
+import Typography from '@6thquake/react-material/Typography';
+import { withTheme } from '@6thquake/react-material/styles';
 
 function WithTheme(props) {
   const { theme } = props;

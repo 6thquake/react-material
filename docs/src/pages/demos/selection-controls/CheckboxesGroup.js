@@ -1,10 +1,10 @@
 import React from 'react';
-import FormLabel from 'react-material/FormLabel';
-import FormControl from 'react-material/FormControl';
-import FormGroup from 'react-material/FormGroup';
-import FormControlLabel from 'react-material/FormControlLabel';
-import FormHelperText from 'react-material/FormHelperText';
-import Checkbox from 'react-material/Checkbox';
+import FormLabel from '@6thquake/react-material/FormLabel';
+import FormControl from '@6thquake/react-material/FormControl';
+import FormGroup from '@6thquake/react-material/FormGroup';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import FormHelperText from '@6thquake/react-material/FormHelperText';
+import Checkbox from '@6thquake/react-material/Checkbox';
 
 class CheckboxesGroup extends React.Component {
   state = {

@@ -1,4 +1,4 @@
 import React, { Component } from 'react';
-import Slider from 'react-material/Slider';
+import Slider from '@6thquake/react-material/Slider';
 
 export default Slider;

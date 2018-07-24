@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Switch from 'react-material/Switch';
-import Paper from 'react-material/Paper';
-import Grow from 'react-material/Grow';
+import { withStyles } from '@6thquake/react-material/styles';
+import Switch from '@6thquake/react-material/Switch';
+import Paper from '@6thquake/react-material/Paper';
+import Grow from '@6thquake/react-material/Grow';
 
 const styles = theme => ({
   root: {

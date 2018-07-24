@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CascadeSelect from 'react-material/CascadeSelect';
+import CascadeSelect from '@6thquake/react-material/CascadeSelect';
 
 class App extends Component {
   constructor(props) {

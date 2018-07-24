@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Typography from 'react-material/Typography';
-import Paper from 'react-material/Paper';
-import Divider from 'react-material/Divider';
-import Grid from 'react-material/Grid';
+import { withStyles } from '@6thquake/react-material/styles';
+import Typography from '@6thquake/react-material/Typography';
+import Paper from '@6thquake/react-material/Paper';
+import Divider from '@6thquake/react-material/Divider';
+import Grid from '@6thquake/react-material/Grid';
 
 const styles = theme => ({
   container: {

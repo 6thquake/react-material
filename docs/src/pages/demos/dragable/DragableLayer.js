@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Dragable from 'react-material/DragableLayer';
+import Dragable from '@6thquake/react-material/DragableLayer';
 
 export default class DragAroundNaive extends Component {
   constructor(props) {

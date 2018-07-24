@@ -1,10 +1,10 @@
 import React from 'react';
-import FormLabel from 'react-material/FormLabel';
-import FormControl from 'react-material/FormControl';
-import FormGroup from 'react-material/FormGroup';
-import FormControlLabel from 'react-material/FormControlLabel';
-import FormHelperText from 'react-material/FormHelperText';
-import Switch from 'react-material/Switch';
+import FormLabel from '@6thquake/react-material/FormLabel';
+import FormControl from '@6thquake/react-material/FormControl';
+import FormGroup from '@6thquake/react-material/FormGroup';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import FormHelperText from '@6thquake/react-material/FormHelperText';
+import Switch from '@6thquake/react-material/Switch';
 
 class SwitchesGroup extends React.Component {
   state = {

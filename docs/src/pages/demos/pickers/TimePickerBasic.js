@@ -1,6 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
-import { TimePicker } from 'react-material/Picker';
-import LocaleProvider from 'react-material/LocaleProvider';
+import { TimePicker } from '@6thquake/react-material/Picker';
+import LocaleProvider from '@6thquake/react-material/LocaleProvider';
 
 class BasicUsage extends PureComponent {
   state = {

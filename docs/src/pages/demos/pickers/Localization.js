@@ -1,13 +1,13 @@
 import React, { Fragment, Component, PureComponent } from 'react';
-import DatePicker from 'react-material/Picker';
-import Icon from 'react-material/Icon';
-import IconButton from 'react-material/IconButton';
-import Menu from 'react-material/Menu';
-import MenuItem from 'react-material/MenuItem';
-import Button from 'react-material/Button';
-import ButtonGroup from 'react-material/ButtonGroup';
-import Grid from 'react-material/Grid';
-import LocaleProvider, { withLocale, LocaleConsumer } from 'react-material/LocaleProvider';
+import DatePicker from '@6thquake/react-material/Picker';
+import Icon from '@6thquake/react-material/Icon';
+import IconButton from '@6thquake/react-material/IconButton';
+import Menu from '@6thquake/react-material/Menu';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import Button from '@6thquake/react-material/Button';
+import ButtonGroup from '@6thquake/react-material/ButtonGroup';
+import Grid from '@6thquake/react-material/Grid';
+import LocaleProvider, { withLocale, LocaleConsumer } from '@6thquake/react-material/LocaleProvider';
 
 const radio = true;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import CircularProgress from 'react-material/CircularProgress';
+import { withStyles } from '@6thquake/react-material/styles';
+import CircularProgress from '@6thquake/react-material/CircularProgress';
 
 const styles = theme => ({
   progress: {

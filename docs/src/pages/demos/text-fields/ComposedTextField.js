@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Input from 'react-material/Input';
-import InputLabel from 'react-material/InputLabel';
-import FormControl from 'react-material/FormControl';
-import FormHelperText from 'react-material/FormHelperText';
+import { withStyles } from '@6thquake/react-material/styles';
+import Input from '@6thquake/react-material/Input';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import FormControl from '@6thquake/react-material/FormControl';
+import FormHelperText from '@6thquake/react-material/FormHelperText';
 
 const styles = theme => ({
   container: {

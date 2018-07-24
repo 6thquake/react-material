@@ -1,7 +1,7 @@
 import React from 'react';
-import IconButton from 'react-material/IconButton';
-import Menu from 'react-material/Menu';
-import MenuItem from 'react-material/MenuItem';
+import IconButton from '@6thquake/react-material/IconButton';
+import Menu from '@6thquake/react-material/Menu';
+import MenuItem from '@6thquake/react-material/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const options = [

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Typography from 'react-material/Typography';
-import Grid from 'react-material/Grid';
+import { withStyles } from '@6thquake/react-material/styles';
+import Typography from '@6thquake/react-material/Typography';
+import Grid from '@6thquake/react-material/Grid';
 import Link from 'docs/src/modules/components/Link';
 
 const styleSheet = theme => ({

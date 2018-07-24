@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import { Dragable } from 'react-material/Dragable';
+import { withStyles } from '@6thquake/react-material/styles';
+import { Dragable } from '@6thquake/react-material/Dragable';
 import { Home, Grade, Lock } from '@material-ui/icons';
 
 export default class DragAroundNaive extends Component {

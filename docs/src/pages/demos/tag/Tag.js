@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Tag from 'react-material/Tag';
+import { withStyles } from '@6thquake/react-material/styles';
+import Tag from '@6thquake/react-material/Tag';
 
 const styles = () => ({
   blockDiv: {

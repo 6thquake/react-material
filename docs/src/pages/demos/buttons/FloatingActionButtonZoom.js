@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SwipeableViews from 'react-swipeable-views';
-import { withStyles } from 'react-material/styles';
-import AppBar from 'react-material/AppBar';
-import Tabs from 'react-material/Tabs';
-import Tab from 'react-material/Tab';
-import Typography from 'react-material/Typography';
-import Zoom from 'react-material/Zoom';
-import Button from 'react-material/Button';
+import { withStyles } from '@6thquake/react-material/styles';
+import AppBar from '@6thquake/react-material/AppBar';
+import Tabs from '@6thquake/react-material/Tabs';
+import Tab from '@6thquake/react-material/Tab';
+import Typography from '@6thquake/react-material/Typography';
+import Zoom from '@6thquake/react-material/Zoom';
+import Button from '@6thquake/react-material/Button';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
-import green from 'react-material/colors/green';
+import green from '@6thquake/react-material/colors/green';
 
 function TabContainer(props) {
   const { children, dir } = props;

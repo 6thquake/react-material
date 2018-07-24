@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-material/Button';
+import Button from '@6thquake/react-material/Button';
 import Dialog, {
   DialogTitle,
   DialogContent,
   DialogContentText,
   DialogActions,
-} from 'react-material/Dialog';
-import Typography from 'react-material/Typography';
-import { withStyles } from 'react-material/styles';
+} from '@6thquake/react-material/Dialog';
+import Typography from '@6thquake/react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
 import withRoot from '../withRoot';
 import classNames from 'classnames';
-import Drawer from 'react-material/Drawer';
-import AppBar from 'react-material/AppBar';
-import Toolbar from 'react-material/Toolbar';
-import List from 'react-material/List';
-import Divider from 'react-material/Divider';
-import IconButton from 'react-material/IconButton';
+import Drawer from '@6thquake/react-material/Drawer';
+import AppBar from '@6thquake/react-material/AppBar';
+import Toolbar from '@6thquake/react-material/Toolbar';
+import List from '@6thquake/react-material/List';
+import Divider from '@6thquake/react-material/Divider';
+import IconButton from '@6thquake/react-material/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';

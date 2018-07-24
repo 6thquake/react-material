@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import AppBar from 'react-material/AppBar';
-import Toolbar from 'react-material/Toolbar';
-import Typography from 'react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
+import AppBar from '@6thquake/react-material/AppBar';
+import Toolbar from '@6thquake/react-material/Toolbar';
+import Typography from '@6thquake/react-material/Typography';
 
 const styles = {
   root: {

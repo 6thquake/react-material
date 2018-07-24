@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import MuiThemeProvider from 'react-material/styles/MuiThemeProvider';
+import MuiThemeProvider from '@6thquake/react-material/styles/MuiThemeProvider';
 import RMRadioButton from './form/RMRadioButton';
 import RMRadioButtonGroup from './form/RMRadioButtonGroup';
 import RMSlider from './form/RMSlider';
 import RMTooltip from './form/RMTooltip';
-import RaisedButton from 'react-material/RaisedButton';
+import RaisedButton from '@6thquake/react-material/RaisedButton';
 
-import TextField from 'react-material/TextField';
+import TextField from '@6thquake/react-material/TextField';
 
 const style = {
   margin: 300,

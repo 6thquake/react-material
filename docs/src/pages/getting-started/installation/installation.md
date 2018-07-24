@@ -7,7 +7,7 @@ React-Material is available as an [npm package](http://npm.release.ctripcorp.com
 To install and save in your `package.json` dependencies, run:
 
 ```sh
-npm install react-material@next
+npm install @6thquake/react-material@next
 ```
 
 ## Roboto Font

@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
+import { withStyles } from '@6thquake/react-material/styles';
 import classNames from 'classnames';
-import ExpansionPanel from 'react-material/ExpansionPanel';
-import ExpansionPanelDetails from 'react-material/ExpansionPanelDetails';
-import ExpansionPanelSummary from 'react-material/ExpansionPanelSummary';
-import ExpansionPanelActions from 'react-material/ExpansionPanelActions';
-import Typography from 'react-material/Typography';
+import ExpansionPanel from '@6thquake/react-material/ExpansionPanel';
+import ExpansionPanelDetails from '@6thquake/react-material/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@6thquake/react-material/ExpansionPanelSummary';
+import ExpansionPanelActions from '@6thquake/react-material/ExpansionPanelActions';
+import Typography from '@6thquake/react-material/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Chip from 'react-material/Chip';
-import Button from 'react-material/Button';
-import Divider from 'react-material/Divider';
+import Chip from '@6thquake/react-material/Chip';
+import Button from '@6thquake/react-material/Button';
+import Divider from '@6thquake/react-material/Divider';
 
 const styles = theme => ({
   root: {

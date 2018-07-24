@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import AppBar from 'react-material/AppBar';
-import Toolbar from 'react-material/Toolbar';
-import Typography from 'react-material/Typography';
-import Button from 'react-material/Button';
-import IconButton from 'react-material/IconButton';
+import { withStyles } from '@6thquake/react-material/styles';
+import AppBar from '@6thquake/react-material/AppBar';
+import Toolbar from '@6thquake/react-material/Toolbar';
+import Typography from '@6thquake/react-material/Typography';
+import Button from '@6thquake/react-material/Button';
+import IconButton from '@6thquake/react-material/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { withStyles } from 'react-material/styles';
-import { LoadingPanel } from 'react-material/Panel';
-import Typography from 'react-material/Typography';
-import Button from 'react-material/Button';
+import { withStyles } from '@6thquake/react-material/styles';
+import { LoadingPanel } from '@6thquake/react-material/Panel';
+import Typography from '@6thquake/react-material/Typography';
+import Button from '@6thquake/react-material/Button';
 
 const styles = {
   root: {

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import MobileStepper from 'react-material/MobileStepper';
-import Button from 'react-material/Button';
+import { withStyles } from '@6thquake/react-material/styles';
+import MobileStepper from '@6thquake/react-material/MobileStepper';
+import Button from '@6thquake/react-material/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'react-material/styles';
-import ListItem from 'react-material/ListItem';
-import Button from 'react-material/Button';
-import Collapse from 'react-material/Collapse';
+import { withStyles } from '@6thquake/react-material/styles';
+import ListItem from '@6thquake/react-material/ListItem';
+import Button from '@6thquake/react-material/Button';
+import Collapse from '@6thquake/react-material/Collapse';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({

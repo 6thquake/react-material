@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Input from 'react-material/Input';
-import InputLabel from 'react-material/InputLabel';
-import MenuItem from 'react-material/MenuItem';
-import FormControl from 'react-material/FormControl';
-import ListItemText from 'react-material/ListItemText';
-import Select from 'react-material/Select';
-import Checkbox from 'react-material/Checkbox';
-import Chip from 'react-material/Chip';
+import { withStyles } from '@6thquake/react-material/styles';
+import Input from '@6thquake/react-material/Input';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import FormControl from '@6thquake/react-material/FormControl';
+import ListItemText from '@6thquake/react-material/ListItemText';
+import Select from '@6thquake/react-material/Select';
+import Checkbox from '@6thquake/react-material/Checkbox';
+import Chip from '@6thquake/react-material/Chip';
 
 const styles = theme => ({
   root: {

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import Modal, { Modal2, ModalManager } from 'react-material/Modal';
-import Button from 'react-material/Button';
-import { withStyles } from 'react-material/styles';
+import Modal, { Modal2, ModalManager } from '@6thquake/react-material/Modal';
+import Button from '@6thquake/react-material/Button';
+import { withStyles } from '@6thquake/react-material/styles';
 
-import DialogContentText from 'react-material/DialogContentText';
-import FormControl from 'react-material/FormControl';
-import FormLabel from 'react-material/FormLabel';
-import FormControlLabel from 'react-material/FormControlLabel';
-import Radio from 'react-material/Radio';
-import RadioGroup from 'react-material/RadioGroup';
-import Grid from 'react-material/Grid';
+import DialogContentText from '@6thquake/react-material/DialogContentText';
+import FormControl from '@6thquake/react-material/FormControl';
+import FormLabel from '@6thquake/react-material/FormLabel';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import Radio from '@6thquake/react-material/Radio';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
+import Grid from '@6thquake/react-material/Grid';
 
 const styles = theme => ({
   box: {

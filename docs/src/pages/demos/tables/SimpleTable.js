@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Table from 'react-material/Table';
-import TableBody from 'react-material/TableBody';
-import TableCell from 'react-material/TableCell';
-import TableHead from 'react-material/TableHead';
-import TableRow from 'react-material/TableRow';
-import Paper from 'react-material/Paper';
+import { withStyles } from '@6thquake/react-material/styles';
+import Table from '@6thquake/react-material/Table';
+import TableBody from '@6thquake/react-material/TableBody';
+import TableCell from '@6thquake/react-material/TableCell';
+import TableHead from '@6thquake/react-material/TableHead';
+import TableRow from '@6thquake/react-material/TableRow';
+import Paper from '@6thquake/react-material/Paper';
 
 const styles = theme => ({
   root: {

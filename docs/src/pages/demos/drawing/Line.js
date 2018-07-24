@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
+import { withStyles } from '@6thquake/react-material/styles';
 import { Dragable } from './Dragable';
 import { Home, Grade, Lock } from '@material-ui/icons';
 
-import Button from 'react-material/Button';
-import Icon from 'react-material/Icon';
+import Button from '@6thquake/react-material/Button';
+import Icon from '@6thquake/react-material/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
 const aggregate = '/static/images/drawing/aggregate.gif';
 const compose = '/static/images/drawing/compose.gif';

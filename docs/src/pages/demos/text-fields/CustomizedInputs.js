@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, MuiThemeProvider, createMuiTheme } from 'react-material/styles';
-import Input from 'react-material/Input';
-import InputLabel from 'react-material/InputLabel';
-import TextField from 'react-material/TextField';
-import FormControl from 'react-material/FormControl';
-import purple from 'react-material/colors/purple';
-import green from 'react-material/colors/green';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@6thquake/react-material/styles';
+import Input from '@6thquake/react-material/Input';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import TextField from '@6thquake/react-material/TextField';
+import FormControl from '@6thquake/react-material/FormControl';
+import purple from '@6thquake/react-material/colors/purple';
+import green from '@6thquake/react-material/colors/green';
 
 const styles = theme => ({
   container: {

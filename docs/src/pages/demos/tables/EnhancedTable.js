@@ -1,23 +1,23 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Table from 'react-material/Table';
-import TableBody from 'react-material/TableBody';
-import TableCell from 'react-material/TableCell';
-import TableHead from 'react-material/TableHead';
-import TablePagination from 'react-material/TablePagination';
-import TableRow from 'react-material/TableRow';
-import TableSortLabel from 'react-material/TableSortLabel';
-import Toolbar from 'react-material/Toolbar';
-import Typography from 'react-material/Typography';
-import Paper from 'react-material/Paper';
-import Checkbox from 'react-material/Checkbox';
-import IconButton from 'react-material/IconButton';
-import Tooltip from 'react-material/Tooltip';
+import { withStyles } from '@6thquake/react-material/styles';
+import Table from '@6thquake/react-material/Table';
+import TableBody from '@6thquake/react-material/TableBody';
+import TableCell from '@6thquake/react-material/TableCell';
+import TableHead from '@6thquake/react-material/TableHead';
+import TablePagination from '@6thquake/react-material/TablePagination';
+import TableRow from '@6thquake/react-material/TableRow';
+import TableSortLabel from '@6thquake/react-material/TableSortLabel';
+import Toolbar from '@6thquake/react-material/Toolbar';
+import Typography from '@6thquake/react-material/Typography';
+import Paper from '@6thquake/react-material/Paper';
+import Checkbox from '@6thquake/react-material/Checkbox';
+import IconButton from '@6thquake/react-material/IconButton';
+import Tooltip from '@6thquake/react-material/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import { lighten } from 'react-material/styles/colorManipulator';
+import { lighten } from '@6thquake/react-material/styles/colorManipulator';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import { StatusButton } from 'react-material/Button';
-import { StepperPane, StepPane } from 'react-material/Stepper';
+import { withStyles } from '@6thquake/react-material/styles';
+import { StatusButton } from '@6thquake/react-material/Button';
+import { StepperPane, StepPane } from '@6thquake/react-material/Stepper';
 
 const styles = {
   pane: {},

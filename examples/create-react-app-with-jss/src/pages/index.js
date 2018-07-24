@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-material/Button';
+import Button from '@6thquake/react-material/Button';
 import Dialog, {
   DialogTitle,
   DialogContent,
   DialogContentText,
   DialogActions,
-} from 'react-material/Dialog';
-import Typography from 'react-material/Typography';
-import { withStyles } from 'react-material/styles';
+} from '@6thquake/react-material/Dialog';
+import Typography from '@6thquake/react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
 import withRoot from '../withRoot';
 
 const styles = theme => ({

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Transfer from 'react-material/Transfer';
+import { withStyles } from '@6thquake/react-material/styles';
+import Transfer from '@6thquake/react-material/Transfer';
 class App extends React.Component {
   constructor(props) {
     super(props);

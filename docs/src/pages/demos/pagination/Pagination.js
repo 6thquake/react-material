@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Pagination from 'react-material/Pagination';
-import { withStyles } from 'react-material/styles';
-import Divider from 'react-material/Divider';
+import Pagination from '@6thquake/react-material/Pagination';
+import { withStyles } from '@6thquake/react-material/styles';
+import Divider from '@6thquake/react-material/Divider';
 
 const styles = {
   root: {

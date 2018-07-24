@@ -1,14 +1,14 @@
 import React from 'react';
-import Paper from 'react-material/Paper';
-import Grid from 'react-material/Grid';
-import { withStyles } from 'react-material/styles';
-import Divider from 'react-material/Divider';
-import Anchor from 'react-material/Anchor';
-import FormControl from 'react-material/FormControl';
-import FormLabel from 'react-material/FormLabel';
-import FormControlLabel from 'react-material/FormControlLabel';
-import Radio from 'react-material/Radio';
-import RadioGroup from 'react-material/RadioGroup';
+import Paper from '@6thquake/react-material/Paper';
+import Grid from '@6thquake/react-material/Grid';
+import { withStyles } from '@6thquake/react-material/styles';
+import Divider from '@6thquake/react-material/Divider';
+import Anchor from '@6thquake/react-material/Anchor';
+import FormControl from '@6thquake/react-material/FormControl';
+import FormLabel from '@6thquake/react-material/FormLabel';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import Radio from '@6thquake/react-material/Radio';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
 
 export const styles = theme => {
   return {

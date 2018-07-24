@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
 
-import DatePicker from 'react-material/Picker';
+import DatePicker from '@6thquake/react-material/Picker';
 import { IconButton, withStyles } from 'react-material';
 
 import isValid from 'date-fns/isValid';
@@ -12,7 +12,7 @@ import isSameDay from 'date-fns/isSameDay';
 import startOfWeek from 'date-fns/startOfWeek';
 import endOfWeek from 'date-fns/endOfWeek';
 import isWithinInterval from 'date-fns/isWithinInterval';
-import LocaleProvider from 'react-material/LocaleProvider';
+import LocaleProvider from '@6thquake/react-material/LocaleProvider';
 
 class CustomElements extends PureComponent {
   static propTypes = {

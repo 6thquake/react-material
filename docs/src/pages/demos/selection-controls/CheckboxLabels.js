@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import green from 'react-material/colors/green';
-import FormGroup from 'react-material/FormGroup';
-import FormControlLabel from 'react-material/FormControlLabel';
-import Checkbox from 'react-material/Checkbox';
+import { withStyles } from '@6thquake/react-material/styles';
+import green from '@6thquake/react-material/colors/green';
+import FormGroup from '@6thquake/react-material/FormGroup';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import Checkbox from '@6thquake/react-material/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';

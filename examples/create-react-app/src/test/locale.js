@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from 'react-material/Button';
+import Button from '@6thquake/react-material/Button';
 import withLocale from '../LocaleProvider/withLocale';
 import tw from '../LocaleProvider/zh_TW';
 class Modal extends Component {

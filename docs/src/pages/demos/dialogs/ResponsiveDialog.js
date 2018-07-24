@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-material/Button';
-import Dialog from 'react-material/Dialog';
-import DialogActions from 'react-material/DialogActions';
-import DialogContent from 'react-material/DialogContent';
-import DialogContentText from 'react-material/DialogContentText';
-import DialogTitle from 'react-material/DialogTitle';
-import withMobileDialog from 'react-material/withMobileDialog';
+import Button from '@6thquake/react-material/Button';
+import Dialog from '@6thquake/react-material/Dialog';
+import DialogActions from '@6thquake/react-material/DialogActions';
+import DialogContent from '@6thquake/react-material/DialogContent';
+import DialogContentText from '@6thquake/react-material/DialogContentText';
+import DialogTitle from '@6thquake/react-material/DialogTitle';
+import withMobileDialog from '@6thquake/react-material/withMobileDialog';
 
 class ResponsiveDialog extends React.Component {
   state = {

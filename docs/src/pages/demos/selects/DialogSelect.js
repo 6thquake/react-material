@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-material/Button';
-import { withStyles } from 'react-material/styles';
-import Dialog from 'react-material/Dialog';
-import DialogActions from 'react-material/DialogActions';
-import DialogContent from 'react-material/DialogContent';
-import DialogTitle from 'react-material/DialogTitle';
-import Input from 'react-material/Input';
-import InputLabel from 'react-material/InputLabel';
-import MenuItem from 'react-material/MenuItem';
-import FormControl from 'react-material/FormControl';
-import Select from 'react-material/Select';
+import Button from '@6thquake/react-material/Button';
+import { withStyles } from '@6thquake/react-material/styles';
+import Dialog from '@6thquake/react-material/Dialog';
+import DialogActions from '@6thquake/react-material/DialogActions';
+import DialogContent from '@6thquake/react-material/DialogContent';
+import DialogTitle from '@6thquake/react-material/DialogTitle';
+import Input from '@6thquake/react-material/Input';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import FormControl from '@6thquake/react-material/FormControl';
+import Select from '@6thquake/react-material/Select';
 
 const styles = theme => ({
   container: {

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Radio, { RadioButton } from 'react-material/Radio';
-import RadioGroup from 'react-material/RadioGroup';
-import FormLabel from 'react-material/FormLabel';
-import FormControl from 'react-material/FormControl';
-import FormControlLabel from 'react-material/FormControlLabel';
-import FormHelperText from 'react-material/FormHelperText';
-import Grid from 'react-material/Grid';
+import { withStyles } from '@6thquake/react-material/styles';
+import Radio, { RadioButton } from '@6thquake/react-material/Radio';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
+import FormLabel from '@6thquake/react-material/FormLabel';
+import FormControl from '@6thquake/react-material/FormControl';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import FormHelperText from '@6thquake/react-material/FormHelperText';
+import Grid from '@6thquake/react-material/Grid';
 
 const styles = theme => ({
   root: {

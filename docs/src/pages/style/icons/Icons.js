@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import green from 'react-material/colors/green';
-import Icon from 'react-material/Icon';
+import { withStyles } from '@6thquake/react-material/styles';
+import green from '@6thquake/react-material/colors/green';
+import Icon from '@6thquake/react-material/Icon';
 
 const styles = theme => ({
   root: {

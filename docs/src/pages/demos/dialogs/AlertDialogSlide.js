@@ -1,11 +1,11 @@
 import React from 'react';
-import Button from 'react-material/Button';
-import Dialog from 'react-material/Dialog';
-import DialogActions from 'react-material/DialogActions';
-import DialogContent from 'react-material/DialogContent';
-import DialogContentText from 'react-material/DialogContentText';
-import DialogTitle from 'react-material/DialogTitle';
-import Slide from 'react-material/Slide';
+import Button from '@6thquake/react-material/Button';
+import Dialog from '@6thquake/react-material/Dialog';
+import DialogActions from '@6thquake/react-material/DialogActions';
+import DialogContent from '@6thquake/react-material/DialogContent';
+import DialogContentText from '@6thquake/react-material/DialogContentText';
+import DialogTitle from '@6thquake/react-material/DialogTitle';
+import Slide from '@6thquake/react-material/Slide';
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;

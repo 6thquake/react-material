@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { MuiThemeProvider, createMuiTheme } from 'react-material/styles';
-import purple from 'react-material/colors/purple';
-import green from 'react-material/colors/green';
-import CssBaseline from 'react-material/CssBaseline';
+import { MuiThemeProvider, createMuiTheme } from '@6thquake/react-material/styles';
+import purple from '@6thquake/react-material/colors/purple';
+import green from '@6thquake/react-material/colors/green';
+import CssBaseline from '@6thquake/react-material/CssBaseline';
 
 // A theme with custom primary and secondary color.
 // It's optional.

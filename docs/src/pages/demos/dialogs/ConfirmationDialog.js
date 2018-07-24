@@ -2,19 +2,19 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Button from 'react-material/Button';
-import List from 'react-material/List';
-import ListItem from 'react-material/ListItem';
-import ListItemText from 'react-material/ListItemText';
-import Dialog from 'react-material/Dialog';
-import DialogActions from 'react-material/DialogActions';
-import DialogContent from 'react-material/DialogContent';
-import DialogContentText from 'react-material/DialogContentText';
-import DialogTitle from 'react-material/DialogTitle';
-import Radio from 'react-material/Radio';
-import RadioGroup from 'react-material/RadioGroup';
-import FormControlLabel from 'react-material/FormControlLabel';
+import { withStyles } from '@6thquake/react-material/styles';
+import Button from '@6thquake/react-material/Button';
+import List from '@6thquake/react-material/List';
+import ListItem from '@6thquake/react-material/ListItem';
+import ListItemText from '@6thquake/react-material/ListItemText';
+import Dialog from '@6thquake/react-material/Dialog';
+import DialogActions from '@6thquake/react-material/DialogActions';
+import DialogContent from '@6thquake/react-material/DialogContent';
+import DialogContentText from '@6thquake/react-material/DialogContentText';
+import DialogTitle from '@6thquake/react-material/DialogTitle';
+import Radio from '@6thquake/react-material/Radio';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
 
 const options = [
   'None',

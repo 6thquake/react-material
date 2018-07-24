@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Badge from 'react-material/Badge';
-import IconButton from 'react-material/IconButton';
+import { withStyles } from '@6thquake/react-material/styles';
+import Badge from '@6thquake/react-material/Badge';
+import IconButton from '@6thquake/react-material/IconButton';
 import MailIcon from '@material-ui/icons/Mail';
-import AppBar from 'react-material/AppBar';
-import Tabs from 'react-material/Tabs';
-import Tab from 'react-material/Tab';
-import Typography from 'react-material/Typography';
-import Button from 'react-material/Button';
+import AppBar from '@6thquake/react-material/AppBar';
+import Tabs from '@6thquake/react-material/Tabs';
+import Tab from '@6thquake/react-material/Tab';
+import Typography from '@6thquake/react-material/Typography';
+import Button from '@6thquake/react-material/Button';
 
 const styles = theme => ({
   margin: {

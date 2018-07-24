@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Paper from 'react-material/Paper';
-import Anchor from 'react-material/Anchor';
-import { CompatibleGrid as Grid } from 'react-material/Grid';
+import { withStyles } from '@6thquake/react-material/styles';
+import Paper from '@6thquake/react-material/Paper';
+import Anchor from '@6thquake/react-material/Anchor';
+import { CompatibleGrid as Grid } from '@6thquake/react-material/Grid';
 
 const styles = theme => ({
   root: {

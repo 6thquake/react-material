@@ -1,15 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import IconButton from 'react-material/IconButton';
-import Input from 'react-material/Input';
-import InputLabel from 'react-material/InputLabel';
-import InputAdornment from 'react-material/InputAdornment';
-import FormControl from 'react-material/FormControl';
-import FormHelperText from 'react-material/FormHelperText';
-import TextField from 'react-material/TextField';
-import MenuItem from 'react-material/MenuItem';
+import { withStyles } from '@6thquake/react-material/styles';
+import IconButton from '@6thquake/react-material/IconButton';
+import Input from '@6thquake/react-material/Input';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import InputAdornment from '@6thquake/react-material/InputAdornment';
+import FormControl from '@6thquake/react-material/FormControl';
+import FormHelperText from '@6thquake/react-material/FormHelperText';
+import TextField from '@6thquake/react-material/TextField';
+import MenuItem from '@6thquake/react-material/MenuItem';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 

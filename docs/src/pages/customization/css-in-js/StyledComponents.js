@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Button from 'react-material/Button';
+import { withStyles } from '@6thquake/react-material/styles';
+import Button from '@6thquake/react-material/Button';
 
 // A function you can extract and put into its own module.
 // Yes, 15 lines of code, it's all you need.

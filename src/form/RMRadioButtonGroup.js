@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'react-material/styles/MuiThemeProvider';
-import { RadioButtonGroup } from 'react-material/RadioButton';
+import MuiThemeProvider from '@6thquake/react-material/styles/MuiThemeProvider';
+import { RadioButtonGroup } from '@6thquake/react-material/RadioButton';
 
 /* class RMRadioButtonGroup extends React.Component {
     constructor(props) {

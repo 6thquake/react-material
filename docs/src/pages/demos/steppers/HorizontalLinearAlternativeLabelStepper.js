@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Stepper from 'react-material/Stepper';
-import Step from 'react-material/Step';
-import StepLabel from 'react-material/StepLabel';
-import Button from 'react-material/Button';
-import Typography from 'react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
+import Stepper from '@6thquake/react-material/Stepper';
+import Step from '@6thquake/react-material/Step';
+import StepLabel from '@6thquake/react-material/StepLabel';
+import Button from '@6thquake/react-material/Button';
+import Typography from '@6thquake/react-material/Typography';
 
 const styles = theme => ({
   root: {

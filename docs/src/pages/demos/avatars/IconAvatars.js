@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import pink from 'react-material/colors/pink';
-import green from 'react-material/colors/green';
-import Avatar from 'react-material/Avatar';
+import { withStyles } from '@6thquake/react-material/styles';
+import pink from '@6thquake/react-material/colors/pink';
+import green from '@6thquake/react-material/colors/green';
+import Avatar from '@6thquake/react-material/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import AssignmentIcon from '@material-ui/icons/Assignment';

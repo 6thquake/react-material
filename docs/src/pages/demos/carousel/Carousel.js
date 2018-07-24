@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import Carousel from 'react-material/Carousel';
+import { withStyles } from '@6thquake/react-material/styles';
+import Carousel from '@6thquake/react-material/Carousel';
 import { Home, Grade, Lock } from '@material-ui/icons';
 
 const style = {

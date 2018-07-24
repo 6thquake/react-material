@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'react-material/styles';
-import FormControl from 'react-material/FormControl';
-import FormLabel from 'react-material/FormLabel';
-import FormControlLabel from 'react-material/FormControlLabel';
-import Radio from 'react-material/Radio';
-import RadioGroup from 'react-material/RadioGroup';
-import Grid from 'react-material/Grid';
-import Button from 'react-material/Button';
-import Popover from 'react-material/Popover';
-import Popconfirm from 'react-material/Popconfirm';
+import { withStyles } from '@6thquake/react-material/styles';
+import FormControl from '@6thquake/react-material/FormControl';
+import FormLabel from '@6thquake/react-material/FormLabel';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
+import Radio from '@6thquake/react-material/Radio';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
+import Grid from '@6thquake/react-material/Grid';
+import Button from '@6thquake/react-material/Button';
+import Popover from '@6thquake/react-material/Popover';
+import Popconfirm from '@6thquake/react-material/Popconfirm';
 
 const styles = theme => ({
   box: {

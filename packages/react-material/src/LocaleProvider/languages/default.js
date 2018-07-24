@@ -78,7 +78,7 @@ export default {
   Pagination: {
     lastPage: 'last',
     homePage: 'first',
-    page: 'page',
+    pageName: 'page',
     jumpTo: 'jump to',
   },
   Confirm: {

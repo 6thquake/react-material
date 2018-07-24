@@ -45,7 +45,7 @@ class AsyncSelect extends Component {
     /**
      * pagination component config
      */
-    pageConfig: PropTypes.object,
+    paginationProps: PropTypes.object,
     /**
      * placeholder of filter box
      */
@@ -93,7 +93,7 @@ class AsyncSelect extends Component {
     renderValue: PropTypes.func,
   };
   static defaultProps = {
-    pageConfig: { currentPage: 0, pageSize: 5, total: 0 },
+    paginationProps: { page: 0, rowsPerPage: 5, count: 0 },
     mapper: { label: 'label', value: 'value' },
     placeholder: 'please input something',
     comparison: (select, option) => {
@@ -147,7 +147,7 @@ class AsyncSelect extends Component {
   }
   render() {
     const {
-      pageConfig,
+      paginationProps,
       placeholder,
       multiple,
       classes,
@@ -190,7 +190,7 @@ class AsyncSelect extends Component {
         />
         {this.menuItems()}
         <Divider />
-        <Pagination {...pageConfig} pageCallbackFn={this.onChangePage.bind(this)} />
+        <Pagination {...paginationProps} onChangePage={this.onChangePage.bind(this)} />
       </AsyncSelectRoot>
     );
   }

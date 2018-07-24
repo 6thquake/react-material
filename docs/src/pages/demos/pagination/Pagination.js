@@ -13,29 +13,29 @@ class PaginationTest extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageConfig: {
-        currentPage: 0,
-        pageSize: 5,
-        total: 20,
+      paginationProps: {
+        page: 0,
+        rowsPerPage: 5,
+        count: 20,
       },
     };
   }
 
-  pageCallbackFn(i) {
+  onChangePage(i) {
     console.log(i, typeof i);
     this.setState({
-      pageConfig: {
-        ...this.state.pageConfig,
-        currentPage: i,
+      paginationProps: {
+        ...this.state.paginationProps,
+        page: i,
       },
     });
   }
   onChangeRowsPerPage(e) {
     console.log('onChangeRowsPerPage', e.target.value);
     this.setState({
-      pageConfig: {
-        ...this.state.pageConfig,
-        pageSize: e.target.value,
+      paginationProps: {
+        ...this.state.paginationProps,
+        rowsPerPage: e.target.value,
       },
     });
   }
@@ -44,45 +44,45 @@ class PaginationTest extends Component {
     return (
       <div className={classes.root}>
         <Pagination
-          {...this.state.pageConfig}
-          pageCallbackFn={this.pageCallbackFn.bind(this)}
+          {...this.state.paginationProps}
+          onChangePage={this.onChangePage.bind(this)}
           onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
         />
         <Divider />
         <Pagination
           showTwoEnds
-          {...this.state.pageConfig}
-          pageCallbackFn={this.pageCallbackFn.bind(this)}
+          {...this.state.paginationProps}
+          onChangePage={this.onChangePage.bind(this)}
           onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
         />
         <Divider />
         <Pagination
           showSizeChanger
-          {...this.state.pageConfig}
-          pageCallbackFn={this.pageCallbackFn.bind(this)}
+          {...this.state.paginationProps}
+          onChangePage={this.onChangePage.bind(this)}
           onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
         />
         <Divider />
         <Pagination
           showQuickJumper
-          {...this.state.pageConfig}
-          pageCallbackFn={this.pageCallbackFn.bind(this)}
+          {...this.state.paginationProps}
+          onChangePage={this.onChangePage.bind(this)}
           onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
         />
         <Divider />
         <Pagination
           showTwoEnds
           showSizeChanger
-          {...this.state.pageConfig}
-          pageCallbackFn={this.pageCallbackFn.bind(this)}
+          {...this.state.paginationProps}
+          onChangePage={this.onChangePage.bind(this)}
           onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
         />
         <Divider />
         <Pagination
           showQuickJumper
           showTwoEnds
-          {...this.state.pageConfig}
-          pageCallbackFn={this.pageCallbackFn.bind(this)}
+          {...this.state.paginationProps}
+          onChangePage={this.onChangePage.bind(this)}
           onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
         />
         <Divider />
@@ -90,8 +90,8 @@ class PaginationTest extends Component {
           showSizeChanger
           showQuickJumper
           showTwoEnds
-          {...this.state.pageConfig}
-          pageCallbackFn={this.pageCallbackFn.bind(this)}
+          {...this.state.paginationProps}
+          onChangePage={this.onChangePage.bind(this)}
           onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
         />
         <Divider />

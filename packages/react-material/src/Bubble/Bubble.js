@@ -93,7 +93,7 @@ class Bubble extends React.Component {
           </div>
         );
       } else if (direction == 'right') {
-      /*
+        /*
       * Right sided arrow
       */
         triResult = (
@@ -131,7 +131,7 @@ class Bubble extends React.Component {
           </div>
         );
       } else if (direction == 'top') {
-      /*
+        /*
       * Bottom sided arrow
       */
         triResult = (
@@ -169,7 +169,7 @@ class Bubble extends React.Component {
           </div>
         );
       } else if (direction == 'bottom') {
-      /*
+        /*
       * Top sided arrow
       */
         triResult = (
@@ -208,7 +208,7 @@ class Bubble extends React.Component {
         );
       }
     } else {
-    /*
+      /*
     * Non-floated bubble
     */
       /*
@@ -251,7 +251,7 @@ class Bubble extends React.Component {
           </div>
         );
       } else if (direction == 'right') {
-      /*
+        /*
       * Right sided arrow
       */
         triResult = (
@@ -290,7 +290,7 @@ class Bubble extends React.Component {
           </div>
         );
       } else if (direction == 'top') {
-      /*
+        /*
       * Bottom sided arrow
       */
         triResult = (
@@ -330,7 +330,7 @@ class Bubble extends React.Component {
           </div>
         );
       } else if (direction == 'bottom') {
-      /*
+        /*
       * Top sided arrow
       */
         triResult = (

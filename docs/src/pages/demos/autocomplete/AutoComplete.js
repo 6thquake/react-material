@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import AutoComplete from 'react-material/AutoComplete';
 import { withStyles } from 'react-material/styles';
 import Typography from 'react-material/Typography';
-
+import StarBorder from '@material-ui/icons/StarBorder';
+import ListItemText from 'react-material/ListItemText';
+import ListItemIcon from 'react-material/ListItemIcon';
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -92,12 +94,15 @@ class AutoCompleteTest extends Component {
         <AutoComplete
           placeholder={'new autoComplete'}
           options={this.state.options.slice(
-            count == 0 ? count : page  * rowsPerPage + 1,
+            count === 0 ? count : page  * rowsPerPage + 1,
             (page+1) * rowsPerPage > count ? count : (page+1) * rowsPerPage,
           )}
           multiple={true}
           disabled={true}
-          keyValue={['label', 'label']}
+          mapper={{
+            label: 'label',
+            value: 'label',
+          }}
           value={this.state.selectedmulit}
           paginationProps={this.state.paginationProps}
           onChangePage={this.autoCb.bind(this)}
@@ -109,11 +114,14 @@ class AutoCompleteTest extends Component {
         <AutoComplete
           placeholder={'new autoComplete'}
           options={this.state.options.slice(
-            count == 0 ? count : page  * rowsPerPage + 1,
+            count === 0 ? count : page  * rowsPerPage + 1,
             (page+1) * rowsPerPage > count ? count : (page+1) * rowsPerPage,
           )}
           multiple={false}
-          keyValue={['label', 'label']}
+          mapper={{
+            label: 'label',
+            value: 'label',
+          }}
           value={this.state.selectedsingled}
           paginationProps={this.state.paginationProps}
           onChangePage={this.autoCb.bind(this)}
@@ -131,6 +139,32 @@ class AutoCompleteTest extends Component {
           onChangePage={this.autoCb.bind(this)}
           onChangeInput={this.inputChangeCb.bind(this)}
           onChange={this.handleChangeSinglestr.bind(this)}
+        />
+        <br />
+        <Typography>customer option via mapper</Typography>
+        <AutoComplete
+          placeholder={'new autoComplete'}
+          options={this.state.options.slice(
+            count === 0 ? count : page  * rowsPerPage + 1,
+            (page+1) * rowsPerPage > count ? count : (page+1) * rowsPerPage,
+          )}
+          multiple={false}
+          mapper={{
+            label: (item,index)=>(
+              <div>
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText primary={item.label} />
+              </div>
+            ),
+            value: 'label',
+          }}
+          value={this.state.selectedsingled}
+          paginationProps={this.state.paginationProps}
+          onChangePage={this.autoCb.bind(this)}
+          onChangeInput={this.inputChangeCb.bind(this)}
+          onChange={this.handleChangeSingle.bind(this)}
         />
       </div>
     );

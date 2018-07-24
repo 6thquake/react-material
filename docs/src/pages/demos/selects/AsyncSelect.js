@@ -322,17 +322,17 @@ class App extends Component {
         },
       },
     ],
-    pageConfig: {
-      pageSize: 5,
-      currentPage: 0,
-      total: 34,
+    paginationProps: {
+      rowsPerPage: 5,
+      page: 0,
+      count: 34,
     },
   };
   autoCb(i) {
     this.setState({
-      pageConfig: {
-        ...this.state.pageConfig,
-        currentPage: i,
+      paginationProps: {
+        ...this.state.paginationProps,
+        page: i,
       },
     });
   }
@@ -376,8 +376,8 @@ class App extends Component {
       value5,
       value6,
     } = this.state;
-    const { currentPage, pageSize } = this.state.pageConfig;
-    const total = option.length;
+    const { page, rowsPerPage } = this.state.paginationProps;
+    const count = option.length;
     return (
       <div className={classes.root}>
         <Typography variant="subheading" gutterBottom>
@@ -389,7 +389,7 @@ class App extends Component {
             multiple
             value={value}
             onOpen={this.onOpen.bind(this)}
-            pageConfig={this.state.pageConfig}
+            paginationProps={this.state.paginationProps}
             placeholder="select one or more"
             mapper={{
               label: 'label',
@@ -415,8 +415,8 @@ class App extends Component {
           >
             {option
               .slice(
-                total === 0 ? total : currentPage * pageSize,
-                (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+                count === 0 ? count : page * rowsPerPage,
+                (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
               )
               .map((item, index) => (
                 <MenuItem key={index} value={item}>
@@ -434,7 +434,7 @@ class App extends Component {
             multiple
             value={value3}
             onOpen={this.onOpen.bind(this)}
-            pageConfig={this.state.pageConfig}
+            paginationProps={this.state.paginationProps}
             placeholder="select one or more"
             onChangeFilter={this.filterChangeCb.bind(this)}
             onChange={this.handleChange('value3')}
@@ -449,8 +449,8 @@ class App extends Component {
           >
             {array
               .slice(
-                total === 0 ? total : currentPage * pageSize,
-                (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+                count === 0 ? count : page * rowsPerPage,
+                (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
               )
               .map((item, index) => (
                 <MenuItem key={index} value={item}>
@@ -471,7 +471,7 @@ class App extends Component {
             comparison={(select, option) => {
               return select.value.age === option.value.age;
             }}
-            pageConfig={this.state.pageConfig}
+            paginationProps={this.state.paginationProps}
             placeholder="select one or more"
             onChangeFilter={this.filterChangeCb.bind(this)}
             onChange={this.handleChange('value1')}
@@ -480,8 +480,8 @@ class App extends Component {
           >
             {option
               .slice(
-                total === 0 ? total : currentPage * pageSize,
-                (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+                count === 0 ? count : page * rowsPerPage,
+                (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
               )
               .map((item, index) => (
                 <MenuItem key={index} value={item}>
@@ -498,7 +498,7 @@ class App extends Component {
           <AsyncSelect
             value={value2}
             onOpen={this.onOpen.bind(this)}
-            pageConfig={this.state.pageConfig}
+            paginationProps={this.state.paginationProps}
             placeholder="select one or more"
             onChangeFilter={this.filterChangeCb.bind(this)}
             onChange={this.handleChange('value2')}
@@ -507,8 +507,8 @@ class App extends Component {
           >
             {array
               .slice(
-                total === 0 ? total : currentPage * pageSize,
-                (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+                count === 0 ? count : page * rowsPerPage,
+                (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
               )
               .map((item, index) => (
                 <MenuItem key={index} value={item}>
@@ -533,8 +533,8 @@ class App extends Component {
             }}
             value={value}
             options={option.slice(
-              total === 0 ? total : currentPage * pageSize,
-              (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+              count === 0 ? count : page * rowsPerPage,
+              (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
             )}
             htmlFor={'InputLabel3'}
             mapper={{
@@ -542,7 +542,7 @@ class App extends Component {
               value: 'value',
             }}
             onOpen={this.onOpen.bind(this)}
-            pageConfig={this.state.pageConfig}
+            paginationProps={this.state.paginationProps}
             placeholder="select one or more"
             onChange={this.handleChange('value')}
             onChangePage={this.autoCb.bind(this)}
@@ -569,8 +569,8 @@ class App extends Component {
               return select.value === option.value;
             }}
             options={optionsimpleobject.slice(
-              total === 0 ? total : currentPage * pageSize,
-              (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+              count === 0 ? count : page * rowsPerPage,
+              (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
             )}
             htmlFor={'InputLabel3'}
             mapper={{
@@ -596,7 +596,7 @@ class App extends Component {
               </div>
             )}
             onOpen={this.onOpen.bind(this)}
-            pageConfig={this.state.pageConfig}
+            paginationProps={this.state.paginationProps}
             placeholder="select one or more"
             onChange={this.handleChange('value4')}
             onChangePage={this.autoCb.bind(this)}
@@ -614,7 +614,7 @@ class App extends Component {
             value={value6}
             htmlFor={'InputLabel3'}
             onOpen={this.onOpen.bind(this)}
-            pageConfig={this.state.pageConfig}
+            paginationProps={this.state.paginationProps}
             placeholder="请输入过滤值"
             onChange={this.handleChange('value6')}
             onChangePage={this.autoCb.bind(this)}
@@ -623,8 +623,8 @@ class App extends Component {
               let arr = [];
               optionsimpleobject
                 .slice(
-                  total === 0 ? total : currentPage * pageSize,
-                  (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+                  count === 0 ? count : page * rowsPerPage,
+                  (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
                 )
                 .map((item, index) => {
                   selected.map(n => {
@@ -644,8 +644,8 @@ class App extends Component {
           >
             {optionsimpleobject
               .slice(
-                total === 0 ? total : currentPage * pageSize,
-                (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+                count === 0 ? count : page * rowsPerPage,
+                (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
               )
               .map(item => (
                 <MenuItem key={item.value} value={item.value}>
@@ -667,7 +667,7 @@ class App extends Component {
               value: 'value',
             }}
             onOpen={this.onOpen.bind(this)}
-            pageConfig={this.state.pageConfig}
+            paginationProps={this.state.paginationProps}
             placeholder="select one or more"
             onChange={this.handleChange('value5')}
             onChangePage={this.autoCb.bind(this)}
@@ -675,8 +675,8 @@ class App extends Component {
             renderValue={selected => {
               return optionsimpleobject
                 .slice(
-                  total === 0 ? total : currentPage * pageSize,
-                  (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+                  count === 0 ? count : page * rowsPerPage,
+                  (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
                 )
                 .map(item => {
                   if (item.value === selected) {
@@ -687,8 +687,8 @@ class App extends Component {
           >
             {optionsimpleobject
               .slice(
-                total === 0 ? total : currentPage * pageSize,
-                (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+                count === 0 ? count : page * rowsPerPage,
+                (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
               )
               .map(item => (
                 <MenuItem key={item.value} value={item.value}>

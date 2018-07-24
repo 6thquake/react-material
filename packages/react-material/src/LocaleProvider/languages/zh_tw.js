@@ -77,7 +77,7 @@ export default {
   Pagination: {
     lastPage: '尾頁',
     homePage: '首頁',
-    page: '頁',
+    pageName: '頁',
     jumpTo: '跳至',
   },
   Confirm: {

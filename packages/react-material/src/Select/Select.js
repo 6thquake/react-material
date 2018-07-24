@@ -1,132 +1,232 @@
-/**
- * @ignore - do not document.
- */
-
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '../styles/withStyles';
-import SelectStandalone from '@material-ui/core/Select';
-import FormHelperText from '../FormHelperText';
-import { withFormsy, propTypes } from 'formsy-react';
-import { compose } from 'recompose';
-import withFormItem from '../Form/withFormItem';
-import withForm from '../Form/withForm';
-import omit from '../utils/omit';
+import { findDOMNode } from 'react-dom';
+import SelectRoot from './SyncSelect';
+import Pagination from '../Pagination/Pagination';
+import AsyncSelectFilter from './AsyncSelectFilter';
+import Divider from '../Divider';
+import { withStyles } from '../styles';
 
-const style = theme => ({
-  formHelpTextContainer: {
-    minHeight: '12px',
+const styles = theme => ({
+  selectMenu: {
+    whiteSpace: 'pre-wrap',
   },
-  formHelperTextRoot: {
-    marginTop: 0,
+  root: {
+    width: '100%',
   },
 });
 
 class Select extends Component {
-  onChange = event => {
-    // setValue() will set the value of the component, which in
-    // turn will validate it and the rest of the form
-    // Important: Don't skip this step. This pattern is required
-    // for Formsy to work.
-    const value = event.target.value;
-    this.props.setValue(value);
-
-    const { onChange } = this.props;
-    onChange && onChange(event, value);
+  static propTypes = {
+    /**
+     * callback to parent component when select options
+     */
+    onChange: PropTypes.func,
+    /**
+     * page size
+     */
+    rowsPerPage: PropTypes.num,
+    /**
+     * select value,
+     */
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    ]),
+    /**
+     * placeholder
+     */
+    placeholder: PropTypes.string,
+    /**
+     * decided multiple select
+     */
+    multiple: PropTypes.bool,
+    /**
+     * decided select is disabled
+     */
+    disabled: PropTypes.bool,
+    /**
+     * If true ,show the filter box
+     */
+    showFilter: PropTypes.bool,
+    /**
+     * If true ,show the pagination box
+     */
+    showPination: PropTypes.bool,
   };
-
-  renderFormComponent() {
-    const {
-      classes,
-      getErrorMessage,
-      getErrorMessages,
-      getValue,
-      hasValue,
-      isFormDisabled,
-      isValid,
-      isPristine,
-      isFormSubmitted,
-      isRequired,
-      isValidValue,
-      resetValue,
-      setValidations,
-      setValue,
-      showRequired,
-      showError,
-      validationError,
-      validationErrors,
-      validations,
-      innerRef,
-      value,
-      colon,
-      required,
-      onChange,
-      label,
-      children,
-      formInputRef,
-      ...rest
-    } = this.props;
-
-    let error = false;
-    let helperText = null;
-    const isDisabled = isFormDisabled();
-    if (!isDisabled) {
-      if (!isPristine()) {
-        helperText = getErrorMessage();
-        error = !isValid();
-      }
-    }
-
-    const helpTextClasses = {
-      root: classes.formHelperTextRoot,
+  static defaultProps = {
+    placeholder: 'please input something',
+    showFilter: false,
+    showPination: false,
+  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      paginationProps: {
+        page: 0,
+        rowsPerPage: 5,
+        count: 0,
+      },
+      text: '',
     };
-
-    const restClasses = omit(classes, ['formHelpTextContainer', 'formHelperTextRoot']);
-
-    return (
-      <React.Fragment>
-        <SelectStandalone
-          classes={restClasses}
-          error={error}
-          value={getValue()}
-          disabled={isDisabled}
-          onChange={this.onChange}
-          ref={formInputRef}
-          {...rest}
-        >
-          {children}
-        </SelectStandalone>
-        <div className={classes.formHelpTextContainer}>
-          {error && (
-            <FormHelperText classes={helpTextClasses} error>
-              {helperText}
-            </FormHelperText>
-          )}
-        </div>
-      </React.Fragment>
+    this.state.optionsArray = this.props.showPination ? [] : this.menuItems(this.state.text);
+  }
+  onChangePage(i) {
+    this.setState(
+      {
+        paginationProps: {
+          ...this.state.paginationProps,
+          page: i,
+        },
+      },
+      () => {
+        let op = this.menuItems(this.state.text);
+        let start = this.state.paginationProps.page * this.state.paginationProps.rowsPerPage;
+        let end =
+          (this.state.paginationProps.page + 1) * this.state.paginationProps.rowsPerPage > op.length
+            ? undefined
+            : (this.state.paginationProps.page + 1) * this.state.paginationProps.rowsPerPage;
+        this.setState({
+          optionsArray: op.slice(start, end),
+        });
+      },
     );
   }
-
+  onfilter(e) {
+    const op = this.menuItems(e.target.value);
+    this.setState(
+      {
+        text: e.target.value,
+        paginationProps: {
+          ...this.state.paginationProps,
+          page: 0,
+          count: op.length,
+        },
+      },
+      () => {
+        let op = this.menuItems(this.state.text);
+        let start = this.state.paginationProps.page * this.state.paginationProps.rowsPerPage;
+        let end =
+          (this.state.paginationProps.page + 1) * this.state.paginationProps.rowsPerPage > op.length
+            ? undefined
+            : (this.state.paginationProps.page + 1) * this.state.paginationProps.rowsPerPage;
+        this.setState({
+          optionsArray: op.slice(start, end),
+        });
+      },
+    );
+  }
+  menuItems(text) {
+    const { children } = this.props;
+    let filterData = [];
+    if (children) {
+      filterData = React.Children.toArray(children).filter(child => {
+        return (
+          !text ||
+          child.props.children.toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+          child.props.value.toLowerCase().indexOf(text.toLowerCase()) !== -1
+        );
+      });
+      return filterData;
+    }
+  }
+  componentDidMount() {
+    const { children, rowsPerPage } = this.props;
+    this.setState({
+      // optionsArray: children,
+      paginationProps: {
+        ...this.state.paginationProps,
+        rowsPerPage: rowsPerPage || 5,
+        count: children.length,
+      },
+    });
+  }
   render() {
-    return this.renderFormComponent();
+    const {
+      children,
+      placeholder,
+      multiple,
+      classes,
+      disabled,
+      htmlFor,
+      onChange,
+      renderValue,
+      value,
+      showPination,
+      showFilter,
+      displayEmpty,
+      ...other
+    } = this.props;
+    const { text, paginationProps, optionsArray } = this.state;
+    return (
+      <SelectRoot
+        {...other}
+        multiple={multiple}
+        value={value}
+        displayEmpty={displayEmpty}
+        onChange={onChange}
+        classes={{
+          ...classes,
+          root: classes.root,
+          selectMenu: classes.selectMenu,
+        }}
+        inputProps={{
+          placeholder: placeholder,
+          id: htmlFor,
+        }}
+        disabled={disabled}
+        renderValue={selected => {
+          if (renderValue) {
+            return renderValue(selected);
+          } else {
+            let displaySingle = '';
+            const displayMultiple = [];
+            React.Children.map(children, child => {
+              if (!React.isValidElement(child)) {
+                return null;
+              }
+              let selected;
+
+              if (multiple) {
+                if (!Array.isArray(value)) {
+                  throw new Error(
+                    'Material-UI: the `value` property must be an array ' +
+                    'when using the `Select` component with `multiple`.',
+                  );
+                }
+
+                selected = value.indexOf(child.props.value) !== -1;
+                if (selected) {
+                  displayMultiple.push(child.props.children);
+                }
+              } else {
+                selected = value === child.props.value;
+                if (selected ) {
+                  displaySingle = child.props.children;
+                }
+              }
+            });
+            return  multiple ? displayMultiple.join(', ') : displaySingle;
+          }
+        }}
+      >
+        {showFilter ? (
+          <AsyncSelectFilter
+            fullWidth={true}
+            autoFocus={true}
+            text={text}
+            placeholder={placeholder}
+            onChange={this.onfilter.bind(this)}
+          />
+        ) : null}
+        {optionsArray}
+        {showPination ? <Divider /> : null}
+        {showPination ? (
+          <Pagination {...paginationProps} onChangePage={this.onChangePage.bind(this)} />
+        ) : null}
+      </SelectRoot>
+    );
   }
 }
-
-Select.displayName = 'Select';
-
-Select.propTypes = {
-  classes: PropTypes.object.isRequired,
-  ...propTypes,
-};
-
-Select.defaultProps = {
-  formInputRef: React.createRef(),
-};
-
-const FormComponent = compose(
-  withFormsy,
-  withFormItem,
-  withStyles(style, { name: 'RMSelect' }),
-)(Select);
-
-export default compose(withForm)(FormComponent, SelectStandalone);
+export default withStyles(styles)(Select);

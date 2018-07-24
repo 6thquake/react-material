@@ -54,15 +54,21 @@ class AutoComplete extends Component {
     /**
      * Callback fired when the input value is changed.
      */
-    inputChangeCb: PropTypes.func,
+    onChangeInput: PropTypes.func,
     /**
      * Callback fired when the current page of pagination  is changed.
      */
-    pageChangeCb: PropTypes.func,
+    onChangePage: PropTypes.func,
+    /**
+     * autocomplete options,
+     */
+    options: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
+    ),
     /**
      * Pagination component config
      */
-    pageConfig: PropTypes.object,
+    paginationProps: PropTypes.object,
     /**
      * placeholder
      */
@@ -85,16 +91,10 @@ class AutoComplete extends Component {
     disabled: PropTypes.bool,
   };
   static defaultProps = {
-    inputChangeCb: function() {
-      console.log('need cb function');
-    },
-    pageChangeCb: function() {
-      console.log('need cb function');
-    },
-    pageConfig: {
-      currentPage: 1,
-      pageSize: 5,
-      total: 0,
+    paginationProps: {
+      page: 0,
+      rowsPerPage: 5,
+      count: 0,
     },
     placeholder: 'please input something',
     multiple: false,
@@ -106,7 +106,7 @@ class AutoComplete extends Component {
       open: false,
       inputValue: '',
       selectedItem: [],
-      currentPage: 1,
+      page:0,
     };
   }
   handleChange(event) {
@@ -114,7 +114,7 @@ class AutoComplete extends Component {
       open: true,
       inputValue: event.target.value,
     });
-    this.props.inputChangeCb(event);
+    this.props.onChangeInput(event);
   }
   handleDelete = item => event => {
     if (this.props.disabled) {
@@ -207,22 +207,22 @@ class AutoComplete extends Component {
   }
   render() {
     const {
-      pageConfig,
-      pageChangeCb,
+      paginationProps,
+      onChangePage,
       classes,
       placeholder,
       children,
       multiple,
       value,
-      dataSource,
+      options,
       keyValue,
       disabled,
     } = this.props;
     const { open, inputValue } = this.state;
     let items;
-    if (dataSource) {
-      items = dataSource
-        ? dataSource.map(item => {
+    if (options) {
+      items = options
+        ? options.map(item => {
             let selected = false;
 
             switch (typeof item) {
@@ -272,7 +272,7 @@ class AutoComplete extends Component {
                 );
               default:
                 throw new Error(
-                  'AutoComplete[dataSource] only supports type `string[] | Object[]`.',
+                  'AutoComplete[options] only supports type `string[] | Object[]`.',
                 );
             }
           })
@@ -344,7 +344,7 @@ class AutoComplete extends Component {
             <Paper className={classes.paper} square>
               {items}
               <Divider />
-              <Pagination {...pageConfig} pageCallbackFn={pageChangeCb} />
+              <Pagination {...paginationProps} onChangePage={onChangePage} />
             </Paper>
           ) : null}
         </div>

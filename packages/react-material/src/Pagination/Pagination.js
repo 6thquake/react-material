@@ -103,11 +103,11 @@ class Pagination extends Component {
     /**
      * The zero-based index of the current page.
      */
-    currentPage: PropTypes.number,
+    page: PropTypes.number,
     /**
      * This is page size of pagination
      */
-    pageSize: PropTypes.number,
+    rowsPerPage: PropTypes.number,
     /**
      * Customize the displayed rows label.
      */
@@ -115,11 +115,11 @@ class Pagination extends Component {
     /**
      * This is total count of pagination
      */
-    total: PropTypes.number,
+    count : PropTypes.number,
     /**
      * This is call current page back to parent component
      */
-    pageCallbackFn: PropTypes.func,
+    onChangePage : PropTypes.func.isRequired,
     /**
      * Callback fired when the number of rows per page is changed.
      */
@@ -147,12 +147,12 @@ class Pagination extends Component {
   };
 
   static defaultProps = {
-    currentPage: 1,
-    pageSize: 5,
-    total: 0,
+    page: 0,
+    rowsPerPage: 5,
+    count : 0,
     labelRowsPerPage: 'Rows per page:',
     rowsPerPageOptions: [5, 10, 25],
-    labelDisplayedRows: ({ from, to, total }) => `${from}-${to} of ${total}`,
+    labelDisplayedRows: ({ from, to, count  }) => `${from}-${to} of ${count}`,
   };
 
   constructor(props) {
@@ -171,13 +171,13 @@ class Pagination extends Component {
         minwidth: false,
       });
     }
-    this.props.pageCallbackFn(this.props.currentPage);
+    this.props.onChangePage(this.props.page);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps !== prevState.preProps) {
       return {
-        value: nextProps.currentPage + 1,
+        value: nextProps.page + 1,
         preProps: nextProps,
       };
     }
@@ -185,19 +185,19 @@ class Pagination extends Component {
   }
 
   componentDidUpdate() {
-    const { total, pageCallbackFn, currentPage, pageSize } = this.props;
-    const newLastPage = Math.max(0, Math.ceil(total / pageSize) - 1);
-    if (currentPage > newLastPage) {
-      pageCallbackFn(newLastPage);
+    const { count, onChangePage, page, rowsPerPage } = this.props;
+    const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
+    if (page > newLastPage) {
+      onChangePage(newLastPage);
     }
   }
 
   createPage() {
     const {
       classes,
-      currentPage,
-      pageSize,
-      total,
+      page,
+      rowsPerPage,
+      count,
       backIconButtonProps,
       nextIconButtonProps,
       labelDisplayedRows,
@@ -211,10 +211,10 @@ class Pagination extends Component {
       homePage,
       lastPage,
       jumpTo,
-      page,
+      pageName,
     } = this.props;
     const { minwidth, value } = this.state;
-    const totalPage = Math.ceil(total / pageSize);
+    const totalPage = Math.ceil(count / rowsPerPage);
     return (
       <div className={classes.root} ref={div => (this.div = div)}>
         <div className={classes.toolbar}>
@@ -234,7 +234,7 @@ class Pagination extends Component {
                   icon: classes.selectIcon,
                 }}
                 input={<Input className={classes.input} disableUnderline />}
-                value={pageSize}
+                value={rowsPerPage}
                 onChange={onChangeRowsPerPage}
                 {...SelectProps}
               >
@@ -252,10 +252,10 @@ class Pagination extends Component {
           <Typography variant="caption" className={classes.caption}>
             {minwidth
               ? labelDisplayedRows({
-                  from: total === 0 ? 0 : currentPage * pageSize + 1,
-                  to: Math.min(total, (currentPage + 1) * pageSize),
-                  total,
-                  currentPage,
+                  from: count === 0 ? 0 : page * rowsPerPage + 1,
+                  to: Math.min(count, (page + 1) * rowsPerPage),
+                count,
+                page,
                 })
               : null}
           </Typography>
@@ -270,14 +270,14 @@ class Pagination extends Component {
           ) : null}
           <IconButton
             onClick={this.prePageHandeler.bind(this)}
-            disabled={currentPage === 0}
+            disabled={page === 0}
             {...backIconButtonProps}
           >
             <KeyboardArrowLeft />
           </IconButton>
           <IconButton
             onClick={this.nextPageHandeler.bind(this)}
-            disabled={currentPage >= totalPage - 1}
+            disabled={page >= totalPage - 1}
             {...nextIconButtonProps}
           >
             <KeyboardArrowRight />
@@ -301,7 +301,7 @@ class Pagination extends Component {
                 value={value}
                 onChange={this.jumpTo.bind(this)}
               />
-              {page}
+              {pageName}
             </Typography>
           ) : null}
         </div>
@@ -309,33 +309,33 @@ class Pagination extends Component {
     );
   }
 
-  pageClick(currentPage) {
-    const getCurrentPage = this.props.pageCallbackFn;
+  pageClick(page) {
+    const getCurrentPage = this.props.onChangePage;
     //将当前页码返回父组件
-    getCurrentPage(currentPage);
+    getCurrentPage(page);
   }
 
   prePageHandeler() {
-    let { currentPage } = this.props;
-    if (--currentPage === -1) {
+    let { page } = this.props;
+    if (--page === -1) {
       return false;
     }
-    this.pageClick(currentPage);
+    this.pageClick(page);
   }
 
   nextPageHandeler() {
-    let { currentPage, total, pageSize } = this.props;
-    const totalPage = Math.ceil(total / pageSize);
-    if (++currentPage > totalPage) {
+    let { page, count, rowsPerPage } = this.props;
+    const totalPage = Math.ceil(count / rowsPerPage);
+    if (++page > totalPage) {
       return false;
     }
-    this.pageClick(currentPage);
+    this.pageClick(page);
   }
   goEnd(param) {
     console.log(param);
-    const { pageSize, total, pageCallbackFn } = this.props,
-      totalPage = Math.ceil(total / pageSize),
-      getCurrentPage = pageCallbackFn;
+    const { rowsPerPage, count, onChangePage } = this.props,
+      totalPage = Math.ceil(count / rowsPerPage),
+      getCurrentPage = onChangePage;
     if (param === 'first') {
       getCurrentPage(0);
     }
@@ -344,9 +344,9 @@ class Pagination extends Component {
     }
   }
   jumpTo(e) {
-    const { pageSize, total, pageCallbackFn } = this.props,
+    const { rowsPerPage, count, onChangePage } = this.props,
       value = e.target.value,
-      totalPage = Math.ceil(total / pageSize);
+      totalPage = Math.ceil(count / rowsPerPage);
     this.setState(
       {
         value,
@@ -354,16 +354,16 @@ class Pagination extends Component {
       () => {
         const value = this.state.value;
         if (value < 1) {
-          pageCallbackFn(0);
+          onChangePage(0);
           this.setState({
             value: 1,
           });
         }
         if (value > 0 && value <= totalPage) {
-          pageCallbackFn(value - 1);
+          onChangePage(value - 1);
         }
         if (value > totalPage) {
-          pageCallbackFn(totalPage - 1);
+          onChangePage(totalPage - 1);
           this.setState({
             value: totalPage,
           });

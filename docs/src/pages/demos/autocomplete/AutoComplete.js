@@ -54,10 +54,10 @@ class AutoCompleteTest extends Component {
       { label: 'British Indian Ocean Territory' },
       { label: 'Brunei Darussalam' },
     ],
-    pageConfig: {
-      currentPage: 1,
-      pageSize: 5,
-      total: 34,
+    paginationProps: {
+      page: 0,
+      rowsPerPage: 5,
+      count: 34,
     },
   };
   handleChangeSingle(event) {
@@ -72,9 +72,9 @@ class AutoCompleteTest extends Component {
   autoCb(i) {
     console.log('item', i);
     this.setState({
-      pageConfig: {
-        ...this.state.pageConfig,
-        currentPage: i,
+      paginationProps: {
+        ...this.state.paginationProps,
+        page: i,
       },
     });
   }
@@ -84,52 +84,52 @@ class AutoCompleteTest extends Component {
   }
   render() {
     const { classes } = this.props;
-    const { currentPage, pageSize, total } = this.state.pageConfig;
+    const { page, rowsPerPage, count } = this.state.paginationProps;
     return (
       <div className={classes.root}>
         <br />
         <Typography>datasource object array and multiple select add disabled</Typography>
         <AutoComplete
-          placeHold={'new autoComplete'}
-          dataSource={this.state.options.slice(
-            total == 0 ? total : (currentPage - 1) * pageSize + 1,
-            currentPage * pageSize > total ? total : currentPage * pageSize,
+          placeholder={'new autoComplete'}
+          options={this.state.options.slice(
+            count == 0 ? count : page  * rowsPerPage + 1,
+            (page+1) * rowsPerPage > count ? count : (page+1) * rowsPerPage,
           )}
           multiple={true}
           disabled={true}
           keyValue={['label', 'label']}
           value={this.state.selectedmulit}
-          pageConfig={this.state.pageConfig}
-          pageChangeCb={this.autoCb.bind(this)}
-          inputChangeCb={this.inputChangeCb.bind(this)}
+          paginationProps={this.state.paginationProps}
+          onChangePage={this.autoCb.bind(this)}
+          onChangeInput={this.inputChangeCb.bind(this)}
           onChange={this.handleChangemulit.bind(this)}
         />
         <br />
         <Typography>datasource object array and single select</Typography>
         <AutoComplete
-          placeHold={'new autoComplete'}
-          dataSource={this.state.options.slice(
-            total == 0 ? total : (currentPage - 1) * pageSize + 1,
-            currentPage * pageSize > total ? total : currentPage * pageSize,
+          placeholder={'new autoComplete'}
+          options={this.state.options.slice(
+            count == 0 ? count : page  * rowsPerPage + 1,
+            (page+1) * rowsPerPage > count ? count : (page+1) * rowsPerPage,
           )}
           multiple={false}
           keyValue={['label', 'label']}
           value={this.state.selectedsingled}
-          pageConfig={this.state.pageConfig}
-          pageChangeCb={this.autoCb.bind(this)}
-          inputChangeCb={this.inputChangeCb.bind(this)}
+          paginationProps={this.state.paginationProps}
+          onChangePage={this.autoCb.bind(this)}
+          onChangeInput={this.inputChangeCb.bind(this)}
           onChange={this.handleChangeSingle.bind(this)}
         />
         <br />
         <Typography>datasource simple array and single select</Typography>
         <AutoComplete
-          placeHold={'new autoComplete'}
-          dataSource={color}
+          placeholder={'new autoComplete'}
+          options={color}
           multiple={false}
           value={this.state.selectedsingledstr}
-          pageConfig={this.state.pageConfig}
-          pageChangeCb={this.autoCb.bind(this)}
-          inputChangeCb={this.inputChangeCb.bind(this)}
+          paginationProps={this.state.paginationProps}
+          onChangePage={this.autoCb.bind(this)}
+          onChangeInput={this.inputChangeCb.bind(this)}
           onChange={this.handleChangeSinglestr.bind(this)}
         />
       </div>

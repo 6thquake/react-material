@@ -7,7 +7,7 @@ The community is maintaining [the definitions under this project](https://github
 
 ## How to use
 
-Download the example [or clone the repo](http://git.dev.sh.ctripcorp.com/sixthquake/react-material):
+Download the example [or clone the repo](https://github.com/6thquake/react-material):
 
 ```bash
 curl https://codeload.github.com/mui-org/material-ui/tar.gz/v1-beta | tar -xz --strip=2 material-ui-1-beta/examples/create-react-app-with-flow

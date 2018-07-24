@@ -17,12 +17,12 @@ Expect various **breaking changes**.
 
 The core team has been dedicated to the rewrite effort for one and a half years.
 If you are interested in following our progress or if you want to help us reach that goal faster, you can have a look at the following milestones:
-- ~~[v0.1.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/1)~~ - reached!
-- ~~[v0.2.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/6)~~ - reached!
-- ~~[v0.3.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/2)~~ - reached!
-- [v0.4.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/3)
-- ~~[v0.5.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/4)~~ - reached!
-- ~~[v0.6.0](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/milestones/5)~~ - reached!
+- ~~[v0.1.0](https://github.com/6thquake/react-material/milestone/1)~~ - reached!
+- ~~[v0.2.0](https://github.com/6thquake/react-material/milestone/2)~~ - reached!
+- ~~[v0.3.0](https://github.com/6thquake/react-material/milestone/3)~~ - reached!
+- [v0.4.0](https://github.com/6thquake/react-material/milestone/4)
+- ~~[v0.5.0](https://github.com/6thquake/react-material/milestone/5)~~ - reached!
+- ~~[v0.6.0](https://github.com/6thquake/react-material/milestone/6)~~ - reached!
 
 ## Q&A with the v1 version
 
@@ -64,7 +64,7 @@ Yes, it does. You can have a look at [this presentation](https://github.com/oliv
 
 We don't have an ETA for the release of the `v1`, however, we are going to try to follow this plan and hope for a Q1-Q2 2018 release:
 
-1. ~~We completely address the styling issue before moving from *alpha* to [*beta*](https://github.com/mui-org/material-ui/milestone/22).~~
+1. ~~We completely address the styling issue before moving from *alpha* to [*beta*].~~
 2. ~~We publish our first beta releases.~~
 3. We merge the v1-beta branch into master
 5. We publish our first pre-releases, if all goes well, we move to the next step.

@@ -4,7 +4,7 @@ import kebabCase from 'lodash/kebabCase';
 import { pageToTitle } from './helpers';
 
 const SOURCE_CODE_ROOT_URL =
-  'http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop';
+  'https://github.com/6thquake/react-material/tree/develop';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 

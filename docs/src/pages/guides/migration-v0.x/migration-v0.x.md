@@ -10,7 +10,7 @@ We have been making lower-level components, abstracting less complexity.
 
 ### What motivated such large change?
 
-React-Material was started [3 years ago](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
+React-Material was started [3 years ago](https://github.com/6thquake/react-material/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
 The ecosystem has evolved a lot since then, we have also learned a lot.
 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding React-Material from the **ground-up**
 taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
@@ -56,7 +56,7 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
   import Button from 'react-material-next/Button'; // v1.x
   ```
 
-2. Run [the migration helper](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop/packages/material-ui-codemod) on your project.
+2. Run [the migration helper](https://github.com/6thquake/react-material/tree/develop/packages/material-ui-codemod) on your project.
 3. `MuiThemeProvider` is optional for v1.x. Still, you are free to use v0.x and v1.x versions of the component at the same time like so:
 
   ```jsx
@@ -92,11 +92,11 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
 React-Material doesn't provide any high-level API for solving this problem.
 You're encouraged you to explore [the solutions the React community has built](/demos/autocomplete/).
 
-In the future, we will look into providing a simple component to solve the simple use cases: [#9997](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues/9997).
+In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/6thquake/react-material/issues/9997).
 
 ### Svg Icon
 
-First, run [the migration helper](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop/packages/material-ui-codemod) on your project.
+First, run [the migration helper](https://github.com/6thquake/react-material/tree/develop/packages/material-ui-codemod) on your project.
 
 However, this might not be enough when using the svg icons.
 The `@material-ui/icons` package has a dependency on the `material-ui/SvgIcon` module.
@@ -137,4 +137,4 @@ global.__MUI_SvgIcon__ = SvgIcon;
 ### To be continued…
 
 You successfully migrated your app and wish to help the community?
-Please help us! We have an open issue in order to finish this migration guide [#7195](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues/7195). Any pull request is welcomed 😊.
+Please help us! We have an open issue in order to finish this migration guide [#7195](https://github.com/6thquake/react-material/issues/7195). Any pull request is welcomed 😊.

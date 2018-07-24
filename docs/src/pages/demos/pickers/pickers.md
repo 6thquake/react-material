@@ -32,7 +32,7 @@ Applied mostly all customization, that available for date & time pickers
 #### Notice
 
 We are currently falling back to **native input controls**.
-If you are interested in implementing or have implemented a rich Material Design Picker with an awesome UX, please, let us know on [#4787](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues/4787) and [#4796](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues/4796)! We could add a link to or a demo of your project in the documentation.
+If you are interested in implementing or have implemented a rich Material Design Picker with an awesome UX, please, let us know on [#4787](https://github.com/6thquake/react-material/issues/4787) and [#4796](https://github.com/6thquake/react-material/issues/4796)! We could add a link to or a demo of your project in the documentation.
 Here are some components that are **promising**:
 - [react-material/Picker](https://github.com/dmtrKovalenko/react-material/Picker)
 - [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker)

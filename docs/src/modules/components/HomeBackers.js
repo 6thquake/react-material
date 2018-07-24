@@ -33,7 +33,7 @@ thanks to the support of these awesome [backers](/discover-more/backers).
 
 <h3>Maintainers</h3>
 
-#### via [6thquake](http://git.dev.sh.ctripcorp.com/sixthquake/react-material)
+#### via [6thquake](https://github.com/6thquake/react-material)
 
 <table cellspacing="0" cellspadding="0">
   <tbody>

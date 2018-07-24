@@ -13,13 +13,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://git.dev.sh.ctripcorp.com/sixthquake/react-material.git"
+    "url": "https://github.com/6thquake/react-material.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues"
+    "url": "https://github.com/6thquake/react-material/issues"
   },
-  "homepage": "https://git.dev.sh.ctripcorp.com/sixthquake/react-material",
+  "homepage": "https://github.com/6thquake/react-material",
   "scripts": {
     "start": "yarn docs:dev",
     "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev",

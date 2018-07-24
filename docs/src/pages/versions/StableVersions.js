@@ -10,7 +10,7 @@ import Paper from 'react-material/Paper';
 import Typography from 'react-material/Typography';
 import Link from 'docs/src/modules/components/Link';
 
-const GITHUB_RELEASE_BASE_URL = 'http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tags/';
+const GITHUB_RELEASE_BASE_URL = 'https://github.com/6thquake/react-material/tags/';
 
 const styles = {
   root: {

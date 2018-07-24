@@ -83,7 +83,7 @@ The v1-beta effort started in May 2016, and it resolves many of the issues with 
 React-Material will never be a final product, you will never be guaranteed anything whether with v0.x, v1, or any future release.
 We are keeping v1 in beta so we can release breaking changes without having them slow us down.
 
-[The release notes](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tags) always describe the breaking changes introduced with each release.
+[The release notes](https://github.com/6thquake/react-material/tags) always describe the breaking changes introduced with each release.
 
 **Bite the bullet and go for v1-beta.**
 
@@ -109,7 +109,7 @@ We'd greatly appreciate any [contribution](/CONTRIBUTING.md) you make. :)
 ## Changelog
 
 Recently Updated?
-Please read the [changelog](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tags).
+Please read the [changelog](https://github.com/6thquake/react-material/tags).
 
 ## Roadmap
 

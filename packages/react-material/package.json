@@ -13,7 +13,7 @@
   "pre-commit": [],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@git.dev.sh.ctripcorp.com:sixthquake/react-material.git"
+    "url": "git+ssh://git@github.com:6thquake/react-material.git"
   },
   "scripts": {
     "prebuild": "rimraf build",

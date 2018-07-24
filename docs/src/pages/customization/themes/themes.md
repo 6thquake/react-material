@@ -301,7 +301,7 @@ That's a really powerful feature.
 
 The list of these customization points for each component is documented under the **Component API** section.
 For instance, you can have a look at the [Button](/api/button#css-api).
-Alternatively, you can always have a look at the [implementation](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/blob/develop/packages/material-ui/src/Button/Button.js).
+Alternatively, you can always have a look at the [implementation](https://github.com/6thquake/react-material/blob/develop/packages/material-ui/src/Button/Button.js).
 
 ## Accessing the theme in a component
 

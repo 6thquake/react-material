@@ -2,7 +2,7 @@
 
 The following is a list of some of the public apps using React-Material. Not all of them have their interface implemented using 100% React-Material.
 
-Want to add your app? Found an app that no longer works or no longer uses React-Material? Please submit a pull request on [GitHub](http://git.dev.sh.ctripcorp.com/sixthquake/react-material) to update this page!
+Want to add your app? Found an app that no longer works or no longer uses React-Material? Please submit a pull request on [GitHub](https://github.com/6thquake/react-material) to update this page!
 
 ## The list
 

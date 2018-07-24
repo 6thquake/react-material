@@ -5,8 +5,8 @@
 React-Material takes the bundle size very seriously.
 We are relying on [size-limit](https://github.com/ai/size-limit) to prevent introducing any regression.
 We monitor the size of the bundle at each commit:
-- When importing **all the components**. This lets us spot any [unwanted bundle size increase](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop/.size-limit#L4).
-- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop/.size-limit#L8). (styling, theming, etc.: ~20 kB gzipped)
+- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/6thquake/react-material/tree/develop/.size-limit#L4).
+- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/6thquake/react-material/tree/develop/.size-limit#L8). (styling, theming, etc.: ~20 kB gzipped)
 
 ## How to reduce the bundle size?
 
@@ -32,7 +32,7 @@ import Button from 'react-material/Button';
 import TextField from 'react-material/TextField';
 ```
 
-While importing directly in this manner doesn't use the exports in [`react-material/index.js`](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/blob/develop/packages/react-material/src/index.js), this file can serve as a handy reference as to which modules are public.
+While importing directly in this manner doesn't use the exports in [`react-material/index.js`](https://github.com/6thquake/react-material/blob/develop/packages/react-material/src/index.js), this file can serve as a handy reference as to which modules are public.
 Anything not listed there should be considered **private**, and subject to change without notice.
 For instance, the `Tabs` component is a public module while `TabIndicator` is private.
 

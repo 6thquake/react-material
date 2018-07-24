@@ -41,13 +41,13 @@ function HomeFooter(props) {
           <Grid item xs={12} sm={6}>
             <ul className={classes.list}>
               <li className={classes.listItem}>
-                <Link href="http://git.dev.sh.ctripcorp.com/sixthquake/react-material">GitHub</Link>
+                <Link href="https://github.com/6thquake/react-material">GitHub</Link>
               </li>
               <li className={classes.listItem}>
                 <Link href="https://www.ctripteam.com/group/front-end">Ctrip Team</Link>
               </li>
               <li className={classes.listItem}>
-                <Link href="http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop/examples">
+                <Link href="https://github.com/6thquake/react-material/tree/develop/examples">
                   Examples
                 </Link>
               </li>
@@ -70,7 +70,7 @@ function HomeFooter(props) {
       </Typography>
       <Typography className={classes.version}>
         {`Currently v${process.env.LIB_VERSION}. Released under the `}
-        <Link href="http://git.dev.sh.ctripcorp.com/sixthquake/react-material/blob/develop/LICENSE">
+        <Link href="https://github.com/6thquake/react-material/blob/develop/LICENSE">
           MIT License
         </Link>
         {'.'}

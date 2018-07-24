@@ -15,7 +15,7 @@ In this situation, you can apply a global `.mui-fixed` class name to tell React-
 
 The best solution at present is to write wrapping components for all the React-Material components showing a ripple.
 The ripple effect is exclusively coming from the `BaseButton` component.
-You can find the components using the BaseButton [here](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
+You can find the components using the BaseButton [here](https://github.com/6thquake/react-material/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
 Then, all you have to do is to provide the `disableRipple` property.
 
 ## Do I have to use JSS to style my app?
@@ -122,6 +122,6 @@ page](/customization/themes) to learn about theme customization.
 ## React-Material is awesome. How can I support the project?
 
 There are many ways to support React-Material:
-- Improve [the documentation](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop/docs).
+- Improve [the documentation](https://github.com/6thquake/react-material/tree/develop/docs).
 - Help others to get started.
-- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/react-material) or [issues marked as question](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.
+- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/react-material) or [issues marked as question](https://github.com/6thquake/react-material/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.

@@ -39,7 +39,7 @@ This property accepts the following keys:
 - `horizontalAnchorRoot`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tree/develop/packages/react-material/src/Anchor/Anchor.js)
+and the [implementation of the component](https://github.com/6thquake/react-material/tree/develop/packages/react-material/src/Anchor/Anchor.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented

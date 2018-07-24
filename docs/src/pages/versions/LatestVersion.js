@@ -33,7 +33,7 @@ function LatestVersion(props) {
                   <Link
                     {...props2}
                     variant="secondary"
-                    href="http://git.dev.sh.ctripcorp.com/sixthquake/react-material"
+                    href="https://github.com/6thquake/react-material"
                   />
                 )}
               >
@@ -46,7 +46,7 @@ function LatestVersion(props) {
                   <Link
                     {...props2}
                     variant="secondary"
-                    href="http://git.dev.sh.ctripcorp.com/sixthquake/react-material"
+                    href="https://github.com/6thquake/react-material"
                   />
                 )}
               >

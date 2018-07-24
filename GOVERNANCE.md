@@ -2,7 +2,7 @@
 
 ## Overview
 
-6thquake houses projects related to [React-Material](http://git.dev.sh.ctripcorp.com/sixthquake/react-material), a set of [React](https://reactjs.org/) components
+6thquake houses projects related to [React-Material](https://github.com/6thquake/react-material), a set of [React](https://reactjs.org/) components
 that implement [Google's Material Design](https://material.io/guidelines/material-design/introduction.html)
 specification. Our mission is to create a customizable Material Design implementation
 for anyone to use. We value an open, collaborative, and diverse community where anyone can join in
@@ -16,7 +16,7 @@ we govern ourselves, how decisions are made, and how someone could engage with t
 Users are members of the community that are using React-Material or one of 6thquake's projects. Anyone
 can be a user and we encourage users to participate in the community as much as possible in the
 following ways.
-- Evangelize React-Material by [linking to our website](http://git.dev.sh.ctripcorp.com/sixthquake/react-material), or just talking about us with your
+- Evangelize React-Material by [linking to our website](https://github.com/6thquake/react-material), or just talking about us with your
 friends.
 - Tell us what we're doing well or where we can improve.
 - Give us moral support. A "Thank You" always brightens our day!
@@ -28,11 +28,11 @@ in concrete ways. Anyone can be a contributor. In addition to their participatio
 also contribute in the following ways.
 - Support new users by answering questions on
 [StackOverflow](https://stackoverflow.com/questions/tagged/react-material)
-- Reviewing and commenting on [existing pull requests](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/merge_requests)
-and [issues](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues).
-- Reporting bugs or missing features by [creating an issue](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues/new).
+- Reviewing and commenting on [existing pull requests](https://github.com/6thquake/react-material/merge_requests)
+and [issues](https://github.com/6thquake/react-material/issues).
+- Reporting bugs or missing features by [creating an issue](https://github.com/6thquake/react-material/issues/new).
 - Fixing bugs, adding features, and improving our documentation by
-[submitting a pull request](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/merge_requests).
+[submitting a pull request](https://github.com/6thquake/react-material/merge_requests).
 
 ### Committers
 
@@ -41,8 +41,8 @@ of React-Material or one of 6thquake's projects. New committers are nominated an
 committers. Under rare circumstances, the Core Team can vote to revoke a committer's privilege. In
 addition to their participation as a contributor, committers have the following privileges.
 - Access to a private Gitter room to talk about issues and coordinate development.
-- Ability to label, close, and manage [Github issues](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues).
-- Ability to [close and merge pull requests](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/merge_requests?q=is%3Apr+is%3Aclosed).
+- Ability to label, close, and manage [Github issues](https://github.com/6thquake/react-material/issues).
+- Ability to [close and merge pull requests](https://github.com/6thquake/react-material/merge_requests?q=is%3Apr+is%3Aclosed).
 - Ability to receive payment for work done on React-Material or one of 6thquake's projects.
 - Nominate and vote on new committers and Core Team members.
 
@@ -54,7 +54,7 @@ Core Team members are nominated and voted on by existing committers. Under rare 
 Core Team member can be removed by a two thirds majority vote by the Core Team.
 
 In addition to their participation as a committer, Core Team members have the following privileges.
-- Ability to [publish a release](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/tags).
+- Ability to [publish a release](https://github.com/6thquake/react-material/tags).
 - Owner access to [6thquake on GitHub](https://github.com/6thquake).
 - Admin access to various tools and services ([npm](https://www.npmjs.com/package/react-material)).
 - Admin access to all financial accounts.

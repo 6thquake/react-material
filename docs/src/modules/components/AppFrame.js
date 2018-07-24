@@ -179,7 +179,7 @@ class AppFrame extends React.Component {
               <IconButton
                 component="a"
                 color="inherit"
-                href="http://git.dev.sh.ctripcorp.com/sixthquake/react-material"
+                href="https://github.com/6thquake/react-material"
                 aria-labelledby="appbar-github"
               >
                 <Github />

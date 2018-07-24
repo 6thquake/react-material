@@ -7,7 +7,7 @@ That’s what we hope to answer for you here.
 
 We’d like your help keeping this document up-to-date because the JavaScript world moves fast!
 If you notice an inaccuracy or something that doesn’t seem quite right, please let us know by
-[opening an issue](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues/new?title=[docs]+Inaccuracy+in+comparison+guide).
+[opening an issue](https://github.com/6thquake/react-material/issues/new?title=[docs]+Inaccuracy+in+comparison+guide).
 
 We cover the following libraries:
 
@@ -94,7 +94,7 @@ Our vision is to provide an elegant implementation of the Material Design guidel
 We want to see businesses succeeding in taking advantage of React-Material to ship an awesome UI to their users
 while having it match their brand, so we have invested a lot in the customization capabilities of React-Material.
 
-The only goal of MDC-Web is to be a Material Design implementation for the web platform. **Nothing more, nothing less**. They will not consider making changes to the components - especially UX changes - that would facilitate additional flexibility at the cost of breaking with the core Material Design system, as that is a non-goal of the project. *[source](http://git.dev.sh.ctripcorp.com/sixthquake/react-material/issues/6799#issuecomment-299925174)*
+The only goal of MDC-Web is to be a Material Design implementation for the web platform. **Nothing more, nothing less**. They will not consider making changes to the components - especially UX changes - that would facilitate additional flexibility at the cost of breaking with the core Material Design system, as that is a non-goal of the project. *[source](https://github.com/6thquake/react-material/issues/6799#issuecomment-299925174)*
 
 ### Tests
 

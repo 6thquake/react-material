@@ -74,6 +74,13 @@ class AutoComplete extends Component {
      */
     placeholder: PropTypes.string,
     /**
+     * option item label and value,when assignment option by options
+     */
+    mapper: PropTypes.shape({
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    }),
+    /**
      * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
      */
     multiple: PropTypes.bool,
@@ -84,7 +91,13 @@ class AutoComplete extends Component {
     /**
      * 	The value of the Input element, required for a controlled component.
      */
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.arrayOf(
+        PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      ),
+    ]),
     /**
      * Decided autocomplete is disabled
      */
@@ -215,14 +228,14 @@ class AutoComplete extends Component {
       multiple,
       value,
       options,
-      keyValue,
+      mapper,
       disabled,
     } = this.props;
     const { open, inputValue } = this.state;
     let items;
     if (options) {
       items = options
-        ? options.map(item => {
+        ? options.map((item,index) => {
             let selected = false;
 
             switch (typeof item) {
@@ -240,7 +253,7 @@ class AutoComplete extends Component {
                 }
                 return (
                   <MenuItem
-                    key={item}
+                    key={index}
                     value={item}
                     selected={selected}
                     onClick={this.handleItemClick(null)}
@@ -256,18 +269,18 @@ class AutoComplete extends Component {
                         'when using the `AutoComplete` component with `multiple`.',
                     );
                   }
-                  selected = value.indexOf(item[keyValue[1]]) !== -1;
+                  selected = value.indexOf(typeof mapper['value']==='function'?mapper['value'](item,index):item[mapper['value']]) !== -1;
                 } else {
-                  selected = value === item[keyValue[1]];
+                  selected = value === (typeof mapper['value']==='function'?mapper['value'](item,index):item[mapper['value']]);
                 }
                 return (
                   <MenuItem
-                    key={item[keyValue[0]]}
-                    value={item[keyValue[1]]}
+                    key={index}
+                    value={item[mapper['value']]}
                     selected={selected}
                     onClick={this.handleItemClick(null)}
                   >
-                    {item[keyValue[0]]}
+                    {typeof mapper['label']==='function'?mapper['label'](item,index):item[mapper['label']]}
                   </MenuItem>
                 );
               default:

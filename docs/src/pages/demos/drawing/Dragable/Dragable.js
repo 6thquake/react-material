@@ -132,9 +132,9 @@ class Container extends Component {
       },
     });
     if (this.state.AtoBinproperArea) {
-      this.changeBoxPosition(document.getElementById('a'), document.getElementById('b'));
+      this.changeBoxPosition(ReactDOM.findDOMNode(this.a), ReactDOM.findDOMNode(this.b));
     } else {
-      this.changeBoxPosition(document.getElementById('b'), document.getElementById('a'));
+      this.changeBoxPosition(ReactDOM.findDOMNode(this.b), ReactDOM.findDOMNode(this.a));
     }
   }
   changeBoxPosition(newBoxA, newBoxB) {
@@ -278,8 +278,8 @@ class Container extends Component {
       return;
     }
     this.setState({ startDrawflag: false });
-    const newBoxA = document.getElementById('a');
-    const newBoxB = document.getElementById('b');
+    const newBoxA = ReactDOM.findDOMNode(this.a)
+    const newBoxB = ReactDOM.findDOMNode(this.b)
     const doc = document.documentElement;
     const body = document.body;
     const offsetX =
@@ -325,7 +325,6 @@ class Container extends Component {
       }
     }
   }
-  componentDidMount() {}
   static getDerivedStateFromProps(props, state) {
     if (props.removeLine) {
       return {
@@ -338,12 +337,13 @@ class Container extends Component {
   render() {
     const { hideSourceOnDrag, connectDropTarget } = this.props;
     const { boxes, from, to, AtoBinproperArea, BtoAinproperArea } = this.state;
+
     //console.log('this.props.borderStyle')
     //console.log(this.props.borderStyle)
     return connectDropTarget(
       <div
         style={styles}
-        id="test"
+        ref={box=>{this.box=box}}
         onMouseDown={this.mousedown.bind(this)}
         onMouseUp={this.mouseup.bind(this)}
         onMouseMove={this.mousemove.bind(this)}
@@ -355,7 +355,7 @@ class Container extends Component {
             <Box
               key={key}
               id={key}
-              ref={x => (this[key] = x)}
+              ref={x => {this[key] = x}}
               left={left}
               top={top}
               hideSourceOnDrag={hideSourceOnDrag}

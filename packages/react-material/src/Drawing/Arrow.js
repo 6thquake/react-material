@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Arrow extends Component {
   render() {
-    const { top, left, angle, arrowStyle } = this.props;
+    const { arrowStyle } = this.props;
     const composeArrow = (
       <svg width="13px" height="13px">
         <rect width="7px" height="7px" fill="#000" transform="translate(3 7) rotate(-45)" />
@@ -40,17 +40,7 @@ export default class Arrow extends Component {
       </svg>
     );
     return (
-      <div
-        style={{
-          transform: 'rotate(' + angle + ')',
-          padding: '0',
-          margin: '0',
-          position: 'fixed',
-          top: top - 10 + 'px',
-          left: left - 5 + 'px',
-          zIndex: '2',
-        }}
-      >
+      <div>
         {arrowStyle === 'compose'
           ? composeArrow
           : arrowStyle === 'aggregate'

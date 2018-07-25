@@ -169,15 +169,9 @@ export default class LineTo extends Component {
     const offsetX =
       (doc.scrollLeft || body.scrollLeft || 0) - (doc.clientLeft || body.clientLeft || 0);
     const offsetY = (doc.scrollTop || body.scrollTop || 0) - (doc.clientTop || body.clientTop || 0);
-    const toX = points.x1 - offsetX;
-    const toY = points.y1 - offsetY;
+    const toX = points.x1 - offsetX-120;
+    const toY = points.y1 - offsetY-415;
 
-    window.onresize = function() {
-      console.log('window onresize');
-    };
-    window.onscroll = function() {
-      console.log('window scroll');
-    };
     return points ? (
       <div>
         <Line {...points} {...this.props} toX={toX} toY={toY} />
@@ -202,10 +196,12 @@ LineTo.propTypes = Object.assign(
 export class Line extends PureComponent {
   componentDidMount() {
     document.body.appendChild(this.el);
+    document.body.appendChild(this.arrow);
   }
 
   componentWillUnmount() {
     document.body.removeChild(this.el);
+    document.body.removeChild(this.arrow);
   }
 
   render() {
@@ -216,7 +212,7 @@ export class Line extends PureComponent {
     const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
     const length = Math.sqrt(dx * dx + dy * dy);
 
-    const positionStyle = {
+    const linePositionStyle = {
       position: 'absolute',
       top: `${y0}px`,
       left: `${x0}px`,
@@ -227,17 +223,25 @@ export class Line extends PureComponent {
       transformOrigin: '0 0',
     };
 
+    const arrowPositionStyle = {
+      transform: `rotate(${angle}deg )`,
+      padding: '0',
+      margin: '0',
+      position: 'absolute',
+      top: y1 - 10 + 'px',
+      left: x1 - 5 + 'px',
+      zIndex: '2',
+    }
     const defaultStyle = {
       borderTopColor: this.props.borderColor || defaultBorderColor,
       borderTopStyle: this.props.borderStyle || defaultBorderStyle,
       borderTopWidth: this.props.borderWidth || defaultBorderWidth,
     };
 
-    const props = {
-      className: this.props.className,
-      style: Object.assign({}, defaultStyle, positionStyle),
+    const lineprops = {
+      //className: this.props.className,
+      style: Object.assign({}, defaultStyle, linePositionStyle)
     };
-
     // We need a wrapper element to prevent an exception when then
     // React component is removed. This is because we manually
     // move the rendered DOM element after creation.
@@ -248,16 +252,17 @@ export class Line extends PureComponent {
             ref={el => {
               this.el = el;
             }}
-            {...props}
+            {...lineprops}
           />
         </div>
-        <Arrow
-          top={this.props.toY}
-          left={this.props.toX}
-          angle={`${angle}deg`}
-          arrowStyle={this.props.arrowStyle}
-        />
+        <div ref={arrow => {
+                this.arrow = arrow;
+              }}
+              style={arrowPositionStyle}>
+          <Arrow arrowStyle={this.props.arrowStyle} />
+        </div>
       </div>
+
     );
   }
 }

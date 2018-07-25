@@ -6,10 +6,10 @@
   "description": "React-Material's workspace package",
   "keywords": [
     "react",
-    "react-component",
-    "react-material",
+    "react components",
+    "react material",
     "material design",
-    "material-ui"
+    "material ui"
   ],
   "repository": {
     "type": "git",

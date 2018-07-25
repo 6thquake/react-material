@@ -101,7 +101,6 @@ class TableToolbar extends Component {
     if (SearchProps.floatRight === undefined){
       SearchProps.floatRight = true
     }
-    console.log('search props', SearchProps)
     if (!searchable && !exportProps) {
       return null;
     }

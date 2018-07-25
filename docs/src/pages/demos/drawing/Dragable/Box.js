@@ -58,7 +58,9 @@ class Box extends Component {
         <div
           className={id}
           id={id}
-          ref={x => {this.box = x}}
+          ref={x => {
+            this.box = x;
+          }}
           style={{ ...style2, left, top, opacity }}
         >
           {children}
@@ -69,7 +71,9 @@ class Box extends Component {
         <div
           className={id}
           id={id}
-          ref={x => {this.box = x}}
+          ref={x => {
+            this.box = x;
+          }}
           style={{ ...style, left, top, opacity }}
         >
           {children}

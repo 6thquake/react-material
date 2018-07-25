@@ -169,8 +169,8 @@ export default class LineTo extends Component {
     const offsetX =
       (doc.scrollLeft || body.scrollLeft || 0) - (doc.clientLeft || body.clientLeft || 0);
     const offsetY = (doc.scrollTop || body.scrollTop || 0) - (doc.clientTop || body.clientTop || 0);
-    const toX = points.x1 - offsetX-120;
-    const toY = points.y1 - offsetY-415;
+    const toX = points.x1 - offsetX - 120;
+    const toY = points.y1 - offsetY - 415;
 
     return points ? (
       <div>
@@ -231,7 +231,7 @@ export class Line extends PureComponent {
       top: y1 - 10 + 'px',
       left: x1 - 5 + 'px',
       zIndex: '2',
-    }
+    };
     const defaultStyle = {
       borderTopColor: this.props.borderColor || defaultBorderColor,
       borderTopStyle: this.props.borderStyle || defaultBorderStyle,
@@ -240,7 +240,7 @@ export class Line extends PureComponent {
 
     const lineprops = {
       //className: this.props.className,
-      style: Object.assign({}, defaultStyle, linePositionStyle)
+      style: Object.assign({}, defaultStyle, linePositionStyle),
     };
     // We need a wrapper element to prevent an exception when then
     // React component is removed. This is because we manually
@@ -255,14 +255,15 @@ export class Line extends PureComponent {
             {...lineprops}
           />
         </div>
-        <div ref={arrow => {
-                this.arrow = arrow;
-              }}
-              style={arrowPositionStyle}>
+        <div
+          ref={arrow => {
+            this.arrow = arrow;
+          }}
+          style={arrowPositionStyle}
+        >
           <Arrow arrowStyle={this.props.arrowStyle} />
         </div>
       </div>
-
     );
   }
 }

@@ -2,27 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
 import Video from '@6thquake/react-material/Video';
-import videojs from 'video.js';
-import { loadCSS } from 'fg-loadcss/src/loadCSS';
-import 'babel-polyfill';
-
-if (process.browser) {
-  loadCSS('/static/video-js.css', document.querySelector('#insertion-point-jss'));
-}
 
 const styles = theme => ({
   root: theme.mixins.gutters({
-    paddingTop: 16,
-    paddingBottom: 16,
+    padding: 0,
+    width: '100%',
+    height: 600,
   }),
 });
 
-function video() {
-  return (
-    <div id="foo">
-      <Video source={'http://vjs.zencdn.net/v/oceans.mp4'} />
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <Video
+          autoplay={false}
+          sources={[{ src: '/static/video/react-material.mov', type: 'video/mp4' }]}
+        />
+      </div>
+    );
+  }
 }
 
-export default withStyles(styles)(video);
+export default withStyles(styles)(App);

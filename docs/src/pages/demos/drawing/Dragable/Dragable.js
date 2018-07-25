@@ -278,8 +278,8 @@ class Container extends Component {
       return;
     }
     this.setState({ startDrawflag: false });
-    const newBoxA = ReactDOM.findDOMNode(this.a)
-    const newBoxB = ReactDOM.findDOMNode(this.b)
+    const newBoxA = ReactDOM.findDOMNode(this.a);
+    const newBoxB = ReactDOM.findDOMNode(this.b);
     const doc = document.documentElement;
     const body = document.body;
     const offsetX =
@@ -343,7 +343,9 @@ class Container extends Component {
     return connectDropTarget(
       <div
         style={styles}
-        ref={box=>{this.box=box}}
+        ref={box => {
+          this.box = box;
+        }}
         onMouseDown={this.mousedown.bind(this)}
         onMouseUp={this.mouseup.bind(this)}
         onMouseMove={this.mousemove.bind(this)}
@@ -355,7 +357,9 @@ class Container extends Component {
             <Box
               key={key}
               id={key}
-              ref={x => {this[key] = x}}
+              ref={x => {
+                this[key] = x;
+              }}
               left={left}
               top={top}
               hideSourceOnDrag={hideSourceOnDrag}

@@ -7,23 +7,36 @@ import BoxA from './BoxA'
 const styles={
    inner:{
        display:'inline-block',
+       position: 'static'
    },
 }
 const _source={
   beginDrag(props,monitor,component){
     console.log("begin dragggggg")
+    // console.log('component.props.children&^^^^')
+    // console.log(component.props.children)
     // debugger
     //let onbeginDrag=component.boxRef.onbeginDrag;
     // console.log(onbeginDrag)
     // debugger
     //onbeginDrag(props,monitor.component);
     // debugger
-    let item= component.boxRef.onbeginDrag(props,monitor,component)
+    //console.log(ReactDOM.findDOMNode(component.props.children))
+    //let item= ReactDOM.findDOMNode(component.props.children).onbeginDrag(props,monitor,component)
+    //let item = component.refs['boxRef'].onbeginDrag(props,monitor,component)
+    // console.log(component.boxRef)
+    // console.log(component.boxRef.childNodes[0])
+    console.log(component.props.children)
+    //let item=component.props.children.type.prototype.onbeginDrag(props,monitor,component)
+    let item=component.props.children.type.prototype.onbeginDrag.call(component.props.children,props,monitor,component)
+    //let item=component.props.children.type.prototype.onbeginDragbak(props,monitor,component)
+    //let item= component.boxRef.childNodes[0].onbeginDrag(props,monitor,component)
+    //let a = component.refs['boxRef']
+    // console.log(item)
     return item
   },
   endDrag(props,monitor,component){
-    let onbendDrag=component.boxRef.onendDrag;
-    onbendDrag(props,monitor,component);
+    component.props.children.type.prototype.onendDrag.call(component.props.children,props,monitor,component)
   }
     // beginDrag(props,monitor,component){
     //     const item={};
@@ -76,6 +89,9 @@ function _dragCollect(connect, monitor) {
 class _DragSource extends PureComponent{
     constructor(props){
         super(props);
+        this.state={
+            getSource:'',
+        }
         // this.myRef = React.createRef();
     }
     // static propTypes={
@@ -88,17 +104,26 @@ class _DragSource extends PureComponent{
     //     droptTargetLeft: PropTypes.number,
     //     droptTargetTop: PropTypes.number,
     // }
-    render(){
-        const {connectDragSource,children,classes}=this.props;
-       return connectDragSource(
-           <div className={classes.inner}>
-                {/*<div ref={this.myRef} style={getStyles(this.props,this.state)}>
-                    {children}
-                </div>*/}
-                <BoxA ref={(boxRef)=>{this.boxRef=boxRef}}/>
+ // source=(sourceType)=>{
+ //      this.setState({
+ //        getSource:sourceType
+ //      })
+ //  } 
+  // ReactDOM.findDOMNode(component)
+
+aaa= {
+    bind:function(){}
+}
+    render(){      
+        const {connectDragSource,children,classes,}=this.props;
+        //  console.log('children&^^^^')
+        // console.log(children)
+
+       return connectDragSource(  <div className={classes.inner}>
+                {children}
            </div>
            
-    )
+        )
     }
     
 }

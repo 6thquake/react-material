@@ -8,12 +8,12 @@ import update from 'immutability-helper';
 import PropTypes from 'prop-types';
 import DropTargetBox from './DropTargetBox'
 const styles={
-    root:{
-        width:'600px',
-        border:'1px solid',
-        height:'280px',
-        position: 'relative',
-    },
+    // root:{
+    //     width:'600px',
+    //     border:'1px solid',
+    //     height:'280px',
+    //     position:'relative',
+    // },
     custom:{
 
     }
@@ -22,10 +22,16 @@ const styles={
 const boxTarget={
     drop(props,monitor,component){
         const item=monitor.getItem();
-        // if(!component.state.acceptSource.contains(item.sourceType)){
-        //     return;
-        // }
-        component.dragBox.onDrop(props,monitor,component,item)
+        //console.log(item.sourceType)
+        if(component.state.acceptSource.indexOf(item.sourceType)===-1){
+            return;
+        }
+        //component.dragBox.onDrop(props,monitor,component,item)
+        // console.log(item)
+        console.log(component.props.children)
+        component.props.children.type.prototype.onDrop.call(component.props.children,props,monitor,component,item)
+
+
        // let left = Math.round(item.left + delta.x +document.documentElement.scrollLeft)
        // let top = Math.round(item.top + delta.y +document.documentElement.scrollTop)
        // if (props.snapToGrid) {
@@ -53,7 +59,7 @@ class _OrderDragTarget extends React.Component{
         super(props);
         //this.dragBox=React.createRef();
         this.state={
-            acceptSource:['Button','Icon','Item'],
+            acceptSource:['Button','Icon','Item']
         }
       //   this.state={
       //       childComponents:[],
@@ -129,13 +135,17 @@ class _OrderDragTarget extends React.Component{
           );*/}
         const {connectDropTarget,classes,children}=this.props;
         return connectDropTarget(
-            <div className={classes.root}>
-                  {/*{React.cloneElement(children,{accept:this.accept})}*/}
-                  <DropTargetBox ref={(boxRef)=>{this.dragBox=boxRef}}/>
+            <div >
+                  {React.cloneElement(children,{accept:this.accept})}
+                  {/*<DropTargetBox ref={(boxRef)=>{this.dragBox=boxRef}}/>*/}
             </div>
         );
       }
 }
+// function collect(connect,monitor){
+  
+
+// }
 //let OrderDragTarget=DropTarget((props) => props.accepts, boxTarget,(connect,monitor)=>{
 let OrderDragTarget=DropTarget('*', boxTarget,(connect,monitor)=>{
     return {

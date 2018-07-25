@@ -13,28 +13,28 @@ import Paper from 'react-material/Paper';
 import IconButton from 'react-material/IconButton';
 
 import PropTypes from 'prop-types';
+import BoxA from './BoxA'
+import DropTargetBox from './DropTargetBox'
 
+// const boxstyles = {
+//     border: '1px dashed gray',
+//     padding: '0.5rem 1rem',
+//     cursor: 'move',
+//     backgroundColor:'white',
+//     display: 'inline-block',
+// }
 
+// class BoxA extends PureComponent {
+//     static propTypes = {
+//         title: PropTypes.string.isRequired,
+//     }
 
-const boxstyles = {
-    border: '1px dashed gray',
-    padding: '0.5rem 1rem',
-    cursor: 'move',
-    backgroundColor:'white',
-    display: 'inline-block',
-}
-
-class BoxA extends PureComponent {
-    static propTypes = {
-        title: PropTypes.string.isRequired,
-    }
-
-    render() {
-        return(
-            <div style={boxstyles}>I am boxA</div>
-        ) 
-    }
-}
+//     render() {
+//         return(
+//             <div style={boxstyles}>I am boxA</div>
+//         ) 
+//     }
+// }
 
 
 
@@ -76,8 +76,8 @@ class DragToolBox extends Component{
                             <PhotoCamera />
                         </IconButton>
                     </DragSource2> */}
-                   <DragSource2 type='OUTITEM' dragSourceType='BOXA'>
-                        {/*<BoxA />*/}
+                   <DragSource2 >    
+                        <BoxA type='OUTITEM' ref='boxRef'/>
                     </DragSource2> 
                 </div>
 
@@ -85,6 +85,7 @@ class DragToolBox extends Component{
                 {/*<ManualDragTarget accepts={['BOXA','BUTTONB','BUTTONC']} snapToGrid={snapToGridAfterDrop} classes={{custom:classes.dropTarget}}>*/}
                 <ManualDragTarget classes={{custom:classes.dropTarget}}>
                         {/*<DropTargetBox />*/}
+                        <DropTargetBox acceptItem='BoxA'/>
                 </ManualDragTarget>
                 <p>
                     <label htmlFor="snapToGridAfterDrop">

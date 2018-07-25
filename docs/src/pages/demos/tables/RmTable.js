@@ -12,6 +12,9 @@ import RadioGroup from '@6thquake/react-material/RadioGroup';
 import Paper from '@6thquake/react-material/Paper';
 import RmTable from '@6thquake/react-material/Table/RmTable';
 // import { Divider } from 'rc-menu/lib';
+
+import filter from '@6thquake/react-material/utils/filter';
+
 const styles = theme => ({
   root: {
     // width: '100%',
@@ -21,7 +24,7 @@ const styles = theme => ({
   radioButtons: {
     margin: theme.spacing.unit * 2,
   },
-  paginatableButton: {
+  button: {
     width: 120,
   },
 });
@@ -75,7 +78,15 @@ class RmTableEXample extends React.Component {
       columns: columns,
       data: data,
       value: 'dragable',
+      TablePaginationProps: {
+        rowsPerPage: 5,
+        page: 0,
+        // count: 40,
+      }
     };
+  }
+  componentDidMount = () => {
+    // this.handleChangePage(0,0)
   }
   handleChange = e => {
     let value = e.target.value;
@@ -83,25 +94,58 @@ class RmTableEXample extends React.Component {
       value,
     });
   };
+  handleSearch = (value) => {
+    console.log('search value', value)
+    // this.setState({
+    //   data: filter(data, value)
+    // })
+  }
+  handleChangePage = (e, page) =>{
+    console.log('page', page)
+    // let {TablePaginationProps} = this.state
+    // let {rowsPerPage} = TablePaginationProps
+    // TablePaginationProps.page = page
+    // let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    // console.log('paginateData', paginateData)
+    // this.setState({
+    //   TablePaginationProps,
+    //   data: paginateData,
+    // })
+  }
+  handleChangeRowsPerPage = (e)=> {
+    console.log('rowperoage', e.target.value)
+    // let {TablePaginationProps} = this.state
+    // let {page} = TablePaginationProps
+    // let rowsPerPage = e.target.value
+    // TablePaginationProps.rowsPerPage = rowsPerPage
+    // let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    // this.setState({
+    //   TablePaginationProps,
+    //   data: paginateData,
+    // })
+  }
   render() {
     const { classes } = this.props;
     const { data, columns, value } = this.state;
-    const paginationProps = {
-      rowsPerPage: 5,
-      page: 0,
+    console.log('render data', data)
+    const PaginationProps = {
+      onChangeRowsPerPage: this.handleChangeRowsPerPage,
+      onChangePage: this.handleChangePage,
+      ...this.state.TablePaginationProps
     };
     const exportProps = {
       type: 'csv',
     };
-    const searchProps = {
+    const SearchProps = {
       placeholder: 'search',
       isDark: true,
+      onChange: this.handleSearch
     };
     const options = {
       [value]: value,
-      paginationProps,
+      TablePaginationProps: PaginationProps,
       exportProps,
-      searchProps,
+      SearchProps,
     };
     return (
       <Paper className={classes.root}>
@@ -113,20 +157,22 @@ class RmTableEXample extends React.Component {
             value={this.state.value}
             name="type2"
           >
-            <RadioButton value="scoll">scroll</RadioButton>
-            <RadioButton value="resizable">resizable</RadioButton>
-            <RadioButton value="dragable">dragable</RadioButton>
+            <RadioButton className={classes.button} value="scoll">scroll</RadioButton>
+            <RadioButton className={classes.button} value="resizable">resizable</RadioButton>
+            <RadioButton className={classes.button} value="dragable">dragable</RadioButton>
           </RadioGroup>
         </div>
         {/* <Divider></Divider> */}
         <RmTable
-          {...options}
+          
           width={800}
           height={300}
           columns={columns}
-          data={data}
+          data={this.state.data}
           searchable
           paginatable
+          sync
+          {...options}
         />
       </Paper>
     );

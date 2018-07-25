@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Toolbar from '../../Toolbar';
-import ReactDOM from 'react-dom';
 import { Search } from '../../Search';
 import IconButton from '../../IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import GetApp from '@material-ui/icons/GetApp';
 import { withStyles } from '../../styles';
 import Menu from '../../Menu';
 import MenuItem from '../../MenuItem';
@@ -24,6 +24,9 @@ const styles = theme => ({
         : darken(fade(theme.palette.divider, 1), 0.8)
     }`,
   },
+  title: {
+    ...theme.typography.title
+  },
   spacer: {
     flex: '1 1 100%',
   },
@@ -37,6 +40,9 @@ const styles = theme => ({
   searchInput: {
     minWidth: '10em',
   },
+  download: {
+    marginLeft: theme.spacing.unit * 2
+  }
 });
 
 /**
@@ -89,7 +95,7 @@ class TableToolbar extends Component {
   }
 
   render() {
-    const { width, classes, searchable, exportProps, SearchProps } = this.props;
+    const { width, classes, searchable, exportProps, SearchProps,title } = this.props;
     const { anchorEl } = this.state;
     if (!searchable && !exportProps) {
       return null;
@@ -97,7 +103,11 @@ class TableToolbar extends Component {
     return (
       <div className={classes.root} style={{ width }}>
         <Toolbar>
-          <div style={{ width: '80%' }}>
+          <div className={classes.title}> 
+            {title}
+          </div>
+          <div className={classes.spacer} />
+          <div style={{ width: '80%' , float: 'right'}}>
             {searchable && (
               <Search
                 classes={{ input: classes.searchInput }}
@@ -106,16 +116,15 @@ class TableToolbar extends Component {
               />
             )}
           </div>
-          <div className={classes.spacer} />
           {exportProps && (
-            <div>
+            <div className={classes.download}>
               <IconButton
                 aria-label="More"
                 aria-owns={anchorEl ? 'long-menu' : null}
                 aria-haspopup="true"
                 onClick={this.handleClick}
               >
-                <MoreVertIcon />
+                <GetApp />
               </IconButton>
               <Menu
                 id="long-menu"

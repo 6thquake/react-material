@@ -365,11 +365,12 @@ class RmTable extends React.Component {
     });
   };
   render() {
-    const { classes, width, paginatable, searchable, exportProps, SearchProps, sync } = this.props;
+    const { classes, width, paginatable, searchable, exportProps, SearchProps, sync, title} = this.props;
     const { page, rowsPerPage } = this.state;
     return (
       <React.Fragment>
         <Toolbar
+          title={title}
           onSearch={this.onSearch}
           headRef={this.tableRefs.head}
           bodyRef={this.tableRefs.body}
@@ -462,6 +463,10 @@ RmTable.propTypes = {
    * you needn't to do these things by yourself
    */
   sync: PropTypes.bool,
+  /**
+   * The title of table
+   */
+  title: PropTypes.node
 };
 RmTable.defaultProps = {
   TablePaginationProps: {
@@ -472,6 +477,7 @@ RmTable.defaultProps = {
   height: 'auto',
   SearchProps: {
     isDark: true,
+    floatRight: true,
   },
   paginatable: false,
   searchable: false,

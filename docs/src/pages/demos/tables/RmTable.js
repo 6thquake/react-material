@@ -127,7 +127,6 @@ class RmTableEXample extends React.Component {
   render() {
     const { classes } = this.props;
     const { data, columns, value } = this.state;
-    console.log('render data', data)
     const PaginationProps = {
       onChangeRowsPerPage: this.handleChangeRowsPerPage,
       onChangePage: this.handleChangePage,
@@ -164,7 +163,7 @@ class RmTableEXample extends React.Component {
         </div>
         {/* <Divider></Divider> */}
         <RmTable
-          
+          title={'MyTable'}
           width={800}
           height={300}
           columns={columns}

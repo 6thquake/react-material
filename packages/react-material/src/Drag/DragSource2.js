@@ -111,16 +111,21 @@ class _DragSource extends PureComponent{
  //  } 
   // ReactDOM.findDOMNode(component)
 
-aaa= {
-    bind:function(){}
-}
+    comps = [];
+    register = (comp) => {
+        this.comps.push(comp);
+    }
+
     render(){      
-        const {connectDragSource,children,classes,}=this.props;
+        const {connectDragSource,children,classes}=this.props;
         //  console.log('children&^^^^')
         // console.log(children)
 
+    const childrenWithProps = React.Children.map(children, child =>
+      React.cloneElement(child, { register: this.register.bind(this) }));
+
        return connectDragSource(  <div className={classes.inner}>
-                {children}
+                {childrenWithProps}
            </div>
            
         )

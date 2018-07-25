@@ -29,6 +29,9 @@ class BoxA extends Component {
     }
     componentDidMount(){
 
+        debugger;
+        this.props.register(this);
+
         // if(this.props.type==='OUTITEM'){
         //     _this = this;
         // }

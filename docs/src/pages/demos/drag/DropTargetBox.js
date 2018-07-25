@@ -1,6 +1,6 @@
 import React,{Component}  from 'react';
 // import DragSource2 from './DragSource2'
-import {DragSource2} from 'react-material/Drag';
+import {DragSource2} from '@6thquake/react-material/Drag';
 import update from 'immutability-helper';
 
 

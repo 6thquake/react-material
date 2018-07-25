@@ -1,15 +1,15 @@
 import React,{Component}  from 'react';
-import {withStyles} from 'react-material/styles';
-import {DragSource,OrderDragTarget} from 'react-material/Drag';
-import Button from 'react-material/Button';
-import Icon from 'react-material/Icon';
+import {withStyles} from '@6thquake/react-material/styles';
+import {DragSource,OrderDragTarget} from '@6thquake/react-material/Drag';
+import Button from '@6thquake/react-material/Button';
+import Icon from '@6thquake/react-material/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import Paper from 'react-material/Paper';
-import IconButton from 'react-material/IconButton';
-// import {withDragAndDrop} from 'react-material/DragAndDrop';
+import Paper from '@6thquake/react-material/Paper';
+import IconButton from '@6thquake/react-material/IconButton';
+// import {withDragAndDrop} from '@6thquake/react-material/DragAndDrop';
 import PropTypes from 'prop-types';
 const styles=theme=>({
     root:{

@@ -1,16 +1,16 @@
 import React,{Component,PureComponent}  from 'react';
-import {withStyles} from 'react-material/styles';
-import {DragSource2, ManualDragTarget, CustomDragLayer} from 'react-material/Drag';
+import {withStyles} from '@6thquake/react-material/styles';
+import {DragSource2, ManualDragTarget, CustomDragLayer} from '@6thquake/react-material/Drag';
 
 
-import Button from 'react-material/Button';
-import Icon from 'react-material/Icon';
+import Button from '@6thquake/react-material/Button';
+import Icon from '@6thquake/react-material/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import Paper from 'react-material/Paper';
-import IconButton from 'react-material/IconButton';
+import Paper from '@6thquake/react-material/Paper';
+import IconButton from '@6thquake/react-material/IconButton';
 
 import PropTypes from 'prop-types';
 import BoxA from './BoxA'

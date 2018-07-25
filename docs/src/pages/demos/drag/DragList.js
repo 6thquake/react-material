@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
-import {withStyles} from 'react-material/styles';
+import {withStyles} from '@6thquake/react-material/styles';
 import PropTypes from 'prop-types';
-import ListItem from 'react-material/ListItem';
-import List from 'react-material/List';
-import ListItemIcon from 'react-material/ListItemIcon';
-import ListItemText from 'react-material/ListItemText';
-import {DragSource,OrderDragTarget} from 'react-material/Drag';
+import ListItem from '@6thquake/react-material/ListItem';
+import List from '@6thquake/react-material/List';
+import ListItemIcon from '@6thquake/react-material/ListItemIcon';
+import ListItemText from '@6thquake/react-material/ListItemText';
+import {DragSource,OrderDragTarget} from '@6thquake/react-material/Drag';
 const styles=theme=>({
     root:{
         position:'relative',

@@ -25,6 +25,7 @@ const styles = theme => ({
     }`,
   },
   title: {
+    flex: '0 0 auto',
     ...theme.typography.title
   },
   spacer: {
@@ -33,9 +34,9 @@ const styles = theme => ({
   actions: {
     display: 'flex',
   },
-  title: {
-    flex: '0 0 auto',
-  },
+  // title: {
+  //   flex: '0 0 auto',
+  // },
   search: {},
   searchInput: {
     minWidth: '10em',
@@ -97,6 +98,10 @@ class TableToolbar extends Component {
   render() {
     const { width, classes, searchable, exportProps, SearchProps,title } = this.props;
     const { anchorEl } = this.state;
+    if (SearchProps.floatRight === undefined){
+      SearchProps.floatRight = true
+    }
+    console.log('search props', SearchProps)
     if (!searchable && !exportProps) {
       return null;
     }

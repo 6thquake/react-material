@@ -192,7 +192,7 @@ class Select extends Component {
                 if (!Array.isArray(value)) {
                   throw new Error(
                     'Material-UI: the `value` property must be an array ' +
-                    'when using the `Select` component with `multiple`.',
+                      'when using the `Select` component with `multiple`.',
                   );
                 }
 
@@ -202,12 +202,12 @@ class Select extends Component {
                 }
               } else {
                 selected = value === child.props.value;
-                if (selected ) {
+                if (selected) {
                   displaySingle = child.props.children;
                 }
               }
             });
-            return  multiple ? displayMultiple.join(', ') : displaySingle;
+            return multiple ? displayMultiple.join(', ') : displaySingle;
           }
         }}
       >

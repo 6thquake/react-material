@@ -94,8 +94,8 @@ class AutoCompleteTest extends Component {
         <AutoComplete
           placeholder={'new autoComplete'}
           options={this.state.options.slice(
-            count === 0 ? count : page  * rowsPerPage + 1,
-            (page+1) * rowsPerPage > count ? count : (page+1) * rowsPerPage,
+            count === 0 ? count : page * rowsPerPage + 1,
+            (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
           )}
           multiple={true}
           disabled={true}
@@ -114,8 +114,8 @@ class AutoCompleteTest extends Component {
         <AutoComplete
           placeholder={'new autoComplete'}
           options={this.state.options.slice(
-            count === 0 ? count : page  * rowsPerPage + 1,
-            (page+1) * rowsPerPage > count ? count : (page+1) * rowsPerPage,
+            count === 0 ? count : page * rowsPerPage + 1,
+            (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
           )}
           multiple={false}
           mapper={{
@@ -145,12 +145,12 @@ class AutoCompleteTest extends Component {
         <AutoComplete
           placeholder={'new autoComplete'}
           options={this.state.options.slice(
-            count === 0 ? count : page  * rowsPerPage + 1,
-            (page+1) * rowsPerPage > count ? count : (page+1) * rowsPerPage,
+            count === 0 ? count : page * rowsPerPage + 1,
+            (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
           )}
           multiple={false}
           mapper={{
-            label: (item,index)=>(
+            label: (item, index) => (
               <div>
                 <ListItemIcon>
                   <StarBorder />

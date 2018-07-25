@@ -3,8 +3,7 @@ import recast from 'recast';
 import kebabCase from 'lodash/kebabCase';
 import { pageToTitle } from './helpers';
 
-const SOURCE_CODE_ROOT_URL =
-  'https://github.com/6thquake/react-material/tree/develop';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/6thquake/react-material/tree/develop';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 

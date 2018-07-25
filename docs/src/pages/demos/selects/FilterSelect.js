@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Select  from '@6thquake/react-material/Select';
+import Select from '@6thquake/react-material/Select';
 import InputLabel from '@6thquake/react-material/InputLabel';
 import { withStyles } from '@6thquake/react-material/styles';
 import FormControl from '@6thquake/react-material/FormControl';

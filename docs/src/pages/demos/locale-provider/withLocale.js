@@ -1,6 +1,9 @@
 import react, { Component } from 'react';
 import Divider from '@6thquake/react-material/Divider';
-import LocaleProvider, { LocaleConsumer, withLocale } from '@6thquake/react-material/LocaleProvider';
+import LocaleProvider, {
+  LocaleConsumer,
+  withLocale,
+} from '@6thquake/react-material/LocaleProvider';
 import { withStyles } from '@6thquake/react-material/styles';
 import Radio, { RadioButton } from '@6thquake/react-material/Radio';
 import RadioGroup from '@6thquake/react-material/RadioGroup';

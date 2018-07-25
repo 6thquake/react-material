@@ -94,9 +94,7 @@ class AutoComplete extends Component {
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-      PropTypes.arrayOf(
-        PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      ),
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     ]),
     /**
      * Decided autocomplete is disabled
@@ -119,7 +117,7 @@ class AutoComplete extends Component {
       open: false,
       inputValue: '',
       selectedItem: [],
-      page:0,
+      page: 0,
     };
   }
   handleChange(event) {
@@ -235,7 +233,7 @@ class AutoComplete extends Component {
     let items;
     if (options) {
       items = options
-        ? options.map((item,index) => {
+        ? options.map((item, index) => {
             let selected = false;
 
             switch (typeof item) {
@@ -269,9 +267,18 @@ class AutoComplete extends Component {
                         'when using the `AutoComplete` component with `multiple`.',
                     );
                   }
-                  selected = value.indexOf(typeof mapper['value']==='function'?mapper['value'](item,index):item[mapper['value']]) !== -1;
+                  selected =
+                    value.indexOf(
+                      typeof mapper['value'] === 'function'
+                        ? mapper['value'](item, index)
+                        : item[mapper['value']],
+                    ) !== -1;
                 } else {
-                  selected = value === (typeof mapper['value']==='function'?mapper['value'](item,index):item[mapper['value']]);
+                  selected =
+                    value ===
+                    (typeof mapper['value'] === 'function'
+                      ? mapper['value'](item, index)
+                      : item[mapper['value']]);
                 }
                 return (
                   <MenuItem
@@ -280,13 +287,13 @@ class AutoComplete extends Component {
                     selected={selected}
                     onClick={this.handleItemClick(null)}
                   >
-                    {typeof mapper['label']==='function'?mapper['label'](item,index):item[mapper['label']]}
+                    {typeof mapper['label'] === 'function'
+                      ? mapper['label'](item, index)
+                      : item[mapper['label']]}
                   </MenuItem>
                 );
               default:
-                throw new Error(
-                  'AutoComplete[options] only supports type `string[] | Object[]`.',
-                );
+                throw new Error('AutoComplete[options] only supports type `string[] | Object[]`.');
             }
           })
         : [];

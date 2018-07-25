@@ -28,8 +28,7 @@ const styles = theme => ({
 });
 
 const demoRegexp = /^"demo": "(.*)"/;
-const SOURCE_CODE_ROOT_URL =
-  'https://github.com/6thquake/react-material/tree/develop';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/6thquake/react-material/tree/develop';
 
 function MarkdownDocs(props, context) {
   const { classes, demos, disableCarbon, markdown, markdownLocation: markdownLocationProp } = props;

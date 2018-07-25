@@ -7,7 +7,10 @@ import MenuItem from '@6thquake/react-material/MenuItem';
 import Button from '@6thquake/react-material/Button';
 import ButtonGroup from '@6thquake/react-material/ButtonGroup';
 import Grid from '@6thquake/react-material/Grid';
-import LocaleProvider, { withLocale, LocaleConsumer } from '@6thquake/react-material/LocaleProvider';
+import LocaleProvider, {
+  withLocale,
+  LocaleConsumer,
+} from '@6thquake/react-material/LocaleProvider';
 
 const radio = true;
 

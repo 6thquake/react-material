@@ -4,7 +4,11 @@ import FormControlLabel from '@6thquake/react-material/FormControlLabel';
 import FormGroup from '@6thquake/react-material/FormGroup';
 import { withStyles } from '@6thquake/react-material/styles';
 import ButtonBase from '@6thquake/react-material/ButtonBase';
-import MenuBar, { MenuBarItem, MenuBarItemGroup, SubMenuBar } from '@6thquake/react-material/MenuBar';
+import MenuBar, {
+  MenuBarItem,
+  MenuBarItemGroup,
+  SubMenuBar,
+} from '@6thquake/react-material/MenuBar';
 const styles = theme => ({
   root: {
     flexGrow: 1,

@@ -115,11 +115,11 @@ class Pagination extends Component {
     /**
      * This is total count of pagination
      */
-    count : PropTypes.number,
+    count: PropTypes.number,
     /**
      * This is call current page back to parent component
      */
-    onChangePage : PropTypes.func.isRequired,
+    onChangePage: PropTypes.func.isRequired,
     /**
      * Callback fired when the number of rows per page is changed.
      */
@@ -149,10 +149,10 @@ class Pagination extends Component {
   static defaultProps = {
     page: 0,
     rowsPerPage: 5,
-    count : 0,
+    count: 0,
     labelRowsPerPage: 'Rows per page:',
     rowsPerPageOptions: [5, 10, 25],
-    labelDisplayedRows: ({ from, to, count  }) => `${from}-${to} of ${count}`,
+    labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
   };
 
   constructor(props) {
@@ -254,8 +254,8 @@ class Pagination extends Component {
               ? labelDisplayedRows({
                   from: count === 0 ? 0 : page * rowsPerPage + 1,
                   to: Math.min(count, (page + 1) * rowsPerPage),
-                count,
-                page,
+                  count,
+                  page,
                 })
               : null}
           </Typography>

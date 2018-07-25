@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { routes } from './data';
-import MenuBar, { MenuBarItem, MenuBarItemGroup, SubMenuBar } from '@6thquake/react-material/MenuBar';
+import MenuBar, {
+  MenuBarItem,
+  MenuBarItemGroup,
+  SubMenuBar,
+} from '@6thquake/react-material/MenuBar';
 import AppBar from '@6thquake/react-material/AppBar';
 import { withStyles } from '@6thquake/react-material/styles';
 const styles = theme => ({

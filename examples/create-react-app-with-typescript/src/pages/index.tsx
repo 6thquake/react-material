@@ -7,7 +7,10 @@ import Dialog, {
   DialogActions,
 } from '@6thquake/react-material/Dialog';
 import Typography from '@6thquake/react-material/Typography';
-import withStyles, { WithStyles, StyleRulesCallback } from '@6thquake/react-material/styles/withStyles';
+import withStyles, {
+  WithStyles,
+  StyleRulesCallback,
+} from '@6thquake/react-material/styles/withStyles';
 import withRoot from '../withRoot';
 
 const styles: StyleRulesCallback<'root'> = theme => ({

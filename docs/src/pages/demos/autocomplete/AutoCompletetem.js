@@ -101,7 +101,7 @@ class AutoCompleteTest extends Component {
           {this.state.options
             .slice(
               count === 0 ? count : page * rowsPerPage + 1,
-              (page+1) * rowsPerPage > count ? count : (page+1) * rowsPerPage,
+              (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
             )
             .map(item => (
               <MenuItem key={item.label} value={item.label}>
@@ -125,8 +125,8 @@ class AutoCompleteTest extends Component {
         >
           {this.state.options
             .slice(
-              count === 0 ? count :page  * rowsPerPage + 1,
-              (page+1) * rowsPerPage > count ? count : (page+1) * rowsPerPage,
+              count === 0 ? count : page * rowsPerPage + 1,
+              (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
             )
             .map(item => (
               <MenuItem key={item.label} value={item.label}>

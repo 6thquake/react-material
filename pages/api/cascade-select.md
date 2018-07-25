@@ -17,7 +17,7 @@ filename: /packages/react-material/src/CascadeSelect/CascadeSelect.js
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |  | Callback when finishing cascader select |
 | <span class="prop-name">label</span> | <span class="prop-type">node |  | The label content. |
 | <span class="prop-name required">options *</span> | <span class="prop-type">array |  | data options of cascade |
-| <span class="prop-name">mapper</span> | <span class="prop-type">{label?: union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br>, value?: union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br>} | <span class="prop-default">{  label: 'label',  value: 'value'}</span> | render maps, |
+| <span class="prop-name">mapper</span> | <span class="prop-type">{label?: union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br>, value?: union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br>} | <span class="prop-default">{  label: 'label',  value: 'value',}</span> | render maps, |
 | <span class="prop-name">renderValue</span> | <span class="prop-type">func |  | Render the selected item.<br><br>**Signature:**<br>`function(list: array) => String`<br>*list:* The selected items `array`. |
 | <span class="prop-name">width</span> | <span class="prop-type">number | <span class="prop-default">150</span> | The width of cascader |
 

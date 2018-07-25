@@ -7,6 +7,7 @@ module.exports = {
   resolve: {
     modules: [path.join(__dirname, '../'), 'node_modules'],
     alias: {
+      '@6thquake/react-material': path.resolve(__dirname, '../packages/react-material/src'),
       docs: path.resolve(__dirname, '../docs'),
     },
   },

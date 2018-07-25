@@ -13,7 +13,7 @@ filename: /packages/react-material/src/Select/Select.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |  | callback to parent component when select options |
-| <span class="prop-name">pageSize</span> | <span class="prop-type">PropTypes.num |  | page size |
+| <span class="prop-name">rowsPerPage</span> | <span class="prop-type">PropTypes.num |  | page size |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;arrayOf<br> |  | select value, |
 | <span class="prop-name">placeholder</span> | <span class="prop-type">string | <span class="prop-default">'please input something'</span> | placeholder |
 | <span class="prop-name">multiple</span> | <span class="prop-type">bool |  | decided multiple select |

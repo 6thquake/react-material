@@ -12,7 +12,7 @@
           {
             "root": ["./"],
             "alias": {
-              "react-material": "./packages/react-material/src"
+              "@6thquake/react-material": "./packages/react-material/src"
             }
           }
         ],
@@ -35,7 +35,7 @@
           {
             "alias": {
               "docs": "./docs",
-              "react-material": "./packages/react-material/src",
+              "@6thquake/react-material": "./packages/react-material/src",
               "pages": "./pages"
             }
           }
@@ -54,7 +54,7 @@
           {
             "alias": {
               "docs": "./docs",
-              "react-material": "./packages/react-material/src",
+              "@6thquake/react-material": "./packages/react-material/src",
               "pages": "./pages"
             }
           }
@@ -103,7 +103,7 @@
           {
             "root": ["./"],
             "alias": {
-              "react-material": "./src"
+              "@6thquake/react-material": "./src"
             }
           }
         ],

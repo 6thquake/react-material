@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const LIBRARY_NAME = 'react-material';
 const baseConfig = {
   entry: {
-    'react-material': path.join(__dirname, '../src/index.js'),
+    '@6thquake/react-material': ['babel-polyfill', path.join(__dirname, '../src/index.js')],
   },
   output: {
     path: path.join(__dirname, '../build/umd'),

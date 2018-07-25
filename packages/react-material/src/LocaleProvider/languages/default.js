@@ -80,6 +80,8 @@ export default {
     homePage: 'first',
     pageName: 'page',
     jumpTo: 'jump to',
+    prePage:'Previous page',
+    nextPage:'next page',
   },
   Confirm: {
     cancelText: 'cancel',

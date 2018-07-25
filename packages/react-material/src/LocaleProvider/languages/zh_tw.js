@@ -79,6 +79,8 @@ export default {
     homePage: '首頁',
     pageName: '頁',
     jumpTo: '跳至',
+    prePage:'上一頁',
+    nextPage:'下一頁',
   },
   Confirm: {
     cancelText: '取消',

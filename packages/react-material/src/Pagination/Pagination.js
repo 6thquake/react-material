@@ -8,6 +8,9 @@ import Typography from '../Typography';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import IconButton from '../IconButton';
+import FirstPageIcon from '@material-ui/icons/FirstPage';
+import LastPageIcon from '@material-ui/icons/LastPage';
+import Button from 'react-material/Button';
 import { withLocale } from '../LocaleProvider';
 
 const styles = theme => ({
@@ -83,6 +86,10 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
     marginLeft: theme.spacing.unit * 2.5,
   },
+  textbutton:{
+    fontSize: '0.75rem',
+    fontWeight: 400,
+  },
 });
 
 class Pagination extends Component {
@@ -144,6 +151,10 @@ class Pagination extends Component {
      * show jump to first and last page button.
      */
     showTwoEnds: PropTypes.bool,
+    /**
+     * Use text alternative icon for next page、pre page、last page and first page
+     */
+    noIcon: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -210,8 +221,11 @@ class Pagination extends Component {
       showTwoEnds,
       homePage,
       lastPage,
+      prePage,
+      nextPage,
       jumpTo,
       pageName,
+      noIcon,
     } = this.props;
     const { minwidth, value } = this.state;
     const totalPage = Math.ceil(count / rowsPerPage);
@@ -260,36 +274,36 @@ class Pagination extends Component {
               : null}
           </Typography>
           {showTwoEnds ? (
-            <Typography
-              variant="caption"
-              className={classes.caption + ' ' + classes.jump + ' ' + classes.firstpage}
+            <IconButton
               onClick={this.goEnd.bind(this, 'first')}
+              disabled={page === 0}
+              aria-label="Last Page"
             >
-              {homePage}
-            </Typography>
+              {noIcon?<span className={classes.textbutton }>{homePage}</span>:<FirstPageIcon />}
+            </IconButton>
           ) : null}
           <IconButton
             onClick={this.prePageHandeler.bind(this)}
             disabled={page === 0}
             {...backIconButtonProps}
           >
-            <KeyboardArrowLeft />
+            {noIcon?<span className={classes.textbutton }>{prePage}</span>:<KeyboardArrowLeft />}
           </IconButton>
-          <IconButton
+         <IconButton
             onClick={this.nextPageHandeler.bind(this)}
             disabled={page >= totalPage - 1}
             {...nextIconButtonProps}
-          >
-            <KeyboardArrowRight />
-          </IconButton>
-          {showTwoEnds ? (
-            <Typography
-              variant="caption"
-              className={classes.caption + ' ' + classes.jump + ' ' + classes.lastpage}
-              onClick={this.goEnd.bind(this, 'last')}
             >
-              {lastPage}
-            </Typography>
+           {noIcon?<span className={classes.textbutton }>{nextPage}</span>:<KeyboardArrowRight />}
+            </IconButton>
+          {showTwoEnds ? (
+            <IconButton
+            onClick={this.goEnd.bind(this, 'last')}
+            disabled={page >= totalPage - 1}
+            aria-label="Last Page"
+            >
+              {noIcon?<span className={classes.textbutton }>{lastPage}</span>:<LastPageIcon />}
+            </IconButton>
           ) : null}
           {showQuickJumper ? (
             <Typography variant="caption" className={classes.caption + ' ' + classes.jump}>

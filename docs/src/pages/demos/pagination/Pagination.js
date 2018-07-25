@@ -95,6 +95,16 @@ class PaginationTest extends Component {
           onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
         />
         <Divider />
+        <Pagination
+          showSizeChanger
+          showQuickJumper
+          showTwoEnds
+          noIcon
+          {...this.state.paginationProps}
+          onChangePage={this.onChangePage.bind(this)}
+          onChangeRowsPerPage={this.onChangeRowsPerPage.bind(this)}
+        />
+        <Divider />
       </div>
     );
   }

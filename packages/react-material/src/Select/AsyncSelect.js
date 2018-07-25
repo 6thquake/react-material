@@ -82,7 +82,7 @@ class AsyncSelect extends Component {
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     }),
     /**
-     * compare the  value of selected with option value,return Boolen,对于简单值比较可以不传.
+     * compare the  value of selected with option value,return Boolen,
      */
     comparison: PropTypes.func,
     /**

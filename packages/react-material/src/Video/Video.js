@@ -6,7 +6,6 @@ import videojs from 'video.js';
 if (process.browser) {
   let videocss = require('!style-loader!css-loader!video.js/dist/video-js.css');
   let styleNode = document.createElement('style');
-  styleNode.setAttribute('data-prism', 'true');
   if (document.head) {
     document.head.appendChild(styleNode);
     styleNode.textContent = videocss;

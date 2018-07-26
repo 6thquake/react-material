@@ -59,8 +59,8 @@ class RmTable extends React.Component {
       hasRight: true,
       columns: columns,
       search: '',
-      page: props.paginationProps.page,
-      rowsPerPage: props.paginationProps.rowsPerPage,
+      page: props.TablePaginationProps.page,
+      rowsPerPage: props.TablePaginationProps.rowsPerPage,
       data: props.data,
     };
   }
@@ -86,10 +86,9 @@ class RmTable extends React.Component {
     this.syncTableRowHeight();
     this.handlePaginteData();
   }
-
+  
   componentDidUpdate(nextProps, nextState) {
     const { data, paginatable, searchable } = this.props;
-
     if (data !== this.propsCached.data) {
       this.propsCached.data = data;
       this.filteredData();
@@ -179,21 +178,33 @@ class RmTable extends React.Component {
     this.handleColDrag(this.dragIndex);
   };
   filteredData = () => {
-    const { data } = this.props;
+    const {
+      data,
+      sync
+    } = this.props;
     const { search } = this.state;
     let searchData = data;
-    if (search) {
+    if (search && sync) {
       searchData = filter(data, search);
     }
+
     this.searchedData.data = searchData;
     const result = this.handlePaginteData();
     return result;
   };
   handlePaginteData = () => {
     let data = this.searchedData.data;
-    const { paginatable } = this.props;
+    const {
+      paginatable,
+      sync
+    } = this.props;
+    if (!sync) {
+      this.setState({
+        data,
+      })
+      return 
+    }
     const { page, rowsPerPage } = this.state;
-
     if (paginatable) {
       data = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
     } else {
@@ -201,7 +212,7 @@ class RmTable extends React.Component {
     }
     this.setState({
       data,
-    });
+    })
   };
   createCsv = () => {
     let head = this.state.columns.reduce((pre, cur) => {
@@ -316,6 +327,8 @@ class RmTable extends React.Component {
     this.setTableShadow(scrollLeft);
   };
   handleChangePage = (event, page) => {
+    const {TablePaginationProps} = this.props
+    const onChangePage = TablePaginationProps.onChangePage
     this.setState(
       {
         page,
@@ -324,9 +337,12 @@ class RmTable extends React.Component {
         this.handlePaginteData();
       },
     );
+    onChangePage && onChangePage(event, page)
   };
 
   handleChangeRowsPerPage = event => {
+    const {TablePaginationProps} = this.props
+    const onChangeRowsPerPage = TablePaginationProps.onChangeRowsPerPage
     this.setState(
       {
         rowsPerPage: event.target.value,
@@ -335,6 +351,7 @@ class RmTable extends React.Component {
         this.handlePaginteData();
       },
     );
+    onChangeRowsPerPage && onChangeRowsPerPage(event)
   };
 
   setTableShadow = left => {
@@ -348,18 +365,19 @@ class RmTable extends React.Component {
     });
   };
   render() {
-    const { classes, width, paginatable, searchable, exportProps, searchProps } = this.props;
+    const { classes, width, paginatable, searchable, exportProps, SearchProps, sync, title} = this.props;
     const { page, rowsPerPage } = this.state;
     return (
       <React.Fragment>
         <Toolbar
+          title={title}
           onSearch={this.onSearch}
           headRef={this.tableRefs.head}
           bodyRef={this.tableRefs.body}
           createCsv={this.createCsv}
           searchable={searchable}
           exportProps={exportProps}
-          searchProps={searchProps}
+          SearchProps={SearchProps}
           width={width}
         />
         <div style={{ width }} className={classes.root} onScroll={this.handleScrollX}>
@@ -367,13 +385,16 @@ class RmTable extends React.Component {
         </div>
         {paginatable && (
           <div className={classes.pagination} style={{ width }}>
+            {!sync?
+            <Pagination {...this.props.TablePaginationProps}/> :
             <Pagination
+              {...this.props.TablePaginationProps}
               page={page}
               rowsPerPage={rowsPerPage}
               count={this.searchedData.data.length}
               onChangePage={this.handleChangePage}
               onChangeRowsPerPage={this.handleChangeRowsPerPage}
-            />
+            />}
           </div>
         )}
       </React.Fragment>
@@ -398,7 +419,7 @@ RmTable.propTypes = {
   /**
    * Properties applied to the TablePagination Component
    */
-  paginationProps: PropTypes.object,
+  TablePaginationProps: PropTypes.object,
   /**
    * export config
    */
@@ -408,7 +429,7 @@ RmTable.propTypes = {
   /**
    * Properties applied to the Search Component
    */
-  searchProps: PropTypes.object,
+  SearchProps: PropTypes.object,
   /**
    *  if true, it will be a paginatable table
    */
@@ -437,20 +458,31 @@ RmTable.propTypes = {
    * Callback fired when you drag the column
    */
   onColDrag: PropTypes.func,
+  /**
+   * if sync is true, pagination and search will be automatical.
+   * you needn't to do these things by yourself
+   */
+  sync: PropTypes.bool,
+  /**
+   * The title of table
+   */
+  title: PropTypes.node
 };
 RmTable.defaultProps = {
-  paginationProps: {
+  TablePaginationProps: {
     rowsPerPage: 10,
     page: 0,
   },
   width: 'auto',
   height: 'auto',
-  searchProps: {
+  SearchProps: {
     isDark: true,
+    floatRight: true,
   },
   paginatable: false,
   searchable: false,
   resizable: false,
   dragable: false,
+  sync: false
 };
 export default withStyles(styles, { withTheme: true })(RmTable);

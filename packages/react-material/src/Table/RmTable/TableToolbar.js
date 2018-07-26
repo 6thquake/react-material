@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Toolbar from '../../Toolbar';
-import ReactDOM from 'react-dom';
 import { Search } from '../../Search';
 import IconButton from '../../IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import GetApp from '@material-ui/icons/GetApp';
 import { withStyles } from '../../styles';
 import Menu from '../../Menu';
 import MenuItem from '../../MenuItem';
@@ -24,19 +24,26 @@ const styles = theme => ({
         : darken(fade(theme.palette.divider, 1), 0.8)
     }`,
   },
+  title: {
+    flex: '0 0 auto',
+    ...theme.typography.title
+  },
   spacer: {
     flex: '1 1 100%',
   },
   actions: {
     display: 'flex',
   },
-  title: {
-    flex: '0 0 auto',
-  },
+  // title: {
+  //   flex: '0 0 auto',
+  // },
   search: {},
   searchInput: {
     minWidth: '10em',
   },
+  download: {
+    marginLeft: theme.spacing.unit * 2
+  }
 });
 
 /**
@@ -53,8 +60,9 @@ class TableToolbar extends Component {
   componentDidMount() {}
   excelRef = React.createRef('excel');
   onChange = e => {
-    let { onSearch } = this.props;
+    let { onSearch , SearchProps} = this.props;
     onSearch && onSearch(e);
+    SearchProps.onChange && SearchProps.onChange(e)
   };
   handleClick = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -88,33 +96,39 @@ class TableToolbar extends Component {
   }
 
   render() {
-    const { width, classes, searchable, exportProps, searchProps } = this.props;
+    const { width, classes, searchable, exportProps, SearchProps,title } = this.props;
     const { anchorEl } = this.state;
+    if (SearchProps.floatRight === undefined){
+      SearchProps.floatRight = true
+    }
     if (!searchable && !exportProps) {
       return null;
     }
     return (
       <div className={classes.root} style={{ width }}>
         <Toolbar>
-          <div style={{ width: '80%' }}>
+          <div className={classes.title}> 
+            {title}
+          </div>
+          <div className={classes.spacer} />
+          <div style={{ width: '80%' , float: 'right'}}>
             {searchable && (
               <Search
                 classes={{ input: classes.searchInput }}
-                {...searchProps}
+                {...SearchProps}
                 onChange={this.onChange}
               />
             )}
           </div>
-          <div className={classes.spacer} />
           {exportProps && (
-            <div>
+            <div className={classes.download}>
               <IconButton
                 aria-label="More"
                 aria-owns={anchorEl ? 'long-menu' : null}
                 aria-haspopup="true"
                 onClick={this.handleClick}
               >
-                <MoreVertIcon />
+                <GetApp />
               </IconButton>
               <Menu
                 id="long-menu"

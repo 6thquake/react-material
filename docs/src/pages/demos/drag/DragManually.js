@@ -14,31 +14,9 @@ import IconButton from '@6thquake/react-material/IconButton';
 
 import PropTypes from 'prop-types';
 import BoxA from './BoxA'
-import DropTargetBox from './DropTargetBox'
+import TargetBox from './TargetBox'
 
-// const boxstyles = {
-//     border: '1px dashed gray',
-//     padding: '0.5rem 1rem',
-//     cursor: 'move',
-//     backgroundColor:'white',
-//     display: 'inline-block',
-// }
-
-// class BoxA extends PureComponent {
-//     static propTypes = {
-//         title: PropTypes.string.isRequired,
-//     }
-
-//     render() {
-//         return(
-//             <div style={boxstyles}>I am boxA</div>
-//         ) 
-//     }
-// }
-
-
-
-
+// import Test from './test'
 const styles=theme=>({
     root:{
         position:'relative',
@@ -66,26 +44,14 @@ class DragToolBox extends Component{
         return (
             <div className={classes.root}>
                 <div>
-                    {/*<DragSource2 type='OUTITEM' dragSourceType='BUTTONB'>
-                        <Button variant="fab" disabled aria-label="delete" className={classes.button}>
-                             <DeleteIcon />
-                        </Button>
-                    </DragSource2>
-                   <DragSource2 type='OUTITEM' dragSourceType='BUTTONC'>
-                        <IconButton color="primary" className={classes.button} component="span">
-                            <PhotoCamera />
-                        </IconButton>
-                    </DragSource2> */}
                    <DragSource2 >    
                         <BoxA type='OUTITEM' ref='boxRef'/>
                     </DragSource2> 
                 </div>
 
 
-                {/*<ManualDragTarget accepts={['BOXA','BUTTONB','BUTTONC']} snapToGrid={snapToGridAfterDrop} classes={{custom:classes.dropTarget}}>*/}
                 <ManualDragTarget classes={{custom:classes.dropTarget}}>
-                        {/*<DropTargetBox />*/}
-                        <DropTargetBox acceptItem='BoxA'/>
+                        <TargetBox acceptItem='BoxA' snapToGrid={snapToGridAfterDrop}/>
                 </ManualDragTarget>
                 <p>
                     <label htmlFor="snapToGridAfterDrop">

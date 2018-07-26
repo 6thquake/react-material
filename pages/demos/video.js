@@ -8,7 +8,7 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/demos/video/video.js': {
+        'pages/demos/video/Video.js': {
           js: require('docs/src/pages/demos/video/Video').default,
           raw: preval`
 module.exports = require('fs')

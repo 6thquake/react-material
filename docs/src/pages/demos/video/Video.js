@@ -18,7 +18,7 @@ class App extends React.Component {
       <div className={classes.root}>
         <Video
           autoplay={false}
-          sources={[{ src: '/static/video/react-material.mov', type: 'video/mp4' }]}
+          sources={[{ src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4' }]}
         />
       </div>
     );

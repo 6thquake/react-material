@@ -69,9 +69,9 @@ class Mention extends Component {
      * pagination config
      */
     pageConfig: PropTypes.shape({
-      currentPage: PropTypes.number,
-      pageSize: PropTypes.number,
-      total: PropTypes.number,
+      page: PropTypes.number,
+      rowsPerPage: PropTypes.number,
+      count: PropTypes.number,
     }),
     /**
      * text palcehold
@@ -136,9 +136,9 @@ class Mention extends Component {
       selectedItem: props.selected,
       triggerOption: '',
       pageConfig: {
-        currentPage: props.pageConfig.currentPage || 0,
-        pageSize: props.pageConfig.pageSize || 5,
-        total: props.pageConfig.total || 5,
+        page: props.pageConfig.page || 0,
+        rowsPerPage: props.pageConfig.rowsPerPage || 5,
+        count: props.pageConfig.count || 5,
       },
     };
   }
@@ -171,7 +171,7 @@ class Mention extends Component {
           this.props.onSearchChange(stringForComplete.slice(1, stringForComplete.length), trigger); //让外部传入可选的项目
         }
       }
-    } else {
+    } else if (e.target.value) {
       //可选框打开时是过滤字符串的功能
       let targetOptionIndex = e.target.value.lastIndexOf(this.state.triggerOption);
       let searchLength = e.target.value.length;
@@ -202,23 +202,23 @@ class Mention extends Component {
   }
   pageCallbackFn(i) {
     //切换页面的函数
-    // console.log('item', i);
+    console.log('item', i);
     this.setState({
       pageConfig: {
         ...this.state.pageConfig,
-        currentPage: i,
+        page: i,
       },
     });
   }
-  static getDerivedStateFromProps(newprops, prestate) {
+  static getDerivedStateFromProps(newProps, prevState) {
     //父组件改変分页参数时state要跟着变
-    if (newprops.pageConfig !== prestate.pageConfig) {
+    if (newProps !== prevState.preProps) {
       return {
-        pageConfig: { ...newprops.pageConfig },
+        pageConfig: { ...prevState.pageConfig, count: newProps.pageConfig.count },
+        prevProps: newProps,
       };
-    } else {
-      return null;
     }
+    return null;
   }
   render() {
     const {
@@ -230,7 +230,7 @@ class Mention extends Component {
       showError,
       pageConfig,
     } = this.props;
-    const { total, currentPage, pageSize } = this.state.pageConfig;
+    const { count, page, rowsPerPage } = this.state.pageConfig;
     const { open, inputValue, selectedItem } = this.state;
     let items;
     let showPagination = false;
@@ -309,14 +309,14 @@ class Mention extends Component {
             !noItemPatterned && (
               <Paper className={classes.paper} square>
                 {items.slice(
-                  total == 0 ? total : currentPage * pageSize,
-                  (currentPage + 1) * pageSize > total ? total : (currentPage + 1) * pageSize,
+                  count == 0 ? count : page * rowsPerPage,
+                  (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
                 )}
                 <Divider />
                 {showPagination && (
                   <Pagination
                     {...this.state.pageConfig}
-                    pageCallbackFn={this.pageCallbackFn.bind(this)}
+                    onChangePage={this.pageCallbackFn.bind(this)}
                   />
                 )}
               </Paper>

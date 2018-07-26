@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      selectedKeys: [
+      targetKeys: [
         { name: 'this is right one', id: 'r1' },
         { name: 'and this is right two', id: 'r2' },
         { name: 'right three is here', id: 'r3' },
@@ -18,9 +18,9 @@ class App extends React.Component {
         { name: 'you get left three', id: 'l3' },
       ],
       pageConfig: {
-        currentPage: 0,
-        pageSize: 3,
-        total: 3,
+        page: 0,
+        rowsPerPage: 3,
+        count: 3,
       },
     };
   }
@@ -39,11 +39,27 @@ class App extends React.Component {
     return subset;
   };
 
-  changeListTest = (targetKeys, direction, moveKeys) => {
-    console.log(targetKeys, direction, moveKeys);
+  changeListTest = (dataSource, targetKeys) => {
+    console.log(dataSource, targetKeys);
     this.setState({
-      selectedKeys: targetKeys,
+      dataSource: dataSource,
+      targetKeys: targetKeys,
     });
+    // if(direction=='left'){
+    //    this.setState(function(prevState, props){
+    //     return {
+    //       targetKeys: targetKeys,
+    //       dataSource:[].concat(prevState.dataSource,moveKeys)
+    //     }
+    //  });
+    // }else{
+    //   this.setState(function(prevState, props){
+    //     return {
+    //       targetKeys: targetKeys,
+    //       dataSource:this.subSet(prevState.dataSource,moveKeys)
+    //     }
+    //  });
+    // }
   };
 
   render() {
@@ -51,11 +67,12 @@ class App extends React.Component {
       <div>
         <Transfer
           dataSource={this.state.dataSource}
-          selectedKeys={this.state.selectedKeys}
+          targetKeys={this.state.targetKeys}
           filterOption={true}
           paginationOption={true}
           pageConfig={this.state.pageConfig}
           onChange={this.changeListTest.bind(this)}
+          showSearch={true}
         />
       </div>
     );

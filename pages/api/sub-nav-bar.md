@@ -18,3 +18,7 @@ filename: /packages/react-material/src/NavBar/SubNavBar.js
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
+## Demos
+
+- [Nav Bar](/demos/nav-bar)
+

@@ -14,7 +14,7 @@ filename: /packages/react-material/src/Mention/Mention.js
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">onSearchChange *</span> | <span class="prop-type">func | <span class="prop-default">function() {  console.log('need cb function');}</span> | Callback when input @ content changes,parameters are (value,trigger) |
 | <span class="prop-name required">onChange *</span> | <span class="prop-type">func | <span class="prop-default">function() {  console.log('need cb function');}</span> | Callback when input content changes |
-| <span class="prop-name">pageConfig</span> | <span class="prop-type">{currentPage?: number, pageSize?: number, total?: number} |  | pagination config |
+| <span class="prop-name">pageConfig</span> | <span class="prop-type">{page?: number, rowsPerPage?: number, count?: number} |  | pagination config |
 | <span class="prop-name">placeholder</span> | <span class="prop-type">string | <span class="prop-default">'please input something'</span> | text palcehold |
 | <span class="prop-name required">onSelect *</span> | <span class="prop-type">func | <span class="prop-default">function() {  console.log('need cb function');}</span> | callback when select value change |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">string | <span class="prop-default">''</span> | default value |

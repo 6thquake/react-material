@@ -119,7 +119,7 @@ Video.propTypes = {
    */
   onReady: PropTypes.func,
   /**
-   * An array of objects that mirror the native <video> element's capability to have a series of child <source> elements. This should be an array of objects with the src and type properties.
+   * An array of objects that mirror the native <video> element's capability to have a series of child <source> elements. This should be an array of objects with the src and type properties. the property of type has these options: ['video/mp4', 'video/webm', 'video/ogg'].
    */
   sources: PropTypes.arrayOf(
     PropTypes.shape({

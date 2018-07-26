@@ -16,12 +16,10 @@ import RmTable from '@6thquake/react-material/Table/RmTable';
 import filter from '@6thquake/react-material/utils/filter';
 
 const styles = theme => ({
-  root: {
-
-  },
+  root: {},
   bar: {
     padding: theme.spacing.unit / 4,
-    marginBottom: theme.spacing.unit * 2
+    marginBottom: theme.spacing.unit * 2,
   },
   table: {
     // width: '100%',
@@ -89,26 +87,26 @@ class RmTableEXample extends React.Component {
         rowsPerPage: 5,
         page: 0,
         // count: 40,
-      }
+      },
     };
   }
   componentDidMount = () => {
     // this.handleChangePage(0,0)
-  }
+  };
   handleChange = e => {
     let value = e.target.value;
     this.setState({
       value,
     });
   };
-  handleSearch = (value) => {
-    console.log('search value', value)
+  handleSearch = value => {
+    console.log('search value', value);
     // this.setState({
     //   data: filter(data, value)
     // })
-  }
-  handleChangePage = (e, page) =>{
-    console.log('page', page)
+  };
+  handleChangePage = (e, page) => {
+    console.log('page', page);
     // let {TablePaginationProps} = this.state
     // let {rowsPerPage} = TablePaginationProps
     // TablePaginationProps.page = page
@@ -118,9 +116,9 @@ class RmTableEXample extends React.Component {
     //   TablePaginationProps,
     //   data: paginateData,
     // })
-  }
-  handleChangeRowsPerPage = (e)=> {
-    console.log('rowperoage', e.target.value)
+  };
+  handleChangeRowsPerPage = e => {
+    console.log('rowperoage', e.target.value);
     // let {TablePaginationProps} = this.state
     // let {page} = TablePaginationProps
     // let rowsPerPage = e.target.value
@@ -130,14 +128,14 @@ class RmTableEXample extends React.Component {
     //   TablePaginationProps,
     //   data: paginateData,
     // })
-  }
+  };
   render() {
     const { classes } = this.props;
     const { data, columns, value } = this.state;
     const PaginationProps = {
       onChangeRowsPerPage: this.handleChangeRowsPerPage,
       onChangePage: this.handleChangePage,
-      ...this.state.TablePaginationProps
+      ...this.state.TablePaginationProps,
     };
     const exportProps = {
       type: 'csv',
@@ -145,7 +143,7 @@ class RmTableEXample extends React.Component {
     const SearchProps = {
       placeholder: 'search',
       isDark: true,
-      onChange: this.handleSearch
+      onChange: this.handleSearch,
     };
     const options = {
       [value]: value,
@@ -164,14 +162,19 @@ class RmTableEXample extends React.Component {
               value={this.state.value}
               name="type2"
             >
-              <RadioButton className={classes.button} value="scoll">scroll</RadioButton>
-              <RadioButton className={classes.button} value="resizable">resizable</RadioButton>
-              <RadioButton className={classes.button} value="dragable">dragable</RadioButton>
+              <RadioButton className={classes.button} value="scoll">
+                scroll
+              </RadioButton>
+              <RadioButton className={classes.button} value="resizable">
+                resizable
+              </RadioButton>
+              <RadioButton className={classes.button} value="dragable">
+                dragable
+              </RadioButton>
             </RadioGroup>
           </div>
         </Paper>
         <Paper className={classes.root}>
-        
           {/* <Divider></Divider> */}
           <RmTable
             title={'MyTable'}

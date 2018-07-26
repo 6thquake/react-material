@@ -24,7 +24,7 @@ filename: /packages/react-material/src/Video/Video.js
 | <span class="prop-name">inactivityTimeout</span> | <span class="prop-type">number | <span class="prop-default">0</span> | The inactivityTimeout determines how many milliseconds of inactivity is required before declaring the user inactive. A value of 0 indicates that there is no inactivityTimeout and the user will never be considered inactive. |
 | <span class="prop-name">language</span> | <span class="prop-type">string |  | This sets the initial language for a player, but it can always be changed. |
 | <span class="prop-name">onReady</span> | <span class="prop-type">func |  | This handler will execute when the video is ready. |
-| <span class="prop-name">sources</span> | <span class="prop-type">arrayOf |  | An array of objects that mirror the native &lt;video> element's capability to have a series of child &lt;source> elements. This should be an array of objects with the src and type properties. |
+| <span class="prop-name">sources</span> | <span class="prop-type">arrayOf |  | An array of objects that mirror the native &lt;video> element's capability to have a series of child &lt;source> elements. This should be an array of objects with the src and type properties. the property of type has these options: ['video/mp4', 'video/webm', 'video/ogg']. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

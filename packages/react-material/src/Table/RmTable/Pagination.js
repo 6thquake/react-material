@@ -104,7 +104,7 @@ class Pagination extends React.Component {
     if (C) {
       customProps.ActionsComponent = C;
     }
-    return <TablePagination {...customProps}  {...this.props} />;
+    return <TablePagination {...customProps} {...this.props} />;
   }
 }
 

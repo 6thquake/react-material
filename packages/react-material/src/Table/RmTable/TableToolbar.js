@@ -26,7 +26,7 @@ const styles = theme => ({
   },
   title: {
     flex: '0 0 auto',
-    ...theme.typography.title
+    ...theme.typography.title,
   },
   spacer: {
     flex: '1 1 100%',
@@ -42,8 +42,8 @@ const styles = theme => ({
     minWidth: '10em',
   },
   download: {
-    marginLeft: theme.spacing.unit * 2
-  }
+    marginLeft: theme.spacing.unit * 2,
+  },
 });
 
 /**
@@ -60,9 +60,9 @@ class TableToolbar extends Component {
   componentDidMount() {}
   excelRef = React.createRef('excel');
   onChange = e => {
-    let { onSearch , SearchProps} = this.props;
+    let { onSearch, SearchProps } = this.props;
     onSearch && onSearch(e);
-    SearchProps.onChange && SearchProps.onChange(e)
+    SearchProps.onChange && SearchProps.onChange(e);
   };
   handleClick = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -96,10 +96,10 @@ class TableToolbar extends Component {
   }
 
   render() {
-    const { width, classes, searchable, exportProps, SearchProps,title } = this.props;
+    const { width, classes, searchable, exportProps, SearchProps, title } = this.props;
     const { anchorEl } = this.state;
-    if (SearchProps.floatRight === undefined){
-      SearchProps.floatRight = true
+    if (SearchProps.floatRight === undefined) {
+      SearchProps.floatRight = true;
     }
     if (!searchable && !exportProps) {
       return null;
@@ -107,11 +107,9 @@ class TableToolbar extends Component {
     return (
       <div className={classes.root} style={{ width }}>
         <Toolbar>
-          <div className={classes.title}> 
-            {title}
-          </div>
+          <div className={classes.title}>{title}</div>
           <div className={classes.spacer} />
-          <div style={{ width: '80%' , float: 'right'}}>
+          <div style={{ width: '80%', float: 'right' }}>
             {searchable && (
               <Search
                 classes={{ input: classes.searchInput }}

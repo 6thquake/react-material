@@ -12,9 +12,9 @@ class AsyncMentionTest extends Component {
     super();
     this.state = {
       pageConfig: {
-        currentPage: 0,
-        pageSize: 4,
-        total: 12,
+        page: 0,
+        rowsPerPage: 4,
+        count: 12,
       },
       selectedItem: [],
       dataSource: [],
@@ -52,7 +52,7 @@ class AsyncMentionTest extends Component {
         dataSource: result,
         pageConfig: {
           ...this.state.pageConfig,
-          total: result.length,
+          count: result.length,
         },
       });
     });

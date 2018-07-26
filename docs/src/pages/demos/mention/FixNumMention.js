@@ -26,9 +26,9 @@ class FixNumMentionTest extends Component {
     super();
     this.state = {
       pageConfig: {
-        currentPage: 0,
-        pageSize: 4,
-        total: 12,
+        page: 0,
+        rowsPerPage: 4,
+        count: 12,
       },
       selectedItem: ['Taylor'],
       dataSource: [],
@@ -45,7 +45,7 @@ class FixNumMentionTest extends Component {
       dataSource: filteredData,
       pageConfig: {
         ...this.state.pageConfig,
-        total: filteredData.length,
+        count: filteredData.length,
       },
     });
   }

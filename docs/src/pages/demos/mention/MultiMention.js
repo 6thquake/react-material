@@ -26,9 +26,9 @@ class MultiMentionTest extends Component {
     super();
     this.state = {
       pageConfig: {
-        currentPage: 0,
-        pageSize: 4,
-        total: 12,
+        page: 0,
+        rowsPerPage: 4,
+        count: 12,
       },
       selectedItem: [],
       dataSource: [],
@@ -46,7 +46,7 @@ class MultiMentionTest extends Component {
       dataSource: filteredData,
       pageConfig: {
         ...this.state.pageConfig,
-        total: filteredData.length,
+        count: filteredData.length,
       },
     });
     console.log(this.state.dataSource);

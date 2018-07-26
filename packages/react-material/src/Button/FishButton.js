@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import classNames from 'classnames';
+
 const styles = theme => ({
   common: {
     display: 'inline-block',
@@ -40,6 +41,7 @@ const styles = theme => ({
     },
   },
 });
+
 class FishButton extends Component {
   static propTypes = {
     /**

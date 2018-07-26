@@ -7,7 +7,7 @@ import Typography from '@6thquake/react-material/Typography';
 import { withStyles } from '@6thquake/react-material/styles';
 import Grow from '@6thquake/react-material/Grow';
 import Paper from '@6thquake/react-material/Paper';
-import { Manager, Target, Popper } from 'react-popper';
+import { Manager, Reference, Popper } from 'react-popper';
 
 const styles = theme => ({
   paper: {
@@ -74,7 +74,7 @@ class MouseOverPopover extends React.Component {
           <Typography>I use Popover.</Typography>
         </Popover>
         <Manager>
-          <Target>
+          <Reference>
             <Typography
               aria-describedby="react-popper-tooltip"
               onMouseOver={this.handlePopperOpen}
@@ -82,7 +82,7 @@ class MouseOverPopover extends React.Component {
             >
               Hover with react-popper.
             </Typography>
-          </Target>
+          </Reference>
           <Popper
             placement="bottom-start"
             eventsEnabled={popperOpen}

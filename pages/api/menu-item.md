@@ -1,5 +1,5 @@
 ---
-filename: /packages/react-material/src/Menu/MenuItem.js
+filename: /packages/react-material/src/MenuBar/MenuItem.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

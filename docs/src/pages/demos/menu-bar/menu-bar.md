@@ -1,7 +1,7 @@
 ---
-components: MenuBar, MenuBarItem, MenuBarItemGroup, SubMenuBar
+components: MenuBar
 ---
 # MenuBar
-{{"demo": "pages/demos/menu-bar/MenuBar.js"}}
+
 
 

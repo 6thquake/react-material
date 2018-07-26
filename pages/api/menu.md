@@ -12,21 +12,41 @@ filename: /packages/react-material/src/Menu/Menu.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">defaultOpenKeys</span> | <span class="prop-type">arrayOf |  | 初始展开的 SubMenu 菜单项 key 数组 |
-| <span class="prop-name">defaultSelectedKeys</span> | <span class="prop-type">arrayOf |  | 初始选中的菜单项 key 数组 |
-| <span class="prop-name">inlineCollapsed</span> | <span class="prop-type">bool |  | inline 时菜单是否收起状态 |
-| <span class="prop-name">mode</span> | <span class="prop-type">enum:&nbsp;'vertical'&nbsp;&#124;<br>&nbsp;'horizontal'&nbsp;&#124;<br>&nbsp;'inline'<br> |  | 菜单类型，现在支持垂直、水平、和内嵌模式三种 |
-| <span class="prop-name">multiple</span> | <span class="prop-type">bool |  | 是否允许多选 |
-| <span class="prop-name">onClick</span> | <span class="prop-type">func |  | 点击 MenuItem 调用此函数 ，参数 ({item, key, keyPath}) |
-| <span class="prop-name">onDeselect</span> | <span class="prop-type">func |  | 取消选中时调用，仅在 multiple 生效，参数 ({item, key, selectedKeys}) |
-| <span class="prop-name">onOpenChange</span> | <span class="prop-type">func |  | SubMenu 展开/关闭的回调，参数 (openKeys) |
-| <span class="prop-name">onSelect</span> | <span class="prop-type">func |  | 被选中时调用，参数 ({item, key, selectedKeys}) |
-| <span class="prop-name">openKeys</span> | <span class="prop-type">arrayOf |  | 当前展开的 SubMenu 菜单项 key 数组 |
-| <span class="prop-name">selectable</span> | <span class="prop-type">bool |  | 是否允许选中 |
-| <span class="prop-name">selectedKeys</span> | <span class="prop-type">arrayOf |  | 当前选中的菜单项 key 数组 |
-| <span class="prop-name">theme</span> | <span class="prop-type">enum:&nbsp;'light'&nbsp;&#124;<br>&nbsp;'dark'<br> | <span class="prop-default">'light'</span> | 主题颜色 |
+| <span class="prop-name">anchorEl</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br> |  | The DOM element used to set the position of the menu. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | Menu contents, normally `MenuItem`s. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">disableAutoFocusItem</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the selected / first menu item will not be auto focused. |
+| <span class="prop-name">MenuListProps</span> | <span class="prop-type">object |  | Properties applied to the [`MenuList`](/api/menu-list) element. |
+| <span class="prop-name">onClose</span> | <span class="prop-type">func |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
+| <span class="prop-name">onEnter</span> | <span class="prop-type">func |  | Callback fired before the Menu enters. |
+| <span class="prop-name">onEntered</span> | <span class="prop-type">func |  | Callback fired when the Menu has entered. |
+| <span class="prop-name">onEntering</span> | <span class="prop-type">func |  | Callback fired when the Menu is entering. |
+| <span class="prop-name">onExit</span> | <span class="prop-type">func |  | Callback fired before the Menu exits. |
+| <span class="prop-name">onExited</span> | <span class="prop-type">func |  | Callback fired when the Menu has exited. |
+| <span class="prop-name">onExiting</span> | <span class="prop-type">func |  | Callback fired when the Menu is exiting. |
+| <span class="prop-name required">open *</span> | <span class="prop-type">bool |  | If `true`, the menu is visible. |
+| <span class="prop-name">PopoverClasses</span> | <span class="prop-type">object |  | `classes` property applied to the `Popover` element. |
+| <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | <span class="prop-default">'auto'</span> | The length of the transition in `ms`, or 'auto' |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
+
+## CSS API
+
+You can override all the class names injected by React-Material thanks to the `classes` property.
+This property accepts the following keys:
+- `paper`
+
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/6thquake/react-material/tree/develop/packages/react-material/src/Menu/Menu.js)
+for more detail.
+
+If using the `overrides` key of the theme as documented
+[here](/customization/themes#customizing-all-instances-of-a-component-type),
+you need to use the following style sheet name: `MuiMenu`.
+
+## Inheritance
+
+The properties of the [Popover](/api/popover) component are also available.
 
 ## Demos
 

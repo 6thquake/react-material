@@ -8,7 +8,7 @@ import Divider from '@6thquake/react-material/Divider';
 import IconButton from '@6thquake/react-material/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Menu from '@6thquake/react-material/Menu/Menu';
+import MenuBar from '@6thquake/react-material/MenuBar';
 import SvgIcon from '@6thquake/react-material/SvgIcon';
 import common from '@6thquake/react-material/colors/common';
 import { routes } from './data';
@@ -16,8 +16,8 @@ import Scrollbar from '@6thquake/react-material/Scrollbar';
 import AppBar from '@6thquake/react-material/AppBar';
 import Toolbar from '@6thquake/react-material/Toolbar';
 
-const SubMenu = Menu.SubMenu;
-const MenuItem = Menu.Item;
+const SubMenu = MenuBar.SubMenu;
+const MenuItem = MenuBar.Item;
 const sideWidth = 240;
 
 const styles = theme => ({
@@ -118,7 +118,7 @@ class FixedSide extends React.Component {
 
   renderMenu() {
     const { menuConfig } = this.state;
-    return <Menu {...menuConfig}>{this.renderSubMenu(routes)}</Menu>;
+    return <MenuBar {...menuConfig}>{this.renderSubMenu(routes)}</MenuBar>;
   }
 
   renderSubMenu(routes) {

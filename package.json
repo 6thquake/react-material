@@ -23,9 +23,10 @@
   "scripts": {
     "start": "yarn docs:dev",
     "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev",
-    "docs:api": "yarn docs:api:core && yarn docs:api:lab",
-    "docs:api:core": "rimraf ./pages/api && cross-env BABEL_ENV=docs-development && babel-node ./docs/scripts/buildApi.js ./packages/react-material/src ./pages/api",
-    "docs:api:lab": "rimraf ./pages/lab/api && cross-env BABEL_ENV=docs-development babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./pages/lab/api",
+    "docs:api": "rimraf ./pages/api && yarn docs:api:base:lab && yarn docs:api:base && yarn docs:api:core",
+    "docs:api:core": "cross-env BABEL_ENV=docs-development && babel-node ./docs/scripts/buildApi.js ./packages/react-material/src ./pages/api",
+    "docs:api:base": "cross-env BABEL_ENV=docs-development babel-node ./docs/scripts/buildApi.js ./packages/material-ui/core/src ./pages/api",
+    "docs:api:base:lab": "cross-env BABEL_ENV=docs-development babel-node ./docs/scripts/buildApi.js ./packages/material-ui/lab/src ./pages/api",
     "docs:icons": "rimraf static/icons/* && babel-node ./docs/scripts/buildIcons.js",
     "docs:build": "cross-env NODE_ENV=production BABEL_ENV=docs-production next build",
     "docs:start": "next start",

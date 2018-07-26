@@ -1,5 +1,5 @@
 import React from 'react';
-import Menu from '@6thquake/react-material/Menu/Menu';
+import Menu from '@6thquake/react-material/Menu';
 import Button from '@6thquake/react-material/Button';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import Icon from '@6thquake/react-material/Icon';

@@ -82,7 +82,9 @@ function buildDocs(options) {
   // }
 
   // Relative location in the file system.
-  reactAPI.filename = componentObject.filename.replace(rootDirectory, '');
+  reactAPI.filename = componentObject.filename.replace(rootDirectory, '')
+                                              .replace('/packages/material-ui/core/', '/packages/react-material/')
+                                              .replace('/packages/material-ui/lab/', '/packages/react-material/');
   let markdown;
   try {
     markdown = generateMarkdown(reactAPI);

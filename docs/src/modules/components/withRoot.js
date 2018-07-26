@@ -194,7 +194,10 @@ const pages = [
       {
         pathname: '/lab/speed-dial',
       },
-      findPages[2].children[1],
+      {
+        pathname: '/lab/toggle-button',
+      },
+      // findPages[2].children[1],
     ],
   },
   {

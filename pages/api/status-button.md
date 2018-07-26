@@ -18,6 +18,10 @@ filename: /packages/react-material/src/Button/StatusButton.js
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
+## Inheritance
+
+The properties of the [Button](/api/button) component are also available.
+
 ## Demos
 
 - [Buttons](/demos/buttons)

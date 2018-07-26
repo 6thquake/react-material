@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Manager, Target, Popper } from 'react-popper';
+import { Manager, Reference, Popper } from 'react-popper';
 import Button from '@6thquake/react-material/Button';
 import ClickAwayListener from '@6thquake/react-material/ClickAwayListener';
 import Collapse from '@6thquake/react-material/Collapse';
@@ -55,7 +55,7 @@ class MenuListComposition extends React.Component {
           </MenuList>
         </Paper>
         <Manager>
-          <Target>
+          <Reference>
             <div
               ref={node => {
                 this.target1 = node;
@@ -69,7 +69,7 @@ class MenuListComposition extends React.Component {
                 Toggle Menu Grow
               </Button>
             </div>
-          </Target>
+          </Reference>
           <Popper
             placement="bottom-start"
             eventsEnabled={open}
@@ -89,7 +89,7 @@ class MenuListComposition extends React.Component {
           </Popper>
         </Manager>
         <Manager>
-          <Target>
+          <Reference>
             <div
               ref={node => {
                 this.target2 = node;
@@ -103,7 +103,7 @@ class MenuListComposition extends React.Component {
                 Toggle Menu Collapse
               </Button>
             </div>
-          </Target>
+          </Reference>
           <Portal>
             <Popper
               placement="bottom"

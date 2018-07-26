@@ -1,295 +1,265 @@
-import React, { Component } from 'react';
-import { withStyles } from '../styles';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles, createMuiTheme } from '../styles';
+import { findDOMNode } from 'react-dom';
+import RcMenu, { Divider, ItemGroup } from 'rc-menu';
 import classNames from 'classnames';
+import SubMenu from './SubMenu';
+import Item from './MenuItem';
+import styles from './styles';
 
-const styles = theme => ({
-  root: {
-    zIndex: theme.zIndex.appBar,
-    width: '100%',
-    height: '60px',
-    transition: 'background .3s cubic-bezier(0,0,.2,1) 0ms',
-    background: '#333',
-    position: 'relative',
-    // background:'rgba(55,61,65,0)',
-    '&:hover': {
-      background: '#373d41',
-    },
-  },
-  subContainer: {
-    position: 'absolute',
-    color: '#fff',
-    left: 0,
-    right: 0,
-    top: '60px',
-    background: '#272b2e',
-    transition: 'transform .3s',
-    transform: 'scaleY(0)',
-    transformOrigin: '0% 0%',
-  },
-  lightSubContainer: {
-    color: '#333',
-    background: '#fff',
-    boxShadow: theme.shadows[4],
-    borderTop: `1px solid ${theme.palette.primary.main}`,
-    top: '61px',
-  },
-  topContainer: {
-    height: '100%',
-  },
-  topBar: {
-    margin: 0,
-    padding: 0,
-    listStyle: 'none',
-    height: '100%',
-    display: 'inline-block',
-    position: 'relative',
-  },
-  line: {
-    transition: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1)',
-    position: 'absolute',
-    width: '0',
-    background: theme.palette.primary.main,
-    left: 0,
-    bottom: 0,
-    height: 3,
-  },
-  left: {
-    float: 'left',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  right: {
-    float: 'right',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  lightRoot: {
-    background: '#fff',
-    '&:hover': {
-      background: '#fff',
-    },
-    boxShadow: theme.shadows[4],
-  },
-});
+const menuPrefixCls = 'rm-menu';
+const effect = {
+  animationDuration: 0.3,
+  animationFillMode: 'both',
+  transformOrigin: '0 0',
+};
 
-class MenuBar extends Component {
-  state = {
-    line: {
-      left: 0,
-      width: 0,
-    },
-    activeKey: null,
-    subNavOpen: false,
-    initMenu: {
-      index: '',
-      activeKey: '',
-      line: {
-        width: '',
-        left: '',
-      },
-    },
-    selectedKeys: [],
-  };
+function leave(node, done) {
+  done();
+}
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    let initMenu = {
-      index: 0,
-      line: {},
-    };
-    const { selectedKeys, children } = nextProps;
-    if (JSON.stringify(selectedKeys) === JSON.stringify(prevState.selectedKeys)) {
-      return null;
-    }
-    if (prevState.topBar) {
-      for (let i = 0, l = children.length; i < l; i++) {
-        const key = children[i].key || `menu-${i}`;
-        const index = selectedKeys.indexOf(key);
-        if (index !== -1) {
-          initMenu.index = i;
-          initMenu.activeKey = key;
-          const ele = prevState.topBar.childNodes[i];
-          initMenu.line.width = ele.offsetWidth; //+ this.left.offsetWidth;
-          initMenu.line.left = ele.offsetLeft;
-          //todo
-          return {
-            activeKey: initMenu.activeKey,
-            line: {
-              width: initMenu.line.width,
-              left: initMenu.line.left,
-            },
-            initMenu,
-            selectedKeys,
-          };
-        }
+class MenuBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.inlineOpenKeys = [];
+    this.handleClick = e => {
+      this.handleOpenChange([]);
+      const { onClick } = this.props;
+      if (onClick) {
+        onClick(e);
       }
+    };
+    this.handleOpenChange = openKeys => {
+      this.setOpenKeys(openKeys);
+      const { onOpenChange } = this.props;
+      if (onOpenChange) {
+        onOpenChange(openKeys);
+      }
+    };
+    let openKeys;
+    if ('defaultOpenKeys' in props) {
+      openKeys = props.defaultOpenKeys;
+    } else if ('openKeys' in props) {
+      openKeys = props.openKeys;
     }
-
-    return null;
+    this.state = {
+      openKeys: openKeys || [],
+    };
   }
 
   getChildContext() {
     return {
-      onClick: this.props.onClick,
-      theme: this.props.theme,
-      hiddenSubContainer: this.hiddenSubContainer,
-      selectedKeys: this.props.selectedKeys,
+      inlineCollapsed: this.getInlineCollapsed(),
+      rMMenuTheme: this.props.theme,
     };
   }
 
-  getNav = e => {
-    const ele = e.target;
-    if (ele.getAttribute('top-nav-title')) {
-      this.setState({
-        activeKey: ele.getAttribute('event-key'),
-        line: {
-          width: ele.offsetWidth,
-          left: ele.offsetLeft,
-        },
-        subNavOpen: true,
-        hover: ele.getAttribute('event-key'),
-      });
+  //  todo remove unsafe life
+  componentWillReceiveProps(nextProps, nextContext) {
+    // componentWillReceiveProps(nextProps, nextContext) {
+    const { prefixCls } = this.props;
+    if (this.props.mode === 'inline' && nextProps.mode !== 'inline') {
+      this.switchModeFromInline = true;
     }
-  };
-
-  renderNavItem(child, i) {
-    const { selectedKeys } = this.props;
-    let childKey = child.key || `menu-${i}`;
-    let props = {
-      index: i,
-      eventKey: childKey,
-      hover: this.state.hover === childKey,
-      active: this.state.activeKey === childKey,
-      selected: selectedKeys.indexOf(childKey) === -1 ? false : true,
-      selectedKeys: selectedKeys,
-      topNav: this,
-    };
-    return React.cloneElement(child, props);
+    if ('openKeys' in nextProps) {
+      this.setState({ openKeys: nextProps.openKeys });
+      return;
+    }
+    if (
+      (nextProps.inlineCollapsed && !this.props.inlineCollapsed) ||
+      (nextContext.siderCollapsed && !this.context.siderCollapsed)
+    ) {
+      const menuNode = findDOMNode(this);
+      this.switchModeFromInline =
+        !!this.state.openKeys.length &&
+        !!menuNode.querySelectorAll(`.${prefixCls}-submenu-open`).length;
+      this.inlineOpenKeys = this.state.openKeys;
+      this.setState({ openKeys: [] });
+    }
+    if (
+      (!nextProps.inlineCollapsed && this.props.inlineCollapsed) ||
+      (!nextContext.siderCollapsed && this.context.siderCollapsed)
+    ) {
+      this.setState({ openKeys: this.inlineOpenKeys });
+      this.inlineOpenKeys = [];
+    }
   }
 
-  componentDidMount() {
-    // console.log('did mount');
-    this.getInitMenu();
+  setOpenKeys(openKeys) {
+    if (!('openKeys' in this.props)) {
+      this.setState({ openKeys });
+    }
   }
 
-  getInitMenu = (props = this.props) => {
-    const { selectedKeys, children } = props;
-    for (let i = 0, l = children.length; i < l; i++) {
-      const key = children[i].key || `menu-${i}`;
-      const index = selectedKeys.indexOf(key);
-      if (index !== -1) {
-        this.state.initMenu.index = i;
-        this.state.initMenu.activeKey = key;
-        const initMenu = this.state.topBar.childNodes[i];
-        this.state.initMenu.line.width = initMenu.offsetWidth; //+ this.left.offsetWidth;
-        this.state.initMenu.line.left = initMenu.offsetLeft;
-        //todo
-        this.init();
-        break;
+  getRealMenuMode() {
+    const inlineCollapsed = this.getInlineCollapsed();
+    if (this.switchModeFromInline && inlineCollapsed) {
+      return 'inline';
+    }
+    const { mode } = this.props;
+    return inlineCollapsed ? 'vertical' : mode;
+  }
+
+  getInlineCollapsed() {
+    const { inlineCollapsed } = this.props;
+    if (this.context.siderCollapsed !== undefined) {
+      return this.context.siderCollapsed;
+    }
+    return inlineCollapsed;
+  }
+
+  getMenuOpenAnimation(menuMode) {
+    const { openAnimation, openTransitionName } = this.props;
+    let menuOpenAnimation = openAnimation || openTransitionName;
+    if (openAnimation === undefined && openTransitionName === undefined) {
+      switch (menuMode) {
+        case 'horizontal':
+          menuOpenAnimation = 'slide-up';
+          break;
+        case 'vertical':
+        case 'vertical-left':
+        case 'vertical-right':
+          // When mode switch from inline
+          // submenu should hide without animation
+          if (this.switchModeFromInline) {
+            menuOpenAnimation = '';
+            this.switchModeFromInline = false;
+          } else {
+            menuOpenAnimation = 'zoom-big';
+          }
+          break;
+        case 'inline':
+          menuOpenAnimation = {
+            // leave: (node, done) => {
+            //   this.switchModeFromInline = false;
+            //   this.setState({});
+            //   if (this.getRealMenuMode() === 'vertical') {
+            //     return;
+            //   }
+            //   done();
+            // }
+          };
+          this.switchModeFromInline = false;
+          break;
+        default:
       }
     }
-  };
-
-  /**
-   * 挂在之后初始化 line
-   */
-  init = () => {
-    this.setState({
-      activeKey: this.state.initMenu.activeKey,
-      line: {
-        width: this.state.initMenu.line.width,
-        left: this.state.initMenu.line.left,
-      },
-      subNavOpen: false,
-    });
-  };
-
-  getSubContainerStyles() {
-    return {
-      transform: `scaleY(${this.state.subNavOpen ? 1 : 0})`,
-    };
+    return menuOpenAnimation;
   }
 
-  hiddenSubContainer = () => {
-    this.setState({
-      subNavOpen: false,
-    });
-  };
-
   render() {
-    const { children, classes, rightTools, leftTools, theme } = this.props;
-    const className = classNames(
-      {
-        [classes.lightRoot]: theme === 'light',
-      },
-      classes.root,
-    );
-    const subContainerClassNames = classNames(
-      {
-        [classes.lightSubContainer]: theme === 'light',
-      },
-      classes.subContainer,
-    );
-    return (
-      <div className={className} onMouseLeave={e => this.init(e)}>
-        <div className={classes.topContainer}>
-          <div className={classes.left} ref={e => (this.left = e)}>
-            {leftTools}
-          </div>
-          <ul
-            className={classes.topBar}
-            onMouseOver={e => this.getNav(e)}
-            ref={e => (this.state.topBar = e)}
-          >
-            {React.Children.map(children, (c, i) => this.renderNavItem(c, i))}
-            <span ref={e => (this.line = e)} className={classes.line} style={this.state.line} />
-          </ul>
-          <div className={classes.right}>{rightTools}</div>
-        </div>
-        <div
-          ref={e => (this.subContainer = e)}
-          className={subContainerClassNames}
-          style={this.getSubContainerStyles()}
-        />
-      </div>
-    );
+    const { prefixCls, className, theme } = this.props;
+    const { classes, ...props } = this.props;
+    const menuMode = this.getRealMenuMode();
+    const menuOpenAnimation = this.getMenuOpenAnimation(menuMode);
+    const menuClassName = classNames(className, `${prefixCls}-${theme}`, {
+      [`${prefixCls}-inline-collapsed`]: this.getInlineCollapsed(),
+    });
+    const menuProps = {
+      openKeys: this.state.openKeys,
+      onOpenChange: this.handleOpenChange,
+      className: menuClassName,
+      mode: menuMode,
+    };
+    if (menuMode !== 'inline') {
+      // closing vertical popup submenu after click it
+      menuProps.onClick = this.handleClick;
+      menuProps.openTransitionName = menuOpenAnimation;
+    } else {
+      menuProps.openAnimation = menuOpenAnimation;
+    }
+    const { collapsedWidth } = this.context;
+    if (
+      this.getInlineCollapsed() &&
+      (collapsedWidth === 0 || collapsedWidth === '0' || collapsedWidth === '0px')
+    ) {
+      return null;
+    }
+    return <RcMenu {...props} {...menuProps} />;
   }
 }
 
+MenuBar.Divider = Divider;
+MenuBar.Item = Item;
+MenuBar.SubMenu = SubMenu;
+MenuBar.ItemGroup = ItemGroup;
 MenuBar.propTypes = {
   /**
-   * 左侧工具区
+   * 初始展开的 SubMenu 菜单项 key 数组
    */
-  leftTools: PropTypes.node,
+  defaultOpenKeys: PropTypes.arrayOf(PropTypes.string),
   /**
-   * 点击 MenuBarItem 调用此函数
+   * 初始选中的菜单项 key 数组
    */
-  onClick: ({ key, keyPath }, MenuBarItem, event) => null,
+  defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
   /**
-   * 右侧工具区
+   * @ignore
    */
-  rightTools: PropTypes.node,
+  className: PropTypes.string,
   /**
-   * 选中的菜单项 key 数组
+   * inline 时菜单是否收起状态
    */
-  selectedKeys: PropTypes.array,
+  inlineCollapsed: PropTypes.bool,
+  /**
+   * 菜单类型，现在支持垂直、水平、和内嵌模式三种
+   */
+  mode: PropTypes.oneOf(['vertical', 'horizontal', 'inline']),
+  /**
+   * 是否允许多选
+   */
+  multiple: PropTypes.bool,
+  /**
+   * 点击 MenuItem 调用此函数 ，参数 ({item, key, keyPath})
+   */
+  onClick: PropTypes.func,
+  /**
+   * 取消选中时调用，仅在 multiple 生效，参数 ({item, key, selectedKeys})
+   */
+  onDeselect: PropTypes.func,
+  /**
+   * SubMenu 展开/关闭的回调，参数 (openKeys)
+   */
+  onOpenChange: PropTypes.func,
+  /**
+   * 被选中时调用，参数 ({item, key, selectedKeys})
+   */
+  onSelect: PropTypes.func,
+  /**
+   * 当前展开的 SubMenu 菜单项 key 数组
+   */
+  openKeys: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * @ignore
+   */
+  prefixCls: PropTypes.string,
+  /**
+   * 是否允许选中
+   */
+  selectable: PropTypes.bool,
+  /**
+   * 当前选中的菜单项 key 数组
+   */
+  selectedKeys: PropTypes.arrayOf(PropTypes.string),
   /**
    * 主题颜色
    */
-  theme: PropTypes.oneOf(['dark', 'light']),
+  theme: PropTypes.oneOf(['light', 'dark']),
 };
 MenuBar.defaultProps = {
-  selectedKeys: [],
-  theme: 'dark',
+  prefixCls: menuPrefixCls,
+  className: '',
+  theme: 'light',
 };
 MenuBar.childContextTypes = {
-  onClick: PropTypes.func,
-  theme: PropTypes.string,
-  hiddenSubContainer: PropTypes.func,
-  selectedKeys: PropTypes.array,
+  inlineCollapsed: PropTypes.bool,
+  rMMenuTheme: PropTypes.string,
 };
-export default withStyles(styles)(MenuBar);
+MenuBar.contextTypes = {
+  siderCollapsed: PropTypes.bool,
+  collapsedWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
+
+export { SubMenu, Item, ItemGroup };
+
+export default withStyles(styles, { name: 'RMMenuBar' })(MenuBar);

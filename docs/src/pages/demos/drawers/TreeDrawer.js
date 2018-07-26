@@ -11,7 +11,7 @@ import IconButton from '@6thquake/react-material/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { TreeMenu } from '@6thquake/react-material/Menu';
+import MenuBar from '@6thquake/react-material/MenuBar';
 import Scrollbar from '@6thquake/react-material/Scrollbar';
 import Grid from '@6thquake/react-material/Grid';
 import SvgIcon from '@6thquake/react-material/SvgIcon';
@@ -237,7 +237,7 @@ class MiniDrawer extends React.Component {
             </Grid>
             <Grid item xs style={{ position: 'relative' }}>
               <Scrollbar style={{ position: 'initial', height: '100%' }}>
-                <TreeMenu
+                <MenuBar
                   list={data}
                   itemKeysMap={{
                     name: 'component',

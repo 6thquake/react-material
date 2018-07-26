@@ -1,5 +1,5 @@
 ---
-filename: /packages/react-material/src/Menu/SubMenu.js
+filename: /packages/react-material/src/MenuBar/SubMenu.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

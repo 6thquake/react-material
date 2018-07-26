@@ -1,7 +1,6 @@
-import React,{Component,PureComponent}  from 'react';
-import {withStyles} from '@6thquake/react-material/styles';
-import {DragSource2, ManualDragTarget, CustomDragLayer} from '@6thquake/react-material/Drag';
-
+import React, { Component, PureComponent } from 'react';
+import { withStyles } from '@6thquake/react-material/styles';
+import { DragSource2, ManualDragTarget, CustomDragLayer } from '@6thquake/react-material/Drag';
 
 import Button from '@6thquake/react-material/Button';
 import Icon from '@6thquake/react-material/Icon';
@@ -13,64 +12,63 @@ import Paper from '@6thquake/react-material/Paper';
 import IconButton from '@6thquake/react-material/IconButton';
 
 import PropTypes from 'prop-types';
-import BoxA from './BoxA'
-import TargetBox from './TargetBox'
+import BoxA from './BoxA';
+import TargetBox from './TargetBox';
 
 // import Test from './test'
-const styles=theme=>({
-    root:{
-        position:'relative',
-        width:'600px',
-        height:'400px'
-    },
-    button:{
-        margin:theme.spacing.unit,
-    },
-    dropTarget:{
-        position:'absolute',
-        top:'100px',
-    }
-})
-class DragToolBox extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            snapToGridAfterDrop: false,
-        }
-    }
-    render(){
-        const{classes}=this.props;
-        const { snapToGridAfterDrop} = this.state
-        return (
-            <div className={classes.root}>
-                <div>
-                   <DragSource2 >    
-                        <BoxA type='OUTITEM' ref='boxRef'/>
-                    </DragSource2> 
-                </div>
+const styles = theme => ({
+  root: {
+    position: 'relative',
+    width: '600px',
+    height: '400px',
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  dropTarget: {
+    position: 'absolute',
+    top: '100px',
+  },
+});
+class DragToolBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      snapToGridAfterDrop: false,
+    };
+  }
+  render() {
+    const { classes } = this.props;
+    const { snapToGridAfterDrop } = this.state;
+    return (
+      <div className={classes.root}>
+        <div>
+          <DragSource2>
+            <BoxA type="OUTITEM" ref="boxRef" />
+          </DragSource2>
+        </div>
 
-
-                <ManualDragTarget classes={{custom:classes.dropTarget}}>
-                        <TargetBox acceptItem='BoxA' snapToGrid={snapToGridAfterDrop}/>
-                </ManualDragTarget>
-                <p>
-                    <label htmlFor="snapToGridAfterDrop">
-                        <input
-                            id="snapToGridAfterDrop"
-                            type="checkbox"
-                            checked={snapToGridAfterDrop}
-                            onChange={this.handleSnapToGridAfterDropChange.bind(this)}
-                        />
-                        <small>Snap to grid after drop</small>
-                    </label>
-                </p>             
-            </div>
-        )
-    }
-    handleSnapToGridAfterDropChange() {
-        this.setState({
-            snapToGridAfterDrop: !this.state.snapToGridAfterDrop,
-        })
-    }
+        <ManualDragTarget>
+          <TargetBox acceptItem="BoxA" snapToGrid={snapToGridAfterDrop} />
+        </ManualDragTarget>
+        <p>
+          <label htmlFor="snapToGridAfterDrop">
+            <input
+              id="snapToGridAfterDrop"
+              type="checkbox"
+              checked={snapToGridAfterDrop}
+              onChange={this.handleSnapToGridAfterDropChange.bind(this)}
+            />
+            <small>Snap to grid after drop</small>
+          </label>
+        </p>
+      </div>
+    );
+  }
+  handleSnapToGridAfterDropChange() {
+    this.setState({
+      snapToGridAfterDrop: !this.state.snapToGridAfterDrop,
+    });
+  }
 }
 export default withStyles(styles)(DragToolBox);

@@ -4,11 +4,7 @@ import FormControlLabel from '@6thquake/react-material/FormControlLabel';
 import FormGroup from '@6thquake/react-material/FormGroup';
 import { withStyles } from '@6thquake/react-material/styles';
 import ButtonBase from '@6thquake/react-material/ButtonBase';
-import NavBar, {
-  NavBarItem,
-  NavBarItemGroup,
-  SubNavBar,
-} from '@6thquake/react-material/NavBar';
+import NavBar, { NavBarItem, NavBarItemGroup, SubNavBar } from '@6thquake/react-material/NavBar';
 
 const styles = theme => ({
   root: {

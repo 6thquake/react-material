@@ -17,7 +17,3 @@ filename: /packages/react-material/src/MenuBar/MenuBarItem.js
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
-## Demos
-
-- [Menu Bar](/demos/menu-bar)
-

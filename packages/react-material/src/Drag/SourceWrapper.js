@@ -1,26 +1,20 @@
-import React,{Component}  from 'react';
+/**
+ * @ignore - do not document.
+ */
+
+import React, { Component } from 'react';
 
 class SourceWrapper extends Component {
-	constructor(props){
-        super(props);
-    }
-    componentDidMount(){
-        this.props.register(this);
-    }
-    
-    beginDrag=(props, monitor, component)=>{
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    this.props.register(this);
+  }
 
-    }
-    endDrag=(props, monitor, component)=>{
-
-    }
-    canDrag=(props, monitor)=>{
-
-    }
-    isDragging=(props, monitor)=>{
-
-    }
-
-
+  beginDrag = (props, monitor, component) => {};
+  endDrag = (props, monitor, component) => {};
+  canDrag = (props, monitor) => {};
+  isDragging = (props, monitor) => {};
 }
-export default SourceWrapper
+export default SourceWrapper;

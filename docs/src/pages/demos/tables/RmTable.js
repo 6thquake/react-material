@@ -17,6 +17,13 @@ import filter from '@6thquake/react-material/utils/filter';
 
 const styles = theme => ({
   root: {
+
+  },
+  bar: {
+    padding: theme.spacing.unit / 4,
+    marginBottom: theme.spacing.unit * 2
+  },
+  table: {
     // width: '100%',
     marginTop: theme.spacing.unit * 3,
     // overflowX: 'hidden'
@@ -147,33 +154,38 @@ class RmTableEXample extends React.Component {
       SearchProps,
     };
     return (
-      <Paper className={classes.root}>
-        <div className={classes.radioButtons}>
-          <RadioGroup
-            row
-            circular
-            onChange={this.handleChange}
-            value={this.state.value}
-            name="type2"
-          >
-            <RadioButton className={classes.button} value="scoll">scroll</RadioButton>
-            <RadioButton className={classes.button} value="resizable">resizable</RadioButton>
-            <RadioButton className={classes.button} value="dragable">dragable</RadioButton>
-          </RadioGroup>
-        </div>
-        {/* <Divider></Divider> */}
-        <RmTable
-          title={'MyTable'}
-          width={800}
-          height={300}
-          columns={columns}
-          data={this.state.data}
-          searchable
-          paginatable
-          sync
-          {...options}
-        />
-      </Paper>
+      <div className={classes.root}>
+        <Paper className={classes.bar}>
+          <div className={classes.radioButtons}>
+            <RadioGroup
+              row
+              circular
+              onChange={this.handleChange}
+              value={this.state.value}
+              name="type2"
+            >
+              <RadioButton className={classes.button} value="scoll">scroll</RadioButton>
+              <RadioButton className={classes.button} value="resizable">resizable</RadioButton>
+              <RadioButton className={classes.button} value="dragable">dragable</RadioButton>
+            </RadioGroup>
+          </div>
+        </Paper>
+        <Paper className={classes.root}>
+        
+          {/* <Divider></Divider> */}
+          <RmTable
+            title={'MyTable'}
+            width={800}
+            height={300}
+            columns={columns}
+            data={this.state.data}
+            searchable
+            paginatable
+            sync
+            {...options}
+          />
+        </Paper>
+      </div>
     );
   }
 }

@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createMuiTheme } from '../styles';
-import classNames from 'classnames';
+import { withStyles } from '../../styles';
 
-import Menu from './MenuBar';
+import OriginNavBar from './OriginNavBar';
 
-const SubMenu = Menu.SubMenu;
-const MenuItem = Menu.Item;
+const SubMenu = OriginNavBar.SubMenu;
+const MenuItem = OriginNavBar.Item;
 
 const defaultItemKeysMap = {
   name: 'name',
@@ -22,7 +21,6 @@ const defaultItemKeysMap = {
   selected: 'selected',
   key: 'key',
 };
-const theme = createMuiTheme();
 const styles = theme => ({
   '@media (max-width: 600px)': {
     MuiListItemButton: {
@@ -99,7 +97,7 @@ Item.defaultProps = {
   selected: false,
 };
 
-class MenuBar2 extends React.Component {
+class EasyNavBar extends React.Component {
   static childContextTypes = {
     level: PropTypes.number,
     itemKeysMap: PropTypes.object,
@@ -210,12 +208,12 @@ class MenuBar2 extends React.Component {
   }
 
   render() {
-    const { list, itemKeysMap, debugger: d, ...props } = this.props;
-    return <Menu {...props}>{this.renderMenu(list)}</Menu>;
+    const { list, itemKeysMap, debugger: d,classes, ...props } = this.props;
+    return <OriginNavBar {...props}>{this.renderMenu(list)}</OriginNavBar>;
   }
 }
 
-MenuBar2.propTypes = {
+EasyNavBar.propTypes = {
   /**
    * 要展示的menu
    */
@@ -242,8 +240,8 @@ MenuBar2.propTypes = {
    */
   debugger: PropTypes.bool,
 };
-MenuBar2.defaultProps = {
+EasyNavBar.defaultProps = {
   debugger: false,
   itemKeysMap: defaultItemKeysMap,
 };
-export default withStyles(styles, { name: 'RMMenuBar2' })(MenuBar2);
+export default withStyles(styles, { name: 'RMEasyNavBar' })(EasyNavBar);

@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { routes } from './data';
-import MenuBar, {
-  MenuBarItem,
-  MenuBarItemGroup,
-  SubMenuBar,
-} from '@6thquake/react-material/MenuBar';
+import React, {Component} from 'react';
+import {routes} from './data';
+import {FlatNavBar as NavBar} from '@6thquake/react-material/NavBar';
 import AppBar from '@6thquake/react-material/AppBar';
-import { withStyles } from '@6thquake/react-material/styles';
+import {withStyles} from '@6thquake/react-material/styles';
+const SubNavBar = NavBar.SubNavBar;
+const Item = NavBar.Item;
+const ItemGroup = NavBar.ItemGroup;
+
 const styles = theme => ({
   root: {
     position: 'relative',
@@ -27,38 +27,38 @@ const styles = theme => ({
 });
 
 class Fixed extends Component {
-  renderMenuBar() {
+  renderNavBar() {
     return routes.map((route, index) => {
       const children = route.children;
       return (
-        <SubMenuBar key={index} title={route.name}>
+        <SubNavBar key={index} title={route.name}>
           {children
             ? children.map((route, index) => {
-                const children = route.children;
-                return children ? (
-                  <MenuBarItemGroup key={index} title={route.name}>
-                    {children.map((route, index) => (
-                      <MenuBarItem key={index}>{route.name}</MenuBarItem>
-                    ))}
-                  </MenuBarItemGroup>
-                ) : (
-                  <MenuBarItemGroup>
-                    <MenuBarItem>{route.name}</MenuBarItem>
-                  </MenuBarItemGroup>
-                );
-              })
+              const children = route.children;
+              return children ? (
+                <ItemGroup key={index} title={route.name}>
+                  {children.map((route, index) => (
+                    <Item key={index}>{route.name}</Item>
+                  ))}
+                </ItemGroup>
+              ) : (
+                <ItemGroup>
+                  <Item>{route.name}</Item>
+                </ItemGroup>
+              );
+            })
             : null}
-        </SubMenuBar>
+        </SubNavBar>
       );
     });
   }
 
   render() {
-    const { classes } = this.props;
+    const {classes} = this.props;
     return (
       <div className={classes.root}>
         <AppBar className={classes.appBar} position="sticky" color="default">
-          <MenuBar>{this.renderMenuBar()}</MenuBar>
+          <NavBar>{this.renderNavBar()}</NavBar>
         </AppBar>
         <div className={classes.main}>
           <div className={classes.content}>content</div>

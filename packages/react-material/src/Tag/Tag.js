@@ -1,7 +1,3 @@
-/**
- * @ignore - do not document.
- */
-
 import React, { Component } from 'react';
 import { withStyles } from '../styles';
 import Chip from '../Chip';
@@ -107,29 +103,9 @@ for (let color in styles.color) {
   }
 }
 
+
 class Tag extends Component {
-  static propTypes = {
-    /**
-     * the content of tag
-     */
-    label: PropTypes.string,
-    /**
-     * if close the tag, set true to show close icon button.default value is false.
-     */
-    closable: PropTypes.bool,
-    /**
-     * size of the tag,support for three sizes:'small，medium, large',defalut value is medium.
-     */
-    size: PropTypes.string,
-    /**
-     * color of the tag,support for:'primaryLight, primaryMain,primaryDark,secondaryLight,secondaryMain,secondaryDark,errorLight,errorMain,errorDark',defalut is primaryMain.
-     */
-    color: PropTypes.string,
-    /**
-     *  callback function when delete the tag
-     */
-    onClose: PropTypes.func,
-  };
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -174,11 +150,34 @@ class Tag extends Component {
     return !close ? ChipShow : null;
   }
 }
+Tag.propTypes = {
+  /**
+   * the content of tag
+   */
+  label: PropTypes.string,
+  /**
+   * if close the tag, set true to show close icon button.default value is false.
+   */
+  closable: PropTypes.bool,
+  /**
+   * size of the tag,support for three sizes:'small，medium, large',defalut value is medium.
+   */
+  size: PropTypes.string,
+  /**
+   * color of the tag,support for:'primaryLight, primaryMain,primaryDark,secondaryLight,secondaryMain,secondaryDark,errorLight,errorMain,errorDark',defalut is primaryMain.
+   */
+  color: PropTypes.string,
+  /**
+   *  callback function when delete the tag
+   */
+  onClose: PropTypes.func,
+}
 
 Tag.defaultProps = {
-  size: 'medium',
-  closable: false,
-  color: 'primaryMain',
+size: 'medium',
+closable: false,
+color: 'primaryMain',
 };
+
 
 export default withStyles(styles.mixin, { name: 'RMTag' })(Tag);

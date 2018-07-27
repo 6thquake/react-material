@@ -86,7 +86,7 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
     marginLeft: theme.spacing.unit * 2.5,
   },
-  textbutton:{
+  textbutton: {
     fontSize: '0.75rem',
     fontWeight: 400,
   },
@@ -279,7 +279,7 @@ class Pagination extends Component {
               disabled={page === 0}
               aria-label="Last Page"
             >
-              {noIcon?<span className={classes.textbutton }>{homePage}</span>:<FirstPageIcon />}
+              {noIcon ? <span className={classes.textbutton}>{homePage}</span> : <FirstPageIcon />}
             </IconButton>
           ) : null}
           <IconButton
@@ -287,22 +287,26 @@ class Pagination extends Component {
             disabled={page === 0}
             {...backIconButtonProps}
           >
-            {noIcon?<span className={classes.textbutton }>{prePage}</span>:<KeyboardArrowLeft />}
+            {noIcon ? <span className={classes.textbutton}>{prePage}</span> : <KeyboardArrowLeft />}
           </IconButton>
-         <IconButton
+          <IconButton
             onClick={this.nextPageHandeler.bind(this)}
             disabled={page >= totalPage - 1}
             {...nextIconButtonProps}
-            >
-           {noIcon?<span className={classes.textbutton }>{nextPage}</span>:<KeyboardArrowRight />}
-            </IconButton>
+          >
+            {noIcon ? (
+              <span className={classes.textbutton}>{nextPage}</span>
+            ) : (
+              <KeyboardArrowRight />
+            )}
+          </IconButton>
           {showTwoEnds ? (
             <IconButton
-            onClick={this.goEnd.bind(this, 'last')}
-            disabled={page >= totalPage - 1}
-            aria-label="Last Page"
+              onClick={this.goEnd.bind(this, 'last')}
+              disabled={page >= totalPage - 1}
+              aria-label="Last Page"
             >
-              {noIcon?<span className={classes.textbutton }>{lastPage}</span>:<LastPageIcon />}
+              {noIcon ? <span className={classes.textbutton}>{lastPage}</span> : <LastPageIcon />}
             </IconButton>
           ) : null}
           {showQuickJumper ? (

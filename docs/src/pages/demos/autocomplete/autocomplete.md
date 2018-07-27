@@ -4,8 +4,7 @@ components: AutoComplete, Select, Chip, TextField
 # Autocomplete
 
 The autocomplete is a normal text input enhanced by a panel of suggested options.
-React-Material doesn't provide any high-level API for solving this problem.
-We encourage people relying on the solutions the React community has built.
+Also we encourage people relying on the solutions the React community has built.
 ## AutoComplete with filter、pagination
 
 Simple  AutoComplete with datasource

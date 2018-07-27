@@ -7,6 +7,9 @@ import Chip from '../Chip';
 import Pagination from '../Pagination/Pagination';
 import Divider from '../Divider';
 import MenuItem from '../MenuItem';
+import throttling from '../utils/throttling';
+import { filter, find } from '../utils/filter';
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -68,7 +71,7 @@ class AutoComplete extends Component {
     /**
      * Pagination component config
      */
-    paginationProps: PropTypes.object,
+    PaginationProps: PropTypes.object,
     /**
      * placeholder
      */
@@ -100,19 +103,47 @@ class AutoComplete extends Component {
      * Decided autocomplete is disabled
      */
     disabled: PropTypes.bool,
+    /**
+     * If true,autocomplete performance is like a select,when focus,option open.
+     */
+    select: PropTypes.bool,
+    // /**
+    //  * If true,autocomplete will filter options by input value.
+    //  */
+    // filterAble:PropTypes.bool,
+    /**
+     * If true,autocomplete will add debounce when filter options by input value.
+     */
+    debounceAble: PropTypes.bool,
+    /**
+     * If debounceAble true,config debounce wait and max continue time,the unit is milliseconds.
+     */
+    debounceProps: PropTypes.shape({
+      wait: PropTypes.number,
+      maxTime: PropTypes.number,
+    }),
   };
   static defaultProps = {
-    paginationProps: {
+    PaginationProps: {
       page: 0,
       rowsPerPage: 5,
       count: 0,
     },
-    placeholder: 'please input something',
     multiple: false,
     disabled: false,
+    select: false,
+    debounceProps: {
+      wait: 500,
+      maxTime: 800,
+    },
   };
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.throttlingtem = throttling(
+      props.onChangeInput,
+      props.debounceProps.wait,
+      props.debounceProps.maxTime,
+    );
     this.state = {
       open: false,
       inputValue: '',
@@ -125,7 +156,12 @@ class AutoComplete extends Component {
       open: true,
       inputValue: event.target.value,
     });
-    this.props.onChangeInput(event);
+    if (this.props.debounceAble) {
+      event.persist();
+      this.throttlingtem(event);
+    } else {
+      this.props.onChangeInput(event);
+    }
   }
   handleDelete = item => event => {
     if (this.props.disabled) {
@@ -209,6 +245,11 @@ class AutoComplete extends Component {
       }
     }
   };
+  onFocus(e) {
+    if (this.props.select) {
+      this.setState({ open: true });
+    }
+  }
   componentDidMount() {
     if (!this.props.multiple) {
       this.setState({
@@ -218,7 +259,7 @@ class AutoComplete extends Component {
   }
   render() {
     const {
-      paginationProps,
+      PaginationProps,
       onChangePage,
       classes,
       placeholder,
@@ -235,7 +276,6 @@ class AutoComplete extends Component {
       items = options
         ? options.map((item, index) => {
             let selected = false;
-
             switch (typeof item) {
               case 'string':
                 if (multiple) {
@@ -334,6 +374,7 @@ class AutoComplete extends Component {
               onChange={this.handleChange.bind(this)}
               value={inputValue}
               multiline
+              onFocus={this.onFocus.bind(this)}
               rows="1"
               InputProps={{
                 classes: {
@@ -354,6 +395,7 @@ class AutoComplete extends Component {
           ) : (
             <TextField
               disabled={disabled}
+              onFocus={this.onFocus.bind(this)}
               className={classes.textarea}
               onChange={this.handleChange.bind(this)}
               value={inputValue}
@@ -364,7 +406,7 @@ class AutoComplete extends Component {
             <Paper className={classes.paper} square>
               {items}
               <Divider />
-              <Pagination {...paginationProps} onChangePage={onChangePage} />
+              <Pagination {...PaginationProps} onChangePage={onChangePage} />
             </Paper>
           ) : null}
         </div>

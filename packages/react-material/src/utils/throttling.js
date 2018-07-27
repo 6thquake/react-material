@@ -12,7 +12,7 @@ const throttling = (fn, wait, maxTimeLong) => {
       fn(e);
       start = now;
     } else {
-      timeout = setTimeout(e => fn(e), wait);
+      timeout = setTimeout(i => fn(e), wait);
     }
   };
 };

@@ -387,6 +387,7 @@ class App extends Component {
           <InputLabel htmlFor="">multiple select of object array</InputLabel>
           <AsyncSelect
             multiple
+            debounceAble
             value={value}
             onOpen={this.onOpen.bind(this)}
             paginationProps={this.state.paginationProps}
@@ -394,6 +395,10 @@ class App extends Component {
             mapper={{
               label: 'label',
               value: 'value',
+            }}
+            debounceProps={{
+              wait: 2000,
+              maxTime: 3000,
             }}
             onChangeFilter={this.filterChangeCb.bind(this)}
             onChange={this.handleChange('value')}
@@ -575,12 +580,12 @@ class App extends Component {
             htmlFor={'InputLabel3'}
             mapper={{
               label: (option, index) => (
-                <div>
+                <React.Fragment>
                   <ListItemIcon>
                     <StarBorder />
                   </ListItemIcon>
                   <ListItemText primary={option.label} />
-                </div>
+                </React.Fragment>
               ),
               value: 'value',
             }}

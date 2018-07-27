@@ -55,66 +55,6 @@ const styles = theme => ({
 });
 
 class ConfirmDialog extends Component {
-  static propTypes = {
-    /**
-     * Decide modal open or close,	If true, the modal is open.
-     */
-    open: PropTypes.bool.isRequired,
-    /**
-     * This is  modal title
-     */
-    title: PropTypes.string,
-    /**
-     * Cancel button text
-     */
-    cancelText: PropTypes.string,
-    /**
-     * Confirm button text
-     */
-    okText: PropTypes.string,
-    /**
-     * This is  modal content
-     */
-    content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    /**
-     * This is usually an animation of open or close the modal,include slide、collapse、fade、grow、zoom
-     */
-    animation: PropTypes.oneOf(['slide', 'collapse', 'fade', 'grow', 'zoom']),
-    /**
-     * Cancel button callback
-     */
-    onCancel: PropTypes.func,
-    /**
-     * Confirm button callback
-     */
-    onOk: PropTypes.func,
-    /**
-     *
-     */
-    okType: PropTypes.string,
-    /**
-     *
-     */
-    cancelType: PropTypes.string,
-    /**
-     *
-     */
-    variant: PropTypes.string,
-    /**
-     *
-     */
-    size: PropTypes.string,
-  };
-
-  static defaultProps = {
-    open: false,
-    title: '',
-    animation: 'fade',
-    okType: 'success',
-    cancelType: 'primary',
-    variant: 'raised',
-    size: 'small',
-  };
 
   transition = props => {
     switch (this.props.animation) {
@@ -208,6 +148,65 @@ class ConfirmDialog extends Component {
   }
 }
 
+ConfirmDialog.propTypes = {
+/**
+     * Decide modal open or close,	If true, the modal is open.
+     */
+    open: PropTypes.bool.isRequired,
+    /**
+     * This is  modal title
+     */
+    title: PropTypes.string,
+    /**
+     * Cancel button text
+     */
+    cancelText: PropTypes.string,
+    /**
+     * Confirm button text
+     */
+    okText: PropTypes.string,
+    /**
+     * This is  modal content
+     */
+    content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    /**
+     * This is usually an animation of open or close the modal,include slide、collapse、fade、grow、zoom
+     */
+    animation: PropTypes.oneOf(['slide', 'collapse', 'fade', 'grow', 'zoom']),
+    /**
+     * Cancel button callback
+     */
+    onCancel: PropTypes.func,
+    /**
+     * Confirm button callback
+     */
+    onOk: PropTypes.func,
+    /**
+     *
+     */
+    okType: PropTypes.string,
+    /**
+     *
+     */
+    cancelType: PropTypes.string,
+    /**
+     *
+     */
+    variant: PropTypes.string,
+    /**
+     *
+     */
+    size: PropTypes.string,
+}
+ConfirmDialog.defaultProps = {
+  open: false,
+  title: '',
+  animation: 'fade',
+  okType: 'success',
+  cancelType: 'primary',
+  variant: 'raised',
+  size: 'small',
+}
 export default withStyles(styles, { name: 'RMConfirmDialog' })(
   withLocale({ name: 'Confirm' })(ConfirmDialog),
 );

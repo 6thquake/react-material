@@ -55,41 +55,6 @@ const styles = {
 };
 
 class StarVote extends React.Component {
-  static propTypes = {
-    /**
-     *  total count of star
-     */
-    count: PropTypes.func,
-    /**
-     *   current value，controlled value
-     */
-    value: PropTypes.number,
-
-    /**
-     *   The default value
-     */
-    defaultValue: PropTypes.number,
-    /**
-     * onChange callback function
-     */
-    onChange: PropTypes.func,
-    /**
-     * if allowed half
-     */
-    allowHalf: PropTypes.bool,
-    /**
-     * read only,can not interact
-     */
-    disabled: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    count: 5,
-    defaultValue: 0,
-    allowHalf: false,
-    disabled: false,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -455,6 +420,40 @@ class StarVote extends React.Component {
       return <ul className={classes.rmVote}>{listItems}</ul>;
     }
   }
+}
+
+StarVote.propTypes = {
+/**
+     *  total count of star
+     */
+    count: PropTypes.func,
+    /**
+     *   current value，controlled value
+     */
+    value: PropTypes.number,
+
+    /**
+     *   The default value
+     */
+    defaultValue: PropTypes.number,
+    /**
+     * onChange callback function
+     */
+    onChange: PropTypes.func,
+    /**
+     * if allowed half
+     */
+    allowHalf: PropTypes.bool,
+    /**
+     * read only,can not interact
+     */
+    disabled: PropTypes.bool,
+}
+StarVote.defaultProps = {
+  count: 5,
+  defaultValue: 0,
+  allowHalf: false,
+  disabled: false,
 }
 
 export default withStyles(styles, { name: 'RMStarVote' })(StarVote);

@@ -15,16 +15,6 @@ const styles = {
     color: '#fff',
     textAlign: 'center',
   },
-
-  /* rmBackTop: {
-    zIndex: '10',
-    position: 'fixed',
-    right: '100px',
-    bottom: '50px',
-    height: '40px',
-    width: '40px',
-    cursor: 'pointer',
-  },*/
   backTop: {
     zIndex: '10000000',
     position: 'fixed',
@@ -39,31 +29,6 @@ const styles = {
 };
 
 class BackTop extends React.Component {
-  static propTypes = {
-    /**
-     * show BackTop button when scroll to this height
-     */
-    visibilityHeight: PropTypes.number,
-
-    /**
-     * callback function when click BackTop button
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * Id selector, element that needs to be listened the scroll event, the default value is window
-     */
-    container: PropTypes.string,
-    /**
-     * Override or extend the styles applied to the component.
-     * See [CSS API](#css-api) below for more details.
-     */
-    classes: PropTypes.object.isRequired,
-  };
-
-  static defaultProps = {
-    visibilityHeight: 300,
-  };
 
   scrollHandler = this.handleScroll.bind(this);
 
@@ -264,5 +229,30 @@ class BackTop extends React.Component {
     return showBackTop ? backTopButton : null;
   }
 }
+
+BackTop.propTypes = {
+  /**
+   * show BackTop button when scroll to this height
+   */
+  visibilityHeight: PropTypes.number,
+
+  /**
+   * callback function when click BackTop button
+   */
+  onClick: PropTypes.func,
+
+  /**
+   * Id selector, element that needs to be listened the scroll event, the default value is window
+   */
+  container: PropTypes.string,
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
+   */
+  classes: PropTypes.object.isRequired,
+};
+BackTop.defaultProps = {
+  visibilityHeight: 300,
+};
 
 export default withStyles(styles)(BackTop);

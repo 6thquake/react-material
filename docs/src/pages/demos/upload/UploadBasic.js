@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
+import { Upload } from '@6thquake/react-material/Upload';
 import { UploadBasic } from '@6thquake/react-material/Upload';
 import Button from '@6thquake/react-material/Button';
 class App extends React.Component {

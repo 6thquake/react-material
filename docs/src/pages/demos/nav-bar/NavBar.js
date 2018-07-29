@@ -1,148 +1,117 @@
 import React from 'react';
-import Switch from '@6thquake/react-material/Switch';
-import FormControlLabel from '@6thquake/react-material/FormControlLabel';
-import FormGroup from '@6thquake/react-material/FormGroup';
+import NavBar from '@6thquake/react-material/NavBar';
+import Button from '@6thquake/react-material/Button';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import Icon from '@6thquake/react-material/Icon';
 import { withStyles } from '@6thquake/react-material/styles';
-import ButtonBase from '@6thquake/react-material/ButtonBase';
-import NavBar, { NavBarItem, NavBarItemGroup, SubNavBar } from '@6thquake/react-material/NavBar';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-  },
-  flex: {
-    flex: 1,
-  },
-  logo: {
-    padding: '5px 10px',
-  },
-  button: {
-    height: '100%',
-    padding: '0 20px',
-    background: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
+    width: 400,
+    background: '#fff',
   },
 });
-function Logo(props) {
-  const { className } = props;
-  return <img className={className} height="100%" src="/static/logo.png" alt="" />;
-}
-function RightTools(props) {
-  const { classes } = props;
-  return <ButtonBase className={classes.button}>Login</ButtonBase>;
-}
-class NavBarDemo extends React.Component {
+const SubNavBar = NavBar.SubNavBar;
+const NavItem = NavBar.Item;
+const ItemGroup = NavBar.ItemGroup;
+
+class Test extends React.Component {
+  onClick(info) {
+    console.log('click ', info.item.props.path);
+  }
   state = {
-    theme: 'dark',
-    selectedKeys: [],
+    collapsed: true,
   };
-  onChange = ({ key, keyPath }) => {
+  toggleCollapsed = () => {
     this.setState({
-      selectedKeys: keyPath,
+      collapsed: !this.state.collapsed,
     });
   };
-  handleChange = (event, checked) => {
-    this.setState({ theme: checked ? 'dark' : 'light' });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { theme } = this.state;
+  getMenu() {
     return (
-      <div className={classes.root}>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={theme === 'dark' ? true : false}
-                onChange={this.handleChange}
-                aria-label="ThemeSwitch"
-              />
-            }
-            label={theme === 'dark' ? 'Dark' : 'Light'}
-          />
-        </FormGroup>
-        <NavBar
-          leftTools={<Logo className={classes.logo} />}
-          rightTools={<RightTools classes={classes} />}
-          theme={theme}
-          selectedKeys={this.state.selectedKeys}
-          onClick={this.onChange}
+      <div>
+        <Button
+          variant="raised"
+          color="primary"
+          onClick={this.toggleCollapsed}
+          style={{ marginBottom: 16 }}
         >
-          <SubNavBar title="中国">
-            <NavBarItemGroup title="北京">
-              <NavBarItem>朝阳区</NavBarItem>
-              <NavBarItem>海淀区</NavBarItem>
-              <NavBarItem>丰台区</NavBarItem>
-              <NavBarItem>石景山区</NavBarItem>
-            </NavBarItemGroup>
-            <NavBarItemGroup title="上海">
-              <NavBarItem>长宁区</NavBarItem>
-              <NavBarItem>普陀区</NavBarItem>
-            </NavBarItemGroup>
-            <NavBarItemGroup title="山东">
-              <NavBarItem>济南</NavBarItem>
-              <NavBarItem>青岛</NavBarItem>
-              <NavBarItem>日照</NavBarItem>
-              <NavBarItem>威海</NavBarItem>
-            </NavBarItemGroup>
-            <NavBarItemGroup title="浙江">
-              <NavBarItem>杭州</NavBarItem>
-              <NavBarItem>宁波</NavBarItem>
-            </NavBarItemGroup>
-            <NavBarItemGroup title="陕西">
-              <NavBarItem>西安</NavBarItem>
-            </NavBarItemGroup>
+          <Icon>{this.state.collapsed ? 'trending_flat' : 'menu'} </Icon>
+        </Button>
+        <NavBar
+          onClick={this.onClick}
+          mode="inline"
+          inlineCollapsed={this.state.collapsed}
+          theme={'dark'}
+          // defaultSelectedKeys={["1-1"]}
+          // defaultOpenKeys={['sub1']}
+        >
+          <SubNavBar
+            key="1"
+            title={
+              <span>
+                <i className="material-icons">accessibility</i>
+                <span>Navigation One</span>
+              </span>
+            }
+          >
+            <NavItem path="/l/o" key="1-1" selected>
+              <InboxIcon />item1-1
+            </NavItem>
+            <NavItem key="1-2">
+              <i className="material-icons">accessibility</i>item1-2
+            </NavItem>
           </SubNavBar>
-          <SubNavBar title="美国">
-            <NavBarItemGroup title="纽约市">
-              <NavBarItem>曼哈顿区</NavBarItem>
-              <NavBarItem>皇后区</NavBarItem>
-              <NavBarItem>布鲁克林区</NavBarItem>
-              <NavBarItem>布朗克斯区</NavBarItem>
-            </NavBarItemGroup>
-            <NavBarItemGroup title="洛杉矶">
-              <NavBarItem>洛杉矶县</NavBarItem>
-              <NavBarItem>橙县</NavBarItem>
-              <NavBarItem>河滨县</NavBarItem>
-              <NavBarItem>圣伯纳丁县</NavBarItem>
-              <NavBarItem>文图拉县</NavBarItem>
-            </NavBarItemGroup>
+          <SubNavBar
+            key="sub1"
+            title={
+              <span>
+                <InboxIcon />
+                <span>Navigation One</span>
+              </span>
+            }
+          >
+            <ItemGroup key="g1" title="Item 1">
+              <NavBar.Item key="g1-1">Option 1</NavBar.Item>
+              <NavBar.Item key="g1-2">Option 2</NavBar.Item>
+            </ItemGroup>
+            <ItemGroup key="g2" title="Item 2">
+              <NavBar.Item key="g2-3">Option 3</NavBar.Item>
+              <NavBar.Item key="g2-4">Option 4</NavBar.Item>
+            </ItemGroup>
           </SubNavBar>
-          <SubNavBar title="俄罗斯">
-            <NavBarItemGroup title="莫斯科">
-              <NavBarItem>中央行政区</NavBarItem>
-              <NavBarItem>北行政区</NavBarItem>
-              <NavBarItem>东北行政区</NavBarItem>
-              <NavBarItem>东行政区</NavBarItem>
-              <NavBarItem>东南行政区</NavBarItem>
-              <NavBarItem>南行政区</NavBarItem>
-            </NavBarItemGroup>
-          </SubNavBar>
-          <SubNavBar title="英国">
-            <NavBarItemGroup>
-              <NavBarItem>伦敦</NavBarItem>
-            </NavBarItemGroup>
-            <NavBarItemGroup>
-              <NavBarItem>伯明翰</NavBarItem>
-            </NavBarItemGroup>
-            <NavBarItemGroup>
-              <NavBarItem>曼切斯特</NavBarItem>
-            </NavBarItemGroup>
-            <NavBarItemGroup>
-              <NavBarItem>利兹</NavBarItem>
-            </NavBarItemGroup>
-            <NavBarItemGroup>
-              <NavBarItem>格拉斯哥</NavBarItem>
-            </NavBarItemGroup>
-            <NavBarItemGroup>
-              <NavBarItem key={'123'}>纽卡斯尔</NavBarItem>
-            </NavBarItemGroup>
+          <SubNavBar
+            key="2"
+            title={
+              <span>
+                <i className="material-icons">accessibility</i>
+                <span>SubNavBar2</span>
+              </span>
+            }
+          >
+            <NavItem key="2-1">item2-1</NavItem>
+            <NavItem key="2-2">
+              <i className="material-icons">accessibility</i>item2-2
+            </NavItem>
+            <SubNavBar key="2-3" title="SubNavBar2-3">
+              <NavItem key="2-3-1">item2-3-1</NavItem>
+              <NavItem key="2-3-2">item2-3-2</NavItem>
+            </SubNavBar>
+            <NavItem key="2-4">item2-4</NavItem>
           </SubNavBar>
         </NavBar>
       </div>
     );
   }
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div>
+        <div className={classes.root}>{this.getMenu()}</div>
+      </div>
+    );
+  }
 }
 
-export default withStyles(styles)(NavBarDemo);
+export default withStyles(styles)(Test);

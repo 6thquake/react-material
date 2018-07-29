@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { routes } from './data';
-import MenuBar, {
-  MenuBarItem,
-  MenuBarItemGroup,
-  SubMenuBar,
-} from '@6thquake/react-material/MenuBar';
+import { FlatNavBar } from '@6thquake/react-material/NavBar';
 import AppBar from '@6thquake/react-material/AppBar';
 import { withStyles } from '@6thquake/react-material/styles';
+
+const { Item, SubNavBar, ItemGroup } = FlatNavBar;
 const styles = theme => ({
   root: {
     height: '300px',
@@ -33,24 +31,22 @@ class Top extends Component {
     return routes.map((route, index) => {
       const children = route.children;
       return (
-        <SubMenuBar key={route.key} title={route.name}>
+        <SubNavBar key={route.key} title={route.name}>
           {children
             ? children.map(route => {
                 const children = route.children;
                 return children ? (
-                  <MenuBarItemGroup key={route.key} title={route.name}>
-                    {children.map((route, index) => (
-                      <MenuBarItem key={route.key}>{route.name}</MenuBarItem>
-                    ))}
-                  </MenuBarItemGroup>
+                  <ItemGroup key={route.key} title={route.name}>
+                    {children.map((route, index) => <Item key={route.key}>{route.name}</Item>)}
+                  </ItemGroup>
                 ) : (
-                  <MenuBarItemGroup>
-                    <MenuBarItem>{route.name}</MenuBarItem>
-                  </MenuBarItemGroup>
+                  <ItemGroup>
+                    <Item>{route.name}</Item>
+                  </ItemGroup>
                 );
               })
             : null}
-        </SubMenuBar>
+        </SubNavBar>
       );
     });
   }
@@ -60,9 +56,9 @@ class Top extends Component {
     return (
       <div className={classes.root}>
         <AppBar className={classes.appBar} position="static" color="default">
-          <MenuBar selectedKeys={this.state.selectedKeys} onClick={this.onChange}>
+          <FlatNavBar selectedKeys={this.state.selectedKeys} onClick={this.onChange}>
             {this.renderMenuBar()}
-          </MenuBar>
+          </FlatNavBar>
         </AppBar>
         <main className={classes.content}>content</main>
       </div>

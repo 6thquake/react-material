@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from '../styles';
+import { withStyles } from '../../styles';
 import PropTypes from 'prop-types';
 
 const styles = theme => ({
@@ -22,7 +22,7 @@ const styles = theme => ({
   },
 });
 
-class TopNavItemGrop extends Component {
+class FlatItemGroup extends Component {
   renderNavItem(child, i) {
     const { eventKey, keyPath } = this.props;
     let props = {
@@ -50,7 +50,7 @@ class TopNavItemGrop extends Component {
   }
 }
 
-TopNavItemGrop.propTypes = {
+FlatItemGroup.propTypes = {
   /**
    * 唯一标志
    */
@@ -69,4 +69,4 @@ TopNavItemGrop.propTypes = {
   title: PropTypes.node,
 };
 
-export default withStyles(styles)(TopNavItemGrop);
+export default withStyles(styles)(FlatItemGroup);

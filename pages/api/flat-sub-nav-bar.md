@@ -1,10 +1,10 @@
 ---
-filename: /packages/react-material/src/NavBar/NavBarItemGroup.js
+filename: /packages/react-material/src/NavBar/FlatNavBar/FlatSubNavBar.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# NavBarItemGroup
+# FlatSubNavBar
 
 
 
@@ -17,8 +17,4 @@ filename: /packages/react-material/src/NavBar/NavBarItemGroup.js
 | <span class="prop-name">title</span> | <span class="prop-type">node |  | 标题 |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
-
-## Demos
-
-- [Nav Bar](/demos/nav-bar)
 

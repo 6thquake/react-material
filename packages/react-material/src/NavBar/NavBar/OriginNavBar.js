@@ -1,11 +1,15 @@
+/**
+ * @ignore - do not document.
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createMuiTheme } from '../styles';
+import { withStyles } from '../../styles';
 import { findDOMNode } from 'react-dom';
-import RcMenu, { Divider, ItemGroup } from 'rc-menu';
+import RcMenu, { Divider } from 'rc-menu';
 import classNames from 'classnames';
-import SubMenu from './SubMenu';
-import Item from './MenuItem';
+import SubNavBar from './SubNavBar';
+import NavItem from './NavItem';
+import NavItemGroup from './NavItemGroup';
 import styles from './styles';
 
 const menuPrefixCls = 'rm-menu';
@@ -19,7 +23,7 @@ function leave(node, done) {
   done();
 }
 
-class MenuBar extends React.Component {
+class OriginNavBar extends React.Component {
   constructor(props) {
     super(props);
     this.inlineOpenKeys = [];
@@ -180,11 +184,11 @@ class MenuBar extends React.Component {
   }
 }
 
-MenuBar.Divider = Divider;
-MenuBar.Item = Item;
-MenuBar.SubMenu = SubMenu;
-MenuBar.ItemGroup = ItemGroup;
-MenuBar.propTypes = {
+OriginNavBar.Divider = Divider;
+OriginNavBar.Item = NavItem;
+OriginNavBar.SubMenu = SubNavBar;
+OriginNavBar.ItemGroup = NavItemGroup;
+OriginNavBar.propTypes = {
   /**
    * 初始展开的 SubMenu 菜单项 key 数组
    */
@@ -246,20 +250,20 @@ MenuBar.propTypes = {
    */
   theme: PropTypes.oneOf(['light', 'dark']),
 };
-MenuBar.defaultProps = {
+OriginNavBar.defaultProps = {
   prefixCls: menuPrefixCls,
   className: '',
   theme: 'light',
 };
-MenuBar.childContextTypes = {
+OriginNavBar.childContextTypes = {
   inlineCollapsed: PropTypes.bool,
   rMMenuTheme: PropTypes.string,
 };
-MenuBar.contextTypes = {
+OriginNavBar.contextTypes = {
   siderCollapsed: PropTypes.bool,
   collapsedWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
-export { SubMenu, Item, ItemGroup };
+export { SubNavBar, NavItem, NavItemGroup };
 
-export default withStyles(styles, { name: 'RMMenuBar' })(MenuBar);
+export default withStyles(styles, { name: 'RMOriginNavBar' })(OriginNavBar);

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Item } from 'rc-menu';
-import { withStyles, createMuiTheme } from '../styles';
+import { withStyles } from '../../styles';
 import PropTypes from 'prop-types';
-import Tooltip from '../Tooltip';
+import Tooltip from '../../Tooltip';
 
 const styles = theme => ({});
 
-class MenuItem extends React.Component {
+class NavItem extends React.Component {
   static contextTypes = {
     inlineCollapsed: PropTypes.bool,
   };
@@ -42,7 +42,7 @@ class MenuItem extends React.Component {
   }
 }
 
-MenuItem.propTypes = {
+NavItem.propTypes = {
   /**
    * 是否禁用
    */
@@ -53,10 +53,10 @@ MenuItem.propTypes = {
   key: PropTypes.string,
 };
 
-MenuItem.defaultProps = {
+NavItem.defaultProps = {
   disabled: false,
 };
 
-MenuItem.isMenuItem = true;
+NavItem.isMenuItem = true;
 
-export default withStyles(styles, { name: 'RMMenuItem' })(MenuItem);
+export default withStyles(styles, { name: 'RMNavItem' })(NavItem);

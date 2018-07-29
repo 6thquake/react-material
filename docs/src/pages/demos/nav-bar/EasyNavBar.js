@@ -192,7 +192,6 @@ class MiniDrawer extends React.Component {
             direction="column"
             alignItems="stretch"
             justify="space-between"
-            spacing="0"
             style={{
               height: '100%',
               backgroundColor: 'rgba(0, 0, 0, 0.87)',
@@ -207,7 +206,6 @@ class MiniDrawer extends React.Component {
               direction="row"
               alignItems="stretch"
               justify="center"
-              spacing="2"
             >
               <Grid item>
                 <Logo
@@ -251,7 +249,7 @@ class MiniDrawer extends React.Component {
                 />
               </Scrollbar>
             </Grid>
-            <Grid item container direction="row" alignItems="stretch" justify="center" spacing="0">
+            <Grid item container direction="row" alignItems="stretch" justify="center">
               <Grid item>
                 <div className={classes.toolbar}>
                   <IconButton onClick={this.toggleDrawer} style={{ color: common.white }}>

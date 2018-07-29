@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { SubMenu as RcSubMenu } from 'rc-menu';
 import classNames from 'classnames';
-import { withStyles, createMuiTheme } from '../styles';
+import { withStyles } from '../../styles';
 const styles = theme => ({});
 
-class SubMenu extends React.Component {
+class SubNavBar extends React.Component {
   static contextTypes = {
     rMMenuTheme: PropTypes.string,
   };
@@ -29,7 +29,7 @@ class SubMenu extends React.Component {
     );
   }
 }
-SubMenu.propTypes = {
+SubNavBar.propTypes = {
   /**
    * 是否禁用
    */
@@ -47,9 +47,9 @@ SubMenu.propTypes = {
    */
   onTitleClick: PropTypes.func,
 };
-SubMenu.defaultProps = {
+SubNavBar.defaultProps = {
   disabled: false,
 };
-SubMenu.isSubMenu = true;
+SubNavBar.isSubMenu = true;
 
-export default withStyles(styles, { name: 'RMSubMenu' })(SubMenu);
+export default withStyles(styles, { name: 'RMSubNavBar' })(SubNavBar);

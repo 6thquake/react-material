@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import { FishButton } from '@6thquake/react-material/Button';
+import Button from '@6thquake/react-material/Button';
+import AddIcon from '@material-ui/icons/Add';
 import Icon from '@6thquake/react-material/Icon';
-import IconButton from '@6thquake/react-material/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 const styles = theme => ({
   button: {
@@ -14,42 +12,22 @@ const styles = theme => ({
   },
 });
 
-function FishButtons(props) {
+function FloatingActionButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <FishButton size="lg">
-        <IconButton className={classes.button} aria-label="Delete">
-          <DeleteIcon />
-        </IconButton>
-      </FishButton>
-      <FishButton size="md">
-        <IconButton className={classes.button} aria-label="Delete" disabled color="primary">
-          <DeleteIcon />
-        </IconButton>
-      </FishButton>
-      <FishButton>
-        <IconButton color="secondary" className={classes.button} aria-label="Add an alarm">
-          <Icon>alarm</Icon>
-        </IconButton>
-      </FishButton>
-      <FishButton>
-        <IconButton color="primary" className={classes.button} aria-label="Add to shopping cart">
-          <AddShoppingCartIcon />
-        </IconButton>
-      </FishButton>
-      <FishButton>
-        <label htmlFor="icon-button-file">
-          <IconButton color="primary" className={classes.button} component="span">
-            <PhotoCamera />
-          </IconButton>
-        </label>
-      </FishButton>
+      <Button variant="fish" mini color="primary" aria-label="add" className={classes.button}>
+        <AddIcon />
+      </Button>
+      <Button variant="fish" color="secondary" aria-label="edit" className={classes.button}>
+        <Icon>edit_icon</Icon>
+      </Button>
     </div>
   );
 }
 
-FishButtons.propTypes = {
+FloatingActionButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(FishButtons);
+
+export default withStyles(styles)(FloatingActionButtons);

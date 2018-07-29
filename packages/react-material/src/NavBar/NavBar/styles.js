@@ -1,5 +1,5 @@
 import dark from './dark';
-import { fade, emphasize } from '../styles/colorManipulator';
+import { fade } from '../../styles/colorManipulator';
 
 const menuPrefixCls = 'rm-menu';
 

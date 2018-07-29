@@ -132,6 +132,21 @@ const styles = theme => {
     progress: {
       color: common.white,
     },
+    fish: {
+      transform: 'scale3d(1,1,1)',
+      '-ms-transform': 'scale3d(1,1,1)' /* IE 9 */,
+      '-moz-transform': 'scale3d(1,1,1)' /* Firefox */,
+      '-webkit-transform': 'scale3d(1,1,1)' /* Safari 和 Chrome */,
+      '-o-transform': 'scale3d(1,1,1)',
+      transition: 'all 86ms ease-out',
+      '&:hover': {
+        transform: 'scale3d(1.2, 1.2, 1.2)',
+        '-ms-transform': 'scale3d(1.2, 1.2, 1.2)' /* IE 9 */,
+        '-moz-transform': 'scale3d(1.2, 1.2, 1.2)' /* Firefox */,
+        '-webkit-transform': 'scale3d(1.2, 1.2, 1.2)' /* Safari 和 Chrome */,
+        '-o-transform': 'scale3d(1.2, 1.2, 1.2)',
+      },
+    },
   };
 };
 
@@ -239,6 +254,7 @@ class RMButton extends Component {
       icon,
       fabStatus,
       progress,
+      fish,
       ...classesPro
     } = classes;
     props.color = this.state.color;
@@ -259,10 +275,13 @@ class RMButton extends Component {
         [classes.flatError]: flat && color === 'error',
         [classes.flatSuccess]: flat && color === 'success',
         [classes.flatWaring]: flat && color === 'waring',
+        [classes.fish]: props.variant === 'fish',
       },
       classNamePro,
     );
-
+    if (props.variant === 'fish') {
+      props.variant = 'fab';
+    }
     return (
       <Button {...props} classes={classesPro} className={className} onClick={this.onHandler}>
         {this.getStatusIcon(classes)}
@@ -354,6 +373,7 @@ RMButton.propTypes = {
     'raised',
     'fab',
     'extendedFab',
+    'fish',
   ]),
   /**
    * Button 的回掉函数，函数的返回值如果是Promise，Button变为带反馈的样子。

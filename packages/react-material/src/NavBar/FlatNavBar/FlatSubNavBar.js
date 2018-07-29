@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { withStyles } from '../styles';
+import { withStyles } from '../../styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 

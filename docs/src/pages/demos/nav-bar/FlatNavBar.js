@@ -4,8 +4,8 @@ import FormControlLabel from '@6thquake/react-material/FormControlLabel';
 import FormGroup from '@6thquake/react-material/FormGroup';
 import { withStyles } from '@6thquake/react-material/styles';
 import ButtonBase from '@6thquake/react-material/ButtonBase';
-import {FlatNavBar} from '@6thquake/react-material/NavBar';
-const {Item:FlatNavItem, SubNavBar:FlatNavSub, ItemGroup:FlatNavGroup} = FlatNavBar;
+import { FlatNavBar } from '@6thquake/react-material/NavBar';
+const { Item: FlatNavItem, SubNavBar: FlatNavSub, ItemGroup: FlatNavGroup } = FlatNavBar;
 const styles = theme => ({
   root: {
     flexGrow: 1,

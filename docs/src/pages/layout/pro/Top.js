@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { routes } from './data';
-import {FlatNavBar} from '@6thquake/react-material/NavBar';
+import { FlatNavBar } from '@6thquake/react-material/NavBar';
 import AppBar from '@6thquake/react-material/AppBar';
 import { withStyles } from '@6thquake/react-material/styles';
 
-const {Item, SubNavBar, ItemGroup} = FlatNavBar;
+const { Item, SubNavBar, ItemGroup } = FlatNavBar;
 const styles = theme => ({
   root: {
     height: '300px',
@@ -37,9 +37,7 @@ class Top extends Component {
                 const children = route.children;
                 return children ? (
                   <ItemGroup key={route.key} title={route.name}>
-                    {children.map((route, index) => (
-                      <Item key={route.key}>{route.name}</Item>
-                    ))}
+                    {children.map((route, index) => <Item key={route.key}>{route.name}</Item>)}
                   </ItemGroup>
                 ) : (
                   <ItemGroup>

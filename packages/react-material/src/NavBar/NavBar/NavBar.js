@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Divider,ItemGroup } from 'rc-menu';
+import { Divider, ItemGroup } from 'rc-menu';
 import SubNavBar from './SubNavBar';
 import NavItem from './NavItem';
 import OriginNavBar from './OriginNavBar';
 import EasyNavBar from './EasyNavBar';
 
-class NavBar extends React.Component{
-  render(){
-    const {list} = this.props;
-    if(list&&list.length!=0){
-      return <EasyNavBar {...this.props}/>;
-    }else {
-      return <OriginNavBar {...this.props}/>;
+class NavBar extends React.Component {
+  render() {
+    const { list } = this.props;
+    if (list && list.length != 0) {
+      return <EasyNavBar {...this.props} />;
+    } else {
+      return <OriginNavBar {...this.props} />;
     }
   }
 }
@@ -105,6 +105,4 @@ NavBar.SubNavBar = SubNavBar;
 NavBar.ItemGroup = ItemGroup;
 
 export { SubNavBar, NavItem, ItemGroup };
-export default NavBar ;
-
-
+export default NavBar;

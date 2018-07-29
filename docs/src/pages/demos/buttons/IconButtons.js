@@ -20,7 +20,13 @@ function IconButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <IconButton className={classes.button} aria-label="Delete">
+      <IconButton
+        classes={{
+          root: classes.button,
+        }}
+        fish
+        aria-label="Delete"
+      >
         <DeleteIcon />
       </IconButton>
       <IconButton className={classes.button} aria-label="Delete" disabled color="primary">

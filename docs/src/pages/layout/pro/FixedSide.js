@@ -174,7 +174,6 @@ class FixedSide extends React.Component {
             direction="row"
             alignItems="stretch"
             justify="center"
-            spacing="2"
           >
             <Grid item>
               <Logo

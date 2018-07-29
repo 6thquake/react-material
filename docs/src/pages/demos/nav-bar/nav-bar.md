@@ -1,5 +1,5 @@
 ---
-components: NavBar, SubNavBar, NavItem, ItemGroup, FlatNavBar, FlatNavItem, FlatNavSub, FlatNavGroup
+components: NavBar, SubNavBar, NavItem, NavItemGroup, FlatNavBar, FlatNavItem, FlatNavSub, FlatItemGroup
 ---
 # NavBar
 {{"demo": "pages/demos/nav-bar/NavBar.js"}}
@@ -7,6 +7,10 @@ components: NavBar, SubNavBar, NavItem, ItemGroup, FlatNavBar, FlatNavItem, Flat
 # HorizontalNavBar
 水平导航
 {{"demo": "pages/demos/nav-bar/HorizontalNavBar.js"}}
+
+# MenuBar
+菜单栏
+{{"demo": "pages/demos/nav-bar/MenuBar.js"}}
 
 # LightNavBar
 浅皮肤

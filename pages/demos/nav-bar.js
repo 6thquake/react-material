@@ -22,6 +22,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/nav-bar/HorizontalNavBar'), 'utf8')
 `,
         },
+        'pages/demos/nav-bar/MenuBar.js': {
+          js: require('docs/src/pages/demos/nav-bar/MenuBar').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/nav-bar/HorizontalNavBar'), 'utf8')
+`,
+        },
         'pages/demos/nav-bar/LightNavBar.js': {
           js: require('docs/src/pages/demos/nav-bar/LightNavBar').default,
           raw: preval`

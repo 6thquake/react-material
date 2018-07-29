@@ -23,7 +23,7 @@ filename: /packages/react-material/src/Button/Button.js
 | <span class="prop-name">href</span> | <span class="prop-type">string |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
 | <span class="prop-name">mini</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, and `variant` is `'fab'`, will use mini floating action button styling. |
 | <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'&nbsp;&#124;<br>&nbsp;'large'<br> | <span class="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
-| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extendedFab'<br> | <span class="prop-default">'flat'</span> | The type of button. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extendedFab', 'fish'<br> | <span class="prop-default">'flat'</span> | The type of button. |
 | <span class="prop-name">onClick</span> | <span class="prop-type">func |  | Button 的回掉函数，函数的返回值如果是Promise，Button变为带反馈的样子。 |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

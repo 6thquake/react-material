@@ -8,4 +8,4 @@ FlatNavBar.ItemGroup = FlatItemGroup;
 FlatNavBar.Item = FlatNavItem;
 
 export default FlatNavBar;
-export {FlatSubNavBar, FlatNavItem, FlatItemGroup};
+export { FlatSubNavBar, FlatNavItem, FlatItemGroup };

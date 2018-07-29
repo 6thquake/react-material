@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {routes} from './data';
-import {FlatNavBar as NavBar} from '@6thquake/react-material/NavBar';
+import React, { Component } from 'react';
+import { routes } from './data';
+import { FlatNavBar as NavBar } from '@6thquake/react-material/NavBar';
 import AppBar from '@6thquake/react-material/AppBar';
-import {withStyles} from '@6thquake/react-material/styles';
+import { withStyles } from '@6thquake/react-material/styles';
 const SubNavBar = NavBar.SubNavBar;
 const Item = NavBar.Item;
 const ItemGroup = NavBar.ItemGroup;
@@ -34,19 +34,17 @@ class Fixed extends Component {
         <SubNavBar key={index} title={route.name}>
           {children
             ? children.map((route, index) => {
-              const children = route.children;
-              return children ? (
-                <ItemGroup key={index} title={route.name}>
-                  {children.map((route, index) => (
-                    <Item key={index}>{route.name}</Item>
-                  ))}
-                </ItemGroup>
-              ) : (
-                <ItemGroup>
-                  <Item>{route.name}</Item>
-                </ItemGroup>
-              );
-            })
+                const children = route.children;
+                return children ? (
+                  <ItemGroup key={index} title={route.name}>
+                    {children.map((route, index) => <Item key={index}>{route.name}</Item>)}
+                  </ItemGroup>
+                ) : (
+                  <ItemGroup>
+                    <Item>{route.name}</Item>
+                  </ItemGroup>
+                );
+              })
             : null}
         </SubNavBar>
       );
@@ -54,7 +52,7 @@ class Fixed extends Component {
   }
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <AppBar className={classes.appBar} position="sticky" color="default">

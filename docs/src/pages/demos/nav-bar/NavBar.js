@@ -80,12 +80,15 @@ class Test extends React.Component {
               <NavBar.Item key="g2-4">Option 4</NavBar.Item>
             </ItemGroup>
           </SubNavBar>
-          <SubNavBar key="2" title={
-            <span>
+          <SubNavBar
+            key="2"
+            title={
+              <span>
                 <i className="material-icons">accessibility</i>
                 <span>SubNavBar2</span>
               </span>
-          }>
+            }
+          >
             <NavItem key="2-1">item2-1</NavItem>
             <NavItem key="2-2">
               <i className="material-icons">accessibility</i>item2-2

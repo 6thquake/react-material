@@ -1,3 +1,6 @@
+/**
+ * @ignore - do not document.
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../../styles';
@@ -208,7 +211,7 @@ class EasyNavBar extends React.Component {
   }
 
   render() {
-    const { list, itemKeysMap, debugger: d,classes, ...props } = this.props;
+    const { list, itemKeysMap, debugger: d, classes, ...props } = this.props;
     return <OriginNavBar {...props}>{this.renderMenu(list)}</OriginNavBar>;
   }
 }

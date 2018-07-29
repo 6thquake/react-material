@@ -1,11 +1,15 @@
+/**
+ * @ignore - do not document.
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../../styles';
 import { findDOMNode } from 'react-dom';
-import RcMenu, { Divider, ItemGroup } from 'rc-menu';
+import RcMenu, { Divider } from 'rc-menu';
 import classNames from 'classnames';
 import SubNavBar from './SubNavBar';
 import NavItem from './NavItem';
+import NavItemGroup from './NavItemGroup';
 import styles from './styles';
 
 const menuPrefixCls = 'rm-menu';
@@ -183,7 +187,7 @@ class OriginNavBar extends React.Component {
 OriginNavBar.Divider = Divider;
 OriginNavBar.Item = NavItem;
 OriginNavBar.SubMenu = SubNavBar;
-OriginNavBar.ItemGroup = ItemGroup;
+OriginNavBar.ItemGroup = NavItemGroup;
 OriginNavBar.propTypes = {
   /**
    * 初始展开的 SubMenu 菜单项 key 数组
@@ -260,6 +264,6 @@ OriginNavBar.contextTypes = {
   collapsedWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
-export { SubNavBar, NavItem, ItemGroup };
+export { SubNavBar, NavItem, NavItemGroup };
 
 export default withStyles(styles, { name: 'RMOriginNavBar' })(OriginNavBar);

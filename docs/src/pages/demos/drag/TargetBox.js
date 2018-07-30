@@ -26,6 +26,9 @@ class TargetBox extends TargetWrapper {
     };
   }
 
+
+
+
   drop = (props, monitor, component) => {
     const item = monitor.getItem();
 
@@ -89,7 +92,9 @@ class TargetBox extends TargetWrapper {
       droptTargetLeft: this.dragBox.getBoundingClientRect().left,
       droptTargetTop: this.dragBox.getBoundingClientRect().top,
     });
-    this.props.accept(this.props.acceptItem); //给DropTartget传递自己的acceptItem
+    let acceptSource = ['BoxA'];
+    acceptSource = [...acceptSource,...this.props.acceptItem]
+    this.props.accept(acceptSource); //给DropTartget传递自己的acceptItem
   }
   render() {
     const { childComponents, droptTargetLeft, droptTargetTop } = this.state;

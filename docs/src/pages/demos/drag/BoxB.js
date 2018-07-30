@@ -9,7 +9,7 @@ const boxstyles = {
   display: 'inline-block',
 };
 
-export default class BoxA extends SourceWrapper {
+export default class BoxB extends SourceWrapper {
   constructor(props) {
     super(props);
   }
@@ -21,9 +21,9 @@ export default class BoxA extends SourceWrapper {
     const item = {};
     //外部item，没有Index,拖入时把DragSource里面的东西拖入
 
-    item.sourceType = 'BoxA';
-    item.left = this.refs['myRef'].getBoundingClientRect().left;
-    item.top = this.refs['myRef'].getBoundingClientRect().top;
+    item.sourceType = 'BoxB';
+    item.left = this.refs['myRef2'].getBoundingClientRect().left;
+    item.top = this.refs['myRef2'].getBoundingClientRect().top;
     if (this.props.type == 'OUTITEM') {
       item.component = component.props.children;
     } else if (this.props.type == 'INNERITEM') {
@@ -55,7 +55,7 @@ export default class BoxA extends SourceWrapper {
   }
   render() {
     return (
-      <div style={this.getStyles()} ref={'myRef'}>
+      <div style={this.getStyles()} ref={'myRef2'}>
         <div style={boxstyles}>{this.props.children.props.children}</div>
       </div>
     );

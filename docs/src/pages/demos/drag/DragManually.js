@@ -13,6 +13,7 @@ import IconButton from '@6thquake/react-material/IconButton';
 
 import PropTypes from 'prop-types';
 import BoxA from './BoxA';
+import BoxB from './BoxB';
 import TargetBox from './TargetBox';
 
 // import Test from './test'
@@ -44,12 +45,19 @@ class DragToolBox extends Component {
       <div className={classes.root}>
         <div>
           <DragSource2>
-            <BoxA type="OUTITEM" ref="boxRef" />
+            <BoxA type="OUTITEM">
+              <div>boxA</div>
+            </BoxA>
+          </DragSource2>
+          <DragSource2>
+            <BoxB type="OUTITEM">
+              <div>boxB</div>
+            </BoxB>
           </DragSource2>
         </div>
 
         <ManualDragTarget>
-          <TargetBox acceptItem="BoxA" snapToGrid={snapToGridAfterDrop} />
+          <TargetBox acceptItem={['BoxB','BoxC']} snapToGrid={snapToGridAfterDrop} />
         </ManualDragTarget>
         <p>
           <label htmlFor="snapToGridAfterDrop">

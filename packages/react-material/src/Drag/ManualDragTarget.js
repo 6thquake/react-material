@@ -13,31 +13,41 @@ const styles = {};
 const boxTarget = {
   drop(props, monitor, component) {
     if (component.state.acceptSource.indexOf(monitor.getItem().sourceType) === -1) {
-      return;
+        return;
     }
     component.state.comp.drop(props, monitor, component);
   },
+    // hover(props, monitor,component){
+      //有component，但是我们没用到这个方法
+      //component.state.comp.hover(props,monitor,component)
+    // },
+    // canDrop(props, monitor){
+       
+    // }
+
 };
 
-class _OrderDragTarget extends React.Component {
+class _DragTarget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      acceptSource: [],
+      acceptSource:'',
     };
   }
 
+
   accept = items => {
     this.setState(preState => ({
-      acceptSource: [...preState.acceptSource, items],
+      acceptSource: [...items]
     }));
   }; //为了拿到子组件的设置的item值
 
   register = comp => {
-    this.state.comp = comp;
+    this.state.comp = comp
   };
 
   render() {
+    //console.log(this.state.acceptSource)
     const { connect, monitor, classes, children } = this.props;
     return connect.dropTarget()(
       <div>
@@ -60,5 +70,5 @@ function collect(connect, monitor) {
   };
 }
 
-let OrderDragTarget = DropTarget('*', boxTarget, collect)(_OrderDragTarget);
+let OrderDragTarget = DropTarget('*', boxTarget, collect)(_DragTarget);
 export default withStyles(styles)(OrderDragTarget);

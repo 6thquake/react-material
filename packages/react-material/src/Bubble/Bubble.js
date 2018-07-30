@@ -35,16 +35,121 @@ export var styles = theme => ({
   content: 'This is only a test text for bubble dialog content. Please specify your own content.',
 });
 
+var trans = function(parent) {
+  let p = document.getElementById(""+parent.parent).getBoundingClientRect();
+  let tmp = document.getElementById("self").getBoundingClientRect();
+  let pCoordi = {x: p.x, y: p.y, width: p.width, height: p.height};
+  let thisCoordi = {x: tmp.x, y: tmp.y, width: tmp.width, height: tmp.height};
+  let xDis = thisCoordi.x - pCoordi.x;
+  let yDis = thisCoordi.y - pCoordi.y;
+  document.getElementById("bubble").setAttribute("style", "transform: translate("+(-xDis)+"px,"+(-yDis)+"px)");
+}
+
+export { trans };
+
 class Bubble extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let ancestor = nextProps.ancestor;
+    let self = nextProps.self;
+    let parent = nextProps.parent;
+    let floated = nextProps.floated;
+    let direction = nextProps.direction;
+    const transHeight = Number(parent.height) / 2 + parent.height;
+
+    if (floated == 'false') {//typeof(ancestor) != 'string') {
+      if (typeof(ancestor) != 'string') {//floated == false) {
+        if (direction == 'left') {
+          if (self.getAttribute("style") != null) {
+            self.removeAttribute("style");
+          }
+          ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: row");
+        }
+        else if (direction == 'right') {
+          if (self.getAttribute("style") != null) {
+            self.removeAttribute("style");
+          }
+          ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: row-reverse");
+        }
+        else if (direction == 'top') {
+          if (self.getAttribute("style") != null) {
+            self.removeAttribute("style");
+          }
+          ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: column-reverse");
+        }
+        else if (direction == 'bottom') {
+          if (self.getAttribute("style") != null) {
+            self.removeAttribute("style");
+          }
+          ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: column");
+        }
+      }
+    }
+    else {
+      if (typeof(self) != 'string') {
+        if (direction == 'left') {
+          if (self.getAttribute("style") != null) {
+            self.removeAttribute("style");
+          }
+          if (ancestor.getAttribute("style") != null) {
+            ancestor.removeAttribute("style");
+          }
+        }
+        else if (direction == 'right') {
+          if (self.getAttribute("style") != null) {
+            self.removeAttribute("style");
+          }
+          self.setAttribute("style", "transform: translate(-100%," + (-transHeight) + "px);");
+          if (ancestor.getAttribute("style") != null) {
+            ancestor.removeAttribute("style");
+          }
+        }
+        else if (direction == 'top') {
+          if (self.getAttribute("style") != null) {
+            self.removeAttribute("style");
+          }
+          if (ancestor.getAttribute("style") != null) {
+            ancestor.removeAttribute("style");
+          }
+        }
+        else if (direction == 'bottom') {
+          if (self.getAttribute("style") != null) {
+            self.removeAttribute("style");
+          }
+          if (ancestor.getAttribute("style") != null) {
+            ancestor.removeAttribute("style");
+          }
+        }
+      }
+    }
+
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevStates) {
+    //top style
+    if (document.getElementById("self") != null) {
+      if (prevProps.direction == 'top' && prevProps.floated == 'true') {
+        const dis = document.getElementById("self").getBoundingClientRect().height + prevProps.parent.height + (typeof prevProps.triSize === 'undefined' ? 22 : Number(prevProps.triSize) + 10);
+        document.getElementById('self').setAttribute("style", "transform: translate(" + (-(prevProps.parent.width / 2)) + "px," + (-dis) + "px)");
+      }
+      else if (prevProps.direction == 'bottom' && prevProps.floated == 'true') {
+        const dis = typeof prevProps.triSize === 'undefined' ? 22 : Number(prevProps.triSize) + 10;
+        document.getElementById('self').setAttribute("style", "transform: translate("+(-(prevProps.parent.width / 2))+"px,"+dis+"px)");
+      }
+    }
+  }
+
   render() {
-    const { direction, floated, content, triSize, bgColor, classes } = this.props;
+    const { parent, direction, floated, triSize, bgColor, classes } = this.props;
+    const transHeight = Number(parent.height) / 2;
     const halfSize = typeof triSize === 'undefined' ? 6 : Number(triSize) / 2;
     const transDis = typeof triSize === 'undefined' ? 22 : Number(triSize) + 10;
-
+    const lFXDis = parent.width + transDis;
+    const lFYDis = parent.height + transHeight;
     const recClassNames = classNames(classes.recStyle, classes.customization);
     const triClassNames = classNames(classes.triStyle);
     let triResult;
@@ -52,7 +157,7 @@ class Bubble extends React.Component {
     /*
     * Floated bubble
     */
-    if (floated) {
+    if (floated == 'true') {
       /*
       * Left sided arrow
       */
@@ -81,19 +186,14 @@ class Bubble extends React.Component {
         return (
           <div
             className={recClassNames}
-            style={{
-              backgroundColor: typeof bgColor === 'undefined' ? 'white' : bgColor,
-              position: 'absolute',
-              transform: 'translate(' + transDis + 'px, -50%)',
-              transform: 'translate(0, -50%)',
-            }}
-          >
+            style={{ backgroundColor: typeof bgColor === 'undefined' ? 'white' : bgColor, position: 'relative', transform: 'translate('+lFXDis+'px,'+(-lFYDis)+'px)' }}>
             {triResult}
-            {content}
+            {this.props.children}
           </div>
         );
-      } else if (direction == 'right') {
-        /*
+      }
+      else if (direction == 'right') {
+      /*
       * Right sided arrow
       */
         triResult = (
@@ -118,20 +218,15 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div
-            className={recClassNames}
-            style={{
-              backgroundColor: typeof bgColor === 'undefined' ? 'green' : bgColor,
-              position: 'absolute',
-              transform: 'translate(0, -50%)',
-            }}
-          >
+          <div className={recClassNames}
+               style={{ backgroundColor: typeof bgColor === 'undefined' ? 'green' : bgColor, position: 'relative' }}>
             {triResult}
-            {content}
+            {this.props.children}
           </div>
         );
-      } else if (direction == 'top') {
-        /*
+      }
+      else if (direction == 'top') {
+      /*
       * Bottom sided arrow
       */
         triResult = (
@@ -156,20 +251,17 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div
+          <div id='self'
             className={recClassNames}
-            style={{
-              backgroundColor: typeof bgColor === 'undefined' ? 'cyan' : bgColor,
-              position: 'absolute',
-              transform: 'translate(0, -150%)',
-            }}
+            style={{ backgroundColor: typeof bgColor === 'undefined' ? 'cyan' : bgColor, position: 'relative' }}
           >
             {triResult}
-            {content}
+            {this.props.children}
           </div>
         );
-      } else if (direction == 'bottom') {
-        /*
+      }
+      else if (direction == 'bottom') {
+      /*
       * Top sided arrow
       */
         triResult = (
@@ -196,19 +288,16 @@ class Bubble extends React.Component {
         return (
           <div
             className={recClassNames}
-            style={{
-              backgroundColor: typeof bgColor === 'undefined' ? 'blue' : bgColor,
-              position: 'absolute',
-              transform: 'translate(0, ' + transDis + 'px)',
-            }}
+            style={{ backgroundColor: typeof bgColor === 'undefined' ? 'blue' : bgColor, position: 'relative' }}
           >
             {triResult}
-            {content}
+            {this.props.children}
           </div>
         );
       }
-    } else {
-      /*
+    }
+    else {
+    /*
     * Non-floated bubble
     */
       /*
@@ -233,25 +322,16 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginLeft: triSize + 'px',
-            }}
-          >
-            {triResult}
-            <div
-              className={recClassNames}
-              style={{ backgroundColor: typeof bgColor === 'undefined' ? 'white' : bgColor }}
-            >
-              {content}
-            </div>
-          </div>
+              <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                {triResult}
+                <div className={recClassNames} style={{ backgroundColor: typeof bgColor === 'undefined' ? 'white' : bgColor }}>
+                  {this.props.children}
+                </div>
+              </div>
         );
-      } else if (direction == 'right') {
-        /*
+      }
+      else if (direction == 'right') {
+      /*
       * Right sided arrow
       */
         triResult = (
@@ -272,25 +352,17 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginRight: triSize + 'px',
-            }}
-          >
-            <div
-              className={recClassNames}
-              style={{ backgroundColor: typeof bgColor === 'undefined' ? 'green' : bgColor }}
-            >
-              {content}
+            <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+              <div className={recClassNames}
+                   style={{ backgroundColor: typeof bgColor === 'undefined' ? 'green' : bgColor }}>
+                {this.props.children}
+              </div>
+              {triResult}
             </div>
-            {triResult}
-          </div>
         );
-      } else if (direction == 'top') {
-        /*
+      }
+      else if (direction == 'top') {
+      /*
       * Bottom sided arrow
       */
         triResult = (
@@ -311,26 +383,18 @@ class Bubble extends React.Component {
         );
 
         return (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: triSize + 'px',
-            }}
-          >
-            <div
-              className={recClassNames}
-              style={{ backgroundColor: typeof bgColor === 'undefined' ? 'cyan' : bgColor }}
-            >
-              {content}
+          <div id="transform">
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
+            <div className={recClassNames} style={{ backgroundColor: typeof bgColor === 'undefined' ? 'cyan' : bgColor }}>
+              {this.props.children}
             </div>
             {triResult}
           </div>
+          </div>
         );
-      } else if (direction == 'bottom') {
-        /*
+      }
+      else if (direction == 'bottom') {
+      /*
       * Top sided arrow
       */
         triResult = (
@@ -352,20 +416,13 @@ class Bubble extends React.Component {
 
         return (
           <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: triSize + 'px',
-            }}
-          >
+            style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             {triResult}
             <div
               className={recClassNames}
               style={{ backgroundColor: typeof bgColor === 'undefined' ? 'blue' : bgColor }}
             >
-              {content}
+              {this.props.children}
             </div>
           </div>
         );

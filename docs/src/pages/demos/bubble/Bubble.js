@@ -1,13 +1,14 @@
 import React from 'react';
-import Bubble from '@6thquake/react-material/Bubble';
-import Button from '@6thquake/react-material/Button';
-import FormControl from '@6thquake/react-material/FormControl';
-import FormLabel from '@6thquake/react-material/FormLabel';
-import FormControlLabel from '@6thquake/react-material/FormControlLabel';
-import Radio from '@6thquake/react-material/Radio';
-import RadioGroup from '@6thquake/react-material/RadioGroup';
-import Grid from '@6thquake/react-material/Grid';
-import { withStyles } from '@6thquake/react-material/styles';
+import Bubble from 'react-material/Bubble';
+import { trans } from 'react-material/Bubble';
+import Button from 'react-material/Button';
+import FormControl from 'react-material/FormControl';
+import FormLabel from 'react-material/FormLabel';
+import FormControlLabel from 'react-material/FormControlLabel';
+import Radio from 'react-material/Radio';
+import RadioGroup from 'react-material/RadioGroup';
+import Grid from 'react-material/Grid';
+import { withStyles } from 'react-material/styles';
 
 /*
  * Left & Right sided rectangle styles that can be customized.
@@ -17,7 +18,7 @@ const styles = {
     fontSize: 15,
     fontFamily: 'calgary',
     borderRadius: 5,
-    width: 'auto',
+    width: 300,
     height: 'auto',
   },
 };
@@ -29,6 +30,9 @@ class App extends React.Component {
       display: 'none',
       arrowOriginalDirection: 'left',
       floatOriginal: 'false',
+      parent: 'parent',
+      ancestor: 'ancestor',
+      self: 'self',
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -44,23 +48,20 @@ class App extends React.Component {
   handleChange = key => (event, value) => {
     this.setState({
       [key]: value,
-      display: 'none',
+      display: 'hidden',
     });
+
+    if (this.state.display == 'block') {
+      this.setState({ display: 'none' });
+    }
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    document
-      .getElementById('' + prevState.arrowOriginalDirection + prevState.floatOriginal)
-      .setAttribute('style', 'display: none');
-    document
-      .getElementById('' + this.state.arrowOriginalDirection + this.state.floatOriginal)
-      .removeAttribute('style');
-  }
-
   componentDidMount() {
-    document
-      .getElementById('' + this.state.arrowOriginalDirection + this.state.floatOriginal)
-      .removeAttribute('style');
+    this.setState({
+      ancestor: document.getElementById('ancestor'),
+      parent: document.getElementById("parent").getBoundingClientRect(),
+      self: document.getElementById("self"),
+    });
   }
 
   render() {
@@ -76,8 +77,7 @@ class App extends React.Component {
                 aria-label="arrowDirection"
                 name="arrowDirection"
                 value={this.state.arrowOriginalDirection}
-                onChange={this.handleChange('arrowOriginalDirection')}
-              >
+                onChange={this.handleChange('arrowOriginalDirection')}>
                 <FormControlLabel value="left" control={<Radio />} label="Left" />
                 <FormControlLabel value="right" control={<Radio />} label="Right" />
                 <FormControlLabel value="top" control={<Radio />} label="Top" />
@@ -93,8 +93,7 @@ class App extends React.Component {
                 aria-label="floated"
                 name="floated"
                 value={this.state.floatOriginal}
-                onChange={this.handleChange('floatOriginal')}
-              >
+                onChange={this.handleChange('floatOriginal')}>
                 <FormControlLabel value="true" control={<Radio />} label="Float" />
                 <FormControlLabel value="false" control={<Radio />} label="Non-float" />
               </RadioGroup>
@@ -102,166 +101,92 @@ class App extends React.Component {
           </Grid>
         </Grid>
 
-        <div id="leftfalse" style={{ display: 'none' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+        <div id='ancestor'>
+          <div id="parent" style={{position: 'relative', display: 'inline-block'}}>
             <Button variant="raised" onClick={this.handleClick}>
               Click Me
             </Button>
-            <div style={{ display: this.state.display, position: 'relative' }}>
-              <Bubble
-                direction="left"
-                floated={false}
-                content="Hello, this is simply a test bubble dialog conversation."
-                triSize="12"
-                bgColor="cyan"
-                classes={{ customization: classes.customization }}
-              />
+          </div>
+          <div style={{ display: this.state.display }}>
+            <div id="self">
+              <Bubble parent={ this.state.parent }
+                      ancestor={ this.state.ancestor }
+                      self={ this.state.self }
+                      direction={ this.state.arrowOriginalDirection }
+                      floated={ this.state.floatOriginal }
+                      triSize="12"
+                      bgColor="cyan"
+                      classes={{ customization: classes.customization }}>
+                Hello, this is simply a test bubble dialog conversation.
+              </Bubble>
             </div>
           </div>
         </div>
 
-        <div id="rightfalse" style={{ display: 'none' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ display: this.state.display, position: 'relative' }}>
-              <Bubble
-                direction="right"
-                floated={false}
-                content="Hello, this is simply a test bubble dialog conversation."
-                triSize="12"
-                bgColor="cyan"
-                classes={{ customization: classes.customization }}
-              />
-            </div>
-            <Button variant="raised" onClick={this.handleClick}>
-              Click Me
-            </Button>
-          </div>
-        </div>
 
-        <div id="topfalse" style={{ display: 'none' }}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <div style={{ display: this.state.display, position: 'relative' }}>
-              <Bubble
-                direction="top"
-                floated={false}
-                content="Hello, this is simply a test bubble dialog conversation."
-                triSize="12"
-                bgColor="cyan"
-                classes={{ customization: classes.customization }}
-              />
-            </div>
-            <Button variant="raised" onClick={this.handleClick}>
-              Click Me
-            </Button>
-          </div>
-        </div>
 
-        <div id="bottomfalse" style={{ display: 'none' }}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Button variant="raised" onClick={this.handleClick}>
-              Click Me
-            </Button>
-            <div style={{ display: this.state.display, position: 'relative' }}>
-              <Bubble
-                direction="bottom"
-                floated={false}
-                content="Hello, this is simply a test bubble dialog conversation."
-                triSize="12"
-                bgColor="cyan"
-                classes={{ customization: classes.customization }}
-              />
-            </div>
-          </div>
-        </div>
 
-        <div id="lefttrue" style={{ display: 'none' }}>
-          <div style={{ position: 'relative' }}>
-            <Button variant="raised" onClick={this.handleClick}>
-              Click Me
-            </Button>
-            <div style={{ display: this.state.display, position: 'relative', left: '50%' }}>
-              <Bubble
-                direction="left"
-                floated={true}
-                content="Hello, this is simply a test bubble dialog conversation."
-                triSize="12"
-                bgColor="cyan"
-                classes={{ customization: classes.customization }}
-              />
-            </div>
-          </div>
-        </div>
 
-        <div id="righttrue" style={{ display: 'none' }}>
-          <div style={{ position: 'relative' }}>
-            <Button variant="raised" onClick={this.handleClick}>
-              Click Me
-            </Button>
-            <div style={{ display: this.state.display, position: 'relative', left: '-100%' }}>
-              <Bubble
-                direction="right"
-                floated={true}
-                content="Hello, this is simply a test bubble dialog conversation."
-                triSize="12"
-                bgColor="cyan"
-                classes={{ customization: classes.customization }}
-              />
-            </div>
-          </div>
-        </div>
 
-        <div id="toptrue" style={{ display: 'none' }}>
-          <div style={{ position: 'relative' }}>
-            <Button variant="raised" onClick={this.handleClick}>
-              Click Me
-            </Button>
-            <div style={{ display: this.state.display, position: 'relative', right: '25%' }}>
-              <Bubble
-                direction="top"
-                floated={true}
-                content="Hello, this is simply a test bubble dialog conversation."
-                triSize="12"
-                bgColor="cyan"
-                classes={{ customization: classes.customization }}
-              />
-            </div>
-          </div>
-        </div>
 
-        <div id="bottomtrue" style={{ display: 'none' }}>
-          <div style={{ position: 'relative' }}>
-            <Button variant="raised" onClick={this.handleClick}>
-              Click Me
-            </Button>
-            <div style={{ display: this.state.display, position: 'relative', right: '25%' }}>
-              <Bubble
-                direction="bottom"
-                floated={true}
-                content="Hello, this is simply a test bubble dialog conversation."
-                triSize="12"
-                bgColor="cyan"
-                classes={{ customization: classes.customization }}
-              />
-            </div>
-          </div>
-        </div>
+
+
+
+
+
+
+
+
+
+
       </div>
     );
   }
 }
 
 export default withStyles(styles)(App);
+
+
+
+/*<div id="nonFloated" style={{ display: 'none' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div id="nonFloatParent">
+              <Button variant="raised" onClick={this.handleClick}>
+                Click Me
+              </Button>
+            </div>
+            <div style={{ display: this.state.display }}>
+              <Bubble
+                parent="nonFloatParent"
+                direction={this.state.arrowOriginalDirection}
+                floated={false}
+                content="Hello, this is simply a test bubble dialog conversation."
+                triSize="12"
+                bgColor="cyan"
+                classes={{ customization: classes.customization }}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div id="floated" style={{ display: 'none' }}>
+          <div>
+            <div id="floatParent" style={{ position: 'relative' }}>
+              <Button variant="raised" onClick={this.handleClick}>
+                Click Me
+              </Button>
+            </div>
+            <div style={{ display: this.state.display, position: 'relative', left: '50%' }}>
+              <Bubble
+                parent="parent"
+                direction="left"
+                floated={true}
+                content="Hello, this is simply a test bubble dialog conversation."
+                triSize="12"
+                bgColor="cyan"
+                classes={{ customization: classes.customization }}
+              />
+            </div>
+          </div>
+        </div>*/

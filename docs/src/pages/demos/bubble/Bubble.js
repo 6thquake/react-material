@@ -11,6 +11,7 @@ import { withStyles } from 'react-material/styles';
 
 /*
  * Left & Right sided rectangle styles that can be customized.
+ * *
 */
 const styles = {
   customization: {

@@ -35,6 +35,18 @@ export var styles = theme => ({
   content: 'This is only a test text for bubble dialog content. Please specify your own content.',
 });
 
+var trans = function(parent) {
+  let p = document.getElementById(""+parent.parent).getBoundingClientRect();
+  let tmp = document.getElementById("self").getBoundingClientRect();
+  let pCoordi = {x: p.x, y: p.y, width: p.width, height: p.height};
+  let thisCoordi = {x: tmp.x, y: tmp.y, width: tmp.width, height: tmp.height};
+  let xDis = thisCoordi.x - pCoordi.x;
+  let yDis = thisCoordi.y - pCoordi.y;
+  document.getElementById("bubble").setAttribute("style", "transform: translate("+(-xDis)+"px,"+(-yDis)+"px)");
+}
+
+export { trans };
+
 class Bubble extends React.Component {
   constructor(props) {
     super(props);

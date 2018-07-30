@@ -85,7 +85,6 @@ class App extends Component {
   };
 
   handleChange = name => event => {
-    console.log('event.target.value', event.target.value);
     this.setState({ [name]: event.target.value });
   };
   onClose = event => {

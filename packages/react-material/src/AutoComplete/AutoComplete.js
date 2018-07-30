@@ -8,7 +8,6 @@ import Pagination from '../Pagination/Pagination';
 import Divider from '../Divider';
 import MenuItem from '../MenuItem';
 import throttling from '../utils/throttling';
-import { filter, find } from '../utils/filter';
 
 const styles = theme => ({
   root: {
@@ -384,10 +383,10 @@ AutoComplete.propTypes = {
    * If true,autocomplete performance is like a select,when focus,option open.
    */
   select: PropTypes.bool,
-  // /**
-  //  * If true,autocomplete will filter options by input value.
-  //  */
-  // filterAble:PropTypes.bool,
+  /**
+   * If true,autocomplete will filter options by input value.
+   */
+  filterAble: PropTypes.bool,
   /**
    * If true,autocomplete will add debounce when filter options by input value.
    */

@@ -6,7 +6,7 @@ Asynchronous select with pagination、filter
 
 {{"demo": "pages/demos/selects/AsyncSelect.js"}}
 
-# SyncSelect
+# Select
 Synchronize select with pagination、filter
 
 {{"demo": "pages/demos/selects/FilterSelect.js"}}

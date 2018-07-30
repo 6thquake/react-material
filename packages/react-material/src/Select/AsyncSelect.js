@@ -6,6 +6,8 @@ import AsyncSelectFilter from './AsyncSelectFilter';
 import Divider from '../Divider';
 import { withStyles } from '../styles';
 import AsyncSelectRoot from './AsyncSelectRoot';
+import throttling from '../utils/throttling';
+
 const styles = theme => ({
   selectMenu: {
     whiteSpace: 'pre-wrap',
@@ -82,7 +84,7 @@ class AsyncSelect extends Component {
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     }),
     /**
-     * compare the  value of selected with option value,return Boolen,对于简单值比较可以不传.
+     * compare the  value of selected with option value,return Boolen,
      */
     comparison: PropTypes.func,
     /**
@@ -91,21 +93,47 @@ class AsyncSelect extends Component {
      * value: The value provided to the component..
      */
     renderValue: PropTypes.func,
+    /**
+     * If true,aysncselect will add debounce when filter options by filter value.
+     */
+    debounceAble: PropTypes.bool,
+    /**
+     * If debounceAble true,config debounce wait and max continue time,the unit is milliseconds.
+     */
+    debounceProps: PropTypes.shape({
+      wait: PropTypes.number,
+      maxTime: PropTypes.number,
+    }),
   };
   static defaultProps = {
     paginationProps: { page: 0, rowsPerPage: 5, count: 0 },
     mapper: { label: 'label', value: 'value' },
-    placeholder: 'please input something',
     comparison: (select, option) => {
       return select === option;
     },
+    debounceProps: {
+      wait: 500,
+      maxTime: 800,
+    },
   };
-
+  constructor(props) {
+    super(props);
+    this.throttlingtem = throttling(
+      props.onChangeFilter,
+      props.debounceProps.wait,
+      props.debounceProps.maxTime,
+    );
+  }
   onChangePage(currentPage1) {
     this.props.onChangePage(currentPage1);
   }
   onChangeFilter(e) {
-    this.props.onChangeFilter(e.target.value);
+    if (this.props.debounceAble) {
+      e.persist();
+      this.throttlingtem(e.target.value);
+    } else {
+      this.props.onChangeFilter(e.target.value);
+    }
   }
   menuItems() {
     const { options, children, mapper } = this.props;

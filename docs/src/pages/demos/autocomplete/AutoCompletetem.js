@@ -56,7 +56,7 @@ class AutoCompleteTest extends Component {
       { label: 'British Indian Ocean Territory' },
       { label: 'Brunei Darussalam' },
     ],
-    paginationProps: {
+    PaginationProps: {
       page: 0,
       rowsPerPage: 5,
       count: 34,
@@ -73,34 +73,35 @@ class AutoCompleteTest extends Component {
   autoCb(i) {
     console.log('item', i);
     this.setState({
-      paginationProps: {
-        ...this.state.paginationProps,
+      PaginationProps: {
+        ...this.state.PaginationProps,
         page: i,
       },
     });
   }
-  inputChangeCb(i) {
-    console.log('item', i);
+  inputChangeCb(event) {
+    console.log('item', event.target.value);
     this.setState({ inputText: event.target.value });
   }
   render() {
     const { classes } = this.props;
-    const { page, rowsPerPage, count } = this.state.paginationProps;
+    const { page, rowsPerPage, count } = this.state.PaginationProps;
     return (
       <div className={classes.root}>
         <Typography>multiple</Typography>
         <AutoComplete
           placeholder={'new autoComplete'}
-          multiple={true}
+          multiple
+          select
           value={this.state.selectedmulit}
-          paginationProps={this.state.paginationProps}
+          PaginationProps={this.state.PaginationProps}
           onChangePage={this.autoCb.bind(this)}
           onChangeInput={this.inputChangeCb.bind(this)}
           onChange={this.handleChangemulit.bind(this)}
         >
           {this.state.options
             .slice(
-              count === 0 ? count : page * rowsPerPage + 1,
+              count === 0 ? count : page * rowsPerPage,
               (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
             )
             .map(item => (
@@ -116,16 +117,15 @@ class AutoCompleteTest extends Component {
         <Typography>single</Typography>
         <AutoComplete
           placeholder={'new autoComplete'}
-          multiple={false}
           value={this.state.selectedsingled}
-          paginationProps={this.state.paginationProps}
+          PaginationProps={this.state.PaginationProps}
           onChangePage={this.autoCb.bind(this)}
           onChangeInput={this.inputChangeCb.bind(this)}
           onChange={this.handleChangeSingle.bind(this)}
         >
           {this.state.options
             .slice(
-              count === 0 ? count : page * rowsPerPage + 1,
+              count === 0 ? count : page * rowsPerPage,
               (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
             )
             .map(item => (

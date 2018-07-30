@@ -6,16 +6,17 @@ const styles = {
   root: {
     position: 'absolute',
     width: '100%',
-    height: '5px',
+    height: '0',
     textAlign: 'center',
     bottom: '2em',
+    zIndex:2
   },
   dot: {
     display: 'inline-block',
     width: '10px',
     background: 'green',
     margin: '0 0.5em',
-    height: '100%',
+    height: '5px',
     textIndent: '-10000px',
     overflow: 'hidden',
     transition: 'all .5s',

@@ -23,8 +23,10 @@ class Video extends React.Component {
     this.pause = this.pause.bind(this);
   }
 
+
   componentDidMount() {
     // instantiate Video.js
+    this.props.onRef(this);
     this.player = videojs(
       this.videoNode,
       {width: '100%', height: '100%', ...this.props},
@@ -160,5 +162,5 @@ Video.defaultProps = {
   inactivityTimeout: 0,
   isplaying: false
 };
-
 export default withStyles(styles, {name: 'RMVideo'})(Video);
+

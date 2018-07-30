@@ -5,13 +5,14 @@ import { ChevronRight, ChevronLeft } from '@material-ui/icons';
 const styles = {
   root: {
     width: '100%',
-    height: '30px',
-    overflow: 'hidden',
+    height: '0',
     top: '50%',
     position: 'absolute',
     transform: 'translateY(-50%)',
   },
   arrow: {
+    position: 'relative',
+    top: '-15px',
     height: '30px',
     width: '30px',
     cursor: 'pointer',

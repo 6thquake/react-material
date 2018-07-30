@@ -16,16 +16,20 @@ class App extends React.Component {
     super(props);
     this.IMAGE_DATA = [
       {
+        src:'/static/video/oceans.mp4',
+        isVideo:true
+      },{
         src: '/static/images/grid-list/bike.jpg',
         alt: 'images-1',
+        url:'http://baidu.com'
       },
       {
         src: '/static/images/grid-list/mushroom.jpg',
         alt: 'images-2',
-      },
-      {
+      },{
         src: '/static/images/grid-list/burgers.jpg',
         alt: 'images-3',
+        url:'http://douban.com'
       },
       {
         src: '/static/images/grid-list/morning.jpg',
@@ -40,7 +44,7 @@ class App extends React.Component {
         <Carousel
           items={this.IMAGE_DATA}
           speed={1.5}
-          delay={2.1}
+          delay={2}
           pause={true}
           autoplay={true}
           dots={true}

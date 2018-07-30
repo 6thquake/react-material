@@ -22,6 +22,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/autocomplete/AutoCompletetem'), 'utf8')
 `,
         },
+        'pages/demos/autocomplete/SynchronizeAutoComplete.js': {
+          js: require('docs/src/pages/demos/autocomplete/SynchronizeAutoComplete').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/autocomplete/SynchronizeAutoComplete'), 'utf8')
+`,
+        },
         'pages/demos/autocomplete/IntegrationDownshift.js': {
           js: require('docs/src/pages/demos/autocomplete/IntegrationDownshift').default,
           raw: preval`

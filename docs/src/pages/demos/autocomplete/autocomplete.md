@@ -15,6 +15,10 @@ AutoComplete of option with customer templete
 
 {{"demo": "pages/demos/autocomplete/AutoCompletetem.js"}}
 
+Synchronize AutoComplete 
+
+{{"demo": "pages/demos/autocomplete/SynchronizeAutoComplete.js"}}
+
 ## downshift
 
 In the following example, we demonstrate how to use [downshift](https://github.com/paypal/downshift).

@@ -6,6 +6,7 @@ import ListItemText from '@6thquake/react-material/ListItemText';
 import ListItemIcon from '@6thquake/react-material/ListItemIcon';
 import StarBorder from '@material-ui/icons/StarBorder';
 import Typography from '@6thquake/react-material/Typography';
+import SyncAutoComplete from '@6thquake/react-material/AutoComplete';
 
 const styles = theme => ({
   root: {

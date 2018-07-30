@@ -103,9 +103,7 @@ for (let color in styles.color) {
   }
 }
 
-
 class Tag extends Component {
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -171,13 +169,12 @@ Tag.propTypes = {
    *  callback function when delete the tag
    */
   onClose: PropTypes.func,
-}
-
-Tag.defaultProps = {
-size: 'medium',
-closable: false,
-color: 'primaryMain',
 };
 
+Tag.defaultProps = {
+  size: 'medium',
+  closable: false,
+  color: 'primaryMain',
+};
 
 export default withStyles(styles.mixin, { name: 'RMTag' })(Tag);

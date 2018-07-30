@@ -36,7 +36,6 @@ const styles = theme => ({
 });
 
 class Modal extends Component {
- 
   handleOK() {
     this.props.onClose;
   }
@@ -108,31 +107,30 @@ class Modal extends Component {
 
 Modal.propTypes = {
   /**
-     * Decide modal open or close,	If true, the modal is open.
-     */
-    open: PropTypes.bool.isRequired,
-    /**
-     * This is  modal title
-     */
-    label: PropTypes.string,
-    /**
-     * This is usually an animation of open or close the modal,include slide、collapse、fade、grow、zoom
-     */
-    animation: PropTypes.oneOf(['slide', 'collapse', 'fade', 'grow', 'zoom']),
-    /**
-     * onClose callback function
-     */
-    onClose: PropTypes.func.isRequired,
-    /**
-     * max content height
-     */
-    maxHeight: PropTypes.number,
-    /**
-     * actions button array
-     */
-    actions: PropTypes.array,
-
-}
+   * Decide modal open or close,	If true, the modal is open.
+   */
+  open: PropTypes.bool.isRequired,
+  /**
+   * This is  modal title
+   */
+  label: PropTypes.string,
+  /**
+   * This is usually an animation of open or close the modal,include slide、collapse、fade、grow、zoom
+   */
+  animation: PropTypes.oneOf(['slide', 'collapse', 'fade', 'grow', 'zoom']),
+  /**
+   * onClose callback function
+   */
+  onClose: PropTypes.func.isRequired,
+  /**
+   * max content height
+   */
+  maxHeight: PropTypes.number,
+  /**
+   * actions button array
+   */
+  actions: PropTypes.array,
+};
 
 Modal.defaultProps = {
   maxHeight: 500,
@@ -145,6 +143,6 @@ Modal.defaultProps = {
       Agree
     </Button>,
   ],
-}
+};
 
 export default withStyles(styles, { name: 'RMModal' })(Modal);

@@ -10,7 +10,6 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import IconButton from '../IconButton';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import Button from 'react-material/Button';
 import { withLocale } from '../LocaleProvider';
 
 const styles = theme => ({

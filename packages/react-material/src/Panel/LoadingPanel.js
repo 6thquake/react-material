@@ -72,26 +72,6 @@ const styles = theme => ({
   },
 });
 class LoadingPanel extends Component {
-  static propTypes = {
-    /**
-     * Loading type;if progress,loading without mask，if mask,loading with mask
-     */
-    type: PropTypes.string,
-    /**
-     * If true,loading is finish.
-     */
-    loaded: PropTypes.bool,
-    /**
-     * Loading estimated time
-     */
-    estimatedTime: PropTypes.number,
-  };
-
-  static defaultProps = {
-    type: 'progress',
-    loaded: false,
-    estimatedTime: 1,
-  };
   constructor(props) {
     super(props);
   }
@@ -124,4 +104,24 @@ class LoadingPanel extends Component {
     );
   }
 }
+LoadingPanel.propTypes = {
+  /**
+   * Loading type;if progress,loading without mask，if mask,loading with mask
+   */
+  type: PropTypes.string,
+  /**
+   * If true,loading is finish.
+   */
+  loaded: PropTypes.bool,
+  /**
+   * Loading estimated time
+   */
+  estimatedTime: PropTypes.number,
+};
+
+LoadingPanel.defaultProps = {
+  type: 'progress',
+  loaded: false,
+  estimatedTime: 1,
+};
 export default withStyles(styles, { name: 'RMLoadingPanel' })(LoadingPanel);

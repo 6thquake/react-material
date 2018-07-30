@@ -92,79 +92,6 @@ const styles = theme => ({
 });
 
 class Pagination extends Component {
-  static propTypes = {
-    /**
-     * Properties applied to the back arrow `IconButton` component.
-     */
-    backIconButtonProps: PropTypes.object,
-    /**
-     * Override or extend the styles applied to the component.
-     * See [CSS API](#css-api) below for more details.
-     */
-    classes: PropTypes.object.isRequired,
-    /**
-     * Properties applied to the next arrow `IconButton` element.
-     */
-    nextIconButtonProps: PropTypes.object,
-    /**
-     * The zero-based index of the current page.
-     */
-    page: PropTypes.number,
-    /**
-     * This is page size of pagination
-     */
-    rowsPerPage: PropTypes.number,
-    /**
-     * Customize the displayed rows label.
-     */
-    labelDisplayedRows: PropTypes.func,
-    /**
-     * This is total count of pagination
-     */
-    count: PropTypes.number,
-    /**
-     * This is call current page back to parent component
-     */
-    onChangePage: PropTypes.func.isRequired,
-    /**
-     * Callback fired when the number of rows per page is changed.
-     */
-    onChangeRowsPerPage: PropTypes.func,
-    /**
-     * 	Useful to customize the rows per page label. Invoked with a { from, to, count, page } object.
-     */
-    labelRowsPerPage: PropTypes.node,
-    /**
-     * Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed.
-     */
-    rowsPerPageOptions: PropTypes.array,
-    /**
-     * show page size option.
-     */
-    showSizeChanger: PropTypes.bool,
-    /**
-     * show quick jumper ,jump to xx page.
-     */
-    showQuickJumper: PropTypes.bool,
-    /**
-     * show jump to first and last page button.
-     */
-    showTwoEnds: PropTypes.bool,
-    /**
-     * Use text alternative icon for next page、pre page、last page and first page
-     */
-    noIcon: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    page: 0,
-    rowsPerPage: 5,
-    count: 0,
-    labelRowsPerPage: 'Rows per page:',
-    rowsPerPageOptions: [5, 10, 25],
-    labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -393,7 +320,78 @@ class Pagination extends Component {
     return this.createPage();
   }
 }
+Pagination.propTypes = {
+  /**
+   * Properties applied to the back arrow `IconButton` component.
+   */
+  backIconButtonProps: PropTypes.object,
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * Properties applied to the next arrow `IconButton` element.
+   */
+  nextIconButtonProps: PropTypes.object,
+  /**
+   * The zero-based index of the current page.
+   */
+  page: PropTypes.number,
+  /**
+   * This is page size of pagination
+   */
+  rowsPerPage: PropTypes.number,
+  /**
+   * Customize the displayed rows label.
+   */
+  labelDisplayedRows: PropTypes.func,
+  /**
+   * This is total count of pagination
+   */
+  count: PropTypes.number,
+  /**
+   * This is call current page back to parent component
+   */
+  onChangePage: PropTypes.func.isRequired,
+  /**
+   * Callback fired when the number of rows per page is changed.
+   */
+  onChangeRowsPerPage: PropTypes.func,
+  /**
+   * 	Useful to customize the rows per page label. Invoked with a { from, to, count, page } object.
+   */
+  labelRowsPerPage: PropTypes.node,
+  /**
+   * Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed.
+   */
+  rowsPerPageOptions: PropTypes.array,
+  /**
+   * show page size option.
+   */
+  showSizeChanger: PropTypes.bool,
+  /**
+   * show quick jumper ,jump to xx page.
+   */
+  showQuickJumper: PropTypes.bool,
+  /**
+   * show jump to first and last page button.
+   */
+  showTwoEnds: PropTypes.bool,
+  /**
+   * Use text alternative icon for next page、pre page、last page and first page
+   */
+  noIcon: PropTypes.bool,
+};
 
+Pagination.defaultProps = {
+  page: 0,
+  rowsPerPage: 5,
+  count: 0,
+  labelRowsPerPage: 'Rows per page:',
+  rowsPerPageOptions: [5, 10, 25],
+  labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
+};
 export default withStyles(styles, { name: 'RMPagination' })(
   withLocale({ name: 'Pagination' })(Pagination),
 );

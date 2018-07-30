@@ -33,61 +33,6 @@ const styles = theme => ({
 });
 
 class Progress extends Component {
-  static propTypes = {
-    /**
-     * Progress percentage,only when isPromise is false.
-     */
-    completed: PropTypes.num,
-    /**
-     * If true,progress wrong.
-     */
-    error: PropTypes.bool,
-    /**
-     * If true,simulation progress.
-     */
-    isPromise: PropTypes.bool,
-    /**
-     * If true,progress finish when isPromise is true.
-     */
-    isFinish: PropTypes.bool,
-    /**
-     * Estimated time of the progress,when isPromise is true,the units is seconds.
-     */
-    estimatedTime: PropTypes.num,
-    /**
-     * If true,it is a normal progress without percentage.
-     */
-    baseProgress: PropTypes.bool,
-    /**
-     * 	The color of the component. It supports those theme colors that make sense for this component.
-     */
-    color: PropTypes.oneOf(['primary', 'secondary']),
-    /**
-     * The value for the buffer variant. Value between 0 and 100.
-     */
-    valueBuffer: PropTypes.num,
-    /**
-     * The variant of progress indicator. Use indeterminate or query when there is no progress value.
-     */
-    variant: PropTypes.string,
-    /**
-     * 	The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100.
-     */
-    value: PropTypes.num,
-  };
-
-  static defaultProps = {
-    completed: 0,
-    error: false,
-    isPromise: false,
-    isFinish: false,
-    estimatedTime: 2,
-    baseProgress: false,
-    // color:'primary',
-    valueBuffer: 10,
-    //variant:'buffer'
-  };
-
   constructor() {
     super();
     this.state = {
@@ -176,4 +121,59 @@ class Progress extends Component {
     }
   }
 }
+Progress.propTypes = {
+  /**
+   * Progress percentage,only when isPromise is false.
+   */
+  completed: PropTypes.num,
+  /**
+   * If true,progress wrong.
+   */
+  error: PropTypes.bool,
+  /**
+   * If true,simulation progress.
+   */
+  isPromise: PropTypes.bool,
+  /**
+   * If true,progress finish when isPromise is true.
+   */
+  isFinish: PropTypes.bool,
+  /**
+   * Estimated time of the progress,when isPromise is true,the units is seconds.
+   */
+  estimatedTime: PropTypes.num,
+  /**
+   * If true,it is a normal progress without percentage.
+   */
+  baseProgress: PropTypes.bool,
+  /**
+   * 	The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
+  /**
+   * The value for the buffer variant. Value between 0 and 100.
+   */
+  valueBuffer: PropTypes.num,
+  /**
+   * The variant of progress indicator. Use indeterminate or query when there is no progress value.
+   */
+  variant: PropTypes.string,
+  /**
+   * 	The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100.
+   */
+  value: PropTypes.num,
+};
+
+Progress.defaultProps = {
+  completed: 0,
+  error: false,
+  isPromise: false,
+  isFinish: false,
+  estimatedTime: 2,
+  baseProgress: false,
+  // color:'primary',
+  valueBuffer: 10,
+  //variant:'buffer'
+};
+
 export default withStyles(styles, { name: 'RMProgress' })(Progress);

@@ -53,90 +53,6 @@ const styles = theme => ({
   },
 });
 class AutoComplete extends Component {
-  static propTypes = {
-    /**
-     * Callback fired when the input value is changed.
-     */
-    onChangeInput: PropTypes.func,
-    /**
-     * Callback fired when the current page of pagination  is changed.
-     */
-    onChangePage: PropTypes.func,
-    /**
-     * autocomplete options,
-     */
-    options: PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
-    ),
-    /**
-     * Pagination component config
-     */
-    PaginationProps: PropTypes.object,
-    /**
-     * placeholder
-     */
-    placeholder: PropTypes.string,
-    /**
-     * option item label and value,when assignment option by options
-     */
-    mapper: PropTypes.shape({
-      label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    }),
-    /**
-     * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
-     */
-    multiple: PropTypes.bool,
-    /**
-     * Callback function fired when a menu item is selected.
-     */
-    onChange: PropTypes.func.isRequired,
-    /**
-     * 	The value of the Input element, required for a controlled component.
-     */
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-    ]),
-    /**
-     * Decided autocomplete is disabled
-     */
-    disabled: PropTypes.bool,
-    /**
-     * If true,autocomplete performance is like a select,when focus,option open.
-     */
-    select: PropTypes.bool,
-    // /**
-    //  * If true,autocomplete will filter options by input value.
-    //  */
-    // filterAble:PropTypes.bool,
-    /**
-     * If true,autocomplete will add debounce when filter options by input value.
-     */
-    debounceAble: PropTypes.bool,
-    /**
-     * If debounceAble true,config debounce wait and max continue time,the unit is milliseconds.
-     */
-    debounceProps: PropTypes.shape({
-      wait: PropTypes.number,
-      maxTime: PropTypes.number,
-    }),
-  };
-  static defaultProps = {
-    PaginationProps: {
-      page: 0,
-      rowsPerPage: 5,
-      count: 0,
-    },
-    multiple: false,
-    disabled: false,
-    select: false,
-    debounceProps: {
-      wait: 500,
-      maxTime: 800,
-    },
-  };
   constructor(props) {
     super(props);
     this.throttlingtem = throttling(
@@ -414,4 +330,88 @@ class AutoComplete extends Component {
     );
   }
 }
+AutoComplete.propTypes = {
+  /**
+   * Callback fired when the input value is changed.
+   */
+  onChangeInput: PropTypes.func,
+  /**
+   * Callback fired when the current page of pagination  is changed.
+   */
+  onChangePage: PropTypes.func,
+  /**
+   * autocomplete options,
+   */
+  options: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
+  ),
+  /**
+   * Pagination component config
+   */
+  PaginationProps: PropTypes.object,
+  /**
+   * placeholder
+   */
+  placeholder: PropTypes.string,
+  /**
+   * option item label and value,when assignment option by options
+   */
+  mapper: PropTypes.shape({
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  }),
+  /**
+   * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
+   */
+  multiple: PropTypes.bool,
+  /**
+   * Callback function fired when a menu item is selected.
+   */
+  onChange: PropTypes.func.isRequired,
+  /**
+   * 	The value of the Input element, required for a controlled component.
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ]),
+  /**
+   * Decided autocomplete is disabled
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If true,autocomplete performance is like a select,when focus,option open.
+   */
+  select: PropTypes.bool,
+  // /**
+  //  * If true,autocomplete will filter options by input value.
+  //  */
+  // filterAble:PropTypes.bool,
+  /**
+   * If true,autocomplete will add debounce when filter options by input value.
+   */
+  debounceAble: PropTypes.bool,
+  /**
+   * If debounceAble true,config debounce wait and max continue time,the unit is milliseconds.
+   */
+  debounceProps: PropTypes.shape({
+    wait: PropTypes.number,
+    maxTime: PropTypes.number,
+  }),
+};
+AutoComplete.defaultProps = {
+  PaginationProps: {
+    page: 0,
+    rowsPerPage: 5,
+    count: 0,
+  },
+  multiple: false,
+  disabled: false,
+  select: false,
+  debounceProps: {
+    wait: 500,
+    maxTime: 800,
+  },
+};
 export default withStyles(styles, { name: 'RMAutoComplete' })(AutoComplete);

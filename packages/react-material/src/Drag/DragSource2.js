@@ -22,12 +22,12 @@ const _source = {
   endDrag(props, monitor, component) {
     component.state.comp.endDrag(props, monitor, component);
   },
-    // canDrag(props, monitor){
+  // canDrag(props, monitor){
 
-    // },
-    // isDragging(props, monitor){
+  // },
+  // isDragging(props, monitor){
 
-    // }
+  // }
 };
 
 function collect(connect, monitor) {

@@ -13,8 +13,8 @@ export default class BoxA extends SourceWrapper {
   constructor(props) {
     super(props);
   }
-  componentDidMount(){
-      this.props.register(this);
+  componentDidMount() {
+    this.props.register(this);
   }
 
   beginDrag = (props, monitor, component) => {

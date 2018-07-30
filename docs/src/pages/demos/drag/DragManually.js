@@ -57,7 +57,7 @@ class DragToolBox extends Component {
         </div>
 
         <ManualDragTarget>
-          <TargetBox acceptItem={['BoxB','BoxC']} snapToGrid={snapToGridAfterDrop} />
+          <TargetBox acceptItem={['BoxB', 'BoxC']} snapToGrid={snapToGridAfterDrop} />
         </ManualDragTarget>
         <p>
           <label htmlFor="snapToGridAfterDrop">

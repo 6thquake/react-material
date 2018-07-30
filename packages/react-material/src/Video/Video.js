@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMuiTheme, withStyles } from '../styles';
+import {createMuiTheme, withStyles} from '../styles';
 import videojs from 'video.js';
 
 if (process.browser) {
@@ -19,13 +19,15 @@ const styles = theme => ({
 class Video extends React.Component {
   constructor(props) {
     super(props);
+    this.ended = this.ended.bind(this);
+    this.pause = this.pause.bind(this);
   }
 
   componentDidMount() {
     // instantiate Video.js
     this.player = videojs(
       this.videoNode,
-      { width: '100%', height: '100%', ...this.props },
+      {width: '100%', height: '100%', ...this.props},
       this.props.onReady,
     );
   }
@@ -37,16 +39,31 @@ class Video extends React.Component {
     }
   }
 
+  ended() {
+    if (this.props.ended) {
+      this.props.ended();
+    }
+  }
+
+  play() {
+    this.videoNode.play();
+  }
+
+  pause() {
+    this.videoNode.pause();
+  }
+
   // wrap the player in a div with a `data-vjs-player` attribute
   // so videojs won't create additional wrapper in the DOM
   // see https://github.com/videojs/video.js/pull/3856
   render() {
-    const { classes } = this.props;
+    const {classes} = this.props;
     return (
-      <div data-vjs-player style={{ width: '100%', height: '100%' }}>
+      <div data-vjs-player style={{width: '100%', height: '100%'}}>
         <video
           ref={node => (this.videoNode = node)}
           className="video-js vjs-default-skin vjs-big-play-centered"
+          onEnded={this.ended}
         >
           <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a web browser
@@ -121,6 +138,10 @@ Video.propTypes = {
   /**
    * An array of objects that mirror the native <video> element's capability to have a series of child <source> elements. This should be an array of objects with the src and type properties. the property of type has these options: ['video/mp4', 'video/webm', 'video/ogg'].
    */
+  ended: PropTypes.func,
+  /**
+   *When the video is played out, this function will be executed
+   */
   sources: PropTypes.arrayOf(
     PropTypes.shape({
       src: PropTypes.string,
@@ -137,6 +158,7 @@ Video.defaultProps = {
   preload: 'auto',
   fluid: false,
   inactivityTimeout: 0,
+  isplaying: false
 };
 
-export default withStyles(styles, { name: 'RMVideo' })(Video);
+export default withStyles(styles, {name: 'RMVideo'})(Video);

@@ -17,7 +17,17 @@ const styles = {
     overflow: 'hidden',
     transition: 'all .5s',
     WebkitTransition: 'all .5s',
+    width:'100%',
+    height:'100%'
   },
+  mask:{
+    position:'absolute',
+    width:'100%',
+    height:'100%',
+    top:'0',
+    left:'0',
+    background:'rgba(0,0,0,0)'
+  }
 };
 
 class Carousel extends React.Component {
@@ -38,6 +48,8 @@ class Carousel extends React.Component {
       width: 0,
       height: 0,
     };
+    this.isVedioPlaying= false;//有视频正在播放
+    this.justInit = true; //刚刚进来时候
   }
 
   componentDidMount() {
@@ -48,26 +60,40 @@ class Carousel extends React.Component {
       width: carouselEl.offsetWidth,
       height: carouselEl.offsetHeight,
     };
+    carouselWarpEl.style.transition = 'none';
+    carouselWarpEl.style.WebkitTransition = 'none';
 
     carouselWarpEl.style.minWidth = (this.count + 2) * width + 'px';
     carouselWarpEl.style.marginLeft = -1 * width + 'px';
-    if (!!this.props.speed) {
+    /*if (!!this.props.speed) {
       carouselWarpEl.style.transition = 'all ' + this.props.speed + 's';
       carouselWarpEl.style.WebkitTransition = 'all ' + this.props.speed + 's';
-    }
+    }*/
 
     if (!!this.props.autoplay) {
       this.start();
     }
   }
-
-  mouseOver = () => {
+  vedioLeadToClearIntervalFunc=()=>{
+    this.isVedioPlaying = true;
+    this.clearIntervalFunc();
+  }
+  vedioEndLeadToResumeIntervalFunc=()=>{
+    this.isVedioPlaying = false;
+    this.resumeIntervalFunc();
+  }
+  clearIntervalFunc = () => {
+    //console.log(12345)
     if (!!this.props.pause) {
       clearInterval(this.interval);
     }
   };
 
-  mouseOut = () => {
+  resumeIntervalFunc = () => {
+    if(!!this.isVedioPlaying){
+      return;
+
+    }
     if (!this.props.autoplay) {
       return;
     }
@@ -79,12 +105,18 @@ class Carousel extends React.Component {
 
   start = () => {
     clearInterval(this.interval);
-    this.next();
+    //this.next();
+    if(this.justInit){
+      this.initPic();
+    }
+    this.justInit=false;
     this.interval = setInterval(() => {
       this.next();
     }, this.props.delay * 1000);
   };
-
+  initPic =()=>{
+    this.setActive(this.activeIndex, false);
+  };
   next = () => {
     const len = this.count,
       activeIndex = this.activeIndex,
@@ -112,6 +144,7 @@ class Carousel extends React.Component {
   };
 
   setActive = (index, withAnimation) => {
+
     let carouselEl = ReactDOM.findDOMNode(this.carouselRef.current),
       carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current),
       width = carouselEl.offsetWidth;
@@ -129,7 +162,10 @@ class Carousel extends React.Component {
       temp: new Date().getTime(),
     });
   };
-
+  chengeActivedByDot=(index, withAnimation)=>{
+    this.isVedioPlaying = false;
+    this.setActive(index, withAnimation);
+  };
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -138,30 +174,34 @@ class Carousel extends React.Component {
     const { items, speed, delay, pause, autoplay, dots, arrows, classes } = this.props;
     const self = this;
     const _items = items.map((_, index) => {
-      return <CarouselItem data={_} size={self.mainSize} key={'item' + index} index={index} />;
+      return <CarouselItem isCurrent={index===self.activeIndex} onCleanInterval={this.vedioLeadToClearIntervalFunc} onResumeInterval={this.vedioEndLeadToResumeIntervalFunc}  data={_} size={self.mainSize} key={'item' + index} index={index} />;
     });
+    //console.log('render 123456');
 
     return (
       <div
         ref={this.carouselRef}
-        onMouseOver={this.mouseOver}
-        onMouseOut={this.mouseOut}
         className={classes.root}
       >
+      <div onMouseOver={this.clearIntervalFunc} onMouseOut={this.resumeIntervalFunc}>
+        
         <div ref={this.carouselWarpRef} className={classes.scrollwrap}>
           {<CarouselItem data={items[items.length - 1]} size={self.mainSize} index={-1} />}
           {_items}
           {<CarouselItem data={items[0]} size={self.mainSize} index={items.length} />}
         </div>
-        {!!arrows ? <CarouselArrow next={this.next} pre={this.previous} /> : null}
+        {/*<div className={classes.mask} ></div>*/}
+        {!!arrows ? <CarouselArrow next={()=>{this.isVedioPlaying=false; this.next()}} pre={()=>{this.isVedioPlaying=false; this.previous()}} /> : null}
         {!!dots ? (
           <CarouselDots
             count={items.length}
             speed={speed}
             activeIndex={this.activeIndex}
-            onChange={this.setActive.bind(this)}
+            onChange={this.chengeActivedByDot.bind(this)}
           />
         ) : null}
+        
+      </div>
       </div>
     );
   }
@@ -191,11 +231,11 @@ Carousel.propTypes = {
   /**
    *speed of pictrue slide，unit second
    */
-  speed: PropTypes.float,
+  speed: PropTypes.number,
   /**
    *delay of pictrue slide，unit second
    */
-  delay: PropTypes.float,
+  delay: PropTypes.number,
   /**
    *pause when mouseover
    */

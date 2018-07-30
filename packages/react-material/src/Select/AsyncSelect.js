@@ -18,104 +18,6 @@ const styles = theme => ({
 });
 
 class AsyncSelect extends Component {
-  static propTypes = {
-    /**
-     * callback to parent component when select open
-     */
-    onOpen: PropTypes.func.isRequired,
-    /**
-     * callback to parent component when select option
-     */
-    onChange: PropTypes.func.isRequired,
-    /**
-     * select value,
-     */
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.object,
-      PropTypes.arrayOf(
-        PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
-      ),
-    ]),
-    /**
-     * select option,
-     */
-    options: PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
-    ),
-    /**
-     * pagination component config
-     */
-    paginationProps: PropTypes.object,
-    /**
-     * placeholder of filter box
-     */
-    placeholder: PropTypes.string,
-    /**
-     * decided multiple select
-     */
-    multiple: PropTypes.bool,
-    /**
-     * callback to parent component when current page change
-     */
-    onChangePage: PropTypes.func,
-    /**
-     * callback to parent component when  filter change
-     */
-    onChangeFilter: PropTypes.func,
-    /**
-     * decided select is disabled
-     */
-    disabled: PropTypes.bool,
-    /**
-     * decided select is readonly
-     */
-    readonly: PropTypes.bool,
-    /**
-     * filter function
-     */
-    filter: PropTypes.fun,
-    /**
-     * option item label and value,when assignment option by options
-     */
-    mapper: PropTypes.shape({
-      label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    }),
-    /**
-     * compare the  value of selected with option value,return Boolen,
-     */
-    comparison: PropTypes.func,
-    /**
-     * Render the selected value,Signature:
-     * `function(value: any) => ReactElement`
-     * value: The value provided to the component..
-     */
-    renderValue: PropTypes.func,
-    /**
-     * If true,aysncselect will add debounce when filter options by filter value.
-     */
-    debounceAble: PropTypes.bool,
-    /**
-     * If debounceAble true,config debounce wait and max continue time,the unit is milliseconds.
-     */
-    debounceProps: PropTypes.shape({
-      wait: PropTypes.number,
-      maxTime: PropTypes.number,
-    }),
-  };
-  static defaultProps = {
-    paginationProps: { page: 0, rowsPerPage: 5, count: 0 },
-    mapper: { label: 'label', value: 'value' },
-    comparison: (select, option) => {
-      return select === option;
-    },
-    debounceProps: {
-      wait: 500,
-      maxTime: 800,
-    },
-  };
   constructor(props) {
     super(props);
     this.throttlingtem = throttling(
@@ -223,4 +125,100 @@ class AsyncSelect extends Component {
     );
   }
 }
+AsyncSelect.propTypes = {
+  /**
+   * callback to parent component when select open
+   */
+  onOpen: PropTypes.func.isRequired,
+  /**
+   * callback to parent component when select option
+   */
+  onChange: PropTypes.func.isRequired,
+  /**
+   * select value,
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number])),
+  ]),
+  /**
+   * select option,
+   */
+  options: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
+  ),
+  /**
+   * pagination component config
+   */
+  paginationProps: PropTypes.object,
+  /**
+   * placeholder of filter box
+   */
+  placeholder: PropTypes.string,
+  /**
+   * decided multiple select
+   */
+  multiple: PropTypes.bool,
+  /**
+   * callback to parent component when current page change
+   */
+  onChangePage: PropTypes.func,
+  /**
+   * callback to parent component when  filter change
+   */
+  onChangeFilter: PropTypes.func,
+  /**
+   * decided select is disabled
+   */
+  disabled: PropTypes.bool,
+  /**
+   * decided select is readonly
+   */
+  readonly: PropTypes.bool,
+  /**
+   * filter function
+   */
+  filter: PropTypes.fun,
+  /**
+   * option item label and value,when assignment option by options
+   */
+  mapper: PropTypes.shape({
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  }),
+  /**
+   * compare the  value of selected with option value,return Boolen,
+   */
+  comparison: PropTypes.func,
+  /**
+   * Render the selected value,Signature:
+   * `function(value: any) => ReactElement`
+   * value: The value provided to the component..
+   */
+  renderValue: PropTypes.func,
+  /**
+   * If true,aysncselect will add debounce when filter options by filter value.
+   */
+  debounceAble: PropTypes.bool,
+  /**
+   * If debounceAble true,config debounce wait and max continue time,the unit is milliseconds.
+   */
+  debounceProps: PropTypes.shape({
+    wait: PropTypes.number,
+    maxTime: PropTypes.number,
+  }),
+};
+AsyncSelect.defaultProps = {
+  paginationProps: { page: 0, rowsPerPage: 5, count: 0 },
+  mapper: { label: 'label', value: 'value' },
+  comparison: (select, option) => {
+    return select === option;
+  },
+  debounceProps: {
+    wait: 500,
+    maxTime: 800,
+  },
+};
 export default withStyles(styles, { name: 'RMAsyncSelect' })(AsyncSelect);

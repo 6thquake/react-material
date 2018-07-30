@@ -10,30 +10,6 @@ const styles = theme => ({
   },
 });
 class Message extends Component {
-  static propTypes = {
-    /**
-     * This is usually about message open or close
-     */
-    open: PropTypes.bool.isRequired,
-    /**
-     * This is usually an animation of open or close the message,include slide、collapse、fade、grow、zoom
-     */
-    animation: PropTypes.string,
-    /**
-     * This is usually about message action
-     */
-    action: PropTypes.element,
-    /**
-     * The anchor of the Message.
-     */
-    anchorOrigin: PropTypes.object,
-  };
-  static defaultProps = {
-    open: false,
-    animation: 'fade',
-    action: null,
-    anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
-  };
   _transition = props => {
     switch (this.props.animation) {
       case 'fade':
@@ -70,4 +46,28 @@ class Message extends Component {
     );
   }
 }
+Message.propTypes = {
+  /**
+   * This is usually about message open or close
+   */
+  open: PropTypes.bool.isRequired,
+  /**
+   * This is usually an animation of open or close the message,include slide、collapse、fade、grow、zoom
+   */
+  animation: PropTypes.string,
+  /**
+   * This is usually about message action
+   */
+  action: PropTypes.element,
+  /**
+   * The anchor of the Message.
+   */
+  anchorOrigin: PropTypes.object,
+};
+Message.defaultProps = {
+  open: false,
+  animation: 'fade',
+  action: null,
+  anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
+};
 export default withStyles(styles, { name: 'RMMessage' })(Message);

@@ -1,6 +1,5 @@
 import React from 'react';
 import Bubble from 'react-material/Bubble';
-import { trans } from 'react-material/Bubble';
 import Button from 'react-material/Button';
 import FormControl from 'react-material/FormControl';
 import FormLabel from 'react-material/FormLabel';

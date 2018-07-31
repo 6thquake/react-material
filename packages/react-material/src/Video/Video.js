@@ -41,8 +41,8 @@ class Video extends React.Component {
   }
 
   ended() {
-    if (this.props.ended) {
-      this.props.ended();
+    if (this.props.onEnded) {
+      this.props.onEnded();
     }
   }
 
@@ -137,11 +137,11 @@ Video.propTypes = {
    */
   onReady: PropTypes.func,
   /**
-   * An array of objects that mirror the native <video> element's capability to have a series of child <source> elements. This should be an array of objects with the src and type properties. the property of type has these options: ['video/mp4', 'video/webm', 'video/ogg'].
+   * When the video is played over, this function will be executed
    */
-  ended: PropTypes.func,
+  onEnded: PropTypes.func,
   /**
-   *When the video is played out, this function will be executed
+   * An array of objects that mirror the native <video> element's capability to have a series of child <source> elements. This should be an array of objects with the src and type properties. the property of type has these options: ['video/mp4', 'video/webm', 'video/ogg'].
    */
   sources: PropTypes.arrayOf(
     PropTypes.shape({
@@ -159,6 +159,5 @@ Video.defaultProps = {
   preload: 'auto',
   fluid: false,
   inactivityTimeout: 0,
-  isplaying: false,
 };
 export default withStyles(styles, { name: 'RMVideo' })(Video);

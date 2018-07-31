@@ -14,7 +14,6 @@ filename: /packages/react-material/src/Bubble/Bubble.js
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">direction *</span> | <span class="prop-type">string |  |  |
 | <span class="prop-name required">floated *</span> | <span class="prop-type">bool |  |  |
-| <span class="prop-name required">content *</span> | <span class="prop-type">string |  |  |
 | <span class="prop-name">triSize</span> | <span class="prop-type">number |  |  |
 | <span class="prop-name">bgColor</span> | <span class="prop-type">string |  |  |
 

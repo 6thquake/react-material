@@ -26,6 +26,7 @@ filename: /packages/react-material/src/Pagination/Pagination.js
 | <span class="prop-name">showSizeChanger</span> | <span class="prop-type">bool |  | show page size option. |
 | <span class="prop-name">showQuickJumper</span> | <span class="prop-type">bool |  | show quick jumper ,jump to xx page. |
 | <span class="prop-name">showTwoEnds</span> | <span class="prop-type">bool |  | show jump to first and last page button. |
+| <span class="prop-name">noIcon</span> | <span class="prop-type">bool |  | Use text alternative icon for next page、pre page、last page and first page |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

@@ -26,7 +26,7 @@ class App extends React.Component {
         <Video
           autoplay={true}
           sources={[{ src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4' }]}
-          ended={this.ended}
+          onEnded={this.ended}
           ref="videopause"
         />
       </div>

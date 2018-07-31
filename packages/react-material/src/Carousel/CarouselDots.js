@@ -9,7 +9,7 @@ const styles = {
     height: '0',
     textAlign: 'center',
     bottom: '2em',
-    zIndex:2
+    zIndex: 2,
   },
   dot: {
     display: 'inline-block',

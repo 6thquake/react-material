@@ -16,20 +16,22 @@ class App extends React.Component {
     super(props);
     this.IMAGE_DATA = [
       {
-        src:'/static/video/oceans.mp4',
-        isVideo:true
-      },{
+        src: '/static/video/oceans.mp4',
+        isVideo: true,
+      },
+      {
         src: '/static/images/grid-list/bike.jpg',
         alt: 'images-1',
-        url:'http://baidu.com'
+        url: 'http://baidu.com',
       },
       {
         src: '/static/images/grid-list/mushroom.jpg',
         alt: 'images-2',
-      },{
+      },
+      {
         src: '/static/images/grid-list/burgers.jpg',
         alt: 'images-3',
-        url:'http://douban.com'
+        url: 'http://douban.com',
       },
       {
         src: '/static/images/grid-list/morning.jpg',

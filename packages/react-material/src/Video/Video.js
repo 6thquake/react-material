@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {createMuiTheme, withStyles} from '../styles';
+import { createMuiTheme, withStyles } from '../styles';
 import videojs from 'video.js';
 
 if (process.browser) {
@@ -23,13 +23,12 @@ class Video extends React.Component {
     this.pause = this.pause.bind(this);
   }
 
-
   componentDidMount() {
     // instantiate Video.js
     this.props.onRef(this);
     this.player = videojs(
       this.videoNode,
-      {width: '100%', height: '100%', ...this.props},
+      { width: '100%', height: '100%', ...this.props },
       this.props.onReady,
     );
   }
@@ -59,9 +58,9 @@ class Video extends React.Component {
   // so videojs won't create additional wrapper in the DOM
   // see https://github.com/videojs/video.js/pull/3856
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
-      <div data-vjs-player style={{width: '100%', height: '100%'}}>
+      <div data-vjs-player style={{ width: '100%', height: '100%' }}>
         <video
           ref={node => (this.videoNode = node)}
           className="video-js vjs-default-skin vjs-big-play-centered"
@@ -160,7 +159,6 @@ Video.defaultProps = {
   preload: 'auto',
   fluid: false,
   inactivityTimeout: 0,
-  isplaying: false
+  isplaying: false,
 };
-export default withStyles(styles, {name: 'RMVideo'})(Video);
-
+export default withStyles(styles, { name: 'RMVideo' })(Video);

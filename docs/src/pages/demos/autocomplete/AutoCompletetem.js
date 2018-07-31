@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import AutoComplete from '@6thquake/react-material/AutoComplete';
+import AsyncAutoComplete from '@6thquake/react-material/AutoComplete';
 import { withStyles } from '@6thquake/react-material/styles';
 import MenuItem from '@6thquake/react-material/MenuItem';
 import ListItemText from '@6thquake/react-material/ListItemText';
 import ListItemIcon from '@6thquake/react-material/ListItemIcon';
 import StarBorder from '@material-ui/icons/StarBorder';
 import Typography from '@6thquake/react-material/Typography';
-import SyncAutoComplete from '@6thquake/react-material/AutoComplete';
 
 const styles = theme => ({
   root: {
@@ -90,7 +89,7 @@ class AutoCompleteTest extends Component {
     return (
       <div className={classes.root}>
         <Typography>multiple</Typography>
-        <AutoComplete
+        <AsyncAutoComplete
           placeholder={'new autoComplete'}
           multiple
           select
@@ -113,10 +112,10 @@ class AutoCompleteTest extends Component {
                 <ListItemText primary={item.label} />
               </MenuItem>
             ))}
-        </AutoComplete>
+        </AsyncAutoComplete>
         <br />
         <Typography>single</Typography>
-        <AutoComplete
+        <AsyncAutoComplete
           placeholder={'new autoComplete'}
           value={this.state.selectedsingled}
           PaginationProps={this.state.PaginationProps}
@@ -137,7 +136,7 @@ class AutoCompleteTest extends Component {
                 <ListItemText primary={item.label} />
               </MenuItem>
             ))}
-        </AutoComplete>
+        </AsyncAutoComplete>
       </div>
     );
   }

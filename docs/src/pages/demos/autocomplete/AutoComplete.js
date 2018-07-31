@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AutoComplete from '@6thquake/react-material/AutoComplete';
+import AsyncAutoComplete from '@6thquake/react-material/AutoComplete';
 import { withStyles } from '@6thquake/react-material/styles';
 import Typography from '@6thquake/react-material/Typography';
 import StarBorder from '@material-ui/icons/StarBorder';
@@ -90,7 +90,7 @@ class AutoCompleteTest extends Component {
     return (
       <div className={classes.root}>
         <Typography>datasource object array and multiple select</Typography>
-        <AutoComplete
+        <AsyncAutoComplete
           select
           debounceAble
           placeholder={'new autoComplete'}
@@ -115,7 +115,7 @@ class AutoCompleteTest extends Component {
         />
         <br />
         <Typography>datasource object array and single select</Typography>
-        <AutoComplete
+        <AsyncAutoComplete
           select
           placeholder={'new autoComplete'}
           options={this.state.options.slice(
@@ -134,7 +134,7 @@ class AutoCompleteTest extends Component {
         />
         <br />
         <Typography>datasource simple array and single select</Typography>
-        <AutoComplete
+        <AsyncAutoComplete
           select
           placeholder={'new autoComplete'}
           options={color}
@@ -147,7 +147,7 @@ class AutoCompleteTest extends Component {
         />
         <br />
         <Typography>customer option via mapper</Typography>
-        <AutoComplete
+        <AsyncAutoComplete
           placeholder={'new autoComplete'}
           options={this.state.options.slice(
             count === 0 ? count : page * rowsPerPage,

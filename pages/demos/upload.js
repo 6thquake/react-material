@@ -8,11 +8,11 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/demos/upload/Upload.js': {
-          js: require('docs/src/pages/demos/upload/Upload').default,
+        'pages/demos/upload/UploadManual.js': {
+          js: require('docs/src/pages/demos/upload/UploadManual').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/upload/Upload'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/upload/UploadManual'), 'utf8')
 `,
         },
         'pages/demos/upload/UploadBasic.js': {

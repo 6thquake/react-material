@@ -1,10 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
 import { Upload } from '@6thquake/react-material/Upload';
-import { UploadBasic } from '@6thquake/react-material/Upload';
 import Button from '@6thquake/react-material/Button';
-class App extends React.Component {
+import FileUpload from '@material-ui/icons/CloudUpload';
+import classNames from 'classnames';
+const styles = theme => ({
+  rightIcon: {
+    marginLeft: theme.spacing.unit,
+  }
+})
+class UploadBasic extends React.Component {
   uploadFunc = data => {
     console.log(data);
   };
@@ -12,19 +17,22 @@ class App extends React.Component {
     console.log(fileToDelete);
   };
   render() {
+    const classes = this.props.classes;
     return (
-      <UploadBasic
-        acceptType={'image/*'}
-        actionFunc={this.uploadFunc}
+      <Upload
+        type='basic'
+        acceptType='image/*'
+        uploadFunc={this.uploadFunc}
         disabled={false}
         multiple={true}
         deleteFile={this.deleteFunc}
       >
         <Button variant="raised" component="span" color="default">
           上传文件
+          <FileUpload className={classes.rightIcon} />
         </Button>
-      </UploadBasic>
+      </Upload>
     );
   }
 }
-export default App;
+export default withStyles(styles)(UploadBasic);

@@ -12,9 +12,9 @@ import Paper from '@6thquake/react-material/Paper';
 import IconButton from '@6thquake/react-material/IconButton';
 
 import PropTypes from 'prop-types';
-import BoxA from './BoxA';
+import BoxA from './ManuallyDragSource';
 import BoxB from './BoxB';
-import TargetBox from './TargetBox';
+import TargetBox from './ManuallyDropTarget';
 
 // import Test from './test'
 const styles = theme => ({

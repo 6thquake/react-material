@@ -13,7 +13,7 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
-})
+});
 class UploadManual extends React.Component {
   actionFunc = data => {
     let _promise = new Promise(function(resolve, reject) {
@@ -35,8 +35,8 @@ class UploadManual extends React.Component {
     const classes = this.props.classes;
     return (
       <Upload
-        type='manual'
-        acceptType='image/*'
+        type="manual"
+        acceptType="image/*"
         actionFunc={this.actionFunc}
         multiple={true}
         disabled={false}
@@ -51,5 +51,3 @@ class UploadManual extends React.Component {
   }
 }
 export default withStyles(styles)(UploadManual);
-
-

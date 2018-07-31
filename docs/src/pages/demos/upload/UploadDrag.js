@@ -11,8 +11,8 @@ class UploadDrag extends React.Component {
   render() {
     return (
       <Upload
-        type='drag'
-        acceptType='*'
+        type="drag"
+        acceptType="*"
         uploadFunc={this.uploadFunc}
         disabled={false}
         multiple={true}

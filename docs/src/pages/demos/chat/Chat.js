@@ -2,7 +2,6 @@ import React from 'react';
 import Avatar from '@6thquake/react-material/Avatar';
 import Chat, { renderStyle } from '@6thquake/react-material/Chat';
 import { withStyles } from '@6thquake/react-material/styles';
-
 /*
  * Left & Right sided rectangle styles that can be customized.
 */

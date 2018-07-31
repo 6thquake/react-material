@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from './upload-basic.md';
+import markdown from './menu-bar-item.md';
 
 function Page() {
   return <MarkdownDocs markdown={markdown} />;

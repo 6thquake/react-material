@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Switch from '@6thquake/react-material/Switch';
 import { withStyles } from '@6thquake/react-material/styles';
-import NavBar from '@6thquake/react-material/NavBar';
+import MenuBar from '@6thquake/react-material/MenuBar';
 import FormControlLabel from '@6thquake/react-material/FormControlLabel';
 import FormGroup from '@6thquake/react-material/FormGroup';
 import data from './data';
@@ -13,7 +13,7 @@ const styles = theme => ({
   },
 });
 
-class MenuBar extends React.Component {
+class MenuBarDemo extends React.Component {
   state = {
     theme: 'dark',
   };
@@ -39,7 +39,7 @@ class MenuBar extends React.Component {
             label={theme === 'dark' ? 'Dark' : 'Light'}
           />
         </FormGroup>
-        <NavBar
+        <MenuBar
           list={data}
           itemKeysMap={{
             name: 'component',
@@ -47,8 +47,6 @@ class MenuBar extends React.Component {
             key: 'path',
           }}
           onClick={this.onClick}
-          mode="horizontal"
-          selectable={false}
           theme={theme}
         />
       </div>
@@ -56,8 +54,8 @@ class MenuBar extends React.Component {
   }
 }
 
-MenuBar.propTypes = {
+MenuBarDemo.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(MenuBar);
+export default withStyles(styles, { withTheme: true })(MenuBarDemo);

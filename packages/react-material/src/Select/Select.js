@@ -28,8 +28,8 @@ class Select extends Component {
         count: 0,
       },
       text: '',
+      optionsArray:[],
     };
-    this.state.optionsArray = this.props.showPagination ? [] : this.menuItems(this.state.text);
   }
   onChangePage(i) {
     this.setState(
@@ -90,16 +90,26 @@ class Select extends Component {
       return filterData;
     }
   }
-  componentDidMount() {
-    const { children, rowsPerPage } = this.props;
-    this.setState({
-      // optionsArray: children,
-      paginationProps: {
-        ...this.state.paginationProps,
-        rowsPerPage: rowsPerPage || 5,
-        count: children.length,
-      },
-    });
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps !== prevState.preProps) {
+      if( nextProps.showPagination){
+        return {
+          paginationProps: {
+            ...prevState.paginationProps,
+            rowsPerPage: nextProps.rowsPerPage,
+            count:nextProps. children.length,
+          },
+          preProps: nextProps,
+        };
+      }else {
+        return {
+          optionsArray:  nextProps.children,
+          preProps: nextProps,
+        };
+      }
+    }
+    return null;
   }
   render() {
     const {
@@ -312,6 +322,7 @@ Select.propTypes = {
 Select.defaultProps = {
   autoWidth: false,
   displayEmpty: false,
+  rowsPerPage:5,
   IconComponent: ArrowDropDownIcon,
   input: <Input />,
   multiple: false,

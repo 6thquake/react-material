@@ -99,7 +99,7 @@ class App extends Component {
           <InputLabel htmlFor="InputLabel111">multiple select of object array</InputLabel>
           <Select
             showFilter
-            showPination
+            showPagination
             value={value1}
             rowsPerPage={5}
             htmlFor={'InputLabel111'}
@@ -119,7 +119,7 @@ class App extends Component {
           <Select
             multiple
             showFilter
-            showPination
+            showPagination
             value={value2}
             rowsPerPage={5}
             htmlFor={'InputLabel1211'}

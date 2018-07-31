@@ -1,19 +1,6 @@
 import React, { Component } from 'react';
 import { DropTarget, DropTargetConnector, ConnectDropTarget, DropTargetMonitor } from 'react-dnd';
 
-const boxStyle = {
-  minHeight: '300px',
-  minWidth: '400px',
-  border: '1px dashed #BDBDBD',
-  backgroundColor: '#F5F5F5',
-  textAlign: 'center',
-  borderRadius: '5px',
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-  alignItems: 'center',
-  position: 'relative',
-};
 const activeStyle = {
   height: '30px',
   minWidth: '80px',
@@ -41,14 +28,14 @@ function collect(connect, monitor) {
 
 class TargetBox extends Component {
   render() {
-    const { canDrop, isOver, connectDropTarget } = this.props;
+    const { canDrop, isOver, connectDropTarget, beforeDragMention, onDragMention } = this.props;
     const isActive = canDrop && isOver;
 
     return connectDropTarget(
       <div>
-        <div style={activeStyle}>{isActive ? 'Release to drop' : 'Drag file here'}</div>
-        <div style={boxStyle}>{this.props.children}</div>
-      </div>,
+        <div style={activeStyle}> {isActive ? onDragMention : beforeDragMention} </div>
+        {this.props.children}
+      </div>
     );
   }
 }

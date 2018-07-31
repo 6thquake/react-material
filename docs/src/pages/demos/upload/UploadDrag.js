@@ -1,10 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@6thquake/react-material/styles';
-import { UploadDrag } from '@6thquake/react-material/Upload';
-import Button from '@6thquake/react-material/Button';
-
-class App extends React.Component {
+import { Upload } from '@6thquake/react-material/Upload';
+class UploadDrag extends React.Component {
   uploadFunc = data => {
     console.log(data);
   };
@@ -14,14 +10,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <UploadDrag
-        acceptType={'*'}
-        actionFunc={this.uploadFunc}
+      <Upload
+        type='drag'
+        acceptType='*'
+        uploadFunc={this.uploadFunc}
         disabled={false}
         multiple={true}
         deleteFile={this.deleteFunc}
+        beforeDragMention={'Drag file here'}
+        onDragMention={'Release to drop'}
       />
     );
   }
 }
-export default App;
+export default UploadDrag;

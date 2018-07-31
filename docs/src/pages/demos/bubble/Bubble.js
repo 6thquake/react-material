@@ -67,6 +67,8 @@ class App extends React.Component {
   render() {
     const { classes } = this.props;
 
+    /*props.parent  props.self并不是必须传入, 只有在bubble悬浮时需要*/
+    /*props.triSize  props.bgColor不是必须的，不传入会使用默认配置*/
     return (
       <div>
         <Grid container spacing={16}>
@@ -111,8 +113,8 @@ class App extends React.Component {
           <div style={{ display: this.state.display }}>
             <div id="self">
               <Bubble parent={ this.state.parent }
-                      ancestor={ this.state.ancestor }
                       self={ this.state.self }
+                      ancestor={ this.state.ancestor }
                       direction={ this.state.arrowOriginalDirection }
                       floated={ this.state.floatOriginal }
                       triSize="12"

@@ -41,35 +41,40 @@ class Bubble extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    let ancestor = nextProps.ancestor;
     let self = nextProps.self;
     let parent = nextProps.parent;
+
+    let ancestor = nextProps.ancestor;
     let floated = nextProps.floated;
     let direction = nextProps.direction;
     const transHeight = Number(parent.height) / 2 + parent.height;
+    const transDis = typeof nextProps.triSize === 'undefined' ? 22 : Number(nextProps.triSize) + 10;
+    const trHeight = Number(parent.height) / 2;
+    const lFXDis = typeof parent === 'undefined' ? 0 : parent.width + transDis;
+    const lFYDis = typeof parent === 'undefined' ? 0 : parent.height + trHeight;
 
     if (floated == 'false') {//typeof(ancestor) != 'string') {
-      if (typeof(ancestor) != 'string') {//floated == false) {
+      if (typeof ancestor != 'string') {//floated == false) {
         if (direction == 'left') {
-          if (self.getAttribute("style") != null) {
+          if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
           ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: row");
         }
         else if (direction == 'right') {
-          if (self.getAttribute("style") != null) {
+          if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
           ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: row-reverse");
         }
         else if (direction == 'top') {
-          if (self.getAttribute("style") != null) {
+          if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
           ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: column-reverse");
         }
         else if (direction == 'bottom') {
-          if (self.getAttribute("style") != null) {
+          if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
           ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: column");
@@ -77,17 +82,18 @@ class Bubble extends React.Component {
       }
     }
     else {
-      if (typeof(self) != 'string') {
+      if (typeof self != 'undefined' && typeof self != 'string') {
         if (direction == 'left') {
-          if (self.getAttribute("style") != null) {
+          if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
+          self.setAttribute("style", "transform: translate("+lFXDis+"px,"+(-lFYDis)+"px);");
           if (ancestor.getAttribute("style") != null) {
             ancestor.removeAttribute("style");
           }
         }
         else if (direction == 'right') {
-          if (self.getAttribute("style") != null) {
+          if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
           self.setAttribute("style", "transform: translate(-100%," + (-transHeight) + "px);");
@@ -96,7 +102,7 @@ class Bubble extends React.Component {
           }
         }
         else if (direction == 'top') {
-          if (self.getAttribute("style") != null) {
+          if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
           if (ancestor.getAttribute("style") != null) {
@@ -104,7 +110,7 @@ class Bubble extends React.Component {
           }
         }
         else if (direction == 'bottom') {
-          if (self.getAttribute("style") != null) {
+          if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
           if (ancestor.getAttribute("style") != null) {
@@ -118,7 +124,7 @@ class Bubble extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevStates) {
-    //top style
+    //top floated style
     if (document.getElementById("self") != null) {
       if (prevProps.direction == 'top' && prevProps.floated == 'true') {
         const dis = document.getElementById("self").getBoundingClientRect().height + prevProps.parent.height + (typeof prevProps.triSize === 'undefined' ? 22 : Number(prevProps.triSize) + 10);
@@ -132,12 +138,8 @@ class Bubble extends React.Component {
   }
 
   render() {
-    const { parent, direction, floated, triSize, bgColor, classes } = this.props;
-    const transHeight = Number(parent.height) / 2;
+    const { direction, floated, triSize, bgColor, classes } = this.props;
     const halfSize = typeof triSize === 'undefined' ? 6 : Number(triSize) / 2;
-    const transDis = typeof triSize === 'undefined' ? 22 : Number(triSize) + 10;
-    const lFXDis = parent.width + transDis;
-    const lFYDis = parent.height + transHeight;
     const recClassNames = classNames(classes.recStyle, classes.customization);
     const triClassNames = classNames(classes.triStyle);
     let triResult;
@@ -174,7 +176,7 @@ class Bubble extends React.Component {
         return (
           <div
             className={recClassNames}
-            style={{ backgroundColor: typeof bgColor === 'undefined' ? 'white' : bgColor, position: 'relative', transform: 'translate('+lFXDis+'px,'+(-lFYDis)+'px)' }}>
+            style={{ backgroundColor: typeof bgColor === 'undefined' ? 'white' : bgColor, position: 'relative' }}>
             {triResult}
             {this.props.children}
           </div>
@@ -422,7 +424,6 @@ class Bubble extends React.Component {
 Bubble.propTypes = {
   direction: PropTypes.string.isRequired,
   floated: PropTypes.bool.isRequired,
-  content: PropTypes.string.isRequired,
   triSize: PropTypes.number,
   bgColor: PropTypes.string,
 };

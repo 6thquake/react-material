@@ -7,8 +7,8 @@ import classNames from 'classnames';
 const styles = theme => ({
   rightIcon: {
     marginLeft: theme.spacing.unit,
-  }
-})
+  },
+});
 class UploadBasic extends React.Component {
   uploadFunc = data => {
     console.log(data);
@@ -20,8 +20,8 @@ class UploadBasic extends React.Component {
     const classes = this.props.classes;
     return (
       <Upload
-        type='basic'
-        acceptType='image/*'
+        type="basic"
+        acceptType="image/*"
         uploadFunc={this.uploadFunc}
         disabled={false}
         multiple={true}

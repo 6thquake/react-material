@@ -35,7 +35,7 @@ class TargetBox extends Component {
       <div>
         <div style={activeStyle}> {isActive ? onDragMention : beforeDragMention} </div>
         {this.props.children}
-      </div>
+      </div>,
     );
   }
 }

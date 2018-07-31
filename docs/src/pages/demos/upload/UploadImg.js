@@ -5,12 +5,17 @@ class App extends React.Component {
     console.log(data);
   };
   render() {
-  	return(
-  			<Upload type='img' uploadFunc={this.uploadFunc} disabled={false} uploadImgText={'upload'} multiple={false}/>
-  		) 
+    return (
+      <Upload
+        type="img"
+        uploadFunc={this.uploadFunc}
+        disabled={false}
+        uploadImgText={'upload'}
+        multiple={false}
+      />
+    );
   }
 }
 export default App;
-
 
 //<Upload type={'img'} uploadFunc={this.uploadFunc} disabled={false} uploadImgText={'upload'}/>

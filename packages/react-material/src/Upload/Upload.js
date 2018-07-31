@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
-import  { StatusButton } from '../Button';
+import { StatusButton } from '../Button';
 import classNames from 'classnames';
 import { withStyles } from '../styles';
 
@@ -26,7 +26,7 @@ const styles = theme => ({
     borderRadius: '5px',
   },
   chip: {
-    margin: theme.spacing.unit/2,
+    margin: theme.spacing.unit / 2,
   },
   wrap: {
     width: '160px',
@@ -121,19 +121,18 @@ class Upload extends Component {
 
   handleDelete = (e, item) => {
     const preview = [...this.state.preview];
-    const path = [...this.state.path]
+    const path = [...this.state.path];
     const data = [...this.state.data];
 
     //const indexToDelete = path.indexOf(item)
-    const indexToDelete = preview.indexOf(item)===-1 ? path.indexOf(item):preview.indexOf(item);
+    const indexToDelete = preview.indexOf(item) === -1 ? path.indexOf(item) : preview.indexOf(item);
     preview.splice(indexToDelete, 1);
     this.setState({ preview: preview });
 
     path.splice(indexToDelete, 1);
     this.setState({ path: path });
 
-
-    if(this.props.deleteFile){
+    if (this.props.deleteFile) {
       this.props.deleteFile(data[indexToDelete]);
     }
     data.splice(indexToDelete, 1);
@@ -171,19 +170,19 @@ class Upload extends Component {
   changePath = e => {
     for (let i = 0; i < e.target.files.length; i++) {
       const file = e.target.files[i];
-      this.pathHandler(file)
+      this.pathHandler(file);
     }
   };
   /*通过drag添加图片*/
-  handleFileDrop=(item, monitor)=>{
+  handleFileDrop = (item, monitor) => {
     if (monitor) {
       for (let i = 0; i < monitor.getItem().files.length; i++) {
         const file = monitor.getItem().files[i];
-        this.pathHandler(file)
+        this.pathHandler(file);
       }
     }
-  }
-  pathHandler(file){
+  };
+  pathHandler(file) {
     if (!file) {
       return;
     }
@@ -205,8 +204,7 @@ class Upload extends Component {
     }
   }
 
-  
-changeImgPath = e => {
+  changeImgPath = e => {
     const file = e.target.files[0];
     if (!file) {
       return;
@@ -218,7 +216,6 @@ changeImgPath = e => {
     }
   };
 
-
   upload = () => {
     const data = this.state.data;
     return this.props.actionFunc(data);
@@ -226,161 +223,185 @@ changeImgPath = e => {
   componentDidMount() {
     if (this.props.disabled) {
       this.selectInput.setAttribute('disabled', 'disabled');
-    } else if(this.props.multiple) {
-    this.selectInput.setAttribute('multiple', 'multiple');
+    } else if (this.props.multiple) {
+      this.selectInput.setAttribute('multiple', 'multiple');
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(((this.props.type==='basic')||(this.props.type==='drag'))&&(prevState.data != this.state.data)){
-        this.props.uploadFunc(this.state.data);
+    if (
+      (this.props.type === 'basic' || this.props.type === 'drag') &&
+      prevState.data != this.state.data
+    ) {
+      this.props.uploadFunc(this.state.data);
     }
-    if ((this.props.type==='img')&&(prevState.pathImg != this.state.pathImg)) {
+    if (this.props.type === 'img' && prevState.pathImg != this.state.pathImg) {
       this.props.uploadFunc(this.state.dataImg);
     }
   }
 
   render() {
-    const {classes,type} = this.props;
+    const { classes, type } = this.props;
     const { FILE } = NativeTypes;
-    let manual,basic,img,drag
-    if(type === 'manual'){
-    manual= <div>
-        <div className={classes.wrap}>
-          <input
-            accept={this.props.acceptType}
-            ref={input => (this.selectInput = input)}
-            className={classes.input}
-            id="raisedButtonFile"
-            onChange={this.changePath}
-            type="file"
-          />
-          <label for="raisedButtonFile">
-            {this.props.children[0]}
-          </label>
-        </div>
-        <Paper className={classes.paper}>
-          {this.state.path.map(item => {
-            let avatar = null;
-            return (
-              <Chip
-                key={item}
-                avatar={avatar}
-                label={item}
-                onDelete={e => this.handleDelete(e, item)}
-                className={classes.chip}
-              />
-            );
-          })}
-        </Paper>
-        <div className={classes.wrap}>
-          <StatusButton
+    let manual, basic, img, drag;
+    if (type === 'manual') {
+      manual = (
+        <div>
+          <div className={classes.wrap}>
+            <input
+              accept={this.props.acceptType}
+              ref={input => (this.selectInput = input)}
+              className={classes.input}
+              id="raisedButtonFile"
+              onChange={this.changePath}
+              type="file"
+            />
+            <label for="raisedButtonFile">{this.props.children[0]}</label>
+          </div>
+          <Paper className={classes.paper}>
+            {this.state.path.map(item => {
+              let avatar = null;
+              return (
+                <Chip
+                  key={item}
+                  avatar={avatar}
+                  label={item}
+                  onDelete={e => this.handleDelete(e, item)}
+                  className={classes.chip}
+                />
+              );
+            })}
+          </Paper>
+          <div className={classes.wrap}>
+            <StatusButton
               color="primary"
               variant="raised"
               className={classes.button}
               onHandler={this.upload}
             >
               {this.props.children[1]}
-          </StatusButton>
-        </div>
-      </div>
-      }
-      if(type === 'basic'){
-        basic = <div>
-        <div className={classes.choose}>
-          <input
-            accept={this.props.acceptType}
-            ref={input => (this.selectInput = input)}
-            className={classes.input}
-            id="raisedButtonFileBasic"
-            onChange={this.changePath}
-            type="file"
-          />
-          <label for="raisedButtonFileBasic">{this.props.children}</label>
-        </div>
-        <div className={classes.array}>
-          {this.state.path.map(item => {
-            let avatar = null;
-            return (
-              <Chip
-                key={item}
-                label={item}
-                onDelete={e => this.handleDelete(e, item)}
-                className={classes.chip}
-              />
-            );
-          })}
-        </div>
-      </div>
-      }
-      if(type === 'img'){
-        img = <div>
-            <input
-              accept="image/*"
-              id="raisedButtonFileImg"
-              ref={input => (this.selectInput = input)}
-              onChange={this.changeImgPath}
-              type="file"
-              className={classes.inputImg}
-            />
-            <label htmlFor="raisedButtonFileImg">
-              <div className={classes.clickToUpload}>
-                <div className={classes.add}>+</div>
-                <div className={classes.uploadText}>{this.props.uploadImgText}</div>
-                <div className={classes.media} style={{ backgroundImage: 'url(' + this.state.previewImg + ')' }} />
-              </div>
-            </label>
+            </StatusButton>
           </div>
-      }
-      if(type === 'drag'){
-        drag = <div>
-        <TargetBox accepts={[FILE]} onDrop={this.handleFileDrop} beforeDragMention={this.props.beforeDragMention} onDragMention={this.props.onDragMention}>
+        </div>
+      );
+    }
+    if (type === 'basic') {
+      basic = (
+        <div>
+          <div className={classes.choose}>
+            <input
+              accept={this.props.acceptType}
+              ref={input => (this.selectInput = input)}
+              className={classes.input}
+              id="raisedButtonFileBasic"
+              onChange={this.changePath}
+              type="file"
+            />
+            <label for="raisedButtonFileBasic">{this.props.children}</label>
+          </div>
+          <div className={classes.array}>
+            {this.state.path.map(item => {
+              let avatar = null;
+              return (
+                <Chip
+                  key={item}
+                  label={item}
+                  onDelete={e => this.handleDelete(e, item)}
+                  className={classes.chip}
+                />
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+    if (type === 'img') {
+      img = (
+        <div>
           <input
-            accept={this.props.acceptType}
+            accept="image/*"
+            id="raisedButtonFileImg"
             ref={input => (this.selectInput = input)}
-            className={classes.input}
-            id="raisedButtonFileDrag"
-            onChange={this.changePath}
+            onChange={this.changeImgPath}
             type="file"
+            className={classes.inputImg}
           />
-          <label for="raisedButtonFileDrag">
-            <div className={classes.dragToUpload}>
-              <div className={classes.array}>
-                {this.state.preview.map(item => {
-                  {
-                    /*如果是图片就预览，否则显示文件名*/
-                  }
-                  let preview =
-                    /blob/.test(item) === true ? (
-                      <div
-                        className={classes.mediaDrag}
-                        style={{ backgroundImage: 'url(' + item + ')' }}
-                      />
-                    ) : (
-                      item
-                    );
-                  return (
-                    <Chip
-                      key={item}
-                      label={preview}
-                      onDelete={e => this.handleDelete(e, item)}
-                      className={classes.chipDrag}
-                      deleteIcon={<CancelIcon className={classes.icon} />}
-                    />
-                  );
-                })}
-              </div>
+          <label htmlFor="raisedButtonFileImg">
+            <div className={classes.clickToUpload}>
+              <div className={classes.add}>+</div>
+              <div className={classes.uploadText}>{this.props.uploadImgText}</div>
+              <div
+                className={classes.media}
+                style={{ backgroundImage: 'url(' + this.state.previewImg + ')' }}
+              />
             </div>
           </label>
-        </TargetBox>
-      </div>
-      }
-    return (
-     type === 'manual'? manual : type === 'basic'? basic : type === 'img'? img : type === 'drag'? drag: <div>type is not correct</div>
+        </div>
+      );
+    }
+    if (type === 'drag') {
+      drag = (
+        <div>
+          <TargetBox
+            accepts={[FILE]}
+            onDrop={this.handleFileDrop}
+            beforeDragMention={this.props.beforeDragMention}
+            onDragMention={this.props.onDragMention}
+          >
+            <input
+              accept={this.props.acceptType}
+              ref={input => (this.selectInput = input)}
+              className={classes.input}
+              id="raisedButtonFileDrag"
+              onChange={this.changePath}
+              type="file"
+            />
+            <label for="raisedButtonFileDrag">
+              <div className={classes.dragToUpload}>
+                <div className={classes.array}>
+                  {this.state.preview.map(item => {
+                    {
+                      /*如果是图片就预览，否则显示文件名*/
+                    }
+                    let preview =
+                      /blob/.test(item) === true ? (
+                        <div
+                          className={classes.mediaDrag}
+                          style={{ backgroundImage: 'url(' + item + ')' }}
+                        />
+                      ) : (
+                        item
+                      );
+                    return (
+                      <Chip
+                        key={item}
+                        label={preview}
+                        onDelete={e => this.handleDelete(e, item)}
+                        className={classes.chipDrag}
+                        deleteIcon={<CancelIcon className={classes.icon} />}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            </label>
+          </TargetBox>
+        </div>
+      );
+    }
+    return type === 'manual' ? (
+      manual
+    ) : type === 'basic' ? (
+      basic
+    ) : type === 'img' ? (
+      img
+    ) : type === 'drag' ? (
+      drag
+    ) : (
+      <div>type is not correct</div>
     );
   }
 }
-
 
 export default withStyles(styles, { name: 'RMUpload' })(DragDropContext(HTML5Backend)(Upload));
 
@@ -397,7 +418,7 @@ Upload.propTypes = {
    * 点击status button 触发的函数，返回一个promise实例
    */
   actionFunc: PropTypes.func,
-   /**
+  /**
    * 点击上传触发的函数
    */
   uploadFunc: PropTypes.func,
@@ -428,5 +449,5 @@ Upload.defaultProps = {
   multiple: true,
   disabled: false,
   beforeDragMention: '',
-  onDragMention:'',
+  onDragMention: '',
 };

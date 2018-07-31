@@ -1,5 +1,5 @@
 ---
-components: MenuBar
+components: MenuBar, SubMenuBar, MenuBarItem, MenuBarItemGroup
 ---
 # MenuBar
 菜单

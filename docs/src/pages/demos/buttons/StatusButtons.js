@@ -4,7 +4,8 @@ import { withStyles } from '@6thquake/react-material/styles';
 import Button, { StatusButton } from '@6thquake/react-material/Button';
 import AddIcon from '@material-ui/icons/Add';
 
-function handle() {
+function handle(e) {
+  console.log(e);
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
       Math.random() > 0.5 ? reject('err') : resolve('ok');
@@ -19,8 +20,8 @@ const styles = theme => ({
     margin: theme.spacing.unit,
   },
 });
-function onClick() {
-  console.log(this, arguments);
+function onClick(e) {
+  console.log(this, e);
 }
 function StatusButtons(props) {
   const { classes } = props;

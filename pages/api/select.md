@@ -29,13 +29,30 @@ filename: /packages/react-material/src/Select/Select.js
 | <span class="prop-name">renderValue</span> | <span class="prop-type">func |  | Render the selected value. You can only use it when the `native` property is `false` (default).<br><br>**Signature:**<br>`function(value: any) => ReactElement`<br>*value:* The `value` provided to the component. |
 | <span class="prop-name">SelectDisplayProps</span> | <span class="prop-type">object |  | Properties applied to the clickable div element. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;arrayOf<br> |  | The input value. This property is required when the `native` property is `false` (default). |
-| <span class="prop-name">rowsPerPage</span> | <span class="prop-type">PropTypes.num |  | page size |
-| <span class="prop-name">placeholder</span> | <span class="prop-type">string | <span class="prop-default">'please input something'</span> | placeholder |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool |  | decided select is disabled |
-| <span class="prop-name">showFilter</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If true ,show the filter box |
-| <span class="prop-name">showPagination</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If true ,show the pagination box |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
+
+## CSS API
+
+You can override all the class names injected by React-Material thanks to the `classes` property.
+This property accepts the following keys:
+- `root`
+- `select`
+- `selectMenu`
+- `disabled`
+- `icon`
+
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/6thquake/react-material/tree/develop/packages/react-material/src/Select/Select.js)
+for more detail.
+
+If using the `overrides` key of the theme as documented
+[here](/customization/themes#customizing-all-instances-of-a-component-type),
+you need to use the following style sheet name: `MuiSelect`.
+
+## Inheritance
+
+The properties of the [Input](/api/input) component are also available.
 
 ## Demos
 

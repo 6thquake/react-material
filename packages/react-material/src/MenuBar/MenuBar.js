@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider } from 'rc-menu';
-import SubNavBar from './SubNavBar';
-import NavItem from './NavItem';
-import OriginNavBar from './OriginNavBar';
-import EasyNavBar from './EasyNavBar';
-import ItemGroup from './NavItemGroup';
+import SubMenuBar from './SubMenuBar';
+import MenuBarItem from './MenuBarItem';
+import OriginMenuBar from './OriginMenuBar';
+import EasyMenuBar from './EasyMenuBar';
+import ItemGroup from './MenuBarItemGroup';
+
 class NavBar extends React.Component {
   render() {
     const { list } = this.props;
     if (list && list.length != 0) {
-      return <EasyNavBar {...this.props} />;
+      return <EasyMenuBar {...this.props} />;
     } else {
-      return <OriginNavBar {...this.props} />;
+      return <OriginMenuBar {...this.props} />;
     }
   }
 }
@@ -55,14 +56,6 @@ NavBar.propTypes = {
    */
   list: PropTypes.array,
   /**
-   * 菜单类型，现在支持垂直、水平、和内嵌模式三种
-   */
-  mode: PropTypes.oneOf(['vertical', 'horizontal', 'inline']),
-  /**
-   * 是否允许多选
-   */
-  multiple: PropTypes.bool,
-  /**
    * 点击 MenuItem 调用此函数 ，参数 ({item, key, keyPath})
    */
   onClick: PropTypes.func,
@@ -87,10 +80,6 @@ NavBar.propTypes = {
    */
   prefixCls: PropTypes.string,
   /**
-   * 是否允许选中
-   */
-  selectable: PropTypes.bool,
-  /**
    * 当前选中的菜单项 key 数组
    */
   selectedKeys: PropTypes.arrayOf(PropTypes.string),
@@ -100,9 +89,9 @@ NavBar.propTypes = {
   theme: PropTypes.oneOf(['light', 'dark']),
 };
 NavBar.Divider = Divider;
-NavBar.Item = NavItem;
-NavBar.SubNavBar = SubNavBar;
+NavBar.Item = MenuBarItem;
+NavBar.SubMenuBar = SubMenuBar;
 NavBar.ItemGroup = ItemGroup;
 
-export { SubNavBar, NavItem, ItemGroup };
+export { SubMenuBar, MenuBarItem, ItemGroup };
 export default NavBar;

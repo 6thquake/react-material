@@ -192,14 +192,14 @@ class RMButton extends Component {
     return <CircularProgress className={classesPro} size={size} />;
   }
 
-  onHandler = () => {
+  onHandler = (...args) => {
     const { onClick } = this.props;
     let result;
     if (this.status.status === 'progress') {
       return void 0;
     }
     if (typeof onClick === 'function') {
-      result = onClick.apply(this);
+      result = onClick.apply(this, args);
     }
     if (result) {
       if (result instanceof Promise || typeof result.then === 'function') {

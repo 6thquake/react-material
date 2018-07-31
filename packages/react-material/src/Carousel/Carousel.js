@@ -17,17 +17,17 @@ const styles = {
     overflow: 'hidden',
     transition: 'all .5s',
     WebkitTransition: 'all .5s',
-    width:'100%',
-    height:'100%'
+    width: '100%',
+    height: '100%',
   },
-  mask:{
-    position:'absolute',
-    width:'100%',
-    height:'100%',
-    top:'0',
-    left:'0',
-    background:'rgba(0,0,0,0)'
-  }
+  mask: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: '0',
+    left: '0',
+    background: 'rgba(0,0,0,0)',
+  },
 };
 
 class Carousel extends React.Component {
@@ -48,7 +48,7 @@ class Carousel extends React.Component {
       width: 0,
       height: 0,
     };
-    this.isVedioPlaying= false;//有视频正在播放
+    this.isVedioPlaying = false; //有视频正在播放
     this.justInit = true; //刚刚进来时候
   }
 
@@ -74,14 +74,14 @@ class Carousel extends React.Component {
       this.start();
     }
   }
-  vedioLeadToClearIntervalFunc=()=>{
+  vedioLeadToClearIntervalFunc = () => {
     this.isVedioPlaying = true;
     this.clearIntervalFunc();
-  }
-  vedioEndLeadToResumeIntervalFunc=()=>{
+  };
+  vedioEndLeadToResumeIntervalFunc = () => {
     this.isVedioPlaying = false;
     this.resumeIntervalFunc();
-  }
+  };
   clearIntervalFunc = () => {
     //console.log(12345)
     if (!!this.props.pause) {
@@ -90,9 +90,8 @@ class Carousel extends React.Component {
   };
 
   resumeIntervalFunc = () => {
-    if(!!this.isVedioPlaying){
+    if (!!this.isVedioPlaying) {
       return;
-
     }
     if (!this.props.autoplay) {
       return;
@@ -106,15 +105,15 @@ class Carousel extends React.Component {
   start = () => {
     clearInterval(this.interval);
     //this.next();
-    if(this.justInit){
+    if (this.justInit) {
       this.initPic();
     }
-    this.justInit=false;
+    this.justInit = false;
     this.interval = setInterval(() => {
       this.next();
     }, this.props.delay * 1000);
   };
-  initPic =()=>{
+  initPic = () => {
     this.setActive(this.activeIndex, false);
   };
   next = () => {
@@ -144,7 +143,6 @@ class Carousel extends React.Component {
   };
 
   setActive = (index, withAnimation) => {
-
     let carouselEl = ReactDOM.findDOMNode(this.carouselRef.current),
       carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current),
       width = carouselEl.offsetWidth;
@@ -162,7 +160,7 @@ class Carousel extends React.Component {
       temp: new Date().getTime(),
     });
   };
-  chengeActivedByDot=(index, withAnimation)=>{
+  chengeActivedByDot = (index, withAnimation) => {
     this.isVedioPlaying = false;
     this.setActive(index, withAnimation);
   };
@@ -174,34 +172,50 @@ class Carousel extends React.Component {
     const { items, speed, delay, pause, autoplay, dots, arrows, classes } = this.props;
     const self = this;
     const _items = items.map((_, index) => {
-      return <CarouselItem isCurrent={index===self.activeIndex} onCleanInterval={this.vedioLeadToClearIntervalFunc} onResumeInterval={this.vedioEndLeadToResumeIntervalFunc}  data={_} size={self.mainSize} key={'item' + index} index={index} />;
+      return (
+        <CarouselItem
+          isCurrent={index === self.activeIndex}
+          onCleanInterval={this.vedioLeadToClearIntervalFunc}
+          onResumeInterval={this.vedioEndLeadToResumeIntervalFunc}
+          data={_}
+          size={self.mainSize}
+          key={'item' + index}
+          index={index}
+        />
+      );
     });
     //console.log('render 123456');
 
     return (
-      <div
-        ref={this.carouselRef}
-        className={classes.root}
-      >
-      <div onMouseOver={this.clearIntervalFunc} onMouseOut={this.resumeIntervalFunc}>
-        
-        <div ref={this.carouselWarpRef} className={classes.scrollwrap}>
-          {<CarouselItem data={items[items.length - 1]} size={self.mainSize} index={-1} />}
-          {_items}
-          {<CarouselItem data={items[0]} size={self.mainSize} index={items.length} />}
+      <div ref={this.carouselRef} className={classes.root}>
+        <div onMouseOver={this.clearIntervalFunc} onMouseOut={this.resumeIntervalFunc}>
+          <div ref={this.carouselWarpRef} className={classes.scrollwrap}>
+            {<CarouselItem data={items[items.length - 1]} size={self.mainSize} index={-1} />}
+            {_items}
+            {<CarouselItem data={items[0]} size={self.mainSize} index={items.length} />}
+          </div>
+          {/*<div className={classes.mask} ></div>*/}
+          {!!arrows ? (
+            <CarouselArrow
+              next={() => {
+                this.isVedioPlaying = false;
+                this.next();
+              }}
+              pre={() => {
+                this.isVedioPlaying = false;
+                this.previous();
+              }}
+            />
+          ) : null}
+          {!!dots ? (
+            <CarouselDots
+              count={items.length}
+              speed={speed}
+              activeIndex={this.activeIndex}
+              onChange={this.chengeActivedByDot.bind(this)}
+            />
+          ) : null}
         </div>
-        {/*<div className={classes.mask} ></div>*/}
-        {!!arrows ? <CarouselArrow next={()=>{this.isVedioPlaying=false; this.next()}} pre={()=>{this.isVedioPlaying=false; this.previous()}} /> : null}
-        {!!dots ? (
-          <CarouselDots
-            count={items.length}
-            speed={speed}
-            activeIndex={this.activeIndex}
-            onChange={this.chengeActivedByDot.bind(this)}
-          />
-        ) : null}
-        
-      </div>
       </div>
     );
   }

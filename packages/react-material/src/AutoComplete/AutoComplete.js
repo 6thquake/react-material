@@ -1,374 +1,143 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import AsyncAutoComplete from './AsyncAutoComplete';
 import { withStyles } from '../styles';
-import TextField from '../TextField';
-import Paper from '../Paper';
-import Chip from '../Chip';
-import Pagination from '../Pagination/Pagination';
-import Divider from '../Divider';
-import MenuItem from '../MenuItem';
-import throttling from '../utils/throttling';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-  container: {
-    flexGrow: 1,
-    position: 'relative',
-  },
-  textarea: {
-    width: '100%',
-  },
-  modal: {
-    position: 'fixed',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    overflow: 'hidden',
-    outline: 0,
-    backgroundColor: 'rgb(0, 0, 0)',
-    opacity: 0,
-    zIndex: 1,
-  },
-  paper: {
-    position: 'absolute',
-    zIndex: 200,
-    marginTop: theme.spacing.unit,
-    left: 0,
-    right: 0,
-    padding: '10px',
-  },
-  chip: {
-    margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
-  },
-  inputRoot: {
-    flexGrow: 1,
-    flexWrap: 'wrap',
-  },
-  inputHold: {
-    padding: '10px 0 7px',
+  nested: {
+    paddingLeft: theme.spacing.unit * 4,
   },
 });
+
 class AutoComplete extends Component {
   constructor(props) {
     super(props);
-    this.throttlingtem = throttling(
-      props.onChangeInput,
-      props.debounceProps.wait,
-      props.debounceProps.maxTime,
-    );
     this.state = {
-      open: false,
-      inputValue: '',
-      selectedItem: [],
-      page: 0,
+      PaginationProps: {
+        page: 0,
+        rowsPerPage: 5,
+        count: 0,
+      },
+      text: '',
     };
+    this.state.optionsArray = this.props.showPagination ? [] : this.menuItems(this.state.text);
   }
-  handleChange(event) {
-    this.setState({
-      open: true,
-      inputValue: event.target.value,
-    });
-    if (this.props.debounceAble) {
-      event.persist();
-      this.throttlingtem(event);
-    } else {
-      this.props.onChangeInput(event);
-    }
-  }
-  handleDelete = item => event => {
-    if (this.props.disabled) {
-      return;
-    }
-    const value = [...this.props.value];
-    value.splice(value.indexOf(item), 1);
-    let target;
-    if (event.target) {
-      target = event.target;
-    }
-    event.persist();
-    event.target = { ...target, value };
-    this.props.onChange(event);
-  };
-  handleItemClick = child => event => {
-    this.setState({
-      inputValue: '',
-    });
-    if (!this.props.multiple) {
-      this.setState({ open: false });
-    }
-    const { onChange } = this.props;
-    if (onChange) {
-      let value;
-      let target;
-      if (event.target) {
-        target = event.target;
-      }
-      const selecttext = child ? child.props.value : event.target.textContent;
-      if (this.props.multiple) {
-        value = Array.isArray(this.props.value) ? [...this.props.value] : [];
-        const itemIndex = value.indexOf(selecttext);
-        if (itemIndex === -1) {
-          value.push(selecttext);
-        } else {
-          value.splice(itemIndex, 1);
-        }
-      } else {
-        value = selecttext;
+  onChangePage(i) {
+    this.setState(
+      {
+        PaginationProps: {
+          ...this.state.PaginationProps,
+          page: i,
+        },
+      },
+      () => {
+        let op = this.menuItems(this.state.text);
+        let start = this.state.PaginationProps.page * this.state.PaginationProps.rowsPerPage;
+        let end =
+          (this.state.PaginationProps.page + 1) * this.state.PaginationProps.rowsPerPage > op.length
+            ? undefined
+            : (this.state.PaginationProps.page + 1) * this.state.PaginationProps.rowsPerPage;
         this.setState({
-          inputValue: value,
+          optionsArray: op.slice(start, end),
         });
-      }
-      event.persist();
-      event.target = { ...target, value };
-      onChange(event, child);
-    }
-  };
-  handleBlur = event => {
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
-    } else {
-      const { onChange } = this.props;
-      if (onChange) {
-        let value;
-        let target;
-        if (event.target) {
-          target = event.target;
-        }
-        const selecttext = this.state.inputValue;
-        if (this.props.multiple) {
-          value = Array.isArray(this.props.value) ? [...this.props.value] : [];
-          const itemIndex = value.indexOf(selecttext);
-          if (itemIndex === -1) {
-            if (selecttext) {
-              value.push(selecttext);
-            }
-          }
-          this.setState({ open: false, inputValue: '' });
-        } else {
-          value = selecttext;
-          this.setState({
-            open: false,
-            inputValue: value,
-          });
-        }
-        event.persist();
-        event.target = { ...target, value };
-        onChange(event);
-      }
-    }
-  };
-  onFocus(e) {
-    if (this.props.select) {
-      this.setState({ open: true });
+      },
+    );
+  }
+  onfilter(e) {
+    const op = this.menuItems(e.target.value);
+    this.setState(
+      {
+        text: e.target.value,
+        PaginationProps: {
+          ...this.state.PaginationProps,
+          page: 0,
+          count: op.length,
+        },
+      },
+      () => {
+        let op = this.menuItems(this.state.text);
+        let start = this.state.PaginationProps.page * this.state.PaginationProps.rowsPerPage;
+        let end =
+          (this.state.PaginationProps.page + 1) * this.state.PaginationProps.rowsPerPage > op.length
+            ? undefined
+            : (this.state.PaginationProps.page + 1) * this.state.PaginationProps.rowsPerPage;
+        this.setState({
+          optionsArray: op.slice(start, end),
+        });
+      },
+    );
+  }
+  menuItems(text) {
+    const { children } = this.props;
+    let filterData = [];
+    if (children) {
+      filterData = React.Children.toArray(children).filter(child => {
+        return (
+          !text ||
+          child.props.children.toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+          child.props.value.toLowerCase().indexOf(text.toLowerCase()) !== -1
+        );
+      });
+      return filterData;
     }
   }
   componentDidMount() {
-    if (!this.props.multiple) {
-      this.setState({
-        inputValue: this.props.value,
-      });
-    }
+    const { children, rowsPerPage } = this.props;
+    this.setState({
+      PaginationProps: {
+        ...this.state.PaginationProps,
+        rowsPerPage: rowsPerPage || 5,
+        count: children && children.length,
+      },
+    });
   }
   render() {
-    const {
-      PaginationProps,
-      onChangePage,
-      classes,
-      placeholder,
-      children,
-      multiple,
-      value,
-      options,
-      mapper,
-      disabled,
-    } = this.props;
-    const { open, inputValue } = this.state;
-    let items;
-    if (options) {
-      items = options
-        ? options.map((item, index) => {
-            let selected = false;
-            switch (typeof item) {
-              case 'string':
-                if (multiple) {
-                  if (!Array.isArray(value)) {
-                    throw new Error(
-                      'React-Material: the `value` property must be an array ' +
-                        'when using the `AutoComplete` component with `multiple`.',
-                    );
-                  }
-                  selected = value.indexOf(item) !== -1;
-                } else {
-                  selected = value === item;
-                }
-                return (
-                  <MenuItem
-                    key={index}
-                    value={item}
-                    selected={selected}
-                    onClick={this.handleItemClick(null)}
-                  >
-                    {item}
-                  </MenuItem>
-                );
-              case 'object':
-                if (multiple) {
-                  if (!Array.isArray(value)) {
-                    throw new Error(
-                      'React-Material: the `value` property must be an array ' +
-                        'when using the `AutoComplete` component with `multiple`.',
-                    );
-                  }
-                  selected =
-                    value.indexOf(
-                      typeof mapper['value'] === 'function'
-                        ? mapper['value'](item, index)
-                        : item[mapper['value']],
-                    ) !== -1;
-                } else {
-                  selected =
-                    value ===
-                    (typeof mapper['value'] === 'function'
-                      ? mapper['value'](item, index)
-                      : item[mapper['value']]);
-                }
-                return (
-                  <MenuItem
-                    key={index}
-                    value={item[mapper['value']]}
-                    selected={selected}
-                    onClick={this.handleItemClick(null)}
-                  >
-                    {typeof mapper['label'] === 'function'
-                      ? mapper['label'](item, index)
-                      : item[mapper['label']]}
-                  </MenuItem>
-                );
-              default:
-                throw new Error('AutoComplete[options] only supports type `string[] | Object[]`.');
-            }
-          })
-        : [];
-    } else {
-      items = React.Children.map(children, child => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-        let selected = false;
-        if (multiple) {
-          if (!Array.isArray(value)) {
-            throw new Error(
-              'React-Material: the `value` property must be an array ' +
-                'when using the `AutoComplete` component with `multiple`.',
-            );
-          }
-          selected = value.indexOf(child.props.value) !== -1;
-        } else {
-          selected = value === child.props.value;
-        }
-        return React.cloneElement(child, {
-          onClick: this.handleItemClick(child),
-          role: 'option',
-          selected,
-          value: undefined, // The value is most likely not a valid HTML attribute.
-          'data-value': child.props.value, // Instead, we provide it as a data attribute.
-        });
-      });
-    }
+    const { classes, onChange, value, ...others } = this.props;
+    const { optionsArray } = this.state;
     return (
       <div className={classes.root}>
-        {open ? <div onClick={this.handleBlur} className={classes.modal} /> : null}
-        <div className={classes.container}>
-          {multiple ? (
-            <TextField
-              disabled={disabled}
-              className={classes.textarea}
-              onChange={this.handleChange.bind(this)}
-              value={inputValue}
-              multiline
-              onFocus={this.onFocus.bind(this)}
-              rows="1"
-              InputProps={{
-                classes: {
-                  root: classes.inputRoot,
-                  input: classes.inputHold,
-                },
-                startAdornment: value.map(item => (
-                  <Chip
-                    key={item}
-                    label={item}
-                    className={classes.chip}
-                    onDelete={this.handleDelete(item)}
-                  />
-                )),
-                placeholder: value.length > 0 ? '' : placeholder,
-              }}
-            />
-          ) : (
-            <TextField
-              disabled={disabled}
-              onFocus={this.onFocus.bind(this)}
-              className={classes.textarea}
-              onChange={this.handleChange.bind(this)}
-              value={inputValue}
-              placeholder={placeholder}
-            />
-          )}
-          {open ? (
-            <Paper className={classes.paper} square>
-              {items}
-              <Divider />
-              <Pagination {...PaginationProps} onChangePage={onChangePage} />
-            </Paper>
-          ) : null}
-        </div>
+        <AsyncAutoComplete
+          {...others}
+          select
+          value={value}
+          PaginationProps={this.state.PaginationProps}
+          onChangePage={this.onChangePage.bind(this)}
+          onChangeInput={this.onfilter.bind(this)}
+          onChange={onChange}
+        >
+          {optionsArray}
+        </AsyncAutoComplete>
       </div>
     );
   }
 }
 AutoComplete.propTypes = {
   /**
-   * Callback fired when the input value is changed.
+   * The option elements to populate the select with.
+   * Can be some `MenuItem`.
    */
-  onChangeInput: PropTypes.func,
+  children: PropTypes.node,
   /**
-   * Callback fired when the current page of pagination  is changed.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
    */
-  onChangePage: PropTypes.func,
+  classes: PropTypes.object.isRequired,
   /**
-   * autocomplete options,
-   */
-  options: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
-  ),
-  /**
-   * Pagination component config
-   */
-  PaginationProps: PropTypes.object,
-  /**
-   * placeholder
-   */
-  placeholder: PropTypes.string,
-  /**
-   * option item label and value,when assignment option by options
-   */
-  mapper: PropTypes.shape({
-    label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  }),
-  /**
-   * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
+   * If true, `value` must be an array and the menu will support multiple selections.
    */
   multiple: PropTypes.bool,
   /**
    * Callback function fired when a menu item is selected.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value`.
    */
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   /**
-   * 	The value of the Input element, required for a controlled component.
+   * The input value.
    */
   value: PropTypes.oneOfType([
     PropTypes.string,
@@ -376,41 +145,21 @@ AutoComplete.propTypes = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   ]),
   /**
-   * Decided autocomplete is disabled
+   * page size
+   */
+  rowsPerPage: PropTypes.num,
+  /**
+   * placeholder
+   */
+  placeholder: PropTypes.string,
+
+  /**
+   * decided Synchronize autocomplete is disabled
    */
   disabled: PropTypes.bool,
-  /**
-   * If true,autocomplete performance is like a select,when focus,option open.
-   */
-  select: PropTypes.bool,
-  /**
-   * If true,autocomplete will filter options by input value.
-   */
-  filterAble: PropTypes.bool,
-  /**
-   * If true,autocomplete will add debounce when filter options by input value.
-   */
-  debounceAble: PropTypes.bool,
-  /**
-   * If debounceAble true,config debounce wait and max continue time,the unit is milliseconds.
-   */
-  debounceProps: PropTypes.shape({
-    wait: PropTypes.number,
-    maxTime: PropTypes.number,
-  }),
 };
+
 AutoComplete.defaultProps = {
-  PaginationProps: {
-    page: 0,
-    rowsPerPage: 5,
-    count: 0,
-  },
   multiple: false,
-  disabled: false,
-  select: false,
-  debounceProps: {
-    wait: 500,
-    maxTime: 800,
-  },
 };
 export default withStyles(styles, { name: 'RMAutoComplete' })(AutoComplete);

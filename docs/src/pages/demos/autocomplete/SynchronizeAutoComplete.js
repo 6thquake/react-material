@@ -63,7 +63,7 @@ class AutoCompleteTest extends Component {
     return (
       <div className={classes.root}>
         <Typography>Synchronize autocomplete of single select</Typography>
-        <AutoComplete.Sync
+        <AutoComplete
           placeholder={'Synchronize autoComplete'}
           value={this.state.select}
           rowsPerPage={5}
@@ -74,10 +74,10 @@ class AutoCompleteTest extends Component {
               {item.label}
             </MenuItem>
           ))}
-        </AutoComplete.Sync>
+        </AutoComplete>
         <br />
         <Typography>Synchronize autocomplete of multiple select</Typography>
-        <AutoComplete.Sync
+        <AutoComplete
           multiple
           placeholder={'Synchronize autoComplete'}
           value={this.state.muliselect}
@@ -89,7 +89,7 @@ class AutoCompleteTest extends Component {
               {item.label}
             </MenuItem>
           ))}
-        </AutoComplete.Sync>
+        </AutoComplete>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from '@6thquake/react-material/styles';
+import { withStyles } from '@6thquake/react-material/styles';
 import Video from '@6thquake/react-material/Video';
 
 const styles = theme => ({
@@ -12,24 +12,20 @@ const styles = theme => ({
 });
 
 class App extends React.Component {
-
-
   ended() {
-    console.log("finshed");
+    console.log('finshed');
   }
 
-
-  pause(){
+  pause() {
     this.refs.videopause.pause();
   }
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
-
         <Video
           autoplay={true}
-          sources={[{src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4'}]}
+          sources={[{ src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4' }]}
           ended={this.ended}
           ref="videopause"
         />

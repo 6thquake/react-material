@@ -12,7 +12,20 @@ const styless = {
     fontFamily: 'calgary',
     borderRadius: 5,
     width: 200,
-    height: 100,
+  },
+};
+
+/*
+ * Left & right parties' avatar sources.
+*/
+export const avatars = {
+  lAvatar: {
+    src: "/static/images/cards/live-from-space.jpg",
+    alt: "Test Portrait",
+  },
+  rAvatar: {
+    src: "/static/images/remy.jpg/",
+    alt: "Remy Sharp",
   },
 };
 
@@ -28,31 +41,25 @@ class App extends React.Component {
       <div style={renderStyle}>
         <Chat
           isLeft={false}
-          content="Hello, this is simply a test bubble dialog conversation."
-          avatarAlt="Remy Sharp"
-          avatarSrc="/static/images/remy.jpg/"
           triSize="12"
           bgColor="cyan"
-          classes={{ customization: classes.customization }}
-        />
+          classes={{ customization: classes.customization }}>
+          Hello, this is simply a test bubble dialog conversation.
+        </Chat>
         <Chat
           isLeft={true}
-          content="Oh hi there. I see. So is there anything I can do for the test?"
-          avatarAlt="Test Portrait"
-          avatarSrc="/static/images/cards/live-from-space.jpg"
           bgColor="yellow"
           triSize="12"
-          classes={{ customization: classes.customization }}
-        />
+          classes={{ customization: classes.customization }}>
+          Oh hi there. I see. So is there anything I can do for the test?
+        </Chat>
         <Chat
           isLeft={true}
-          content="Or you're simply asking me to try it and offer some feedback?"
-          avatarAlt="Test Portrait"
-          avatarSrc="/static/images/cards/live-from-space.jpg"
           triSize="12"
           bgColor="yellow"
-          classes={{ customization: classes.customization }}
-        />
+          classes={{ customization: classes.customization }}>
+          Or you're simply asking me to try it and offer some feedback?
+        </Chat>
       </div>
     );
   }

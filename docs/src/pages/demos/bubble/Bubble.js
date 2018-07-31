@@ -58,7 +58,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.setState({
-      ancestor: document.getElementById('ancestor'),
+      ancestor: document.getElementsByName('ancestor'),
       parent: document.getElementById("parent").getBoundingClientRect(),
       self: document.getElementById("self"),
     });
@@ -67,8 +67,8 @@ class App extends React.Component {
   render() {
     const { classes } = this.props;
 
-    /*props.parent  props.self并不是必须传入, 只有在bubble悬浮时需要*/
-    /*props.triSize  props.bgColor不是必须的，不传入会使用默认配置*/
+    /*props.parent  props.self are NOT necessarily required, but are REQUIRED when you want bubbles to be FLOATED.*/
+    /*props.triSize  props.bgColor are NOT necessarily required, and default settings will be used when not provided.*/
     return (
       <div>
         <Grid container spacing={16}>
@@ -104,7 +104,7 @@ class App extends React.Component {
         </Grid>
 
 
-        <div id='ancestor'>
+        <div name='ancestor'>
           <div id="parent" style={{position: 'relative', display: 'inline-block'}}>
             <Button variant="raised" onClick={this.handleClick}>
               Click Me
@@ -120,7 +120,8 @@ class App extends React.Component {
                       triSize="12"
                       bgColor="cyan"
                       classes={{ customization: classes.customization }}>
-                Hello, this is simply a test bubble dialog conversation.
+                <p>Hello, this is simply a test bubble dialog conversation.</p>
+                <p>TEST.</p>
               </Bubble>
             </div>
           </div>

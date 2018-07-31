@@ -47,9 +47,9 @@ class Bubble extends React.Component {
     let ancestor = nextProps.ancestor;
     let floated = nextProps.floated;
     let direction = nextProps.direction;
-    const transHeight = Number(parent.height) / 2 + parent.height;
+    const transHeight = typeof parent === 'undefined' ? 0 : (Number(parent.height) / 2 + parent.height);
     const transDis = typeof nextProps.triSize === 'undefined' ? 22 : Number(nextProps.triSize) + 10;
-    const trHeight = Number(parent.height) / 2;
+    const trHeight = typeof parent === 'undefined' ? 0 : (Number(parent.height) / 2);
     const lFXDis = typeof parent === 'undefined' ? 0 : parent.width + transDis;
     const lFYDis = typeof parent === 'undefined' ? 0 : parent.height + trHeight;
 
@@ -59,25 +59,33 @@ class Bubble extends React.Component {
           if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
-          ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: row");
+          for (let i = 0; i < ancestor.length; i++) {
+            ancestor[i].setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: row");
+          }
         }
         else if (direction == 'right') {
           if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
-          ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: row-reverse");
+          for (let i = 0; i < ancestor.length; i++) {
+            ancestor[i].setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: row-reverse");
+          }
         }
         else if (direction == 'top') {
           if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
-          ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: column-reverse");
+          for (let i = 0; i < ancestor.length; i++) {
+            ancestor[i].setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: column-reverse");
+          }
         }
         else if (direction == 'bottom') {
           if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
-          ancestor.setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: column");
+          for (let i = 0; i < ancestor.length; i++) {
+            ancestor[i].setAttribute("style", "display: flex; justify-content: flex-start; align-items: center; flex-direction: column");
+          }
         }
       }
     }
@@ -88,8 +96,10 @@ class Bubble extends React.Component {
             self.removeAttribute("style");
           }
           self.setAttribute("style", "transform: translate("+lFXDis+"px,"+(-lFYDis)+"px);");
-          if (ancestor.getAttribute("style") != null) {
-            ancestor.removeAttribute("style");
+          for (let i = 0; i < ancestor.length; i++) {
+            if (ancestor[i].getAttribute("style") != null) {
+              ancestor[i].removeAttribute("style");
+            }
           }
         }
         else if (direction == 'right') {
@@ -97,24 +107,30 @@ class Bubble extends React.Component {
             self.removeAttribute("style");
           }
           self.setAttribute("style", "transform: translate(-100%," + (-transHeight) + "px);");
-          if (ancestor.getAttribute("style") != null) {
-            ancestor.removeAttribute("style");
+          for (let i = 0; i < ancestor.length; i++) {
+            if (ancestor[i].getAttribute("style") != null) {
+              ancestor[i].removeAttribute("style");
+            }
           }
         }
         else if (direction == 'top') {
           if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
-          if (ancestor.getAttribute("style") != null) {
-            ancestor.removeAttribute("style");
+          for (let i = 0; i < ancestor.length; i++) {
+            if (ancestor[i].getAttribute("style") != null) {
+              ancestor[i].removeAttribute("style");
+            }
           }
         }
         else if (direction == 'bottom') {
           if (typeof self != 'undefined' && self.getAttribute("style") != null) {
             self.removeAttribute("style");
           }
-          if (ancestor.getAttribute("style") != null) {
-            ancestor.removeAttribute("style");
+          for (let i = 0; i < ancestor.length; i++) {
+            if (ancestor[i].getAttribute("style") != null) {
+              ancestor[i].removeAttribute("style");
+            }
           }
         }
       }

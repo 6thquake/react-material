@@ -1,6 +1,7 @@
 import React from 'react';
-import classNames from 'classnames';
+import {avatars} from '../../../../docs/src/pages/demos/chat/Chat.js';
 import Avatar from '../Avatar';
+import Bubble from '../Bubble';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 
@@ -13,126 +14,42 @@ export const renderStyle = {
   width: '100%',
 };
 
-export const styles = theme => ({
-  /*
-   * Part of bubble rectangle & triangle style which will remain unchangeable.
-   */
-  recStyle: {
-    position: 'relative',
-    minWidth: 30,
-    minHeight: 30,
-    maxWidth: 200,
-
-    padding: 10,
-  },
-  triStyle: {
-    width: 0,
-    height: 0,
-    position: 'absolute',
-    top: '45%',
-    display: 'inline-block',
-    borderTopStyle: 'solid',
-    borderTopColor: 'transparent',
-    borderBottomStyle: 'solid',
-    borderBottomColor: 'transparent',
-  },
-  /*
-   * Default left & right pointed bubble style which can be changed in real applications.
-   */
-  customization: {
-    fontSize: 15,
-    fontFamily: 'calgary',
-    borderRadius: 5,
-    width: 'auto',
-    height: 'auto',
-  },
-  /*
-   * Default text shown inside the bubble. Mainly used for demos.
-   */
-  content: 'This is only a test text for bubble dialog content. Please specify your own content.',
-  /*
-   * To set bubble triangle & avatar pointed on the same baseline and remained on the left / right of chatting box.
-   */
-  wrapLStyle: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-    float: 'left',
-  },
-  wrapRStyle: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-    float: 'right',
-  },
-});
+export const styles = theme => ({});
 
 class Chat extends React.Component {
   constructor(props) {
     super(props);
+    this.state={
+      ancestor: 'ancestor',
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      ancestor: document.getElementsByName('ancestor'),
+    });
   }
 
   render() {
-    const {
-      isLeft,
-      content,
-      avatarAlt,
-      avatarSrc,
-      triSize,
-      rBgColor,
-      lBgColor,
-      classes,
-    } = this.props;
-    const halfSize = Number(triSize) / 2;
-
-    const lRecClassNames = classNames(classes.recStyle, classes.customization);
-    const lTriClassNames = classNames(classes.triStyle, classes.lBgColor);
-    const rRecClassNames = classNames(classes.recStyle, classes.customization);
-    const rTriClassNames = classNames(classes.triStyle, classes.lBgColor);
+    const { isLeft, triSize, bgColor, classes } = this.props;
 
     return isLeft ? ( //left dialog chart
-      <div style={{ float: 'left' }}>
-        <div className={classes.wrapLStyle}>
-          <Avatar alt={avatarAlt} src={avatarSrc} style={{ marginRight: 20 }} />
-          <div className={lRecClassNames} style={{ backgroundColor: lBgColor }}>
-            <div
-              className={lTriClassNames}
-              style={{
-                borderRightWidth: triSize + 'px',
-                borderRightStyle: 'solid',
-                borderRightColor: lBgColor,
-                borderBottomWidth: halfSize + 'px',
-                borderTopWidth: halfSize + 'px',
-                left: -triSize + 'px',
-              }}
-            />
-            {content}
-          </div>
+      <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 20 }}>
+        <div name="ancestor">
+          <Avatar alt={avatars.lAvatar.alt} src={avatars.lAvatar.src} style={{ marginRight: 10 }} />
+          <Bubble direction='left' floated='false' ancestor={ this.state.ancestor } bgColor={ bgColor } triSize={ triSize } classes={ classes }>
+            {this.props.children}
+          </Bubble>
         </div>
       </div>
     ) : (
       //right dialog chart
-      <div style={{ float: 'right' }}>
-        <div className={classes.wrapRStyle}>
-          <div className={rRecClassNames} style={{ backgroundColor: rBgColor }}>
-            <div
-              className={rTriClassNames}
-              style={{
-                borderLeftWidth: triSize + 'px',
-                borderLeftStyle: 'solid',
-                borderLeftColor: rBgColor,
-                borderBottomWidth: halfSize + 'px',
-                borderTopWidth: halfSize + 'px',
-                right: -triSize + 'px',
-              }}
-            />
-            {content}
-          </div>
-          <Avatar alt={avatarAlt} src={avatarSrc} style={{ marginLeft: 20 }} />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
+        <div name="ancestor">
+          <Bubble direction="right" floated="false" ancestor={ this.state.ancestor } bgColor={ bgColor } triSize={ triSize } classes={ classes }>
+            {this.props.children}
+          </Bubble>
+          <Avatar alt={avatars.rAvatar.alt} src={avatars.rAvatar.src} style={{ marginLeft: 10 }} />
         </div>
       </div>
     );

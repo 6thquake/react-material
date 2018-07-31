@@ -1,5 +1,4 @@
 import React from 'react';
-import {avatars} from '../../../../docs/src/pages/demos/chat/Chat.js';
 import Avatar from '../Avatar';
 import Bubble from '../Bubble';
 import PropTypes from 'prop-types';
@@ -19,7 +18,7 @@ export const styles = theme => ({});
 class Chat extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       ancestor: 'ancestor',
     };
   }
@@ -31,13 +30,21 @@ class Chat extends React.Component {
   }
 
   render() {
-    const { isLeft, triSize, bgColor, classes } = this.props;
+    const { isLeft, triSize, bgColor, avatar, classes } = this.props;
 
     return isLeft ? ( //left dialog chart
       <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 20 }}>
         <div name="ancestor">
-          <Avatar alt={avatars.lAvatar.alt} src={avatars.lAvatar.src} style={{ marginRight: 10 }} />
-          <Bubble direction='left' floated='false' ancestor={ this.state.ancestor } bgColor={ bgColor } triSize={ triSize } classes={ classes }>
+          {avatar}
+          <Bubble
+            style={{ marginLeft: 10 }}
+            direction="left"
+            floated="false"
+            ancestor={this.state.ancestor}
+            bgColor={bgColor}
+            triSize={triSize}
+            classes={classes}
+          >
             {this.props.children}
           </Bubble>
         </div>
@@ -46,10 +53,18 @@ class Chat extends React.Component {
       //right dialog chart
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
         <div name="ancestor">
-          <Bubble direction="right" floated="false" ancestor={ this.state.ancestor } bgColor={ bgColor } triSize={ triSize } classes={ classes }>
+          <Bubble
+            style={{ marginRight: 10 }}
+            direction="right"
+            floated="false"
+            ancestor={this.state.ancestor}
+            bgColor={bgColor}
+            triSize={triSize}
+            classes={classes}
+          >
             {this.props.children}
           </Bubble>
-          <Avatar alt={avatars.rAvatar.alt} src={avatars.rAvatar.src} style={{ marginLeft: 10 }} />
+          {avatar}
         </div>
       </div>
     );
@@ -58,13 +73,25 @@ class Chat extends React.Component {
 
 Chat.propTypes = {
   /**
-   *
+   * specifies that the chat component should be placed along the left or right side of its container.
    */
   isLeft: PropTypes.bool.isRequired,
   /**
-   *
+   * the content of the chat component.
    */
   content: PropTypes.string.isRequired,
+  /**
+   * the avatar of the chat component.
+   */
+  avatar: PropTypes.instanceOf(Avatar).isRequired,
+  /**
+   * the font size of the content.
+   */
+  triSize: PropTypes.number,
+  /**
+   * the background color of the chat bubble.
+   */
+  bgColor: PropTypes.string,
 };
 
 export default withStyles(styles, { name: 'RMChat' })(Chat);

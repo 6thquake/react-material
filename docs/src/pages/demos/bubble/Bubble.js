@@ -59,8 +59,8 @@ class App extends React.Component {
   componentDidMount() {
     this.setState({
       ancestor: document.getElementsByName('ancestor'),
-      parent: document.getElementById("parent").getBoundingClientRect(),
-      self: document.getElementById("self"),
+      parent: document.getElementById('parent').getBoundingClientRect(),
+      self: document.getElementById('self'),
     });
   }
 
@@ -79,7 +79,8 @@ class App extends React.Component {
                 aria-label="arrowDirection"
                 name="arrowDirection"
                 value={this.state.arrowOriginalDirection}
-                onChange={this.handleChange('arrowOriginalDirection')}>
+                onChange={this.handleChange('arrowOriginalDirection')}
+              >
                 <FormControlLabel value="left" control={<Radio />} label="Left" />
                 <FormControlLabel value="right" control={<Radio />} label="Right" />
                 <FormControlLabel value="top" control={<Radio />} label="Top" />
@@ -95,7 +96,8 @@ class App extends React.Component {
                 aria-label="floated"
                 name="floated"
                 value={this.state.floatOriginal}
-                onChange={this.handleChange('floatOriginal')}>
+                onChange={this.handleChange('floatOriginal')}
+              >
                 <FormControlLabel value="true" control={<Radio />} label="Float" />
                 <FormControlLabel value="false" control={<Radio />} label="Non-float" />
               </RadioGroup>
@@ -103,54 +105,36 @@ class App extends React.Component {
           </Grid>
         </Grid>
 
-
-        <div name='ancestor'>
-          <div id="parent" style={{position: 'relative', display: 'inline-block'}}>
+        <div name="ancestor">
+          <div id="parent" style={{ position: 'relative', display: 'inline-block' }}>
             <Button variant="raised" onClick={this.handleClick}>
               Click Me
             </Button>
           </div>
           <div style={{ display: this.state.display }}>
             <div id="self">
-              <Bubble parent={ this.state.parent }
-                      self={ this.state.self }
-                      ancestor={ this.state.ancestor }
-                      direction={ this.state.arrowOriginalDirection }
-                      floated={ this.state.floatOriginal }
-                      triSize="12"
-                      bgColor="cyan"
-                      classes={{ customization: classes.customization }}>
+              <Bubble
+                parent={this.state.parent}
+                self={this.state.self}
+                ancestor={this.state.ancestor}
+                direction={this.state.arrowOriginalDirection}
+                floated={this.state.floatOriginal}
+                triSize="12"
+                bgColor="cyan"
+                classes={{ customization: classes.customization }}
+              >
                 <p>Hello, this is simply a test bubble dialog conversation.</p>
                 <p>TEST.</p>
               </Bubble>
             </div>
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       </div>
     );
   }
 }
 
 export default withStyles(styles)(App);
-
-
 
 /*<div id="nonFloated" style={{ display: 'none' }}>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

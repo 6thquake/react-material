@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
-import DandDWrapper from './DandDWrapper';
+import {DandDWrapper} from '../DragBase';
 import {withStyles} from '../styles';
-import DandD from './DandD';
 const styles={
     inner:{
         display:'inline-block',

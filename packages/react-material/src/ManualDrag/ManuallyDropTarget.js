@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { DragSource2 } from '@6thquake/react-material/Drag';
 import update from 'immutability-helper';
-import { TargetWrapper } from '@6thquake/react-material/Drag';
+import { TargetWrapper,DragSource } from '../DragBase';
 
 const rootstyles = {
   width: '600px',
@@ -110,9 +109,9 @@ class TargetBox extends TargetWrapper {
 
       _childComponents = tempChild.map((currentValue, index) => {
         return (
-          <DragSource2 index={index} remove={this.removeComponent}>
+          <DragSource index={index} remove={this.removeComponent}>
             {currentValue}
-          </DragSource2>
+          </DragSource>
         );
       });
     }

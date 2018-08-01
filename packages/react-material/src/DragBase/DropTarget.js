@@ -6,7 +6,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { withStyles } from '../styles';
 import { DropTarget as DropTargetBase } from 'react-dnd';
-import DragSource2 from './DragSource2';
 import update from 'immutability-helper';
 import PropTypes from 'prop-types';
 const styles = {};

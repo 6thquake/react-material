@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { DragSource2 } from '@6thquake/react-material/Drag';
+import { DragSource } from '@6thquake/react-material/DragBase';
 import update from 'immutability-helper';
-import { TargetWrapper } from '@6thquake/react-material/Drag';
+import { TargetWrapper } from '@6thquake/react-material/DragBase';
 
 const rootstyles = {
   width: '600px',
@@ -25,7 +25,16 @@ class ManuallyDropTarget extends TargetWrapper {
       droptTargetLeft: 0,
     };
   }
-
+  componentDidMount() {
+    this.props.register(this);
+    let acceptSource = ['BoxA'];
+    this.props.accept(acceptSource); //给DropTartget传递自己的acceptItem
+    this.setState({
+      droptTargetLeft: this.dragBox.getBoundingClientRect().left,
+      droptTargetTop: this.dragBox.getBoundingClientRect().top,
+    });
+    
+  }
   drop = (props, monitor, component) => {
     const item = monitor.getItem();
 
@@ -83,16 +92,7 @@ class ManuallyDropTarget extends TargetWrapper {
     }
     this.hasDroped = false;
   };
-  componentDidMount() {
-    this.props.register(this);
-    this.setState({
-      droptTargetLeft: this.dragBox.getBoundingClientRect().left,
-      droptTargetTop: this.dragBox.getBoundingClientRect().top,
-    });
-    let acceptSource = ['BoxA'];
-    acceptSource = [...acceptSource, ...this.props.acceptItem];
-    this.props.accept(acceptSource); //给DropTartget传递自己的acceptItem
-  }
+  
   render() {
     const { childComponents, droptTargetLeft, droptTargetTop } = this.state;
     let _childComponents = null;
@@ -110,19 +110,14 @@ class ManuallyDropTarget extends TargetWrapper {
 
       _childComponents = tempChild.map((currentValue, index) => {
         return (
-          <DragSource2 index={index} remove={this.removeComponent}>
+          <DragSource index={index} remove={this.removeComponent}>
             {currentValue}
-          </DragSource2>
+          </DragSource>
         );
       });
     }
     return (
-      <div
-        style={rootstyles}
-        ref={box => {
-          this.dragBox = box;
-        }}
-      >
+      <div style={rootstyles} ref={box => {this.dragBox = box;}}>
         {_childComponents}
       </div>
     );

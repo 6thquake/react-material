@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@6thquake/react-material/styles';
-import { DragSource, DropTarget} from '@6thquake/react-material/DragBase';
+import { DragSource, DropTarget } from '@6thquake/react-material/DragBase';
 import ManuallyDragSource from './ManuallyDragSource';
 import ManuallyDropTarget from './ManuallyDropTarget';
 const styles = theme => ({

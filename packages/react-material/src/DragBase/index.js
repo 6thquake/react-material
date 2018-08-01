@@ -1,14 +1,13 @@
 export * from './DragSource';
-export * from './OrderDragTarget';
+export * from './DropTarget';
+export * from './DandD';
+export { default as DandD } from './DandD';
 export { default as DragSource } from './DragSource';
-export { default as OrderDragTarget } from './OrderDragTarget';
-
-export * from './DragSource2';
-export * from './ManualDragTarget';
-export { default as DragSource2 } from './DragSource2';
-export { default as ManualDragTarget } from './ManualDragTarget';
+export { default as DropTarget } from './DropTarget';
 
 export * from './SourceWrapper';
 export { default as SourceWrapper } from './SourceWrapper';
 export * from './TargetWrapper';
 export { default as TargetWrapper } from './TargetWrapper';
+export * from './DandDWrapper';
+export {default as DandDWrapper} from './DandDWrapper';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { SourceWrapper } from '@6thquake/react-material/Drag';
+import { SourceWrapper } from '@6thquake/react-material/DragBase';
 const boxstyles = {
   border: '1px dashed gray',
   padding: '0.5rem 1rem',

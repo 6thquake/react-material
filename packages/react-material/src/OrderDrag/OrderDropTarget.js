@@ -1,11 +1,11 @@
-import TargetWrapper from './TargetWrapper';
+import {TargetWrapper} from '../DragBase';
 import React from 'react';
 import {withStyles} from '../styles';
 import GridList from '../GridList';
 import GridListTile from '../GridListTile';
 import PropTypes from 'prop-types';
 //import ManualDragTarget from './ManualDragTarget';
-import DandD from './DandD';
+import {DandD} from '../DragBase';
 import OrderDragSource from './OrderDragSource';
 const styles={
     root:{
@@ -38,7 +38,7 @@ class OrderDropTarget extends TargetWrapper{
         const item=monitor.getItem();
         console.log(item);
         if(!item.component){  //内部元素被拖动
-            component.hasDroped=true;
+            this.hasDroped=true;
             return;
         }
         if(item.component){

@@ -1,11 +1,11 @@
-import React,{Component} from 'react';
-import {withStyles} from '@6thquake/react-material/styles';
+import React, { Component } from 'react';
+import { withStyles } from '@6thquake/react-material/styles';
 import PropTypes from 'prop-types';
 import ListItem from '@6thquake/react-material/ListItem';
 import List from '@6thquake/react-material/List';
 import ListItemText from '@6thquake/react-material/ListItemText';
 import { DropTarget } from '@6thquake/react-material/DragBase';
-import {OrderDropTarget} from '@6thquake/react-material/OrderDrag';
+import { OrderDropTarget } from '@6thquake/react-material/OrderDrag';
 const styles = theme => ({
   root: {
     position: 'relative',
@@ -55,32 +55,37 @@ class DragList extends React.Component {
         value: _cc,
       });
     }
-}
-    render(){
-        const {classes}=this.props;
-        const {value}=this.state;
-        const _childComponents=(value||[]).map((item,index)=>{
-            if (item){
-                return (
-                        <ListItem component='div' cols={1} rows={1}>
-                            <ListItemText primary={`item-${item}`}/>
-                        </ListItem>
-                )
-            }           
-        });
-        // console.log(_childComponents);
-        return(
-            <div className={classes.root}>
-            <List component="nav" className={classes.list}>
-                <DropTarget>
-                    <OrderDropTarget colsCount={1} cellSize={80} defaultComponents={_childComponents} sequence={this.sequence} remove={this.remove} add={this.add} >
-                    </OrderDropTarget>
-                </DropTarget>               
-            </List>
-            </div>
-        )
-    }
   };
+  render() {
+    const { classes } = this.props;
+    const { value } = this.state;
+    const _childComponents = (value || []).map((item, index) => {
+      if (item) {
+        return (
+          <ListItem component="div" cols={1} rows={1}>
+            <ListItemText primary={`item-${item}`} />
+          </ListItem>
+        );
+      }
+    });
+    // console.log(_childComponents);
+    return (
+      <div className={classes.root}>
+        <List component="nav" className={classes.list}>
+          <DropTarget>
+            <OrderDropTarget
+              colsCount={1}
+              cellSize={80}
+              defaultComponents={_childComponents}
+              sequence={this.sequence}
+              remove={this.remove}
+              add={this.add}
+            />
+          </DropTarget>
+        </List>
+      </div>
+    );
+  }
+}
 
-export default withStyles(styles)(DragList)
-
+export default withStyles(styles)(DragList);

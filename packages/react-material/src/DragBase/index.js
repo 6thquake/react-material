@@ -10,4 +10,4 @@ export { default as SourceWrapper } from './SourceWrapper';
 export * from './TargetWrapper';
 export { default as TargetWrapper } from './TargetWrapper';
 export * from './DandDWrapper';
-export {default as DandDWrapper} from './DandDWrapper';
+export { default as DandDWrapper } from './DandDWrapper';

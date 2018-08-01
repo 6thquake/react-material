@@ -17,12 +17,12 @@ module.exports = require('fs')
 `,
         },
         'pages/demos/orderdrag/DragList.js': {
-            js: require('docs/src/pages/demos/orderdrag/DragList').default,
-            raw: preval`
+          js: require('docs/src/pages/demos/orderdrag/DragList').default,
+          raw: preval`
   module.exports = require('fs')
     .readFileSync(require.resolve('docs/src/pages/demos/orderdrag/DragList'), 'utf8')
   `,
-          },
+        },
       }}
     />
   );

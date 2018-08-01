@@ -33,7 +33,6 @@ class ManuallyDropTarget extends TargetWrapper {
       droptTargetLeft: this.dragBox.getBoundingClientRect().left,
       droptTargetTop: this.dragBox.getBoundingClientRect().top,
     });
-    
   }
   drop = (props, monitor, component) => {
     const item = monitor.getItem();
@@ -92,7 +91,7 @@ class ManuallyDropTarget extends TargetWrapper {
     }
     this.hasDroped = false;
   };
-  
+
   render() {
     const { childComponents, droptTargetLeft, droptTargetTop } = this.state;
     let _childComponents = null;
@@ -117,7 +116,12 @@ class ManuallyDropTarget extends TargetWrapper {
       });
     }
     return (
-      <div style={rootstyles} ref={box => {this.dragBox = box;}}>
+      <div
+        style={rootstyles}
+        ref={box => {
+          this.dragBox = box;
+        }}
+      >
         {_childComponents}
       </div>
     );

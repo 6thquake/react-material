@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
-import { TargetWrapper,DragSource } from '../DragBase';
+import { TargetWrapper, DragSource } from '../DragBase';
 
 const rootstyles = {
   width: '600px',

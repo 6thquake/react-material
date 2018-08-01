@@ -61,5 +61,5 @@ class _DragSource extends PureComponent {
     return connect.dragSource()(<div className={classes.inner}>{childrenWithProps}</div>);
   }
 }
-let DragSource=DragSourceBase('*', _source, collect)(_DragSource);
+let DragSource = DragSourceBase('*', _source, collect)(_DragSource);
 export default withStyles(styles)(DragSource);

@@ -28,7 +28,7 @@ class Select extends Component {
         count: 0,
       },
       text: '',
-      optionsArray:[],
+      optionsArray: [],
     };
   }
   onChangePage(i) {
@@ -93,18 +93,18 @@ class Select extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps !== prevState.preProps) {
-      if( nextProps.showPagination){
+      if (nextProps.showPagination) {
         return {
           paginationProps: {
             ...prevState.paginationProps,
             rowsPerPage: nextProps.rowsPerPage,
-            count:nextProps. children.length,
+            count: nextProps.children.length,
           },
           preProps: nextProps,
         };
-      }else {
+      } else {
         return {
-          optionsArray:  nextProps.children,
+          optionsArray: nextProps.children,
           preProps: nextProps,
         };
       }
@@ -322,7 +322,7 @@ Select.propTypes = {
 Select.defaultProps = {
   autoWidth: false,
   displayEmpty: false,
-  rowsPerPage:5,
+  rowsPerPage: 5,
   IconComponent: ArrowDropDownIcon,
   input: <Input />,
   multiple: false,

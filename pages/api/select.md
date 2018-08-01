@@ -29,7 +29,7 @@ filename: /packages/react-material/src/Select/Select.js
 | <span class="prop-name">renderValue</span> | <span class="prop-type">func |  | Render the selected value. You can only use it when the `native` property is `false` (default).<br><br>**Signature:**<br>`function(value: any) => ReactElement`<br>*value:* The `value` provided to the component. |
 | <span class="prop-name">SelectDisplayProps</span> | <span class="prop-type">object |  | Properties applied to the clickable div element. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;arrayOf<br> |  | The input value. This property is required when the `native` property is `false` (default). |
-| <span class="prop-name">rowsPerPage</span> | <span class="prop-type">PropTypes.num |  | page size |
+| <span class="prop-name">rowsPerPage</span> | <span class="prop-type">PropTypes.num | <span class="prop-default">5</span> | page size |
 | <span class="prop-name">placeholder</span> | <span class="prop-type">string | <span class="prop-default">'please input something'</span> | placeholder |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool |  | decided select is disabled |
 | <span class="prop-name">showFilter</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If true ,show the filter box |

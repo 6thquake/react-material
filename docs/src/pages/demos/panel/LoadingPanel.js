@@ -11,6 +11,9 @@ const styles = {
   height: {
     height: 500,
   },
+  he: {
+    height: 1,
+  },
 };
 class LoadingPanelDemo extends Component {
   constructor(props) {
@@ -50,6 +53,9 @@ class LoadingPanelDemo extends Component {
       self.setState({ isFinish2: true });
     }, 5000);
   };
+  componentDidMount() {
+    this.progressEst();
+  }
   render() {
     const { classes } = this.props;
     const { isFinish1, isFinish2 } = this.state;
@@ -61,7 +67,14 @@ class LoadingPanelDemo extends Component {
             restart progress loading
           </Button>
         </Typography>
-        <LoadingPanel type="progress" loaded={isFinish1} estimatedTime={5}>
+        <LoadingPanel
+          type="progress"
+          loaded={isFinish1}
+          estimatedTime={15}
+          classes={{
+            root: classes.he,
+          }}
+        >
           <div className={classes.height} />
         </LoadingPanel>
         <br />

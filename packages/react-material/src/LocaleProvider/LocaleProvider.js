@@ -64,7 +64,6 @@ const LocaleContext = React.createContext(defaultLocale);
 const LocaleConsumer = LocaleContext.Consumer;
 
 class LocaleProvider extends React.Component {
-  
   static locale = 'en';
 
   constructor(props) {
@@ -121,4 +120,11 @@ LocaleProvider.propTypes = {
    */
   children: PropTypes.node,
 };
-export { LocaleContext, LocaleProvider, LocaleConsumer, getLanguage, getLocaleResource, getDefaultLocaleResource };
+export {
+  LocaleContext,
+  LocaleProvider,
+  LocaleConsumer,
+  getLanguage,
+  getLocaleResource,
+  getDefaultLocaleResource,
+};

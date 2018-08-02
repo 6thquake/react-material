@@ -37,9 +37,11 @@ class Progress extends Component {
     super();
     this.state = {
       completed: 0,
+      show: true,
     };
   }
-
+  timer = null;
+  timertep = null;
   componentDidMount() {
     if (this.props.isPromise) {
       this.timer = setInterval(this.progress, 300);
@@ -47,20 +49,26 @@ class Progress extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (!nextProps.isFinish && nextProps.isPromise && nextProps !== prevState.preProps) {
+    if (nextProps.isPromise && nextProps !== prevState.preProps) {
       return {
-        completed: 0,
+        show: true,
+        completed: nextProps.isFinish ? 100 : 0,
         preProps: nextProps,
       };
     }
     return null;
   }
+
   componentDidUpdate() {
     if (this.props.isPromise) {
-      if (this.timer) {
-        clearInterval(this.timer);
+      if (this.state.completed === 100) {
+        setTimeout(() => this.setState({ show: false, completed: 0 }), 500);
+      } else {
+        if (this.timer) {
+          clearTimeout(this.timer);
+        }
+        this.timer = setTimeout(this.progress, 300);
       }
-      this.timer = setInterval(this.progress, 300);
     }
   }
   componentWillUnmount() {
@@ -69,63 +77,54 @@ class Progress extends Component {
     }
   }
 
-  timer = null;
-
   progress = () => {
-    const speed = this.props.estimatedTime > 0 ? Math.ceil(this.props.estimatedTime) : 4;
+    const { estimatedTime } = this.props;
     const { completed } = this.state;
-    if (this.props.isFinish) {
-      clearInterval(this.timer);
-      this.setState({ completed: 100 });
-    } else {
-      const diff = Math.floor((100 - completed) / speed);
-      this.setState({ completed: completed + diff });
-    }
+    const speed = estimatedTime > 0 ? Math.ceil(estimatedTime) : 4;
+    const diff = Math.floor((100 - completed) / speed);
+    this.setState({ completed: completed + diff });
   };
 
   render() {
-    if (this.props.baseProgress) {
+    const { isPromise, baseProgress, showPercentage, value, error, ...others } = this.props;
+    const { completed, show } = this.state;
+    const { classes } = this.props;
+    if (baseProgress) {
       return <LinearProgress {...this.props} />;
-    } else {
-      if (this.props.isPromise) {
-        const { classes } = this.props;
-        const { completed } = this.state;
-        return this.props.isFinish ? null : (
-          <LinearProgress variant="buffer" value={completed} valueBuffer={10} {...this.props} />
+    }
+    if (isPromise) {
+      return show ? <LinearProgress variant="buffer" value={completed} {...others} /> : null;
+    }
+    if (!showPercentage) {
+      return <LinearProgress variant="determinate" value={value} {...others} />;
+    }
+    if (showPercentage) {
+      const zcomplete = Math.floor(value);
+      const finishOrError =
+        zcomplete === 100 ? (
+          <Done className={classes.icon} color="primary" />
+        ) : error ? (
+          <HighlightOff className={classes.icon} color="error" />
+        ) : (
+          <span className={classes.nubProgress}>{zcomplete + '%'}</span>
         );
-      } else {
-        const { completed, classes, error } = this.props;
-        const zcomplete = Math.floor(completed);
-        const finishOrError =
-          zcomplete === 100 ? (
-            <Done className={classes.icon} color="primary" />
-          ) : error ? (
-            <HighlightOff className={classes.icon} color="error" />
-          ) : (
-            <span className={classes.nubProgress}>{zcomplete + '%'}</span>
-          );
-        return (
-          <div className={classes.lineicon}>
-            <div className={classes.lineProgress}>
-              <LinearProgress
-                variant="determinate"
-                color={error ? 'secondary' : 'primary'}
-                value={completed}
-                {...this.props}
-              />
-            </div>
-            <div className={classes.icondiv}>{finishOrError}</div>
+      return (
+        <div className={classes.lineicon}>
+          <div className={classes.lineProgress}>
+            <LinearProgress
+              variant="determinate"
+              color={error ? 'secondary' : 'primary'}
+              value={value}
+              {...this.props}
+            />
           </div>
-        );
-      }
+          <div className={classes.icondiv}>{finishOrError}</div>
+        </div>
+      );
     }
   }
 }
 Progress.propTypes = {
-  /**
-   * Progress percentage,only when isPromise is false.
-   */
-  completed: PropTypes.num,
   /**
    * If true,progress wrong.
    */
@@ -159,21 +158,21 @@ Progress.propTypes = {
    */
   variant: PropTypes.string,
   /**
-   * 	The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100.
+   *  Progress percentage,only when isPromise is false. Value between 0 and 100.
    */
   value: PropTypes.num,
+  /**
+   * 	 If true,progress with percentage.
+   */
+  showPercentage: PropTypes.bool,
 };
 
 Progress.defaultProps = {
-  completed: 0,
+  value: 0,
   error: false,
-  isPromise: false,
   isFinish: false,
   estimatedTime: 2,
-  baseProgress: false,
-  // color:'primary',
   valueBuffer: 10,
-  //variant:'buffer'
 };
 
 export default withStyles(styles, { name: 'RMProgress' })(Progress);

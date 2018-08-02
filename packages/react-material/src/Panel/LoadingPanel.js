@@ -4,7 +4,7 @@ import { withStyles } from '../styles';
 import Progress from '../Progress';
 
 const styles = theme => ({
-  root: {
+  root1: {
     width: '100%',
     backgroundColor: 'white',
     position: 'relative',
@@ -90,12 +90,13 @@ class LoadingPanel extends Component {
     );
   }
   render() {
-    const { classes, children, type, loaded, estimatedTime } = this.props;
+    const { children, type, loaded, estimatedTime, ...others } = this.props;
+    const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <div className={classes.root1}>
         {type === 'progress' ? (
           <div className={classes.progress}>
-            <Progress isPromise={true} isFinish={loaded} estimatedTime={estimatedTime} />
+            <Progress isPromise isFinish={loaded} estimatedTime={estimatedTime} {...others} />
           </div>
         ) : null}
         {type === 'mask' && !loaded ? this.loading() : null}

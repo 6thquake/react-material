@@ -38,7 +38,7 @@ const getLanguage = (lang, value) => {
   return 'en';
 };
 
-const getLocale = (lang, value) => {
+const getLocaleResource = (lang, value) => {
   let lang1 = getLanguage(lang);
 
   if (!value) {
@@ -52,18 +52,21 @@ const getLocale = (lang, value) => {
   };
 };
 
-const getDefaultLocale = () => {
+const getDefaultLocaleResource = () => {
   const wg = global || window;
   let lang = wg && wg.navigator && wg.navigator.language;
 
-  return getLocale(lang);
+  return getLocaleResource(lang);
 };
 
-const defaultLocale = getDefaultLocale();
+const defaultLocale = getDefaultLocaleResource();
 const LocaleContext = React.createContext(defaultLocale);
 const LocaleConsumer = LocaleContext.Consumer;
 
 class LocaleProvider extends React.Component {
+  
+  static locale = 'en';
+
   constructor(props) {
     super(props);
     this.state = {
@@ -77,6 +80,8 @@ class LocaleProvider extends React.Component {
     });
   };
 
+  getLocale = () => this.state.locale;
+
   render() {
     const { children } = this.props;
 
@@ -84,11 +89,12 @@ class LocaleProvider extends React.Component {
 
     if (locale) {
       moment.locale(locale);
+      LocaleProvider.locale = this.state.locale;
     }
 
     const value = {
       ...{ changeLocale: this.changeLocale.bind(this) },
-      ...getLocale(locale, this.props.value),
+      ...getLocaleResource(locale, this.props.value),
     };
 
     return (
@@ -115,4 +121,4 @@ LocaleProvider.propTypes = {
    */
   children: PropTypes.node,
 };
-export { LocaleContext, LocaleProvider, LocaleConsumer, getLanguage, getLocale, getDefaultLocale };
+export { LocaleContext, LocaleProvider, LocaleConsumer, getLanguage, getLocaleResource, getDefaultLocaleResource };

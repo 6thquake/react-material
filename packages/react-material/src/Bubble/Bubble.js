@@ -29,10 +29,6 @@ export var styles = theme => ({
     width: 'auto',
     height: 'auto',
   },
-  /*
-   * Default text shown inside the bubble. Mainly used for demos.
-   */
-  content: 'This is only a test text for bubble dialog content. Please specify your own content.',
 });
 
 class Bubble extends React.Component {
@@ -42,102 +38,57 @@ class Bubble extends React.Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     let self = nextProps.self;
-    let parent = nextProps.parent;
 
     let ancestor = nextProps.ancestor;
     let floated = nextProps.floated;
     let direction = nextProps.direction;
-    const transHeight =
-      typeof parent === 'undefined' ? 0 : Number(parent.height) / 2 + parent.height;
-    const transDis = typeof nextProps.triSize === 'undefined' ? 22 : Number(nextProps.triSize) + 10;
-    const trHeight = typeof parent === 'undefined' ? 0 : Number(parent.height) / 2;
-    const lFXDis = typeof parent === 'undefined' ? 0 : parent.width + transDis;
-    const lFYDis = typeof parent === 'undefined' ? 0 : parent.height + trHeight;
 
-    if (floated == 'false') {
-      //typeof(ancestor) != 'string') {
-      if (typeof ancestor != 'string') {
-        //floated == false) {
-        if (direction == 'left') {
+    if (typeof ancestor != 'string') {
+      for (let i = 0; i < ancestor.length; i++) {
+        if (floated == 'false') {  //非悬浮，不需要设置self样式
           if (typeof self != 'undefined' && self.getAttribute('style') != null) {
             self.removeAttribute('style');
           }
-          for (let i = 0; i < ancestor.length; i++) {
-            ancestor[i].setAttribute(
-              'style',
-              'display: flex; justify-content: flex-start; align-items: center; flex-direction: row',
-            );
+
+          if (direction == 'left') {  //左边
+            ancestor[i].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: row',);
           }
-        } else if (direction == 'right') {
-          if (typeof self != 'undefined' && self.getAttribute('style') != null) {
-            self.removeAttribute('style');
+          else if (direction == 'right') {  //右边
+            ancestor[i].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: row-reverse',);
           }
-          for (let i = 0; i < ancestor.length; i++) {
-            ancestor[i].setAttribute(
-              'style',
-              'display: flex; justify-content: flex-start; align-items: center; flex-direction: row-reverse',
-            );
+          else if (direction == 'top') {  //上边
+            ancestor[i].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: column-reverse',);
           }
-        } else if (direction == 'top') {
-          if (typeof self != 'undefined' && self.getAttribute('style') != null) {
-            self.removeAttribute('style');
-          }
-          for (let i = 0; i < ancestor.length; i++) {
-            ancestor[i].setAttribute(
-              'style',
-              'display: flex; justify-content: flex-start; align-items: center; flex-direction: column-reverse',
-            );
-          }
-        } else if (direction == 'bottom') {
-          if (typeof self != 'undefined' && self.getAttribute('style') != null) {
-            self.removeAttribute('style');
-          }
-          for (let i = 0; i < ancestor.length; i++) {
-            ancestor[i].setAttribute(
-              'style',
-              'display: flex; justify-content: flex-start; align-items: center; flex-direction: column',
+          else if (direction == 'bottom') {  //下边
+            ancestor[i].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: column',
             );
           }
         }
-      }
-    } else {
-      if (typeof self != 'undefined' && typeof self != 'string') {
-        if (direction == 'left') {
-          if (typeof self != 'undefined' && self.getAttribute('style') != null) {
-            self.removeAttribute('style');
-          }
-          self.setAttribute('style', 'transform: translate(' + lFXDis + 'px,' + -lFYDis + 'px);');
-          for (let i = 0; i < ancestor.length; i++) {
+        else {  //悬浮，不需要设置ancestor样式
+          if (typeof self != 'undefined' && typeof self != 'string') {
             if (ancestor[i].getAttribute('style') != null) {
               ancestor[i].removeAttribute('style');
             }
-          }
-        } else if (direction == 'right') {
-          if (typeof self != 'undefined' && self.getAttribute('style') != null) {
-            self.removeAttribute('style');
-          }
-          self.setAttribute('style', 'transform: translate(-100%,' + -transHeight + 'px);');
-          for (let i = 0; i < ancestor.length; i++) {
-            if (ancestor[i].getAttribute('style') != null) {
-              ancestor[i].removeAttribute('style');
+
+            if (direction == 'left') {  //左边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
             }
-          }
-        } else if (direction == 'top') {
-          if (typeof self != 'undefined' && self.getAttribute('style') != null) {
-            self.removeAttribute('style');
-          }
-          for (let i = 0; i < ancestor.length; i++) {
-            if (ancestor[i].getAttribute('style') != null) {
-              ancestor[i].removeAttribute('style');
+            else if (direction == 'right') {  //右边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
             }
-          }
-        } else if (direction == 'bottom') {
-          if (typeof self != 'undefined' && self.getAttribute('style') != null) {
-            self.removeAttribute('style');
-          }
-          for (let i = 0; i < ancestor.length; i++) {
-            if (ancestor[i].getAttribute('style') != null) {
-              ancestor[i].removeAttribute('style');
+            else if (direction == 'top') {  //上边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
+            }
+            else if (direction == 'bottom') {  //下边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
             }
           }
         }
@@ -148,27 +99,27 @@ class Bubble extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevStates) {
-    //top floated style
+    //floated style
     if (document.getElementById('self') != null) {
-      if (prevProps.direction == 'top' && prevProps.floated == 'true') {
-        const dis =
-          document.getElementById('self').getBoundingClientRect().height +
-          prevProps.parent.height +
-          (typeof prevProps.triSize === 'undefined' ? 22 : Number(prevProps.triSize) + 10);
-        document
-          .getElementById('self')
-          .setAttribute(
-            'style',
-            'transform: translate(' + -(prevProps.parent.width / 2) + 'px,' + -dis + 'px)',
-          );
-      } else if (prevProps.direction == 'bottom' && prevProps.floated == 'true') {
+      if (prevProps.direction == 'left' && prevProps.floated == 'true') {  //悬浮+左边
+        const dis = Number(document.getElementById("self").getBoundingClientRect().height) / 2 + prevProps.parent.height / 2;
+        const transDis = typeof prevProps.triSize === 'undefined' ? 22 : Number(prevProps.triSize) + 10;
+        const lFXDis = typeof prevProps.parent === 'undefined' ? 0 : prevProps.parent.width + transDis;
+
+        document.getElementById('self').setAttribute('style', 'transform: translate(' + lFXDis + 'px,' + -dis + 'px)');
+      }
+      else if (prevProps.direction == 'right' && prevProps.floated == 'true') {  //悬浮+右边
+        const dis = Number(document.getElementById("self").getBoundingClientRect().height) / 2 + prevProps.parent.height / 2;
+
+        document.getElementById('self').setAttribute('style', 'transform: translate(-100%,' + -dis + 'px)');
+      }
+      else if (prevProps.direction == 'top' && prevProps.floated == 'true') {  //悬浮+上边
+        const dis = document.getElementById('self').getBoundingClientRect().height + prevProps.parent.height + (typeof prevProps.triSize === 'undefined' ? 22 : Number(prevProps.triSize) + 10);
+        document.getElementById('self').setAttribute('style', 'transform: translate(' + -(prevProps.parent.width / 2) + 'px,' + -dis + 'px)',);
+      }
+      else if (prevProps.direction == 'bottom' && prevProps.floated == 'true') {  //悬浮+下边
         const dis = typeof prevProps.triSize === 'undefined' ? 22 : Number(prevProps.triSize) + 10;
-        document
-          .getElementById('self')
-          .setAttribute(
-            'style',
-            'transform: translate(' + -(prevProps.parent.width / 2) + 'px,' + dis + 'px)',
-          );
+        document.getElementById('self').setAttribute('style', 'transform: translate(' + -(prevProps.parent.width / 2) + 'px,' + dis + 'px)',);
       }
     }
   }

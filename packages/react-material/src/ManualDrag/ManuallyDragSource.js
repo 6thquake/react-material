@@ -21,8 +21,9 @@ export default class BoxA extends SourceWrapper {
     //外部item，没有Index,拖入时把DragSource里面的东西拖入
 
     item.sourceType = 'BoxA';
-    item.left = this.refs['myRef'].getBoundingClientRect().left+document.documentElement.scrollLeft;
-    item.top = this.refs['myRef'].getBoundingClientRect().top+document.documentElement.scrollTop;
+    item.left =
+      this.refs['myRef'].getBoundingClientRect().left + document.documentElement.scrollLeft;
+    item.top = this.refs['myRef'].getBoundingClientRect().top + document.documentElement.scrollTop;
     if (this.props.type == 'OUTITEM') {
       item.component = component.props.children;
     } else if (this.props.type == 'INNERITEM') {

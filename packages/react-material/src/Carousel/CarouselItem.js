@@ -87,11 +87,7 @@ class CarouselItem extends React.Component {
             onRef={this.onRef}
             controls={false}
             sources={[{ src: data.src, type: 'video/mp4' }]}
-<<<<<<< HEAD
             onEnded={this.ended.bind(this)}
-=======
-            ended={this.ended.bind(this)}
->>>>>>> push dnd
           />
         ) : null}
       </div>

@@ -133,11 +133,34 @@ OrderDropTarget.defaultProps = {
   defaultComponents: [],
 };
 OrderDropTarget.propTypes = {
+  /*
+   *
+   */
   value: PropTypes.array,
+  /*
+   *
+   */
   sequence: PropTypes.func,
+  /*
+   *
+   */
   remove: PropTypes.func,
+  /*
+   *
+   */
   add: PropTypes.func,
+  /*
+   *
+   */
   defaultComponents: PropTypes.array,
+  /*
+   *
+   */
+  cellSize: PropTypes.number,
+  /*
+   *
+   */
+  colsCount: PropTypes.number,
 };
 // let OrderDragTarget=DropTarget(['ICON','BUTTON','PAPER','LISTITEM'],boxTarget,(connect,monitor)=>{
 //     return {

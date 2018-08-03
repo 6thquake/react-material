@@ -26,7 +26,6 @@ This property accepts the following keys:
 - `recStyle`
 - `triStyle`
 - `customization`
-- `content`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/6thquake/react-material/tree/develop/packages/react-material/src/Bubble/Bubble.js)

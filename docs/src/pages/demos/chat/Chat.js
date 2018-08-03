@@ -52,15 +52,20 @@ class App extends React.Component {
       return (
         <div>
           <Chat
-            avatar={ <Avatar alt={avatars.rAvatar.alt} src={avatars.rAvatar.src} style={{ marginLeft: 10 }} /> }
+            avatar={
+              <Avatar
+                alt={avatars.rAvatar.alt}
+                src={avatars.rAvatar.src}
+                style={{ marginLeft: 10 }}
+              />
+            }
             isLeft={false}
             bubbleProps={{
-              triSize:"12",
-              bgColor:"cyan",
+              triSize: '12',
+              bgColor: 'cyan',
               index: 0,
-              classes:{ customization: classes.customization }
+              classes: { customization: classes.customization },
             }}
-
           >
             Hello, this is simply a test bubble dialog conversation.
           </Chat>
@@ -77,7 +82,7 @@ class App extends React.Component {
               triSize: '12',
               bgColor: 'yellow',
               index: 1,
-              classes: { customization: classes.customization }
+              classes: { customization: classes.customization },
             }}
           >
             Oh hi there. I see. So is there anything I can do for the test?
@@ -95,15 +100,14 @@ class App extends React.Component {
               triSize: '12',
               bgColor: 'yellow',
               index: 2,
-              classes: { customization: classes.customization }
+              classes: { customization: classes.customization },
             }}
           >
             Or you're simply asking me to try it and offer some feedback?
           </Chat>
         </div>
       );
-    }
-    else if (this.state.test == 1) {
+    } else if (this.state.test == 1) {
       return (
         <div>
           <Chat
@@ -119,7 +123,7 @@ class App extends React.Component {
               triSize: '12',
               bgColor: 'cyan',
               index: 0,
-              classes: { customization: classes.customization }
+              classes: { customization: classes.customization },
             }}
           >
             Hello, this is simply a test bubble dialog conversation.
@@ -137,7 +141,7 @@ class App extends React.Component {
               triSize: '12',
               bgColor: 'yellow',
               index: 1,
-              classes: { customization: classes.customization }
+              classes: { customization: classes.customization },
             }}
           >
             Oh hi there. I see. So is there anything I can do for the test?
@@ -155,7 +159,7 @@ class App extends React.Component {
               triSize: '12',
               bgColor: 'yellow',
               index: 2,
-              classes: { customization: classes.customization }
+              classes: { customization: classes.customization },
             }}
           >
             Or you're simply asking me to try it and offer some feedback?
@@ -168,9 +172,7 @@ class App extends React.Component {
   render() {
     const { classes } = this.props;
 
-    return (
-      <div style={renderStyle}>{this.renderTest(classes)}</div>
-    );
+    return <div style={renderStyle}>{this.renderTest(classes)}</div>;
   }
 }
 

@@ -38,13 +38,114 @@ class Bubble extends React.Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     let self = nextProps.self;
+    let index = nextProps.index;
 
     let ancestor = nextProps.ancestor;
     let floated = nextProps.floated;
     let direction = nextProps.direction;
 
     if (typeof ancestor != 'string') {
-      for (let i = 0; i < ancestor.length; i++) {
+      if (typeof index !== 'undefined') {  //有多个ancestor，应该改变ancestor与元素下标对应的
+        if (floated == 'false') {  //非悬浮，不需要设置self样式
+          if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+            self.removeAttribute('style');
+          }
+
+          if (direction == 'left') {  //左边
+            ancestor[index].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: row',);
+          }
+          else if (direction == 'right') {  //右边
+            ancestor[index].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: row-reverse',);
+          }
+          else if (direction == 'top') {  //上边
+            ancestor[index].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: column-reverse',);
+          }
+          else if (direction == 'bottom') {  //下边
+            ancestor[index].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: column',
+            );
+          }
+        }
+        else {  //悬浮，不需要设置ancestor样式
+          if (typeof self != 'undefined' && typeof self != 'string') {
+            if (ancestor[index].getAttribute('style') != null) {
+              ancestor[index].removeAttribute('style');
+            }
+
+            if (direction == 'left') {  //左边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
+            }
+            else if (direction == 'right') {  //右边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
+            }
+            else if (direction == 'top') {  //上边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
+            }
+            else if (direction == 'bottom') {  //下边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
+            }
+          }
+        }
+      }
+      else {  //只有一个ancestor，不存在改变flex-direction的情况
+        if (floated == 'false') {  //非悬浮，不需要设置self样式
+          if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+            self.removeAttribute('style');
+          }
+
+          if (direction == 'left') {  //左边
+            ancestor[0].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: row',);
+          }
+          else if (direction == 'right') {  //右边
+            ancestor[0].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: row-reverse',);
+          }
+          else if (direction == 'top') {  //上边
+            ancestor[0].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: column-reverse',);
+          }
+          else if (direction == 'bottom') {  //下边
+            ancestor[0].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: column',
+            );
+          }
+        }
+        else {  //悬浮，不需要设置ancestor样式
+          if (typeof self != 'undefined' && typeof self != 'string') {
+            if (ancestor[0].getAttribute('style') != null) {
+              ancestor[i].removeAttribute('style');
+            }
+
+            if (direction == 'left') {  //左边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
+            }
+            else if (direction == 'right') {  //右边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
+            }
+            else if (direction == 'top') {  //上边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
+            }
+            else if (direction == 'bottom') {  //下边
+              if (typeof self != 'undefined' && self.getAttribute('style') != null) {
+                self.removeAttribute('style');
+              }
+            }
+          }
+        }
+      }
+    }
+
+      /*for (let i = 0; i < ancestor.length; i++) {
         if (floated == 'false') {  //非悬浮，不需要设置self样式
           if (typeof self != 'undefined' && self.getAttribute('style') != null) {
             self.removeAttribute('style');
@@ -57,7 +158,7 @@ class Bubble extends React.Component {
             ancestor[i].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: row-reverse',);
           }
           else if (direction == 'top') {  //上边
-            ancestor[i].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: column-reverse',);
+            ancestor[i].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: column',);
           }
           else if (direction == 'bottom') {  //下边
             ancestor[i].setAttribute('style', 'display: flex; justify-content: flex-start; align-items: center; flex-direction: column',
@@ -93,7 +194,7 @@ class Bubble extends React.Component {
           }
         }
       }
-    }
+    }*/
 
     return null;
   }
@@ -125,7 +226,7 @@ class Bubble extends React.Component {
   }
 
   render() {
-    const { direction, floated, triSize, bgColor, classes } = this.props;
+    const { direction, floated, index, triSize, bgColor, classes } = this.props;
     const halfSize = typeof triSize === 'undefined' ? 6 : Number(triSize) / 2;
     const recClassNames = classNames(classes.recStyle, classes.customization);
     const triClassNames = classNames(classes.triStyle);

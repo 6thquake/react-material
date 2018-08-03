@@ -30,20 +30,19 @@ class Chat extends React.Component {
   }
 
   render() {
-    const { isLeft, triSize, bgColor, avatar, classes } = this.props;
+    //const { index, isLeft, triSize, bgColor, avatar, classes } = this.props;
+    const { isLeft, avatar, bubbleProps } = this.props;
 
     return isLeft ? ( //left dialog chart
       <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 20 }}>
         <div name="ancestor">
           {avatar}
           <Bubble
+            {...bubbleProps}
             style={{ marginLeft: 10 }}
             direction="left"
             floated="false"
             ancestor={this.state.ancestor}
-            bgColor={bgColor}
-            triSize={triSize}
-            classes={classes}
           >
             {this.props.children}
           </Bubble>
@@ -53,18 +52,16 @@ class Chat extends React.Component {
       //right dialog chart
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
         <div name="ancestor">
+          {avatar}
           <Bubble
+            {...bubbleProps}
             style={{ marginRight: 10 }}
             direction="right"
             floated="false"
             ancestor={this.state.ancestor}
-            bgColor={bgColor}
-            triSize={triSize}
-            classes={classes}
           >
             {this.props.children}
           </Bubble>
-          {avatar}
         </div>
       </div>
     );

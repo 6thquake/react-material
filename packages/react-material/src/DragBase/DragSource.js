@@ -4,7 +4,7 @@
 
 import React, { PureComponent } from 'react';
 import { withStyles } from '../styles';
-import { DragSource } from 'react-dnd';
+import { DragSource as DragSourceBase } from 'react-dnd';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
@@ -61,5 +61,5 @@ class _DragSource extends PureComponent {
     return connect.dragSource()(<div className={classes.inner}>{childrenWithProps}</div>);
   }
 }
-
-export default withStyles(styles)(DragSource('*', _source, collect)(_DragSource));
+let DragSource = DragSourceBase('*', _source, collect)(_DragSource);
+export default withStyles(styles)(DragSource);

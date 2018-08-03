@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { SourceWrapper } from '@6thquake/react-material/Drag';
+import { SourceWrapper } from '@6thquake/react-material/DragBase';
 const boxstyles = {
   border: '1px dashed gray',
   padding: '0.5rem 1rem',
@@ -9,7 +9,7 @@ const boxstyles = {
   display: 'inline-block',
 };
 
-export default class BoxB extends SourceWrapper {
+export default class ManuallyDragSource extends SourceWrapper {
   constructor(props) {
     super(props);
   }
@@ -21,9 +21,9 @@ export default class BoxB extends SourceWrapper {
     const item = {};
     //外部item，没有Index,拖入时把DragSource里面的东西拖入
 
-    item.sourceType = 'BoxB';
-    item.left = this.refs['myRef2'].getBoundingClientRect().left;
-    item.top = this.refs['myRef2'].getBoundingClientRect().top;
+    item.sourceType = 'BoxA';
+    item.left = this.refs['myRef'].getBoundingClientRect().left+document.documentElement.scrollLeft;
+    item.top = this.refs['myRef'].getBoundingClientRect().top+document.documentElement.scrollTop;
     if (this.props.type == 'OUTITEM') {
       item.component = component.props.children;
     } else if (this.props.type == 'INNERITEM') {
@@ -55,7 +55,7 @@ export default class BoxB extends SourceWrapper {
   }
   render() {
     return (
-      <div style={this.getStyles()} ref={'myRef2'}>
+      <div style={this.getStyles()} ref={'myRef'}>
         <div style={boxstyles}>{this.props.children.props.children}</div>
       </div>
     );

@@ -1,20 +1,7 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import { withStyles } from '@6thquake/react-material/styles';
-import { DragSource2, ManualDragTarget, CustomDragLayer } from '@6thquake/react-material/Drag';
-
-import Button from '@6thquake/react-material/Button';
-import Icon from '@6thquake/react-material/Icon';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import Paper from '@6thquake/react-material/Paper';
-import IconButton from '@6thquake/react-material/IconButton';
-
-import PropTypes from 'prop-types';
-import BoxA from './BoxA';
-import BoxB from './BoxB';
-import TargetBox from './TargetBox';
+import { DragSource, DropTarget } from '@6thquake/react-material/DragBase';
+import { ManuallyDragSource, ManuallyDropTarget } from '@6thquake/react-material/ManualDrag';
 
 // import Test from './test'
 const styles = theme => ({
@@ -31,7 +18,7 @@ const styles = theme => ({
     top: '100px',
   },
 });
-class DragToolBox extends Component {
+class DragPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,21 +31,21 @@ class DragToolBox extends Component {
     return (
       <div className={classes.root}>
         <div>
-          <DragSource2>
-            <BoxA type="OUTITEM">
+          <DragSource>
+            <ManuallyDragSource type="OUTITEM">
               <div>boxA</div>
-            </BoxA>
-          </DragSource2>
-          <DragSource2>
-            <BoxB type="OUTITEM">
+            </ManuallyDragSource>
+          </DragSource>
+          <DragSource>
+            <ManuallyDragSource type="OUTITEM">
               <div>boxB</div>
-            </BoxB>
-          </DragSource2>
+            </ManuallyDragSource>
+          </DragSource>
         </div>
 
-        <ManualDragTarget>
-          <TargetBox acceptItem={['BoxB', 'BoxC']} snapToGrid={snapToGridAfterDrop} />
-        </ManualDragTarget>
+        <DropTarget>
+          <ManuallyDropTarget acceptItem={['BoxB', 'BoxC']} snapToGrid={snapToGridAfterDrop} />
+        </DropTarget>
         <p>
           <label htmlFor="snapToGridAfterDrop">
             <input
@@ -79,4 +66,4 @@ class DragToolBox extends Component {
     });
   }
 }
-export default withStyles(styles)(DragToolBox);
+export default withStyles(styles)(DragPanel);

@@ -3,9 +3,9 @@ import { withStyles } from '@6thquake/react-material/styles';
 import PropTypes from 'prop-types';
 import ListItem from '@6thquake/react-material/ListItem';
 import List from '@6thquake/react-material/List';
-import ListItemIcon from '@6thquake/react-material/ListItemIcon';
 import ListItemText from '@6thquake/react-material/ListItemText';
-import { DragSource, OrderDragTarget } from '@6thquake/react-material/Drag';
+import { DropTarget } from '@6thquake/react-material/DragBase';
+import { OrderDropTarget } from '@6thquake/react-material/OrderDrag';
 const styles = theme => ({
   root: {
     position: 'relative',
@@ -72,18 +72,20 @@ class DragList extends React.Component {
     return (
       <div className={classes.root}>
         <List component="nav" className={classes.list}>
-          <OrderDragTarget
-            colsCount={1}
-            cellSize={80}
-            defaultComponents={_childComponents}
-            sequence={this.sequence}
-            remove={this.remove}
-            add={this.add}
-          />
-          {/* {_childComponents} */}
+          <DropTarget>
+            <OrderDropTarget
+              colsCount={1}
+              cellSize={80}
+              defaultComponents={_childComponents}
+              sequence={this.sequence}
+              remove={this.remove}
+              add={this.add}
+            />
+          </DropTarget>
         </List>
       </div>
     );
   }
 }
+
 export default withStyles(styles)(DragList);

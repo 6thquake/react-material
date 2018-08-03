@@ -5,8 +5,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { withStyles } from '../styles';
-import { DropTarget } from 'react-dnd';
-import DragSource2 from './DragSource2';
+import { DropTarget as DropTargetBase } from 'react-dnd';
 import update from 'immutability-helper';
 import PropTypes from 'prop-types';
 const styles = {};
@@ -26,7 +25,7 @@ const boxTarget = {
   // }
 };
 
-class _DragTarget extends React.Component {
+class _DropTarget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,5 +67,5 @@ function collect(connect, monitor) {
   };
 }
 
-let OrderDragTarget = DropTarget('*', boxTarget, collect)(_DragTarget);
-export default withStyles(styles)(OrderDragTarget);
+let DropTarget = DropTargetBase('*', boxTarget, collect)(_DropTarget);
+export default withStyles(styles)(DropTarget);

@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { withStyles } from '@6thquake/react-material/styles';
-import { DragSource, OrderDragTarget } from '@6thquake/react-material/Drag';
+import { OrderDragSource, OrderDropTarget } from '@6thquake/react-material/OrderDrag';
+import { DandD, DropTarget } from '@6thquake/react-material/DragBase';
 import Button from '@6thquake/react-material/Button';
-import Icon from '@6thquake/react-material/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import Paper from '@6thquake/react-material/Paper';
 import IconButton from '@6thquake/react-material/IconButton';
-// import {withDragAndDrop} from '@6thquake/react-material/DragAndDrop';
-import PropTypes from 'prop-types';
 const styles = theme => ({
   root: {
     position: 'relative',
@@ -26,11 +23,16 @@ const styles = theme => ({
     background: 'rgba(0,0,0,0.1)',
     width: '600px',
   },
+  // DandD:{
+  //  display:'inline-block',
+  //  position: 'static'
+  // }
 });
-class DragToolBox extends Component {
+class DragToolBar extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const { classes } = this.props;
     const defaultChildren = [
@@ -59,22 +61,28 @@ class DragToolBox extends Component {
         <div
           style={{ position: 'absolute', width: '600px', height: '200px', top: '0px', left: '0px' }}
         >
-          <DragSource type="OUTITEM" dragType="ICON">
-            <Button variant="fab" disabled aria-label="delete" className={classes.button}>
-              <DeleteIcon />
-            </Button>
-          </DragSource>
-          <DragSource type="OUTITEM" dragType="BUTTON">
-            <IconButton color="primary" className={classes.button} component="span">
-              <PhotoCamera />
-            </IconButton>
-          </DragSource>
+          <DandD>
+            <OrderDragSource type="OUTITEM">
+              <Button variant="fab" disabled aria-label="delete" className={classes.button}>
+                <DeleteIcon />
+              </Button>
+            </OrderDragSource>
+          </DandD>
+          <DandD classes={{ root: classes.DandD }}>
+            <OrderDragSource type="OUTITEM">
+              <IconButton color="primary" className={classes.button} component="span">
+                <PhotoCamera />
+              </IconButton>
+            </OrderDragSource>
+          </DandD>
         </div>
         <div className={classes.dropTarget}>
-          <OrderDragTarget defaultComponents={defaultChildren} cellSize={80} colsCount={6} />
+          <DropTarget classes={{ custom: classes.dropTarget }}>
+            <OrderDropTarget defaultComponents={defaultChildren} cellSize={80} colsCount={6} />
+          </DropTarget>
         </div>
       </div>
     );
   }
 }
-export default withStyles(styles)(DragToolBox);
+export default withStyles(styles)(DragToolBar);

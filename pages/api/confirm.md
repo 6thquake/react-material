@@ -12,7 +12,7 @@ filename: /packages/react-material/src/Modal/Confirm.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">open</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Decide modal open or close,	If true, the modal is open. |
+| <span class="prop-name required">open *</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Decide modal open or close,	If true, the modal is open. |
 | <span class="prop-name">title</span> | <span class="prop-type">string | <span class="prop-default">''</span> | This is  modal title |
 | <span class="prop-name">cancelText</span> | <span class="prop-type">string |  | Cancel button text |
 | <span class="prop-name">okText</span> | <span class="prop-type">string |  | Confirm button text |

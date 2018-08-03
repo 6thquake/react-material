@@ -80,6 +80,7 @@
     "react-custom-scrollbars": "^4.2.1",
     "react-dnd": "^2.6.0",
     "react-dnd-html5-backend": "^2.6.0",
+    "react-lifecycles-compat": "^3.0.4",
     "react-popper": "^1.0.0",
     "react-resizable": "^1.0.0",
     "rebound": "^0.1.0",

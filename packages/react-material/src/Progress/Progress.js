@@ -37,11 +37,10 @@ class Progress extends Component {
     super();
     this.state = {
       completed: 0,
-      show: true,
+      show: false,
     };
   }
   timer = null;
-  timertep = null;
   componentDidMount() {
     if (this.props.isPromise) {
       this.timer = setInterval(this.progress, 300);
@@ -49,7 +48,13 @@ class Progress extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.isPromise && nextProps !== prevState.preProps) {
+    if (
+      !prevState.preProps ||
+      (nextProps.isPromise &&
+        nextProps !== prevState.preProps &&
+        nextProps.isFinish !== prevState.preProps.isFinish)
+    )
+    {
       return {
         show: true,
         completed: nextProps.isFinish ? 100 : 0,

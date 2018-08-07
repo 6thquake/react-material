@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AsyncAutoComplete from '@6thquake/react-material/AutoComplete';
+import {AsyncAutoComplete} from '@6thquake/react-material/AutoComplete';
 import { withStyles } from '@6thquake/react-material/styles';
 import Typography from '@6thquake/react-material/Typography';
 import StarBorder from '@material-ui/icons/StarBorder';

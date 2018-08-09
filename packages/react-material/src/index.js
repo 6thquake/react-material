@@ -125,7 +125,7 @@ export { default as Stepper, StepperPane, StepPane } from './Stepper';
 export { default as SvgIcon } from './SvgIcon';
 export { default as SwipeableDrawer } from './SwipeableDrawer';
 export { default as Switch } from './Switch';
-export { default as Table, CrossTable, AbundantCrossTable } from './Table';
+export { default as Table, CrossTable, AbundantCrossTable, AwesomeTable } from './Table';
 export { default as TableBody } from './TableBody';
 export { default as TableCell } from './TableCell';
 export { default as TableFooter } from './TableFooter';

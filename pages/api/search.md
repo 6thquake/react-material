@@ -12,6 +12,7 @@ filename: /packages/react-material/src/Search/Search.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">value</span> | <span class="prop-type">string |  | If this property is passed, Search will be Controlled |
 | <span class="prop-name">floatRight</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | float to right |
 | <span class="prop-name">placeholder</span> | <span class="prop-type">string |  | placeholder |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">string | <span class="prop-default">''</span> | defaultValue for search |

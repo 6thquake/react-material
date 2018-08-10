@@ -93,16 +93,16 @@ class Search extends Component {
   }
 
   handleChangeSingle(event, child) {
-    const { onChange , value} = this.props
-    let text = event.target.value
+    const { onChange, value } = this.props;
+    let text = event.target.value;
     let self = this;
     this.typeIn = true;
-    if(value !== undefined){
-      onChange && onChange(event)
-    }else{
+    if (value !== undefined) {
+      onChange && onChange(event);
+    } else {
       this.setState({ search: text }, () => {
-      self.ok();
-    });
+        self.ok();
+      });
     }
   }
 
@@ -127,8 +127,8 @@ class Search extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.value !== undefined){
-      return null
+    if (nextProps.value !== undefined) {
+      return null;
     }
 
     if (nextProps !== prevState.preProps) {
@@ -145,10 +145,10 @@ class Search extends Component {
 
   render() {
     const { classes, isDark, floatRight, defaultValue, placeholder, value } = this.props;
-    let search = ''
-    if(value !== undefined){
-      search = value
-    }else{
+    let search = '';
+    if (value !== undefined) {
+      search = value;
+    } else {
       search = this.state.preProps.defaultValue;
       if (this.typeIn) {
         search = this.state.search;
@@ -181,7 +181,7 @@ Search.propTypes = {
   /**
    * If this property is passed, Search will be Controlled
    */
-   value: PropTypes.string,
+  value: PropTypes.string,
   /**
    * float to right
    */

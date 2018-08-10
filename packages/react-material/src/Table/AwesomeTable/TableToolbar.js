@@ -62,10 +62,10 @@ class TableToolbar extends Component {
   excelRef = React.createRef('excel');
   onChange = e => {
     let { onSearch, SearchProps } = this.props;
-    let text = e.target.value
+    let text = e.target.value;
     this.setState({
-      searchText: text
-    })
+      searchText: text,
+    });
     onSearch && onSearch(text);
     SearchProps.onChange && SearchProps.onChange(text);
   };
@@ -102,7 +102,7 @@ class TableToolbar extends Component {
 
   render() {
     const { width, classes, searchable, exportProps, SearchProps, title } = this.props;
-    const { anchorEl , searchText} = this.state;
+    const { anchorEl, searchText } = this.state;
     if (SearchProps.floatRight === undefined) {
       SearchProps.floatRight = true;
     }

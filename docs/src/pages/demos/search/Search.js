@@ -6,18 +6,17 @@ import { Home, Grade, Lock } from '@material-ui/icons';
 import Icon from '@6thquake/react-material/Icon';
 import IconButton from '@6thquake/react-material/IconButton';
 
-const style = (theme)=> {
+const style = theme => {
   conttolledSearch: {
-    
-    marginBottom: theme.spacing.unit * 3
+    marginBottom: theme.spacing.unit * 3;
   }
-}
+};
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       values: 'test word',
-      text: ''
+      text: '',
     };
   }
   onChange = data => {
@@ -27,29 +26,32 @@ class App extends React.Component {
     this.setState({ values: '' });
     console.log('clean values');
   }
-  handleChange=(e)=> {
+  handleChange = e => {
     this.setState({
-      text: e.target.value
-    })
-  }
+      text: e.target.value,
+    });
+  };
   render() {
-    const {
-      classes
-    } = this.props
+    const { classes } = this.props;
     const { clearValue } = this;
     const { values, text } = this.state;
     return (
       <div style={{ width: '100%' }}>
-
         {/* Controlled Search */}
         <div className={classes.conttolledSearch} style={{ overflow: 'hidden' }}>
           <div style={{ width: '50%', float: 'right' }}>
-            <Search value={text} floatRight placeholder={'全局搜索'} onChange={this.handleChange} isDark />
+            <Search
+              value={text}
+              floatRight
+              placeholder={'全局搜索'}
+              onChange={this.handleChange}
+              isDark
+            />
             {/**/}
           </div>
           <div>search text is : {text}</div>
         </div>
-        <br/>
+        <br />
         <div style={{ overflow: 'hidden' }}>
           <div style={{ width: '50%', float: 'right' }}>
             <Search floatRight placeholder={'全局搜索'} onChange={this.onChange} isDark />

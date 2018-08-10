@@ -91,21 +91,31 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
   TablePaginationActions,
 );
 
+const style =(theme)=> ({
+  root: {
+    width: '100%'
+  }
+})
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
-    const { count, rowsPerPage, threshold } = this.props;
+    const { count, rowsPerPage, threshold, classes} = this.props;
     const pageLength = Math.ceil(count / rowsPerPage);
     const C = pageLength > (threshold || 5) ? TablePaginationActionsWrapped : null;
     const customProps = {};
     if (C) {
       customProps.ActionsComponent = C;
     }
-    return <TablePagination {...customProps} {...this.props} />;
+    return <TablePagination 
+            classes={{
+              root: classes.root
+            }} 
+            {...customProps} 
+            {...this.props} />;
   }
 }
 
-export default Pagination;
+export default withStyles(style)(Pagination);

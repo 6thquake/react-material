@@ -93,35 +93,44 @@ class Search extends Component {
   }
 
   handleChangeSingle(event, child) {
+    const { onChange , value} = this.props
+    let text = event.target.value
     let self = this;
     this.typeIn = true;
-    this.setState({ search: event.target.value }, () => {
+    if(value !== undefined){
+      onChange && onChange(event)
+    }else{
+      this.setState({ search: text }, () => {
       self.ok();
     });
+    }
   }
 
-  autoCb(i) {
-    console.log('item', i);
-    this.setState({
-      pageConfig: {
-        ...this.state.pageConfig,
-        currentPage: i,
-      },
-    });
-  }
+  // autoCb(i) {
+  //   console.log('item', i);
+  //   this.setState({
+  //     pageConfig: {
+  //       ...this.state.pageConfig,
+  //       currentPage: i,
+  //     },
+  //   });
+  // }
 
-  inputChangeCb(event) {
-    console.log('item', event);
-    this.setState({ inputText: event.target.value });
-  }
+  // inputChangeCb(event) {
+  //   console.log('item', event);
+  //   this.setState({ inputText: event.target.value });
+  // }
 
   ok() {
-    const { onChange } = this.props;
     const { search } = this.state;
     onChange && typeof onChange === 'function' && onChange(search);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.value !== undefined){
+      return null
+    }
+
     if (nextProps !== prevState.preProps) {
       //说明是props变化了
       return {
@@ -135,12 +144,17 @@ class Search extends Component {
   }
 
   render() {
-    const { classes, isDark, floatRight, defaultValue, placeholder } = this.props;
-    let search = this.state.preProps.defaultValue;
-    if (this.typeIn) {
-      search = this.state.search;
+    const { classes, isDark, floatRight, defaultValue, placeholder, value } = this.props;
+    let search = ''
+    if(value !== undefined){
+      search = value
+    }else{
+      search = this.state.preProps.defaultValue;
+      if (this.typeIn) {
+        search = this.state.search;
+      }
     }
-    const { currentPage, pageSize, total } = this.state.pageConfig;
+    // const { currentPage, pageSize, total } = this.state.pageConfig;
     return (
       <div className={classes.root + ' ' + (!!floatRight ? classes.right : '')}>
         <input
@@ -164,6 +178,10 @@ class Search extends Component {
 }
 
 Search.propTypes = {
+  /**
+   * If this property is passed, Search will be Controlled
+   */
+   value: PropTypes.string,
   /**
    * float to right
    */

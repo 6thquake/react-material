@@ -1,5 +1,5 @@
 export * from './CrossTable';
-export * from './RmTable';
+export * from './AwesomeTable';
 export { default as CrossTable } from './CrossTable';
 
 export * from '@material-ui/core/Table';

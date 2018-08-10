@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import { Search } from '@6thquake/react-material/Search';
+import Search from '@6thquake/react-material/Search';
 import { Home, Grade, Lock } from '@material-ui/icons';
 import Icon from '@6thquake/react-material/Icon';
 import IconButton from '@6thquake/react-material/IconButton';

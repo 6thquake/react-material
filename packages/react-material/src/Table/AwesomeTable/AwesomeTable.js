@@ -50,7 +50,7 @@ const styles = theme => ({
   },
 });
 
-class RmTable extends React.Component {
+class AwesomeTable extends React.Component {
   constructor(props) {
     super(props);
     const columns = this.normalizeColumns(props.columns);
@@ -407,7 +407,7 @@ class RmTable extends React.Component {
   }
 }
 
-RmTable.propTypes = {
+AwesomeTable.propTypes = {
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
@@ -473,7 +473,7 @@ RmTable.propTypes = {
    */
   title: PropTypes.node,
 };
-RmTable.defaultProps = {
+AwesomeTable.defaultProps = {
   TablePaginationProps: {
     rowsPerPage: 10,
     page: 0,
@@ -490,4 +490,4 @@ RmTable.defaultProps = {
   dragable: false,
   sync: false,
 };
-export default withStyles(styles, { withTheme: true })(RmTable);
+export default withStyles(styles, { withTheme: true })(AwesomeTable);

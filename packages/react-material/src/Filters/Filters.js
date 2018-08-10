@@ -4,7 +4,6 @@ import withStyles from '../styles/withStyles';
 import Grid from '../Grid';
 import Button from '../Button';
 import Tag from '../Tag';
-import classnames from 'classnames';
 
 //颜色需要替换
 const style = theme => ({

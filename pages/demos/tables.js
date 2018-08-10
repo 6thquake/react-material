@@ -8,11 +8,11 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/demos/tables/RmTable.js': {
-          js: require('docs/src/pages/demos/tables/RmTable').default,
+        'pages/demos/tables/AwesomeTable.js': {
+          js: require('docs/src/pages/demos/tables/AwesomeTable').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/RmTable'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/tables/AwesomeTable'), 'utf8')
 `,
         },
         'pages/demos/tables/SimpleTable.js': {

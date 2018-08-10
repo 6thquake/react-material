@@ -1,10 +1,10 @@
 ---
-filename: /packages/react-material/src/Table/RmTable/RmTable.js
+filename: /packages/react-material/src/Table/AwesomeTable/AwesomeTable.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# RmTable
+# AwesomeTable
 
 
 

@@ -8,7 +8,7 @@ import FormControl from '@6thquake/react-material/FormControl';
 import MenuItem from '@6thquake/react-material/MenuItem';
 import Select from '@6thquake/react-material/Select';
 import InputLabel from '@6thquake/react-material/InputLabel';
-import { Filters } from '@6thquake/react-material/Filters';
+import Filters from '@6thquake/react-material/Filters';
 
 const style = theme => ({
   mt: {

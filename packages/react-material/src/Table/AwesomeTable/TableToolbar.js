@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Toolbar from '../../Toolbar';
-import { Search } from '../../Search';
+import Search from '../../Search';
 import IconButton from '../../IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import GetApp from '@material-ui/icons/GetApp';

@@ -10,7 +10,7 @@ import { RadioButton } from '@6thquake/react-material/Radio';
 import RadioGroup from '@6thquake/react-material/RadioGroup';
 // import ScrollBar from ''
 import Paper from '@6thquake/react-material/Paper';
-import RmTable from '@6thquake/react-material/Table/RmTable';
+import AwesomeTable from '@6thquake/react-material/Table/AwesomeTable';
 // import { Divider } from 'rc-menu/lib';
 
 import filter from '@6thquake/react-material/utils/filter';
@@ -76,7 +76,7 @@ for (let i = 0; i < 40; i++) {
   });
 }
 
-class RmTableEXample extends React.Component {
+class AwesomeTableEXample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -176,7 +176,7 @@ class RmTableEXample extends React.Component {
         </Paper>
         <Paper className={classes.root}>
           {/* <Divider></Divider> */}
-          <RmTable
+          <AwesomeTable
             title={'MyTable'}
             width={800}
             height={300}
@@ -193,8 +193,8 @@ class RmTableEXample extends React.Component {
   }
 }
 
-RmTableEXample.propTypes = {
+AwesomeTableEXample.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RmTableEXample);
+export default withStyles(styles)(AwesomeTableEXample);

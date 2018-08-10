@@ -310,7 +310,7 @@ function makeRenderer(opts = {}) {
     tableOptions: PropTypes.object,
   });
 
-  return withStyles(styles, { name: 'RMTableRenderer' })(TableRenderer);
+  return withStyles(styles, { name: 'AwesomeTableRenderer' })(TableRenderer);
 }
 
 /**

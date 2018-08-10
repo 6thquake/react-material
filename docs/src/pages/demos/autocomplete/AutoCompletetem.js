@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {AsyncAutoComplete} from '@6thquake/react-material/AutoComplete';
+import { AsyncAutoComplete } from '@6thquake/react-material/AutoComplete';
 import { withStyles } from '@6thquake/react-material/styles';
 import MenuItem from '@6thquake/react-material/MenuItem';
 import ListItemText from '@6thquake/react-material/ListItemText';

@@ -53,8 +53,7 @@ class Progress extends Component {
       (nextProps.isPromise &&
         nextProps !== prevState.preProps &&
         nextProps.isFinish !== prevState.preProps.isFinish)
-    )
-    {
+    ) {
       return {
         show: true,
         completed: nextProps.isFinish ? 100 : 0,

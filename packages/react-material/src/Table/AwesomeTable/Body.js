@@ -74,7 +74,7 @@ class Body extends React.Component {
                   {columns.map(column => {
                     return (
                       <TableCell>
-                        {column.render ? column.render() : entry[column.dataIndex]}
+                        {column.render ? column.render(entry) : entry[column.dataIndex]}
                       </TableCell>
                     );
                   })}

@@ -123,7 +123,7 @@ class Search extends Component {
 
   ok() {
     const { search } = this.state;
-    const { onChange } = this.props
+    const { onChange } = this.props;
     onChange && typeof onChange === 'function' && onChange(search);
   }
 

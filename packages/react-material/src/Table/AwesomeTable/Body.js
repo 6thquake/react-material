@@ -34,10 +34,10 @@ class Body extends React.Component {
   }
 
   componentDidMount() {}
-  handleRowClick = (entry, index)=>(e)=>{
-    const {onRowClick} = this.props
-    onRowClick && onRowClick(entry, index)
-  }
+  handleRowClick = (entry, index) => e => {
+    const { onRowClick } = this.props;
+    onRowClick && onRowClick(entry, index);
+  };
   render() {
     const {
       classes,
@@ -49,7 +49,7 @@ class Body extends React.Component {
       bodyRef,
       bodyRowHeight,
       height,
-      onRowClick
+      onRowClick,
     } = this.props;
     const rowStyle = {
       height: bodyRowHeight,
@@ -74,7 +74,11 @@ class Body extends React.Component {
           <TableBody>
             {data.map((entry, index) => {
               return (
-                <TableRow onClick={this.handleRowClick(entry, index)} style={rowStyle} key={entry.key}>
+                <TableRow
+                  onClick={this.handleRowClick(entry, index)}
+                  style={rowStyle}
+                  key={entry.key}
+                >
                   {columns.map(column => {
                     return (
                       <TableCell>

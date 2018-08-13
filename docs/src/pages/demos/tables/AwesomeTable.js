@@ -129,9 +129,9 @@ class AwesomeTableEXample extends React.Component {
     //   data: paginateData,
     // })
   };
-  handleRowClick =(e, i)=> {
-    console.log('row item', e, i)
-  }
+  handleRowClick = (e, i) => {
+    console.log('row item', e, i);
+  };
   render() {
     const { classes } = this.props;
     const { data, columns, value } = this.state;

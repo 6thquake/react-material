@@ -25,6 +25,7 @@ filename: /packages/react-material/src/Table/AwesomeTable/AwesomeTable.js
 | <span class="prop-name">width</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;number<br> | <span class="prop-default">'auto'</span> | table width |
 | <span class="prop-name">height</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;number<br> | <span class="prop-default">'auto'</span> | table height |
 | <span class="prop-name">onColDrag</span> | <span class="prop-type">func |  | Callback fired when you drag the column |
+| <span class="prop-name">onRowClick</span> | <span class="prop-type">func |  | Callback fired when you click the table row |
 | <span class="prop-name">sync</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | if sync is true, pagination and search will be automatical. you needn't to do these things by yourself |
 | <span class="prop-name">title</span> | <span class="prop-type">node |  | The title of table |
 

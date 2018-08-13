@@ -129,6 +129,9 @@ class AwesomeTableEXample extends React.Component {
     //   data: paginateData,
     // })
   };
+  handleRowClick =(e, i)=> {
+    console.log('row item', e, i)
+  }
   render() {
     const { classes } = this.props;
     const { data, columns, value } = this.state;
@@ -177,6 +180,7 @@ class AwesomeTableEXample extends React.Component {
         <Paper className={classes.root}>
           {/* <Divider></Divider> */}
           <AwesomeTable
+            onRowClick={this.handleRowClick}
             title={'MyTable'}
             width={800}
             height={300}

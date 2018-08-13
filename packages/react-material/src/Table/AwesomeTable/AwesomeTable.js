@@ -249,7 +249,13 @@ class AwesomeTable extends React.Component {
     return this.renderTable(columns, 'right', baseLength);
   };
   renderTable = (columns, type, baseLength = 0) => {
-    const { classes, height, resizable, dragable } = this.props;
+    const {
+      classes,
+      height,
+      resizable,
+      dragable,
+      onRowClick
+    } = this.props;
     const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData } = this.state;
     let width =
       type === 'main'
@@ -284,6 +290,7 @@ class AwesomeTable extends React.Component {
         height={height}
         tableRef={this.tableRefs[type]}
         bodyRowHeight={bodyRowHeight}
+        onRowClick ={onRowClick}
       />
     );
     const table = [head, body];
@@ -463,6 +470,10 @@ AwesomeTable.propTypes = {
    * Callback fired when you drag the column
    */
   onColDrag: PropTypes.func,
+  /**
+   * Callback fired when you click the table row
+   */
+  onRowClick: PropTypes.func,
   /**
    * if sync is true, pagination and search will be automatical.
    * you needn't to do these things by yourself

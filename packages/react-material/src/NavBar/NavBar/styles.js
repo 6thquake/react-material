@@ -31,7 +31,7 @@ const styles = theme => {
     menuDarkHoverBg: fade('#9e9e9e', 0.3),
     menuDarkHighlightColor: '#fff',
 
-    menuDarkItemSelectedBg: theme.palette.primary.main,
+    menuDarkItemSelectedBg: fade(theme.palette.primary.main, 0.35),
 
     disabledColorDark: fade('#fff', 0.35),
     easeInOut: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
@@ -196,7 +196,7 @@ const styles = theme => {
         },
         '&-item, &-submenu-title': {
           cursor: 'pointer',
-          margin: 0,
+          margin: 0, // '0 !important',
           padding: '0 20px',
           position: 'relative',
           display: 'block',

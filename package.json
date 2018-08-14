@@ -51,7 +51,8 @@
     "flow": "flow --show-all-errors",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true",
     "monorepo:release": "yarn lerna exec yarn build && ./node_modules/.bin/lerna publish --skip-npm",
-    "postinstall": "npm run docs:build"
+    "postinstall": "npm run docs:build",
+    "fix-memory-limit": "cross-env LIMIT=2048 increase-memory-limit"
   },
   "peerDependencies": {
     "react": "*",

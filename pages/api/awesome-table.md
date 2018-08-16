@@ -22,8 +22,6 @@ filename: /packages/react-material/src/Table/AwesomeTable/AwesomeTable.js
 | <span class="prop-name">searchable</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | if true, it will be a searchable table |
 | <span class="prop-name">resizable</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | if true, all the columns is resizable |
 | <span class="prop-name">dragable</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | if true, all the columns is dragable |
-| <span class="prop-name">width</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;number<br> | <span class="prop-default">'auto'</span> | table width |
-| <span class="prop-name">height</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;number<br> | <span class="prop-default">'auto'</span> | table height |
 | <span class="prop-name">onColDrag</span> | <span class="prop-type">func |  | Callback fired when you drag the column |
 | <span class="prop-name">onRowClick</span> | <span class="prop-type">func |  | Callback fired when you click the table row |
 | <span class="prop-name">sync</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | if sync is true, pagination and search will be automatical. you needn't to do these things by yourself |

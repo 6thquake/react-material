@@ -26,6 +26,10 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     // overflowX: 'hidden'
   },
+  tableBox: {
+    height: 600,
+    width: 800,
+  },
   radioButtons: {
     margin: theme.spacing.unit * 2,
   },
@@ -177,13 +181,11 @@ class AwesomeTableEXample extends React.Component {
             </RadioGroup>
           </div>
         </Paper>
-        <Paper className={classes.root}>
+        <Paper className={classes.tableBox}>
           {/* <Divider></Divider> */}
           <AwesomeTable
             onRowClick={this.handleRowClick}
             title={'MyTable'}
-            width={800}
-            height={300}
             columns={columns}
             data={this.state.data}
             searchable

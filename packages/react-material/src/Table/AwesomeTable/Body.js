@@ -49,7 +49,6 @@ class Body extends React.Component {
       bodyRef,
       bodyRowHeight,
       height,
-      onRowClick,
     } = this.props;
     const rowStyle = {
       height: bodyRowHeight,

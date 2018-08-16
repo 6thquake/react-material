@@ -14,7 +14,18 @@ import { darken, fade, lighten } from '../../styles/colorManipulator';
 
 const styles = theme => ({
   root: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    width: '100%',
+  },
+  spacer: {
+    flex: 1,
+  },
+  tbodyRoot: {
     position: 'relative',
+    // height: `calc(100% - 120px)`,
+    overflowY: 'hidden',
   },
   main: {
     overflowX: 'auto',
@@ -75,6 +86,8 @@ class AwesomeTable extends React.Component {
     right: React.createRef('right'),
     head: React.createRef('head'),
     body: React.createRef('body'),
+    toolbar: React.createRef('toolbar'),
+    pagination: React.createRef('pagination'),
   };
   dragIndex = {
     targetIndex: '',
@@ -249,7 +262,7 @@ class AwesomeTable extends React.Component {
     return this.renderTable(columns, 'right', baseLength);
   };
   renderTable = (columns, type, baseLength = 0) => {
-    const { classes, height, resizable, dragable, onRowClick } = this.props;
+    const { classes, resizable, dragable, onRowClick } = this.props;
     const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData } = this.state;
     let width =
       type === 'main'
@@ -258,6 +271,8 @@ class AwesomeTable extends React.Component {
             return pre + cur.width;
           }, 0);
     let style = {
+      height: '100%',
+      overflowY: 'hidden',
       width,
     };
     const head = (
@@ -280,8 +295,8 @@ class AwesomeTable extends React.Component {
         data={bodyData}
         columns={columns}
         type={type}
+        height={`calc(100% - ${headRowHeight}px)`}
         scroll={this.handlScrollY}
-        height={height}
         tableRef={this.tableRefs[type]}
         bodyRowHeight={bodyRowHeight}
         onRowClick={onRowClick}
@@ -371,24 +386,38 @@ class AwesomeTable extends React.Component {
       title,
     } = this.props;
     const { page, rowsPerPage } = this.state;
+    let h = 0;
+    if (this.tableRefs.toolbar.current) {
+      h = h + this.tableRefs.toolbar.current.clientHeight;
+    }
+    if (this.tableRefs.pagination.current) {
+      h = h + this.tableRefs.pagination.current.clientHeight;
+    }
+    const tbodyStyle = {
+      height: `calc(100% - ${h}px)`,
+      width,
+    };
     return (
-      <React.Fragment>
-        <Toolbar
-          title={title}
-          onSearch={this.onSearch}
-          headRef={this.tableRefs.head}
-          bodyRef={this.tableRefs.body}
-          createCsv={this.createCsv}
-          searchable={searchable}
-          exportProps={exportProps}
-          SearchProps={SearchProps}
-          width={width}
-        />
-        <div style={{ width }} className={classes.root} onScroll={this.handleScrollX}>
+      <div className={classes.root}>
+        <div ref={this.tableRefs.toolbar}>
+          <Toolbar
+            title={title}
+            onSearch={this.onSearch}
+            headRef={this.tableRefs.head}
+            bodyRef={this.tableRefs.body}
+            createCsv={this.createCsv}
+            searchable={searchable}
+            exportProps={exportProps}
+            SearchProps={SearchProps}
+            width={width}
+          />
+        </div>
+        <div style={tbodyStyle} className={classes.tbodyRoot} onScroll={this.handleScrollX}>
           {[this.renderMainTable(), this.renderLeftTable(), this.renderRightTable()]}
         </div>
+        {/* <div className={classes.spacer}></div> */}
         {paginatable && (
-          <div className={classes.pagination} style={{ width }}>
+          <div ref={this.tableRefs.pagination} className={classes.pagination} style={{ width }}>
             {!sync ? (
               <Pagination {...this.props.TablePaginationProps} />
             ) : (
@@ -403,7 +432,7 @@ class AwesomeTable extends React.Component {
             )}
           </div>
         )}
-      </React.Fragment>
+      </div>
     );
   }
 }
@@ -454,12 +483,16 @@ AwesomeTable.propTypes = {
   dragable: PropTypes.bool,
   /**
    * table width
+   * @ignore
    */
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.number]),
   /**
    * table height
+   * @ignore
    */
+
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.number]),
+
   /**
    * Callback fired when you drag the column
    */
@@ -483,8 +516,8 @@ AwesomeTable.defaultProps = {
     rowsPerPage: 10,
     page: 0,
   },
-  width: 'auto',
-  height: 'auto',
+  width: '100%',
+  // height: 'auto',
   SearchProps: {
     isDark: true,
     floatRight: true,

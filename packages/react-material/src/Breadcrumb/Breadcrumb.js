@@ -116,7 +116,7 @@ Breadcrumb.propTypes = {
   nameMap: PropTypes.object.isRequired,
   /**
    *the Url of current Page,one of the keys of nameMap;
-   *Not required. when leaveout it will get window.location.url
+   *Not required. when leaveout it will get window.location.pathname
    */
   currUrl: PropTypes.string,
   /**

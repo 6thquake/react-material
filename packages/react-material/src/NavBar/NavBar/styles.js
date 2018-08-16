@@ -24,7 +24,7 @@ const styles = theme => {
     disabledColor: fade('#000', 0.25),
     textColorDark: fade('#fff', 0.85),
 
-    menuDarkColor: '#fff',
+    menuDarkColor: fade('#fff', 0.87),
     menuDarkBg: fade('#000', 0.87),
     menuDarkArrowColor: '#fff',
     menuDarkSubmenuBg: fade('#000', 0.87),
@@ -124,9 +124,9 @@ const styles = theme => {
         },
         '&-item > a': {
           display: 'block',
-          color: menu.menuItemColor,
+          color: `${menu.menuItemColor} !important`,
           '&:hover': {
-            color: menu.menuHighlightColor,
+            color: `${menu.menuHighlightColor} !important`,
           },
           '&:focus': {
             textDecoration: 'none',

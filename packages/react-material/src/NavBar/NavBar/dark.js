@@ -29,7 +29,7 @@ const styles = (menu, menuPrefixCls) => {
       borderBottom: 0,
     },
     '&-dark &-item, &-dark &-item-group-title, &-dark &-item > a': {
-      color: `${menu.menuDarkColor} `,
+      color: `${menu.menuDarkColor} !important`,
     },
     '&-dark&-inline, &-dark&-vertical, &-dark&-vertical-left, &-dark&-vertical-right': {
       borderRight: 0,
@@ -51,9 +51,9 @@ const styles = (menu, menuPrefixCls) => {
     },
     '&-dark &-item:hover,&-dark &-item-active,&-dark &-submenu-active,&-dark &-submenu-open,&-dark &-submenu-selected,&-dark &-submenu-title:hover': {
       backgroundColor: 'transparent',
-      color: `${menu.menuDarkHighlightColor} `,
+      color: `${menu.menuDarkHighlightColor} !important`,
       '&> a': {
-        color: `${menu.menuDarkHighlightColor} `,
+        color: `${menu.menuDarkHighlightColor} !important`,
       },
       [`&> .${menuPrefixCls}-submenu-title,> .${menuPrefixCls}-submenu-title:hover`]: {
         [`&> .${menuPrefixCls}-submenu-arrow`]: {
@@ -69,12 +69,12 @@ const styles = (menu, menuPrefixCls) => {
     },
     '&-dark &-item-selected': {
       borderRight: 0,
-      color: `${menu.menuDarkHighlightColor} `,
+      color: `${menu.menuDarkHighlightColor} !important`,
       '&:after': {
         borderRight: 0,
       },
       '&> a, > a:hover': {
-        color: `${menu.menuDarkHighlightColor} `,
+        color: `${menu.menuDarkHighlightColor} !important`,
       },
     },
     '&&-dark &-item-selected, &-submenu-popup&-dark &-item-selected': {

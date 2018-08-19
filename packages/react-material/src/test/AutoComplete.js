@@ -45,9 +45,7 @@ export default class SelectFieldExampleSelectionRenderer extends Component {
       pageSize: 4,
     },
   };
-  autoCb(i) {
-    console.log('item', i);
-  }
+  autoCb(i) {}
   render() {
     return (
       <div>

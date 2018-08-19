@@ -8713,6 +8713,10 @@ react-resizable@^1.0.0, react-resizable@^1.7.5:
     prop-types "15.x"
     react-draggable "^2.2.6 || ^3.0.3"
 
+react-router-config@^1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/react-router-config/-/react-router-config-1.0.0-beta.4.tgz#d202496dd0eabdf06cf24eb0793031f6891eef01"
+
 react-router-dom@^4.2.2:
   version "4.3.1"
   resolved "http://registry.npm.release.ctripcorp.com/react-router-dom/download/react-router-dom-4.3.1.tgz#4c2619fc24c4fa87c9fd18f4fb4a43fe63fbd5c6"

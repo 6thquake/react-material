@@ -83,7 +83,6 @@ class Carousel extends React.Component {
     this.resumeIntervalFunc();
   };
   clearIntervalFunc = () => {
-    //console.log(12345)
     if (!!this.props.pause) {
       clearInterval(this.interval);
     }
@@ -184,7 +183,6 @@ class Carousel extends React.Component {
         />
       );
     });
-    //console.log('render 123456');
 
     return (
       <div ref={this.carouselRef} className={classes.root}>

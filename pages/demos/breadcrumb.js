@@ -15,6 +15,20 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/breadcrumb/Breadcrumb'), 'utf8')
 `,
         },
+        'pages/demos/breadcrumb/BreadcrumbItems.js': {
+          js: require('docs/src/pages/demos/breadcrumb/BreadcrumbItems').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/breadcrumb/BreadcrumbItems'), 'utf8')
+`,
+        },
+        'pages/demos/breadcrumb/Breadcrumb2.js': {
+          js: require('docs/src/pages/demos/breadcrumb/Breadcrumb2').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/breadcrumb/Breadcrumb2'), 'utf8')
+`,
+        },
       }}
     />
   );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
 import Breadcrumb from '@6thquake/react-material/Breadcrumb';
+import BreadcrumbItem from '@6thquake/react-material/BreadcrumbItem';
 import { Home, Grade, Lock } from '@material-ui/icons';
 
 import { matchRoutes } from 'react-router-config';
@@ -31,19 +32,6 @@ class App extends React.Component {
     ];
   }
 
-  itemRender(route, params, routes, paths) {
-    const last = routes.indexOf(route) === routes.length - 1;
-    return last ? (
-      <span>
-        {route.icon}&nbsp;{route.name}
-      </span>
-    ) : (
-      <a href={paths.join('/')}>
-        {route.icon}&nbsp;{route.name}
-      </a>
-    );
-  }
-
   render() {
     const pathname = typeof window == 'undefined' ? '/demos/breadcrumb' : window.location.pathname;
 
@@ -56,7 +44,25 @@ class App extends React.Component {
 
     let routes = branch.map(route => route.route);
 
-    return <Breadcrumb routes={routes} itemRender={this.itemRender} separator=">" />;
+    return (
+      <Breadcrumb separator=">">
+        {routes.map((route, index) => {
+          return (
+            <BreadcrumbItem>
+              {routes.indexOf(route) === routes.length - 1 ? (
+                <span>
+                  {route.icon}&nbsp;{route.name}
+                </span>
+              ) : (
+                <a href={route.path}>
+                  {route.icon}&nbsp;{route.name}
+                </a>
+              )}
+            </BreadcrumbItem>
+          );
+        })}
+      </Breadcrumb>
+    );
   }
 }
 export default App;

@@ -95,9 +95,7 @@ class Transfer extends React.Component {
   }
   static defaultProps = {
     searchPlaceholder: 'please input something',
-    onChange: function() {
-      console.log('need cb function');
-    },
+    onChange: function() {},
     showSearch: false,
     paginationOption: false,
   };
@@ -217,7 +215,6 @@ class Transfer extends React.Component {
         count: newData['targetKeys'].length,
       },
     });
-    // console.log(this.state.temp.dataSource,this.state.temp.targetKeys);
   };
 
   handleToggle = (value, position) => () => {

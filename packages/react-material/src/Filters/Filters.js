@@ -227,9 +227,7 @@ Filters.defaultProps = {
     label: 'label',
     value: 'value',
   },
-  onChange() {
-    console.log('请添加回调函数');
-  },
+  onChange() {},
   spacing: 8,
 };
 

@@ -11,7 +11,6 @@ const ItemTypes = {
 
 const columnSource = {
   beginDrag(props, monitor, component) {
-    console.log(props);
     return { name: props.name };
   },
 

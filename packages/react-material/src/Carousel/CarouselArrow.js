@@ -34,9 +34,7 @@ class CarouselArrow extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    console.log('carousel did mount');
-  }
+  componentDidMount() {}
 
   render() {
     const { pre, next, classes } = this.props;

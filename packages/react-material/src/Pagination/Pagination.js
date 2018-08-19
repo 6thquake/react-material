@@ -101,7 +101,6 @@ class Pagination extends Component {
   }
 
   componentDidMount() {
-    console.log(this.div.clientWidth);
     //分页的宽度小于200px时，只显示前后页按钮
     if (this.div.clientWidth < 250) {
       this.setState({
@@ -276,7 +275,6 @@ class Pagination extends Component {
     this.pageClick(page);
   }
   goEnd(param) {
-    console.log(param);
     const { rowsPerPage, count, onChangePage } = this.props,
       totalPage = Math.ceil(count / rowsPerPage),
       getCurrentPage = onChangePage;

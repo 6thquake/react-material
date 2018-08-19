@@ -112,15 +112,9 @@ class Mention extends Component {
     readOnly: PropTypes.bool,
   };
   static defaultProps = {
-    onSearchChange: function() {
-      console.log('need cb function');
-    },
-    onChange: function() {
-      console.log('need cb function');
-    },
-    onSelect: function() {
-      console.log('need cb function');
-    },
+    onSearchChange: function() {},
+    onChange: function() {},
+    onSelect: function() {},
     disabled: false,
     prefix: ['@'], //默认的触发符号
     placeholder: 'please input something',
@@ -202,7 +196,6 @@ class Mention extends Component {
   }
   pageCallbackFn(i) {
     //切换页面的函数
-    console.log('item', i);
     this.setState({
       pageConfig: {
         ...this.state.pageConfig,
@@ -236,7 +229,6 @@ class Mention extends Component {
     let showPagination = false;
     let noItemPatterned = false;
     noItemPatterned = (dataSource && dataSource.length == 0) || (!dataSource && !React.children);
-    // console.log(noItemPatterned)
     if (pageConfig) {
       showPagination = true;
     }

@@ -13,7 +13,7 @@ filename: /packages/react-material/src/Filters/Filters.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func | <span class="prop-default">function() {  console.log('请添加回调函数');}</span> | callback to parent component when select option |
+| <span class="prop-name">onChange</span> | <span class="prop-type">func | <span class="prop-default">function() {}</span> | callback to parent component when select option |
 | <span class="prop-name">options</span> | <span class="prop-type">array | <span class="prop-default">[]</span> | data options. |
 | <span class="prop-name">multi</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | singleSelect or multiSelect default is singleSelect. |
 | <span class="prop-name">value</span> | <span class="prop-type">array | <span class="prop-default">[]</span> |  |

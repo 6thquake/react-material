@@ -59,7 +59,7 @@ class App extends React.Component {
       );
     });
 
-    return <Breadcrumb separator=">">{extraBreadcrumbItems}</Breadcrumb>;
+    return <Breadcrumb color="black">{extraBreadcrumbItems}</Breadcrumb>;
   }
 }
 export default App;

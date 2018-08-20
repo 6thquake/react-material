@@ -2,23 +2,52 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import BreadcrumbItem from '../BreadcrumbItem';
+import { fade } from '../styles/colorManipulator';
+import classNames from 'classnames';
 
-const styles = {
+const styles = theme => ({
   root: {
-    color: 'rgba(0,0,0,.45)',
     '@global a': {
       textDecoration: 'none',
-      color: 'rgba(0,0,0,.45)',
       '&:hover': {
-        color: 'rgba(0,0,0,.65)',
+        color: theme.palette.primary.main,
       },
+      ...theme.typography.subheading,
     },
+    '@global span': {
+      color: fade(theme.typography.subheading.color, 0.6),
+    },
+    ...theme.typography.subheading,
+  },
+  black: {
+    '@global a': {
+      '&:hover': {
+        color: theme.palette.primary.main,
+      },
+      color: theme.palette.common.black,
+    },
+    '@global span': {
+      color: fade(theme.palette.common.black, 0.6),
+    },
+    color: theme.palette.common.black,
+  },
+  white: {
+    '@global a': {
+      '&:hover': {
+        color: theme.palette.primary.main,
+      },
+      color: theme.palette.common.white,
+    },
+    '@global span': {
+      color: fade(theme.palette.common.white, 0.6),
+    },
+    color: theme.palette.common.white,
   },
   separator: {
     padding: '0 0.5em',
     fontStyle: 'normal',
   },
-};
+});
 
 class Breadcrumb extends React.Component {
   constructor(props) {
@@ -29,8 +58,13 @@ class Breadcrumb extends React.Component {
   }
 
   render() {
-    const { routes, itemRender, separator, params, classes } = this.props;
+    const { routes, itemRender, separator, params, color, classes } = this.props;
     const { items } = this.state;
+
+    const className = classNames(classes.root, {
+      [classes.white]: color === 'white',
+      [classes.black]: color === 'black',
+    });
 
     const sep = <i className={classes.separator}>{separator}</i>;
 
@@ -66,7 +100,7 @@ class Breadcrumb extends React.Component {
             );
           });
 
-    return <div className={classes.root}>{extraBreadcrumbItems}</div>;
+    return <div className={className}>{extraBreadcrumbItems}</div>;
   }
 }
 
@@ -80,17 +114,22 @@ Breadcrumb.propTypes = {
    */
   itemRender: PropTypes.func,
   /**
-   * Routing parameters  object
+   * Routing parameters
    */
   params: PropTypes.object,
   /**
-   * The routing stack information of router object[]
+   * The routing stack information of router
    */
   routes: PropTypes.array,
+  /**
+   * Custom color of each items
+   */
+  color: PropTypes.oneOf(['default', 'black', 'white']),
 };
 
 Breadcrumb.defaultProps = {
   separator: '/',
+  color: 'default',
 };
 
-export default withStyles(styles, { name: 'RMBreadcrumb' })(Breadcrumb);
+export default withStyles(styles, { name: 'RMBreadcrumb', withTheme: true })(Breadcrumb);

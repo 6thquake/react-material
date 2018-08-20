@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
+import { fade } from '../styles/colorManipulator';
 
 const styles = {
   root: {
@@ -17,7 +18,7 @@ const styles = {
 
 class BreadcrumbItem extends React.Component {
   render() {
-    const { path, icon, name, notLink, classes, children } = this.props;
+    const { path, icon, name, notLink, classes, color = 'inherit', children } = this.props;
 
     let item = children;
 
@@ -48,9 +49,21 @@ class BreadcrumbItem extends React.Component {
 }
 
 BreadcrumbItem.propTypes = {
+  /**
+   * The routing path name
+   */
   path: PropTypes.string,
+  /**
+   * The routing icon
+   */
   icon: PropTypes.element,
+  /**
+   * The routing name
+   */
   name: PropTypes.string,
+  /**
+   * Whether the routing is a link or not
+   */
   notLink: PropTypes.bool,
 };
 

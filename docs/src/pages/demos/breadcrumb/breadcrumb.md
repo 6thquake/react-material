@@ -1,5 +1,5 @@
 ---
-components: Breadcrumb
+components: Breadcrumb, BreadcrumbItem
 ---
 
 # Breadcrumb
@@ -25,6 +25,7 @@ A breadcrumb displays the current location within a hierarchy. It allows going b
 * The separator can be customized by setting the separator property: separator=">"
 {{"demo": "pages/demos/breadcrumb/BreadcrumbItems.js"}}
 
-### With an Icon
+### With an Icon, change the font color
 * The icon should be placed in front of the text.
+* There are three colors to choose: default, white, black.
 {{"demo": "pages/demos/breadcrumb/Breadcrumb2.js"}}

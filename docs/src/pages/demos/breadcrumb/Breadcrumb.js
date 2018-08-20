@@ -56,7 +56,7 @@ class App extends React.Component {
 
     let routes = branch.map(route => route.route);
 
-    return <Breadcrumb routes={routes} itemRender={this.itemRender} separator=">" />;
+    return <Breadcrumb routes={routes} itemRender={this.itemRender} />;
   }
 }
 export default App;

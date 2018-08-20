@@ -6,8 +6,8 @@ import { withStyles } from '@6thquake/react-material/styles';
 import Grid from '@6thquake/react-material/Grid';
 
 import tips from './tips';
-import { AbundantCrossTable } from '@6thquake/react-material/Table/CrossTable';
-import { sortAs } from '@6thquake/react-material/Table/CrossTable';
+import { AbundantCrossTabulation } from '@6thquake/react-material/Table/CrossTabulation';
+import { sortAs } from '@6thquake/react-material/Table/CrossTabulation';
 
 class App extends React.Component {
   constructor() {
@@ -69,7 +69,7 @@ class App extends React.Component {
           </p>
         </Grid>
         <Grid item xs={12}>
-          <AbundantCrossTable {...this.state.crossTableState} />
+          <AbundantCrossTabulation {...this.state.crossTableState} />
         </Grid>
       </Grid>
     );

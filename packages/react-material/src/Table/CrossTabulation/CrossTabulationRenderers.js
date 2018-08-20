@@ -4,7 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CrossTableData } from './CrossTableUtilities';
+import { CrossTabulationData } from './CrossTabulationUtilities';
 import Table from '../../Table';
 import TableBody from '../../TableBody';
 import TableCell from '../../TableCell';
@@ -44,7 +44,7 @@ const styles = theme => ({
   },
 });
 
-// helper function for setting row/col-span in CrossTableRenderer
+// helper function for setting row/col-span in CrossTabulationRenderer
 const spanSize = function(arr, i, j) {
   let x;
   if (i !== 0) {
@@ -91,7 +91,7 @@ function makeRenderer(opts = {}) {
     render() {
       let { classes } = this.props;
 
-      const crossTableData = new CrossTableData(this.props);
+      const crossTableData = new CrossTabulationData(this.props);
       const colAttrs = crossTableData.props.cols;
       const rowAttrs = crossTableData.props.rows;
       const rowKeys = crossTableData.getRowKeys();
@@ -300,12 +300,12 @@ function makeRenderer(opts = {}) {
     }
   }
 
-  TableRenderer.defaultProps = Object.assign({}, CrossTableData.defaultProps, {
+  TableRenderer.defaultProps = Object.assign({}, CrossTabulationData.defaultProps, {
     tableColorScaleGenerator: redColorScaleGenerator,
     tableOptions: {},
   });
 
-  TableRenderer.propTypes = Object.assign({}, CrossTableData.defaultProps, {
+  TableRenderer.propTypes = Object.assign({}, CrossTabulationData.defaultProps, {
     tableColorScaleGenerator: PropTypes.func,
     tableOptions: PropTypes.object,
   });
@@ -319,7 +319,7 @@ function makeRenderer(opts = {}) {
 
 class TSVExportRenderer extends React.PureComponent {
   render() {
-    const crossTableData = new CrossTableData(this.props);
+    const crossTableData = new CrossTabulationData(this.props);
     const rowKeys = crossTableData.getRowKeys();
     const colKeys = crossTableData.getColKeys();
     if (rowKeys.length === 0) {
@@ -357,8 +357,8 @@ class TSVExportRenderer extends React.PureComponent {
   }
 }
 
-TSVExportRenderer.defaultProps = CrossTableData.defaultProps;
-TSVExportRenderer.propTypes = CrossTableData.propTypes;
+TSVExportRenderer.defaultProps = CrossTabulationData.defaultProps;
+TSVExportRenderer.propTypes = CrossTabulationData.propTypes;
 
 export default {
   Table: makeRenderer(),

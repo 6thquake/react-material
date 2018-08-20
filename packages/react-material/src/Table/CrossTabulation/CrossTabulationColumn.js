@@ -8,7 +8,7 @@ import Grid from '../../Grid';
 import Button from '../../Button';
 import TextField from '../../TextField';
 
-import DragSource from './CrossTableDragSource';
+import DragSource from './CrossTabulationDragSource';
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { withStyles } from '../../styles';
@@ -100,7 +100,7 @@ const styles = theme => ({
  * @ignore - internal component.
  */
 
-class CrossCrossTableColumn extends React.Component {
+class CrossCrossTabulationColumn extends React.Component {
   constructor(props) {
     super(props);
     this.state = { open: false, top: 0, left: 0, filterText: '' };
@@ -270,11 +270,11 @@ class CrossCrossTableColumn extends React.Component {
   }
 }
 
-CrossCrossTableColumn.defaultProps = {
+CrossCrossTabulationColumn.defaultProps = {
   valueFilter: {},
 };
 
-CrossCrossTableColumn.propTypes = {
+CrossCrossTabulationColumn.propTypes = {
   name: PropTypes.string.isRequired,
   addValuesToFilter: PropTypes.func.isRequired,
   removeValuesFromFilter: PropTypes.func.isRequired,
@@ -285,4 +285,6 @@ CrossCrossTableColumn.propTypes = {
   zIndex: PropTypes.number,
 };
 
-export default withStyles(styles, { name: 'RMCrossCrossTableColumn' })(CrossCrossTableColumn);
+export default withStyles(styles, { name: 'RMCrossCrossTabulationColumn' })(
+  CrossCrossTabulationColumn,
+);

@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-import AbundantCrossTableContent from './AbundantCrossTableContent';
-import CrossTableRenderers from './CrossTableRenderers';
+import AbundantCrossTabulationContent from './AbundantCrossTabulationContent';
+import CrossTabulationRenderers from './CrossTabulationRenderers';
 import withDragAndDrop from '../../DragAndDrop/withDragAndDrop';
 
-class AbundantCrossTable extends React.PureComponent {
+class AbundantCrossTabulation extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = { crossTableState: props };
@@ -18,8 +18,8 @@ class AbundantCrossTable extends React.PureComponent {
 
   render() {
     return (
-      <AbundantCrossTableContent
-        renderers={Object.assign({}, CrossTableRenderers)}
+      <AbundantCrossTabulationContent
+        renderers={Object.assign({}, CrossTabulationRenderers)}
         {...this.state.crossTableState}
         onChange={s => this.setState({ crossTableState: s })}
         unusedOrientationCutoff={Infinity}
@@ -28,4 +28,4 @@ class AbundantCrossTable extends React.PureComponent {
   }
 }
 
-export default withDragAndDrop()(AbundantCrossTable);
+export default withDragAndDrop()(AbundantCrossTabulation);

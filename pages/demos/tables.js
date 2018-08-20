@@ -15,6 +15,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/AwesomeTable'), 'utf8')
 `,
         },
+        'pages/demos/tables/NoDataTable.js': {
+          js: require('docs/src/pages/demos/tables/NoDataTable').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tables/NoDataTable'), 'utf8')
+`,
+        },
         'pages/demos/tables/SimpleTable.js': {
           js: require('docs/src/pages/demos/tables/SimpleTable').default,
           raw: preval`
@@ -43,11 +50,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/CustomizedTable'), 'utf8')
 `,
         },
-        'pages/demos/tables/CrossTable.js': {
-          js: require('docs/src/pages/demos/tables/CrossTable').default,
+        'pages/demos/tables/CrossTabulation.js': {
+          js: require('docs/src/pages/demos/tables/CrossTabulation').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/CrossTable'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/tables/CrossTabulation'), 'utf8')
 `,
         },
       }}

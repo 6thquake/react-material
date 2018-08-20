@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import { DropTarget } from 'react-dnd';
 
-import CrossTableColumn from './CrossTableColumn';
-import { getSort } from './CrossTableUtilities';
+import CrossTabulationColumn from './CrossTabulationColumn';
+import { getSort } from './CrossTabulationUtilities';
 
 const ItemTypes = {
   FILTER: 'filterBox',
@@ -65,7 +65,7 @@ class DropZone extends React.Component {
     return connectDropTarget(
       <div style={{ display: 'inline-block', width: '100%', height: '100%' }}>
         {this.state.items.map((value, index) => (
-          <CrossTableColumn
+          <CrossTabulationColumn
             name={value}
             key={value}
             attrValues={this.props.attrValuess[value]}

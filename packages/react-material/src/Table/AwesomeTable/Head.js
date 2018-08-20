@@ -183,5 +183,5 @@ class Head extends React.Component {
   }
 }
 
-// export default withDragAndDrop()(AbundantCrossTable);
+// export default withDragAndDrop()(AbundantCrossTabulation);
 export default withStyles(styles)(withDragAndDrop()(Head));

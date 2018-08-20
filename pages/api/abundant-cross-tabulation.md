@@ -1,10 +1,10 @@
 ---
-filename: /packages/react-material/src/Table/CrossTable/AbundantCrossTable.js
+filename: /packages/react-material/src/Table/CrossTabulation/AbundantCrossTabulation.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# AbundantCrossTable
+# AbundantCrossTabulation
 
 
 

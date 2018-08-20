@@ -428,9 +428,9 @@ const locales = {
   en: {
     aggregators,
     localeStrings: {
-      renderError: 'An error occurred rendering the CrossTable results.',
-      computeError: 'An error occurred computing the CrossTable results.',
-      uiRenderError: 'An error occurred rendering the CrossTable UI.',
+      renderError: 'An error occurred rendering the CrossTabulation results.',
+      computeError: 'An error occurred computing the CrossTabulation results.',
+      uiRenderError: 'An error occurred rendering the CrossTabulation UI.',
       selectAll: 'Select All',
       selectNone: 'Select None',
       tooMany: '(too many to list)',
@@ -505,10 +505,15 @@ const derivers = {
 Data Model class
 */
 
-class CrossTableData {
+class CrossTabulationData {
   constructor(inputProps = {}) {
-    this.props = Object.assign({}, CrossTableData.defaultProps, inputProps);
-    PropTypes.checkPropTypes(CrossTableData.propTypes, this.props, 'prop', 'CrossTableData');
+    this.props = Object.assign({}, CrossTabulationData.defaultProps, inputProps);
+    PropTypes.checkPropTypes(
+      CrossTabulationData.propTypes,
+      this.props,
+      'prop',
+      'CrossTabulationData',
+    );
 
     this.aggregator = this.props.aggregators[this.props.aggregatorName](this.props.vals);
     this.tree = {};
@@ -520,7 +525,7 @@ class CrossTableData {
     this.sorted = false;
 
     // iterate through input, accumulating data for cells
-    CrossTableData.forEachRecord(this.props.data, this.props.derivedAttributes, record => {
+    CrossTabulationData.forEachRecord(this.props.data, this.props.derivedAttributes, record => {
       if (this.filter(record)) {
         this.processRecord(record);
       }
@@ -537,18 +542,22 @@ class CrossTableData {
   }
 
   forEachMatchingRecord(criteria, callback) {
-    return CrossTableData.forEachRecord(this.props.data, this.props.derivedAttributes, record => {
-      if (!this.filter(record)) {
-        return;
-      }
-      for (const k in criteria) {
-        const v = criteria[k];
-        if (v !== (k in record ? record[k] : 'null')) {
+    return CrossTabulationData.forEachRecord(
+      this.props.data,
+      this.props.derivedAttributes,
+      record => {
+        if (!this.filter(record)) {
           return;
         }
-      }
-      callback(record);
-    });
+        for (const k in criteria) {
+          const v = criteria[k];
+          if (v !== (k in record ? record[k] : 'null')) {
+            return;
+          }
+        }
+        callback(record);
+      },
+    );
   }
 
   arrSort(attrs) {
@@ -678,7 +687,7 @@ class CrossTableData {
 }
 
 // can handle arrays or jQuery selections of tables
-CrossTableData.forEachRecord = function(input, derivedAttributes, f) {
+CrossTabulationData.forEachRecord = function(input, derivedAttributes, f) {
   let addRecord, record;
   if (Object.getOwnPropertyNames(derivedAttributes).length === 0) {
     addRecord = f;
@@ -729,7 +738,7 @@ CrossTableData.forEachRecord = function(input, derivedAttributes, f) {
   throw new Error('unknown input format');
 };
 
-CrossTableData.defaultProps = {
+CrossTabulationData.defaultProps = {
   aggregators: aggregators,
   cols: [],
   rows: [],
@@ -742,7 +751,7 @@ CrossTableData.defaultProps = {
   derivedAttributes: {},
 };
 
-CrossTableData.propTypes = {
+CrossTabulationData.propTypes = {
   data: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.func]).isRequired,
   aggregatorName: PropTypes.string,
   cols: PropTypes.arrayOf(PropTypes.string),
@@ -764,5 +773,5 @@ export {
   numberFormat,
   getSort,
   sortAs,
-  CrossTableData,
+  CrossTabulationData,
 };

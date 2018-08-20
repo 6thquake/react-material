@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 import update from 'immutability-helper';
 
-import { CrossTableData, sortAs } from './CrossTableUtilities';
+import { CrossTabulationData, sortAs } from './CrossTabulationUtilities';
 
-import CrossTable from './CrossTable';
-import CrossTableAttribute from './CrossTableAttribute';
-import DropZone from './CrossTableDropZone';
+import CrossTabulation from './CrossTabulation';
+import CrossTabulationAttribute from './CrossTabulationAttribute';
+import DropZone from './CrossTabulationDropZone';
 import { withStyles } from '../../styles';
 
 const styles = theme => ({
@@ -49,7 +49,7 @@ const styles = theme => ({
 /**
  * @ignore - internal component.
  */
-class AbundantCrossTableContent extends React.PureComponent {
+class AbundantCrossTabulationContent extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,7 +76,7 @@ class AbundantCrossTableContent extends React.PureComponent {
     const attrValues = {};
     const materializedInput = [];
     let recordsProcessed = 0;
-    CrossTableData.forEachRecord(this.data, this.props.derivedAttributes, function(record) {
+    CrossTabulationData.forEachRecord(this.data, this.props.derivedAttributes, function(record) {
       materializedInput.push(record);
       for (const attr of Object.keys(record)) {
         if (!(attr in attrValues)) {
@@ -174,7 +174,7 @@ class AbundantCrossTableContent extends React.PureComponent {
 
     const rendererCell = (
       <td className={classes.renderers}>
-        <CrossTableAttribute
+        <CrossTabulationAttribute
           label="renderer"
           current={rendererName}
           values={Object.keys(this.props.renderers)}
@@ -199,7 +199,7 @@ class AbundantCrossTableContent extends React.PureComponent {
 
     const aggregatorCell = (
       <td className={classes.axis}>
-        <CrossTableAttribute
+        <CrossTabulationAttribute
           label="aggregators"
           current={this.props.aggregatorName}
           values={Object.keys(this.props.aggregators)}
@@ -221,7 +221,7 @@ class AbundantCrossTableContent extends React.PureComponent {
         </a>
         {numValsAllowed > 0 && <br />}
         {new Array(numValsAllowed).fill().map((n, i) => [
-          <CrossTableAttribute
+          <CrossTabulationAttribute
             label="value"
             key={i}
             current={this.props.vals[i]}
@@ -280,7 +280,7 @@ class AbundantCrossTableContent extends React.PureComponent {
     );
     const outputCell = (
       <td>
-        <CrossTable
+        <CrossTabulation
           {...update(this.props, {
             data: { $set: this.materializedInput },
           })}
@@ -328,7 +328,7 @@ class AbundantCrossTableContent extends React.PureComponent {
   }
 }
 
-AbundantCrossTableContent.propTypes = Object.assign({}, CrossTable.propTypes, {
+AbundantCrossTabulationContent.propTypes = Object.assign({}, CrossTabulation.propTypes, {
   onChange: PropTypes.func.isRequired,
   hiddenAttributes: PropTypes.arrayOf(PropTypes.string),
   hiddenFromAggregators: PropTypes.arrayOf(PropTypes.string),
@@ -337,7 +337,7 @@ AbundantCrossTableContent.propTypes = Object.assign({}, CrossTable.propTypes, {
   menuLimit: PropTypes.number,
 });
 
-AbundantCrossTableContent.defaultProps = Object.assign({}, CrossTable.defaultProps, {
+AbundantCrossTabulationContent.defaultProps = Object.assign({}, CrossTabulation.defaultProps, {
   hiddenAttributes: [],
   hiddenFromAggregators: [],
   hiddenFromDragDrop: [],
@@ -345,6 +345,6 @@ AbundantCrossTableContent.defaultProps = Object.assign({}, CrossTable.defaultPro
   menuLimit: 500,
 });
 
-export default withStyles(styles, { name: 'RMAbundantCrossTableContent' })(
-  AbundantCrossTableContent,
+export default withStyles(styles, { name: 'RMAbundantCrossTabulationContent' })(
+  AbundantCrossTabulationContent,
 );

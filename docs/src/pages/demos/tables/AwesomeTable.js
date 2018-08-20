@@ -16,7 +16,9 @@ import AwesomeTable from '@6thquake/react-material/Table/AwesomeTable';
 import filter from '@6thquake/react-material/utils/filter';
 
 const styles = theme => ({
-  root: {},
+  root: {
+    width: '100%',
+  },
   bar: {
     padding: theme.spacing.unit / 4,
     marginBottom: theme.spacing.unit * 2,
@@ -27,8 +29,8 @@ const styles = theme => ({
     // overflowX: 'hidden'
   },
   tableBox: {
-    height: 600,
-    width: 800,
+    height: 380,
+    width: '100%',
   },
   radioButtons: {
     margin: theme.spacing.unit * 2,

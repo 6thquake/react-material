@@ -13,7 +13,7 @@ import InputLabel from '../../InputLabel';
  * @ignore - internal component.
  */
 
-class CrossTableAttribute extends React.PureComponent {
+class CrossTabulationAttribute extends React.PureComponent {
   handleChange = event => {
     this.props.setValue(event.target.value);
   };
@@ -42,4 +42,4 @@ class CrossTableAttribute extends React.PureComponent {
   }
 }
 
-export default CrossTableAttribute;
+export default CrossTabulationAttribute;

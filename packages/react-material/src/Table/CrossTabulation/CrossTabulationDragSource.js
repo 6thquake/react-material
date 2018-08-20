@@ -39,7 +39,7 @@ function chipDragcollect(connect, monitor) {
  * @ignore - internal component.
  */
 
-class CrossTableDragSource extends React.Component {
+class CrossTabulationDragSource extends React.Component {
   render() {
     const { connectDragSource, connectDragPreview, children } = this.props;
 
@@ -47,4 +47,4 @@ class CrossTableDragSource extends React.Component {
   }
 }
 
-export default DragSource(ItemTypes.CHIP, columnSource, chipDragcollect)(CrossTableDragSource);
+export default DragSource(ItemTypes.CHIP, columnSource, chipDragcollect)(CrossTabulationDragSource);

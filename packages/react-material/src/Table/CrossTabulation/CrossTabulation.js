@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CrossTableData } from './CrossTableUtilities';
-import CrossTableRenderers from './CrossTableRenderers';
+import { CrossTabulationData } from './CrossTabulationUtilities';
+import CrossTabulationRenderers from './CrossTabulationRenderers';
 
-class CrossTable extends React.PureComponent {
+class CrossTabulation extends React.PureComponent {
   render() {
     const Renderer = this.props.renderers[
       this.props.rendererName in this.props.renderers
@@ -14,14 +14,14 @@ class CrossTable extends React.PureComponent {
   }
 }
 
-CrossTable.propTypes = Object.assign({}, CrossTableData.propTypes, {
+CrossTabulation.propTypes = Object.assign({}, CrossTabulationData.propTypes, {
   rendererName: PropTypes.string,
   renderers: PropTypes.objectOf(PropTypes.func),
 });
 
-CrossTable.defaultProps = Object.assign({}, CrossTableData.defaultProps, {
+CrossTabulation.defaultProps = Object.assign({}, CrossTabulationData.defaultProps, {
   rendererName: 'Table',
-  renderers: CrossTableRenderers,
+  renderers: CrossTabulationRenderers,
 });
 
-export default CrossTable;
+export default CrossTabulation;

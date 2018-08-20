@@ -1,12 +1,6 @@
 ---
-components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, AbundantCrossTable, CrossTable, AwesomeTable
+components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, AbundantCrossTabulation, CrossTabulation, AwesomeTable
 ---
-## Awesome Table
-{{"demo": "pages/demos/tables/AwesomeTable.js"}}
-
-## Cross Table
-{{"demo": "pages/demos/tables/CrossTable.js"}}
-
 
 # Tables
 
@@ -45,6 +39,35 @@ custom actions.
 You can customize the look and feel of the table by overriding the styles of the `TableCell` component.
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
+
+## Awesome Table
+
+* Drag to change each columns' width
+* Lock columns when scrolling the horizontal scroll bar
+* Drag to change position among columns
+* Download the table data into a csv file
+* Fuzzy matching data
+
+{{"demo": "pages/demos/tables/AwesomeTable.js"}}
+
+## No Data Table
+
+Show "No data is available" or someting else you specified when table have no data. 
+
+{{"demo": "pages/demos/tables/NoDataTable.js"}}
+
+## Cross Table
+
+Cross tabulation is a method to quantitatively analyze the relationship between multiple variables.
+
+#### When you can use cross tabulation
+Cross tabulation is usually performed on categorical data — data that can be divided into mutually exclusive groups.
+
+An example of categorical data is the region of sales for a product. Typically, region can be divided into categories such as geographic area (North, South, Northeast, West, etc) or state (Andhra Pradesh, Rajasthan, Bihar, etc). The important thing to remember about categorical data is that a categorical data point cannot belong to more than one category.
+
+Cross tabulations are used to examine relationships within data that may not be readily apparent. Cross tabulation is especially useful for studying market research or survey responses. Cross tabulation of categorical data can be done with through tools such as SPSS, SAS, and Microsoft Excel.
+
+{{"demo": "pages/demos/tables/CrossTabulation.js"}}
 
 ## Advanced use cases
 

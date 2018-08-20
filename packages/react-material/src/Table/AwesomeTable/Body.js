@@ -14,12 +14,12 @@ const styles = theme => ({
     overflowY: 'auto',
     overflowX: 'hidden',
     width: 'fit-content',
-    
+
     // width:100%
   },
   layoutFixed: {
     tableLayout: 'fixed',
-    height: '100%'
+    height: '100%',
   },
 });
 const colStyle = {
@@ -51,7 +51,7 @@ class Body extends React.Component {
       bodyRef,
       bodyRowHeight,
       height,
-      NoData,
+      noData,
     } = this.props;
     const rowStyle = {
       height: bodyRowHeight,
@@ -66,47 +66,51 @@ class Body extends React.Component {
           height: height,
         }}
         className={classes.root}
-      > 
-      { 
-        <Table innerRef={bodyRef} classes={{ root: classes.layoutFixed }} className={classes.table}>
-          <colgroup>
-            {columns.map(item => {
-              return <col key={item.title} style={colStyle} width={item.width} />;
-            })}
-          </colgroup>
-          <TableBody >
-            {
-              data.length === 0 && type === 'main' ?
-              <TableRow
+      >
+        {
+          <Table
+            innerRef={bodyRef}
+            classes={{ root: classes.layoutFixed }}
+            className={classes.table}
+          >
+            <colgroup>
+              {columns.map(item => {
+                return <col key={item.title} style={colStyle} width={item.width} />;
+              })}
+            </colgroup>
+            <TableBody>
+              {data.length === 0 && type === 'main' ? (
+                <TableRow
                   style={{
                     height: '100%',
                   }}
                 >
-                  <TableCell colSpan={columns.length} style={{height: '100%'}}>
-                    <NoData/>
+                  <TableCell colSpan={columns.length} style={{ height: '100%' }}>
+                    {noData}
                   </TableCell>
-              </TableRow>:
-              data.map((entry, index) => {
-              return (
-                <TableRow
-                  onClick={this.handleRowClick(entry, index)}
-                  style={rowStyle}
-                  key={entry.key}
-                >
-                  {columns.map(column => {
-                    return (
-                      <TableCell>
-                        {column.render ? column.render(entry) : entry[column.dataIndex]}
-                      </TableCell>
-                    );
-                  })}
                 </TableRow>
-              );
-
-            })}
-          </TableBody>
-        </Table>
-      }
+              ) : (
+                data.map((entry, index) => {
+                  return (
+                    <TableRow
+                      onClick={this.handleRowClick(entry, index)}
+                      style={rowStyle}
+                      key={entry.key}
+                    >
+                      {columns.map(column => {
+                        return (
+                          <TableCell>
+                            {column.render ? column.render(entry) : entry[column.dataIndex]}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })
+              )}
+            </TableBody>
+          </Table>
+        }
       </div>
     );
   }

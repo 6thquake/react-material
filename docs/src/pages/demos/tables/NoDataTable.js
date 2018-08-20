@@ -88,15 +88,11 @@ function Icon(props) {
 class NoData extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    colSpan: PropTypes.number,
-    visible: PropTypes.bool,
     text: PropTypes.any,
     size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   };
 
   static defaultProps = {
-    colSpan: 1, // 列数
-    visible: false,
     text: '',
     size: 'md',
   };
@@ -107,7 +103,7 @@ class NoData extends React.Component {
 
   render() {
     const { sizes } = this.state;
-    const { classes, colSpan, visible, size, text, ...rest } = this.props;
+    const { classes, size, text, ...rest } = this.props;
     const itemClassName = classnames(
       {
         [classes[size]]: sizes.includes(size),
@@ -116,20 +112,16 @@ class NoData extends React.Component {
     );
 
     return (
-      visible && (
-        <TableRow>
-          <TableCell colSpan={colSpan} className={classes.td} {...rest}>
-            <Grid container direction="column" spacing={24} justify="center" alignItems="center">
-              <Grid item className={itemClassName}>
-                <Icon classes={{ root: classes.iconRoot }} />
-              </Grid>
-              <Grid item className={classes.text}>
-                {text}
-              </Grid>
-            </Grid>
-          </TableCell>
-        </TableRow>
-      )
+      <React.Fragment className={classes.td} {...rest}>
+        <Grid container direction="column" spacing={24} justify="center" alignItems="center">
+          <Grid item className={itemClassName}>
+            <Icon classes={{ root: classes.iconRoot }} />
+          </Grid>
+          <Grid item className={classes.text}>
+            {text}
+          </Grid>
+        </Grid>
+      </React.Fragment>
     );
   }
 }
@@ -253,7 +245,7 @@ class NoDataTable extends React.Component {
             searchable
             paginatable
             sync
-            NoData={TableNoData}
+            noData={<TableNoData />}
             {...options}
           />
         </Paper>

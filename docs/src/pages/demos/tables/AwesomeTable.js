@@ -97,7 +97,7 @@ class AwesomeTableEXample extends React.Component {
     };
   }
   componentDidMount = () => {
-    // this.handleChangePage(0,0)
+    this.handleChangePage(0, 0);
   };
   handleChange = e => {
     let value = e.target.value;
@@ -107,33 +107,33 @@ class AwesomeTableEXample extends React.Component {
   };
   handleSearch = value => {
     console.log('search value', value);
-    // this.setState({
-    //   data: filter(data, value)
-    // })
+    this.setState({
+      data: filter(data, value),
+    });
   };
   handleChangePage = (e, page) => {
     console.log('page', page);
-    let {TablePaginationProps} = this.state
-    let {rowsPerPage} = TablePaginationProps
-    TablePaginationProps.page = page
-    let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-    console.log('paginateData', paginateData)
+    let { TablePaginationProps } = this.state;
+    let { rowsPerPage } = TablePaginationProps;
+    TablePaginationProps.page = page;
+    let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    console.log('paginateData', paginateData);
     this.setState({
       TablePaginationProps,
       data: paginateData,
-    })
+    });
   };
   handleChangeRowsPerPage = e => {
     console.log('rowperoage', e.target.value);
-    let {TablePaginationProps} = this.state
-    let {page} = TablePaginationProps
-    let rowsPerPage = e.target.value
-    TablePaginationProps.rowsPerPage = rowsPerPage
-    let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    let { TablePaginationProps } = this.state;
+    let { page } = TablePaginationProps;
+    let rowsPerPage = e.target.value;
+    TablePaginationProps.rowsPerPage = rowsPerPage;
+    let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
     this.setState({
       TablePaginationProps,
       data: paginateData,
-    })
+    });
   };
   handleRowClick = (e, i) => {
     console.log('row item', e, i);
@@ -187,7 +187,7 @@ class AwesomeTableEXample extends React.Component {
           {/* <Divider></Divider> */}
           <AwesomeTable
             onRowClick={this.handleRowClick}
-            title={'MyTable'}
+            title={'Awesome Table'}
             columns={columns}
             data={this.state.data}
             searchable

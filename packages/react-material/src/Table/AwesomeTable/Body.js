@@ -7,7 +7,6 @@ import TableCell from '../../TableCell';
 import TableHead from '../../TableHead';
 import TableRow from '../../TableRow';
 import Scrollbar from '../../Scrollbar';
-
 import { withStyles } from '../../styles';
 
 const styles = theme => ({
@@ -15,9 +14,12 @@ const styles = theme => ({
     overflowY: 'auto',
     overflowX: 'hidden',
     width: 'fit-content',
+    
+    // width:100%
   },
   layoutFixed: {
     tableLayout: 'fixed',
+    height: '100%'
   },
 });
 const colStyle = {
@@ -49,6 +51,7 @@ class Body extends React.Component {
       bodyRef,
       bodyRowHeight,
       height,
+      NoData,
     } = this.props;
     const rowStyle = {
       height: bodyRowHeight,
@@ -63,15 +66,27 @@ class Body extends React.Component {
           height: height,
         }}
         className={classes.root}
-      >
+      > 
+      { 
         <Table innerRef={bodyRef} classes={{ root: classes.layoutFixed }} className={classes.table}>
           <colgroup>
             {columns.map(item => {
               return <col key={item.title} style={colStyle} width={item.width} />;
             })}
           </colgroup>
-          <TableBody>
-            {data.map((entry, index) => {
+          <TableBody >
+            {
+              data.length === 0 && type === 'main' ?
+              <TableRow
+                  style={{
+                    height: '100%',
+                  }}
+                >
+                  <TableCell colSpan={columns.length} style={{height: '100%'}}>
+                    <NoData/>
+                  </TableCell>
+              </TableRow>:
+              data.map((entry, index) => {
               return (
                 <TableRow
                   onClick={this.handleRowClick(entry, index)}
@@ -87,9 +102,11 @@ class Body extends React.Component {
                   })}
                 </TableRow>
               );
+
             })}
           </TableBody>
         </Table>
+      }
       </div>
     );
   }

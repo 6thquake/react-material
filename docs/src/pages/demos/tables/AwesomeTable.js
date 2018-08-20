@@ -90,7 +90,7 @@ class AwesomeTableEXample extends React.Component {
       TablePaginationProps: {
         rowsPerPage: 5,
         page: 0,
-        // count: 40,
+        count: 40,
       },
     };
   }
@@ -111,27 +111,27 @@ class AwesomeTableEXample extends React.Component {
   };
   handleChangePage = (e, page) => {
     console.log('page', page);
-    // let {TablePaginationProps} = this.state
-    // let {rowsPerPage} = TablePaginationProps
-    // TablePaginationProps.page = page
-    // let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-    // console.log('paginateData', paginateData)
-    // this.setState({
-    //   TablePaginationProps,
-    //   data: paginateData,
-    // })
+    let {TablePaginationProps} = this.state
+    let {rowsPerPage} = TablePaginationProps
+    TablePaginationProps.page = page
+    let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    console.log('paginateData', paginateData)
+    this.setState({
+      TablePaginationProps,
+      data: paginateData,
+    })
   };
   handleChangeRowsPerPage = e => {
     console.log('rowperoage', e.target.value);
-    // let {TablePaginationProps} = this.state
-    // let {page} = TablePaginationProps
-    // let rowsPerPage = e.target.value
-    // TablePaginationProps.rowsPerPage = rowsPerPage
-    // let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-    // this.setState({
-    //   TablePaginationProps,
-    //   data: paginateData,
-    // })
+    let {TablePaginationProps} = this.state
+    let {page} = TablePaginationProps
+    let rowsPerPage = e.target.value
+    TablePaginationProps.rowsPerPage = rowsPerPage
+    let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    this.setState({
+      TablePaginationProps,
+      data: paginateData,
+    })
   };
   handleRowClick = (e, i) => {
     console.log('row item', e, i);
@@ -190,7 +190,7 @@ class AwesomeTableEXample extends React.Component {
             data={this.state.data}
             searchable
             paginatable
-            sync
+            // sync
             {...options}
           />
         </Paper>

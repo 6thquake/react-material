@@ -8,7 +8,7 @@ import Body from './Body';
 import Toolbar from './TableToolbar';
 import Pagination from './Pagination';
 import filter from '../../utils/filter';
-
+import NoData from '../../NoData'
 import { withStyles } from '../../styles';
 import { darken, fade, lighten } from '../../styles/colorManipulator';
 
@@ -262,7 +262,13 @@ class AwesomeTable extends React.Component {
     return this.renderTable(columns, 'right', baseLength);
   };
   renderTable = (columns, type, baseLength = 0) => {
-    const { classes, resizable, dragable, onRowClick } = this.props;
+    const {
+      classes,
+      resizable,
+      dragable,
+      onRowClick,
+      NoData
+    } = this.props;
     const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData } = this.state;
     let width =
       type === 'main'
@@ -300,6 +306,7 @@ class AwesomeTable extends React.Component {
         tableRef={this.tableRefs[type]}
         bodyRowHeight={bodyRowHeight}
         onRowClick={onRowClick}
+        NoData = {NoData}
       />
     );
     const table = [head, body];
@@ -510,12 +517,17 @@ AwesomeTable.propTypes = {
    * The title of table
    */
   title: PropTypes.node,
+  /**
+   * 
+   */
+  NoData: PropTypes.node,
 };
 AwesomeTable.defaultProps = {
   TablePaginationProps: {
     rowsPerPage: 10,
     page: 0,
   },
+  data:[],
   width: '100%',
   // height: 'auto',
   SearchProps: {
@@ -527,5 +539,6 @@ AwesomeTable.defaultProps = {
   resizable: false,
   dragable: false,
   sync: false,
+  NoData: NoData
 };
 export default withStyles(styles, { withTheme: true })(AwesomeTable);

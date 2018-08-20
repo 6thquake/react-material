@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import BreadcrumbItem from '../BreadcrumbItem';
-import { fade } from '../styles/colorManipulator';
+import { /*darken,*/ fade } from '../styles/colorManipulator';
 import classNames from 'classnames';
 
 const styles = theme => ({
@@ -34,14 +34,14 @@ const styles = theme => ({
   white: {
     '@global a': {
       '&:hover': {
-        color: theme.palette.primary.main,
+        color: theme.palette.common.white,
       },
-      color: theme.palette.common.white,
+      color: fade(theme.palette.common.white, 0.8),
     },
     '@global span': {
       color: fade(theme.palette.common.white, 0.6),
     },
-    color: theme.palette.common.white,
+    color: fade(theme.palette.common.white, 0.8),
   },
   separator: {
     padding: '0 0.5em',

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Progress from '@6thquake/react-material/Progress';
 import { withStyles } from '@6thquake/react-material/styles';
 import Button from '@6thquake/react-material/Button';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress from '@6thquake/react-material/LinearProgress';
 
 const styles = {
   root: {

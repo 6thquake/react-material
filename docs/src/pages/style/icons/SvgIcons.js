@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import green from '@6thquake/react-material/colors/green';
+import red from '@6thquake/react-material/colors/red';
+import blue from '@6thquake/react-material/colors/blue';
 import SvgIcon from '@6thquake/react-material/SvgIcon';
 
 const styles = theme => ({
@@ -16,7 +17,7 @@ const styles = theme => ({
   iconHover: {
     margin: theme.spacing.unit * 2,
     '&:hover': {
-      color: green[200],
+      color: red[800],
     },
   },
 });
@@ -34,11 +35,27 @@ function SvgIcons(props) {
   return (
     <div className={classes.root}>
       <HomeIcon className={classes.icon} />
+      <HomeIcon className={classes.icon} color="primary" />
       <HomeIcon className={classes.icon} color="secondary" />
       <HomeIcon className={classes.icon} color="action" />
-      <HomeIcon className={classes.icon} color="disabled" />
-      <HomeIcon className={classes.icon} color="primary" style={{ fontSize: 30 }} />
-      <HomeIcon color="error" className={classes.iconHover} style={{ fontSize: 36 }} />
+      <HomeIcon className={classes.iconHover} color="error" style={{ fontSize: 30 }} />
+      <HomeIcon color="disabled" className={classes.icon} style={{ fontSize: 36 }} />
+      <HomeIcon
+        className={classes.icon}
+        color="primary"
+        style={{ fontSize: 36 }}
+        component={svgProps => (
+          <svg {...svgProps}>
+            <defs>
+              <linearGradient id="gradient1">
+                <stop offset="30%" stopColor={blue[400]} />
+                <stop offset="70%" stopColor={red[400]} />
+              </linearGradient>
+            </defs>
+            {React.cloneElement(svgProps.children[0], { fill: 'url(#gradient1)' })}
+          </svg>
+        )}
+      />
     </div>
   );
 }

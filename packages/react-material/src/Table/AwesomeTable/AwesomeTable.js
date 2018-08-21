@@ -125,13 +125,20 @@ class AwesomeTable extends React.Component {
     return [...leftColumns, ...unfixed, ...rightColumns];
   };
 
-  syncTableRowHeight = () => {
+  syncTableRowHeight = isResize => {
     let head = this.tableRefs.head.current;
     let headDom = ReactDOM.findDOMNode(head);
     let headHeight = headDom.getBoundingClientRect().height;
     let body = this.tableRefs.body.current;
     let bodyDom = ReactDOM.findDOMNode(body);
     let bodyHeight = bodyDom.getBoundingClientRect().height;
+    if (isResize) {
+      // todo : Resizable only axis=x
+      this.setState({
+        bodyRowHeight: bodyHeight / this.props.data.length,
+      });
+      return;
+    }
     this.setState({
       bodyRowHeight: bodyHeight / this.props.data.length,
       headRowHeight: headHeight,
@@ -155,14 +162,19 @@ class AwesomeTable extends React.Component {
   };
 
   handleResize = (index, colomn, size) => {
-    this.setState(({ columns }) => {
-      const nextColumns = [...columns];
-      nextColumns[index] = {
-        ...nextColumns[index],
-        width: size.width,
-      };
-      return { columns: nextColumns };
-    });
+    this.setState(
+      ({ columns }) => {
+        const nextColumns = [...columns];
+        nextColumns[index] = {
+          ...nextColumns[index],
+          width: size.width,
+        };
+        return { columns: nextColumns };
+      },
+      () => {
+        this.syncTableRowHeight(true);
+      },
+    );
   };
 
   onSearch = text => {
@@ -262,7 +274,14 @@ class AwesomeTable extends React.Component {
     return this.renderTable(columns, 'right', baseLength);
   };
   renderTable = (columns, type, baseLength = 0) => {
-    const { classes, resizable, dragable, onRowClick, noData, disableClickToFixColumn } = this.props;
+    const {
+      classes,
+      resizable,
+      dragable,
+      onRowClick,
+      noData,
+      disableClickToFixColumn,
+    } = this.props;
     const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData } = this.state;
     let width =
       type === 'main'
@@ -517,8 +536,9 @@ AwesomeTable.propTypes = {
    */
   noData: PropTypes.element,
   /**
-   * disableClickToFixColumn
+   *  @ignore
    */
+  disableClickToFixColumn: PropTypes.bool,
 };
 AwesomeTable.defaultProps = {
   TablePaginationProps: {
@@ -538,6 +558,6 @@ AwesomeTable.defaultProps = {
   dragable: false,
   sync: false,
   noData: <NoData />,
-  disableClickToFixColumn: true
+  disableClickToFixColumn: true,
 };
 export default withStyles(styles, { withTheme: true })(AwesomeTable);

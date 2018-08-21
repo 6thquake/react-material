@@ -116,7 +116,7 @@ class Head extends React.Component {
       dragable,
       baseLength,
       onColumnFixChange,
-      disableClickToFixColumn
+      disableClickToFixColumn,
     } = this.props;
 
     let cell = (
@@ -143,6 +143,8 @@ class Head extends React.Component {
           width={column.width}
           height={0}
           onResize={this.handleResize(index, column)}
+          // axis = {'x'}
+          // minConstraints={[50, 500]}
         >
           {cell}
         </Resizable>

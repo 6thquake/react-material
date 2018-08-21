@@ -52,14 +52,16 @@ class Body extends React.Component {
       noData,
     } = this.props;
 
-    let mainAndNoData = data.length === 0 && type === 'main'
-    const tableStyle = mainAndNoData ? {
-      height: '100%',
-    } : {}
+    let mainAndNoData = data.length === 0 && type === 'main';
+    const tableStyle = mainAndNoData
+      ? {
+          height: '100%',
+        }
+      : {};
 
     const rowStyle = {
       height: bodyRowHeight,
-    }
+    };
 
     return (
       <div

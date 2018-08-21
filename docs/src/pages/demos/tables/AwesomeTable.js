@@ -192,6 +192,7 @@ class AwesomeTableEXample extends React.Component {
             data={this.state.data}
             searchable
             paginatable
+            disableClickToFixColumn={false}
             // sync
             {...options}
           />

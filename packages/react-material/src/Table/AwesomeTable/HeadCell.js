@@ -24,11 +24,9 @@ class Cell extends React.Component {
     };
   }
   handleDoubleClick = e => {
-    const {
-      disableClickToFixColumn
-    } = this.props
-    if (disableClickToFixColumn){
-      return
+    const { disableClickToFixColumn } = this.props;
+    if (disableClickToFixColumn) {
+      return;
     }
     this.setState({
       show: true,

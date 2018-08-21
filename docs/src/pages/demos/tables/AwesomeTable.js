@@ -29,7 +29,7 @@ const styles = theme => ({
     // overflowX: 'hidden'
   },
   tableBox: {
-    height: 380,
+    height: 600,
     width: '100%',
   },
   radioButtons: {
@@ -76,7 +76,7 @@ for (let i = 0; i < 40; i++) {
   data.push({
     key: i,
     name: `Edrward ${i}`,
-    age: 32,
+    age: '32',
     address: `London Park no.${i}`,
     gender: i % 2 === 0 ? 'male' : 'female',
   });

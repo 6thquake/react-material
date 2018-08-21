@@ -262,7 +262,7 @@ class AwesomeTable extends React.Component {
     return this.renderTable(columns, 'right', baseLength);
   };
   renderTable = (columns, type, baseLength = 0) => {
-    const { classes, resizable, dragable, onRowClick, noData } = this.props;
+    const { classes, resizable, dragable, onRowClick, noData, disableClickToFixColumn } = this.props;
     const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData } = this.state;
     let width =
       type === 'main'
@@ -287,6 +287,7 @@ class AwesomeTable extends React.Component {
         onDragEnd={this.dragEnd}
         headRowHeight={headRowHeight}
         onColumnFixChange={this.handleColumnFixSwitch}
+        disableClickToFixColumn={disableClickToFixColumn}
       />
     );
     const body = (
@@ -515,6 +516,9 @@ AwesomeTable.propTypes = {
    * render when data length is 0
    */
   noData: PropTypes.element,
+  /**
+   * disableClickToFixColumn
+   */
 };
 AwesomeTable.defaultProps = {
   TablePaginationProps: {
@@ -534,5 +538,6 @@ AwesomeTable.defaultProps = {
   dragable: false,
   sync: false,
   noData: <NoData />,
+  disableClickToFixColumn: true
 };
 export default withStyles(styles, { withTheme: true })(AwesomeTable);

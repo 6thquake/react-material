@@ -116,6 +116,7 @@ class Head extends React.Component {
       dragable,
       baseLength,
       onColumnFixChange,
+      disableClickToFixColumn
     } = this.props;
 
     let cell = (
@@ -124,6 +125,7 @@ class Head extends React.Component {
         onDragEnd={onDragEnd}
         index={index + baseLength}
         onColumnFixChange={onColumnFixChange}
+        disableClickToFixColumn={disableClickToFixColumn}
         component={dragable && !this.state.undragable ? DragHeadCell : HeadCell}
         className={classes.tableCell}
         key={column.key || column.title}

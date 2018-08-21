@@ -14,12 +14,10 @@ const styles = theme => ({
     overflowY: 'auto',
     overflowX: 'hidden',
     width: 'fit-content',
-
     // width:100%
   },
   layoutFixed: {
     tableLayout: 'fixed',
-    height: '100%',
   },
 });
 const colStyle = {
@@ -53,9 +51,16 @@ class Body extends React.Component {
       height,
       noData,
     } = this.props;
+
+    let mainAndNoData = data.length === 0 && type === 'main'
+    const tableStyle = mainAndNoData ? {
+      height: '100%',
+    } : {}
+
     const rowStyle = {
       height: bodyRowHeight,
-    };
+    }
+
     return (
       <div
         ref={tableRef}
@@ -72,6 +77,7 @@ class Body extends React.Component {
             innerRef={bodyRef}
             classes={{ root: classes.layoutFixed }}
             className={classes.table}
+            style={tableStyle}
           >
             <colgroup>
               {columns.map(item => {
@@ -79,7 +85,7 @@ class Body extends React.Component {
               })}
             </colgroup>
             <TableBody>
-              {data.length === 0 && type === 'main' ? (
+              {mainAndNoData ? (
                 <TableRow
                   style={{
                     height: '100%',

@@ -107,7 +107,7 @@ class Body extends React.Component {
                     >
                       {columns.map(column => {
                         return (
-                          <TableCell>
+                          <TableCell key={column.key || Date.now()}>
                             {column.render ? column.render(entry) : entry[column.dataIndex]}
                           </TableCell>
                         );

@@ -105,6 +105,7 @@ class AwesomeTable extends React.Component {
     if (data !== this.propsCached.data) {
       this.propsCached.data = data;
       this.filteredData();
+      this.syncTableRowHeight(true);
     }
 
     if (searchable !== this.propsCached.searchable) {
@@ -127,20 +128,26 @@ class AwesomeTable extends React.Component {
 
   syncTableRowHeight = isResize => {
     let head = this.tableRefs.head.current;
+    let body = this.tableRefs.body.current;
+
+    if (!head || !body) {
+      return;
+    }
+
     let headDom = ReactDOM.findDOMNode(head);
     let headHeight = headDom.getBoundingClientRect().height;
-    let body = this.tableRefs.body.current;
+
     let bodyDom = ReactDOM.findDOMNode(body);
     let bodyHeight = bodyDom.getBoundingClientRect().height;
     if (isResize) {
       // todo : Resizable only axis=x
       this.setState({
-        bodyRowHeight: bodyHeight / this.props.data.length,
+        bodyRowHeight: bodyHeight / this.state.data.length,
       });
       return;
     }
     this.setState({
-      bodyRowHeight: bodyHeight / this.props.data.length,
+      bodyRowHeight: bodyHeight / this.state.data.length,
       headRowHeight: headHeight,
     });
   };
@@ -233,6 +240,7 @@ class AwesomeTable extends React.Component {
       data,
     });
   };
+
   createCsv = () => {
     let head = this.state.columns.reduce((pre, cur) => {
       if (cur.render || !cur.title) {

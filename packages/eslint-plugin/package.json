@@ -1,12 +1,11 @@
 {
   "name": "eslint-plugin",
-  "version": "0.0.1",
+  "version": "1.0.0-beta.35",
   "private": true,
   "description": "Custom eslint rules for React-Material.",
   "main": "src/index.js",
   "scripts": {
-    "test": "../../node_modules/.bin/mocha src/**/*.test.js",
-    "build": "echo done"
+    "test": "mocha src/**/*.test.js"
   },
   "repository": {
     "type": "git"

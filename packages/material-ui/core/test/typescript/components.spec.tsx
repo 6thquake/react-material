@@ -19,6 +19,8 @@ import {
   Collapse,
   Dialog,
   DialogTitle,
+  DialogContent,
+  DialogContentText,
   Divider,
   Drawer,
   ExpansionPanel,
@@ -156,7 +158,8 @@ const CardTest = () => (
       </Typography>
       <Typography variant="body1">adjective</Typography>
       <Typography component="p">
-        well meaning and kindly.<br />
+        well meaning and kindly.
+        <br />
         {'"a benevolent smile"'}
       </Typography>
     </CardContent>
@@ -280,6 +283,11 @@ const DialogTest = () => {
           </ListItem>
         </List>
       </div>
+      <DialogContent>
+        <DialogContentText variant="body2" color="primary">
+          Some text
+        </DialogContentText>
+      </DialogContent>
     </Dialog>
   );
 };
@@ -435,7 +443,8 @@ const GridListTest = () => (
   <GridList cellHeight={160} cols={3} onClick={event => log(event)}>
     <GridListTile cols={1} rows={4} onClick={event => log(event)}>
       <img src="img.png" alt="alt text" />
-    </GridListTile>,
+    </GridListTile>
+    ,
   </GridList>
 );
 
@@ -794,7 +803,18 @@ const TextFieldTest = () => (
       onChange={event => log({ name: event.currentTarget.value })}
     />
     <TextField id="name" label="Name" value={'Alice'} InputProps={{ classes: { root: 'foo' } }} />
-    <TextField type="number" InputProps={{ inputProps: { min: '0', max: '10', step: '1' } }} />
+    <TextField
+      type="number"
+      inputProps={{
+        min: '0',
+        max: '10',
+        step: '1',
+        style: {
+          // just a long css property to test autocompletion
+          WebkitAnimationIterationCount: 0,
+        },
+      }}
+    />
   </div>
 );
 

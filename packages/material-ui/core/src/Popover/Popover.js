@@ -239,7 +239,8 @@ class Popover extends React.Component {
           'Material-UI: you can not change the default `anchorOrigin.vertical` value ',
           'when also providing the `getContentAnchorEl` property to the popover component.',
           'Only use one of the two properties.',
-          'Set `getContentAnchorEl` to null or leave `anchorOrigin.vertical` unchanged.',
+          'Set `getContentAnchorEl` to `null | undefined`' +
+            ' or leave `anchorOrigin.vertical` unchanged.',
         ].join('\n'),
       );
     }
@@ -278,6 +279,7 @@ class Popover extends React.Component {
       elevation,
       getContentAnchorEl,
       marginThreshold,
+      ModalClasses,
       onEnter,
       onEntered,
       onEntering,
@@ -307,7 +309,13 @@ class Popover extends React.Component {
       containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
     return (
-      <Modal container={container} open={open} BackdropProps={{ invisible: true }} {...other}>
+      <Modal
+        classes={ModalClasses}
+        container={container}
+        open={open}
+        BackdropProps={{ invisible: true }}
+        {...other}
+      >
         <TransitionComponent
           appear
           in={open}
@@ -419,6 +427,10 @@ Popover.propTypes = {
    * Specifies how close to the edge of the window the popover can appear.
    */
   marginThreshold: PropTypes.number,
+  /**
+   * `classes` property applied to the [`Modal`](/api/modal) element.
+   */
+  ModalClasses: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
    *

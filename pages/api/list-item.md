@@ -19,6 +19,7 @@ filename: /packages/react-material/src/ListItem/ListItem.js
 | <span class="prop-name">ContainerComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">'li'</span> | The container component used when a `ListItemSecondaryAction` is rendered. |
 | <span class="prop-name">ContainerProps</span> | <span class="prop-type">object |  | Properties applied to the container element when the component is used to display a `ListItemSecondaryAction`. |
 | <span class="prop-name">dense</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the list item will be disabled. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
 | <span class="prop-name">divider</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, a 1px light border is added to the bottom of the list item. |
 

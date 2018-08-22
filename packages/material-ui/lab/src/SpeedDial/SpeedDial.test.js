@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import SpeedDial from './SpeedDial';
@@ -9,7 +9,6 @@ import SpeedDialAction from '../SpeedDialAction';
 
 describe('<SpeedDial />', () => {
   let shallow;
-  let mount;
   let classes;
   const icon = <Icon>font_icon</Icon>;
   const defaultProps = {
@@ -19,16 +18,11 @@ describe('<SpeedDial />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
     classes = getClasses(
       <SpeedDial {...defaultProps} icon={icon}>
         <div />
       </SpeedDial>,
     );
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   it('should render a Fade transition', () => {
@@ -127,6 +121,28 @@ describe('<SpeedDial />', () => {
       buttonWrapper.simulate('keyDown', event);
       assert.strictEqual(handleKeyDown.callCount, 1);
       assert.strictEqual(handleKeyDown.args[0][0], event);
+    });
+  });
+
+  describe('prop: direction', () => {
+    const testDirection = direction => {
+      const className = `direction${direction}`;
+      const wrapper = shallow(
+        <SpeedDial {...defaultProps} direction={direction.toLowerCase()} icon={icon}>
+          <SpeedDialAction icon={icon} />
+          <SpeedDialAction icon={icon} />
+        </SpeedDial>,
+      );
+      const actionsWrapper = wrapper.childAt(1);
+      assert.strictEqual(wrapper.hasClass(classes[className]), true);
+      assert.strictEqual(actionsWrapper.hasClass(classes[className]), true);
+    };
+
+    it('should place actions in correct position', () => {
+      testDirection('Up');
+      testDirection('Down');
+      testDirection('Left');
+      testDirection('Right');
     });
   });
 });

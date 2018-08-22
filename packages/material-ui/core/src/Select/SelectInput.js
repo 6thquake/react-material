@@ -108,6 +108,9 @@ class SelectInput extends React.Component {
     }
 
     if (this.props.onBlur) {
+      const { value, name } = this.props;
+      event.persist();
+      event.target = { value, name };
       this.props.onBlur(event);
     }
   };
@@ -439,7 +442,8 @@ SelectInput.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    PropTypes.bool,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]).isRequired,
 };
 

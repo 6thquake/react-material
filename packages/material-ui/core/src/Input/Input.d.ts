@@ -17,18 +17,19 @@ export interface InputProps
   fullWidth?: boolean;
   id?: string;
   inputComponent?: React.ReactType<InputComponentProps>;
-  inputProps?: { [arbitrary: string]: any };
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   inputRef?: React.Ref<any> | React.RefObject<any>;
   margin?: 'dense';
   multiline?: boolean;
   name?: string;
   placeholder?: string;
+  readOnly?: boolean;
   required?: boolean;
   rows?: string | number;
   rowsMax?: string | number;
   startAdornment?: React.ReactNode;
   type?: string;
-  value?: Array<string | number> | string | number;
+  value?: Array<string | number | boolean> | string | number | boolean;
   /**
    * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
    * which by default is an input or textarea. Since these handlers differ from the

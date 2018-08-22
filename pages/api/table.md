@@ -15,6 +15,7 @@ filename: /packages/react-material/src/Table/Table.js
 | <span class="prop-name required">children *</span> | <span class="prop-type">node |  | The content of the table, normally `TableHeader` and `TableBody`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">'table'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">padding</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> | <span class="prop-default">'default'</span> | Allows TableCells to inherit padding of the Table. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

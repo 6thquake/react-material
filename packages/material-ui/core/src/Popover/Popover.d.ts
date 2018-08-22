@@ -25,9 +25,10 @@ export interface PopoverProps
   anchorReference?: PopoverReference;
   children?: React.ReactNode;
   elevation?: number;
-  getContentAnchorEl?: (element: HTMLElement) => HTMLElement;
+  getContentAnchorEl?: null | ((element: HTMLElement) => HTMLElement);
   marginThreshold?: number;
   modal?: boolean;
+  ModalClasses?: ModalClassKey;
   PaperProps?: Partial<PaperProps>;
   role?: string;
   transformOrigin?: PopoverOrigin;

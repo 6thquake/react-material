@@ -17,6 +17,7 @@ filename: /packages/react-material/src/FormLabel/FormLabel.js
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">'label'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool |  | If `true`, the label should be displayed in a disabled state. |
 | <span class="prop-name">error</span> | <span class="prop-type">bool |  | If `true`, the label should be displayed in an error state. |
+| <span class="prop-name">filled</span> | <span class="prop-type">bool |  | If `true`, the label should use filled classes key. |
 | <span class="prop-name">focused</span> | <span class="prop-type">bool |  | If `true`, the input of this label is focused (used by `FormGroup` components). |
 | <span class="prop-name">required</span> | <span class="prop-type">bool |  | If `true`, the label will indicate that the input is required. |
 
@@ -30,6 +31,8 @@ This property accepts the following keys:
 - `focused`
 - `disabled`
 - `error`
+- `filled`
+- `required`
 - `asterisk`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

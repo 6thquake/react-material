@@ -27,7 +27,7 @@ export interface TextFieldProps
   margin?: PropTypes.Margin;
   multiline?: boolean;
   name?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
   placeholder?: string;
   required?: boolean;
   rows?: string | number;
@@ -35,7 +35,7 @@ export interface TextFieldProps
   select?: boolean;
   SelectProps?: Partial<SelectProps>;
   type?: string;
-  value?: Array<string | number> | string | number;
+  value?: Array<string | number | boolean> | string | number | boolean;
 }
 
 export type TextFieldClassKey = FormControlClassKey;

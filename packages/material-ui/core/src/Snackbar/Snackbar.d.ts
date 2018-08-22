@@ -4,8 +4,8 @@ import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export type SnackbarOrigin = {
-  horizontal: 'left' | 'center' | 'right' | number;
-  vertical: 'top' | 'center' | 'bottom' | number;
+  horizontal: 'left' | 'center' | 'right';
+  vertical: 'top' | 'center' | 'bottom';
 };
 
 export interface SnackbarProps
@@ -13,12 +13,12 @@ export interface SnackbarProps
       React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
       SnackbarClassKey
     > {
-  action?: React.ReactElement<any> | React.ReactElement<any>[];
+  action?: SnackbarContentProps['action'];
   anchorOrigin?: SnackbarOrigin;
   autoHideDuration?: number;
   ContentProps?: Partial<SnackbarContentProps>;
   disableWindowBlurListener?: boolean;
-  message?: React.ReactElement<any>;
+  message?: SnackbarContentProps['message'];
   onClose?: (event: React.SyntheticEvent<any>, reason: string) => void;
   onMouseEnter?: React.MouseEventHandler<any>;
   onMouseLeave?: React.MouseEventHandler<any>;

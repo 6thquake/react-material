@@ -63,7 +63,7 @@ export const styles = theme => {
       display: 'inline-flex',
       position: 'relative',
       fontFamily: theme.typography.fontFamily,
-      color: light ? 'rgba(0, 0, 0, 0.87)' : theme.palette.common.white,
+      color: theme.palette.text.primary,
       fontSize: theme.typography.pxToRem(16),
       lineHeight: '1.1875em', // Reset (19px), match the native input line-height
       '&$disabled': {
@@ -80,7 +80,7 @@ export const styles = theme => {
     focused: {},
     /* Styles applied to the root element if `disabled={true}`. */
     disabled: {},
-    /* Styles applied to the root element if `disabledUnderline={false}`. */
+    /* Styles applied to the root element if `disableUnderline={false}`. */
     underline: {
       '&:after': {
         borderBottom: `2px solid ${theme.palette.primary[light ? 'dark' : 'light']}`,
@@ -233,12 +233,14 @@ function formControlState(props, context) {
 }
 
 class Input extends React.Component {
-  isControlled = this.props.value != null;
+  isControlled = null;
 
   input = null; // Holds the input reference
 
   constructor(props, context) {
     super(props, context);
+
+    this.isControlled = props.value != null;
 
     if (this.isControlled) {
       this.checkDirty(props);
@@ -655,7 +657,8 @@ Input.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    PropTypes.bool,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]),
 };
 

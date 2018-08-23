@@ -4,7 +4,7 @@ components: Icon, SvgIcon
 
 # Icons
 
-<p class="description">Guidance and suggestions for using icons with Material-UI.</p>
+<p class="description">Guidance and suggestions for using icons with React-Material.</p>
 
 A [system icon](https://material.io/design/iconography/system-icons.html) or UI icon,
 symbolizes a command, file, device, or directory.
@@ -12,7 +12,7 @@ System icons are also used to represent common actions like trash, print, and sa
 and are commonly found in app bars, toolbars, buttons, and lists.
 Google has provided a set of [Material icons](https://material.io/tools/icons/?style=baseline) that follow these guidelines.
 
-Material-UI provides two components to render system icons: `SvgIcon` for rendering SVG paths, and `Icon` for rendering font icons.
+React-Material provides two components to render system icons: `SvgIcon` for rendering SVG paths, and `Icon` for rendering font icons.
 
 ## SVG Icons
 
@@ -20,7 +20,7 @@ The `SvgIcon` component takes an SVG `path` element as its child and converts it
 and allows the icon to be styled and respond to mouse events. SVG elements should be scaled for a 24x24px viewport.
 
 The resulting icon can be used as is,
-or included as a child for other Material-UI components that use icons.
+or included as a child for other React-Material components that use icons.
 By default, an Icon will inherit the current text color.
 Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
 
@@ -77,7 +77,7 @@ Note: Importing named exports in this way will result in the code for *every ico
 
 Looking for even more SVG icons? There are a lot of projects out there,
 but [https://materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 official and community provided icons.
-[mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) packages these icons as Material-UI SvgIcons in much the same way as [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) does for the official icons.
+[mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) packages these icons as React-Material SvgIcons in much the same way as [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) does for the official icons.
 
 ## Font Icons
 

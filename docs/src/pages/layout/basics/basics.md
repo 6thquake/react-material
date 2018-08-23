@@ -30,7 +30,7 @@ Several React-Material components utilize `z-index`, the CSS property that helps
 We utilize a default z-index scale in React-Material that's been designed to properly layer drawers,
 modals, snackbars, tooltips, and more.
 
-[These values](https://github.com/6thquake/react-material/blob/develop/packages/material-ui/src/styles/zIndex.js) start at an arbitrary number, high and specific enough to ideally avoid conflicts.
+[These values](https://github.com/6thquake/react-material/blob/develop/packages/react-material/src/styles/zIndex.js) start at an arbitrary number, high and specific enough to ideally avoid conflicts.
 
 - mobile stepper: 1000
 - app bar: 1100

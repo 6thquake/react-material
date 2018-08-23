@@ -71,5 +71,5 @@ Cross tabulations are used to examine relationships within data that may not be 
 
 ## Advanced use cases
 
-For more advanced use cases you might be able to take advantage of [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/). It's a data grid for React-Material with paging, sorting, filtering, grouping and editing features.
+For more advanced use cases you might be able to take advantage of [dx-react-grid-material](https://devexpress.github.io/devextreme-reactive/react/grid/). It's a data grid for React-Material with paging, sorting, filtering, grouping and editing features.
 

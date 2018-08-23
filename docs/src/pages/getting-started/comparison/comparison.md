@@ -11,16 +11,13 @@ If you notice an inaccuracy or something that doesn’t seem quite right, please
 
 We cover the following libraries:
 
-- [React-Material](#material-ui)
+- [React-Material](#react-material)
 - [Material Design Lite (MDL)](#material-design-lite-mdl-)
 - [Material Components Web (MDC-web)](#material-components-web-mdc-web-)
 - [Materialize](#materialize)
 - [React Toolbox](#react-toolbox)
 
 ## React-Material
-
-![stars](https://img.shields.io/github/stars/mui-org/material-ui.svg?style=social&label=Stars)
-![npm](https://img.shields.io/npm/dm/material-ui.svg)
 
 We'll try very hard to avoid bias, although as the core team, we obviously like React-Material a lot ❤️.
 There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it 😄.
@@ -103,7 +100,7 @@ Both projects invest a lot in tests. At the time of writing, both projects have 
 - MDC-web has 1200+ unit tests running on all the major browsers.
 
 Still, there is one thing that sets React-Material apart and it's key:
-We have [hundreds of visual regression tests](https://www.argos-ci.com/mui-org/material-ui) when MDC-web doesn't have any.
+We have hundreds of visual regression tests when MDC-web doesn't have any.
 With visual regression tests, you don't have to make any trade-off:
 - You can spend less time making sure every contribution doesn't introduce unexpected regressions.
 The **less** time you spend on a single contribution, the **more** contributions you can accept.

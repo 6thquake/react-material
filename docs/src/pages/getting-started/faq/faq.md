@@ -3,7 +3,7 @@
 Stuck on a particular problem? Check some of these common gotchas first.
 
 If you still can't find what you're looking for, you can ask the community in [ctrip team](https://www.ctripteam.com/group/front-end).
-For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
+For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/react-material) instead of Github issues. There is a StackOverflow tag called `react-material` that you can use to tag your questions.
 
 ## Why do the fixed positioned elements move when a modal is opened?
 

@@ -12,7 +12,7 @@ The Material Design color system can be used to create a color theme that reflec
 
 #### "Palette"
 
-A palette is a collection of colors, i.e. hues and their shades. Material-UI provides all colors from the Material Design guidelines.
+A palette is a collection of colors, i.e. hues and their shades. React-Material provides all colors from the Material Design guidelines.
 
 #### "Hue" & "Shade"
 
@@ -38,7 +38,7 @@ const accent2 = purple.A200; // #E040FB (alternative method)
 
 ## Color tool
 
-To test a [material.io/color](https://material.io/color) color scheme with the Material-UI
+To test a [material.io/color](https://material.io/color) color scheme with the React-Material
 documentation, simply select colors using the palette and sliders below.
 Alternatively, you can enter hex values in the Primary and Secondary text fields.
 

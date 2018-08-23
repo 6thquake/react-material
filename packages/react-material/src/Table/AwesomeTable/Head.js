@@ -9,7 +9,7 @@ import TableRow from '../../TableRow';
 import HeadCell from './HeadCell';
 import DragHeadCell from './DragHeadCell';
 import withDragAndDrop from '../../DragAndDrop/withDragAndDrop';
-import TableSortLabel from '@6thquake/react-material/TableSortLabel';
+import TableSortLabel from '../../TableSortLabel';
 
 import { DropTarget, DropSource } from 'react-dnd';
 

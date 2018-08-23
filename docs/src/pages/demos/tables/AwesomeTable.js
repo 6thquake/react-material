@@ -42,22 +42,42 @@ const styles = theme => ({
 
 const columns = [
   { title: 'Name', width: 100, dataIndex: 'name', key: 'name' },
-  { title: 'Age', width: 100, dataIndex: 'age', key: 'age', fixed: 'left' },
+  {
+    title: 'Age',
+    width: 100,
+    dataIndex: 'age',
+    key: 'age',
+    fixed: 'left',
+    order: 'asc',
+    sortActive: true,
+    sortable: true,
+  },
   {
     title: 'Column 1',
     dataIndex: 'address',
     key: '1',
     width: 150,
-    resizable: true,
+    // resizable: true,
+    sortable: true
   },
   {
     title: 'Column 2',
     dataIndex: 'address',
     key: '2',
     width: 150,
+    sortable: true,
+    // sortActive: true,
+    resizable: true,
   },
   { title: 'Column 3', dataIndex: 'address', key: '3', width: 150 },
-  { title: 'Gender', dataIndex: 'gender', key: '4', width: 150 },
+  {
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: '4',
+    width: 150,
+    sortable: true,
+    // sortActive: true
+  },
   { title: 'Column 5', dataIndex: 'address', key: '5', width: 150 },
   { title: 'Column 6', dataIndex: 'address', key: '6', width: 150 },
   { title: 'Column 7', dataIndex: 'address', key: '7', width: 150 },
@@ -76,7 +96,7 @@ for (let i = 0; i < 40; i++) {
   data.push({
     key: i,
     name: `Edrward ${i}`,
-    age: '32',
+    age: Math.ceil(Math.random() * 100),
     address: `London Park no.${i}`,
     gender: i % 2 === 0 ? 'male' : 'female',
   });
@@ -88,7 +108,7 @@ class AwesomeTableEXample extends React.Component {
     this.state = {
       columns: columns,
       data: data,
-      value: 'dragable',
+      value: 'scroll',
       TablePaginationProps: {
         rowsPerPage: 5,
         page: 0,
@@ -138,6 +158,32 @@ class AwesomeTableEXample extends React.Component {
   handleRowClick = (e, i) => {
     console.log('row item', e, i);
   };
+
+  handleSort =(item)=> {
+    console.log('sort===:', item)
+    const { columns } = this.state
+    const { key , order, column} = item
+    
+    columns.map((col)=>{
+      col.sortActive = col.key === key
+      col.order = order == 'asc'? 'desc' : 'asc'
+    })
+    this.setState({
+      columns,
+    }, this.sortData(order))
+  }
+
+  sortData = (order)=>{
+    let {data} = this.state
+    data.sort((a, b)=> {
+      if(order == 'asc'){
+        return (a.age - b.age)
+      }else{
+        return (b.age - a.age)
+      }
+    })
+
+  }
   render() {
     const { classes } = this.props;
     const { data, columns, value } = this.state;
@@ -187,9 +233,10 @@ class AwesomeTableEXample extends React.Component {
           {/* <Divider></Divider> */}
           <AwesomeTable
             onRowClick={this.handleRowClick}
+            onSort={this.handleSort}
             title={'Awesome Table'}
             columns={columns}
-            data={this.state.data}
+            data={data}
             searchable
             paginatable
             disableClickToFixColumn={false}

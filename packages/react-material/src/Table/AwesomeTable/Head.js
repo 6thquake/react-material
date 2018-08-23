@@ -9,6 +9,7 @@ import TableRow from '../../TableRow';
 import HeadCell from './HeadCell';
 import DragHeadCell from './DragHeadCell';
 import withDragAndDrop from '../../DragAndDrop/withDragAndDrop';
+import TableSortLabel from '@6thquake/react-material/TableSortLabel';
 
 import { DropTarget, DropSource } from 'react-dnd';
 
@@ -44,7 +45,7 @@ const styles = theme => ({
   },
   tableCell: {
     position: 'relative',
-    '@global span': {
+    '@global .react-resizable-handle': {
       position: 'absolute',
       width: 20,
       height: 20,
@@ -107,6 +108,20 @@ class Head extends React.Component {
     const { onResize } = this.props;
     onResize && onResize(...args);
   };
+  handleSort = (key, order, column) => (e) => {
+    e.stopPropagation()
+    const ordersMap = {
+      asc: '+' + key,
+      desc: '-' + key
+    }
+    const { onSort } = this.props
+    onSort && onSort({
+      key, order, column
+    })
+  }
+  handleDoubleClick=(e)=>{
+    e.stopPropagation()
+  }
   renderTableHeadCell = (column, index) => {
     const {
       classes,
@@ -117,10 +132,29 @@ class Head extends React.Component {
       baseLength,
       onColumnFixChange,
       disableClickToFixColumn,
+      
     } = this.props;
+    let {
+      sortActive,
+      order,
+      title,
+      key,
+      sortable
+    } = column
+    let content = sortable? (
+      <TableSortLabel
+        active={sortActive}
+        direction={order}
+        onClick={this.handleSort(key, order, column)}
+        onDoubleClick ={this.handleDoubleClick}
+      >
+        {title}
+      </TableSortLabel>
+    ): title || ''
 
     let cell = (
       <TableCell
+        sortDirection={true}
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         index={index + baseLength}
@@ -131,7 +165,7 @@ class Head extends React.Component {
         key={column.key || column.title}
         fixed={column.fixed}
       >
-        {column.title || ''}
+        {content}
       </TableCell>
     );
     const C =

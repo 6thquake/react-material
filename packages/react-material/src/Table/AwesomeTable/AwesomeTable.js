@@ -289,6 +289,7 @@ class AwesomeTable extends React.Component {
       onRowClick,
       noData,
       disableClickToFixColumn,
+      onSort
     } = this.props;
     const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData } = this.state;
     let width =
@@ -304,6 +305,7 @@ class AwesomeTable extends React.Component {
     };
     const head = (
       <Head
+        onSort={onSort}
         baseLength={baseLength}
         headRef={type === 'main' ? this.tableRefs.head : ''}
         columns={columns}
@@ -547,6 +549,10 @@ AwesomeTable.propTypes = {
    *  @ignore
    */
   disableClickToFixColumn: PropTypes.bool,
+  /**
+   * sort
+   */
+  onSort: PropTypes.func,
 };
 AwesomeTable.defaultProps = {
   TablePaginationProps: {

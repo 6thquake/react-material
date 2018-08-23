@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
-import Button from 'material-ui/Button';
-import Tooltip from 'material-ui/Tooltip';
+import { withStyles } from '@6thquake/react-material/styles';
+import Grid from '@6thquake/react-material/Grid';
+import Button from '@6thquake/react-material/Button';
+import Tooltip from '@6thquake/react-material/Tooltip';
 
 const styles = {
   root: {

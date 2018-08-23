@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from 'material-ui/Paper';
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
+import Paper from '@6thquake/react-material/Paper';
+import { withStyles } from '@6thquake/react-material/styles';
+import Grid from '@6thquake/react-material/Grid';
 
 const styles = theme => ({
   root: {

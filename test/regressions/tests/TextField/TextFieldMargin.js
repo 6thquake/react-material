@@ -1,7 +1,5 @@
-// @flow
-
 import React from 'react';
-import TextField from 'material-ui/TextField';
+import TextField from '@6thquake/react-material/TextField';
 
 export default function TextFieldMargin() {
   return (

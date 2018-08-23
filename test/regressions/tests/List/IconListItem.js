@@ -1,8 +1,8 @@
-// @flow
-
 import React from 'react';
-import Icon from 'material-ui/Icon';
-import { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
+import Icon from '@6thquake/react-material/Icon';
+import ListItem from '@6thquake/react-material/ListItem';
+import ListItemText from '@6thquake/react-material/ListItemText';
+import ListItemIcon from '@6thquake/react-material/ListItemIcon';
 
 export default function IconListItem() {
   return (

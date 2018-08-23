@@ -1,9 +1,7 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { InputLabel } from 'material-ui/Input';
+import { withStyles } from '@6thquake/react-material/styles';
+import InputLabel from '@6thquake/react-material/InputLabel';
 
 const styles = {
   container: {

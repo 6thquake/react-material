@@ -1,9 +1,10 @@
-// @flow
-
 import React from 'react';
-import { DialogActions, DialogContent, DialogContentText, DialogTitle } from 'material-ui/Dialog';
-import Paper from 'material-ui/Paper';
-import Button from 'material-ui/Button';
+import DialogActions from '@6thquake/react-material/DialogActions';
+import DialogContent from '@6thquake/react-material/DialogContent';
+import DialogContentText from '@6thquake/react-material/DialogContentText';
+import DialogTitle from '@6thquake/react-material/DialogTitle';
+import Paper from '@6thquake/react-material/Paper';
+import Button from '@6thquake/react-material/Button';
 
 export default function AlertDialog() {
   return (

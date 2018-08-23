@@ -1,9 +1,9 @@
-// @flow
-
 import React from 'react';
-import Avatar from 'material-ui/Avatar';
-import Icon from 'material-ui/Icon';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import Avatar from '@6thquake/react-material/Avatar';
+import Icon from '@6thquake/react-material/Icon';
+import List from '@6thquake/react-material/List';
+import ListItem from '@6thquake/react-material/ListItem';
+import ListItemText from '@6thquake/react-material/ListItemText';
 
 export default function AvatarListItem() {
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import Input from 'material-ui/Input';
+import { withStyles } from '@6thquake/react-material/styles';
+import Input from '@6thquake/react-material/Input';
 
 const styles = {
   container: {
@@ -19,11 +19,11 @@ const styles = {
 };
 
 class Inputs extends React.Component {
+  focusInput = null;
+
   componentDidMount() {
     this.focusInput.focus();
   }
-
-  focusInput = null;
 
   render() {
     const { classes } = this.props;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { MenuItem } from 'material-ui/Menu';
-import Select from 'material-ui/Select';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import Select from '@6thquake/react-material/Select';
 
 function SelectOverflow() {
   return (

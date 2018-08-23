@@ -1,7 +1,6 @@
-// @flow
-
 import React from 'react';
-import { ListItem, ListItemText } from 'material-ui/List';
+import ListItem from '@6thquake/react-material/ListItem';
+import ListItemText from '@6thquake/react-material/ListItemText';
 
 export default function SimpleListItem() {
   return (

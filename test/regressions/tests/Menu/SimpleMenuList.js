@@ -1,8 +1,7 @@
-// @flow
-
 import React from 'react';
-import Paper from 'material-ui/Paper';
-import { MenuList, MenuItem } from 'material-ui/Menu';
+import Paper from '@6thquake/react-material/Paper';
+import MenuList from '@6thquake/react-material/MenuList';
+import MenuItem from '@6thquake/react-material/MenuItem';
 
 export default function SimpleMenuList() {
   return (

@@ -1,16 +1,14 @@
-// @flow weak
-
 import React from 'react';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
-import type { Padding } from 'material-ui/Table/TableCell';
+import PropTypes from 'prop-types';
+import Grid from '@6thquake/react-material/Grid';
+import Paper from '@6thquake/react-material/Paper';
+import Table from '@6thquake/react-material/Table';
+import TableBody from '@6thquake/react-material/TableBody';
+import TableCell from '@6thquake/react-material/TableCell';
+import TableHead from '@6thquake/react-material/TableHead';
+import TableRow from '@6thquake/react-material/TableRow';
 
-type Props = {
-  padding: Padding,
-};
-
-function MyTable(props: Props) {
+function MyTable(props) {
   const { padding } = props;
   return (
     <Paper>
@@ -35,6 +33,10 @@ function MyTable(props: Props) {
     </Paper>
   );
 }
+
+MyTable.propTypes = {
+  padding: PropTypes.any,
+};
 
 function PaddingTable() {
   return (

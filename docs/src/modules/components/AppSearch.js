@@ -35,11 +35,11 @@ function initDocsearch() {
     clearInterval(searchTimer);
     window.docsearch({
       apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
-      indexName: 'material-ui',
+      indexName: 'react-material',
       inputSelector: '#docsearch-input',
       handleSelected: (input, event, suggestion) => {
         const url = suggestion.url
-          .replace(/^https:\/\/material-ui-next\.com/, '')
+          .replace(/^https:\/\/react-material\.com/, '')
           .replace(/\/#/, '#')
           .replace(/\/$/, '');
         Router.push(url);

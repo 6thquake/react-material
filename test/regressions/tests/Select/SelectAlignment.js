@@ -1,8 +1,10 @@
 import React from 'react';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import { FormControl } from 'material-ui/Forme';
-import Select from 'material-ui/Select';
+import Input from '@6thquake/react-material/Input';
+import InputLabel from '@6thquake/react-material/InputLabel';
+import MenuItem from '@6thquake/react-material/MenuItem';
+import FormHelperText from '@6thquake/react-material/FormHelperText';
+import FormControl from '@6thquake/react-material/FormControl';
+import Select from '@6thquake/react-material/Select';
 
 function SelectAlignment() {
   return (
@@ -24,6 +26,11 @@ function SelectAlignment() {
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
         </Select>
+      </FormControl>
+      <FormControl>
+        <InputLabel htmlFor="name-input">Name</InputLabel>
+        <Input id="name-input" />
+        <FormHelperText>Alignment with an input</FormHelperText>
       </FormControl>
     </div>
   );

@@ -1,8 +1,9 @@
-// @flow
-
 import React from 'react';
-import List, { ListItem, ListItemText, ListItemSecondaryAction } from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
+import List from '@6thquake/react-material/List';
+import ListItem from '@6thquake/react-material/ListItem';
+import ListItemText from '@6thquake/react-material/ListItemText';
+import ListItemSecondaryAction from '@6thquake/react-material/ListItemSecondaryAction';
+import Checkbox from '@6thquake/react-material/Checkbox';
 
 export default function SecondaryActionCheckboxListItem() {
   return (

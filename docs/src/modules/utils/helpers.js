@@ -32,7 +32,7 @@ export function getDependencies(raw) {
   const deps = {
     react: 'latest',
     'react-dom': 'latest',
-    'material-ui': 'next',
+    'react-material': 'next',
   };
   const re = /^import\s.*\sfrom\s+'([^']+)'/gm;
   let m;

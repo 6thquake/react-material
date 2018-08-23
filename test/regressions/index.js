@@ -31,18 +31,28 @@ const blacklistSuite = [
   'docs-demos-tooltips',
   'docs-utils-transitions',
 
+  // Less important
+  'docs-layouts',
+  'docs-page-layout-examples-album',
+  'docs-page-layout-examples-blog',
+  'docs-page-layout-examples-checkout',
+  'docs-page-layout-examples-dashboard',
+  'docs-page-layout-examples-pricing',
+  'docs-page-layout-examples-sign-in',
+
   // Useless
   'docs-', // Home
-  'docs-versions',
+  'docs-discover-more-showcase',
   'docs-guides',
   'docs-premium-themes',
+  'docs-style-color', // non important demo
+  'docs-versions',
 ];
 
 const blacklistFilename = [
-  'docs-getting-started-usage/Usage.png', // codesandbox iframe
   'docs-demos-drawers/tileData.png', // no component
   'docs-demos-grid-list/tileData.png', // no component
-  'docs-style-color/Color.png', // non important demo
+  'docs-getting-started-usage/Usage.png', // codesandbox iframe
 ];
 
 // Also use some of the demos to avoid code duplication.
@@ -80,6 +90,10 @@ vrtest.before(() => {
       google: {
         families: ['Roboto:300,400,500', 'Material+Icons'],
       },
+      custom: {
+        families: ['Font Awesome 5 Free:400,900'],
+        urls: ['https://use.fontawesome.com/releases/v5.1.0/css/all.css'],
+      },
       timeout: 20000,
       active: () => {
         resolve('active');
@@ -99,8 +113,13 @@ tests.forEach(test => {
     suite = vrtest.createSuite(test.suite);
   }
 
+  const TestCase = test.case;
+
+  if (!TestCase) {
+    return;
+  }
+
   suite.createTest(test.name, () => {
-    const TestCase = test.case;
     ReactDOM.render(
       <TestViewer>
         <TestCase />

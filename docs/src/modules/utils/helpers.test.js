@@ -37,14 +37,14 @@ describe('docs getDependencies helpers', () => {
     assert.deepEqual(getDependencies(s1), {
       react: 'latest',
       'react-dom': 'latest',
-      'material-ui': 'next',
+      'react-material': 'next',
       'prop-types': 'latest',
       '@foo-bar/bip': 'latest',
     });
     assert.deepEqual(getDependencies(s2), {
       react: 'latest',
       'react-dom': 'latest',
-      'material-ui': 'next',
+      'react-material': 'next',
       'prop-types': 'latest',
       '@unexisting/thing': 'latest',
       'react-autosuggest': 'latest',

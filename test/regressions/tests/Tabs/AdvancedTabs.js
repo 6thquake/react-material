@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Icon from 'material-ui/Icon';
-import Paper from 'material-ui/Paper';
-import Tabs from 'material-ui/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import { withStyles } from '@6thquake/react-material/styles';
+import Icon from '@6thquake/react-material/Icon';
+import Paper from '@6thquake/react-material/Paper';
+import Tabs from '@6thquake/react-material/Tabs';
+import Tab from '@6thquake/react-material/Tab';
 
 const noop = () => {};
 

@@ -1,7 +1,5 @@
-// @flow
-
 import React from 'react';
-import LinearProgress from 'material-ui/Progress/LinearProgress';
+import LinearProgress from '@6thquake/react-material/LinearProgress';
 
 export default function DeterminateLinearProgress() {
   return (

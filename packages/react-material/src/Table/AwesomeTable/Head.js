@@ -108,20 +108,23 @@ class Head extends React.Component {
     const { onResize } = this.props;
     onResize && onResize(...args);
   };
-  handleSort = (key, order, column) => (e) => {
-    e.stopPropagation()
+  handleSort = (key, order, column) => e => {
+    e.stopPropagation();
     const ordersMap = {
       asc: '+' + key,
-      desc: '-' + key
-    }
-    const { onSort } = this.props
-    onSort && onSort({
-      key, order, column
-    })
-  }
-  handleDoubleClick=(e)=>{
-    e.stopPropagation()
-  }
+      desc: '-' + key,
+    };
+    const { onSort } = this.props;
+    onSort &&
+      onSort({
+        key,
+        order,
+        column,
+      });
+  };
+  handleDoubleClick = e => {
+    e.stopPropagation();
+  };
   renderTableHeadCell = (column, index) => {
     const {
       classes,
@@ -132,25 +135,20 @@ class Head extends React.Component {
       baseLength,
       onColumnFixChange,
       disableClickToFixColumn,
-      
     } = this.props;
-    let {
-      sortActive,
-      order,
-      title,
-      key,
-      sortable
-    } = column
-    let content = sortable? (
+    let { sortActive, order, title, key, sortable } = column;
+    let content = sortable ? (
       <TableSortLabel
         active={sortActive}
         direction={order}
         onClick={this.handleSort(key, order, column)}
-        onDoubleClick ={this.handleDoubleClick}
+        onDoubleClick={this.handleDoubleClick}
       >
         {title}
       </TableSortLabel>
-    ): title || ''
+    ) : (
+      title || ''
+    );
 
     let cell = (
       <TableCell

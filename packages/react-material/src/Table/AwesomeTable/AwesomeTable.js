@@ -289,7 +289,7 @@ class AwesomeTable extends React.Component {
       onRowClick,
       noData,
       disableClickToFixColumn,
-      onSort
+      onSort,
     } = this.props;
     const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData } = this.state;
     let width =

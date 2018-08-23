@@ -58,7 +58,7 @@ const columns = [
     key: '1',
     width: 150,
     // resizable: true,
-    sortable: true
+    sortable: true,
   },
   {
     title: 'Column 2',
@@ -159,31 +159,33 @@ class AwesomeTableEXample extends React.Component {
     console.log('row item', e, i);
   };
 
-  handleSort =(item)=> {
-    console.log('sort===:', item)
-    const { columns } = this.state
-    const { key , order, column} = item
-    
-    columns.map((col)=>{
-      col.sortActive = col.key === key
-      col.order = order == 'asc'? 'desc' : 'asc'
-    })
-    this.setState({
-      columns,
-    }, this.sortData(order))
-  }
+  handleSort = item => {
+    console.log('sort===:', item);
+    const { columns } = this.state;
+    const { key, order, column } = item;
 
-  sortData = (order)=>{
-    let {data} = this.state
-    data.sort((a, b)=> {
-      if(order == 'asc'){
-        return (a.age - b.age)
-      }else{
-        return (b.age - a.age)
+    columns.map(col => {
+      col.sortActive = col.key === key;
+      col.order = order == 'asc' ? 'desc' : 'asc';
+    });
+    this.setState(
+      {
+        columns,
+      },
+      this.sortData(order),
+    );
+  };
+
+  sortData = order => {
+    let { data } = this.state;
+    data.sort((a, b) => {
+      if (order == 'asc') {
+        return a.age - b.age;
+      } else {
+        return b.age - a.age;
       }
-    })
-
-  }
+    });
+  };
   render() {
     const { classes } = this.props;
     const { data, columns, value } = this.state;

@@ -27,6 +27,7 @@ filename: /packages/react-material/src/Table/AwesomeTable/AwesomeTable.js
 | <span class="prop-name">sync</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | if sync is true, pagination and search will be automatical. you needn't to do these things by yourself |
 | <span class="prop-name">title</span> | <span class="prop-type">node |  | The title of table |
 | <span class="prop-name">noData</span> | <span class="prop-type">element | <span class="prop-default">&lt;NoData /></span> | render when data length is 0 |
+| <span class="prop-name">onSort</span> | <span class="prop-type">func |  | sort |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

@@ -49,15 +49,30 @@ const styles = theme => ({
   rightShadow: {
     'box-shadow': '-6px 0 6px -4px rgba(0,0,0,.2)',
   },
-  pagination: {
+  footer: {
     display: 'flex',
-    justifyContent: 'flex-end',
     borderTop: `1px solid
     ${
       theme.palette.type === 'light'
         ? lighten(fade(theme.palette.divider, 1), 0.88)
         : darken(fade(theme.palette.divider, 1), 0.8)
     }`,
+  },
+  footerLeft: {
+    display: 'flex',
+    flex: 1,
+    alignItems: 'center',
+    borderBottom: `1px solid
+    ${
+      theme.palette.type === 'light'
+        ? lighten(fade(theme.palette.divider, 1), 0.88)
+        : darken(fade(theme.palette.divider, 1), 0.8)
+    }`,
+    paddingLeft: theme.spacing.unit * 2,
+  },
+  pagination: {
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
 });
 
@@ -504,6 +519,7 @@ class AwesomeTable extends React.Component {
       SearchProps,
       sync,
       title,
+      total,
     } = this.props;
     const { page, rowsPerPage } = this.state;
     let h = 0;
@@ -536,22 +552,25 @@ class AwesomeTable extends React.Component {
           {[this.renderMainTable(), this.renderLeftTable(), this.renderRightTable()]}
         </div>
         {/* <div className={classes.spacer}></div> */}
-        {paginatable && (
-          <div ref={this.tableRefs.pagination} className={classes.pagination} style={{ width }}>
-            {!sync ? (
-              <Pagination {...this.props.TablePaginationProps} />
-            ) : (
-              <Pagination
-                {...this.props.TablePaginationProps}
-                page={page}
-                rowsPerPage={rowsPerPage}
-                count={this.searchedData.data.length}
-                onChangePage={this.handleChangePage}
-                onChangeRowsPerPage={this.handleChangeRowsPerPage}
-              />
-            )}
-          </div>
-        )}
+        <div className={classes.footer} style={{ width }}>
+          <div className={classes.footerLeft}>{total}</div>
+          {paginatable && (
+            <div ref={this.tableRefs.pagination} className={classes.pagination}>
+              {!sync ? (
+                <Pagination {...this.props.TablePaginationProps} />
+              ) : (
+                <Pagination
+                  {...this.props.TablePaginationProps}
+                  page={page}
+                  rowsPerPage={rowsPerPage}
+                  count={this.searchedData.data.length}
+                  onChangePage={this.handleChangePage}
+                  onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                />
+              )}
+            </div>
+          )}
+        </div>
       </div>
     );
   }
@@ -655,6 +674,11 @@ AwesomeTable.propTypes = {
     onChangeOrder: PropTypes.func,
     multiple: PropTypes.bool,
   }),
+  /**
+   * total
+   */
+
+  total: PropTypes.element,
 };
 AwesomeTable.defaultProps = {
   TablePaginationProps: {

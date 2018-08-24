@@ -193,6 +193,7 @@ class AwesomeTableEXample extends React.Component {
       isDark: true,
       onChange: this.handleSearch,
     };
+
     const options = {
       [value]: value,
       TablePaginationProps: PaginationProps,
@@ -203,6 +204,7 @@ class AwesomeTableEXample extends React.Component {
       exportProps,
       SearchProps,
     };
+
     return (
       <div className={classes.root}>
         <Paper className={classes.bar}>
@@ -236,6 +238,7 @@ class AwesomeTableEXample extends React.Component {
             searchable
             paginatable
             disableClickToFixColumn={false}
+            total={'total: 90'}
             // sync
             {...options}
           />

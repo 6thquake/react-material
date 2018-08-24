@@ -48,9 +48,8 @@ const columns = [
     dataIndex: 'age',
     key: 'age',
     fixed: 'left',
-    order: 'asc',
-    sortActive: true,
     sortable: true,
+    order: 'desc',
   },
   {
     title: 'Column 1',
@@ -65,9 +64,10 @@ const columns = [
     dataIndex: 'address',
     key: '2',
     width: 150,
-    sortable: true,
+    // sortable: true,
     // sortActive: true,
     resizable: true,
+    order: 'desc',
   },
   { title: 'Column 3', dataIndex: 'address', key: '3', width: 150 },
   {
@@ -159,21 +159,12 @@ class AwesomeTableEXample extends React.Component {
     console.log('row item', e, i);
   };
 
-  handleSort = item => {
-    console.log('sort===:', item);
+  handleSort = data => {
+    console.log('sort===:', data);
+    let item = data[0]
     const { columns } = this.state;
-    const { key, order, column } = item;
-
-    columns.map(col => {
-      col.sortActive = col.key === key;
-      col.order = order == 'asc' ? 'desc' : 'asc';
-    });
-    this.setState(
-      {
-        columns,
-      },
-      this.sortData(order),
-    );
+    const { key, order} = item;
+    this.sortData(order)
   };
 
   sortData = order => {
@@ -181,7 +172,7 @@ class AwesomeTableEXample extends React.Component {
     data.sort((a, b) => {
       if (order == 'asc') {
         return a.age - b.age;
-      } else {
+      } else if(order == 'desc') {
         return b.age - a.age;
       }
     });
@@ -205,6 +196,10 @@ class AwesomeTableEXample extends React.Component {
     const options = {
       [value]: value,
       TablePaginationProps: PaginationProps,
+      OrderProps: {
+        // multiple: true,
+        onChangeOrder: this.handleSort
+      },
       exportProps,
       SearchProps,
     };
@@ -235,7 +230,6 @@ class AwesomeTableEXample extends React.Component {
           {/* <Divider></Divider> */}
           <AwesomeTable
             onRowClick={this.handleRowClick}
-            onSort={this.handleSort}
             title={'Awesome Table'}
             columns={columns}
             data={data}

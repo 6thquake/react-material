@@ -73,11 +73,56 @@ class AwesomeTable extends React.Component {
       page: props.TablePaginationProps.page,
       rowsPerPage: props.TablePaginationProps.rowsPerPage,
       data: props.data,
+      sorts: this.getSortConfig(props).sorts,
     };
   }
   searchedData = {
     data: this.props.data,
   };
+
+  getSortConfig = (props) => {
+    const { columns } = props
+    // this.sortsBy = new Set()
+    let sorts = []
+    columns.map((col)=>{
+      if(col.sortable && col.order !== undefined){
+        if (col.order === 'asc'){
+          sorts.push({
+            index: 0,
+            key: col.key,
+            order: col.order,
+            orderList: ['asc', 'desc', '']
+          })
+        }
+        if (col.order === 'desc') {
+          sorts.push({
+            index: 0,
+            key: col.key,
+            order: col.order,
+            orderList: ['desc', 'asc', '']
+          })
+        }else{
+          sorts.push({
+            index: 0,
+            key: col.key,
+            order: col.order,
+            orderList: ['','asc', 'desc']
+          })
+        }
+        
+        // this.sortsBy.add(key)
+      }
+    })
+    return {
+      sorts
+    }
+  }
+
+  sortArray = [
+    'asc',
+    'desc',
+    ''
+  ]
 
   tableRefs = {
     root: React.createRef('root'),
@@ -166,6 +211,52 @@ class AwesomeTable extends React.Component {
         },
       }),
     );
+  };
+
+  handleSort = (sort, column) => {
+    let {order, index ,key } = sort
+    const {OrderProps} = this.props
+    let {sorts} = this.state
+    const {
+      onChangeOrder,
+      multiple
+    } = OrderProps
+    index = (index + 1) % sort.orderList.length
+    order = sort.orderList[index]
+    let flag = true
+    if (multiple){
+      for(let s of sorts){
+        if(s.key === key){
+          s.order = order
+          s.index = index
+          flag = false
+          break
+        }
+      }
+      flag && sorts.push({
+        key,
+        order,
+        index,
+        orderList: sort.orderList
+      })
+    }else{
+      sorts = [{
+        key,
+        order,
+        index,
+        orderList: sort.orderList
+      }]
+    }
+    this.setState({
+      sorts
+    })
+    let data = sorts.map((item)=>{
+      return {
+        key: item.key,
+        order: item.order
+      }
+    })
+    onChangeOrder && onChangeOrder(data)
   };
 
   handleResize = (index, colomn, size) => {
@@ -289,9 +380,16 @@ class AwesomeTable extends React.Component {
       onRowClick,
       noData,
       disableClickToFixColumn,
-      onSort,
+      OrderProps,
     } = this.props;
-    const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData } = this.state;
+    const {
+      bodyRowHeight,
+      headRowHeight,
+      hasLeft,
+      hasRight,
+      data: bodyData,
+      sorts
+    } = this.state;
     let width =
       type === 'main'
         ? ''
@@ -305,7 +403,9 @@ class AwesomeTable extends React.Component {
     };
     const head = (
       <Head
-        onSort={onSort}
+        OrderProps={OrderProps}
+        onSort= {this.handleSort}
+        sorts ={sorts}
         baseLength={baseLength}
         headRef={type === 'main' ? this.tableRefs.head : ''}
         columns={columns}
@@ -477,7 +577,26 @@ AwesomeTable.propTypes = {
   /**
    * Columns of table
    */
-  columns: PropTypes.array.isRequired,
+  columns: PropTypes.shape({
+    title: PropTypes.node,
+    width: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    dataIndex: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    key: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]).isRequired,
+    fixed: PropTypes.oneOf(['left', 'right']),
+    sortable: PropTypes.bool,
+    order: PropTypes.string,
+    resizable: PropTypes.bool,
+    render: PropTypes.func,
+  }),
   /**
    * Data record array to be displayed
    */
@@ -550,9 +669,12 @@ AwesomeTable.propTypes = {
    */
   disableClickToFixColumn: PropTypes.bool,
   /**
-   * sort
+   * Props for Order
    */
-  onSort: PropTypes.func,
+  OrderProps: PropTypes.shape({
+    onChangeOrder: PropTypes.func,
+    multiple: PropTypes.bool,
+  }),
 };
 AwesomeTable.defaultProps = {
   TablePaginationProps: {
@@ -573,5 +695,9 @@ AwesomeTable.defaultProps = {
   sync: false,
   noData: <NoData />,
   disableClickToFixColumn: true,
+  OrderProps: {
+    multiple: false,
+    onChangeOrder: (...arg)=> console.log(arg)
+  }
 };
 export default withStyles(styles, { withTheme: true })(AwesomeTable);

@@ -161,10 +161,10 @@ class AwesomeTableEXample extends React.Component {
 
   handleSort = data => {
     console.log('sort===:', data);
-    let item = data[0]
+    let item = data[0];
     const { columns } = this.state;
-    const { key, order} = item;
-    this.sortData(order)
+    const { key, order } = item;
+    this.sortData(order);
   };
 
   sortData = order => {
@@ -172,7 +172,7 @@ class AwesomeTableEXample extends React.Component {
     data.sort((a, b) => {
       if (order == 'asc') {
         return a.age - b.age;
-      } else if(order == 'desc') {
+      } else if (order == 'desc') {
         return b.age - a.age;
       }
     });
@@ -198,7 +198,7 @@ class AwesomeTableEXample extends React.Component {
       TablePaginationProps: PaginationProps,
       OrderProps: {
         // multiple: true,
-        onChangeOrder: this.handleSort
+        onChangeOrder: this.handleSort,
       },
       exportProps,
       SearchProps,

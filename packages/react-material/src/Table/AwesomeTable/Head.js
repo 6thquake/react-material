@@ -82,7 +82,7 @@ class Head extends React.Component {
   dragIndex = {
     targetIndex: '',
     sourceIndex: '',
-  }
+  };
 
   componentDidMount() {
     // this.throttleResize = throttling(this.resize)
@@ -112,11 +112,9 @@ class Head extends React.Component {
   };
 
   handleChangeOrder = (sort, column) => e => {
-    const {
-      onSort
-    } = this.props
-    onSort && onSort(sort, column)
-  }
+    const { onSort } = this.props;
+    onSort && onSort(sort, column);
+  };
   handleDoubleClick = e => {
     e.stopPropagation();
   };
@@ -131,18 +129,14 @@ class Head extends React.Component {
       onColumnFixChange,
       disableClickToFixColumn,
     } = this.props;
-    const { sorts } = this.props
-    let {
-      title,
-      key,
-      sortable
-    } = column
-    let sort = {key: key, order: '', orderList: ['', 'asc', 'desc'], index: 0}
-    sorts.map((item)=>{
-      if(item.key === column.key){
-        sort = item
+    const { sorts } = this.props;
+    let { title, key, sortable } = column;
+    let sort = { key: key, order: '', orderList: ['', 'asc', 'desc'], index: 0 };
+    sorts.map(item => {
+      if (item.key === column.key) {
+        sort = item;
       }
-    })
+    });
     let content = sortable ? (
       <TableSortLabel
         active={sort.order}

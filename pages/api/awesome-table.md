@@ -13,7 +13,7 @@ filename: /packages/react-material/src/Table/AwesomeTable/AwesomeTable.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name required">columns *</span> | <span class="prop-type">array |  | Columns of table |
+| <span class="prop-name">columns</span> | <span class="prop-type">{title?: node, width?: union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br>, dataIndex?: union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br>, key?: union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br>, fixed?: enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br>, sortable?: bool, order?: string, resizable?: bool, render?: func} |  | Columns of table |
 | <span class="prop-name required">data *</span> | <span class="prop-type">array | <span class="prop-default">[]</span> | Data record array to be displayed |
 | <span class="prop-name">TablePaginationProps</span> | <span class="prop-type">object | <span class="prop-default">{  rowsPerPage: 10,  page: 0,}</span> | Properties applied to the TablePagination Component |
 | <span class="prop-name">exportProps</span> | <span class="prop-type">{type?: enum:&nbsp;'csv'<br>} |  | export config |
@@ -27,7 +27,7 @@ filename: /packages/react-material/src/Table/AwesomeTable/AwesomeTable.js
 | <span class="prop-name">sync</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | if sync is true, pagination and search will be automatical. you needn't to do these things by yourself |
 | <span class="prop-name">title</span> | <span class="prop-type">node |  | The title of table |
 | <span class="prop-name">noData</span> | <span class="prop-type">element | <span class="prop-default">&lt;NoData /></span> | render when data length is 0 |
-| <span class="prop-name">onSort</span> | <span class="prop-type">func |  | sort |
+| <span class="prop-name">OrderProps</span> | <span class="prop-type">{onChangeOrder?: func, multiple?: bool} | <span class="prop-default">{  multiple: false,  onChangeOrder: (...arg)=> console.log(arg)}</span> | Props for Order |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

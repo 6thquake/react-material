@@ -80,49 +80,45 @@ class AwesomeTable extends React.Component {
     data: this.props.data,
   };
 
-  getSortConfig = (props) => {
-    const { columns } = props
+  getSortConfig = props => {
+    const { columns } = props;
     // this.sortsBy = new Set()
-    let sorts = []
-    columns.map((col)=>{
-      if(col.sortable && col.order !== undefined){
-        if (col.order === 'asc'){
+    let sorts = [];
+    columns.map(col => {
+      if (col.sortable && col.order !== undefined) {
+        if (col.order === 'asc') {
           sorts.push({
             index: 0,
             key: col.key,
             order: col.order,
-            orderList: ['asc', 'desc', '']
-          })
+            orderList: ['asc', 'desc', ''],
+          });
         }
         if (col.order === 'desc') {
           sorts.push({
             index: 0,
             key: col.key,
             order: col.order,
-            orderList: ['desc', 'asc', '']
-          })
-        }else{
+            orderList: ['desc', 'asc', ''],
+          });
+        } else {
           sorts.push({
             index: 0,
             key: col.key,
             order: col.order,
-            orderList: ['','asc', 'desc']
-          })
+            orderList: ['', 'asc', 'desc'],
+          });
         }
-        
+
         // this.sortsBy.add(key)
       }
-    })
+    });
     return {
-      sorts
-    }
-  }
+      sorts,
+    };
+  };
 
-  sortArray = [
-    'asc',
-    'desc',
-    ''
-  ]
+  sortArray = ['asc', 'desc', ''];
 
   tableRefs = {
     root: React.createRef('root'),
@@ -214,49 +210,49 @@ class AwesomeTable extends React.Component {
   };
 
   handleSort = (sort, column) => {
-    let {order, index ,key } = sort
-    const {OrderProps} = this.props
-    let {sorts} = this.state
-    const {
-      onChangeOrder,
-      multiple
-    } = OrderProps
-    index = (index + 1) % sort.orderList.length
-    order = sort.orderList[index]
-    let flag = true
-    if (multiple){
-      for(let s of sorts){
-        if(s.key === key){
-          s.order = order
-          s.index = index
-          flag = false
-          break
+    let { order, index, key } = sort;
+    const { OrderProps } = this.props;
+    let { sorts } = this.state;
+    const { onChangeOrder, multiple } = OrderProps;
+    index = (index + 1) % sort.orderList.length;
+    order = sort.orderList[index];
+    let flag = true;
+    if (multiple) {
+      for (let s of sorts) {
+        if (s.key === key) {
+          s.order = order;
+          s.index = index;
+          flag = false;
+          break;
         }
       }
-      flag && sorts.push({
-        key,
-        order,
-        index,
-        orderList: sort.orderList
-      })
-    }else{
-      sorts = [{
-        key,
-        order,
-        index,
-        orderList: sort.orderList
-      }]
+      flag &&
+        sorts.push({
+          key,
+          order,
+          index,
+          orderList: sort.orderList,
+        });
+    } else {
+      sorts = [
+        {
+          key,
+          order,
+          index,
+          orderList: sort.orderList,
+        },
+      ];
     }
     this.setState({
-      sorts
-    })
-    let data = sorts.map((item)=>{
+      sorts,
+    });
+    let data = sorts.map(item => {
       return {
         key: item.key,
-        order: item.order
-      }
-    })
-    onChangeOrder && onChangeOrder(data)
+        order: item.order,
+      };
+    });
+    onChangeOrder && onChangeOrder(data);
   };
 
   handleResize = (index, colomn, size) => {
@@ -382,14 +378,7 @@ class AwesomeTable extends React.Component {
       disableClickToFixColumn,
       OrderProps,
     } = this.props;
-    const {
-      bodyRowHeight,
-      headRowHeight,
-      hasLeft,
-      hasRight,
-      data: bodyData,
-      sorts
-    } = this.state;
+    const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData, sorts } = this.state;
     let width =
       type === 'main'
         ? ''
@@ -404,8 +393,8 @@ class AwesomeTable extends React.Component {
     const head = (
       <Head
         OrderProps={OrderProps}
-        onSort= {this.handleSort}
-        sorts ={sorts}
+        onSort={this.handleSort}
+        sorts={sorts}
         baseLength={baseLength}
         headRef={type === 'main' ? this.tableRefs.head : ''}
         columns={columns}
@@ -579,18 +568,9 @@ AwesomeTable.propTypes = {
    */
   columns: PropTypes.shape({
     title: PropTypes.node,
-    width: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    dataIndex: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    key: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]).isRequired,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    dataIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     fixed: PropTypes.oneOf(['left', 'right']),
     sortable: PropTypes.bool,
     order: PropTypes.string,
@@ -697,7 +677,7 @@ AwesomeTable.defaultProps = {
   disableClickToFixColumn: true,
   OrderProps: {
     multiple: false,
-    onChangeOrder: (...arg)=> console.log(arg)
-  }
+    onChangeOrder: (...arg) => console.log(arg),
+  },
 };
 export default withStyles(styles, { withTheme: true })(AwesomeTable);

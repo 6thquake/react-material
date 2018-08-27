@@ -34,6 +34,7 @@ filename: /packages/react-material/src/Select/Select.js
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool |  | decided select is disabled |
 | <span class="prop-name">showFilter</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If true ,show the filter box |
 | <span class="prop-name">showPagination</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If true ,show the pagination box |
+| <span class="prop-name">isDark</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | isDark |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

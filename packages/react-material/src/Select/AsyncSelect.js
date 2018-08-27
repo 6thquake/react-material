@@ -7,7 +7,7 @@ import Divider from '../Divider';
 import { withStyles } from '../styles';
 import AsyncSelectRoot from './AsyncSelectRoot';
 import throttling from '../utils/throttling';
-import yellow from '../colors/yellow'
+import yellow from '../colors/yellow';
 import Input from '../Input';
 
 const styles = theme => ({
@@ -23,7 +23,7 @@ const styles = theme => ({
   inputText: {
     color: theme.palette.common.white,
     '&$disabled': {
-      color: theme.palette.grey[200]
+      color: theme.palette.grey[200],
     },
   },
   underline: {
@@ -118,14 +118,16 @@ class AsyncSelect extends Component {
       ...other
     } = this.props;
 
-    const input = isDark? (
+    const input = isDark ? (
       <Input
         classes={{
           root: classes.inputText,
           underline: classes.underline,
         }}
       />
-    ) : <Input/>
+    ) : (
+      <Input />
+    );
 
     return (
       <AsyncSelectRoot

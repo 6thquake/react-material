@@ -8,7 +8,7 @@ import Divider from '../Divider';
 import { withStyles } from '../styles';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
-import yellow from '../colors/yellow'
+import yellow from '../colors/yellow';
 const styles = theme => ({
   selectMenu: {
     whiteSpace: 'pre-wrap',
@@ -22,7 +22,7 @@ const styles = theme => ({
   inputText: {
     color: theme.palette.common.white,
     '&$disabled': {
-      color: theme.palette.grey[200]
+      color: theme.palette.grey[200],
     },
   },
   underline: {
@@ -152,14 +152,16 @@ class Select extends Component {
       IconComponent,
       ...other
     } = this.props;
-    const input = isDark? (
+    const input = isDark ? (
       <Input
         classes={{
           root: classes.inputText,
           underline: classes.underline,
         }}
       />
-    ) : <Input/>
+    ) : (
+      <Input />
+    );
     const { text, paginationProps, optionsArray } = this.state;
     return (
       <SelectRoot
@@ -354,7 +356,7 @@ Select.propTypes = {
   /**
    * isDark
    */
-  isDark: PropTypes.bool
+  isDark: PropTypes.bool,
 };
 
 Select.defaultProps = {
@@ -368,7 +370,7 @@ Select.defaultProps = {
   placeholder: 'please input something',
   showFilter: false,
   showPagination: false,
-  isDark: false
+  isDark: false,
 };
 
 export default withStyles(styles)(Select);

@@ -4,12 +4,12 @@ import InputLabel from '@6thquake/react-material/InputLabel';
 import { withStyles } from '@6thquake/react-material/styles';
 import FormControl from '@6thquake/react-material/FormControl';
 import MenuItem from '@6thquake/react-material/MenuItem';
-import yellow from '@6thquake/react-material/colors/yellow'
+import yellow from '@6thquake/react-material/colors/yellow';
 const styles = theme => ({
   root: {
     flexGrow: 1,
     flexWrap: 'wrap',
-    background: theme.palette.primary.main
+    background: theme.palette.primary.main,
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -20,7 +20,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2,
   },
   // label:{
-  //   color: theme.palette.grey[300], 
+  //   color: theme.palette.grey[300],
   //   '&$labelForcus': {
   //     // color: `${theme.palette.common.white}`
   //     color: `${yellow[500]}`
@@ -108,13 +108,15 @@ class App extends Component {
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel
-          // FormLabelClasses={{
-          //   root: classes.label,
-          //   focused: classes.labelForcus
-          // }}
-          isDark
-          htmlFor="InputLabel111"
-          >multiple select of object array</InputLabel>
+            // FormLabelClasses={{
+            //   root: classes.label,
+            //   focused: classes.labelForcus
+            // }}
+            isDark
+            htmlFor="InputLabel111"
+          >
+            multiple select of object array
+          </InputLabel>
           <Select
             isDark
             showFilter

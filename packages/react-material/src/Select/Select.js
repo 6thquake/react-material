@@ -8,13 +8,36 @@ import Divider from '../Divider';
 import { withStyles } from '../styles';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
-
+import yellow from '../colors/yellow'
 const styles = theme => ({
   selectMenu: {
     whiteSpace: 'pre-wrap',
   },
   root: {
     width: '100%',
+  },
+  icon: {
+    color: theme.palette.grey[300],
+  },
+  inputText: {
+    color: theme.palette.common.white,
+    '&$disabled': {
+      color: theme.palette.grey[200]
+    },
+  },
+  underline: {
+    '&:after': {
+      borderBottomColor: yellow[500],
+    },
+    '&:before': {
+      borderBottomColor: theme.palette.grey[300],
+    },
+    // '&$disabled:before': {
+    //   borderBottomColor: theme.palette.grey[200],
+    // },
+    // '&:hover:not($disabled):not($focused):not($error):before': {
+    //   borderBottomColor: 'red',
+    // },
   },
 });
 
@@ -113,6 +136,7 @@ class Select extends Component {
   }
   render() {
     const {
+      isDark,
       children,
       placeholder,
       multiple,
@@ -128,10 +152,19 @@ class Select extends Component {
       IconComponent,
       ...other
     } = this.props;
+    const input = isDark? (
+      <Input
+        classes={{
+          root: classes.inputText,
+          underline: classes.underline,
+        }}
+      />
+    ) : <Input/>
     const { text, paginationProps, optionsArray } = this.state;
     return (
       <SelectRoot
         {...other}
+        input={input}
         multiple={multiple}
         value={value}
         displayEmpty={displayEmpty}
@@ -140,6 +173,7 @@ class Select extends Component {
           ...classes,
           root: classes.root,
           selectMenu: classes.selectMenu,
+          icon: isDark && classes.icon,
         }}
         inputProps={{
           IconComponent: IconComponent,
@@ -317,6 +351,10 @@ Select.propTypes = {
    * If true ,show the pagination box
    */
   showPagination: PropTypes.bool,
+  /**
+   * isDark
+   */
+  isDark: PropTypes.bool
 };
 
 Select.defaultProps = {
@@ -330,6 +368,7 @@ Select.defaultProps = {
   placeholder: 'please input something',
   showFilter: false,
   showPagination: false,
+  isDark: false
 };
 
 export default withStyles(styles)(Select);

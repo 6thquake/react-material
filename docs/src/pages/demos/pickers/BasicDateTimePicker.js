@@ -19,6 +19,7 @@ class BasicDateTimePicker extends PureComponent {
         <Fragment>
           <div className="picker">
             <DateTimePicker
+              isDark
               value={selectedDate}
               disablePast
               onChange={this.handleDateChange}

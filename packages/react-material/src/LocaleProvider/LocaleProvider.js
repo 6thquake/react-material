@@ -127,4 +127,5 @@ export {
   getLanguage,
   getLocaleResource,
   getDefaultLocaleResource,
+  getLanguage as getLocale,
 };

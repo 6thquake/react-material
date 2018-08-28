@@ -1,7 +1,5 @@
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
-import {
-  getLocaleResource
-} from '../../LocaleProvider';
+import { getLocaleResource } from '../../LocaleProvider';
 import defaultMoment from 'moment';
 
 class ExMomentUtils extends MomentUtils {

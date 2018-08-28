@@ -1,20 +1,11 @@
-
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import compose from 'recompose/compose';
 import PropTypes from 'prop-types';
-import {
-  withStyles
-} from '../styles';
+import { withStyles } from '../styles';
 import yellow from '../colors/yellow';
-import {
-  TimePicker
-} from 'material-ui-pickers';
+import { TimePicker } from 'material-ui-pickers';
 
-import {
-  withLocale
-} from '../LocaleProvider';
+import { withLocale } from '../LocaleProvider';
 
 const style = theme => ({
   root: {},
@@ -49,7 +40,7 @@ const style = theme => ({
     //   borderBottomColor: 'red',
     // },
   },
-})
+});
 
 /**
  * @ignore - do not document.
@@ -61,31 +52,24 @@ class TimePickerWrapper extends Component {
     this.state = {};
   }
   render() {
-    let {
-      classes,
-      isDark,
-      ...others
-    } = this.props
-    const inputProps = isDark ? {
-      InputProps: {
-        classes: {
-          root: classes.inputText,
-          underline: classes.underline,
+    let { classes, isDark, ...others } = this.props;
+    const inputProps = isDark
+      ? {
+          InputProps: {
+            classes: {
+              root: classes.inputText,
+              underline: classes.underline,
+            },
+          },
+          InputLabelProps: {
+            classes: {
+              root: classes.label,
+              focused: classes.labelForcus,
+            },
+          },
         }
-      },
-      InputLabelProps: {
-        classes: {
-          root: classes.label,
-          focused: classes.labelForcus
-        }
-      }
-    } : {}
-    return ( 
-      <TimePicker 
-        { ...inputProps} 
-        { ...others}
-      />
-    );
+      : {};
+    return <TimePicker {...inputProps} {...others} />;
   }
 }
 
@@ -105,6 +89,9 @@ TimePickerWrapper.defaultProps = {
   isDark: false,
 };
 
-export default compose(withLocale({
-  name: 'TimePicker'
-}), withStyles(style))(TimePickerWrapper);
+export default compose(
+  withLocale({
+    name: 'TimePicker',
+  }),
+  withStyles(style),
+)(TimePickerWrapper);

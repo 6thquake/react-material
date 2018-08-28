@@ -1,20 +1,11 @@
-
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import compose from 'recompose/compose';
 import PropTypes from 'prop-types';
-import {
-  withStyles
-} from '../styles';
+import { withStyles } from '../styles';
 import yellow from '../colors/yellow';
-import {
-  DateTimePicker
-} from 'material-ui-pickers';
+import { DateTimePicker } from 'material-ui-pickers';
 
-import {
-  withLocale
-} from '../LocaleProvider';
+import { withLocale } from '../LocaleProvider';
 
 const style = theme => ({
   root: {},
@@ -49,7 +40,7 @@ const style = theme => ({
     //   borderBottomColor: 'red',
     // },
   },
-})
+});
 /**
  * @ignore - do not document.
  */
@@ -60,31 +51,24 @@ class DateTimePickerWrapper extends Component {
     this.state = {};
   }
   render() {
-    let {
-      classes,
-      isDark,
-      ...others
-    } = this.props
-    const inputProps = isDark ? {
-      InputProps: {
-        classes: {
-          root: classes.inputText,
-          underline: classes.underline,
+    let { classes, isDark, ...others } = this.props;
+    const inputProps = isDark
+      ? {
+          InputProps: {
+            classes: {
+              root: classes.inputText,
+              underline: classes.underline,
+            },
+          },
+          InputLabelProps: {
+            classes: {
+              root: classes.label,
+              focused: classes.labelForcus,
+            },
+          },
         }
-      },
-      InputLabelProps: {
-        classes: {
-          root: classes.label,
-          focused: classes.labelForcus
-        }
-      }
-    } : {}
-    return ( 
-    <DateTimePicker 
-      { ...inputProps} 
-      { ...others}
-      />
-    );
+      : {};
+    return <DateTimePicker {...inputProps} {...others} />;
   }
 }
 
@@ -104,6 +88,9 @@ DateTimePickerWrapper.defaultProps = {
   isDark: false,
 };
 
-export default compose(withLocale({
-  name: 'DateTimePicker'
-}), withStyles(style))(DateTimePickerWrapper);
+export default compose(
+  withLocale({
+    name: 'DateTimePicker',
+  }),
+  withStyles(style),
+)(DateTimePickerWrapper);

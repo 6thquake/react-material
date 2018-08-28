@@ -16,7 +16,7 @@ class BasicDatePicker extends PureComponent {
 
     return (
       <LocaleProvider>
-        <div style={{background: '#2196F3', display: 'flex', padding: 20}}>
+        <div style={{ background: '#2196F3', display: 'flex', padding: 20 }}>
           <div className="picker">
             <DatePicker
               label="Basic example"

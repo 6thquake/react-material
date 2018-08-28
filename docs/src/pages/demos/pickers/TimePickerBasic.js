@@ -18,7 +18,7 @@ class BasicUsage extends PureComponent {
       <LocaleProvider>
         <Fragment>
           <div className="picker">
-            <TimePicker isDark label="12 hours" value={selectedDate} onChange={this.handleDateChange} />
+            <TimePicker label="12 hours" value={selectedDate} onChange={this.handleDateChange} />
           </div>
 
           <div className="picker">

@@ -1,11 +1,7 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import compose from 'recompose/compose';
 import PropTypes from 'prop-types';
-import {
-  withStyles
-} from '../styles';
+import { withStyles } from '../styles';
 import yellow from '../colors/yellow';
 import { DatePicker } from 'material-ui-pickers';
 
@@ -44,7 +40,7 @@ const style = theme => ({
     //   borderBottomColor: 'red',
     // },
   },
-})
+});
 /**
  * @ignore - do not document.
  */
@@ -52,28 +48,27 @@ const style = theme => ({
 class DatePickerWrapper extends Component {
   constructor(props) {
     super(props);
-    this.state = {  };
+    this.state = {};
   }
   render() {
-    let { classes, isDark , ...others} = this.props
-    const inputProps = isDark? {
-      InputProps:{classes: {
-        root: classes.inputText,
-        underline: classes.underline,
-      }},
-      InputLabelProps:{
-        classes:{
-          root: classes.label,
-          focused: classes.labelForcus
+    let { classes, isDark, ...others } = this.props;
+    const inputProps = isDark
+      ? {
+          InputProps: {
+            classes: {
+              root: classes.inputText,
+              underline: classes.underline,
+            },
+          },
+          InputLabelProps: {
+            classes: {
+              root: classes.label,
+              focused: classes.labelForcus,
+            },
+          },
         }
-      }
-    } : {}
-    return (
-      <DatePicker 
-        {...inputProps}
-        {...others}
-      />
-    );
+      : {};
+    return <DatePicker {...inputProps} {...others} />;
   }
 }
 
@@ -93,6 +88,9 @@ DatePickerWrapper.defaultProps = {
   isDark: false,
 };
 
-export default compose(withLocale({
-  name: 'DatePicker'
-}), withStyles(style))(DatePickerWrapper);
+export default compose(
+  withLocale({
+    name: 'DatePicker',
+  }),
+  withStyles(style),
+)(DatePickerWrapper);

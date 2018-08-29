@@ -502,6 +502,7 @@ class App extends Component {
           <InputLabel htmlFor="">single select of simple array</InputLabel>
           <AsyncSelect
             value={value2}
+            // isDark
             onOpen={this.onOpen.bind(this)}
             paginationProps={this.state.paginationProps}
             placeholder="select one or more"

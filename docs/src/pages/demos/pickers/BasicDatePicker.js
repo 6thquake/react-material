@@ -16,13 +16,14 @@ class BasicDatePicker extends PureComponent {
 
     return (
       <LocaleProvider>
-        <Fragment>
+        <div style={{ background: '#2196F3', display: 'flex', padding: 20 }}>
           <div className="picker">
             <DatePicker
               label="Basic example"
               value={selectedDate}
               onChange={this.handleDateChange}
               animateYearScrolling={false}
+              isDark
             />
           </div>
 
@@ -48,7 +49,7 @@ class BasicDatePicker extends PureComponent {
               animateYearScrolling={false}
             />
           </div>
-        </Fragment>
+        </div>
       </LocaleProvider>
     );
   }

@@ -7,6 +7,8 @@ import Divider from '../Divider';
 import { withStyles } from '../styles';
 import AsyncSelectRoot from './AsyncSelectRoot';
 import throttling from '../utils/throttling';
+import yellow from '../colors/yellow';
+import Input from '../Input';
 
 const styles = theme => ({
   selectMenu: {
@@ -14,6 +16,29 @@ const styles = theme => ({
   },
   root: {
     width: '100%',
+  },
+  icon: {
+    color: theme.palette.grey[300],
+  },
+  inputText: {
+    color: theme.palette.common.white,
+    '&$disabled': {
+      color: theme.palette.grey[200],
+    },
+  },
+  underline: {
+    '&:after': {
+      borderBottomColor: yellow[500],
+    },
+    '&:before': {
+      borderBottomColor: theme.palette.grey[300],
+    },
+    // '&$disabled:before': {
+    //   borderBottomColor: theme.palette.grey[200],
+    // },
+    // '&:hover:not($disabled):not($focused):not($error):before': {
+    //   borderBottomColor: 'red',
+    // },
   },
 });
 
@@ -77,6 +102,7 @@ class AsyncSelect extends Component {
   }
   render() {
     const {
+      isDark,
       paginationProps,
       placeholder,
       multiple,
@@ -91,9 +117,22 @@ class AsyncSelect extends Component {
       renderValue,
       ...other
     } = this.props;
+
+    const input = isDark ? (
+      <Input
+        classes={{
+          root: classes.inputText,
+          underline: classes.underline,
+        }}
+      />
+    ) : (
+      <Input />
+    );
+
     return (
       <AsyncSelectRoot
         {...other}
+        input={input}
         readOnly={readOnly}
         disabled={disabled}
         onOpen={onOpen}

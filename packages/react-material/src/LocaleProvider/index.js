@@ -6,6 +6,7 @@ import {
   getLanguage,
   getLocale,
   getDefaultLocale,
+  getLocaleResource,
 } from './LocaleProvider';
 
 export {
@@ -16,5 +17,6 @@ export {
   getLanguage,
   getLocale,
   getDefaultLocale,
+  getLocaleResource,
 };
 export default LocaleProvider;

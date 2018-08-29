@@ -10,6 +10,9 @@ import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
 import Button from '../Button';
 
 const styles = theme => ({
+  paper: {
+    overflowY: 'hidden',
+  },
   title: {
     backgroundColor: 'rgb(16,108,200)',
     color: 'white',
@@ -85,6 +88,7 @@ class Modal extends Component {
         TransitionComponent={this.transition}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
+        classes={{ paper: classes.paper }}
         {...this.props}
       >
         <DialogTitle className={classes.title} disableTypography={true}>

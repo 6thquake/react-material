@@ -1,8 +1,11 @@
 ---
+title: Filters React component
 components: Filters
 ---
 
 # Filters
+
+<p class="description">Filters</p>
 
 
 ## Simple Filters

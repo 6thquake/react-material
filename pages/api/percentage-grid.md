@@ -1,10 +1,13 @@
 ---
 filename: /packages/react-material/src/Grid/PercentageGrid.js
+title: PercentageGrid API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # PercentageGrid
+
+<p class="description">The API documentation of the PercentageGrid React component.</p>
 
 
 
@@ -12,11 +15,11 @@ filename: /packages/react-material/src/Grid/PercentageGrid.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the component. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |   | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">container</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*. |
-| <span class="prop-name">hidden</span> | <span class="prop-type">object |  | If provided, will wrap with [Hidden](/api/hidden) component and given properties. |
+| <span class="prop-name">hidden</span> | <span class="prop-type">object |   | If provided, will wrap with [Hidden](/api/hidden) component and given properties. |
 | <span class="prop-name">item</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the component will have the flex *item* behavior. You should be wrapping *items* with a *container*. |
 | <span class="prop-name">lg</span> | <span class="prop-type">union:&nbsp;enum:&nbsp;0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br>&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">0</span> | Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden. |
 | <span class="prop-name">md</span> | <span class="prop-type">union:&nbsp;enum:&nbsp;0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br>&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">0</span> | Defines the number of grids the component is going to use. It's applied for the `md` breakpoint and wider screens if not overridden. |
@@ -24,17 +27,18 @@ filename: /packages/react-material/src/Grid/PercentageGrid.js
 | <span class="prop-name">spacing</span> | <span class="prop-type">enum:&nbsp;0, 8, 16, 24, 40<br> | <span class="prop-default">0</span> | Defines the space between the type `item` component. It can only be used on a type `container` component. |
 | <span class="prop-name">xl</span> | <span class="prop-type">union:&nbsp;enum:&nbsp;0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br>&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">0</span> | Defines the number of grids the component is going to use. It's applied for the `xl` breakpoint and wider screens. |
 | <span class="prop-name">xs</span> | <span class="prop-type">union:&nbsp;enum:&nbsp;0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br>&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">0</span> | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority. |
-| <span class="prop-name">offset</span> | <span class="prop-type">enum:&nbsp;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | The number of cells to offset Col from the left |
-| <span class="prop-name">pull</span> | <span class="prop-type">enum:&nbsp;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | The number of cells that raster is moved to the left |
-| <span class="prop-name">push</span> | <span class="prop-type">enum:&nbsp;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | The number of cells that raster is moved to the right |
-| <span class="prop-name">span</span> | <span class="prop-type">enum:&nbsp;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Raster number of cells to occupy |
+| <span class="prop-name">offset</span> | <span class="prop-type">enum:&nbsp;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |   | The number of cells to offset Col from the left |
+| <span class="prop-name">pull</span> | <span class="prop-type">enum:&nbsp;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |   | The number of cells that raster is moved to the left |
+| <span class="prop-name">push</span> | <span class="prop-type">enum:&nbsp;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |   | The number of cells that raster is moved to the right |
+| <span class="prop-name">span</span> | <span class="prop-type">enum:&nbsp;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |   | Raster number of cells to occupy |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 
 You can override all the class names injected by React-Material thanks to the `classes` property.
 This property accepts the following keys:
+
 - `container`
 - `item`
 - `spacing-xs-8`
@@ -98,8 +102,4 @@ for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `RMGrid`.
-
-## Demos
-
-- [Grid](/layout/grid)
 

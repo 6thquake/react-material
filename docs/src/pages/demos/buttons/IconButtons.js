@@ -29,6 +29,9 @@ function IconButtons(props) {
       >
         <DeleteIcon />
       </IconButton>
+      <IconButton className={classes.button} aria-label="Delete">
+        <DeleteIcon />
+      </IconButton>
       <IconButton className={classes.button} aria-label="Delete" disabled color="primary">
         <DeleteIcon />
       </IconButton>

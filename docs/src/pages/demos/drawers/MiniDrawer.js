@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@6thquake/react-material/styles';
 import classNames from 'classnames';
+import { withStyles } from '@6thquake/react-material/styles';
 import Drawer from '@6thquake/react-material/Drawer';
 import AppBar from '@6thquake/react-material/AppBar';
 import Toolbar from '@6thquake/react-material/Toolbar';
@@ -19,7 +19,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
+    height: 440,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -106,7 +106,7 @@ class MiniDrawer extends React.Component {
           <Toolbar disableGutters={!this.state.open}>
             <IconButton
               color="inherit"
-              aria-label="open drawer"
+              aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, this.state.open && classes.hide)}
             >

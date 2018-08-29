@@ -1,8 +1,11 @@
 ---
+title: Message React component
 components: Message
 ---
 
 # Message
+
+<p class="description">Message</p>
 
 ## Simple Message
 

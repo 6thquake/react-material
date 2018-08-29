@@ -35,20 +35,20 @@ const suggestions = [`;
 describe('docs getDependencies helpers', () => {
   it('generate the right npm dependencies', () => {
     assert.deepEqual(getDependencies(s1), {
-      react: 'latest',
-      'react-dom': 'latest',
-      'react-material': 'next',
-      'prop-types': 'latest',
       '@foo-bar/bip': 'latest',
+      '@6thquake/react-material': 'latest',
+      'prop-types': 'latest',
+      'react-dom': 'latest',
+      react: 'latest',
     });
     assert.deepEqual(getDependencies(s2), {
-      react: 'latest',
-      'react-dom': 'latest',
-      'react-material': 'next',
-      'prop-types': 'latest',
+      '@6thquake/react-material': 'latest',
       '@unexisting/thing': 'latest',
-      'react-autosuggest': 'latest',
       'autosuggest-highlight': 'latest',
+      'prop-types': 'latest',
+      'react-autosuggest': 'latest',
+      'react-dom': 'latest',
+      react: 'latest',
     });
   });
 });

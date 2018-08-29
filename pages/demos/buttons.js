@@ -8,6 +8,13 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
+        'pages/demos/buttons/FishButton.js': {
+          js: require('docs/src/pages/demos/buttons/FishButton').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/FishButton'), 'utf8')
+`,
+        },
         'pages/demos/buttons/StatusButtons.js': {
           js: require('docs/src/pages/demos/buttons/StatusButtons').default,
           raw: preval`
@@ -36,6 +43,27 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/buttons/RaisedButtons'), 'utf8')
 `,
         },
+        'pages/demos/buttons/TextButtons.js': {
+          js: require('docs/src/pages/demos/buttons/TextButtons').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/TextButtons'), 'utf8')
+`,
+        },
+        'pages/demos/buttons/OutlinedButtons.js': {
+          js: require('docs/src/pages/demos/buttons/OutlinedButtons').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/OutlinedButtons'), 'utf8')
+`,
+        },
+        'pages/demos/buttons/ContainedButtons.js': {
+          js: require('docs/src/pages/demos/buttons/ContainedButtons').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/ContainedButtons'), 'utf8')
+`,
+        },
         'pages/demos/buttons/FloatingActionButtons.js': {
           js: require('docs/src/pages/demos/buttons/FloatingActionButtons').default,
           raw: preval`
@@ -62,13 +90,6 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/buttons/IconButtons'), 'utf8')
-`,
-        },
-        'pages/demos/buttons/FishButton.js': {
-          js: require('docs/src/pages/demos/buttons/FishButton').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/FishButton'), 'utf8')
 `,
         },
         'pages/demos/buttons/IconLabelButtons.js': {

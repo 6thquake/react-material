@@ -5,8 +5,8 @@ import List from '@6thquake/react-material/List';
 import ListItem from '@6thquake/react-material/ListItem';
 import ListItemAvatar from '@6thquake/react-material/ListItemAvatar';
 import ListItemIcon from '@6thquake/react-material/ListItemIcon';
-import ListItemText from '@6thquake/react-material/ListItemText';
 import ListItemSecondaryAction from '@6thquake/react-material/ListItemSecondaryAction';
+import ListItemText from '@6thquake/react-material/ListItemText';
 import Avatar from '@6thquake/react-material/Avatar';
 import IconButton from '@6thquake/react-material/IconButton';
 import FormGroup from '@6thquake/react-material/FormGroup';
@@ -55,7 +55,7 @@ class InteractiveList extends React.Component {
             control={
               <Checkbox
                 checked={dense}
-                onChange={(event, checked) => this.setState({ dense: checked })}
+                onChange={event => this.setState({ dense: event.target.checked })}
                 value="dense"
               />
             }
@@ -65,7 +65,7 @@ class InteractiveList extends React.Component {
             control={
               <Checkbox
                 checked={secondary}
-                onChange={(event, checked) => this.setState({ secondary: checked })}
+                onChange={event => this.setState({ secondary: event.target.checked })}
                 value="secondary"
               />
             }

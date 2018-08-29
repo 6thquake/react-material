@@ -14,12 +14,12 @@ const styles = theme => ({
 });
 
 class ConsecutiveSnackbars extends React.Component {
+  queue = [];
+
   state = {
     open: false,
     messageInfo: {},
   };
-
-  queue = [];
 
   handleClick = message => () => {
     this.queue.push({
@@ -73,7 +73,7 @@ class ConsecutiveSnackbars extends React.Component {
           autoHideDuration={6000}
           onClose={this.handleClose}
           onExited={this.handleExited}
-          SnackbarContentProps={{
+          ContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">{message}</span>}

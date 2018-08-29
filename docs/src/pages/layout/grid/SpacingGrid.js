@@ -4,8 +4,8 @@ import { withStyles } from '@6thquake/react-material/styles';
 import Grid from '@6thquake/react-material/Grid';
 import FormLabel from '@6thquake/react-material/FormLabel';
 import FormControlLabel from '@6thquake/react-material/FormControlLabel';
-import Radio from '@6thquake/react-material/Radio';
 import RadioGroup from '@6thquake/react-material/RadioGroup';
+import Radio from '@6thquake/react-material/Radio';
 import Paper from '@6thquake/react-material/Paper';
 
 const styles = theme => ({
@@ -54,7 +54,7 @@ class GuttersGrid extends React.Component {
                 <FormLabel>spacing</FormLabel>
                 <RadioGroup
                   name="spacing"
-                  aria-label="spacing"
+                  aria-label="Spacing"
                   value={spacing}
                   onChange={this.handleChange('spacing')}
                   row
@@ -63,6 +63,7 @@ class GuttersGrid extends React.Component {
                   <FormControlLabel value="8" control={<Radio />} label="8" />
                   <FormControlLabel value="16" control={<Radio />} label="16" />
                   <FormControlLabel value="24" control={<Radio />} label="24" />
+                  <FormControlLabel value="32" control={<Radio />} label="32" />
                   <FormControlLabel value="40" control={<Radio />} label="40" />
                 </RadioGroup>
               </Grid>

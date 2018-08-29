@@ -131,5 +131,6 @@ class Tree extends React.Component {
 // };
 // console.log(styles)
 //export default withStyles(styles)(Tree);
-export default from './Tree';
+
+export { default } from './Tree';
 export { default as TreeNode } from './TreeNode';

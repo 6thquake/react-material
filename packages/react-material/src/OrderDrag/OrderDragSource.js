@@ -1,3 +1,7 @@
+/**
+* @ignore - do not document.
+*/
+
 import React, { Component } from 'react';
 import { DandDWrapper } from '../DragBase';
 import { withStyles } from '../styles';

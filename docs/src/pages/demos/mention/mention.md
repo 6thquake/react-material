@@ -1,8 +1,14 @@
 ---
+title: Mention React component
 components: Mention
 ---
 
 # Message
+
+<p class="description">Mention component.</p>
+
+# When To Use
+* When need to mention someone or something.
 
 ## Simple Message
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import NoSSR from '@material-ui/docs/NoSSR';
+import NoSsr from '@6thquake/react-material/NoSsr';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 
 const styles = theme => ({
@@ -18,26 +18,7 @@ const styles = theme => ({
 
 function HomeBackers(props) {
   const classes = props.classes;
-
-  return (
-    <div className={classes.root}>
-      <NoSSR>
-        <MarkdownElement
-          className={classes.markdownElement}
-          text={`
-<h2>Supporting React-Material</h2>
-
-React-Material is an MIT-licensed open source project.
-It's an independent project with ongoing development made possible entirely
-thanks to the support of these awesome [backers](/discover-more/backers).
-
-<h3>Maintainers</h3>
-
-#### via [6thquake](https://github.com/6thquake/react-material)
-
-<table cellspacing="0" cellspadding="0">
-  <tbody>
-      ${[
+  let backers = [
         [
           {
             name: '刘继超<lico.liu>',
@@ -122,32 +103,48 @@ thanks to the support of these awesome [backers](/discover-more/backers).
       ].map(users => {
         return [
           '<tr>',
-          users
-            .map(
-              user =>
-                `
-              <td align="center" valign="middle" style="text-align: center; padding: 16px;">
-                <a href="https://github.com/${user.github}" rel="noopener" target="_blank">
-                  <img
-                    width="80"
-                    height="80"
-                    src="https://github.com/${user.github}.png"
-                    alt="${user.name}"
-                    title="${user.name}"
-                  ><p>${user.name}</p></a>
-              </td>
-              `,
-            )
-            .join(''),
+          users.map(user =>
+            `<td align="center" valign="middle" style="text-align: center; padding: 16px;">
+              <a href="https://github.com/${user.github}" rel="noopener" target="_blank">
+                <img
+                  width="80"
+                  height="80"
+                  src="https://github.com/${user.github}.png"
+                  alt="${user.name}"
+                  title="${user.name}"
+                />
+                <p>${user.name}</p>
+              </a>
+            </td>`
+          ).join(''),
           '</tr>',
-        ].join('');
-      })}
+        ].join('')
+      }).join('');
+      console.log(backers)
+  return (
+    <div className={classes.root}>
+      <NoSsr>
+        <MarkdownElement
+          className={classes.markdownElement}
+          text={`
+<h2>Supporting React-Material</h2>
+
+React-Material is an MIT-licensed open source project.
+It's an independent project with ongoing development made possible entirely
+thanks to the support of these awesome [backers](/discover-more/backers).
+
+<h3>Maintainers</h3>
+
+#### via [6thquake](https://github.com/6thquake/react-material)
+
+<table cellspacing="0" cellspadding="0">
+  <tbody>
+      ${backers}
   </tbody>
 </table>
-
 `}
         />
-      </NoSSR>
+      </NoSsr>
     </div>
   );
 }

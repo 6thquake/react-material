@@ -19,7 +19,8 @@ const styles = theme => ({
   },
 });
 
-function App(props) {
+
+function SimpleBadge(props) {
   const { classes } = props;
   return (
     <div>
@@ -30,7 +31,7 @@ function App(props) {
         <Badge className={classes.margin} badgeContent={10} color="secondary">
           <MailIcon />
         </Badge>
-        <IconButton className={classes.margin}>
+        <IconButton aria-label="4 pending messages" className={classes.margin}>
           <Badge badgeContent={4} color="primary">
             <MailIcon />
           </Badge>
@@ -53,14 +54,14 @@ function App(props) {
         <Typography className={classes.padding}>Typography</Typography>
       </Badge>
       <Badge color="primary" badgeContent={4} className={classes.margin}>
-        <Button variant="raised">Button</Button>
+        <Button variant="contained">Button</Button>
       </Badge>
     </div>
   );
 }
 
-App.propTypes = {
+SimpleBadge.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(SimpleBadge);

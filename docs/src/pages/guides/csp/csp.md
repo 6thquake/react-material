@@ -1,6 +1,6 @@
 # Content Security Policy (CSP)
 
-Starting with JSS version 9.6.0, React-Material supports Content Security Policy headers.
+<p class="description">React-Material supports Content Security Policy headers.</p>
 
 ## What is CSP and why is it useful?
 

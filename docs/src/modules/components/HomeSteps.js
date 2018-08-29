@@ -1,24 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles } from '@6thquake/react-material/styles';
 import Typography from '@6thquake/react-material/Typography';
 import Grid from '@6thquake/react-material/Grid';
 import Button from '@6thquake/react-material/Button';
 import Divider from '@6thquake/react-material/Divider';
-import FileDownloadIcon from 'docs/src/svgIcons/FileDownload';
+import FileDownloadIcon from '@material-ui/docs/svgIcons/FileDownload';
 import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import NoSsr from '@6thquake/react-material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
   step: {
-    border: `1px solid ${
-      theme.palette.type === 'light' ? theme.palette.common.white : theme.palette.common.black
-    }`,
+    border: `12px solid ${theme.palette.background.paper}`,
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
     [theme.breakpoints.up('sm')]: {
       padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 4}px`,
+    },
+    [theme.breakpoints.up('md')]: {
+      borderRightWidth: 12,
+      borderLeftWidth: 12,
+    },
+  },
+  leftStep: {
+    borderBottomWidth: 0,
+    [theme.breakpoints.up('md')]: {
+      borderBottomWidth: 12,
+      borderRightWidth: 0,
+    },
+  },
+  rightStep: {
+    borderTopWidth: 0,
+    [theme.breakpoints.up('md')]: {
+      borderTopWidth: 12,
+      borderLeftWidth: 0,
     },
   },
   stepTitle: {
@@ -48,8 +68,11 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 4,
     marginBottom: theme.spacing.unit * 2,
   },
-  img: {
+  link: {
     marginTop: theme.spacing.unit,
+    display: 'block',
+  },
+  img: {
     maxWidth: 500,
     width: '100%',
     height: 'auto',
@@ -61,7 +84,7 @@ function HomeSteps(props) {
 
   return (
     <Grid container>
-      <Grid item xs={12} md={4} className={classes.step}>
+      <Grid item xs={12} md={4} className={classNames(classes.step, classes.leftStep)}>
         <div className={classes.stepTitle}>
           <FileDownloadIcon className={classes.stepIcon} />
           <Typography variant="title">Installation</Typography>
@@ -77,7 +100,7 @@ function HomeSteps(props) {
             className={classes.markdownElement}
             text={`
   \`\`\`sh
-  $ npm install @6thquake/react-material@next
+  $ npm install @6thquake/react-material
   \`\`\`
                 `}
           />
@@ -119,7 +142,7 @@ function HomeSteps(props) {
   import Button from '@6thquake/react-material/Button';
 
   const App = () => (
-    <Button variant="raised" color="primary">
+    <Button variant="contained" color="primary">
       Hello World
     </Button>
   );
@@ -136,7 +159,7 @@ function HomeSteps(props) {
           Explore the docs
         </Button>
       </Grid>
-      <Grid item xs={12} md={4} className={classes.step}>
+      <Grid item xs={12} md={4} className={classNames(classes.step, classes.rightStep)}>
         <div className={classes.stepTitle}>
           <WhatshotIcon className={classes.stepIcon} />
           <Typography variant="title">Premium Themes</Typography>
@@ -146,8 +169,10 @@ function HomeSteps(props) {
             {`Take React-Material to the next level with premium themes from
               our official marketplace—all built on React-Material.`}
           </Typography>
-          <Link prefetch href="/premium-themes">
-            <img className={classes.img} alt="themes" src="/static/images/themes.png" />
+          <Link prefetch href="/premium-themes" className={classes.link}>
+            <NoSsr>
+              <img className={classes.img} alt="themes" src="/static/images/themes.jpg" />
+            </NoSsr>
           </Link>
         </div>
         <Divider className={classes.divider} />

@@ -28,7 +28,7 @@ const styles = {
   },
 };
 
-function App(props) {
+function IconAvatars(props) {
   const { classes } = props;
   return (
     <div className={classes.row}>
@@ -45,8 +45,8 @@ function App(props) {
   );
 }
 
-App.propTypes = {
+IconAvatars.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(IconAvatars);

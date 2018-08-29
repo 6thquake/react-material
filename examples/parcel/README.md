@@ -5,7 +5,9 @@
 Download the example [or clone the repo](https://github.com/6thquake/react-material):
 
 ```bash
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/v1-beta | tar -xz --strip=2  material-ui-1-beta/examples/parcel
+$ git clone git@github.com:6thquake/react-material.git
+$ cp -r ./react-material/examples/parcel ./parcel
+$ cd parcel
 cd parcel
 ```
 

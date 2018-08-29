@@ -3,16 +3,15 @@
     "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom"],
-    "sourceMap": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
     "forceConsistentCasingInFileNames": true,
-    "suppressImplicitAnyIndexErrors": true,
+    "strict": true,
     "noEmit": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": "./packages",
+    "paths": {
+      "@6thquake/react-material": ["./react-material/src"],
+    }
   },
-  "include": ["packages/material-ui/src/**/*", "packages/material-ui/test/typescript/*"]
 }

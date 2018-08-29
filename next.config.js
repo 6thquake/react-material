@@ -5,10 +5,6 @@ const { findPages } = require('./docs/src/modules/utils/find');
 
 process.env.LIB_VERSION = pkg.version;
 
-require.extensions['.css'] = () => {
-  return;
-};
-
 module.exports = {
   webpack: config => {
     const plugins = config.plugins.concat([
@@ -33,6 +29,9 @@ module.exports = {
 
     return Object.assign({}, config, {
       plugins,
+      node: {
+        fs: 'empty',
+      },
       module: Object.assign({}, config.module, {
         rules: config.module.rules.concat([
           {
@@ -45,10 +44,6 @@ module.exports = {
           {
             test: /\.(css|md)$/,
             loader: 'raw-loader',
-          },
-          {
-            test: /\.(png|jpg|gif|svg)$/,
-            loader: 'file-loader',
           },
         ]),
       }),

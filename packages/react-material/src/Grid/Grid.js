@@ -1,3 +1,7 @@
+/**
+* @ignore - do not document.
+*/
+
 import React from 'react';
 import FlexGrid from '@material-ui/core/Grid';
 import PercentageGrid from './PercentageGrid';

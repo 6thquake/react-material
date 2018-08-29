@@ -1,10 +1,13 @@
 ---
 filename: /packages/react-material/src/Bubble/Bubble.js
+title: Bubble API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Bubble
+
+<p class="description">The API documentation of the Bubble React component.</p>
 
 
 
@@ -12,17 +15,18 @@ filename: /packages/react-material/src/Bubble/Bubble.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">direction *</span> | <span class="prop-type">string |  |  |
-| <span class="prop-name required">floated *</span> | <span class="prop-type">bool |  |  |
-| <span class="prop-name">triSize</span> | <span class="prop-type">number |  |  |
-| <span class="prop-name">bgColor</span> | <span class="prop-type">string |  |  |
+| <span class="prop-name required">direction *</span> | <span class="prop-type">string |   |  |
+| <span class="prop-name required">floated *</span> | <span class="prop-type">bool |   |  |
+| <span class="prop-name">triSize</span> | <span class="prop-type">number |   |  |
+| <span class="prop-name">bgColor</span> | <span class="prop-type">string |   |  |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 
 You can override all the class names injected by React-Material thanks to the `classes` property.
 This property accepts the following keys:
+
 - `recStyle`
 - `triStyle`
 - `customization`

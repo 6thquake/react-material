@@ -1,6 +1,6 @@
 # Default Theme
 
-Here's what the theme object looks like with the default values:
+<p class="description">Here's what the theme object looks like with the default values.</p>
 
 {{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideEditButton": true}}
 
@@ -12,5 +12,5 @@ Tip: you can play with the theme object in your console too.
 Please take note that the documentation site is using a custom theme. As a result, the demos
 you see here might disagree with the values above.
 
-If you want to learn more about how the theme is assembled, take a look at [`react-material/style/createMuiTheme.js`](https://github.com/6thquake/react-material/blob/develop/packages/react-material/src/styles/createMuiTheme.js),
+If you want to learn more about how the theme is assembled, take a look at [`react-material/style/createMuiTheme.js`](https://github.com/6thquake/react-material/blob/master/packages/react-material/src/styles/createMuiTheme.js),
 and the related imports which `createMuiTheme` uses.

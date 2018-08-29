@@ -1,11 +1,11 @@
 ---
+title: StarVote React component
 components: StarVote
 ---
 
 # StarVote
 
-The [StarVote] 对评价进行展示。
-对事物进行快速的评级操作。
+<p class="description">5 Stars Voting System</p>
 
 {{"demo": "pages/demos/star-vote/StarVote.js"}}
 

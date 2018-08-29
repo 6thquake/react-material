@@ -1,10 +1,9 @@
 # Style Library Interoperability
 
-While it is simple to use the JSS based styling solution provided by React-Material to style your application,
-it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries.
+<p class="description">While it is simple to use the JSS based styling solution provided by React-Material to style your application, it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries.</p>
 
-This guide aims to document the most popular alternatives, but you should find that the principals
-applied here can be adapted to other libraries.
+This guide aims to document the most popular alternatives,
+but you should find that the principals applied here can be adapted to other libraries.
 
 We have provided examples for the following styling solutions:
 
@@ -29,7 +28,7 @@ Nothing fancy, just plain old CSS. Why reinvent the wheel when it has been worki
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
 }
 ```
 
@@ -73,7 +72,7 @@ prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js#global-css).
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
 }
 ```
 
@@ -113,7 +112,7 @@ We went ahead and forked the project in order to handle our unique needs, but we
 
 ![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
-It's hard to know the market share of this styling solution as it's dependent on the
+It's hard to know the market share of [this styling solution](https://github.com/css-modules/css-modules) as it's dependent on the
 bundling solution people are using.
 
 **CSSModulesButton.css**
@@ -125,14 +124,14 @@ bundling solution people are using.
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
 }
 ```
 
 **CSSModulesButton.js**
 ```jsx
 import React from 'react';
-// webpack or else will inject the CSS into the page
+// webpack, parcel or else will inject the CSS into the page
 import styles from './CSSModulesButton.css';
 import Button from '@6thquake/react-material/Button';
 
@@ -151,6 +150,10 @@ function CSSModulesButton() {
 
 export default CSSModulesButton;
 ```
+
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/m4j01r75wx)
+
+**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order), as in the demo.
 
 ## Styled Components
 
@@ -171,7 +174,7 @@ const StyledButton = styled(Button)`
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
 `;
 
 function StyledComponentsButton() {
@@ -214,7 +217,7 @@ const StyledButton = styled(Button)`
     color: white;
     height: 48px;
     padding: 0 30px;
-    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
+    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
   }
 `;
 
@@ -284,7 +287,7 @@ export default StyledComponentsButton;
 ![stars](https://img.shields.io/github/stars/paypal/glamorous.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/glamorous.svg?)
 
-A clean way to apply styles to React-Material components with glamorous It's just passing our component as a glamorous param. We're going to take the [raised button example](/demos/buttons/#raised-buttons) from React-Material documentation and use glamorous to style it:
+A clean way to apply styles to React-Material components with glamorous is just passing our component as a glamorous param. We're going to take the [raised button example](/demos/buttons/#raised-buttons) from React-Material documentation and use glamorous to style it:
 
 ```jsx
 import React from 'react';
@@ -298,7 +301,7 @@ const StyledButton = glamorous(Button)({
   color: 'white',
   height: 48,
   padding: '0 30px',
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 });
 
 function GlamorousButton() {
@@ -342,7 +345,7 @@ const buttonStyles = {
   color: 'white',
   height: 48,
   padding: '0 30px',
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 };
 
 // First we get the classNames with Glamor css function

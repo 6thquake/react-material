@@ -1,3 +1,7 @@
+/**
+* @ignore - do not document.
+*/
+
 import React, { Component } from 'react';
 import update from 'immutability-helper';
 import { TargetWrapper, DragSource } from '../DragBase';

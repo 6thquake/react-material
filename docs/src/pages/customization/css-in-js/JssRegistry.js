@@ -7,7 +7,9 @@ import CssInJs from './CssInJs';
 const sheetsRegistry = new SheetsRegistry();
 const theme = createMuiTheme();
 
-class JssRegistry extends React.Component<any, any> {
+class JssRegistry extends React.Component {
+  timer = null;
+
   state = {
     length: 0,
   };
@@ -23,8 +25,6 @@ class JssRegistry extends React.Component<any, any> {
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
-
-  timer = null;
 
   update() {
     if (this.state.length !== sheetsRegistry.registry.length) {
@@ -46,17 +46,17 @@ class JssRegistry extends React.Component<any, any> {
 
   render() {
     return (
-      <JssProvider registry={sheetsRegistry}>
-        <MuiThemeProvider theme={theme}>
-          <div>
+      <div>
+        <JssProvider registry={sheetsRegistry}>
+          <MuiThemeProvider theme={theme}>
             <CssInJs />
             <br />
             {'We are collecting all the sheets injected in the DOM.'}
             <br />
             {`The size of the registry is ${this.state.length}.`}
-          </div>
-        </MuiThemeProvider>
-      </JssProvider>
+          </MuiThemeProvider>
+        </JssProvider>
+      </div>
     );
   }
 }

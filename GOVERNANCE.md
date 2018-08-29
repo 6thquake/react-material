@@ -2,44 +2,29 @@
 
 ## Overview
 
-6thquake houses projects related to [React-Material](https://github.com/6thquake/react-material), a set of [React](https://reactjs.org/) components
-that implement [Google's Material Design](https://material.io/guidelines/material-design/introduction.html)
-specification. Our mission is to create a customizable Material Design implementation
-for anyone to use. We value an open, collaborative, and diverse community where anyone can join in
-discussions, learn from one another, and contribute to the project. This document describes how
-we govern ourselves, how decisions are made, and how someone could engage with the project.
+6thquake houses projects related to [React-Material](https://github.com/6thquake/react-material), a set of [React](https://reactjs.org/) components that implement [Google's Material Design](https://material.io/guidelines/material-design/introduction.html) specification. Our mission is to create a customizable Material Design implementation for anyone to use. We value an open, collaborative, and diverse community where anyone can join in discussions, learn from one another, and contribute to the project. This document describes how we govern ourselves, how decisions are made, and how someone could engage with the project.
 
 ## Roles & Responsibilities
 
 ### Users
 
-Users are members of the community that are using React-Material or one of 6thquake's projects. Anyone
-can be a user and we encourage users to participate in the community as much as possible in the
-following ways.
-- Evangelize React-Material by [linking to our website](https://github.com/6thquake/react-material), or just talking about us with your
-friends.
+Users are members of the community that are using React-Material or one of 6thquake's projects. Anyone can be a user and we encourage users to participate in the community as much as possible in the following ways.
+- Evangelize React-Material by [linking to our website](https://github.com/6thquake/react-material), or just talking about us with your friends.
 - Tell us what we're doing well or where we can improve.
 - Give us moral support. A "Thank You" always brightens our day!
 
 ### Contributors
 
-Contributors are members of the community who contribute to React-Material or one of 6thquake's projects
-in concrete ways. Anyone can be a contributor. In addition to their participation as a user, they
-also contribute in the following ways.
-- Support new users by answering questions on
-[StackOverflow](https://stackoverflow.com/questions/tagged/react-material)
-- Reviewing and commenting on [existing pull requests](https://github.com/6thquake/react-material/merge_requests)
-and [issues](https://github.com/6thquake/react-material/issues).
+Contributors are members of the community who contribute to React-Material or one of 6thquake's projects in concrete ways. Anyone can be a contributor. In addition to their participation as a user, they also contribute in the following ways.
+- Support new users by answering questions on [StackOverflow](https://stackoverflow.com/questions/tagged/react-material)
+- Reviewing and commenting on [existing pull requests](https://github.com/6thquake/react-material/merge_requests) and [issues](https://github.com/6thquake/react-material/issues).
 - Reporting bugs or missing features by [creating an issue](https://github.com/6thquake/react-material/issues/new).
-- Fixing bugs, adding features, and improving our documentation by
-[submitting a pull request](https://github.com/6thquake/react-material/merge_requests).
+- Fixing bugs, adding features, and improving our documentation by [submitting a pull request](https://github.com/6thquake/react-material/merge_requests).
+
 
 ### Committers
 
-Committers are members of the community who are committed to the development, success, and mission
-of React-Material or one of 6thquake's projects. New committers are nominated and voted on by existing
-committers. Under rare circumstances, the Core Team can vote to revoke a committer's privilege. In
-addition to their participation as a contributor, committers have the following privileges.
+Committers are members of the community who are committed to the development, success, and mission of React-Material or one of 6thquake's projects. New committers are nominated and voted on by existing committers. Under rare circumstances, the Core Team can vote to revoke a committer's privilege. In addition to their participation as a contributor, committers have the following privileges.
 - Access to a private Gitter room to talk about issues and coordinate development.
 - Ability to label, close, and manage [Github issues](https://github.com/6thquake/react-material/issues).
 - Ability to [close and merge pull requests](https://github.com/6thquake/react-material/merge_requests?q=is%3Apr+is%3Aclosed).
@@ -48,10 +33,7 @@ addition to their participation as a contributor, committers have the following 
 
 ### Core Team
 
-Core Team members are individuals that are invested in the success of 6thquake. Their
-administrative responsibilities ensure the sustainability and smooth running of 6thquake. New
-Core Team members are nominated and voted on by existing committers. Under rare circumstances, a
-Core Team member can be removed by a two thirds majority vote by the Core Team.
+Core Team members are individuals that are invested in the success of 6thquake. Their administrative responsibilities ensure the sustainability and smooth running of 6thquake. New Core Team members are nominated and voted on by existing committers. Under rare circumstances, a Core Team member can be removed by a two thirds majority vote by the Core Team.
 
 In addition to their participation as a committer, Core Team members have the following privileges.
 - Ability to [publish a release](https://github.com/6thquake/react-material/tags).

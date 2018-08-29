@@ -1,9 +1,11 @@
 ---
+title: Anchor React component
 components: Anchor
 ---
 
 # Anchor
-Hyperlinks to scroll on one page.
+
+<p class="description">Hyperlinks to scroll on one page.</p>
 
 # How to use
 

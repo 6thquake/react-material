@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
 import Button from '@6thquake/react-material/Button';
 import Dialog from '@6thquake/react-material/Dialog';
-import List from '@6thquake/react-material/List';
-import ListItem from '@6thquake/react-material/ListItem';
 import ListItemText from '@6thquake/react-material/ListItemText';
+import ListItem from '@6thquake/react-material/ListItem';
+import List from '@6thquake/react-material/List';
 import Divider from '@6thquake/react-material/Divider';
 import AppBar from '@6thquake/react-material/AppBar';
 import Toolbar from '@6thquake/react-material/Toolbar';
@@ -49,7 +49,7 @@ class FullScreenDialog extends React.Component {
           fullScreen
           open={this.state.open}
           onClose={this.handleClose}
-          transition={Transition}
+          TransitionComponent={Transition}
         >
           <AppBar className={classes.appBar}>
             <Toolbar>

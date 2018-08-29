@@ -1,6 +1,7 @@
 # Server Rendering
 
-The most common use case for server-side rendering is to handle the *initial render* when a user (or search engine crawler) first requests your app.
+<p class="description">The most common use case for server-side rendering is to handle the initial render when a user (or search engine crawler) first requests your app.</p>
+
 When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client.
 From that point on, the client takes over rendering duties.
 
@@ -30,17 +31,16 @@ If you're unfamiliar with Express or middleware, just know that our handleRender
 `server.js`
 
 ```js
-import path from 'path';
 import express from 'express';
 import React from 'react';
 import App from './App';
 
 // We are going to fill these out in the sections to follow.
-function handleRender(req, res) {
+function renderFullPage(html, css) {
   /* ... */
 }
 
-function renderFullPage(html, preloadedState) {
+function handleRender(req, res) {
   /* ... */
 }
 
@@ -60,7 +60,7 @@ The first thing that we need to do on every request is create a new `sheetsRegis
 When rendering, we will wrap `App`, our root component,
 inside a `JssProvider` and [`MuiThemeProvider`](/api/mui-theme-provider) to make the `sheetsRegistry` and the `theme` available to all components in the component tree.
 
-The key step in server side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://facebook.github.io/react/docs/react-dom-server.html).
+The key step in server side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
 We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`. We will see how this is passed along in our `renderFullPage` function.
 
@@ -68,12 +68,20 @@ We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`.
 import { renderToString } from 'react-dom/server'
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from '@6thquake/react-material/styles';
-import { green, red } from '@6thquake/react-material/colors';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  createGenerateClassName,
+} from '@6thquake/react-material/styles';
+import green from '@6thquake/react-material/colors/green';
+import red from '@6thquake/react-material/colors/red';
 
 function handleRender(req, res) {
   // Create a sheetsRegistry instance.
   const sheetsRegistry = new SheetsRegistry();
+
+  // Create a sheetsManager instance.
+  const sheetsManager = new Map();
 
   // Create a theme instance.
   const theme = createMuiTheme({
@@ -84,12 +92,13 @@ function handleRender(req, res) {
     },
   });
 
+  // Create a new class name generator.
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
   const html = renderToString(
     <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-      <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+      <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
         <App />
       </MuiThemeProvider>
     </JssProvider>
@@ -133,9 +142,10 @@ Let's take a look at our client file:
 
 ```jsx
 import React from 'react';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from '@6thquake/react-material/styles';
-import { green, red } from '@6thquake/react-material/colors';
+import green from '@6thquake/react-material/colors/green';
+import red from '@6thquake/react-material/colors/red';
 import App from './App';
 
 class Main extends React.Component {
@@ -148,7 +158,7 @@ class Main extends React.Component {
   }
 
   render() {
-    return <App {...this.props} />
+    return <App />
   }
 }
 
@@ -161,10 +171,94 @@ const theme = createMuiTheme({
   },
 });
 
-render(
+hydrate(
   <MuiThemeProvider theme={theme}>
     <Main />
   </MuiThemeProvider>,
   document.querySelector('#root'),
 );
+```
+
+## Reference implementations
+
+We host different reference implementations which you can find in the [GitHub repository](https://github.com/6thquake/react-material) under the [`/examples`](https://github.com/6thquake/react-material/tree/master/examples) folder:
+- [The reference implementation of this tutorial](https://github.com/6thquake/react-material/tree/master/examples/ssr)
+- [Next.js](https://github.com/6thquake/react-material/tree/master/examples/nextjs)
+- [Gatsby](https://github.com/6thquake/react-material/tree/master/examples/gatsby)
+
+## Troubleshooting
+
+If it doesn't work, in 99% of cases it's a configuration issue.
+A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [reference implementations](#reference-implementations), bit by bit.
+
+### CSS works only on first load then is missing
+
+The CSS is only generated on the first load of the page.
+Then, the CSS is missing on the server for consecutive requests.
+
+#### Action to Take
+
+We rely on a cache, the sheets manager, to only inject the CSS once per component type
+(if you use two buttons, you only need the CSS of the button one time).
+You need to provide **a new `sheetsManager` for each request**.
+
+You can learn more about [the sheets manager concept in the documentation](/customization/css-in-js/#sheets-manager).
+
+*example of fix:*
+```diff
+-// Create a sheetsManager instance.
+-const sheetsManager = new Map();
+
+function handleRender(req, res) {
++ // Create a sheetsManager instance.
++ const sheetsManager = new Map();
+
+  //…
+
+  // Render the component to a string.
+  const html = renderToString(
+```
+
+### React class name hydration mismatch
+
+There is a class name mismatch between the client and the server. It might work for the first request.
+Another symptom is that the styling changes between initial page load and the downloading of the client scripts. 
+
+#### Action to Take
+
+The class names value relies on the concept of [class name generator](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
+The whole page needs to be rendered with **a single generator**.
+This generator needs to behave identically on the server and on the client. For instance:
+
+- You need to provide a new class name generator for each request. But you might share a `createGenerateClassName()` between different requests:
+
+*example of fix:*
+```diff
+-// Create a new class name generator.
+-const generateClassName = createGenerateClassName();
+
+function handleRender(req, res) {
++ // Create a new class name generator.
++ const generateClassName = createGenerateClassName();
+
+  //…
+
+  // Render the component to a string.
+  const html = renderToString(
+```
+
+- You need to verify that your client and server are running the **exactly the same version** of React-Material.
+It is possible that a mismatch of even minor versions can cause styling problems.
+To check version numbers, run `npm list @6thquake/react-material` in the environment where you build your application and also in your deployment environment.
+
+  You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
+
+*example of fix (package.json):*
+```diff
+  "dependencies": {
+    ...
+-   "@6thquake/react-material": "^0.2.0-beta.8",
++   "@6thquake/react-material": "0.2.1-beta.8",
+    ...
+  },
 ```

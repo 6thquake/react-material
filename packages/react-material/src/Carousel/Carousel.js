@@ -218,6 +218,7 @@ class Carousel extends React.Component {
     );
   }
 }
+
 Carousel.propTypes = {
   /**
   *imageUrl list, eg.[

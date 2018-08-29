@@ -2,10 +2,7 @@
 
 import path from 'path';
 import fse from 'fs-extra';
-import flowCopySource from 'flow-copy-source';
 import glob from 'glob';
-
-const LIBRARY_NAME = 'react-material';
 
 async function copyFile(file) {
   const buildPath = path.resolve(__dirname, '../build/', path.basename(file));
@@ -54,14 +51,16 @@ async function addLicense(packageData) {
     [
       '../build/index.js',
       '../build/index.es.js',
-      '../build/umd/' + LIBRARY_NAME + '.development.js',
-      '../build/umd/' + LIBRARY_NAME + '.production.min.js',
+      '../build/umd/material-ui.development.js',
+      '../build/umd/material-ui.production.min.js',
     ].map(file => prepend(path.resolve(__dirname, file), license)),
   );
 }
 
 async function run() {
-  await ['README.md', 'CHANGELOG.md', 'LICENSE'].map(file => copyFile(file));
+  await Promise.all(
+    ['../../README.md', '../../CHANGELOG.md', '../../LICENSE'].map(file => copyFile(file)),
+  );
   const packageData = await createPackageFile();
   await addLicense(packageData);
 
@@ -71,9 +70,6 @@ async function run() {
     typescriptCopy(from, path.resolve(__dirname, '../build')),
     typescriptCopy(from, path.resolve(__dirname, '../build/es')),
   ]);
-
-  // Flow
-  flowCopySource(['src'], 'build', { verbose: true, ignore: '**/*.spec.js' });
 }
 
 run();

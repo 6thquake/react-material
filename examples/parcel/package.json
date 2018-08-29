@@ -6,7 +6,6 @@
     "babel-plugin-transform-class-properties": "latest",
     "babel-preset-env": "latest",
     "babel-preset-react": "latest",
-    "babel-preset-stage-2": "latest",
     "react-material": "next",
     "parcel-bundler": "latest",
     "prop-types": "latest",

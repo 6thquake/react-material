@@ -1,3 +1,7 @@
+/**
+* @ignore - do not document.
+*/
+
 import React, { Component } from 'react';
 import ReactDOM, { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';

@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import Grid, { CompatibleGrid } from '@6thquake/react-material/Grid';
+import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import Grid from '@6thquake/react-material/Grid';
 import FormControl from '@6thquake/react-material/FormControl';
 import FormLabel from '@6thquake/react-material/FormLabel';
 import FormControlLabel from '@6thquake/react-material/FormControlLabel';
-import Radio from '@6thquake/react-material/Radio';
 import RadioGroup from '@6thquake/react-material/RadioGroup';
+import Radio from '@6thquake/react-material/Radio';
 import Paper from '@6thquake/react-material/Paper';
 
 const styles = theme => ({
@@ -14,11 +15,12 @@ const styles = theme => ({
     flexGrow: 1,
   },
   demo: {
-    height: 340,
+    height: 240,
   },
   paper: {
     padding: theme.spacing.unit * 2,
     height: '100%',
+    color: theme.palette.text.secondary,
   },
   control: {
     padding: theme.spacing.unit * 2,
@@ -41,6 +43,18 @@ class InteractiveGrid extends React.Component {
   render() {
     const { classes } = this.props;
     const { alignItems, direction, justify } = this.state;
+
+    const code = `
+\`\`\`jsx
+<Grid
+  container
+  direction="${direction}"
+  justify="${justify}"
+  alignItems="${alignItems}"
+>
+\`\`\`
+`;
+
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
@@ -56,54 +70,24 @@ class InteractiveGrid extends React.Component {
               <Grid key={value} item>
                 <Paper
                   className={classes.paper}
-                  style={{ paddingTop: (value + 1) * 5, paddingBottom: (value + 1) * 5 }}
+                  style={{ paddingTop: (value + 1) * 10, paddingBottom: (value + 1) * 10 }}
                 >
                   {`Cell ${value + 1}`}
                 </Paper>
               </Grid>
             ))}
-
-            <Grid key={3} item xs>
-              <Paper className={classes.paper}>{'Cell 4'}</Paper>
-            </Grid>
           </Grid>
         </Grid>
-
-        <CompatibleGrid item xs={12}>
-          <CompatibleGrid
-            container
-            spacing={16}
-            className={classes.demo}
-            alignItems={alignItems}
-            direction={direction}
-            justify={justify}
-          >
-            {[0].map(value => (
-              <CompatibleGrid key={value} item>
-                <Paper
-                  className={classes.paper}
-                  style={{ paddingTop: (value + 1) * 5, paddingBottom: (value + 1) * 5 }}
-                >
-                  {`Cell ${value + 1}`}
-                </Paper>
-              </CompatibleGrid>
-            ))}
-
-            <CompatibleGrid key={3} item xs>
-              <Paper className={classes.paper}>{'Cell 4'}</Paper>
-            </CompatibleGrid>
-          </CompatibleGrid>
-        </CompatibleGrid>
-
         <Grid item xs={12}>
           <Paper className={classes.control}>
-            <Grid container>
-              <Grid item xs={6} sm={4}>
+            <Grid container spacing={24}>
+              <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>direction</FormLabel>
                   <RadioGroup
+                    row
                     name="direction"
-                    aria-label="direction"
+                    aria-label="Direction"
                     value={direction}
                     onChange={this.handleChange('direction')}
                   >
@@ -118,12 +102,13 @@ class InteractiveGrid extends React.Component {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              <Grid item xs={6} sm={4}>
+              <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>justify</FormLabel>
                   <RadioGroup
+                    row
                     name="justify"
-                    aria-label="justify"
+                    aria-label="Justify"
                     value={justify}
                     onChange={this.handleChange('justify')}
                   >
@@ -140,15 +125,21 @@ class InteractiveGrid extends React.Component {
                       control={<Radio />}
                       label="space-around"
                     />
+                    <FormControlLabel
+                      value="space-evenly"
+                      control={<Radio />}
+                      label="space-evenly"
+                    />
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              <Grid item xs={6} sm={4}>
+              <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>alignItems</FormLabel>
                   <RadioGroup
+                    row
                     name="alignItems"
-                    aria-label="alignItems"
+                    aria-label="Align items"
                     value={alignItems}
                     onChange={this.handleChange('alignItems')}
                   >
@@ -162,6 +153,9 @@ class InteractiveGrid extends React.Component {
               </Grid>
             </Grid>
           </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <MarkdownElement text={code} />
         </Grid>
       </Grid>
     );

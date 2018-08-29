@@ -1,4 +1,4 @@
-import react, { Component } from 'react';
+import React, { Component } from 'react';
 import Divider from '@6thquake/react-material/Divider';
 import LocaleProvider, {
   LocaleConsumer,

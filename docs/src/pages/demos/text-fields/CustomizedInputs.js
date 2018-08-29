@@ -24,7 +24,7 @@ const styles = theme => ({
   cssFocused: {},
   cssUnderline: {
     '&:after': {
-      backgroundColor: purple[500],
+      borderBottomColor: purple[500],
     },
   },
   bootstrapRoot: {

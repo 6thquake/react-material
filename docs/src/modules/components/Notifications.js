@@ -1,9 +1,10 @@
 /* eslint-disable react/no-danger */
 
+import 'isomorphic-fetch';
 import React from 'react';
 import Button from '@6thquake/react-material/Button';
 import Snackbar from '@6thquake/react-material/Snackbar';
-import 'isomorphic-fetch';
+import sleep from 'modules/waterfall/sleep';
 
 function getLastSeenNotification() {
   const seen = document.cookie.replace(
@@ -13,19 +14,15 @@ function getLastSeenNotification() {
   return seen === '' ? 0 : parseInt(seen, 10);
 }
 
-function pause(timeout) {
-  return new Promise(accept => {
-    setTimeout(accept, timeout);
-  });
-}
-
 let messages = null;
 
 async function getMessages() {
   try {
     if (!messages) {
-      await pause(1e3); // Soften the pressure on the main thread.
-      const result = await fetch('/static/notifications.json');
+      await sleep(1e3); // Soften the pressure on the main thread.
+      const result = await fetch(
+        'https://raw.githubusercontent.com/6thquake/react-material/master/docs/notifications.json',
+      );
       messages = await result.json();
     }
   } catch (err) {
@@ -36,22 +33,24 @@ async function getMessages() {
 }
 
 class Notifications extends React.Component {
+  mounted = false;
+
   state = {
     open: false,
     message: {},
   };
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     this.mounted = true;
+
+    // Prevent search engines from indexing the notification.
+    if (/glebot/.test(navigator.userAgent)) {
+      return;
+    }
+
     await getMessages();
     this.handleMessage();
-  };
-
-  componentWillUnmout() {
-    this.mounted = false;
   }
-
-  mounted = false;
 
   handleMessage = () => {
     const lastSeen = getLastSeenNotification();
@@ -66,6 +65,10 @@ class Notifications extends React.Component {
     document.cookie = `lastSeenNotification=${this.state.message.id};path=/;max-age=31536000`;
   };
 
+  componentWillUnmout() {
+    this.mounted = false;
+  }
+
   render() {
     const { message, open } = this.state;
 
@@ -73,7 +76,7 @@ class Notifications extends React.Component {
       <Snackbar
         key={message.id}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        SnackbarContentProps={{ 'aria-describedby': 'notification-message' }}
+        ContentProps={{ 'aria-describedby': 'notification-message' }}
         message={
           <span id="notification-message" dangerouslySetInnerHTML={{ __html: message.text }} />
         }

@@ -25,7 +25,7 @@ const styles = {
   },
 };
 
-function App(props) {
+function LetterAvatars(props) {
   const { classes } = props;
   return (
     <div className={classes.row}>
@@ -36,8 +36,8 @@ function App(props) {
   );
 }
 
-App.propTypes = {
+LetterAvatars.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(LetterAvatars);

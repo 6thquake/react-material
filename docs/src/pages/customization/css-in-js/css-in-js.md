@@ -1,19 +1,21 @@
 # CSS in JS
 
+<p class="description">You can leverage our styling solution, even if you are not using our components.</p>
+
 React-Material aims to provide strong foundations for building dynamic UIs.
-For the sake of simplicity, **we expose the internal styling solution to users**.
+For the sake of simplicity, **we expose our styling solution to users**.
 You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability) all the other major solutions.
 
 ## React-Material's styling solution
 
-In previous versions, React-Material has used LESS, then a custom inline-style solution to write the style of the
-components, but these approaches have proven to be limited. Most recently, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style)
+In previous versions, React-Material has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited. Most recently, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style)
 a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 We think that it's the future:
 - [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
-- [The future of component-based styling](https://medium.freecodecamp.com/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
+- [The future of component-based styling](https://medium.freecodecamp.org/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
+- [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
-So, you may have noticed in the demos how this *CSS-in-JS* looks.
+So, you may have noticed in the demos what *CSS-in-JS* looks like.
 We use the higher-order component created by [`withStyles`](#api)
 to inject an array of styles into the DOM as CSS, using JSS. Here's an example:
 
@@ -26,7 +28,7 @@ It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/perfor
 It is about 8 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 
 If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
-The best place to start is by looking at the features that each [plugin](http://cssinjs.org/plugins) provides. React-Material uses [few of them](#plugins).
+The best place to start is by looking at the features that each [plugin](http://cssinjs.org/plugins/) provides. React-Material uses [few of them](#plugins).
 You can always add new plugins if needed with the [`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup) helper.
 
 If you wish to build your own instance of `jss` **and** support *rtl* make sure you also include the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
@@ -42,7 +44,7 @@ Read more about [Server Rendering](/guides/server-rendering).
 
 ## Sheets manager
 
-We use a [reference counting](https://en.wikipedia.org/wiki/Reference_counting) algorithm in order to attach and detach the style sheets only once per (styles, theme) couple.
+The sheets manager uses a [reference counting](https://en.wikipedia.org/wiki/Reference_counting) algorithm in order to attach and detach the style sheets only once per (styles, theme) couple.
 This technique provides an important performance boost when re-rendering instances of a component.
 
 When only rendering on the client, that's not something you need to be aware of. However, when rendering on the server you do. You can read more about [Server Rendering](/guides/server-rendering).
@@ -77,11 +79,16 @@ As well as the option to make the class names **deterministic** with the `danger
 - development: `.MuiAppBar-root`
 - production: `.MuiAppBar-root`
 
-⚠️ **Be very cautious when using `dangerouslyUseGlobalCSS`.**
+⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.**
 We provide this option as an escape hatch for quick prototyping.
-Avoid relying on it for code running in production.
-It's very hard to keep track of class name API changes.
-Global CSS is fragile by design.
+Relying on it for code running in production has the following implications:
+- Global CSS is inherently fragile. People use strict methodologies like [BEM](http://getbem.com/introduction/) to workaround the issue.
+- It's harder to keep track of `classes` API changes.
+
+⚠️ When using `dangerouslyUseGlobalCSS` standalone (without React-Material), you should name your style sheets. `withStyles` has a name option for that:
+```jsx
+const Button = withStyles(styles, { name: 'button' })(ButtonBase)
+```
 
 ## CSS injection order
 
@@ -108,9 +115,11 @@ import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@6thquake/react-material/styles';
 
 const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
-// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = 'jss-insertion-point';
+const jss = create({
+  ...jssPreset(),
+  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  insertionPoint: 'insertion-point-jss',
+});
 
 function App() {
   return (
@@ -125,7 +134,7 @@ export default App;
 
 ### Other HTML element
 
-[Create React App](https://github.com/facebookincubator/create-react-app) strips HTML comments when creating the production build.
+[Create React App](https://github.com/facebook/create-react-app) strips HTML comments when creating the production build.
 To get around the issue, you can provide a DOM element (other than a comment) as the JSS insertion point.
 
 For example, a `<noscript>` element:
@@ -143,9 +152,11 @@ import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@6thquake/react-material/styles';
 
 const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
-// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = document.getElementById('jss-insertion-point');
+const jss = create({
+  ...jssPreset(),
+  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  insertionPoint: document.getElementById('jss-insertion-point'),
+});
 
 function App() {
   return (
@@ -172,9 +183,11 @@ const styleNode = document.createComment("jss-insertion-point");
 document.head.insertBefore(styleNode, document.head.firstChild);
 
 const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
-// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = 'jss-insertion-point';
+const jss = create({
+  ...jssPreset(),
+  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  insertionPoint: 'jss-insertion-point',
+});
 
 function App() {
   return (
@@ -191,9 +204,10 @@ export default App;
 
 react-jss exposes a `JssProvider` component to configure JSS for the underlying child components.
 There are different use cases:
+- Providing a class name generator.
 - [Providing a Sheets registry.](/customization/css-in-js#sheets-registry)
 - Providing a JSS instance. You might want to support [Right-to-left](/guides/right-to-left) or changing the [CSS injection order](/customization/css-in-js#css-injection-order).
-Read [the JSS documentation](http://cssinjs.org/js-api) to learn more about the options available.
+Read [the JSS documentation](http://cssinjs.org/js-api/) to learn more about the options available.
 Here is an example:
 
 ```jsx
@@ -220,14 +234,14 @@ export default App;
 JSS uses the concept of plugins to extend its core, allowing people to cherry-pick the features they need.
 You pay the performance overhead for only what's you are using.
 Given `withStyles` is our internal styling solution, all the plugins aren't available by default. We have added the following list:
-- [jss-global](http://cssinjs.org/jss-global)
-- [jss-nested](http://cssinjs.org/jss-nested)
-- [jss-camel-case](http://cssinjs.org/jss-camel-case)
-- [jss-default-unit](http://cssinjs.org/jss-default-unit)
-- [jss-vendor-prefixer](http://cssinjs.org/jss-vendor-prefixer)
-- [jss-props-sort](http://cssinjs.org/jss-props-sort)
+- [jss-global](http://cssinjs.org/jss-global/)
+- [jss-nested](http://cssinjs.org/jss-nested/)
+- [jss-camel-case](http://cssinjs.org/jss-camel-case/)
+- [jss-default-unit](http://cssinjs.org/jss-default-unit/)
+- [jss-vendor-prefixer](http://cssinjs.org/jss-vendor-prefixer/)
+- [jss-props-sort](http://cssinjs.org/jss-props-sort/)
 
-It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default).
+It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default/).
 Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left#3-jss-rtl).
 
 ## API
@@ -246,11 +260,11 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
 
 #### Arguments
 
-1. `styles` (*Function | Object*): A function generating the styles or an object.
+1. `styles` (*Function | Object*): A function generating the styles or a styles object.
 It will be linked to the component.
 Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]):
-  - `options.withTheme` (Boolean [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+  - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
     If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
@@ -303,7 +317,7 @@ export default MyComponent
 
 ### `createGenerateClassName([options]) => class name generator`
 
-A function which returns a class name generator function.
+A function which returns [a class name generator function](http://cssinjs.org/js-api#generate-your-own-class-names).
 
 #### Arguments
 
@@ -339,8 +353,7 @@ export default App;
 
 ## Alternative APIs
 
-Do you think that [higher-order components are the new mixins](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)? We don't, but rest assured, because `withStyles()` is a higher-order component.
-It can be extended with **few lines of code** to match different patterns, they are all idiomatic React.
+Do you think that [higher-order components are the new mixins](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)? Rest assured we don't, however because `withStyles()` is a higher-order component, it can be extended with just a **few lines of code** to match different patterns that are all idiomatic React. Here are a couple of examples.
 
 ### Render props API (+11 lines)
 
@@ -356,7 +369,7 @@ const Styled = createStyled({
     color: 'white',
     height: 48,
     padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
 });
 
@@ -376,13 +389,15 @@ function RenderProps() {
 {{"demo": "pages/customization/css-in-js/RenderProps.js"}}
 
 You can access the theme the same way you would do it with `withStyles`:
-```
+```js
 const Styled = createStyled(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
   },
 }));
 ```
+
+[@jedwards1211](https://github.com/jedwards1211) Has taken the time to move this module into a package: [material-ui-render-props-styles](https://github.com/jcoreio/material-ui-render-props-styles). Feel free to use it.
 
 ### styled-components API (+15 lines)
 
@@ -398,7 +413,7 @@ const MyButton = styled(Button)({
   color: 'white',
   height: 48,
   padding: '0 30px',
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 });
 
 function StyledComponents() {
@@ -409,7 +424,7 @@ function StyledComponents() {
 {{"demo": "pages/customization/css-in-js/StyledComponents.js"}}
 
 You can access the theme the same way you would do it with `withStyles`:
-```
+```js
 const MyButton = styled(Button)(theme => ({
   backgroundColor: theme.palette.background.paper,
 }));

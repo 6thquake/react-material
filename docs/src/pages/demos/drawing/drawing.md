@@ -1,9 +1,11 @@
 ---
+title: Drawing React component
 components: Drawing Tools
 ---
 
 # Drawing Tools
 
+<p class="description">Drawing Tools</p>
 
 ## Line
 

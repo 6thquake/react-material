@@ -1,10 +1,9 @@
 ---
+title: MenuBar React component
 components: MenuBar, SubMenuBar, MenuBarItem, MenuBarItemGroup
 ---
+
 # MenuBar
-菜单
+<p class="description">MenuBar</p>
+
 {{"demo": "pages/demos/menu-bar/MenuBar.js"}}
-
-
-
-

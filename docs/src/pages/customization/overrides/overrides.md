@@ -1,11 +1,12 @@
 # Overrides
 
-As components can be used in different contexts, React-Material supports four different types of customization requirements going from **the most specific** to **the most generic**:
+<p class="description">As components can be used in different contexts, React-Material supports different types of customization requirements going from the most specific to the most generic.</p>
 
 1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
-2. [Specific variation of a component](#2-specific-variation-of-a-component) re-used in different contexts
-4. [Material Design variations](#3-material-design-variations) such as with the button component
-3. [Global theme variation](#4-global-theme-variation)
+1. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
+1. [Specific variation of a component](#3-specific-variation-of-a-component) re-used in different contexts
+1. [Material Design variations](#4-material-design-variations) such as with the button component
+1. [Global theme variation](#5-global-theme-variation)
 
 ## 1. Specific variation for a one-time situation
 
@@ -17,7 +18,7 @@ The first way to override the style of a component is to use **class names**.
 Every component provides a `className` property which is always applied to the root element.
 
 In this example, we are using the [`withStyles()`](/customization/css-in-js#withstyles-styles-options-higher-order-component) higher-order
-component to inject custom styles into the DOM, and to pass the class name to the `OverridesClasseNames` component via
+component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via
 its `classes` prop. You can choose any other styling solution, or even plain CSS to create the styles, but be sure to
 consider the [CSS injection order](/customization/css-in-js#css-injection-order), as the CSS injected into the DOM
 by React-Material to style a component has the highest specificity possible since the `<link>` is injected at the bottom
@@ -31,16 +32,70 @@ When the `className` property isn't enough, and you need to access deeper elemen
 The list of  classes for each
 component is documented in the **Component API** section.
 For instance, you can have a look at the [Button CSS API](/api/button#css-api).
-Alternatively, you can always look at the [implementation details](https://github.com/6thquake/react-material/blob/develop/packages/react-material/src/Button/Button.js).
+Alternatively, you can always look at the [implementation details](https://github.com/6thquake/react-material/blob/master/packages/react-material/src/Button/Button.js).
 
-This example also uses `withStyles()` (see above), but here, `OverridesClasses` is using `Button`'s `classes` prop to
+This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to
 provide an object that maps the **names of classes to override** (keys) to the **CSS class names to apply** (values).
 The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles
 you wish to add or override.
 
 Notice that in addition to the button styling, the button label's capitalization has been changed:
 
-{{"demo": "pages/customization/overrides/Classes.js"}}
+{{"demo": "pages/customization/overrides/ClassesNesting.js"}}
+
+#### Internal states
+
+Aside from accessing nested elements, the `classes` property can be used to customize the internal states of React-Material components.
+The components internal states, like `:hover`, `:focus`, `disabled` and `selected`, are styled with a higher CSS specificity.
+[Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
+In order to override the components internal states, **you need to increase specificity**.
+Here is an example with the `disable` state and the button component:
+
+```css
+.classes-state-root {
+  /* ... */
+}
+.classes-state-root.disabled {
+  color: white;
+}
+```
+
+```jsx
+
+<Button
+  disabled
+  classes={{
+    root: 'classes-state-root',
+    disabled: 'disabled', }
+  }
+>
+
+```
+
+#### Use `$ruleName` to reference a local rule within the same style sheet
+
+The [jss-nested](https://github.com/cssinjs/jss-nested) plugin (available by default) can make the process of increasing specificity easier.
+
+```js
+const styles = {
+  root: {
+    '&$disabled': {
+      color: 'white',
+    },
+  },
+  disabled: {},
+};
+```
+
+compiles to:
+
+```css
+.root-x.disable-x {
+  color: white;
+}
+```
+
+{{"demo": "pages/customization/overrides/ClassesState.js"}}
 
 ### Overriding with inline-style
 
@@ -52,7 +107,44 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 {{"demo": "pages/customization/overrides/InlineStyle.js"}}
 
-## 2. Specific variation of a component
+[When should I use inline-style vs classes?](/getting-started/faq#when-should-i-use-inline-style-vs-classes-)
+
+## 2. Dynamic variation for a one-time situation
+
+You have learn how to override the style of the React-Material components in the previous sections.
+Now, let's see how we can make these overrides dynamic.
+We demonstrate 5 alternatives, each has it's pros and cons.
+
+### withStyles property support
+
+```jsx
+const styles = {
+  button: {
+    background: props => props.color,
+  },
+};
+```
+
+This feature isn't ready yet.
+It will come with: [#7633](https://github.com/6thquake/react-material/issues/7633).
+
+### Class name branch
+
+{{"demo": "pages/customization/overrides/DynamicClassName.js"}}
+
+### CSS variables
+
+{{"demo": "pages/customization/overrides/DynamicCSSVariables.js"}}
+
+### Inline-style
+
+{{"demo": "pages/customization/overrides/DynamicInlineStyle.js"}}
+
+### Theme nesting
+
+{{"demo": "pages/customization/overrides/DynamicThemeNesting.js"}}
+
+## 3. Specific variation of a component
 
 You might need to create a variation of a component and use it in different contexts, for instance a colorful button on your product page, however you probably want to keep your code [*DRY*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
@@ -60,13 +152,13 @@ The best approach is to follow option 1 and then take advantage of the compositi
 
 {{"demo": "pages/customization/overrides/Component.js", "hideEditButton": true}}
 
-## 3. Material Design variations
+## 4. Material Design variations
 
-The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [flat](https://material.io/guidelines/components/buttons.html#buttons-flat-buttons), [raised](https://material.io/guidelines/components/buttons.html#buttons-raised-buttons), [floating](https://material.io/guidelines/components/buttons-floating-action-button.html) and more.
+The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (AKA "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (AKA "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
 
 React-Material attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components) documentation to find out the current status of all supported Material Design components.
 
-## 4. Global theme variation
+## 5. Global theme variation
 
 ### Theme variables
 

@@ -8,7 +8,7 @@
     "@babel/plugin-proposal-class-properties": "latest",
     "@babel/preset-env": "latest",
     "@babel/preset-react": "latest",
-    "@material-ui/core": "latest",
+    "@6thquake/react-material": "latest",
     "babel-loader": "next",
     "express": "latest",
     "nodemon": "latest",

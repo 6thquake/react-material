@@ -1,8 +1,10 @@
 ---
+title: Form React component
 components: Form, FormControl, FormControlLabel
 ---
 
 # Form
+<p class="description">Form</p>
 
 ## Form demos
 

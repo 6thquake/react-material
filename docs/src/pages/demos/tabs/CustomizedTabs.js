@@ -87,9 +87,7 @@ class CustomizedTabs extends React.Component {
             label="Tab 3"
           />
         </Tabs>
-        <Typography className={classes.typography}>
-          Ant Design UI powered by React-Material
-        </Typography>
+        <Typography className={classes.typography}>Ant Design UI powered by React-Material</Typography>
       </div>
     );
   }

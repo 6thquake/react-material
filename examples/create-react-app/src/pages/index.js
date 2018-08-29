@@ -1,167 +1,72 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@6thquake/react-material/Button';
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-} from '@6thquake/react-material/Dialog';
+import Dialog from '@6thquake/react-material/Dialog';
+import DialogTitle from '@6thquake/react-material/DialogTitle';
+import DialogContent from '@6thquake/react-material/DialogContent';
+import DialogContentText from '@6thquake/react-material/DialogContentText';
+import DialogActions from '@6thquake/react-material/DialogActions';
 import Typography from '@6thquake/react-material/Typography';
 import { withStyles } from '@6thquake/react-material/styles';
 import withRoot from '../withRoot';
-import classNames from 'classnames';
-import Drawer from '@6thquake/react-material/Drawer';
-import AppBar from '@6thquake/react-material/AppBar';
-import Toolbar from '@6thquake/react-material/Toolbar';
-import List from '@6thquake/react-material/List';
-import Divider from '@6thquake/react-material/Divider';
-import IconButton from '@6thquake/react-material/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { mailFolderListItems, otherMailFolderListItems } from './tileData';
-import TreeMenu from '../Drawer';
-import data from './data';
-
-const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    height: 430,
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 36,
-  },
-  hide: {
-    display: 'none',
-  },
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing.unit * 7,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9,
-    },
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
-  },
-  docked: {
-    overflow: 'scroll',
+    textAlign: 'center',
+    paddingTop: theme.spacing.unit * 20,
   },
 });
 
-class MiniDrawer extends React.Component {
+class Index extends React.Component {
   state = {
-    open: true,
+    open: false,
   };
 
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
+  handleClose = () => {
+    this.setState({
+      open: false,
+    });
   };
 
-  handleDrawerClose = () => {
-    this.setState({ open: false });
+  handleClick = () => {
+    this.setState({
+      open: true,
+    });
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
+    const { open } = this.state;
 
     return (
       <div className={classes.root}>
-        <AppBar
-          position="absolute"
-          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
-        >
-          <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, this.state.open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
-              Mini variant drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-            docked: classes.docked,
-          }}
-          open={this.state.open}
-        >
-          <div className={classes.toolbar}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
-          </div>
-          <Divider />
-          <TreeMenu list={data} />
-          <Divider />
-          <List>{mailFolderListItems}</List>
-          <Divider />
-          <List>{otherMailFolderListItems}</List>
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
-        </main>
+        <Dialog open={open} onClose={this.handleClose}>
+          <DialogTitle>Super Secret Password</DialogTitle>
+          <DialogContent>
+            <DialogContentText>1-2-3-4-5</DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button color="primary" onClick={this.handleClose}>
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Typography variant="display1" gutterBottom>
+          Material-UI
+        </Typography>
+        <Typography variant="subheading" gutterBottom>
+          example project
+        </Typography>
+        <Button variant="contained" color="secondary" onClick={this.handleClick}>
+          Super Secret Password
+        </Button>
       </div>
     );
   }
 }
 
-MiniDrawer.propTypes = {
+Index.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(MiniDrawer);
+export default withRoot(withStyles(styles)(Index));

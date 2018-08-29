@@ -25,7 +25,6 @@ class Video extends React.Component {
 
   componentDidMount() {
     // instantiate Video.js
-    this.props.onRef(this);
     this.player = videojs(
       this.videoNode,
       { width: '100%', height: '100%', ...this.props },

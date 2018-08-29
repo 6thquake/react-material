@@ -1,11 +1,11 @@
 import React from 'react';
 import keycode from 'keycode';
 import compose from 'recompose/compose';
-import pure from 'recompose/pure';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 import withWidth, { isWidthUp } from '@6thquake/react-material/withWidth';
+import Input from '@6thquake/react-material/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@6thquake/react-material/styles/colorManipulator';
 import { withStyles } from '@6thquake/react-material/styles';
@@ -117,11 +117,11 @@ const styles = theme => ({
     '&:hover': {
       background: fade(theme.palette.common.white, 0.25),
     },
-    '& $input': {
+    '& $inputInput': {
       transition: theme.transitions.create('width'),
-      width: 200,
+      width: 120,
       '&:focus': {
-        width: 250,
+        width: 170,
       },
     },
   },
@@ -134,37 +134,28 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  input: {
-    font: 'inherit',
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
     padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
       .spacing.unit * 9}px`,
-    border: 0,
-    display: 'block',
-    verticalAlign: 'middle',
-    whiteSpace: 'normal',
-    background: 'none',
-    margin: 0, // Reset for Safari
-    color: 'inherit',
-    width: '100%',
-    '&:focus': {
-      outline: 0,
-    },
   },
 });
 
 class AppSearch extends React.Component {
+  inputRef = null;
+
   handleKeyDown = event => {
     if (
       ['/', 's'].indexOf(keycode(event)) !== -1 &&
       document.activeElement.nodeName.toLowerCase() === 'body' &&
-      document.activeElement !== this.input
+      document.activeElement !== this.inputRef
     ) {
       event.preventDefault();
-      this.input.focus();
+      this.inputRef.focus();
     }
   };
-
-  input = null;
 
   render() {
     const { classes, width } = this.props;
@@ -179,12 +170,17 @@ class AppSearch extends React.Component {
         <div className={classes.search}>
           <SearchIcon />
         </div>
-        <input
+        <Input
+          disableUnderline
+          placeholder="Search…"
           id="docsearch-input"
-          ref={node => {
-            this.input = node;
+          inputRef={ref => {
+            this.inputRef = ref;
           }}
-          className={classes.input}
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
         />
       </div>
     );
@@ -199,5 +195,4 @@ AppSearch.propTypes = {
 export default compose(
   withStyles(styles),
   withWidth(),
-  pure,
 )(AppSearch);

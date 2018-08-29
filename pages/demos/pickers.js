@@ -8,6 +8,13 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
+        'pages/demos/pickers/Localization.js': {
+          js: require('docs/src/pages/demos/pickers/Localization').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/pickers/Localization'), 'utf8')
+`,
+        },
         'pages/demos/pickers/BasicDatePicker.js': {
           js: require('docs/src/pages/demos/pickers/BasicDatePicker').default,
           raw: preval`
@@ -76,13 +83,6 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/pickers/DateAndTimePickers'), 'utf8')
-`,
-        },
-        'pages/demos/pickers/Localization.js': {
-          js: require('docs/src/pages/demos/pickers/Localization').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/pickers/Localization'), 'utf8')
 `,
         },
       }}

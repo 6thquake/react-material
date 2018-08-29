@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogActions from '@material-ui/core/DialogActions';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import Button from '@6thquake/react-material/Button';
+import Dialog from '@6thquake/react-material/Dialog';
+import DialogTitle from '@6thquake/react-material/DialogTitle';
+import DialogContent from '@6thquake/react-material/DialogContent';
+import DialogContentText from '@6thquake/react-material/DialogContentText';
+import DialogActions from '@6thquake/react-material/DialogActions';
+import Typography from '@6thquake/react-material/Typography';
+import { withStyles } from '@6thquake/react-material/styles';
 
 const styles = theme => ({
   root: {

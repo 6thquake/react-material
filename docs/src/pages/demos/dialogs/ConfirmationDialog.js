@@ -7,13 +7,12 @@ import Button from '@6thquake/react-material/Button';
 import List from '@6thquake/react-material/List';
 import ListItem from '@6thquake/react-material/ListItem';
 import ListItemText from '@6thquake/react-material/ListItemText';
-import Dialog from '@6thquake/react-material/Dialog';
-import DialogActions from '@6thquake/react-material/DialogActions';
-import DialogContent from '@6thquake/react-material/DialogContent';
-import DialogContentText from '@6thquake/react-material/DialogContentText';
 import DialogTitle from '@6thquake/react-material/DialogTitle';
-import Radio from '@6thquake/react-material/Radio';
+import DialogContent from '@6thquake/react-material/DialogContent';
+import DialogActions from '@6thquake/react-material/DialogActions';
+import Dialog from '@6thquake/react-material/Dialog';
 import RadioGroup from '@6thquake/react-material/RadioGroup';
+import Radio from '@6thquake/react-material/Radio';
 import FormControlLabel from '@6thquake/react-material/FormControlLabel';
 
 const options = [
@@ -33,11 +32,12 @@ const options = [
   'Umbriel',
 ];
 
-class ConfirmationDialog extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+class ConfirmationDialogRaw extends React.Component {
+  radioGroupRef = null;
 
-    this.state.value = this.props.value;
+  constructor(props) {
+    super();
+    this.state.value = props.value;
   }
 
   state = {};
@@ -48,10 +48,8 @@ class ConfirmationDialog extends React.Component {
     }
   }
 
-  radioGroup = null;
-
   handleEntering = () => {
-    this.radioGroup.focus();
+    this.radioGroupRef.focus();
   };
 
   handleCancel = () => {
@@ -81,10 +79,10 @@ class ConfirmationDialog extends React.Component {
         <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
         <DialogContent>
           <RadioGroup
-            ref={node => {
-              this.radioGroup = node;
+            ref={ref => {
+              this.radioGroupRef = ref;
             }}
-            aria-label="ringtone"
+            aria-label="Ringtone"
             name="ringtone"
             value={this.state.value}
             onChange={this.handleChange}
@@ -107,7 +105,7 @@ class ConfirmationDialog extends React.Component {
   }
 }
 
-ConfirmationDialog.propTypes = {
+ConfirmationDialogRaw.propTypes = {
   onClose: PropTypes.func,
   value: PropTypes.string,
 };
@@ -118,19 +116,19 @@ const styles = theme => ({
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
-  dialog: {
+  paper: {
     width: '80%',
     maxHeight: 435,
   },
 });
 
-class ConfirmationDialogDemo extends React.Component {
+class ConfirmationDialog extends React.Component {
+  button = null;
+
   state = {
     open: false,
     value: 'Dione',
   };
-
-  button = undefined;
 
   handleClickListItem = () => {
     this.setState({ open: true });
@@ -161,9 +159,9 @@ class ConfirmationDialogDemo extends React.Component {
           <ListItem button divider disabled>
             <ListItemText primary="Default notification ringtone" secondary="Tethys" />
           </ListItem>
-          <ConfirmationDialog
+          <ConfirmationDialogRaw
             classes={{
-              paper: classes.dialog,
+              paper: classes.paper,
             }}
             open={this.state.open}
             onClose={this.handleClose}
@@ -175,8 +173,8 @@ class ConfirmationDialogDemo extends React.Component {
   }
 }
 
-ConfirmationDialogDemo.propTypes = {
+ConfirmationDialog.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ConfirmationDialogDemo);
+export default withStyles(styles)(ConfirmationDialog);

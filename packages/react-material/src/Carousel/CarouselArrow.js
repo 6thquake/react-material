@@ -1,3 +1,7 @@
+/**
+ * @ignore - internal component.
+ */
+
 import React from 'react';
 import { withStyles } from '../styles';
 import { ChevronRight, ChevronLeft } from '@material-ui/icons';
@@ -49,6 +53,9 @@ class CarouselArrow extends React.Component {
       </div>
     );
   }
+}
+
+CarouselArrow.propTypes = {
 }
 
 export default withStyles(styles, { name: 'RMCarouselArrow' })(CarouselArrow);

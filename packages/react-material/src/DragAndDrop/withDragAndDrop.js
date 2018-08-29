@@ -5,7 +5,7 @@ import invariant from 'invariant';
 import hoistStatics from 'hoist-non-react-statics';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-function checkDecoratorArguments(functionName: string, signature: string, ...args: any[]) {
+function checkDecoratorArguments(functionName, signature, ...args) {
   if (process.env.NODE_ENV !== 'production') {
     for (const arg of args) {
       if (arg && arg.prototype && arg.prototype.render) {
@@ -26,7 +26,7 @@ const CHILD_CONTEXT_TYPES = {
 };
 
 let defaultManager;
-function createChildContext(backend: BackendFactory, context: Context) {
+function createChildContext(backend, context) {
   if (!defaultManager) {
     defaultManager = new DragDropManager(HTML5Backend);
   }
@@ -66,7 +66,7 @@ function DragDropContext(backendFactory, context) {
       }
 
       render() {
-        return <DecoratedComponent {...this.props} ref={(child: any) => (this.child = child)} />;
+        return <DecoratedComponent {...this.props} ref={(child) => (this.child = child)} />;
       }
     }
 

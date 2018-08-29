@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@6thquake/react-material/styles';
 import classNames from 'classnames';
+import { withStyles } from '@6thquake/react-material/styles';
 import Drawer from '@6thquake/react-material/Drawer';
 import AppBar from '@6thquake/react-material/AppBar';
 import Toolbar from '@6thquake/react-material/Toolbar';

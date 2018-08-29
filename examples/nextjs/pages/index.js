@@ -1,15 +1,16 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@6thquake/react-material/Button';
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-} from '@6thquake/react-material/Dialog';
+import Dialog from '@6thquake/react-material/Dialog';
+import DialogTitle from '@6thquake/react-material/DialogTitle';
+import DialogContent from '@6thquake/react-material/DialogContent';
+import DialogContentText from '@6thquake/react-material/DialogContentText';
+import DialogActions from '@6thquake/react-material/DialogActions';
 import Typography from '@6thquake/react-material/Typography';
 import { withStyles } from '@6thquake/react-material/styles';
-import withRoot from '../src/withRoot';
+import Link from 'next/link';
 
 const styles = theme => ({
   root: {
@@ -58,7 +59,12 @@ class Index extends React.Component {
         <Typography variant="subheading" gutterBottom>
           example project
         </Typography>
-        <Button variant="raised" color="secondary" onClick={this.handleClick}>
+        <Typography gutterBottom>
+          <Link href="/about">
+            <a>Go to the about page</a>
+          </Link>
+        </Typography>
+        <Button variant="contained" color="secondary" onClick={this.handleClick}>
           Super Secret Password
         </Button>
       </div>
@@ -70,4 +76,4 @@ Index.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(Index));
+export default withStyles(styles)(Index);

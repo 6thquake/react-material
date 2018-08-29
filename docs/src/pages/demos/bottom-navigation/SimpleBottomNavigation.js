@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
 import BottomNavigation from '@6thquake/react-material/BottomNavigation';
-import BottomNavigationAction from '@6thquake/react-material/BottomNavigation';
+import BottomNavigationAction from '@6thquake/react-material/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-class App extends React.Component {
+class SimpleBottomNavigation extends React.Component {
   state = {
     value: 0,
   };
@@ -41,8 +41,8 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
+SimpleBottomNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(SimpleBottomNavigation);

@@ -1,17 +1,28 @@
 ---
+title: Table React component
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, AbundantCrossTabulation, CrossTabulation, AwesomeTable
 ---
 
 # Tables
 
-[Data tables](https://material.io/guidelines/components/data-tables.html) display sets of raw data.
-They usually appear in desktop enterprise products.
+<p class="description">Data tables display sets of data. They can be fully customized.</p>
+
+[Data tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.
+
+Data tables can include:
+- A corresponding visualization
+- Navigation
+- Tools to query and manipulate data
+
+When including tools, they should be placed directly above or below the table.
 
 ## Structure
 
 A data table contains a header row at the top that lists column names, followed by rows for data.
 
 Checkboxes should accompany each row if the user needs to select or manipulate data.
+
+For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"row"`. This enables screen readers to identify a cell's value by it's row and column name.
 
 ## Simple Table
 
@@ -34,7 +45,7 @@ custom actions.
 
 {{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
 
-## Customized tables
+## Customized Tables
 
 You can customize the look and feel of the table by overriding the styles of the `TableCell` component.
 
@@ -72,4 +83,3 @@ Cross tabulations are used to examine relationships within data that may not be 
 ## Advanced use cases
 
 For more advanced use cases you might be able to take advantage of [dx-react-grid-material](https://devexpress.github.io/devextreme-reactive/react/grid/). It's a data grid for React-Material with paging, sorting, filtering, grouping and editing features.
-

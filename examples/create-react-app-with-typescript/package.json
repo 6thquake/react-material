@@ -2,10 +2,11 @@
   "name": "create-react-app-with-typescript",
   "version": "0.1.0",
   "private": true,
+  "main": "src/index.tsx",
   "dependencies": {
+    "@6thquake/react-material": "latest",
     "@types/react": "*",
     "@types/react-dom": "*",
-    "react-material": "next",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts-ts": "latest"

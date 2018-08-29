@@ -2,16 +2,16 @@
 
 ## Asking Questions
 
-For how-to questions and other non-issues, please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui) or [Gitter](https://gitter.im/callemall/material-ui) chat instead of Github issues. There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
+For how-to questions and other non-issues, please use [StackOverflow](http://stackoverflow.com/questions/tagged/react-material) instead of Github issues. There is a StackOverflow tag called "react-material" that you can use to tag your questions.
 
 ## Opening an Issue
 
-If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and PRs to see if someone has reported one similar to yours.
+If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/6thquake/react-material/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and PRs to see if someone has reported one similar to yours.
 
 Next, create a new issue that briefly explains the problem, and provides a bit of background as to the circumstances that triggered it, and steps to reproduce it.
 
 For code issues please include:
-- Material-UI version
+- React-Material version
 - React version
 - Browser version
 - A code example or link to a repo, gist or running site.

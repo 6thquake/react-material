@@ -30,9 +30,9 @@ export function pageToTitle(page) {
 
 export function getDependencies(raw) {
   const deps = {
-    react: 'latest',
-    'react-dom': 'latest',
     'react-material': 'next',
+    'react-dom': 'latest',
+    react: 'latest',
   };
   const re = /^import\s.*\sfrom\s+'([^']+)'/gm;
   let m;

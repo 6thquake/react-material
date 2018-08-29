@@ -1,30 +1,29 @@
 import * as React from 'react';
 import Button from '@6thquake/react-material/Button';
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-} from '@6thquake/react-material/Dialog';
+import Dialog from '@6thquake/react-material/Dialog';
+import DialogActions from '@6thquake/react-material/DialogActions';
+import DialogContent from '@6thquake/react-material/DialogContent';
+import DialogContentText from '@6thquake/react-material/DialogContentText';
+import DialogTitle from '@6thquake/react-material/DialogTitle';
 import Typography from '@6thquake/react-material/Typography';
-import withStyles, {
-  WithStyles,
-  StyleRulesCallback,
-} from '@6thquake/react-material/styles/withStyles';
+import { Theme } from '@6thquake/react-material/styles/createMuiTheme';
+import createStyles from '@6thquake/react-material/styles/createStyles';
+import withStyles, { WithStyles } from '@6thquake/react-material/styles/withStyles';
 import withRoot from '../withRoot';
 
-const styles: StyleRulesCallback<'root'> = theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      textAlign: 'center',
+      paddingTop: theme.spacing.unit * 20,
+    },
+  });
 
 type State = {
-  open: boolean,
+  open: boolean;
 };
 
-class Index extends React.Component<WithStyles<'root'>, State> {
+class Index extends React.Component<WithStyles<typeof styles>, State> {
   state = {
     open: false,
   };
@@ -69,4 +68,4 @@ class Index extends React.Component<WithStyles<'root'>, State> {
   }
 }
 
-export default withRoot(withStyles(styles) < {} > Index);
+export default withRoot(withStyles(styles)(Index));

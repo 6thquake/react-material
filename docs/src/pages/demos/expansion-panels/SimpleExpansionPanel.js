@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
 import ExpansionPanel from '@6thquake/react-material/ExpansionPanel';
-import ExpansionPanelDetails from '@6thquake/react-material/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@6thquake/react-material/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@6thquake/react-material/ExpansionPanelDetails';
 import Typography from '@6thquake/react-material/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 

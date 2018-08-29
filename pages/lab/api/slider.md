@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui-lab/src/Slider/Slider.js
+filename: /packages/react-material-lab/src/Slider/Slider.js
 title: Slider API
 ---
 
@@ -52,7 +52,7 @@ This property accepts the following keys:
 | <span class="prop-name">vertical</span> | Class applied to the root, track and container to trigger JSS nested styles if `vertical`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/Slider/Slider.js)
+and the [implementation of the component](https://github.com/6thquake/react-material/tree/master/packages/react-material-lab/src/Slider/Slider.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented

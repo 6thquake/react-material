@@ -1,4 +1,4 @@
-# React-Material Testing
+# Material-UI Testing
 
 Thanks for writing tests! Here's a quick run-down on our current setup.
 
@@ -17,7 +17,7 @@ Please familiarise yourself with these if you plan on contributing! :+1:
 
 ## Commands
 
-React-Material uses a wide range of tests approach as each of them comes with a different
+Material-UI uses a wide range of tests approach as each of them comes with a different
 trade-off, mainly completeness vs. speed.
 
 ### React API level

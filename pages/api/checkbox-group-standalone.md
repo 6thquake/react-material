@@ -1,10 +1,13 @@
 ---
 filename: /packages/react-material/src/CheckboxGroup/CheckboxGroupStandalone.js
+title: CheckboxGroupStandalone API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # CheckboxGroupStandalone
+
+<p class="description">The API documentation of the CheckboxGroupStandalone React component.</p>
 
 
 
@@ -12,7 +15,7 @@ filename: /packages/react-material/src/CheckboxGroup/CheckboxGroupStandalone.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">classes</span> | <span class="prop-type">object |  |  |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |   |  |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be spread to the root element (native element).
 

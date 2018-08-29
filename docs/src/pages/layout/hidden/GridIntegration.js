@@ -4,6 +4,7 @@ import compose from 'recompose/compose';
 import { withStyles } from '@6thquake/react-material/styles';
 import Paper from '@6thquake/react-material/Paper';
 import Grid from '@6thquake/react-material/Grid';
+import Hidden from '@6thquake/react-material/Hidden';
 import withWidth from '@6thquake/react-material/withWidth';
 import Typography from '@6thquake/react-material/Typography';
 
@@ -27,21 +28,31 @@ function GridIntegration(props) {
         Current width: {props.width}
       </Typography>
       <Grid container spacing={24}>
-        <Grid item xs hidden={{ xsUp: true }}>
-          <Paper className={classes.paper}>xsUp</Paper>
-        </Grid>
-        <Grid item xs hidden={{ smUp: true }}>
-          <Paper className={classes.paper}>smUp</Paper>
-        </Grid>
-        <Grid item xs hidden={{ mdUp: true }}>
-          <Paper className={classes.paper}>mdUp</Paper>
-        </Grid>
-        <Grid item xs hidden={{ lgUp: true }}>
-          <Paper className={classes.paper}>lgUp</Paper>
-        </Grid>
-        <Grid item xs hidden={{ xlUp: true }}>
-          <Paper className={classes.paper}>xlUp</Paper>
-        </Grid>
+        <Hidden xsUp>
+          <Grid item xs>
+            <Paper className={classes.paper}>xsUp</Paper>
+          </Grid>
+        </Hidden>
+        <Hidden smUp>
+          <Grid item xs>
+            <Paper className={classes.paper}>smUp</Paper>
+          </Grid>
+        </Hidden>
+        <Hidden mdUp>
+          <Grid item xs>
+            <Paper className={classes.paper}>mdUp</Paper>
+          </Grid>
+        </Hidden>
+        <Hidden lgUp>
+          <Grid item xs>
+            <Paper className={classes.paper}>lgUp</Paper>
+          </Grid>
+        </Hidden>
+        <Hidden xlUp>
+          <Grid item xs>
+            <Paper className={classes.paper}>xlUp</Paper>
+          </Grid>
+        </Hidden>
       </Grid>
     </div>
   );

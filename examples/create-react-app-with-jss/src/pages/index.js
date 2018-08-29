@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@6thquake/react-material/Button';
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-} from '@6thquake/react-material/Dialog';
+import Dialog from '@6thquake/react-material/Dialog';
+import DialogTitle from '@6thquake/react-material/DialogTitle';
+import DialogContent from '@6thquake/react-material/DialogContent';
+import DialogContentText from '@6thquake/react-material/DialogContentText';
+import DialogActions from '@6thquake/react-material/DialogActions';
 import Typography from '@6thquake/react-material/Typography';
 import { withStyles } from '@6thquake/react-material/styles';
 import withRoot from '../withRoot';
@@ -58,7 +57,7 @@ class Index extends React.Component {
         <Typography variant="subheading" gutterBottom>
           example project
         </Typography>
-        <Button variant="raised" color="secondary" onClick={this.handleClick}>
+        <Button variant="contained" color="secondary" onClick={this.handleClick}>
           Super Secret Password
         </Button>
       </div>

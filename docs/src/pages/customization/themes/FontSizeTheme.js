@@ -4,7 +4,7 @@ import Typography from '@6thquake/react-material/Typography';
 
 const theme = createMuiTheme({
   typography: {
-    // Tell React-Material what's the font-size on the html element is.
+    // Tell React-Material what the font-size on the html element is.
     htmlFontSize: 10,
   },
 });

@@ -1,4 +1,4 @@
-# eslint-plugin-material-ui
+# eslint-plugin
 
 Custom eslint rules for React-Material
 

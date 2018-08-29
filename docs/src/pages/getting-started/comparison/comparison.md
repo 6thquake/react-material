@@ -1,9 +1,9 @@
 # Comparison with other libraries
 
+<p class="description">You’re here because you want to know if React-Material can solve your specific problems better. That’s what we hope to answer for you here.</p>
+
 This is definitely one of the most challenging pages in the guide to write, but we do feel it’s important.
 Odds are, you’ve had problems you tried to solve and you’ve used another library to solve them.
-You’re here because you want to know if React-Material can solve your specific problems better.
-That’s what we hope to answer for you here.
 
 We’d like your help keeping this document up-to-date because the JavaScript world moves fast!
 If you notice an inaccuracy or something that doesn’t seem quite right, please let us know by
@@ -19,6 +19,9 @@ We cover the following libraries:
 
 ## React-Material
 
+![stars](https://img.shields.io/github/stars/mui-org/material-ui.svg?style=social&label=Stars)
+![npm downloads](https://img.shields.io/npm/dm/@6thquake/react-material.svg)
+
 We'll try very hard to avoid bias, although as the core team, we obviously like React-Material a lot ❤️.
 There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it 😄.
 
@@ -27,7 +30,7 @@ We do want to be fair and accurate though, so where other libraries offer signif
 ## Material Design Lite (MDL)
 
 ![stars](https://img.shields.io/github/stars/google/material-design-lite.svg?style=social&label=Stars)
-![npm](https://img.shields.io/npm/dm/material-design-lite.svg)
+![npm downloads](https://img.shields.io/npm/dm/material-design-lite.svg)
 
 Material Design Lite, while a very well-thought-out Material Design implementation,
 was primarily maintained by Developer Relations at Google.
@@ -41,10 +44,10 @@ and towards the goal of a canonical Material Design implementation for the entir
 ## Material Components Web (MDC-web)
 
 ![stars](https://img.shields.io/github/stars/material-components/material-components-web.svg?style=social&label=Stars)
-![npm](https://img.shields.io/npm/dm/material-components-web.svg)
+![npm downloads](https://img.shields.io/npm/dm/material-components-web.svg)
 
 We are very happy to see this project supported by Google and its design team.
-It sends a clear signal that the [Material Design specification](https://material.io/guidelines/) is
+It sends a clear signal that the [Material Design specification](https://material.io/design/) is
 here to stay, as they continue to invest in it.
 
 ### Frameworks and libraries
@@ -53,7 +56,7 @@ React-Material focuses exclusively on the React library, although, given that Pr
 we hope to soon support it too. Supporting one framework allows us to do less but do it better.
 
 This comes in different flavors:
-- Having fewer constraints, we can make trade-offs specific to out target framework.
+- Having fewer constraints, we can make trade-offs specific to our target framework.
 We have fewer edge-cases to take into account.
 - We can spend more time on nailing the React use case.
 
@@ -100,7 +103,7 @@ Both projects invest a lot in tests. At the time of writing, both projects have 
 - MDC-web has 1200+ unit tests running on all the major browsers.
 
 Still, there is one thing that sets React-Material apart and it's key:
-We have hundreds of visual regression tests when MDC-web doesn't have any.
+We have [hundreds of visual regression tests](https://www.argos-ci.com/mui-org/material-ui) when MDC-web doesn't have any.
 With visual regression tests, you don't have to make any trade-off:
 - You can spend less time making sure every contribution doesn't introduce unexpected regressions.
 The **less** time you spend on a single contribution, the **more** contributions you can accept.
@@ -109,7 +112,7 @@ The **less** time you spend on a single contribution, the **more** contributions
 ## Materialize
 
 ![stars](https://img.shields.io/github/stars/Dogfalo/materialize.svg?style=social&label=Stars)
-![npm](https://img.shields.io/npm/dm/materialize-css.svg)
+![npm downloads](https://img.shields.io/npm/dm/materialize-css.svg)
 
 ### Browser support
 
@@ -126,7 +129,7 @@ We explain why in the [MDC-web section](#styling-solution) above.
 ## React Toolbox
 
 ![stars](https://img.shields.io/github/stars/react-toolbox/react-toolbox.svg?style=social&label=Stars)
-![npm](https://img.shields.io/npm/dm/react-toolbox.svg)
+![npm downloads](https://img.shields.io/npm/dm/react-toolbox.svg)
 
 ### Styling solution
 

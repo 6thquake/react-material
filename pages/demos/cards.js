@@ -22,6 +22,20 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/cards/SimpleMediaCard'), 'utf8')
 `,
         },
+        'pages/demos/cards/MediaCard.js': {
+          js: require('docs/src/pages/demos/cards/MediaCard').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/cards/MediaCard'), 'utf8')
+`,
+        },
+        'pages/demos/cards/ImgMediaCard.js': {
+          js: require('docs/src/pages/demos/cards/ImgMediaCard').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/cards/ImgMediaCard'), 'utf8')
+`,
+        },
         'pages/demos/cards/MediaControlCard.js': {
           js: require('docs/src/pages/demos/cards/MediaControlCard').default,
           raw: preval`

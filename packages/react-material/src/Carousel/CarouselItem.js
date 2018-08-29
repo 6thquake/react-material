@@ -1,3 +1,7 @@
+/**
+ * @ignore - internal component.
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { withStyles } from '../styles';
@@ -93,6 +97,9 @@ class CarouselItem extends React.Component {
       </div>
     );
   }
+}
+
+CarouselItem.propTypes = {
 }
 
 export default withStyles(styles, { name: 'RMCarouselItem' })(CarouselItem);

@@ -1,9 +1,11 @@
 ---
+title: Bubble React component
 components: Bubble
 ---
 
 # Bubble
-General bubble dialog which is floatable.
+
+<p class="description">General bubble dialog which is floatable.</p>
 
 # How to use
 

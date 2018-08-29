@@ -10,15 +10,15 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@6thquake/react-material/Switch';
 import FormControlLabel from '@6thquake/react-material/FormControlLabel';
 import FormGroup from '@6thquake/react-material/FormGroup';
-import Menu from '@6thquake/react-material/Menu';
 import MenuItem from '@6thquake/react-material/MenuItem';
+import Menu from '@6thquake/react-material/Menu';
 
 const styles = {
   root: {
     flexGrow: 1,
   },
   flex: {
-    flex: 1,
+    flexGrow: 1,
   },
   menuButton: {
     marginLeft: -12,
@@ -32,8 +32,8 @@ class MenuAppBar extends React.Component {
     anchorEl: null,
   };
 
-  handleChange = (event, checked) => {
-    this.setState({ auth: checked });
+  handleChange = event => {
+    this.setState({ auth: event.target.checked });
   };
 
   handleMenu = event => {
@@ -65,7 +65,7 @@ class MenuAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" className={classes.flex}>
-              Title
+              Photos
             </Typography>
             {auth && (
               <div>

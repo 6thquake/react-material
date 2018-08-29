@@ -7,9 +7,9 @@ import {
   MuiThemeProvider,
   createMuiTheme,
   createGenerateClassName,
-} from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+} from '@6thquake/react-material/styles';
+import green from '@6thquake/react-material/colors/green';
+import red from '@6thquake/react-material/colors/red';
 import App from './App';
 
 function renderFullPage(html, css) {

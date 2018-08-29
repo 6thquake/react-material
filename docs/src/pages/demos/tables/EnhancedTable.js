@@ -25,7 +25,21 @@ function createData(name, calories, fat, carbs, protein) {
   return { id: counter, name, calories, fat, carbs, protein };
 }
 
-const columnData = [
+function desc(a, b, orderBy) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+function getSorting(order, orderBy) {
+  return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
+}
+
+const rows = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
   { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
   { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
@@ -51,25 +65,25 @@ class EnhancedTableHead extends React.Component {
               onChange={onSelectAllClick}
             />
           </TableCell>
-          {columnData.map(column => {
+          {rows.map(row => {
             return (
               <TableCell
-                key={column.id}
-                numeric={column.numeric}
-                padding={column.disablePadding ? 'none' : 'default'}
-                sortDirection={orderBy === column.id ? order : false}
+                key={row.id}
+                numeric={row.numeric}
+                padding={row.disablePadding ? 'none' : 'default'}
+                sortDirection={orderBy === row.id ? order : false}
               >
                 <Tooltip
                   title="Sort"
-                  placement={column.numeric ? 'bottom-end' : 'bottom-start'}
+                  placement={row.numeric ? 'bottom-end' : 'bottom-start'}
                   enterDelay={300}
                 >
                   <TableSortLabel
-                    active={orderBy === column.id}
+                    active={orderBy === row.id}
                     direction={order}
-                    onClick={this.createSortHandler(column.id)}
+                    onClick={this.createSortHandler(row.id)}
                   >
-                    {column.label}
+                    {row.label}
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
@@ -130,7 +144,9 @@ let EnhancedTableToolbar = props => {
             {numSelected} selected
           </Typography>
         ) : (
-          <Typography variant="title">Nutrition</Typography>
+          <Typography variant="title" id="tableTitle">
+            Nutrition
+          </Typography>
         )}
       </div>
       <div className={classes.spacer} />
@@ -174,32 +190,28 @@ const styles = theme => ({
 });
 
 class EnhancedTable extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      order: 'asc',
-      orderBy: 'calories',
-      selected: [],
-      data: [
-        createData('Cupcake', 305, 3.7, 67, 4.3),
-        createData('Donut', 452, 25.0, 51, 4.9),
-        createData('Eclair', 262, 16.0, 24, 6.0),
-        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-        createData('Gingerbread', 356, 16.0, 49, 3.9),
-        createData('Honeycomb', 408, 3.2, 87, 6.5),
-        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-        createData('Jelly Bean', 375, 0.0, 94, 0.0),
-        createData('KitKat', 518, 26.0, 65, 7.0),
-        createData('Lollipop', 392, 0.2, 98, 0.0),
-        createData('Marshmallow', 318, 0, 81, 2.0),
-        createData('Nougat', 360, 19.0, 9, 37.0),
-        createData('Oreo', 437, 18.0, 63, 4.0),
-      ].sort((a, b) => (a.calories < b.calories ? -1 : 1)),
-      page: 0,
-      rowsPerPage: 5,
-    };
-  }
+  state = {
+    order: 'asc',
+    orderBy: 'calories',
+    selected: [],
+    data: [
+      createData('Cupcake', 305, 3.7, 67, 4.3),
+      createData('Donut', 452, 25.0, 51, 4.9),
+      createData('Eclair', 262, 16.0, 24, 6.0),
+      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+      createData('Gingerbread', 356, 16.0, 49, 3.9),
+      createData('Honeycomb', 408, 3.2, 87, 6.5),
+      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+      createData('Jelly Bean', 375, 0.0, 94, 0.0),
+      createData('KitKat', 518, 26.0, 65, 7.0),
+      createData('Lollipop', 392, 0.2, 98, 0.0),
+      createData('Marshmallow', 318, 0, 81, 2.0),
+      createData('Nougat', 360, 19.0, 9, 37.0),
+      createData('Oreo', 437, 18.0, 63, 4.0),
+    ],
+    page: 0,
+    rowsPerPage: 5,
+  };
 
   handleRequestSort = (event, property) => {
     const orderBy = property;
@@ -209,17 +221,12 @@ class EnhancedTable extends React.Component {
       order = 'asc';
     }
 
-    const data =
-      order === 'desc'
-        ? this.state.data.sort((a, b) => (b[orderBy] < a[orderBy] ? -1 : 1))
-        : this.state.data.sort((a, b) => (a[orderBy] < b[orderBy] ? -1 : 1));
-
-    this.setState({ data, order, orderBy });
+    this.setState({ order, orderBy });
   };
 
-  handleSelectAllClick = (event, checked) => {
-    if (checked) {
-      this.setState({ selected: this.state.data.map(n => n.id) });
+  handleSelectAllClick = event => {
+    if (event.target.checked) {
+      this.setState(state => ({ selected: state.data.map(n => n.id) }));
       return;
     }
     this.setState({ selected: [] });
@@ -265,7 +272,7 @@ class EnhancedTable extends React.Component {
       <Paper className={classes.root}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
-          <Table className={classes.table}>
+          <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
               numSelected={selected.length}
               order={order}
@@ -275,29 +282,34 @@ class EnhancedTable extends React.Component {
               rowCount={data.length}
             />
             <TableBody>
-              {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
-                const isSelected = this.isSelected(n.id);
-                return (
-                  <TableRow
-                    hover
-                    onClick={event => this.handleClick(event, n.id)}
-                    role="checkbox"
-                    aria-checked={isSelected}
-                    tabIndex={-1}
-                    key={n.id}
-                    selected={isSelected}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox checked={isSelected} />
-                    </TableCell>
-                    <TableCell padding="none">{n.name}</TableCell>
-                    <TableCell numeric>{n.calories}</TableCell>
-                    <TableCell numeric>{n.fat}</TableCell>
-                    <TableCell numeric>{n.carbs}</TableCell>
-                    <TableCell numeric>{n.protein}</TableCell>
-                  </TableRow>
-                );
-              })}
+              {data
+                .sort(getSorting(order, orderBy))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(n => {
+                  const isSelected = this.isSelected(n.id);
+                  return (
+                    <TableRow
+                      hover
+                      onClick={event => this.handleClick(event, n.id)}
+                      role="checkbox"
+                      aria-checked={isSelected}
+                      tabIndex={-1}
+                      key={n.id}
+                      selected={isSelected}
+                    >
+                      <TableCell padding="checkbox">
+                        <Checkbox checked={isSelected} />
+                      </TableCell>
+                      <TableCell component="th" scope="row" padding="none">
+                        {n.name}
+                      </TableCell>
+                      <TableCell numeric>{n.calories}</TableCell>
+                      <TableCell numeric>{n.fat}</TableCell>
+                      <TableCell numeric>{n.carbs}</TableCell>
+                      <TableCell numeric>{n.protein}</TableCell>
+                    </TableRow>
+                  );
+                })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
                   <TableCell colSpan={6} />

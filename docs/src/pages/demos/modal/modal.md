@@ -1,8 +1,11 @@
 ---
+title: Modal React component
 components: Modal, Modal2, ModalManager
 ---
 
 # Modal
+
+<p class="description">Modal</p>
 
 [Modal](https://material.io/guidelines/components/dialogs.html) inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.
 

@@ -1,3 +1,5 @@
+/* eslint-disable react/prefer-stateless-function */
+
 import React from 'react';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
@@ -42,7 +44,7 @@ function NumberFormatCustom(props) {
   return (
     <NumberFormat
       {...other}
-      ref={inputRef}
+      getInputRef={inputRef}
       onValueChange={values => {
         onChange({
           target: {

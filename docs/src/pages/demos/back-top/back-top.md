@@ -1,12 +1,15 @@
 ---
+title: Back Top React component
 components: BackTop
 ---
 
 # BackTop
 
- [BackTop] 返回页面顶部的操作按钮 ：
-当页面内容区域比较长时；
-当用户需要频繁返回顶部查看相关内容时。
+<p class="description">BackTop makes it easy to go back to the top of the page.</p>
+
+# When To Use
+* When the page content is very long.
+* When you need to go back to the top very frequently in order to view the contents.
 
 {{"demo": "pages/demos/back-top/BackTop.js"}}
 

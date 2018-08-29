@@ -4,29 +4,29 @@ import Snackbar from '@6thquake/react-material/Snackbar';
 import Slide from '@6thquake/react-material/Slide';
 
 function TransitionLeft(props) {
-  return <Slide direction="left" {...props} />;
+  return <Slide {...props} direction="left" />;
 }
 
 function TransitionUp(props) {
-  return <Slide direction="up" {...props} />;
+  return <Slide {...props} direction="up" />;
 }
 
 function TransitionRight(props) {
-  return <Slide direction="right" {...props} />;
+  return <Slide {...props} direction="right" />;
 }
 
 function TransitionDown(props) {
-  return <Slide direction="down" {...props} />;
+  return <Slide {...props} direction="down" />;
 }
 
 class DirectionSnackbar extends React.Component {
   state = {
     open: false,
-    transition: null,
+    Transition: null,
   };
 
-  handleClick = transition => () => {
-    this.setState({ open: true, transition });
+  handleClick = Transition => () => {
+    this.setState({ open: true, Transition });
   };
 
   handleClose = () => {
@@ -43,8 +43,8 @@ class DirectionSnackbar extends React.Component {
         <Snackbar
           open={this.state.open}
           onClose={this.handleClose}
-          transition={this.state.transition}
-          SnackbarContentProps={{
+          TransitionComponent={this.state.Transition}
+          ContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">I love snacks</span>}

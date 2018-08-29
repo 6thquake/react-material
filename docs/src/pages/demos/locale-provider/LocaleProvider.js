@@ -1,4 +1,4 @@
-import react, { Component } from 'react';
+import React, { Component } from 'react';
 import Popconfirm from '@6thquake/react-material/Popconfirm';
 import { withStyles } from '@6thquake/react-material/styles';
 import Button from '@6thquake/react-material/Button';

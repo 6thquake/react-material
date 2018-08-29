@@ -4,12 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MuiThemeProvider } from '@6thquake/react-material/styles';
-import CssBaseline from '@6thquake/react-material/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { polyfill } from 'react-lifecycles-compat';
-import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
+// import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
-import AppFrame from 'docs/src/modules/components/AppFrame';
 import GoogleTag from 'docs/src/modules/components/GoogleTag';
 
 // Inject the insertion-point-jss after docssearch
@@ -24,33 +21,11 @@ if (process.browser && !global.__INSERTION_POINT__) {
 }
 
 function uiThemeSideEffect(uiTheme) {
-  setPrismTheme(uiTheme.paletteType === 'light' ? lightTheme : darkTheme);
+  // setPrismTheme(uiTheme.paletteType === 'light' ? lightTheme : darkTheme);
   document.body.dir = uiTheme.direction;
 }
 
 class AppWrapper extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.pageContext === 'undefined') {
-      return {
-        prevProps: nextProps,
-        pageContext: nextProps.pageContext || getPageContext(),
-      };
-    }
-
-    const { prevProps } = prevState;
-
-    if (
-      nextProps.uiTheme.paletteType !== prevProps.uiTheme.paletteType ||
-      nextProps.uiTheme.direction !== prevProps.uiTheme.direction
-    ) {
-      return {
-        prevProps: nextProps,
-        pageContext: updatePageContext(nextProps.uiTheme),
-      };
-    }
-
-    return null;
-  }
 
   state = {};
 
@@ -63,13 +38,41 @@ class AppWrapper extends React.Component {
       jssStyles.parentNode.removeChild(jssStyles);
     }
 
-    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+    if (
+      'serviceWorker' in navigator &&
+      process.env.NODE_ENV === 'production' &&
+      window.location.host === 'react-material.com'
+    ) {
       navigator.serviceWorker.register('/sw.js');
     }
   }
 
   componentDidUpdate() {
     uiThemeSideEffect(this.props.uiTheme);
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof prevState.pageContext === 'undefined') {
+      return {
+        prevProps: nextProps,
+        pageContext: nextProps.pageContext || getPageContext(),
+      };
+    }
+
+    const { prevProps } = prevState;
+
+    if (
+      nextProps.uiTheme.paletteType !== prevProps.uiTheme.paletteType ||
+      nextProps.uiTheme.paletteColors !== prevProps.uiTheme.paletteColors ||
+      nextProps.uiTheme.direction !== prevProps.uiTheme.direction
+    ) {
+      return {
+        prevProps: nextProps,
+        pageContext: updatePageContext(nextProps.uiTheme),
+      };
+    }
+
+    return null;
   }
 
   render() {
@@ -83,8 +86,7 @@ class AppWrapper extends React.Component {
         generateClassName={pageContext.generateClassName}
       >
         <MuiThemeProvider theme={pageContext.theme} sheetsManager={pageContext.sheetsManager}>
-          <CssBaseline />
-          <AppFrame>{children}</AppFrame>
+          {children}
           <GoogleTag />
         </MuiThemeProvider>
       </JssProvider>
@@ -94,18 +96,11 @@ class AppWrapper extends React.Component {
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
   pageContext: PropTypes.object,
   uiTheme: PropTypes.object.isRequired,
 };
 
-const AppWrapper2 = polyfill(AppWrapper);
-
-// Solve an isolation issue with hoist-non-react-statics.
-// TODO: remove once hoist-non-react-statics has been updated.
-function AppWrapper3(props) {
-  return <AppWrapper2 {...props} />;
-}
-
 export default connect(state => ({
   uiTheme: state.theme,
-}))(AppWrapper3);
+}))(AppWrapper);

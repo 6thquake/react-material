@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
 import Input from '@6thquake/react-material/Input';
 import InputLabel from '@6thquake/react-material/InputLabel';
-import FormControl from '@6thquake/react-material/FormControl';
 import FormHelperText from '@6thquake/react-material/FormHelperText';
+import FormControl from '@6thquake/react-material/FormControl';
 
 const styles = theme => ({
   container: {

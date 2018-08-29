@@ -120,6 +120,7 @@ LocaleProvider.propTypes = {
    */
   children: PropTypes.node,
 };
+
 export {
   LocaleContext,
   LocaleProvider,

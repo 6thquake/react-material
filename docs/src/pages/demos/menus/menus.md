@@ -1,16 +1,13 @@
 ---
-components: Menu, MenuItem, MenuList
+title: Menu React component
+components: Menu, MenuItem, MenuList, ClickAwayListener, Popper
 ---
 
 # Menus
 
-[Menus](https://material.io/guidelines/components/menus.html) display a list of choices on a transient sheet of material.
+<p class="description">Menus display a list of choices on temporary surfaces.</p>
 
-Menus appear upon interaction with a button, action, or other control. They display a list of choices, with one choice per line.
-
-Menu items may be disabled if not applicable to a certain context. Contextual menus dynamically change their available menu items based on the current state of the app.
-
-Menus should not be used as a primary method for navigation within an app.
+A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.
 
 ## Simple Menu
 
@@ -24,7 +21,8 @@ Choosing an option should immediately ideally commit the option and close the me
 
 ## Selected menus
 
-If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element. The currently selected menu item is set using the `selected` prop.
+If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element.
+The currently selected menu item is set using the `selected` property (from [ListItem](/api/list-item)).
 
 {{"demo": "pages/demos/menus/SimpleListMenu.js"}}
 
@@ -36,8 +34,17 @@ If the height of a menu prevents all menu items from being displayed, the menu c
 
 {{"demo": "pages/demos/menus/LongMenu.js"}}
 
+## MenuList composition
 
-## ListItem composition
+The `Menu` component uses the `Popover` component internally.
+However, you might want to use a different positioning strategy, or not blocking the scroll.
+For answering those needs, we expose a `MenuList` component that you can compose, with `Popper` in this example.
+
+The primary responsibility of the `MenuList` component is to handle the focus.
+
+{{"demo": "pages/demos/menus/MenuListComposition.js"}}
+
+## Customized MenuItem
 
 The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:
@@ -49,3 +56,10 @@ You can use the same list composition features with the `MenuItem` component:
 Use a different transition altogether.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
+
+## Render Props
+
+It is a [render props](https://reactjs.org/docs/render-props.html) demo that
+keeps track of the local state for a single menu.
+
+{{"demo": "pages/demos/menus/RenderPropsMenu.js"}}

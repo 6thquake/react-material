@@ -18,7 +18,7 @@ const styles = {
   },
 };
 
-function App(props) {
+function ImageAvatars(props) {
   const { classes } = props;
   return (
     <div className={classes.row}>
@@ -32,8 +32,8 @@ function App(props) {
   );
 }
 
-App.propTypes = {
+ImageAvatars.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(ImageAvatars);

@@ -14,7 +14,7 @@ const styles = {
   },
 };
 
-class App extends React.Component {
+class LabelBottomNavigation extends React.Component {
   state = {
     value: 'recents',
   };
@@ -38,8 +38,8 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
+LabelBottomNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(LabelBottomNavigation);

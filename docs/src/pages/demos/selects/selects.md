@@ -1,21 +1,11 @@
 ---
-components: Select, Chip, AsyncSelect, CascadeSelect
+title: Select React component
+components: Select, NativeSelect, Chip, AsyncSelect, CascadeSelect
 ---
-# AsyncSelect
-Asynchronous select with pagination、filter
 
-{{"demo": "pages/demos/selects/AsyncSelect.js"}}
+# Selects
 
-# Select
-Synchronize select with pagination、filter
-
-{{"demo": "pages/demos/selects/FilterSelect.js"}}
-
-## CascadeSelect
-
-Select items by Cascading
-
-{{"demo": "pages/demos/selects/CascadeSelect.js"}}
+<p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
 ## Simple Select
 
@@ -28,7 +18,7 @@ Menus are positioned over their emitting elements such that the currently select
 As the user experience can be improved on mobile using the native select of the platform,
 we allow such pattern.
 
-{{"demo": "pages/demos/selects/NativeSelect.js"}}
+{{"demo": "pages/demos/selects/NativeSelects.js"}}
 
 ## Multiple Select
 
@@ -39,9 +29,25 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "pages/demos/selects/MultipleSelect.js"}}
 
+# AsyncSelect
+Asynchronous select with pagination and filter
+
+{{"demo": "pages/demos/selects/AsyncSelect.js"}}
+
+# PaginationSelect
+Synchronize select with pagination and filter
+
+{{"demo": "pages/demos/selects/FilterSelect.js"}}
+
+## CascadeSelect
+
+Select items by Cascading
+
+{{"demo": "pages/demos/selects/CascadeSelect.js"}}
+
 ## With a Dialog
 
-While it's not encouraged by the Material Design specification, you can use a select inside a dialog.
+While it's discouraged by the Material Design specification, you can use a select inside a dialog.
 
 {{"demo": "pages/demos/selects/DialogSelect.js"}}
 

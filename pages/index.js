@@ -23,8 +23,9 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.palette.background.paper,
-    color: theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main,
+    // theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
+    color: theme.palette.common.white,
   },
   text: {
     display: 'flex',
@@ -78,7 +79,11 @@ const styles = theme => ({
 });
 
 class HomePage extends React.Component {
-  componentDidMount() {}
+  componentDidMount() {
+    if (window.location.hash !== '') {
+      window.location.replace(`https://react-material.com/${window.location.hash}`);
+    }
+  }
 
   render() {
     const classes = this.props.classes;

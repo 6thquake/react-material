@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js
+filename: /packages/react-material-lab/src/SpeedDialIcon/SpeedDialIcon.js
 title: SpeedDialIcon API
 ---
 
@@ -37,7 +37,7 @@ This property accepts the following keys:
 | <span class="prop-name">openIconOpen</span> | Styles applied to the `openIcon` if provided & if `open={true}`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js)
+and the [implementation of the component](https://github.com/6thquake/react-material/tree/master/packages/react-material-lab/src/SpeedDialIcon/SpeedDialIcon.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented

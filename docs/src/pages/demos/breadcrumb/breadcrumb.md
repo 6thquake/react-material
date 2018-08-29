@@ -1,10 +1,11 @@
 ---
+title: Breadcrumb React component
 components: Breadcrumb, BreadcrumbItem
 ---
 
 # Breadcrumb
 
-A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy.
+<p class="description">A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy.</p>
 
 ## When To Use
 * When the system has more than two layers in a hierarchy.

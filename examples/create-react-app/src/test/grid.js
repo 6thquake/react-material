@@ -5,7 +5,7 @@ import Paper from '@6thquake/react-material/Paper';
 import Grid from '../Grid/Grid';
 // import Divider from '@6thquake/react-material/Divider'
 
-// import Divider from '@material-ui/core/Divider';
+// import Divider from '@6thquake/react-material/Divider';
 
 const styles = theme => ({
   root: {

@@ -1,5 +1,7 @@
 # Themes
 
+<p class="description">Customize React-Material with our theme. You can change the colors, the typography and much more.</p>
+
 The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 
 Themes let you apply a consistent tone to your app. It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.
@@ -9,6 +11,7 @@ To promote greater consistency between apps, light and dark theme types are avai
 ## Theme provider
 
 If you wish to customize the theme, you need to use the `MuiThemeProvider` component in order to inject a theme into your application.
+
 However, this is optional; React-Material components come with a default theme.
 
 `MuiThemeProvider` relies on the context feature of React to pass the theme down to the components,
@@ -145,7 +148,7 @@ const theme = createMuiTheme({
       // light: will be calculated from palette.primary.main,
       main: '#ff4400',
       // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contast with palette.primary.main
+      // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
       light: '#0066ff',
@@ -153,7 +156,7 @@ const theme = createMuiTheme({
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
-    // error: will us the default color
+    // error: will use the default color
   },
 });
 ```
@@ -168,7 +171,7 @@ according to the `tonalOffset` value.
 according to the`contrastThreshold` value.
 
 Both the `tonalOffset` and `contrastThreshold` values may be customized as needed.
-A higher value for `tonalOffset` will make calculate values for `light` lighter, and `dark` darker.
+A higher value for `tonalOffset` will make calculated values for `light` lighter, and `dark` darker.
 A higher value for `contrastThreshold` increases the point at which a background color is considered
 light, and given a dark `contrastText`.
 
@@ -217,11 +220,19 @@ If you want to learn more about typography, you can check out [the typography se
 ```js
 const theme = createMuiTheme({
   typography: {
-    // Use the system font over Roboto.
-    fontFamily:
-      '-apple-system,system-ui,BlinkMacSystemFont,' +
-      '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-    },
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
   },
 });
 ```
@@ -293,15 +304,48 @@ For instance:
 
 ## Customizing all instances of a component type
 
+### CSS
+
 When the configuration variables aren't powerful enough, you can take advantage of the
-`overrides` key of the `theme` to potentially change every single style injected by React-Material into the DOM.
+`overrides` key of the `theme` to potentially change every single **style** injected by React-Material into the DOM.
 That's a really powerful feature.
 
-{{"demo": "pages/customization/themes/OverridesTheme.js"}}
+```js
+const theme = createMuiTheme({
+  overrides: {
+    MuiButton: { // Name of the component ⚛️ / style sheet
+      root: { // Name of the rule
+        color: 'white', // Some CSS
+      },
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/themes/OverridesCss.js"}}
 
 The list of these customization points for each component is documented under the **Component API** section.
 For instance, you can have a look at the [Button](/api/button#css-api).
-Alternatively, you can always have a look at the [implementation](https://github.com/6thquake/react-material/blob/develop/packages/react-material/src/Button/Button.js).
+Alternatively, you can always have a look at the [implementation](https://github.com/6thquake/react-material/blob/master/packages/react-material/src/Button/Button.js).
+
+### Properties
+
+You can also apply properties on all the instances of a component type.
+We expose a `props` key in the `theme` for this use case.
+
+```js
+const theme = createMuiTheme({
+  props: {
+    // Name of the component ⚛️
+    MuiButtonBase: {
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 💣!
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/themes/OverridesProperties.js"}}
 
 ## Accessing the theme in a component
 
@@ -386,7 +430,8 @@ const theme = createMuiTheme({
 
 ### `withTheme()(Component) => Component`
 
-Provide the `theme` object as a property of the input component.
+Provide the `theme` object as a property of the input component so it can be used
+in the render method.
 
 #### Arguments
 
@@ -399,7 +444,11 @@ Provide the `theme` object as a property of the input component.
 #### Examples
 
 ```js
-import { withTheme } from '@6thquake/react-material/styles'
+import { withTheme } from '@6thquake/react-material/styles';
+
+function MyComponent(props) {
+  return <div>{props.theme.direction}</div>;
+}
 
 export default withTheme()(MyComponent);
 ```

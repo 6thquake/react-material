@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import ListSubheader from '@6thquake/react-material/ListSubheader';
 import List from '@6thquake/react-material/List';
 import ListItem from '@6thquake/react-material/ListItem';
 import ListItemText from '@6thquake/react-material/ListItemText';
+import ListSubheader from '@6thquake/react-material/ListSubheader';
 
 const styles = theme => ({
   root: {

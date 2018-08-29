@@ -6,8 +6,8 @@ import IconButton from '@6thquake/react-material/IconButton';
 import Input from '@6thquake/react-material/Input';
 import InputLabel from '@6thquake/react-material/InputLabel';
 import InputAdornment from '@6thquake/react-material/InputAdornment';
-import FormControl from '@6thquake/react-material/FormControl';
 import FormHelperText from '@6thquake/react-material/FormHelperText';
+import FormControl from '@6thquake/react-material/FormControl';
 import TextField from '@6thquake/react-material/TextField';
 import MenuItem from '@6thquake/react-material/MenuItem';
 import Visibility from '@material-ui/icons/Visibility';
@@ -62,7 +62,7 @@ class InputAdornments extends React.Component {
   };
 
   handleClickShowPassword = () => {
-    this.setState({ showPassword: !this.state.showPassword });
+    this.setState(state => ({ showPassword: !state.showPassword }));
   };
 
   render() {

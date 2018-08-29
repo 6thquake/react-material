@@ -1,9 +1,11 @@
 ---
+title: Popconfirm React component
 components: Popconfirm
 ---
 
 # Popconfirm
-A Popconfirm can be used to confirm your actions.
+
+<p class="description">A Popconfirm can be used to confirm your actions.</p>
 
 ## Anchor playground
 Use the radio buttons to adjust the anchorOrigin and transformOrigin positions. 

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "jss": "latest",
     "react-material": "next",
+    "jss": "latest",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",

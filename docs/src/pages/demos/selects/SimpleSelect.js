@@ -4,8 +4,8 @@ import { withStyles } from '@6thquake/react-material/styles';
 import Input from '@6thquake/react-material/Input';
 import InputLabel from '@6thquake/react-material/InputLabel';
 import MenuItem from '@6thquake/react-material/MenuItem';
-import FormControl from '@6thquake/react-material/FormControl';
 import FormHelperText from '@6thquake/react-material/FormHelperText';
+import FormControl from '@6thquake/react-material/FormControl';
 import Select from '@6thquake/react-material/Select';
 
 const styles = theme => ({
@@ -88,6 +88,27 @@ class SimpleSelect extends React.Component {
           </Select>
           <FormHelperText>Without label</FormHelperText>
         </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel shrink htmlFor="age-label-placeholder">
+            Age
+          </InputLabel>
+          <Select
+            value={this.state.age}
+            onChange={this.handleChange}
+            input={<Input name="age" id="age-label-placeholder" />}
+            displayEmpty
+            name="age"
+            className={classes.selectEmpty}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+          <FormHelperText>Label + placeholder</FormHelperText>
+        </FormControl>
         <FormControl className={classes.formControl} disabled>
           <InputLabel htmlFor="name-disabled">Name</InputLabel>
           <Select
@@ -123,11 +144,6 @@ class SimpleSelect extends React.Component {
           <FormHelperText>Error</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="name-input">Name</InputLabel>
-          <Input id="name-input" />
-          <FormHelperText>Alignment with an input</FormHelperText>
-        </FormControl>
-        <FormControl className={classes.formControl}>
           <InputLabel htmlFor="name-readonly">Name</InputLabel>
           <Select
             value={this.state.name}
@@ -144,11 +160,11 @@ class SimpleSelect extends React.Component {
           <FormHelperText>Read only</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-simple">Age</InputLabel>
+          <InputLabel htmlFor="age-auto-width">Age</InputLabel>
           <Select
             value={this.state.age}
             onChange={this.handleChange}
-            input={<Input name="age" id="age-simple" />}
+            input={<Input name="age" id="age-auto-width" />}
             autoWidth
           >
             <MenuItem value="">
@@ -159,6 +175,43 @@ class SimpleSelect extends React.Component {
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>
           <FormHelperText>Auto width</FormHelperText>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <Select
+            value={this.state.age}
+            onChange={this.handleChange}
+            name="age"
+            displayEmpty
+            className={classes.selectEmpty}
+          >
+            <MenuItem value="" disabled>
+              Placeholder
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+          <FormHelperText>Placeholder</FormHelperText>
+        </FormControl>
+        <FormControl required className={classes.formControl}>
+          <InputLabel htmlFor="age-required">Age</InputLabel>
+          <Select
+            value={this.state.age}
+            onChange={this.handleChange}
+            name="age"
+            inputProps={{
+              id: 'age-required',
+            }}
+            className={classes.selectEmpty}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+          <FormHelperText>Required</FormHelperText>
         </FormControl>
       </form>
     );

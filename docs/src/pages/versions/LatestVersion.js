@@ -24,23 +24,19 @@ function LatestVersion(props) {
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell>
-              <Typography>0.0.4 beta branch</Typography>
+            <TableCell padding="dense">
+              <Typography>master branch</Typography>
             </TableCell>
-            <TableCell>
+            <TableCell padding="dense">
               <Typography
                 component={props2 => (
-                  <Link
-                    {...props2}
-                    variant="secondary"
-                    href="https://github.com/6thquake/react-material"
-                  />
+                  <Link {...props2} variant="secondary" href="https://react-material.netlify.com//" />
                 )}
               >
                 Documentation
               </Typography>
             </TableCell>
-            <TableCell>
+            <TableCell padding="dense">
               <Typography
                 component={props2 => (
                   <Link

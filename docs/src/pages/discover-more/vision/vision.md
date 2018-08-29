@@ -1,6 +1,6 @@
 # React-Material’s Vision
 
-Our vision is to provide an elegant React implementation of the [Material Design guidelines](https://material.io/guidelines/) **that can be customized to fully match your brand**.
+<p class="description">Our vision is to provide an elegant React implementation of the Material Design guidelines that can be customized to fully match your brand.</p>
 
 The Material Design guidelines are an incredible starting point, but they do not provide guidance on all aspects or needs of an application. In addition to the guidelines-specific implementation, we want React-Material to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines.
 

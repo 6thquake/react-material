@@ -41,6 +41,8 @@ const styles = theme => ({
 });
 
 class CircularIntegration extends React.Component {
+  timer = null;
+
   state = {
     loading: false,
     success: false,
@@ -69,8 +71,6 @@ class CircularIntegration extends React.Component {
     }
   };
 
-  timer = undefined;
-
   render() {
     const { loading, success } = this.state;
     const { classes } = this.props;
@@ -93,7 +93,7 @@ class CircularIntegration extends React.Component {
         </div>
         <div className={classes.wrapper}>
           <Button
-            variant="raised"
+            variant="contained"
             color="primary"
             className={buttonClassname}
             disabled={loading}

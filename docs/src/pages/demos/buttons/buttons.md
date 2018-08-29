@@ -1,6 +1,16 @@
 ---
-components: Button, IconButton, ButtonBase, ButtonGroup, StatusButton
+title: Button React component
+components: Button, IconButton, ButtonBase, Zoom
 ---
+
+<p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
+
+[Buttons](https://material.io/design/components/buttons.html) communicate actions that users can take. They are typically placed throughout your UI, in places like:
+- Dialogs
+- Modal windows
+- Forms
+- Cards
+- Toolbars
 
 # Buttons
 
@@ -10,39 +20,49 @@ Material buttons trigger an ink reaction on press.
 They may display text, imagery, or both.
 Flat buttons and raised buttons are the most commonly used types.
 
-## Status Buttons
-Status buttons 是触发一个方法的button，方法执行时button的状态不同。
+## Text Buttons
 
-{{"demo": "pages/demos/buttons/StatusButtons.js"}}
+[Text buttons](https://material.io/design/components/buttons.html#text-button)
+are typically used for less-pronounced actions, including those located:
 
-## Button Group
-Button Group 是一组button，可以选中某个button。
+- In dialogs
+- In cards
 
-{{"demo": "pages/demos/buttons/ButtonGroup.js"}}
+In cards, text buttons help maintain an emphasis on card content.
 
+{{"demo": "pages/demos/buttons/TextButtons.js"}}
 
-## Flat Buttons
+## Outlined Buttons
 
-Flat buttons are text-only buttons.
-They may be used in dialogs, toolbars, or inline.
-They do not lift, but fill with color on press.
-增加了waring、error、success、progress几种状态
+[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button)
+are medium-emphasis buttons. They contain actions that are important,
+but aren’t the primary action in an app.
 
-{{"demo": "pages/demos/buttons/FlatButtons.js"}}
+### Alternatives
 
-## Raised Buttons
+Outlined buttons are also a lower emphasis alternative to contained buttons,
+or a higher emphasis alternative to text buttons.
 
-Raised buttons are rectangular-shaped buttons.
-They may be used inline. They lift and display ink reactions on press.
-增加了waring、error、success、progress几种状态
+{{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 
-{{"demo": "pages/demos/buttons/RaisedButtons.js"}}
+## Contained Buttons
+
+[Contained buttons](https://material.io/design/components/buttons.html#contained-button)
+are high-emphasis, distinguished by their use of elevation and fill.
+They contain actions that are primary to your app.
+
+The last example of this demo show how to use an upload button.
+
+{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
 
 ## Floating Action Buttons
 
-A floating action button represents the primary action in an application.
-Shaped like a circled icon floating above the UI, it has an ink wash upon focus and lifts upon selection.
-When pressed, it may contain more related actions.
+A [floating action button](https://material.io/design/components/buttons-floating-action-button.html)
+(FAB) performs the primary, or most common, action on a screen.
+It appears in front of all screen content, typically as a circular shape with an icon in its center.
+FABs come in three types: regular, mini, and extended.
+
+Only use a FAB if it is the most suitable way to present a screen’s primary action.
 
 Only one floating action button is recommended per screen to represent the most common action.
 
@@ -80,6 +100,33 @@ Fish eyes effect Buttons.
 
 {{"demo": "pages/demos/buttons/FishButton.js"}}
 
+## Status Buttons
+Status buttons 是触发一个方法的button，方法执行时button的状态不同。
+
+{{"demo": "pages/demos/buttons/StatusButtons.js"}}
+
+## Button Group
+Button Group 是一组button，可以选中某个button。
+
+{{"demo": "pages/demos/buttons/ButtonGroup.js"}}
+
+## Flat Buttons
+
+Flat buttons are text-only buttons.
+They may be used in dialogs, toolbars, or inline.
+They do not lift, but fill with color on press.
+增加了waring、error、success、progress几种状态
+
+{{"demo": "pages/demos/buttons/FlatButtons.js"}}
+
+## Raised Buttons
+
+Raised buttons are rectangular-shaped buttons.
+They may be used inline. They lift and display ink reactions on press.
+增加了waring、error、success、progress几种状态
+
+{{"demo": "pages/demos/buttons/RaisedButtons.js"}}
+
 ### Buttons with icons and label
 
 Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
@@ -89,13 +136,15 @@ Sometimes you might want to have icons for certain button to enhance the UX of t
 ## Customized Buttons
 
 If you have been reading the [overrides documentation page](/customization/overrides)
-but you are not confident jumping in, here's an example of how you can change the main color of a Button.
+but you are not confident jumping in,
+here are examples of how you can change the main color of a Button using classes,
+and using a theme; and of a Bootstrap style Button.
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 
 ## Complex Buttons
 
-The Flat Buttons, Raised Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
+The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
 You can take advantage of this lower level component to build custom interactions.
 
 {{"demo": "pages/demos/buttons/ButtonBases.js"}}

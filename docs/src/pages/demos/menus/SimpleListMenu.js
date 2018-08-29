@@ -4,8 +4,8 @@ import { withStyles } from '@6thquake/react-material/styles';
 import List from '@6thquake/react-material/List';
 import ListItem from '@6thquake/react-material/ListItem';
 import ListItemText from '@6thquake/react-material/ListItemText';
-import Menu from '@6thquake/react-material/Menu';
 import MenuItem from '@6thquake/react-material/MenuItem';
+import Menu from '@6thquake/react-material/Menu';
 
 const styles = theme => ({
   root: {
@@ -23,12 +23,12 @@ const options = [
 ];
 
 class SimpleListMenu extends React.Component {
+  button = null;
+
   state = {
     anchorEl: null,
     selectedIndex: 1,
   };
-
-  button = undefined;
 
   handleClickListItem = event => {
     this.setState({ anchorEl: event.currentTarget });

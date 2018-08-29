@@ -10,6 +10,8 @@ const styles = theme => ({
 });
 
 class CircularDeterminate extends React.Component {
+  timer = null;
+
   state = {
     completed: 0,
   };
@@ -22,11 +24,9 @@ class CircularDeterminate extends React.Component {
     clearInterval(this.timer);
   }
 
-  timer;
-
   progress = () => {
     const { completed } = this.state;
-    this.setState({ completed: completed === 100 ? 0 : completed + 1 });
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
   };
 
   render() {

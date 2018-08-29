@@ -1,10 +1,11 @@
 ---
+title: Tag React component
 components: Tag
 ---
 
 # Tag
 
-The [Tag] 
+<p class="description">Tag</p>
 
 {{"demo": "pages/demos/tag/Tag.js"}}
 

@@ -1,6 +1,6 @@
 # Composition
 
-React-Material tries to make composition as easy as possible.
+<p class="description">React-Material tries to make composition as easy as possible.</p>
 
 ## Wrapping components
 

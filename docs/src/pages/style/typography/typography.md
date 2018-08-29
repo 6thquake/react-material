@@ -4,8 +4,10 @@ components: Typography
 
 # Typography
 
+<p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
+
 Too many type sizes and styles at once can spoil any layout.
-A [typographic scale](https://material.google.com/style/typography.html#typography-styles) has a limited set of type sizes that work well together along with the layout grid.
+A [typographic scale](https://material.io/design/typography/#type-scale) has a limited set of type sizes that work well together along with the layout grid.
 
 ## General
 
@@ -17,12 +19,12 @@ Roboto Font has a few easy ways to get started.
 
 Shown below is a sample link markup used to load the Roboto font from a CDN.
 ```html
-<link rel="stylesheet" href="/static/fonts/Roboto/css.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
-## Install with [npm](https://www.npmjs.com/package/typeface-roboto)
+## Install with npm
 
-You can install it by typing the below command in your terminal:
+You can [install it](https://www.npmjs.com/package/typeface-roboto) by typing the below command in your terminal:
 
 `npm install typeface-roboto --save`
 
@@ -42,9 +44,9 @@ React-Material default typography configuration only relies on 300, 400 and 500 
 
 {{"demo": "pages/style/typography/Types.js"}}
 
-## CSS in JS
+## Theme
 
-In some situation you might not be able to use the `Typography` component.
+In some situations you might not be able to use the `Typography` component.
 Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme?expend-path=$.typography) keys of the theme.
 
 {{"demo": "pages/style/typography/TypographyTheme.js"}}

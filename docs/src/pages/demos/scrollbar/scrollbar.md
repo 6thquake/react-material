@@ -1,8 +1,13 @@
 ---
+title: Scrollbar React component
 components: Scrollbar
 ---
 
 # Scrollbar
+
+<p class="description">Scrollbar</p>
+
+Scrollbar contains:
 * lightweight scrollbar made of 100% react goodness
 * frictionless native browser scrolling
 * native scrollbar for mobile devices

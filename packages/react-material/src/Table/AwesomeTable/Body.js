@@ -19,6 +19,9 @@ const styles = theme => ({
   layoutFixed: {
     tableLayout: 'fixed',
   },
+  tablePadding: {
+    padding: '4px 8px',
+  }
 });
 const colStyle = {
   // width: 150,
@@ -93,7 +96,7 @@ class Body extends React.Component {
                     height: '100%',
                   }}
                 >
-                  <TableCell colSpan={columns.length} style={{ height: '100%' }}>
+                  <TableCell classes={{root: classes.tablePadding}} colSpan={columns.length} style={{ height: '100%' }}>
                     {noData}
                   </TableCell>
                 </TableRow>
@@ -107,7 +110,7 @@ class Body extends React.Component {
                     >
                       {columns.map(column => {
                         return (
-                          <TableCell key={column.key || Date.now()}>
+                          <TableCell classes={{root: classes.tablePadding}} key={column.key || Date.now()}>
                             {column.render ? column.render(entry) : entry[column.dataIndex]}
                           </TableCell>
                         );

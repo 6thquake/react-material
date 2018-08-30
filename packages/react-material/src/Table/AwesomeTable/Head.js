@@ -61,6 +61,9 @@ const styles = theme => ({
       cursor: 'se-resize',
     },
   },
+  tablePadding: {
+    padding: '4px 8px'
+  }
 });
 const colStyle = {
   // width: 150,
@@ -162,6 +165,7 @@ class Head extends React.Component {
         className={classes.tableCell}
         key={column.key || column.title}
         fixed={column.fixed}
+        classes={{root: classes.tablePadding}}
       >
         {content}
       </TableCell>

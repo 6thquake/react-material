@@ -609,6 +609,8 @@ AwesomeTable.propTypes = {
    */
   exportProps: PropTypes.shape({
     type: PropTypes.oneOf(['csv']),
+    downLoad: PropTypes.func,
+    getExportData: PropTypes.func
   }),
   /**
    * Properties applied to the Search Component

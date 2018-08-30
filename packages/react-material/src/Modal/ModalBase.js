@@ -33,6 +33,11 @@ const styles = theme => ({
   actionRootBtn: {
     margin: `0 0 0 ${theme.spacing.unit}px`,
   },
+  justifyActions: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between'
+  }
 });
 
 class Modal extends Component {
@@ -63,7 +68,7 @@ class Modal extends Component {
 
   renderActions() {
     const { actions, onClose, classes } = this.props;
-
+    
     if (actions === Modal.defaultProps.actions) {
       //没传actions
       return actions.map(Button =>
@@ -72,9 +77,24 @@ class Modal extends Component {
           classes: { root: classes.actionRootBtn },
         }),
       );
-    } else {
-      return actions.map(actionBtn => actionBtn);
+    } else if(actions.indexOf('-') == -1) {
+      return actions
+    } else{
+      return this.renderJustifyActions()
     }
+  }
+
+  renderJustifyActions(){
+    const { actions, classes} = this.props;
+    let index = actions.indexOf('-') 
+    let left = actions.slice(0, index)
+    let right = actions.slice(index + 1)
+    return (
+      <div className={classes.justifyActions}>
+        <div className={classes.left}>{left}</div>
+        <div className={classes.right}>{right}</div>
+      </div>
+    )
   }
 
   render() {

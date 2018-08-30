@@ -21,6 +21,10 @@ Touch mechanics:
 
 {{"demo": "pages/demos/modal/Modal.js"}}
 
+##  Modal Actions
+
+{{"demo": "pages/demos/modal/ModalActions.js"}}
+
 ##  Modal method
 
 Modal method include:

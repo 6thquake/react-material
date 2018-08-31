@@ -7,7 +7,7 @@ const styles = theme => ({
   root: {},
   tablePadding: {
     padding: '4px 8px',
-  }
+  },
 });
 
 /**
@@ -15,12 +15,9 @@ const styles = theme => ({
  */
 
 class Cell extends React.Component {
-  
   render() {
-    const { classes, TableCellProps, ...others} = this.props;
-    return (
-      <TableCell classes={{root: classes.tablePadding}} {...others} {...TableCellProps}/>
-    )
+    const { classes, TableCellProps, ...others } = this.props;
+    return <TableCell classes={{ root: classes.tablePadding }} {...others} {...TableCellProps} />;
   }
 }
 

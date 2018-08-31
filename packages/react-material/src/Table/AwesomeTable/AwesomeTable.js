@@ -362,10 +362,10 @@ class AwesomeTable extends React.Component {
       csv += row + '\r\n';
     });
     return csv;
-  }
+  };
 
-  download = (fileName = 'table') =>{
-    let CSV = this.createCsv()
+  download = (fileName = 'table') => {
+    let CSV = this.createCsv();
     let link = document.createElement('a');
     let csvData = new Blob(['\uFEFF' + CSV], {
       type: 'text/csv',
@@ -379,7 +379,7 @@ class AwesomeTable extends React.Component {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }
+  };
 
   renderMainTable = () => {
     let { columns } = this.state;
@@ -410,7 +410,7 @@ class AwesomeTable extends React.Component {
       disableClickToFixColumn,
       OrderProps,
       TableCellProps,
-      TableRowProps
+      TableRowProps,
     } = this.props;
     const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData, sorts } = this.state;
     let width =
@@ -691,7 +691,7 @@ AwesomeTable.propTypes = {
    */
   disableClickToFixColumn: PropTypes.bool,
   /**
-   * Properties applied to the Order 
+   * Properties applied to the Order
    */
   OrderProps: PropTypes.shape({
     onChangeOrder: PropTypes.func,

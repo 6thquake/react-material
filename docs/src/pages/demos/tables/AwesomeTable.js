@@ -39,14 +39,14 @@ const styles = theme => ({
     width: 120,
   },
   cellPadding: {
-    padding: '16px 8px'
-  }
+    padding: '16px 8px',
+  },
 });
 
 const columns = [
   { title: 'Name', width: 100, dataIndex: 'name', key: 'name' },
   {
-    numeric: true, 
+    numeric: true,
     title: 'Age',
     width: 100,
     dataIndex: 'age',
@@ -200,12 +200,12 @@ class AwesomeTableEXample extends React.Component {
     const TableRowProps = {
       hover: true,
       // selected: true,
-    }
+    };
     const TableCellProps = {
-      classes:{
-        root: classes.cellPadding
-      }
-    }
+      classes: {
+        root: classes.cellPadding,
+      },
+    };
     const options = {
       [value]: value,
       TablePaginationProps: PaginationProps,

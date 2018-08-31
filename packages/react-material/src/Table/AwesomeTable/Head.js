@@ -128,7 +128,7 @@ class Head extends React.Component {
       baseLength,
       onColumnFixChange,
       disableClickToFixColumn,
-      TableCellProps
+      TableCellProps,
     } = this.props;
     const { sorts } = this.props;
     let { title, key, sortable } = column;
@@ -197,7 +197,7 @@ class Head extends React.Component {
       resizable,
       headRef,
       headRowHeight,
-      TableRowProps
+      TableRowProps,
     } = this.props;
     const rowStyle = {
       height: headRowHeight,

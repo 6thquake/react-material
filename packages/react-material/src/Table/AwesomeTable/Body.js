@@ -96,7 +96,11 @@ class Body extends React.Component {
                   }}
                   {...TableRowProps}
                 >
-                  <TableCell TableCellProps={TableCellProps} colSpan={columns.length} style={{ height: '100%' }}>
+                  <TableCell
+                    TableCellProps={TableCellProps}
+                    colSpan={columns.length}
+                    style={{ height: '100%' }}
+                  >
                     {noData}
                   </TableCell>
                 </TableRow>
@@ -111,7 +115,11 @@ class Body extends React.Component {
                     >
                       {columns.map(column => {
                         return (
-                          <TableCell numeric={column.numeric} TableCellProps={TableCellProps} key={column.key || Date.now()}>
+                          <TableCell
+                            numeric={column.numeric}
+                            TableCellProps={TableCellProps}
+                            key={column.key || Date.now()}
+                          >
                             {column.render ? column.render(entry) : entry[column.dataIndex]}
                           </TableCell>
                         );

@@ -23,8 +23,8 @@ const styles = theme => ({
   },
   leftButton: {
     width: 200,
-    marginRight: theme.spacing.unit * 3
-  }
+    marginRight: theme.spacing.unit * 3,
+  },
 });
 class App extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class App extends Component {
     this.state = {
       open: false,
       animation: 'zoom',
-      flag: false
+      flag: false,
     };
   }
 
@@ -42,8 +42,8 @@ class App extends Component {
     });
   };
 
-  handleOpen = (flag) =>()=> {
-    this.setState({ open: true , flag});
+  handleOpen = flag => () => {
+    this.setState({ open: true, flag });
   };
 
   handleClose = key => {
@@ -114,10 +114,15 @@ class App extends Component {
         Agree
       </Button>,
     ];
-    let actions = flag? actions1: actions2
+    let actions = flag ? actions1 : actions2;
     return (
       <div>
-        <Button className={classes.leftButton} onClick={this.handleOpen(true)} variant="raised" color="primary">
+        <Button
+          className={classes.leftButton}
+          onClick={this.handleOpen(true)}
+          variant="raised"
+          color="primary"
+        >
           Modal actions has -
         </Button>
         <Button onClick={this.handleOpen(false)} variant="raised" color="primary">
@@ -142,7 +147,6 @@ class App extends Component {
             means sending anonymous location data to Google, even when no apps are running.
           </DialogContentText>
         </Modal2>
-
       </div>
     );
   }

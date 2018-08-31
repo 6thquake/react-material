@@ -362,7 +362,24 @@ class AwesomeTable extends React.Component {
       csv += row + '\r\n';
     });
     return csv;
-  };
+  }
+
+  download = (fileName = 'table') =>{
+    let CSV = this.createCsv()
+    let link = document.createElement('a');
+    let csvData = new Blob(['\uFEFF' + CSV], {
+      type: 'text/csv',
+    });
+    let csvUrl = URL.createObjectURL(csvData);
+    link.href = csvUrl;
+    link.style = 'visibility:hidden';
+    link.download = fileName + '.csv';
+
+    //this part will append the anchor tag and remove it after automatic click
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
   renderMainTable = () => {
     let { columns } = this.state;
@@ -392,6 +409,8 @@ class AwesomeTable extends React.Component {
       noData,
       disableClickToFixColumn,
       OrderProps,
+      TableCellProps,
+      TableRowProps
     } = this.props;
     const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData, sorts } = this.state;
     let width =
@@ -421,6 +440,8 @@ class AwesomeTable extends React.Component {
         headRowHeight={headRowHeight}
         onColumnFixChange={this.handleColumnFixSwitch}
         disableClickToFixColumn={disableClickToFixColumn}
+        TableCellProps={TableCellProps}
+        TableRowProps={TableRowProps}
       />
     );
     const body = (
@@ -435,6 +456,8 @@ class AwesomeTable extends React.Component {
         bodyRowHeight={bodyRowHeight}
         onRowClick={onRowClick}
         noData={noData}
+        TableCellProps={TableCellProps}
+        TableRowProps={TableRowProps}
       />
     );
     const table = [head, body];
@@ -541,7 +564,7 @@ class AwesomeTable extends React.Component {
             onSearch={this.onSearch}
             headRef={this.tableRefs.head}
             bodyRef={this.tableRefs.body}
-            createCsv={this.createCsv}
+            download={this.download}
             searchable={searchable}
             exportProps={exportProps}
             SearchProps={SearchProps}
@@ -609,8 +632,6 @@ AwesomeTable.propTypes = {
    */
   exportProps: PropTypes.shape({
     type: PropTypes.oneOf(['csv']),
-    downLoad: PropTypes.func,
-    getExportData: PropTypes.func
   }),
   /**
    * Properties applied to the Search Component
@@ -670,7 +691,7 @@ AwesomeTable.propTypes = {
    */
   disableClickToFixColumn: PropTypes.bool,
   /**
-   * Props for Order
+   * Properties applied to the Order 
    */
   OrderProps: PropTypes.shape({
     onChangeOrder: PropTypes.func,
@@ -681,6 +702,14 @@ AwesomeTable.propTypes = {
    */
 
   total: PropTypes.element,
+  /**
+   * Properties applied to the TableCell element.
+   */
+  TableCellProps: PropTypes.object,
+  /**
+   * Properties applied to the TableRow element.
+   */
+  TableRowProps: PropTypes.object,
 };
 AwesomeTable.defaultProps = {
   TablePaginationProps: {

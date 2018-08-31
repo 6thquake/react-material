@@ -78,27 +78,9 @@ class TableToolbar extends Component {
   };
 
   handleItemClick = e => {
-    const { createCsv } = this.props;
-    this.handleClose();
-    let csv = createCsv();
-    this.generateCsvFile(csv);
+    const { download } = this.props
+    download && download()
   };
-
-  generateCsvFile(CSV, fileName = 'table') {
-    var link = document.createElement('a');
-    var csvData = new Blob(['\uFEFF' + CSV], {
-      type: 'text/csv',
-    });
-    var csvUrl = URL.createObjectURL(csvData);
-    link.href = csvUrl;
-    link.style = 'visibility:hidden';
-    link.download = fileName + '.csv';
-
-    //this part will append the anchor tag and remove it after automatic click
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
 
   render() {
     const { width, classes, searchable, exportProps, SearchProps, title } = this.props;

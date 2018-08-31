@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import update from 'immutability-helper';
 import Table from '../../Table';
 import TableBody from '../../TableBody';
-import TableCell from '../../TableCell';
+import TableCell from './Cell';
 import TableHead from '../../TableHead';
 import TableRow from '../../TableRow';
 import HeadCell from './HeadCell';
@@ -61,9 +61,6 @@ const styles = theme => ({
       cursor: 'se-resize',
     },
   },
-  tablePadding: {
-    padding: '4px 8px'
-  }
 });
 const colStyle = {
   // width: 150,
@@ -131,6 +128,7 @@ class Head extends React.Component {
       baseLength,
       onColumnFixChange,
       disableClickToFixColumn,
+      TableCellProps
     } = this.props;
     const { sorts } = this.props;
     let { title, key, sortable } = column;
@@ -155,6 +153,7 @@ class Head extends React.Component {
 
     let cell = (
       <TableCell
+        numeric={column.numeric}
         sortDirection={true}
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
@@ -165,7 +164,7 @@ class Head extends React.Component {
         className={classes.tableCell}
         key={column.key || column.title}
         fixed={column.fixed}
-        classes={{root: classes.tablePadding}}
+        TableCellProps={TableCellProps}
       >
         {content}
       </TableCell>
@@ -198,6 +197,7 @@ class Head extends React.Component {
       resizable,
       headRef,
       headRowHeight,
+      TableRowProps
     } = this.props;
     const rowStyle = {
       height: headRowHeight,
@@ -211,7 +211,7 @@ class Head extends React.Component {
             })}
           </colgroup>
           <TableHead>
-            <TableRow style={rowStyle}>
+            <TableRow style={rowStyle} {...TableRowProps}>
               {columns.map((column, index) => {
                 return this.renderTableHeadCell(column, index);
               })}

@@ -22,7 +22,7 @@ import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
-import Notifications from 'docs/src/modules/components/Notifications';
+// import Notifications from 'docs/src/modules/components/Notifications';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import actionTypes from 'docs/src/modules/redux/actionTypes';
 
@@ -194,7 +194,7 @@ class AppFrame extends React.Component {
             </Tooltip>
           </Toolbar>
         </AppBar>
-        <Notifications />
+        { /*<Notifications />*/ }
         <AppDrawer
           className={classes.drawer}
           disablePermanent={disablePermanent}

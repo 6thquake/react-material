@@ -17,10 +17,10 @@ const styles = theme => {
 
   const defaultStyle = {
     flat: {
-      waring: {
-        color: theme.palette.waring.main,
+      warning: {
+        color: theme.palette.warning.main,
         '&:hover': {
-          backgroundColor: fade(theme.palette.waring.main, theme.palette.action.hoverOpacity),
+          backgroundColor: fade(theme.palette.warning.main, theme.palette.action.hoverOpacity),
           '@media (hover: none)': {
             backgroundColor: 'transparent',
           },
@@ -55,13 +55,13 @@ const styles = theme => {
       },
     },
     raised: {
-      waring: {
-        color: theme.palette.waring.contrastText,
-        backgroundColor: theme.palette.waring.main,
+      warning: {
+        color: theme.palette.warning.contrastText,
+        backgroundColor: theme.palette.warning.main,
         '&:hover': {
-          backgroundColor: theme.palette.waring.dark,
+          backgroundColor: theme.palette.warning.dark,
           '@media (hover: none)': {
-            backgroundColor: theme.palette.waring.main,
+            backgroundColor: theme.palette.warning.main,
           },
         },
       },
@@ -98,12 +98,12 @@ const styles = theme => {
     },
   };
   return {
-    flatWaring: defaultStyle.flat.waring,
+    flatWaring: defaultStyle.flat.warning,
     flatError: defaultStyle.flat.error,
     flatSuccess: defaultStyle.flat.success,
     flatProgress: defaultStyle.flat.progress,
 
-    raisedWaring: defaultStyle.raised.waring,
+    raisedWaring: defaultStyle.raised.warning,
     raisedError: defaultStyle.raised.error,
     raisedSuccess: defaultStyle.raised.success,
     raisedProgress: defaultStyle.raised.progress,
@@ -180,7 +180,7 @@ class StatusButton extends Component {
     let { children, className: classNamePro, classes, onHandler, ...other } = this.props;
     other.color = this.state.color;
     const { color } = other;
-    const customColors = ['waring', 'error', 'success', 'progress'];
+    const customColors = ['warning', 'error', 'success', 'progress'];
     if (customColors.indexOf(color) !== -1) {
       other.color = 'default';
     }
@@ -191,12 +191,12 @@ class StatusButton extends Component {
         [classes.raisedProgress]: !flat && color === 'progress',
         [classes.raisedError]: !flat && color === 'error',
         [classes.raisedSuccess]: !flat && color === 'success',
-        [classes.raisedWaring]: !flat && color === 'waring',
+        [classes.raisedWaring]: !flat && color === 'warning',
 
         [classes.flatProgress]: flat && color === 'progress',
         [classes.flatError]: flat && color === 'error',
         [classes.flatSuccess]: flat && color === 'success',
-        [classes.flatWaring]: flat && color === 'waring',
+        [classes.flatWaring]: flat && color === 'warning',
       },
       classNamePro,
     );
@@ -221,7 +221,7 @@ StatusButton.propTypes = {
     'secondary',
     'error',
     'success',
-    'waring',
+    'warning',
     'progress',
   ]),
   /**

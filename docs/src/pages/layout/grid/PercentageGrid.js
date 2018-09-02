@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
 import Paper from '@6thquake/react-material/Paper';
-import Anchor from '@6thquake/react-material/Anchor';
 import { CompatibleGrid as Grid } from '@6thquake/react-material/Grid';
 
 const styles = theme => ({
@@ -18,46 +17,7 @@ const styles = theme => ({
 
 function PercentageGridExample(props) {
   const { classes } = props;
-  let links = [
-    {
-      href: '#how-it-works',
-      label: 'How-it-works',
-    },
-    // PercentageGrid grid
-    {
-      href: '#percentage-grid',
-      label: 'Percentage grid',
-    },
-
-    {
-      href: '#spacing',
-      label: 'Spacing',
-    },
-    {
-      href: '#full-width-vs-centered',
-      label: 'Full-width-vs-centered',
-    },
-    {
-      href: '#interactive',
-      label: 'Interactive',
-    },
-    {
-      href: '#auto-layout',
-      label: 'Auto-layout',
-    },
-    {
-      href: '#css-grid-layout',
-      label: 'CSS Grid Layout',
-    },
-    {
-      href: '#limitations',
-      label: 'Limitations',
-    },
-    {
-      href: '#api',
-      label: 'API',
-    },
-  ];
+  
   let style = {
     position: 'fixed',
     top: 100,
@@ -68,7 +28,6 @@ function PercentageGridExample(props) {
 
   return (
     <div className={classes.root}>
-      <Anchor style={style} links={links} />
       <Grid id="cnchor-box" container spacing={24}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>xs=12</Paper>

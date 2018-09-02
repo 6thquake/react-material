@@ -4,7 +4,7 @@ import { orange, green, common } from '@material-ui/core/colors';
 const addonRmTheme = function(theme) {
   const addonTheme = {
     palette: {
-      waring: {
+      warning: {
         light: orange['300'],
         main: orange['500'],
         dark: orange['700'],

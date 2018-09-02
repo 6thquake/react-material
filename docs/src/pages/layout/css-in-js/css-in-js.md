@@ -1,5 +1,7 @@
 # CSS in JS
 
+<p class="description">You can leverage our styling solution, even if you are not using our components.</p>
+
 ## Responsive breakpoints
 
 Sometimes, wrapping things inside a layout component doesn't make much sense when

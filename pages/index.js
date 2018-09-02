@@ -6,7 +6,7 @@ import Typography from '@6thquake/react-material/Typography';
 import Button from '@6thquake/react-material/Button';
 import withRoot from 'docs/src/modules/components/withRoot';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
-import Tidelift from 'docs/src/modules/components/Tidelift';
+// import Tidelift from 'docs/src/modules/components/Tidelift';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
@@ -110,7 +110,7 @@ class HomePage extends React.Component {
             }}
           />
           <Head />
-          <Tidelift />
+          { /*<Tidelift />*/ }
           <div className={classes.hero}>
             <div className={classes.content}>
               <img

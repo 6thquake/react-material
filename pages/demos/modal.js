@@ -22,6 +22,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/modal/Confirm'), 'utf8')
 `,
         },
+        'pages/demos/modal/ModalActions.js': {
+          js: require('docs/src/pages/demos/modal/ModalActions').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/modal/ModalActions'), 'utf8')
+`,
+        },
       }}
     />
   );

@@ -30,8 +30,15 @@ title: AwesomeTable API
 | <span class="prop-name">sync</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | if sync is true, pagination and search will be automatical. you needn't to do these things by yourself |
 | <span class="prop-name">title</span> | <span class="prop-type">node |   | The title of table |
 | <span class="prop-name">noData</span> | <span class="prop-type">element | <span class="prop-default">&lt;NoData /></span> | render when data length is 0 |
+<<<<<<< HEAD
 | <span class="prop-name">OrderProps</span> | <span class="prop-type">{ onChangeOrder?: func, multiple?: bool } | <span class="prop-default">{  multiple: false,  onChangeOrder: (...arg) => console.log(arg),}</span> | Props for Order |
 | <span class="prop-name">total</span> | <span class="prop-type">element |   | total |
+=======
+| <span class="prop-name">OrderProps</span> | <span class="prop-type">{onChangeOrder?: func, multiple?: bool} | <span class="prop-default">{  multiple: false,  onChangeOrder: (...arg) => console.log(arg),}</span> | Properties applied to the Order |
+| <span class="prop-name">total</span> | <span class="prop-type">element |  | total |
+| <span class="prop-name">TableCellProps</span> | <span class="prop-type">object |  | Properties applied to the TableCell element. |
+| <span class="prop-name">TableRowProps</span> | <span class="prop-type">object |  | Properties applied to the TableRow element. |
+>>>>>>> origin/feature/table-update
 
 Any other properties supplied will be spread to the root element (native element).
 

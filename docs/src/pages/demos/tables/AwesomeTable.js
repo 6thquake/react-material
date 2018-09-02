@@ -38,11 +38,15 @@ const styles = theme => ({
   button: {
     width: 120,
   },
+  cellPadding: {
+    padding: '16px 8px',
+  },
 });
 
 const columns = [
   { title: 'Name', width: 100, dataIndex: 'name', key: 'name' },
   {
+    numeric: true,
     title: 'Age',
     width: 100,
     dataIndex: 'age',
@@ -193,7 +197,15 @@ class AwesomeTableEXample extends React.Component {
       isDark: true,
       onChange: this.handleSearch,
     };
-
+    const TableRowProps = {
+      hover: true,
+      // selected: true,
+    };
+    const TableCellProps = {
+      classes: {
+        root: classes.cellPadding,
+      },
+    };
     const options = {
       [value]: value,
       TablePaginationProps: PaginationProps,
@@ -203,6 +215,8 @@ class AwesomeTableEXample extends React.Component {
       },
       exportProps,
       SearchProps,
+      // TableRowProps,
+      TableCellProps,
     };
 
     return (

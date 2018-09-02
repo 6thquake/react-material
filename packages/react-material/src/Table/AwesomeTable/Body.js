@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import update from 'immutability-helper';
 import Table from '../../Table';
 import TableBody from '../../TableBody';
-import TableCell from '../../TableCell';
+import TableCell from './Cell';
 import TableHead from '../../TableHead';
 import TableRow from '../../TableRow';
 import Scrollbar from '../../Scrollbar';
@@ -50,6 +50,8 @@ class Body extends React.Component {
       bodyRowHeight,
       height,
       noData,
+      TableCellProps,
+      TableRowProps,
     } = this.props;
 
     let mainAndNoData = data.length === 0 && type === 'main';
@@ -92,8 +94,13 @@ class Body extends React.Component {
                   style={{
                     height: '100%',
                   }}
+                  {...TableRowProps}
                 >
-                  <TableCell colSpan={columns.length} style={{ height: '100%' }}>
+                  <TableCell
+                    TableCellProps={TableCellProps}
+                    colSpan={columns.length}
+                    style={{ height: '100%' }}
+                  >
                     {noData}
                   </TableCell>
                 </TableRow>
@@ -104,10 +111,15 @@ class Body extends React.Component {
                       onClick={this.handleRowClick(entry, index)}
                       style={rowStyle}
                       key={entry.key}
+                      {...TableRowProps}
                     >
                       {columns.map(column => {
                         return (
-                          <TableCell key={column.key || Date.now()}>
+                          <TableCell
+                            numeric={column.numeric}
+                            TableCellProps={TableCellProps}
+                            key={column.key || Date.now()}
+                          >
                             {column.render ? column.render(entry) : entry[column.dataIndex]}
                           </TableCell>
                         );

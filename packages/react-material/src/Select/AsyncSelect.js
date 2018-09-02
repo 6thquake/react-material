@@ -179,14 +179,15 @@ AsyncSelect.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
+    PropTypes.bool,
     PropTypes.object,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object,])),
   ]),
   /**
    * select option,
    */
   options: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object,]),
   ),
   /**
    * pagination component config
@@ -221,7 +222,7 @@ AsyncSelect.propTypes = {
    */
   filter: PropTypes.fun,
   /**
-   * option item label and value,when assignment option by options
+   * option item label and value, when assignment option by options
    */
   mapper: PropTypes.shape({
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),

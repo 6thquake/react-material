@@ -100,11 +100,11 @@ const style = theme => ({
 
 class Filters extends Component {
   onClick = selectItem => () => {
-    const { multi, onChange, value, mapProps } = this.props;
-    const selectVal = selectItem[mapProps.value];
+    const { multiple, onChange, value, mapper } = this.props;
+    const selectVal = selectItem[mapper.value];
     let newVal;
 
-    if (!multi) {
+    if (!multiple) {
       if (this.isSelected(selectVal)) {
         newVal = [];
       } else {
@@ -123,7 +123,7 @@ class Filters extends Component {
   isSelected = value => this.props.value.includes(value);
 
   render() {
-    const { classes, options, label, mapProps, spacing, type } = this.props;
+    const { classes, options, label, mapper, spacing, type } = this.props;
 
     return (
       <Grid container spacing={8}>
@@ -135,13 +135,13 @@ class Filters extends Component {
           <Grid container spacing={spacing}>
             {options.map(s => {
               const label =
-                typeof mapProps.label === 'function'
-                  ? mapProps.label(s, options)
-                  : s[mapProps.label];
+                typeof mapper.label === 'function'
+                  ? mapper.label(s, options)
+                  : s[mapper.label];
               const value =
-                typeof mapProps.value === 'function'
-                  ? mapProps.value(s, options)
-                  : s[mapProps.value];
+                typeof mapper.value === 'function'
+                  ? mapper.value(s, options)
+                  : s[mapper.value];
 
               const isSelected = this.isSelected(value);
 
@@ -199,18 +199,18 @@ Filters.propTypes = {
   /**
    * singleSelect or multiSelect default is singleSelect.
    */
-  multi: PropTypes.bool,
+  multiple: PropTypes.bool,
   value: PropTypes.array,
   /**
    * label name for Filter
    */
   label: PropTypes.string,
   /**
-   * map data options struct
+   * option item label and value, when assignment option by options
    */
-  mapProps: PropTypes.shape({
+  mapper: PropTypes.shape({
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.func]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }),
   /**
    * spacing between items
@@ -221,9 +221,9 @@ Filters.propTypes = {
 Filters.defaultProps = {
   options: [],
   value: [],
-  multi: false,
+  multiple: false,
   label: '',
-  mapProps: {
+  mapper: {
     label: 'label',
     value: 'value',
   },

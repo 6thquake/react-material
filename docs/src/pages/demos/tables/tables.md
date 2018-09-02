@@ -67,6 +67,9 @@ Show "No data is available" or someting else you specified when table have no da
 
 {{"demo": "pages/demos/tables/NoDataTable.js"}}
 
+## Tree Table
+{{"demo": "pages/demos/tables/TreeTable.js"}}
+
 ## Cross Table
 
 Cross tabulation is a method to quantitatively analyze the relationship between multiple variables.

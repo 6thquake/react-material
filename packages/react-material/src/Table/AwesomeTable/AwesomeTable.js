@@ -344,9 +344,9 @@ class AwesomeTable extends React.Component {
       data,
     });
   };
-  handleTreeChange=()=>{
-    this.syncTableRowHeight()
-  }
+  handleTreeChange = () => {
+    this.syncTableRowHeight();
+  };
   createCsv = () => {
     let head = this.state.columns.reduce((pre, cur) => {
       if (cur.render || !cur.title) {
@@ -416,7 +416,15 @@ class AwesomeTable extends React.Component {
       TableCellProps,
       TableRowProps,
     } = this.props;
-    const { bodyHeight, bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData, sorts } = this.state;
+    const {
+      bodyHeight,
+      bodyRowHeight,
+      headRowHeight,
+      hasLeft,
+      hasRight,
+      data: bodyData,
+      sorts,
+    } = this.state;
     let width =
       type === 'main'
         ? ''

@@ -13,7 +13,8 @@ function Page() {
           raw: preval`
   module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/TreeTable'), 'utf8')
-  `,},
+  `,
+        },
         'pages/demos/tables/AwesomeTable.js': {
           js: require('docs/src/pages/demos/tables/AwesomeTable').default,
           raw: preval`

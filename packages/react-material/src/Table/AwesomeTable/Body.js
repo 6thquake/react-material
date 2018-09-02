@@ -24,13 +24,13 @@ const styles = theme => ({
   layoutFixed: {
     tableLayout: 'fixed',
   },
-  cell:{
+  cell: {
     display: 'flex',
     alignItems: 'center',
   },
   exIcon: {
     // margin: 5,
-    fontSize: '0.8125rem'
+    fontSize: '0.8125rem',
   },
   exIconBox: {
     border: '1px solid ' + theme.palette.divider,
@@ -42,8 +42,7 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     cursor: 'pointer',
-  }
-
+  },
 });
 const colStyle = {
   // width: 150,
@@ -57,13 +56,11 @@ class Body extends React.Component {
     super(props);
     this.state = {
       // rows[]
-      rows: []
+      rows: [],
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState){
-
-  }
+  static getDerivedStateFromProps(nextProps, prevState) {}
 
   componentDidMount() {
     // const { data } = this.props
@@ -73,14 +70,14 @@ class Body extends React.Component {
     // })
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if(prevProps.data !== this.props.data){
-      const { data } = this.props
-      this.rowsState= []
-      this.renderRows(data)
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.data !== this.props.data) {
+      const { data } = this.props;
+      this.rowsState = [];
+      this.renderRows(data);
       this.setState({
-        rows: this.rowsState
-      })
+        rows: this.rowsState,
+      });
     }
   }
 
@@ -89,71 +86,67 @@ class Body extends React.Component {
     onRowClick && onRowClick(entry, index);
   };
 
-  rowsState = []
-  rowStyle = {}
-  
-  handleExIconChange=(res)=>{
+  rowsState = [];
+  rowStyle = {};
 
-    const { close, data: entry} = res
-    const {rows} = this.state
-    const { onTreeChange } = this.props
-    let {key} = entry
+  handleExIconChange = res => {
+    const { close, data: entry } = res;
+    const { rows } = this.state;
+    const { onTreeChange } = this.props;
+    let { key } = entry;
 
-    rows.map((item, index)=>{
-      if(item.parent && item.parent.key === key){
-        item.show = !close
+    rows.map((item, index) => {
+      if (item.parent && item.parent.key === key) {
+        item.show = !close;
       }
-    })
-    
-    this.setState({
-      rows
-    }, ()=>{
-      onTreeChange && onTreeChange()
-    })
-  }
+    });
 
-  renderRows = (tree, parent)=> {
-    
-    if (tree && tree.length > 0){
+    this.setState(
+      {
+        rows,
+      },
+      () => {
+        onTreeChange && onTreeChange();
+      },
+    );
+  };
+
+  renderRows = (tree, parent) => {
+    if (tree && tree.length > 0) {
       for (let index = 0; index < tree.length; index++) {
-        let node = tree[index]
-        if(parent === undefined){
-          node.show = true
+        let node = tree[index];
+        if (parent === undefined) {
+          node.show = true;
         }
-        node.key = node.key || Date.now()
-        node.parent = parent
-        node.index = index
-        node.isLeaf = !node.children || node.children.length <= 0
-        node.deep = parent ? parent.deep + 1 : 0
+        node.key = node.key || Date.now();
+        node.parent = parent;
+        node.index = index;
+        node.isLeaf = !node.children || node.children.length <= 0;
+        node.deep = parent ? parent.deep + 1 : 0;
         // this.rows.push(this.renderOneRow(node, index))
-        this.rowsState.push(node)
-        this.renderRows(node.children, node)
+        this.rowsState.push(node);
+        this.renderRows(node.children, node);
       }
     }
     // return this.rows
-  }
+  };
 
-  renderOneRow= (entry, index)=> {
-    const {
-      classes,
-      columns,
-      TableCellProps,
-      TableRowProps,
-    } = this.props;
-    let rowStyle = this.rowStyle    
-    let indent = (entry.deep || 0) * 50
-    if(!entry.show){
-      return null
+  renderOneRow = (entry, index) => {
+    const { classes, columns, TableCellProps, TableRowProps } = this.props;
+    let rowStyle = this.rowStyle;
+    let indent = (entry.deep || 0) * 50;
+    if (!entry.show) {
+      return null;
     }
 
-    let show = entry.show 
-    let node = entry
-    while (node.parent){
-      node = node.parent
-      show = show && node.show
+    let show = entry.show;
+    let node = entry;
+    while (node.parent) {
+      node = node.parent;
+      show = show && node.show;
     }
-    if(!show){
-      return
+    if (!show) {
+      return;
     }
     let row = (
       <TableRow
@@ -163,10 +156,13 @@ class Body extends React.Component {
         {...TableRowProps}
       >
         {columns.map((column, index) => {
-          let hasIcon = entry.children && entry.children.length > 0 && index === 0
-          let indentStyle = index === 0? {
-            paddingLeft: indent
-          } : {}
+          let hasIcon = entry.children && entry.children.length > 0 && index === 0;
+          let indentStyle =
+            index === 0
+              ? {
+                  paddingLeft: indent,
+                }
+              : {};
           return (
             <TableCell
               numeric={column.numeric}
@@ -174,18 +170,18 @@ class Body extends React.Component {
               key={column.key || Date.now()}
             >
               <div className={classes.cell}>
-                <span style={indentStyle}></span>
+                <span style={indentStyle} />
                 {/* {hasIcon && <span className={classes.exIconBox} onClick={this.handleExIconClick(entry)}>{<RemoveIcon className={classes.exIcon}/>}</span>} */}
-                {hasIcon && <ExSwitch onChange={this.handleExIconChange} data={entry}/>}
+                {hasIcon && <ExSwitch onChange={this.handleExIconChange} data={entry} />}
                 <span>{column.render ? column.render(entry) : entry[column.dataIndex]}</span>
               </div>
             </TableCell>
           );
         })}
       </TableRow>
-    )
-    return row
-  }
+    );
+    return row;
+  };
   render() {
     const {
       classes,
@@ -200,9 +196,8 @@ class Body extends React.Component {
       noData,
       TableCellProps,
       TableRowProps,
-  
     } = this.props;
-    const { rows } = this.state
+    const { rows } = this.state;
     let mainAndNoData = data.length === 0 && type === 'main';
     // this.rowsState = []
     const tableStyle = mainAndNoData
@@ -210,17 +205,17 @@ class Body extends React.Component {
           height: '100%',
         }
       : {};
-    let bodyRowHeight = 0
-    if(rows.length > 0){
-      bodyRowHeight = bodyHeight / rows.length
+    let bodyRowHeight = 0;
+    if (rows.length > 0) {
+      bodyRowHeight = bodyHeight / rows.length;
     }
     this.rowStyle = {
       height: bodyRowHeight,
     };
 
     let Rows = rows.map((item, index) => {
-      return this.renderOneRow(item, index)
-    })
+      return this.renderOneRow(item, index);
+    });
     return (
       <div
         ref={tableRef}
@@ -260,7 +255,9 @@ class Body extends React.Component {
                     {noData}
                   </TableCell>
                 </TableRow>
-              ) : Rows}
+              ) : (
+                Rows
+              )}
             </TableBody>
           </Table>
         }

@@ -18,11 +18,11 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     cursor: 'pointer',
-    fontSize: '0.8125rem'
+    fontSize: '0.8125rem',
   },
   exIcon: {
     // margin: 5,
-    fontSize: '0.8125rem'
+    fontSize: '0.8125rem',
   },
 });
 
@@ -32,27 +32,29 @@ const styles = theme => ({
 
 class ExSwitch extends React.Component {
   state = {
-    close: true
+    close: true,
   };
   handleClick = e => {
-    const { onChange, data} = this.props
+    const { onChange, data } = this.props;
     // const { close }
     e.stopPropagation();
-    this.setState({
-      close: !this.state.close
-    }, ()=> {
-      onChange && onChange({ close: this.state.close, data, })
-    })
-    
+    this.setState(
+      {
+        close: !this.state.close,
+      },
+      () => {
+        onChange && onChange({ close: this.state.close, data });
+      },
+    );
   };
   render() {
     const { classes } = this.props;
     const { close } = this.state;
     return (
       <span className={classes.root} onClick={this.handleClick}>
-        {close ? <AddIcon className={classes.exIcon} /> : <RemoveIcon className={classes.exIcon}/>}
+        {close ? <AddIcon className={classes.exIcon} /> : <RemoveIcon className={classes.exIcon} />}
       </span>
-    )
+    );
   }
 }
 

@@ -43,151 +43,190 @@ const styles = theme => ({
   },
 });
 
-const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
-  key: 'name',
-  width: 350,
-  fixed: 'left'
-}, {
-  title: 'Age',
-  dataIndex: 'age',
-  key: 'age',
-  width: '200',
-}, {
-  title: 'Address',
-  dataIndex: 'address',
-  width: '200',
-  key: 'address',
-  }, {
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+    width: 350,
+    fixed: 'left',
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+    width: '200',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    width: '200',
+    key: 'address',
+  },
+  {
     title: 'Age222',
     dataIndex: 'age',
     key: 'age',
     width: '200',
-  }, , {
+  },
+  ,
+  {
     title: 'Age11',
     key: 'age',
     width: '200',
     dataIndex: 'age',
-  },];
+  },
+];
 
-const data = [{
-  key: 1,
-  name: '1 John Brown sr.',
-  age: 60,
-  address: 'New York No. 1 Lake Park',
-  children: [{
-    key: 11,
-    name: '11 John Brown',
-    age: 42,
-    address: 'New York No. 2 Lake Park',
-  }, {
-    key: 12,
-    name: '12 John Brown jr.',
-    age: 30,
-    address: 'New York No. 3 Lake Park',
-    children: [{
-      key: 121,
-      name: '121 Jimmy Brown',
-      age: 16,
-      address: 'New York No. 3 Lake Park',
-    }],
-  }, {
-    key: 13,
-    name: '13 Jim Green sr.',
-    age: 72,
-    address: 'London No. 1 Lake Park',
-    children: [{
-      key: 131,
-      name: '131 Jim Green',
-      age: 42,
-      address: 'London No. 2 Lake Park',
-      children: [{
-        key: 1311,
-        name: '1311 Jim Green jr.',
-        age: 25,
-        address: 'London No. 3 Lake Park',
-      }, {
-        key: 1312,
-        name: '1312 Jimmy Green sr.',
-        age: 18,
-        address: 'London No. 4 Lake Park',
-      }],
-    }],
-  }],
-}, {
-  key: 2,
-  name: '2 Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}];
+const data = [
+  {
+    key: 1,
+    name: '1 John Brown sr.',
+    age: 60,
+    address: 'New York No. 1 Lake Park',
+    children: [
+      {
+        key: 11,
+        name: '11 John Brown',
+        age: 42,
+        address: 'New York No. 2 Lake Park',
+      },
+      {
+        key: 12,
+        name: '12 John Brown jr.',
+        age: 30,
+        address: 'New York No. 3 Lake Park',
+        children: [
+          {
+            key: 121,
+            name: '121 Jimmy Brown',
+            age: 16,
+            address: 'New York No. 3 Lake Park',
+          },
+        ],
+      },
+      {
+        key: 13,
+        name: '13 Jim Green sr.',
+        age: 72,
+        address: 'London No. 1 Lake Park',
+        children: [
+          {
+            key: 131,
+            name: '131 Jim Green',
+            age: 42,
+            address: 'London No. 2 Lake Park',
+            children: [
+              {
+                key: 1311,
+                name: '1311 Jim Green jr.',
+                age: 25,
+                address: 'London No. 3 Lake Park',
+              },
+              {
+                key: 1312,
+                name: '1312 Jimmy Green sr.',
+                age: 18,
+                address: 'London No. 4 Lake Park',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    key: 2,
+    name: '2 Joe Black',
+    age: 32,
+    address: 'Sidney No. 1 Lake Park',
+  },
+];
 
-const data2 = [{
-  key: 1,
-  name: '1 1111111',
-  age: 60,
-  address: 'New York No. 1 Lake Park',
-  children: [{
-    key: 11,
-    name: '11 John Brown',
-    age: 42,
-    address: 'New York No. 2 Lake Park',
-  }, {
-    key: 12,
-    name: '12 John Brown jr.',
-    age: 30,
-    address: 'New York No. 3 Lake Park',
-    children: [{
-      key: 121,
-      name: '121 Jimmy Brown',
-      age: 16,
-      address: 'New York No. 3 Lake Park',
-    }],
-  }, {
-    key: 13,
-    name: '13 Jim Green sr.',
-    age: 72,
-    address: 'London No. 1 Lake Park',
-    children: [{
-      key: 131,
-      name: '131 Jim Green',
-      age: 42,
-      address: 'London No. 2 Lake Park',
-      children: [{
-        key: 1311,
-        name: '1311 Jim Green jr.',
-        age: 25,
-        address: 'London No. 3 Lake Park',
-      }, {
-        key: 1312,
-        name: '1312 Jimmy Green sr.',
-        age: 18,
-        address: 'London No. 4 Lake Park',
-      }],
-    }],
-  }],
-}, {
-  key: 222222222,
-  name: '2222222222',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-  }, {
+const data2 = [
+  {
+    key: 1,
+    name: '1 1111111',
+    age: 60,
+    address: 'New York No. 1 Lake Park',
+    children: [
+      {
+        key: 11,
+        name: '11 John Brown',
+        age: 42,
+        address: 'New York No. 2 Lake Park',
+      },
+      {
+        key: 12,
+        name: '12 John Brown jr.',
+        age: 30,
+        address: 'New York No. 3 Lake Park',
+        children: [
+          {
+            key: 121,
+            name: '121 Jimmy Brown',
+            age: 16,
+            address: 'New York No. 3 Lake Park',
+          },
+        ],
+      },
+      {
+        key: 13,
+        name: '13 Jim Green sr.',
+        age: 72,
+        address: 'London No. 1 Lake Park',
+        children: [
+          {
+            key: 131,
+            name: '131 Jim Green',
+            age: 42,
+            address: 'London No. 2 Lake Park',
+            children: [
+              {
+                key: 1311,
+                name: '1311 Jim Green jr.',
+                age: 25,
+                address: 'London No. 3 Lake Park',
+              },
+              {
+                key: 1312,
+                name: '1312 Jimmy Green sr.',
+                age: 18,
+                address: 'London No. 4 Lake Park',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    key: 222222222,
+    name: '2222222222',
+    age: 32,
+    address: 'Sidney No. 1 Lake Park',
+  },
+  {
     key: 3,
     name: '333333333 aaaa',
     age: 32,
     address: 'Sidney No. 1 Lake Park',
-    children:[{
-      key: 3-1,
-      name: '31',
-      address: '31311313131',
-      age: '333333'
-    },{
-        key: 3-2,
+    children: [
+      {
+        key: 3 - 1,
         name: '31',
         address: '31311313131',
-        age: '333333'
-    }]
-  },];
+        age: '333333',
+      },
+      {
+        key: 3 - 2,
+        name: '31',
+        address: '31311313131',
+        age: '333333',
+      },
+    ],
+  },
+];
 
 class AwesomeTableEXample extends React.Component {
   constructor(props) {
@@ -205,16 +244,16 @@ class AwesomeTableEXample extends React.Component {
   }
   componentDidMount = () => {
     this.handleChangePage(0, 0);
-    const { data } = this.state
-    
-    this.timer = setTimeout(()=>{
+    const { data } = this.state;
+
+    this.timer = setTimeout(() => {
       this.setState({
-        data: data2
-      })
-    }, 2000)
+        data: data2,
+      });
+    }, 2000);
   };
-  componentWillUnmount(){
-    this.clearInterval(this.timer)
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
   handleChange = e => {
     let value = e.target.value;
@@ -346,7 +385,6 @@ class AwesomeTableEXample extends React.Component {
             paginatable
             // disableClickToFixColumn={false}
             total={'total: 90'}
-
             // sync
             {...options}
           />

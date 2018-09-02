@@ -8,10 +8,11 @@ import TableHead from '../../TableHead';
 import TableRow from '../../TableRow';
 import Scrollbar from '../../Scrollbar';
 import { withStyles } from '../../styles';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
 
+import ExSwitch from './ExSwitch';
 // import AddIcon from '../../Icon/Add';
+// import lodash from 'lodash'
+// import merge from 'deepmerge'
 
 const styles = theme => ({
   root: {
@@ -32,11 +33,11 @@ const styles = theme => ({
     fontSize: '0.8125rem'
   },
   exIconBox: {
-    border: '1px solid black',
+    border: '1px solid ' + theme.palette.divider,
     width: 13,
     height: 13,
     display: 'flex',
-    marginLeft: theme.spacing.unit ,
+    // marginLeft: theme.spacing.unit ,
     marginRight: theme.spacing.unit,
     justifyContent: 'center',
     alignItems: 'center',
@@ -56,13 +57,31 @@ class Body extends React.Component {
     super(props);
     this.state = {
       // rows[]
+      rows: []
     };
   }
 
-  componentDidMount() {}
+  static getDerivedStateFromProps(nextProps, prevState){
+
+  }
+
+  componentDidMount() {
+    // const { data } = this.props
+    // this.renderRows(data)
+    // this.setState({
+    //   rows: this.rowsState
+    // })
+  }
 
   componentDidUpdate(prevProps, prevState){
-    // if(prevProps)
+    if(prevProps.data !== this.props.data){
+      const { data } = this.props
+      this.rowsState= []
+      this.renderRows(data)
+      this.setState({
+        rows: this.rowsState
+      })
+    }
   }
 
   handleRowClick = (entry, index) => e => {
@@ -70,51 +89,48 @@ class Body extends React.Component {
     onRowClick && onRowClick(entry, index);
   };
 
-  rows = []
+  rowsState = []
   rowStyle = {}
-  handleExIconClick=(entry)=>(e)=>{
-    e.stopPropagation()
-    console.log('entry=:', entry)
+  
+  handleExIconChange=(res)=>{
+
+    const { close, data: entry} = res
+    const {rows} = this.state
+    const { onTreeChange } = this.props
+    let {key} = entry
+
+    rows.map((item, index)=>{
+      if(item.parent && item.parent.key === key){
+        item.show = !close
+      }
+    })
+    
+    this.setState({
+      rows
+    }, ()=>{
+      onTreeChange && onTreeChange()
+    })
   }
 
-  depth = (key, data) => {
-
-  }
-
-  // function preOrder(tree, parent) {
-  //   if (tree && tree.length > 0) {
-  //     for (let i = 0, len = tree.length; i < len; i++) {
-  //       let node = tree[i];
-
-  //       node.parent = parent;
-  //       node.isLeaf = !node.children || node.children.length <= 0;
-  //       node.deep = parent ? parent.deep + 1 : 0;
-
-  //       console.log(`节点：${node.name}， 是否叶子节点：${node.isLeaf}， 层级：${node.deep}`);
-
-  //       preOrder(node.children, node);
-  //     }
-  //   }
-  // }
   renderRows = (tree, parent)=> {
-    const {
-      classes,
-      columns,
-      TableCellProps,
-      TableRowProps,
-    } = this.props;
+    
     if (tree && tree.length > 0){
       for (let index = 0; index < tree.length; index++) {
         let node = tree[index]
+        if(parent === undefined){
+          node.show = true
+        }
+        node.key = node.key || Date.now()
         node.parent = parent
+        node.index = index
         node.isLeaf = !node.children || node.children.length <= 0
         node.deep = parent ? parent.deep + 1 : 0
-        console.log(`节点：${node.name}， 是否叶子节点：${node.isLeaf}， 层级：${node.deep}`)
-        this.rows.push(this.renderOneRow(node, index))
+        // this.rows.push(this.renderOneRow(node, index))
+        this.rowsState.push(node)
         this.renderRows(node.children, node)
       }
     }
-    return this.rows
+    // return this.rows
   }
 
   renderOneRow= (entry, index)=> {
@@ -126,6 +142,19 @@ class Body extends React.Component {
     } = this.props;
     let rowStyle = this.rowStyle    
     let indent = (entry.deep || 0) * 50
+    if(!entry.show){
+      return null
+    }
+
+    let show = entry.show 
+    let node = entry
+    while (node.parent){
+      node = node.parent
+      show = show && node.show
+    }
+    if(!show){
+      return
+    }
     let row = (
       <TableRow
         onClick={this.handleRowClick(entry, index)}
@@ -146,7 +175,8 @@ class Body extends React.Component {
             >
               <div className={classes.cell}>
                 <span style={indentStyle}></span>
-                {hasIcon && <span className={classes.exIconBox} onClick={this.handleExIconClick(entry)}>{<RemoveIcon className={classes.exIcon}/>}</span>}
+                {/* {hasIcon && <span className={classes.exIconBox} onClick={this.handleExIconClick(entry)}>{<RemoveIcon className={classes.exIcon}/>}</span>} */}
+                {hasIcon && <ExSwitch onChange={this.handleExIconChange} data={entry}/>}
                 <span>{column.render ? column.render(entry) : entry[column.dataIndex]}</span>
               </div>
             </TableCell>
@@ -170,22 +200,27 @@ class Body extends React.Component {
       noData,
       TableCellProps,
       TableRowProps,
+  
     } = this.props;
-
+    const { rows } = this.state
     let mainAndNoData = data.length === 0 && type === 'main';
-    this.rows = []
+    // this.rowsState = []
     const tableStyle = mainAndNoData
       ? {
           height: '100%',
         }
       : {};
     let bodyRowHeight = 0
-    if(this.rows.length > 0){
-      bodyRowHeight = bodyHeight / this.rows.length
+    if(rows.length > 0){
+      bodyRowHeight = bodyHeight / rows.length
     }
     this.rowStyle = {
       height: bodyRowHeight,
     };
+
+    let Rows = rows.map((item, index) => {
+      return this.renderOneRow(item, index)
+    })
     return (
       <div
         ref={tableRef}
@@ -225,7 +260,7 @@ class Body extends React.Component {
                     {noData}
                   </TableCell>
                 </TableRow>
-              ) : this.renderRows(data)}
+              ) : Rows}
             </TableBody>
           </Table>
         }

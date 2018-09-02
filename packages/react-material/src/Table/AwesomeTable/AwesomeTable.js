@@ -344,7 +344,9 @@ class AwesomeTable extends React.Component {
       data,
     });
   };
-
+  handleTreeChange=()=>{
+    this.syncTableRowHeight()
+  }
   createCsv = () => {
     let head = this.state.columns.reduce((pre, cur) => {
       if (cur.render || !cur.title) {
@@ -448,6 +450,7 @@ class AwesomeTable extends React.Component {
     );
     const body = (
       <Body
+        onTreeChange={this.handleTreeChange}
         bodyRef={type === 'main' ? this.tableRefs.body : ''}
         data={bodyData}
         columns={columns}

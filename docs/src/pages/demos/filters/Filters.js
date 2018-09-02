@@ -25,7 +25,6 @@ function createData(label, value) {
 
 class FiltersDemo extends Component {
   state = {
-    radio: '1',
     options: [
       createData('红色', '1'),
       createData('橙色', '2'),
@@ -36,9 +35,10 @@ class FiltersDemo extends Component {
       createData('紫色', '7'),
     ],
     label: '颜色选择：',
-    multi: false,
+    multiple: '0',
+    color: 'primary',
     value: ['1'],
-    mapProps: {
+    mapper: {
       label: 'label',
       value: 'value',
     },
@@ -51,12 +51,10 @@ class FiltersDemo extends Component {
     });
   };
 
-  handleChange = event => {
+  handleChange = type => event => {
     const { value } = event.target;
     this.setState({
-      radio: value,
-      multi: value === '2',
-      value: ['1'],
+      [type]: value,
     });
   };
 
@@ -68,7 +66,7 @@ class FiltersDemo extends Component {
 
   render() {
     const { classes } = this.props;
-    const { label, multi, options, value, radio, spacing } = this.state;
+    const { label, multiple, options, value, color, spacing, mapper } = this.state;
     const selected = JSON.stringify(value);
     return (
       <div>
@@ -88,32 +86,44 @@ class FiltersDemo extends Component {
             <MenuItem value={24}>24</MenuItem>
           </Select>
         </FormControl>
-        <RadioGroup row value={radio} onChange={this.handleChange}>
-          <FormControlLabel value={'1'} control={<Radio />} label="单选" />
-          <FormControlLabel value={'2'} control={<Radio />} label="多选" />
+        <RadioGroup row value={multiple} onChange={this.handleChange('multiple')}>
+          <FormControlLabel value={'0'} control={<Radio />} label="单选" />
+          <FormControlLabel value={'1'} control={<Radio />} label="多选" />
+        </RadioGroup>
+        <RadioGroup row value={color} onChange={this.handleChange('color')}>
+          <FormControlLabel value={'default'} control={<Radio />} label="default" />
+          <FormControlLabel value={'primary'} control={<Radio />} label="primary" />
+          <FormControlLabel value={'secondary'} control={<Radio />} label="secondary" />
         </RadioGroup>
         <div className={classes.mt}>
           <Filters
             type={'dark'}
             label={label}
-            multi={multi}
+            multiple={multiple == '1'}
             options={options}
             spacing={spacing}
             value={value}
             onChange={this.onChange}
+            color={color}
+            mapper={mapper}
           />
         </div>
         <div className={classes.mt} style={{ background: '#3fa4f6' }}>
           <Filters
             label={label}
-            multi={multi}
+            multiple={multiple == '1'}
             options={options}
             spacing={spacing}
             value={value}
             onChange={this.onChange}
+            color={color}
+            mapper={mapper}
           />
         </div>
-        <div className={classes.mt}>selected values:{selected}</div>
+        <div className={classes.mt}>
+          selected values:
+          {selected}
+        </div>
       </div>
     );
   }

@@ -2,100 +2,88 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import Grid from '../Grid';
-import Button from '../Button';
-import Tag from '../Tag';
+import Chip from '../Chip';
+import isNumber from 'lodash/isNumber';
+import isFunction from 'lodash/isFunction';
+import classNames from 'classnames';
+import { emphasize, fade, darken } from '../styles/colorManipulator';
 
 //颜色需要替换
 const style = theme => ({
-  normalTagLight: {
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
-    cursor: 'pointer',
-    color: 'rgba(255,255,255,0.8)',
-    background: 'none',
-    '&:hover': {
-      background: 'rgba(0,0,0,0.05)',
-    },
-    '&:focus': {
-      background: 'rgba(0,0,0,0.05)',
-    },
+  root: {
+    flexWrap: 'nowrap',
   },
-  normalTagDark: {
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
-    cursor: 'pointer',
-    color: 'rgba(0,0,0,0.7)',
-    background: 'none',
-    '&:hover': {
-      background: 'rgba(0,0,0,0.05)',
-    },
-    '&:focus': {
-      background: 'rgba(0,0,0,0.05)',
-    },
-  },
-  activedTagLight: {
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
-    cursor: 'pointer',
-    color: 'rgba(255,255,255,0.8)',
-    background: 'rgba(0,0,0,0.1) !important',
-    '&:hover': {
-      background: 'rgba(0,0,0,0.15)',
-    },
-    '&:focus': {
-      background: 'rgba(0,0,0,0.15)',
-    },
-  },
-
-  activedTagDark: {
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
-    cursor: 'pointer',
-    color: 'rgba(0,0,0,0.7)',
-    background: 'rgba(0,0,0,0.2) !important',
-    '&:hover': {
-      background: 'rgba(0,0,0,0.15)',
-    },
-    '&:focus': {
-      background: 'rgba(0,0,0,0.15)',
-    },
-  },
-
   label: {
-    fontSize: '13px',
-    display: 'inline-block',
-    width: '7em',
-    color: 'rgba(255,255,255,0.7)',
-    lineHeight: '2.6em',
+    fontSize: '15px',
+    color: theme.palette.text.primary,
     textAlign: 'left',
   },
-  labelDark: {
-    color: 'rgba(0,0,0,0.7) !important',
+  labelDefault: {
+    color: theme.palette.common.white,
   },
-  content: {
-    flex: 1,
+  item: {
+    color: theme.palette.text.primary,
+    backgroundColor: 'transparent',
   },
-  btn: {
-    padding: '0',
-
-    // background: 'none',
-    boxShadow: 'none',
-    borderRadius: '1.3em',
-
-    '&:hover': {
-      background: 'none',
+  colorDefault: {
+    color: theme.palette.common.white,
+  },
+  clickableColorDefault: {
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.getContrastText(theme.palette.primary.dark),
+    '&:hover, &:focus': {
+      backgroundColor: emphasize(theme.palette.primary.dark, 0.08) + ' !important',
+    },
+    '&:active': {
+      backgroundColor: emphasize(theme.palette.primary.dark, 0.12) + ' !important',
     },
   },
-  btnDark: {
-    color: 'rgba(0,0,0,0.7)',
+  /* Styles applied to the root element if `color="primary"`. */
+  colorPrimary: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
   },
-  active: {
-    background: 'rgba(0,0,0,0.2)',
-    '&:hover': {
-      background: 'rgba(0,0,0,0.15)',
+  /* Styles applied to the root element if `color="secondary"`. */
+  colorSecondary: {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText,
+  },
+  /* Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
+  clickable: {
+    WebkitTapHighlightColor: 'transparent', // Remove grey highlight
+    cursor: 'pointer',
+    '&:hover, &:focus': {
+      backgroundColor: emphasize(theme.palette.common.white, 0.08),
+    },
+    '&:active': {
+      boxShadow: theme.shadows[1],
+      backgroundColor: emphasize(theme.palette.common.white, 0.12),
     },
   },
-  activeDark: {},
+  /**
+   * Styles applied to the root element if
+   * `onClick` and `color="primary"` is defined or `clickable={true}`.
+   */
+  clickableColorPrimary: {
+    '&:hover, &:focus': {
+      backgroundColor: emphasize(theme.palette.primary.main, 0.08),
+    },
+    '&:active': {
+      backgroundColor: emphasize(theme.palette.primary.main, 0.12),
+    },
+  },
+  /**
+   * Styles applied to the root element if
+   * `onClick` and `color="secondary"` is defined or `clickable={true}`.
+   */
+  clickableColorSecondary: {
+    '&:hover, &:focus': {
+      backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
+    },
+    '&:active': {
+      backgroundColor: emphasize(theme.palette.secondary.main, 0.12),
+    },
+  },
 });
 
 class Filters extends Component {
@@ -123,59 +111,66 @@ class Filters extends Component {
   isSelected = value => this.props.value.includes(value);
 
   render() {
-    const { classes, options, label, mapper, spacing, type } = this.props;
+    const { classes, options, label, mapper, spacing, type, labelWidth, color } = this.props;
+
+    let width = labelWidth;
+    if (isNumber(labelWidth)) {
+      width += 'px';
+    }
+
+    const labelCls = classNames(classes.label, {
+      [classes.labelDefault]: color == 'default',
+    });
 
     return (
-      <Grid container spacing={8}>
-        <Grid item className={(type === 'dark' ? classes.labelDark : '') + ' ' + classes.label}>
+      <Grid
+        container
+        spacing={0}
+        alignItems={'center'}
+        direction={'row'}
+        justify={'stretch'}
+        className={classes.root}
+      >
+        <Grid item className={labelCls} style={{ width: `${width}` }}>
           {label}
         </Grid>
+        <Grid item>
+          {options.map(option => {
+            const label = isFunction(mapper.label)
+              ? mapper.label(option, options)
+              : option[mapper.label];
+            const value = isFunction(mapper.value)
+              ? mapper.value(option, options)
+              : option[mapper.value];
 
-        <Grid item className={classes.content}>
-          <Grid container spacing={spacing}>
-            {options.map(s => {
-              const label =
-                typeof mapper.label === 'function'
-                  ? mapper.label(s, options)
-                  : s[mapper.label];
-              const value =
-                typeof mapper.value === 'function'
-                  ? mapper.value(s, options)
-                  : s[mapper.value];
+            const isSelected = this.isSelected(value);
 
-              const isSelected = this.isSelected(value);
-
-              let className = '';
-              if (!isSelected && type !== 'dark') {
-                className = 'normalTagLight';
-              }
-              if (!isSelected && type === 'dark') {
-                className = 'normalTagDark';
-              }
-              if (isSelected && type === 'dark') {
-                className = 'activedTagDark';
-              }
-              if (isSelected && type !== 'dark') {
-                className = 'activedTagLight';
-              }
-
-              return (
-                // <Grid item key={value} onClick={this.onClick(s)}>
-                //   <Tag label={label} classes={{ primaryMainmedium: classes[className] }} />
-                // </Grid>
-
-                <Button
-                  key={value}
-                  classes={{
-                    root: classes.btn,
-                  }}
-                  onClick={this.onClick(s)}
-                >
-                  <Tag label={label} classes={{ primaryMainmedium: classes[className] }} />
-                </Button>
-              );
-            })}
-          </Grid>
+            const item = classNames(classes.item, {
+              [classes.colorDefault]: color == 'default',
+              [classes.color]: isSelected,
+            });
+            const clickable = classNames(classes.clickable, {
+              [classes.clickableColorDefault]: color == 'default' && isSelected,
+            });
+            return (
+              <Chip
+                key={value}
+                color={isSelected ? color : 'default'}
+                label={label}
+                clickable={true}
+                style={{ margin: `${spacing}px` }}
+                onClick={this.onClick(option)}
+                classes={{
+                  root: item,
+                  colorPrimary: classes.colorPrimary,
+                  colorSecondary: classes.colorSecondary,
+                  clickable: clickable,
+                  clickableColorPrimary: classes.clickableColorPrimary,
+                  clickableColorSecondary: classes.clickableColorSecondary,
+                }}
+              />
+            );
+          })}
         </Grid>
       </Grid>
     );
@@ -200,9 +195,12 @@ Filters.propTypes = {
    * singleSelect or multiSelect default is singleSelect.
    */
   multiple: PropTypes.bool,
+  /**
+   * The value of the Filter.
+   */
   value: PropTypes.array,
   /**
-   * label name for Filter
+   * label name of the Filter
    */
   label: PropTypes.string,
   /**
@@ -216,6 +214,14 @@ Filters.propTypes = {
    * spacing between items
    */
   spacing: PropTypes.number,
+  /**
+   * label width
+   */
+  labelWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * The color of these items.
+   */
+  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
 };
 
 Filters.defaultProps = {
@@ -229,6 +235,8 @@ Filters.defaultProps = {
   },
   onChange() {},
   spacing: 8,
+  labelWidth: 'auto',
+  color: 'default',
 };
 
-export default withStyles(style, { name: 'RMFilters' })(Filters);
+export default withStyles(style, { name: 'RMFilters', withTheme: true })(Filters);

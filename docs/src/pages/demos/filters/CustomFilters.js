@@ -2,18 +2,30 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
 import Filters from '@6thquake/react-material/Filters';
+import { emphasize, fade, darken } from '@6thquake/react-material/styles/colorManipulator';
 
 const style = theme => ({
   mt: {
     marginTop: theme.spacing.unit * 3,
   },
-  btn: {
-    borderRadius: '20px',
+  item: {
+    borderRadius: '0px',
   },
-  active: {
-    backgroundColor: '#2196f3',
-    '&:hover': {
-      backgroundColor: '#419ae0',
+  clickable: {
+    '&:hover, &:focus': {
+      backgroundColor: '#ff5722',
+    },
+    '&:active': {
+      backgroundColor: '#ff784e',
+    },
+  },
+  colorPrimary: {
+    backgroundColor: '#b23c17 !important',
+    '&:hover, &:focus': {
+      backgroundColor: emphasize('#b23c17', 0.08) + ' !important',
+    },
+    '&:active': {
+      backgroundColor: emphasize('#b23c17', 0.12) + ' !important',
     },
   },
 });
@@ -27,7 +39,6 @@ function createData(label, value) {
 
 class CustomFiltersDemo extends Component {
   state = {
-    radio: '1',
     options: [
       createData('红色', '1'),
       createData('橙色', '2'),
@@ -38,12 +49,13 @@ class CustomFiltersDemo extends Component {
       createData('紫色', '7'),
     ],
     label: '颜色选择：',
-    multi: true,
+    multiple: true,
     value: ['1'],
-    mapProps: {
+    mapper: {
       label: 'label',
       value: 'value',
     },
+    color: 'primary',
   };
 
   onChange = value => {
@@ -54,25 +66,30 @@ class CustomFiltersDemo extends Component {
 
   render() {
     const { classes } = this.props;
-    const { label, multi, options, value } = this.state;
+    const { label, multiple, options, value, mapper, color } = this.state;
     const selected = JSON.stringify(value);
     return (
       <div>
         <div className={classes.mt}>
           <Filters
-            type={'dark'}
+            color={color}
             label={label}
-            multi={multi}
+            multiple={multiple}
             options={options}
             value={value}
             onChange={this.onChange}
             classes={{
-              btn: classes.btn,
-              active: classes.active,
+              item: classes.item,
+              clickable: classes.clickable,
+              color: classes.colorPrimary,
             }}
+            mapper={mapper}
           />
         </div>
-        <div className={classes.mt}>selected values:{selected}</div>
+        <div className={classes.mt}>
+          selected values:
+          {selected}
+        </div>
       </div>
     );
   }

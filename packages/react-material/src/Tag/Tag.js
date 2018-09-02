@@ -3,79 +3,107 @@ import { withStyles } from '../styles';
 import Chip from '../Chip';
 import PropTypes from 'prop-types';
 
-let styles = {
+import { emphasize, fade, darken } from '../styles/colorManipulator';
+
+let styles = theme => ({
   color: {
     primaryLight: {
-      background: '#7986cb',
+      background: theme.palette.primary.light,
       border: '0',
-      color: '#fff',
-      '&:focus': {
-        background: '#7986cb',
+      color: theme.palette.primary.contrastText,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(theme.palette.primary.light, 0.08),
+      },
+      '&:active': {
+        backgroundColor: emphasize(theme.palette.primary.light, 0.12),
       },
     },
     primaryMain: {
-      background: '#3f51b5',
+      background: theme.palette.primary.main,
       border: '0',
-      color: '#fff',
-
-      '&:focus': {
-        background: '#3f51b5',
+      color: theme.palette.primary.contrastText,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(theme.palette.primary.main, 0.08),
+      },
+      '&:active': {
+        backgroundColor: emphasize(theme.palette.primary.main, 0.12),
       },
     },
     primaryDark: {
-      background: '#303f9f',
+      background: theme.palette.primary.dark,
       border: '0',
-      color: '#fff',
-      '&:focus': {
-        background: '#303f9f',
+      color: theme.palette.primary.contrastText,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(theme.palette.primary.dark, 0.08),
+      },
+      '&:active': {
+        backgroundColor: emphasize(theme.palette.primary.dark, 0.12),
       },
     },
     secondaryLight: {
-      background: '#ff4081',
+      background: theme.palette.secondary.light,
       border: '0',
-      color: '#fff',
-      '&:focus': {
-        background: '#ff4081',
+      color: theme.palette.secondary.contrastText,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(theme.palette.secondary.light, 0.08),
+      },
+      '&:active': {
+        backgroundColor: emphasize(theme.palette.secondary.light, 0.12),
       },
     },
     secondaryMain: {
-      background: '#f50057',
+      background: theme.palette.secondary.main,
       border: '0',
-      color: '#fff',
-      '&:focus': {
-        background: '#f50057',
+      color: theme.palette.secondary.contrastText,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
+      },
+      '&:active': {
+        backgroundColor: emphasize(theme.palette.secondary.main, 0.12),
       },
     },
     secondaryDark: {
-      background: '#c51162',
+      background: theme.palette.secondary.dark,
       border: '0',
-      color: '#fff',
-      '&:focus': {
-        background: '#c51162',
+      color: theme.palette.secondary.contrastText,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(theme.palette.secondary.dark, 0.08),
+      },
+      '&:active': {
+        backgroundColor: emphasize(theme.palette.secondary.dark, 0.12),
       },
     },
     errorLight: {
-      background: '#e57373',
+      background: theme.palette.error.light,
       border: '0',
-      color: '#fff',
-      '&:focus': {
-        background: '#e57373',
+      color: theme.palette.error.contrastText,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(theme.palette.error.light, 0.08),
+      },
+      '&:active': {
+        backgroundColor: emphasize(theme.palette.error.light, 0.12),
       },
     },
     errorMain: {
-      background: '#f44336',
+      background: theme.palette.error.main,
       border: '0',
-      color: '#fff',
-      '&:focus': {
-        background: '#e57373',
+      color: theme.palette.error.contrastText,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(theme.palette.error.main, 0.08),
+      },
+      '&:active': {
+        backgroundColor: emphasize(theme.palette.error.main, 0.12),
       },
     },
     errorDark: {
-      background: '#d32f2f',
+      background: theme.palette.error.dark,
       border: '0',
-      color: '#fff',
-      '&:focus': {
-        background: '#d32f2f',
+      color: theme.palette.error.contrastText,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(theme.palette.error.dark, 0.08),
+      },
+      '&:active': {
+        backgroundColor: emphasize(theme.palette.error.dark, 0.12),
       },
     },
   },
@@ -94,7 +122,7 @@ let styles = {
     },
   },
   mixin: {},
-};
+});
 
 for (let color in styles.color) {
   for (let size in styles.size) {
@@ -177,4 +205,4 @@ Tag.defaultProps = {
   color: 'primaryMain',
 };
 
-export default withStyles(styles.mixin, { name: 'RMTag' })(Tag);
+export default withStyles(styles, { name: 'RMTag', withTheme: true })(Tag);

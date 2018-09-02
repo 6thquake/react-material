@@ -81,6 +81,7 @@ class AwesomeTable extends React.Component {
     super(props);
     const columns = this.normalizeColumns(props.columns);
     this.state = {
+      bodyHeight: 0,
       hasLeft: false,
       hasRight: true,
       columns: columns,
@@ -156,7 +157,7 @@ class AwesomeTable extends React.Component {
     this.handlePaginteData();
   }
 
-  componentDidUpdate(nextProps, nextState) {
+  componentDidUpdate() {
     const { data, paginatable, searchable } = this.props;
     if (data !== this.propsCached.data) {
       this.propsCached.data = data;
@@ -203,6 +204,7 @@ class AwesomeTable extends React.Component {
       return;
     }
     this.setState({
+      bodyHeight,
       bodyRowHeight: bodyHeight / this.state.data.length,
       headRowHeight: headHeight,
     });
@@ -412,7 +414,7 @@ class AwesomeTable extends React.Component {
       TableCellProps,
       TableRowProps,
     } = this.props;
-    const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData, sorts } = this.state;
+    const { bodyHeight, bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData, sorts } = this.state;
     let width =
       type === 'main'
         ? ''
@@ -454,6 +456,7 @@ class AwesomeTable extends React.Component {
         scroll={this.handlScrollY}
         tableRef={this.tableRefs[type]}
         bodyRowHeight={bodyRowHeight}
+        bodyHeight={bodyHeight}
         onRowClick={onRowClick}
         noData={noData}
         TableCellProps={TableCellProps}

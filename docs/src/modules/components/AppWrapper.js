@@ -26,7 +26,6 @@ function uiThemeSideEffect(uiTheme) {
 }
 
 class AppWrapper extends React.Component {
-
   state = {};
 
   componentDidMount() {

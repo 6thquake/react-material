@@ -66,7 +66,7 @@ function DragDropContext(backendFactory, context) {
       }
 
       render() {
-        return <DecoratedComponent {...this.props} ref={(child) => (this.child = child)} />;
+        return <DecoratedComponent {...this.props} ref={child => (this.child = child)} />;
       }
     }
 

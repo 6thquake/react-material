@@ -55,7 +55,6 @@ class CarouselArrow extends React.Component {
   }
 }
 
-CarouselArrow.propTypes = {
-}
+CarouselArrow.propTypes = {};
 
 export default withStyles(styles, { name: 'RMCarouselArrow' })(CarouselArrow);

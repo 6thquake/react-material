@@ -10,10 +10,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import '@babel/polyfill';
 
 if (process.browser) {
-  loadCSS(
-    '/static/fonts/Material+Icons/icon.css', 
-    document.querySelector('#insertion-point-jss'),
-  );
+  loadCSS('/static/fonts/Material+Icons/icon.css', document.querySelector('#insertion-point-jss'));
   loadCSS(
     '/static/docsearch.js/2/docsearch.min.css',
     document.querySelector('#insertion-point-jss'),
@@ -89,7 +86,7 @@ const pages = [
       {
         pathname: '/layout/pro',
         title: 'Pro',
-      }
+      },
     ],
   },
   {
@@ -118,11 +115,11 @@ const pages = [
         pathname: '/utils/click-away-listener',
       },
       {
-          pathname: '/utils/modals',
+        pathname: '/utils/modals',
       },
       {
         pathname: '/utils/popovers',
-      }
+      },
     ],
   },
   {

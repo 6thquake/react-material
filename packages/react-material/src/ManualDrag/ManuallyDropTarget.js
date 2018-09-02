@@ -1,6 +1,6 @@
 /**
-* @ignore - do not document.
-*/
+ * @ignore - do not document.
+ */
 
 import React, { Component } from 'react';
 import update from 'immutability-helper';

@@ -99,7 +99,6 @@ class CarouselItem extends React.Component {
   }
 }
 
-CarouselItem.propTypes = {
-}
+CarouselItem.propTypes = {};
 
 export default withStyles(styles, { name: 'RMCarouselItem' })(CarouselItem);

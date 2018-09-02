@@ -19,92 +19,95 @@ const styles = theme => ({
 function HomeBackers(props) {
   const classes = props.classes;
   let backers = [
-        [
-          {
-            name: '刘继超<lico.liu>',
-            github: 'licoliu',
-            twitter: 'lico_liu',
-            weibo: '3608313977',
-            flag: 'master',
-            city: 'shanghai, China',
-          },
-          {
-            name: '洪国超<gc.hong>',
-            github: 'Hahet',
-            flag: 'developer',
-            city: 'shanghai, China',
-          },
-          {
-            name: '黄伟民<wm.huang>',
-            github: 'tykdn',
-            flag: 'developer',
-            city: 'shanghai, China',
-          },
-          {
-            name: '刘必洲<bz.liu>',
-            github: 'HelloLove',
-            flag: 'developer',
-            city: 'shanghai, China',
-          },
-          {
-            name: '邵文广<wg.shao>',
-            github: 'GrumpyOnes',
-            twitter: 'tomatocd',
-            flag: 'developer',
-            city: 'shanghai, China',
-          },
-          {
-            name: '庄嘉祥<jx.zhuang>',
-            github: 'JX-Zhuang',
-            flag: 'developer',
-            city: 'shanghai, China',
-          },
-        ],
-        [
-          {
-            name: '李丹阳<dy.li>',
-            github: 'JaneLee0324',
-            twitter: 'Danyang0324',
-            flag: 'developer',
-            city: 'shanghai, China',
-          },
-          {
-            name: '李雅男<yn.ya>',
-            github: 'liyanangrace',
-            flag: 'developer',
-            city: 'shanghai, China',
-          },
-          {
-            name: '唐可珂<kk.tang>',
-            github: 'vvke',
-            flag: 'developer',
-            city: 'shanghai, China',
-          },
-          {
-            name: '唐思雨<sy.tang>',
-            github: 'atangsy',
-            flag: 'developer',
-            city: 'shanghai, China',
-          },
-          {
-            name: '汤雨欢<yh.tang>',
-            github: 'tangyuhuan',
-            twitter: 'yuhuan13235884',
-            flag: 'developer',
-            city: 'shanghai, China',
-          },
-          {
-            name: '袁锁云<sy.yuan>',
-            github: 'everyapple',
-            flag: 'developer',
-            city: 'shanghai, China',
-          },
-        ],
-      ].map(users => {
-        return [
-          '<tr>',
-          users.map(user =>
-            `<td align="center" valign="middle" style="text-align: center; padding: 16px;">
+    [
+      {
+        name: '刘继超<lico.liu>',
+        github: 'licoliu',
+        twitter: 'lico_liu',
+        weibo: '3608313977',
+        flag: 'master',
+        city: 'shanghai, China',
+      },
+      {
+        name: '洪国超<gc.hong>',
+        github: 'Hahet',
+        flag: 'developer',
+        city: 'shanghai, China',
+      },
+      {
+        name: '黄伟民<wm.huang>',
+        github: 'tykdn',
+        flag: 'developer',
+        city: 'shanghai, China',
+      },
+      {
+        name: '刘必洲<bz.liu>',
+        github: 'HelloLove',
+        flag: 'developer',
+        city: 'shanghai, China',
+      },
+      {
+        name: '邵文广<wg.shao>',
+        github: 'GrumpyOnes',
+        twitter: 'tomatocd',
+        flag: 'developer',
+        city: 'shanghai, China',
+      },
+      {
+        name: '庄嘉祥<jx.zhuang>',
+        github: 'JX-Zhuang',
+        flag: 'developer',
+        city: 'shanghai, China',
+      },
+    ],
+    [
+      {
+        name: '李丹阳<dy.li>',
+        github: 'JaneLee0324',
+        twitter: 'Danyang0324',
+        flag: 'developer',
+        city: 'shanghai, China',
+      },
+      {
+        name: '李雅男<yn.ya>',
+        github: 'liyanangrace',
+        flag: 'developer',
+        city: 'shanghai, China',
+      },
+      {
+        name: '唐可珂<kk.tang>',
+        github: 'vvke',
+        flag: 'developer',
+        city: 'shanghai, China',
+      },
+      {
+        name: '唐思雨<sy.tang>',
+        github: 'atangsy',
+        flag: 'developer',
+        city: 'shanghai, China',
+      },
+      {
+        name: '汤雨欢<yh.tang>',
+        github: 'tangyuhuan',
+        twitter: 'yuhuan13235884',
+        flag: 'developer',
+        city: 'shanghai, China',
+      },
+      {
+        name: '袁锁云<sy.yuan>',
+        github: 'everyapple',
+        flag: 'developer',
+        city: 'shanghai, China',
+      },
+    ],
+  ]
+    .map(users => {
+      return [
+        '<tr>',
+        users
+          .map(
+            user =>
+              `<td align="center" valign="middle" style="text-align: center; padding: 16px;">
               <a href="https://github.com/${user.github}" rel="noopener" target="_blank">
                 <img
                   width="80"
@@ -115,12 +118,14 @@ function HomeBackers(props) {
                 />
                 <p>${user.name}</p>
               </a>
-            </td>`
-          ).join(''),
-          '</tr>',
-        ].join('')
-      }).join('');
-      console.log(backers)
+            </td>`,
+          )
+          .join(''),
+        '</tr>',
+      ].join('');
+    })
+    .join('');
+  console.log(backers);
   return (
     <div className={classes.root}>
       <NoSsr>

@@ -95,7 +95,6 @@ class CarouselDots extends React.Component {
   }
 }
 
-CarouselDots.propTypes = {
-}
+CarouselDots.propTypes = {};
 
 export default withStyles(styles, { name: 'RMCarouselDots' })(CarouselDots);

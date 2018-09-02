@@ -48,7 +48,8 @@ module.exports = {
             root: ['./'],
             alias: {
               '@6thquake/react-material': './packages/react-material/src',
-              '@material-ui/docs/MarkdownElement': './packages/material-ui-docs/src/MarkdownElement',
+              '@material-ui/docs/MarkdownElement':
+                './packages/material-ui-docs/src/MarkdownElement',
             },
           },
         ],
@@ -74,7 +75,8 @@ module.exports = {
           {
             alias: {
               '@6thquake/react-material': './packages/react-material/src',
-              '@material-ui/docs/MarkdownElement': './packages/material-ui-docs/src/MarkdownElement',
+              '@material-ui/docs/MarkdownElement':
+                './packages/material-ui-docs/src/MarkdownElement',
               docs: './docs',
               modules: './modules',
               pages: './pages',
@@ -91,7 +93,8 @@ module.exports = {
           {
             alias: {
               '@6thquake/react-material': './packages/react-material/src',
-              '@material-ui/docs/MarkdownElement': './packages/material-ui-docs/src/MarkdownElement',
+              '@material-ui/docs/MarkdownElement':
+                './packages/material-ui-docs/src/MarkdownElement',
               docs: './docs',
               modules: './modules',
               pages: './pages',
@@ -158,7 +161,8 @@ module.exports = {
             root: ['./'],
             alias: {
               '@6thquake/react-material': './packages/react-material/src',
-              '@material-ui/docs/MarkdownElement': './packages/material-ui-docs/src/MarkdownElement',
+              '@material-ui/docs/MarkdownElement':
+                './packages/material-ui-docs/src/MarkdownElement',
             },
           },
         ],

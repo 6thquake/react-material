@@ -42,10 +42,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="canonical" href={canonical} />
-          <link
-            rel="stylesheet"
-            href="/static/fonts/Roboto/css.css"
-          />
+          <link rel="stylesheet" href="/static/fonts/Roboto/css.css" />
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
             is actually sent to the server.

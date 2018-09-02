@@ -226,8 +226,10 @@ class App extends React.Component {
                       <a id="sub31" href="#sub31">
                         sub31
                       </a>
-                      The TextField is a convenience wrapper<br />
-                      for the most common cases(80 % ).It cannot be all things to all people,<br />
+                      The TextField is a convenience wrapper
+                      <br />
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                      <br />
                       otherwise the API would grow out of control. The TextField is a convenience
                       wrapper for the most common cases(80 % ).It cannot be all things to all
                       people, otherwise the API would grow out of control. The TextField is a
@@ -252,8 +254,10 @@ class App extends React.Component {
                       to all people, otherwise the API would grow out of control. The TextField is a
                       convenience wrapper for the most common cases(80 % ).It cannot be all things
                       to all people, otherwise the API would grow out of control. he TextField is a
-                      convenience wrapper<br />
-                      for the most common cases(80 % ).It cannot be all things to all people,<br />
+                      convenience wrapper
+                      <br />
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                      <br />
                       otherwise the API would grow out of control. The TextField is a convenience
                       wrapper for the most common cases(80 % ).It cannot be all things to all
                       people, otherwise the API would grow out of control. The TextField is a
@@ -267,8 +271,10 @@ class App extends React.Component {
                       <a id="sub311" href="#sub311">
                         sub311
                       </a>
-                      The TextField is a convenience wrapper<br />
-                      for the most common cases(80 % ).It cannot be all things to all people,<br />
+                      The TextField is a convenience wrapper
+                      <br />
+                      for the most common cases(80 % ).It cannot be all things to all people,
+                      <br />
                       otherwise the API would grow out of control. The TextField is a convenience
                       wrapper for the most common cases(80 % ).It cannot be all things to all
                       people, otherwise the API would grow out of control. The TextField is a

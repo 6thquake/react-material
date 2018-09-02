@@ -56,10 +56,12 @@ class Test extends React.Component {
             }
           >
             <NavItem path="/l/o" key="1-1" selected>
-              <InboxIcon />item1-1
+              <InboxIcon />
+              item1-1
             </NavItem>
             <NavItem key="1-2">
-              <i className="material-icons">accessibility</i>item1-2
+              <i className="material-icons">accessibility</i>
+              item1-2
             </NavItem>
           </SubNavBar>
           <SubNavBar
@@ -91,7 +93,8 @@ class Test extends React.Component {
           >
             <NavItem key="2-1">item2-1</NavItem>
             <NavItem key="2-2">
-              <i className="material-icons">accessibility</i>item2-2
+              <i className="material-icons">accessibility</i>
+              item2-2
             </NavItem>
             <SubNavBar key="2-3" title="SubNavBar2-3">
               <NavItem key="2-3-1">item2-3-1</NavItem>

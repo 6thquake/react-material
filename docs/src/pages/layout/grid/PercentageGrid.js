@@ -17,7 +17,7 @@ const styles = theme => ({
 
 function PercentageGridExample(props) {
   const { classes } = props;
-  
+
   let style = {
     position: 'fixed',
     top: 100,

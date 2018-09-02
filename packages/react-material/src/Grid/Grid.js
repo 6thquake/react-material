@@ -1,6 +1,6 @@
 /**
-* @ignore - do not document.
-*/
+ * @ignore - do not document.
+ */
 
 import React from 'react';
 import FlexGrid from '@material-ui/core/Grid';

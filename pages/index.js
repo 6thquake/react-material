@@ -110,7 +110,7 @@ class HomePage extends React.Component {
             }}
           />
           <Head />
-          { /*<Tidelift />*/ }
+          {/*<Tidelift />*/}
           <div className={classes.hero}>
             <div className={classes.content}>
               <img

@@ -1,6 +1,6 @@
 /**
-* @ignore - do not document.
-*/
+ * @ignore - do not document.
+ */
 
 import { TargetWrapper } from '../DragBase';
 import React from 'react';

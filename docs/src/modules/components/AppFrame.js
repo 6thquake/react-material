@@ -194,7 +194,7 @@ class AppFrame extends React.Component {
             </Tooltip>
           </Toolbar>
         </AppBar>
-        { /*<Notifications />*/ }
+        {/*<Notifications />*/}
         <AppDrawer
           className={classes.drawer}
           disablePermanent={disablePermanent}

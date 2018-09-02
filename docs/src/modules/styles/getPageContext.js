@@ -2,7 +2,11 @@
 
 import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
-import { createMuiTheme, createGenerateClassName, jssPreset } from '@6thquake/react-material/styles';
+import {
+  createMuiTheme,
+  createGenerateClassName,
+  jssPreset,
+} from '@6thquake/react-material/styles';
 import blue from '@6thquake/react-material/colors/blue';
 import pink from '@6thquake/react-material/colors/pink';
 import { darken } from '@6thquake/react-material/styles/colorManipulator';

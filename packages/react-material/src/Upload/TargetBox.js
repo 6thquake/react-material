@@ -1,6 +1,6 @@
 /**
-* @ignore - do not document.
-*/
+ * @ignore - do not document.
+ */
 
 import React, { Component } from 'react';
 import { DropTarget, DropTargetConnector, ConnectDropTarget, DropTargetMonitor } from 'react-dnd';

@@ -51,11 +51,15 @@ class App extends React.Component {
             <BreadcrumbItem>
               {routes.indexOf(route) === routes.length - 1 ? (
                 <span>
-                  {route.icon}&nbsp;{route.name}
+                  {route.icon}
+                  &nbsp;
+                  {route.name}
                 </span>
               ) : (
                 <a href={route.path}>
-                  {route.icon}&nbsp;{route.name}
+                  {route.icon}
+                  &nbsp;
+                  {route.name}
                 </a>
               )}
             </BreadcrumbItem>

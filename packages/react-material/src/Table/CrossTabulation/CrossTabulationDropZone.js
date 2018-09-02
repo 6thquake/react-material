@@ -1,6 +1,6 @@
 /**
-* @ignore - do not document.
-*/
+ * @ignore - do not document.
+ */
 
 import React from 'react';
 import ReactDOM from 'react-dom';

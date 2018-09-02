@@ -19,7 +19,6 @@ const styles = theme => ({
   },
 });
 
-
 function SimpleBadge(props) {
   const { classes } = props;
   return (

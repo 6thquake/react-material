@@ -183,10 +183,10 @@ class AwesomeTable extends React.Component {
     return [...leftColumns, ...unfixed, ...rightColumns];
   };
 
-  syncTableRowHeight = isResize => {
+  syncTableRowHeight = (isResize, length) => {
     let head = this.tableRefs.head.current;
     let body = this.tableRefs.body.current;
-
+    let len = length || this.state.data.length;
     if (!head || !body) {
       return;
     }
@@ -199,13 +199,13 @@ class AwesomeTable extends React.Component {
     if (isResize) {
       // todo : Resizable only axis=x
       this.setState({
-        bodyRowHeight: bodyHeight / this.state.data.length,
+        bodyRowHeight: bodyHeight / len,
       });
       return;
     }
     this.setState({
       bodyHeight,
-      bodyRowHeight: bodyHeight / this.state.data.length,
+      bodyRowHeight: bodyHeight / len,
       headRowHeight: headHeight,
     });
   };
@@ -344,9 +344,7 @@ class AwesomeTable extends React.Component {
       data,
     });
   };
-  handleTreeChange = () => {
-    this.syncTableRowHeight();
-  };
+ 
   createCsv = () => {
     let head = this.state.columns.reduce((pre, cur) => {
       if (cur.render || !cur.title) {
@@ -458,7 +456,7 @@ class AwesomeTable extends React.Component {
     );
     const body = (
       <Body
-        onTreeChange={this.handleTreeChange}
+        syncTableRowHeight={this.syncTableRowHeight}
         bodyRef={type === 'main' ? this.tableRefs.body : ''}
         data={bodyData}
         columns={columns}

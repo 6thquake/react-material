@@ -6,7 +6,7 @@ import { withStyles } from '../../styles';
 const styles = theme => ({
   root: {},
   tablePadding: {
-    padding: '4px 8px',
+    padding: '16px 8px',
   },
 });
 

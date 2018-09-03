@@ -66,15 +66,17 @@ const columns = [
   {
     title: 'Age222',
     dataIndex: 'age',
-    key: 'age',
+    key: 'age2',
     width: '200',
+    // fixed: 'right'
   },
   ,
   {
     title: 'Age11',
-    key: 'age',
-    width: '200',
-    dataIndex: 'age',
+    key: 'age3',
+    width: '250',
+    dataIndex: 'address',
+    // fixed: 'right',
   },
 ];
 
@@ -234,16 +236,9 @@ class AwesomeTableEXample extends React.Component {
     this.state = {
       columns: columns,
       data: data,
-      value: 'scroll',
-      TablePaginationProps: {
-        rowsPerPage: 5,
-        page: 0,
-        count: 40,
-      },
     };
   }
   componentDidMount = () => {
-    this.handleChangePage(0, 0);
     const { data } = this.state;
 
     this.timer = setTimeout(() => {
@@ -261,132 +256,24 @@ class AwesomeTableEXample extends React.Component {
       value,
     });
   };
-  handleSearch = value => {
-    console.log('search value', value);
-    this.setState({
-      data: filter(data, value),
-    });
-  };
-  handleChangePage = (e, page) => {
-    console.log('page', page);
-    let { TablePaginationProps } = this.state;
-    let { rowsPerPage } = TablePaginationProps;
-    TablePaginationProps.page = page;
-    let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-    console.log('paginateData', paginateData);
-    this.setState({
-      TablePaginationProps,
-      data: paginateData,
-    });
-  };
-  handleChangeRowsPerPage = e => {
-    console.log('rowperoage', e.target.value);
-    let { TablePaginationProps } = this.state;
-    let { page } = TablePaginationProps;
-    let rowsPerPage = e.target.value;
-    TablePaginationProps.rowsPerPage = rowsPerPage;
-    let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-    this.setState({
-      TablePaginationProps,
-      data: paginateData,
-    });
-  };
-  handleRowClick = (e, i) => {
-    console.log('row item', e, i);
-  };
 
-  handleSort = data => {
-    console.log('sort===:', data);
-    let item = data[0];
-    const { columns } = this.state;
-    const { key, order } = item;
-    this.sortData(order);
-  };
-
-  sortData = order => {
-    let { data } = this.state;
-    data.sort((a, b) => {
-      if (order == 'asc') {
-        return a.age - b.age;
-      } else if (order == 'desc') {
-        return b.age - a.age;
-      }
-    });
-  };
   render() {
     const { classes } = this.props;
-    const { data, columns, value } = this.state;
-    const PaginationProps = {
-      onChangeRowsPerPage: this.handleChangeRowsPerPage,
-      onChangePage: this.handleChangePage,
-      ...this.state.TablePaginationProps,
-    };
-    const exportProps = {
-      type: 'csv',
-    };
-    const SearchProps = {
-      placeholder: 'search',
-      isDark: true,
-      onChange: this.handleSearch,
-    };
-    const TableRowProps = {
-      hover: true,
-      // selected: true,
-    };
+    const { data, columns } = this.state;
     const TableCellProps = {
       classes: {
         root: classes.cellPadding,
       },
     };
-    const options = {
-      [value]: value,
-      TablePaginationProps: PaginationProps,
-      OrderProps: {
-        // multiple: true,
-        onChangeOrder: this.handleSort,
-      },
-      exportProps,
-      SearchProps,
-      // TableRowProps,
-      TableCellProps,
-    };
-
     return (
       <div className={classes.root}>
-        <Paper className={classes.bar}>
-          <div className={classes.radioButtons}>
-            <RadioGroup
-              row
-              circular
-              onChange={this.handleChange}
-              value={this.state.value}
-              name="type2"
-            >
-              <RadioButton className={classes.button} value="scoll">
-                scroll
-              </RadioButton>
-              <RadioButton className={classes.button} value="resizable">
-                resizable
-              </RadioButton>
-              <RadioButton className={classes.button} value="dragable">
-                dragable
-              </RadioButton>
-            </RadioGroup>
-          </div>
-        </Paper>
         <Paper className={classes.tableBox}>
-          {/* <Divider></Divider> */}
           <AwesomeTable
             onRowClick={this.handleRowClick}
             title={'Tree Table'}
             columns={columns}
             data={data}
-            searchable
-            paginatable
-            // disableClickToFixColumn={false}
-            total={'total: 90'}
-            // sync
-            {...options}
+            // TableCellProps={TableCellProps}
           />
         </Paper>
       </div>

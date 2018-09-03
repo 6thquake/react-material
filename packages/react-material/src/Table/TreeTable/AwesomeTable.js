@@ -344,7 +344,7 @@ class AwesomeTable extends React.Component {
       data,
     });
   };
- 
+
   createCsv = () => {
     let head = this.state.columns.reduce((pre, cur) => {
       if (cur.render || !cur.title) {

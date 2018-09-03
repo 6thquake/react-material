@@ -79,10 +79,10 @@ class Body extends React.Component {
     }
   }
 
-  setRows = (rows) => {
+  setRows = rows => {
     // const{}
-  }
-  
+  };
+
   handleRowClick = (entry, index) => e => {
     const { onRowClick } = this.props;
     onRowClick && onRowClick(entry, index);
@@ -102,7 +102,7 @@ class Body extends React.Component {
         item.show = !close;
       }
     });
-    let length = this.state.rows.filter( item => item.show ).length
+    let length = this.state.rows.filter(item => item.show).length;
     this.setState(
       {
         rows,
@@ -136,8 +136,8 @@ class Body extends React.Component {
   renderOneRow = (entry, index) => {
     const { classes, columns, TableCellProps, TableRowProps, type, bodyRowHeight } = this.props;
     let rowStyle = {
-      height: bodyRowHeight
-    }
+      height: bodyRowHeight,
+    };
     let indent = (entry.deep || 0) * 50;
     if (!entry.show) {
       return null;
@@ -160,7 +160,8 @@ class Body extends React.Component {
         {...TableRowProps}
       >
         {columns.map((column, index) => {
-          let hasIcon = type!=='right' && entry.children && entry.children.length > 0 && index === 0 ;
+          let hasIcon =
+            type !== 'right' && entry.children && entry.children.length > 0 && index === 0;
           let indentStyle =
             type !== 'right' && index === 0
               ? {
@@ -212,7 +213,7 @@ class Body extends React.Component {
       : {};
     let bodyRowHeight = 0;
     if (rows.length > 0) {
-      bodyRowHeight = bodyHeight / rows.filter(item=> item.show).length;
+      bodyRowHeight = bodyHeight / rows.filter(item => item.show).length;
     }
     this.rowStyle = {
       height: bodyRowHeight,

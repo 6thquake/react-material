@@ -10,7 +10,7 @@ import { RadioButton } from '@6thquake/react-material/Radio';
 import RadioGroup from '@6thquake/react-material/RadioGroup';
 // import ScrollBar from ''
 import Paper from '@6thquake/react-material/Paper';
-import AwesomeTable from '@6thquake/react-material/Table/AwesomeTable';
+import TreeTable from '@6thquake/react-material/Table/TreeTable';
 // import { Divider } from 'rc-menu/lib';
 
 import filter from '@6thquake/react-material/utils/filter';
@@ -230,7 +230,7 @@ const data2 = [
   },
 ];
 
-class AwesomeTableEXample extends React.Component {
+class TreeTableExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -268,7 +268,7 @@ class AwesomeTableEXample extends React.Component {
     return (
       <div className={classes.root}>
         <Paper className={classes.tableBox}>
-          <AwesomeTable
+          <TreeTable
             onRowClick={this.handleRowClick}
             title={'Tree Table'}
             columns={columns}
@@ -281,8 +281,8 @@ class AwesomeTableEXample extends React.Component {
   }
 }
 
-AwesomeTableEXample.propTypes = {
+TreeTableExample.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AwesomeTableEXample);
+export default withStyles(styles)(TreeTableExample);

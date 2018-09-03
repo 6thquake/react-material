@@ -81,6 +81,7 @@ class AwesomeTable extends React.Component {
     super(props);
     const columns = this.normalizeColumns(props.columns);
     this.state = {
+      bodyHeight: 0,
       hasLeft: false,
       hasRight: true,
       columns: columns,
@@ -156,7 +157,7 @@ class AwesomeTable extends React.Component {
     this.handlePaginteData();
   }
 
-  componentDidUpdate(nextProps, nextState) {
+  componentDidUpdate() {
     const { data, paginatable, searchable } = this.props;
     if (data !== this.propsCached.data) {
       this.propsCached.data = data;
@@ -182,10 +183,10 @@ class AwesomeTable extends React.Component {
     return [...leftColumns, ...unfixed, ...rightColumns];
   };
 
-  syncTableRowHeight = isResize => {
+  syncTableRowHeight = (isResize, length) => {
     let head = this.tableRefs.head.current;
     let body = this.tableRefs.body.current;
-
+    let len = length || this.state.data.length;
     if (!head || !body) {
       return;
     }
@@ -198,12 +199,13 @@ class AwesomeTable extends React.Component {
     if (isResize) {
       // todo : Resizable only axis=x
       this.setState({
-        bodyRowHeight: bodyHeight / this.state.data.length,
+        bodyRowHeight: bodyHeight / len,
       });
       return;
     }
     this.setState({
-      bodyRowHeight: bodyHeight / this.state.data.length,
+      bodyHeight,
+      bodyRowHeight: bodyHeight / len,
       headRowHeight: headHeight,
     });
   };
@@ -342,7 +344,7 @@ class AwesomeTable extends React.Component {
       data,
     });
   };
-
+ 
   createCsv = () => {
     let head = this.state.columns.reduce((pre, cur) => {
       if (cur.render || !cur.title) {
@@ -412,7 +414,15 @@ class AwesomeTable extends React.Component {
       TableCellProps,
       TableRowProps,
     } = this.props;
-    const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData, sorts } = this.state;
+    const {
+      bodyHeight,
+      bodyRowHeight,
+      headRowHeight,
+      hasLeft,
+      hasRight,
+      data: bodyData,
+      sorts,
+    } = this.state;
     let width =
       type === 'main'
         ? ''
@@ -446,6 +456,7 @@ class AwesomeTable extends React.Component {
     );
     const body = (
       <Body
+        syncTableRowHeight={this.syncTableRowHeight}
         bodyRef={type === 'main' ? this.tableRefs.body : ''}
         data={bodyData}
         columns={columns}
@@ -454,6 +465,7 @@ class AwesomeTable extends React.Component {
         scroll={this.handlScrollY}
         tableRef={this.tableRefs[type]}
         bodyRowHeight={bodyRowHeight}
+        bodyHeight={bodyHeight}
         onRowClick={onRowClick}
         noData={noData}
         TableCellProps={TableCellProps}

@@ -8,30 +8,32 @@ import DialogContent from '../DialogContent';
 import { Clear } from '@material-ui/icons';
 import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
 import Button from '../Button';
+import Typography from '../Typography';
+import { fade } from '../styles/colorManipulator';
+import Grid from '../Grid';
+import Scrollbar from '../Scrollbar';
 
 const styles = theme => ({
   title: {
-    backgroundColor: 'rgb(16,108,200)',
-    color: 'white',
-    fontSize: '1rem',
-    fontWeight: '700',
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
   },
-  icon: {
-    color: 'white',
-    float: 'right',
+  close: {
+    color: fade(theme.palette.primary.contrastText, 0.68),
     '&:hover': {
-      opacity: 0.5,
+      color: theme.palette.primary.contrastText,
     },
   },
   contentRoot: {
-    paddingTop: theme.spacing.unit * 3,
+    padding: `0px 0px`,
   },
   actionRoot: {
     margin: 0,
-    padding: `${theme.spacing.unit}px  ${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px 0`,
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px ${theme.spacing.unit *
+      2}px ${theme.spacing.unit * 2}px`,
   },
   actionRootBtn: {
-    margin: `0 0 0 ${theme.spacing.unit}px`,
+    margin: `0 ${theme.spacing.unit}px 0 ${theme.spacing.unit}px`,
   },
   justifyActions: {
     width: '100%',
@@ -98,7 +100,13 @@ class Modal extends Component {
   }
 
   render() {
-    const { classes, label, onClose, maxHeight, actions, ...other } = this.props;
+    const { classes, label, onClose, height, actions, ...other } = this.props;
+
+    let scrollProps = {};
+    if (height) {
+      scrollProps.autoHeightMin = height;
+      scrollProps.autoHeightMax = height;
+    }
 
     return (
       <Dialog
@@ -108,17 +116,23 @@ class Modal extends Component {
         {...this.props}
       >
         <DialogTitle className={classes.title} disableTypography={true}>
-          {label}
-          <Clear className={classes.icon} onClick={onClose} />
+          <Grid container direction="row" justify="space-between" alignItems="center">
+            <Grid item>
+              <Typography variant="title" color="inherit">
+                {label}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Clear className={classes.close} onClick={onClose} />
+            </Grid>
+          </Grid>
         </DialogTitle>
 
-        <DialogContent
-          style={{ maxHeight: `${maxHeight}px` }}
-          classes={{ root: classes.contentRoot }}
-        >
-          {this.props.children}
+        <DialogContent classes={{ root: classes.contentRoot }}>
+          <Scrollbar autoHeight {...scrollProps}>
+            {this.props.children}
+          </Scrollbar>
         </DialogContent>
-
         <DialogActions classes={{ root: classes.actionRoot }}>{this.renderActions()}</DialogActions>
       </Dialog>
     );
@@ -143,9 +157,9 @@ Modal.propTypes = {
    */
   onClose: PropTypes.func.isRequired,
   /**
-   * max content height
+   * content height
    */
-  maxHeight: PropTypes.number,
+  height: PropTypes.number,
   /**
    * actions button array
    */
@@ -153,16 +167,11 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
-  maxHeight: 500,
   open: false,
   label: '',
   animation: 'fade',
   onClose: () => {},
-  actions: [
-    <Button variant="raised" color="primary" autoFocus>
-      Agree
-    </Button>,
-  ],
+  actions: [],
 };
 
 export default withStyles(styles, { name: 'RMModal' })(Modal);

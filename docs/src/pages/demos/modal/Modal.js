@@ -19,21 +19,33 @@ const styles = theme => ({
     minWidth: 1000,
   },
   actionRootBtn: {
-    margin: `0 0 0 ${theme.spacing.unit}px`,
+    margin: `0 ${theme.spacing.unit}px`,
+  },
+  content: {
+    padding: `${theme.spacing.unit}px`,
   },
 });
 class App extends Component {
   constructor(props) {
     super(props);
+
+    let data = [],
+      len = 100;
+    while (len >= 0) {
+      data.push(len--);
+    }
+
     this.state = {
       open: false,
       animation: 'zoom',
+      data: data,
+      height: '100',
     };
   }
 
-  handleChange = (event, value) => {
+  handleChange = type => (event, value) => {
     this.setState({
-      animation: value,
+      [type]: value,
     });
   };
 
@@ -55,7 +67,7 @@ class App extends Component {
 
   render() {
     const { classes } = this.props;
-    let { open, animation, ...other } = this.state;
+    let { open, animation, data, height, ...other } = this.state;
 
     let actions = [
       <Button
@@ -82,26 +94,6 @@ class App extends Component {
           Open Modal
         </Button>
 
-        <Modal2
-          classes={{
-            paperWidthSm: classes.paperWidthSm,
-          }}
-          open={this.state.open}
-          onClose={this.handleClose.bind(this)}
-          label={'this is a modal test'}
-          animation={this.state.animation}
-          actions={actions}
-        >
-          <DialogContentText>
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running. Let Google help apps determine location. This
-            means sending anonymous location data to Google, even when no apps are running. Let
-            Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running. Let Google help apps determine location. This
-            means sending anonymous location data to Google, even when no apps are running.
-          </DialogContentText>
-        </Modal2>
-
         <Grid container spacing={16}>
           <Grid item xs={12} sm={12}>
             <FormControl component="fieldset">
@@ -111,7 +103,7 @@ class App extends Component {
                 aria-label="anchorOriginVertical"
                 name="anchorOriginVertical"
                 value={this.state.animation}
-                onChange={this.handleChange}
+                onChange={this.handleChange('animation')}
               >
                 <FormControlLabel value="slide" control={<Radio />} label="slide" />
                 <FormControlLabel value="collapse" control={<Radio />} label="collapse" />
@@ -122,7 +114,42 @@ class App extends Component {
               <h4>your choose animation is :{this.state.animation}</h4>
             </FormControl>
           </Grid>
+          <Grid item xs={12} sm={12}>
+            <FormControl component="fieldset">
+              {/* <FormLabel component="legend">open animation</FormLabel> */}
+              <RadioGroup
+                row
+                aria-label="anchorOriginVertical"
+                name="anchorOriginVertical"
+                value={height}
+                onChange={this.handleChange('height')}
+              >
+                <FormControlLabel value={'0'} control={<Radio />} label="auto height" />
+                <FormControlLabel value={'100'} control={<Radio />} label="height: 100" />
+              </RadioGroup>
+              <h4>animation is: {animation}</h4>
+              <h4>height is: {height}</h4>
+            </FormControl>
+          </Grid>
         </Grid>
+
+        <Modal2
+          classes={{
+            paperWidthSm: classes.paperWidthSm,
+          }}
+          open={this.state.open}
+          onClose={this.handleClose.bind(this)}
+          label={'this is a modal test'}
+          animation={this.state.animation}
+          actions={actions}
+          height={height * 1}
+        >
+          <DialogContentText className={classes.content}>
+            {data.map(i => (
+              <p>{i}</p>
+            ))}
+          </DialogContentText>
+        </Modal2>
       </div>
     );
   }

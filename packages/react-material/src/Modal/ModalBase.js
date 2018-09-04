@@ -11,12 +11,8 @@ import Button from '../Button';
 import Typography from '../Typography';
 import { fade } from '../styles/colorManipulator';
 import Grid from '../Grid';
-import Scrollbar from '../Scrollbar';
 
 const styles = theme => ({
-  paper: {
-    overflowY: 'hidden',
-  },
   title: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
@@ -103,27 +99,21 @@ class Modal extends Component {
   }
 
   render() {
-    const { classes, label, onClose, height, actions, ...other } = this.props;
-
-    let scrollProps = {};
-    if (height) {
-      scrollProps.autoHeightMin = height;
-      scrollProps.autoHeightMax = height;
-    }
+    const { classes, title, onClose, scroll, actions, ...other } = this.props;
 
     return (
       <Dialog
         TransitionComponent={this.transition}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
-        classes={{ paper: classes.paper }}
+        scroll={scroll}
         {...this.props}
       >
         <DialogTitle className={classes.title} disableTypography={true}>
           <Grid container direction="row" justify="space-between" alignItems="center">
             <Grid item>
               <Typography variant="title" color="inherit">
-                {label}
+                {title}
               </Typography>
             </Grid>
             <Grid item>
@@ -133,9 +123,7 @@ class Modal extends Component {
         </DialogTitle>
 
         <DialogContent classes={{ root: classes.contentRoot }}>
-          <Scrollbar autoHeight {...scrollProps}>
-            {this.props.children}
-          </Scrollbar>
+          {this.props.children}
         </DialogContent>
         <DialogActions classes={{ root: classes.actionRoot }}>{this.renderActions()}</DialogActions>
       </Dialog>
@@ -149,9 +137,14 @@ Modal.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * This is  modal title
+   * @deprecated
+   * This is the modal's title, please using title instead.
    */
   label: PropTypes.string,
+  /**
+   * This is the modal's title
+   */
+  title: PropTypes.string,
   /**
    * This is usually an animation of open or close the modal,include slide、collapse、fade、grow、zoom
    */
@@ -161,9 +154,9 @@ Modal.propTypes = {
    */
   onClose: PropTypes.func.isRequired,
   /**
-   * content height
+   * scroll type
    */
-  height: PropTypes.number,
+  scroll: PropTypes.oneOf(['paper', 'body']),
   /**
    * actions button array
    */
@@ -173,9 +166,11 @@ Modal.propTypes = {
 Modal.defaultProps = {
   open: false,
   label: '',
-  animation: 'fade',
+  title: '',
+  animation: 'zoom',
   onClose: () => {},
   actions: [],
+  scroll: 'paper',
 };
 
 export default withStyles(styles, { name: 'RMModal' })(Modal);

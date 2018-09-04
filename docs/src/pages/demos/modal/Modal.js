@@ -39,7 +39,7 @@ class App extends Component {
       open: false,
       animation: 'zoom',
       data: data,
-      height: '100',
+      scroll: 'paper',
     };
   }
 
@@ -67,7 +67,7 @@ class App extends Component {
 
   render() {
     const { classes } = this.props;
-    let { open, animation, data, height, ...other } = this.state;
+    let { open, animation, data, scroll, ...other } = this.state;
 
     let actions = [
       <Button
@@ -121,14 +121,14 @@ class App extends Component {
                 row
                 aria-label="anchorOriginVertical"
                 name="anchorOriginVertical"
-                value={height}
-                onChange={this.handleChange('height')}
+                value={scroll}
+                onChange={this.handleChange('scroll')}
               >
-                <FormControlLabel value={'0'} control={<Radio />} label="auto height" />
-                <FormControlLabel value={'100'} control={<Radio />} label="height: 100" />
+                <FormControlLabel value={'paper'} control={<Radio />} label="paper" />
+                <FormControlLabel value={'body'} control={<Radio />} label="body" />
               </RadioGroup>
               <h4>animation is: {animation}</h4>
-              <h4>height is: {height}</h4>
+              <h4>scroll type is: {scroll}</h4>
             </FormControl>
           </Grid>
         </Grid>
@@ -139,10 +139,10 @@ class App extends Component {
           }}
           open={this.state.open}
           onClose={this.handleClose.bind(this)}
-          label={'this is a modal test'}
+          title={'this is a modal test'}
           animation={this.state.animation}
           actions={actions}
-          height={height * 1}
+          scroll={scroll}
         >
           <DialogContentText className={classes.content}>
             {data.map(i => (

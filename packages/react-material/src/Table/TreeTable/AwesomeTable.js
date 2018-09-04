@@ -186,11 +186,12 @@ class AwesomeTable extends React.Component {
   syncTableRowHeight = (isResize, length) => {
     let head = this.tableRefs.head.current;
     let body = this.tableRefs.body.current;
-    let len = length || this.state.data.length;
+
     if (!head || !body) {
       return;
     }
 
+    let len = length || this.state.data.length;
     let headDom = ReactDOM.findDOMNode(head);
     let headHeight = headDom.getBoundingClientRect().height;
 
@@ -203,6 +204,8 @@ class AwesomeTable extends React.Component {
       });
       return;
     }
+    console.log('bodyHeight');
+
     this.setState({
       bodyHeight,
       bodyRowHeight: bodyHeight / len,
@@ -427,7 +430,7 @@ class AwesomeTable extends React.Component {
       type === 'main'
         ? ''
         : columns.reduce((pre, cur) => {
-            return pre + cur.width;
+            return pre + parseInt(cur.width);
           }, 0);
     let style = {
       height: '100%',

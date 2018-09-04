@@ -1,19 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import Divider from '@6thquake/react-material/Divider';
-import TableBody from '@6thquake/react-material/TableBody';
-import TableCell from '@6thquake/react-material/TableCell';
-import TableHead from '@6thquake/react-material/TableHead';
-import TableRow from '@6thquake/react-material/TableRow';
-import { RadioButton } from '@6thquake/react-material/Radio';
-import RadioGroup from '@6thquake/react-material/RadioGroup';
-// import ScrollBar from ''
 import Paper from '@6thquake/react-material/Paper';
 import TreeTable from '@6thquake/react-material/Table/TreeTable';
-// import { Divider } from 'rc-menu/lib';
-
-import filter from '@6thquake/react-material/utils/filter';
 
 const styles = theme => ({
   root: {
@@ -57,12 +46,12 @@ const columns = [
     key: 'age',
     width: '200',
   },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    width: '200',
-    key: 'address',
-  },
+  // {
+  //   title: 'Address',
+  //   dataIndex: 'address',
+  //   width: '100',
+  //   key: 'address',
+  // },
   {
     title: 'Age222',
     dataIndex: 'age',
@@ -75,8 +64,8 @@ const columns = [
     title: 'Age11',
     key: 'age3',
     width: '250',
-    dataIndex: 'address',
-    // fixed: 'right',
+    dataIndex: 'age',
+    fixed: 'right',
   },
 ];
 
@@ -85,13 +74,13 @@ const data = [
     key: 1,
     name: '1 John Brown sr.',
     age: 60,
-    address: 'New York No. 1 Lake Park',
+    address: '12121 New York No. 1 Lake Park New York No. 1 Lake Park',
     children: [
       {
         key: 11,
         name: '11 John Brown',
         age: 42,
-        address: 'New York No. 2 Lake Park',
+        address: 'New York No. 2 Lake Park New York No. 2 Lake Park',
       },
       {
         key: 12,
@@ -150,7 +139,7 @@ const data2 = [
     key: 1,
     name: '1 1111111',
     age: 60,
-    address: 'New York No. 1 Lake Park',
+    address: '12121 New York No. 1 Lake Park New York No. 1 Lake Park',
     children: [
       {
         key: 11,
@@ -240,7 +229,6 @@ class TreeTableExample extends React.Component {
   }
   componentDidMount = () => {
     const { data } = this.state;
-
     this.timer = setTimeout(() => {
       this.setState({
         data: data2,

@@ -1,18 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import update from 'immutability-helper';
 import Table from '../../Table';
 import TableBody from '../../TableBody';
 import TableCell from './Cell';
-import TableHead from '../../TableHead';
 import TableRow from '../../TableRow';
-import Scrollbar from '../../Scrollbar';
 import { withStyles } from '../../styles';
-
 import ExSwitch from './ExSwitch';
-// import AddIcon from '../../Icon/Add';
-// import lodash from 'lodash'
-// import merge from 'deepmerge'
+import _ from 'lodash';
 
 const styles = theme => ({
   root: {
@@ -55,21 +49,21 @@ class Body extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // rows[]
       rows: [],
     };
   }
 
   componentDidMount() {
-    // const { data } = this.props
-    // this.renderRows(data)
-    // this.setState({
-    //   rows: this.rowsState
-    // })
+    const { data } = this.props;
+    this.renderRows(data);
+    this.setState({
+      rows: this.rowsState,
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.data !== this.props.data) {
+    if (!_.isEqual(this.cachedProps.data, this.props.data)) {
+      this.cachedProps.data = _.cloneDeep(this.props.data);
       const { data } = this.props;
       this.rowsState = [];
       this.renderRows(data);
@@ -79,9 +73,7 @@ class Body extends React.Component {
     }
   }
 
-  setRows = rows => {
-    // const{}
-  };
+  cachedProps = {};
 
   handleRowClick = (entry, index) => e => {
     const { onRowClick } = this.props;

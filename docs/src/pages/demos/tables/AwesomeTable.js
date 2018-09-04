@@ -1,17 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import Divider from '@6thquake/react-material/Divider';
-import TableBody from '@6thquake/react-material/TableBody';
-import TableCell from '@6thquake/react-material/TableCell';
-import TableHead from '@6thquake/react-material/TableHead';
-import TableRow from '@6thquake/react-material/TableRow';
 import { RadioButton } from '@6thquake/react-material/Radio';
 import RadioGroup from '@6thquake/react-material/RadioGroup';
-// import ScrollBar from ''
 import Paper from '@6thquake/react-material/Paper';
-import AwesomeTable from '@6thquake/react-material/Table/AwesomeTable';
-// import { Divider } from 'rc-menu/lib';
+import AwesomeTable from '@6thquake/react-material/Table/TreeTable';
 
 import filter from '@6thquake/react-material/utils/filter';
 
@@ -95,7 +88,13 @@ const columns = [
   },
 ];
 
-const data = [];
+const data = [{
+  key: '000',
+  name: `Edrward`,
+  age: Math.ceil(Math.random() * 100),
+  address: `London Park no. London Park no London Park no London Park no`,
+  gender: 'female',
+}];
 for (let i = 0; i < 40; i++) {
   data.push({
     key: i,

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import NoSSR from '@material-ui/docs/NoSSR';
+import NoSSR from '@material-ui/core/NoSsr';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 
 const styles = theme => ({

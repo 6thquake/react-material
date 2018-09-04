@@ -4,7 +4,7 @@ import { withStyles } from '@6thquake/react-material/styles';
 import { RadioButton } from '@6thquake/react-material/Radio';
 import RadioGroup from '@6thquake/react-material/RadioGroup';
 import Paper from '@6thquake/react-material/Paper';
-import AwesomeTable from '@6thquake/react-material/Table/TreeTable';
+import AwesomeTable from '@6thquake/react-material/Table/AwesomeTable';
 
 import filter from '@6thquake/react-material/utils/filter';
 
@@ -88,13 +88,14 @@ const columns = [
   },
 ];
 
-const data = [{
-  key: '000',
-  name: `Edrward`,
-  age: Math.ceil(Math.random() * 100),
-  address: `London Park no. London Park no London Park no London Park no`,
-  gender: 'female',
-}];
+// const data = [{
+//   key: '000',
+//   name: `Edrward`,
+//   age: Math.ceil(Math.random() * 100),
+//   address: `London Park no. London Park no London Park no London Park no`,
+//   gender: 'female',
+// }];
+const data = []
 for (let i = 0; i < 40; i++) {
   data.push({
     key: i,

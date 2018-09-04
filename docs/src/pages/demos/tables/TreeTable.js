@@ -46,12 +46,12 @@ const columns = [
     key: 'age',
     width: '200',
   },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    width: '100',
-    key: 'address',
-  },
+  // {
+  //   title: 'Address',
+  //   dataIndex: 'address',
+  //   width: '100',
+  //   key: 'address',
+  // },
   {
     title: 'Age222',
     dataIndex: 'age',
@@ -64,7 +64,7 @@ const columns = [
     title: 'Age11',
     key: 'age3',
     width: '250',
-    dataIndex: 'address',
+    dataIndex: 'age',
     fixed: 'right',
   },
 ];

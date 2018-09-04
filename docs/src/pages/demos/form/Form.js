@@ -120,6 +120,8 @@ class FormDemo extends Component {
       canSubmit,
       input,
       textField,
+      minAndMax,
+      min,
       select,
       selectOptions,
       radio,
@@ -236,7 +238,7 @@ class FormDemo extends Component {
               multiline
               name="minAndMax"
               label="min max"
-              value={textField}
+              value={minAndMax}
               onChange={this.onChange('minAndMax')}
               validations={{
                 isRequired: true,
@@ -247,6 +249,24 @@ class FormDemo extends Component {
                 isRequired: 'please enter',
                 min: '值不能小于1',
                 max: '值不能大于10',
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              multiline
+              name="min"
+              label="min"
+              value={min}
+              onChange={this.onChange('min')}
+              validations={{
+                // isRequired: true,
+                min: 1
+              }}
+              validationErrors={{
+                // isRequired: 'please enter',
+                min: '值不能小于1',
+                // max: '值不能大于10',
               }}
             />
           </Grid>

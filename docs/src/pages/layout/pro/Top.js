@@ -37,7 +37,9 @@ class Top extends Component {
                 const children = route.children;
                 return children ? (
                   <ItemGroup key={route.key} title={route.name}>
-                    {children.map((route, index) => <Item key={route.key}>{route.name}</Item>)}
+                    {children.map((route, index) => (
+                      <Item key={route.key}>{route.name}</Item>
+                    ))}
                   </ItemGroup>
                 ) : (
                   <ItemGroup>

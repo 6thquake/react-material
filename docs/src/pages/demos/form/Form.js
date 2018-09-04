@@ -261,7 +261,7 @@ class FormDemo extends Component {
               onChange={this.onChange('min')}
               validations={{
                 // isRequired: true,
-                min: 1
+                min: 1,
               }}
               validationErrors={{
                 // isRequired: 'please enter',

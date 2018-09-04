@@ -72,7 +72,10 @@ class CustomFiltersDemo extends Component {
             }}
           />
         </div>
-        <div className={classes.mt}>selected values:{selected}</div>
+        <div className={classes.mt}>
+          selected values:
+          {selected}
+        </div>
       </div>
     );
   }

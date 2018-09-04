@@ -36,7 +36,7 @@ const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    key: 'name', 
+    key: 'name',
     width: 350,
     fixed: 'left',
   },
@@ -231,7 +231,7 @@ class TreeTableExample extends React.Component {
     const { data } = this.state;
     this.timer = setTimeout(() => {
       this.setState({
-        data: data2
+        data: data2,
       });
     }, 2000);
   };

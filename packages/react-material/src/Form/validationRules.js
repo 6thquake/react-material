@@ -1,6 +1,6 @@
 import { addValidationRule } from 'formsy-react';
 
-const hasValue = (value) => {
+const hasValue = value => {
   return !(value === undefined || value === null || value === '');
 };
 // required

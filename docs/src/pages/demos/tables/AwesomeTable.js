@@ -95,7 +95,7 @@ const columns = [
 //   address: `London Park no. London Park no London Park no London Park no`,
 //   gender: 'female',
 // }];
-const data = []
+const data = [];
 for (let i = 0; i < 40; i++) {
   data.push({
     key: i,

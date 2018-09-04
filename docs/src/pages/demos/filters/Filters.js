@@ -113,7 +113,10 @@ class FiltersDemo extends Component {
             onChange={this.onChange}
           />
         </div>
-        <div className={classes.mt}>selected values:{selected}</div>
+        <div className={classes.mt}>
+          selected values:
+          {selected}
+        </div>
       </div>
     );
   }

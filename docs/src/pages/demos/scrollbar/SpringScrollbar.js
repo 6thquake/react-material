@@ -212,8 +212,9 @@ export default class App extends Component {
             <a href="https://github.com/facebook/rebound-js" target="_blank">
               Rebound
             </a>
-          </strong>. You can simply animate the Scrollbar with <code>scrollbar.scrollTop(x)</code>.
-          Don't forget to wrap your steps with <code>requestAnimationFrame</code>.
+          </strong>
+          . You can simply animate the Scrollbar with <code>scrollbar.scrollTop(x)</code>. Don't
+          forget to wrap your steps with <code>requestAnimationFrame</code>.
         </p>
       </div>
     );

@@ -35,11 +35,15 @@ class App extends React.Component {
     const last = routes.indexOf(route) === routes.length - 1;
     return last ? (
       <span>
-        {route.icon}&nbsp;{route.name}
+        {route.icon}
+        &nbsp;
+        {route.name}
       </span>
     ) : (
       <a href={paths.join('/')}>
-        {route.icon}&nbsp;{route.name}
+        {route.icon}
+        &nbsp;
+        {route.name}
       </a>
     );
   }

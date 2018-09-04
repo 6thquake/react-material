@@ -37,7 +37,9 @@ class Fixed extends Component {
                 const children = route.children;
                 return children ? (
                   <ItemGroup key={index} title={route.name}>
-                    {children.map((route, index) => <Item key={index}>{route.name}</Item>)}
+                    {children.map((route, index) => (
+                      <Item key={index}>{route.name}</Item>
+                    ))}
                   </ItemGroup>
                 ) : (
                   <ItemGroup>

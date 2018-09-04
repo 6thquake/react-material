@@ -102,8 +102,8 @@ class Head extends React.Component {
   };
   handleResize = (...args) => (e, { size }) => {
     // resize宽度范围
-    if (size.width <= 80 || size.width >= 500){
-      return
+    if (size.width <= 80 || size.width >= 500) {
+      return;
     }
     const { onResize } = this.props;
     onResize && onResize(...args, size);

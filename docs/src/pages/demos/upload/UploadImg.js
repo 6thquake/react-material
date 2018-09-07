@@ -15,6 +15,7 @@ class App extends React.Component {
   state = {
     multiple: '1',
     files: [],
+    deletedFiles: [],
   };
 
   handleConfigChange = event => {
@@ -30,9 +31,15 @@ class App extends React.Component {
     });
   };
 
+  handleDelete = file => {
+    this.setState(preState => ({
+      deletedFiles: [...preState.deletedFiles, file],
+    }));
+  };
+
   render() {
     const { classes } = this.props;
-    const { multiple, files } = this.state;
+    const { multiple, files, deletedFiles } = this.state;
 
     return (
       <div>
@@ -47,9 +54,13 @@ class App extends React.Component {
             disabled={false}
             label={'upload'}
             multiple={multiple == '1'}
+            onDelete={this.handleDelete}
           />
         </div>
         <div className={classes.message}>upload files: {files.map(file => ` ${file.name} `)}</div>
+        <div className={classes.message}>
+          deleted files: {deletedFiles.map(file => ` ${file.name} `)}
+        </div>
       </div>
     );
   }

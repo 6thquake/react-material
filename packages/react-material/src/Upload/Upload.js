@@ -145,7 +145,7 @@ class Upload extends Component {
     }
 
     /*type='drag',防止点击删除时弹出input框*/
-    e.preventDefault();
+    e && e.preventDefault();
   };
 
   /*通过点击input标签添加图片*/
@@ -182,6 +182,16 @@ class Upload extends Component {
 
     if (this.state.files.indexOf(file) > -1) {
       return;
+    }
+
+    if (!multiple) {
+      const { files } = this.state;
+      if (files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          this.handleDelete(null, file);
+        }
+      }
     }
 
     if (file instanceof File) {

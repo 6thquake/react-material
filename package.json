@@ -2,7 +2,7 @@
   "name": "@6thquake/react-material-workspace",
   "private": true,
   "author": "6thquake Team",
-  "version": "0.3.0-beta.4",
+  "version": "0.3.0-beta.5",
   "description": "React-Material's workspace package",
   "keywords": [
     "react",
@@ -22,7 +22,7 @@
   "homepage": "https://github.com/6thquake/react-material",
   "scripts": {
     "start": "yarn docs:dev",
-    "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev",
+    "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev --inspect",
     "docs:api": "rimraf ./pages/api && yarn docs:api:base:lab && yarn docs:api:base && yarn docs:api:core",
     "docs:api:core": "cross-env BABEL_ENV=docs-development && babel-node ./docs/scripts/buildApi.js ./packages/react-material/src ./pages/api",
     "docs:api:base": "cross-env BABEL_ENV=docs-development babel-node ./docs/scripts/buildApi.js ./packages/material-ui/core/src ./pages/api",

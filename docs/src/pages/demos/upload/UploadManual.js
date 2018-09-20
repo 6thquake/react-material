@@ -5,6 +5,9 @@ import { Upload } from '@6thquake/react-material/Upload';
 import Button, { StatusButton } from '@6thquake/react-material/Button';
 import FileUpload from '@material-ui/icons/CloudUpload';
 import classNames from 'classnames';
+import RadioGroup from '@6thquake/react-material/RadioGroup';
+import Radio from '@6thquake/react-material/Radio';
+import FormControlLabel from '@6thquake/react-material/FormControlLabel';
 
 const styles = theme => ({
   rightIcon: {
@@ -13,9 +16,31 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
+  message: {
+    marginTop: theme.spacing.unit * 3,
+  },
 });
+
 class UploadManual extends React.Component {
-  actionFunc = data => {
+  state = {
+    multiple: '1',
+    files: [],
+  };
+
+  handleConfigChange = event => {
+    const { value } = event.target;
+    this.setState({
+      multiple: value,
+    });
+  };
+
+  handleChange = files => {
+    this.setState({
+      files: files,
+    });
+  };
+
+  upload = data => {
     let _promise = new Promise(function(resolve, reject) {
       fetch('//jsonplaceholder.typicode.com/posts/', {
         method: 'POST',
@@ -31,22 +56,35 @@ class UploadManual extends React.Component {
     });
     return _promise;
   };
+
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
+    const { multiple, files } = this.state;
+
     return (
-      <Upload
-        type="manual"
-        acceptType="image/*"
-        actionFunc={this.actionFunc}
-        multiple={true}
-        disabled={false}
-      >
-        <Button variant="raised" component="span" color="default" className={classes.button}>
-          上传文件
-          <FileUpload className={classes.rightIcon} />
-        </Button>
-        <div>开始上传</div>
-      </Upload>
+      <div>
+        <RadioGroup row value={multiple} onChange={this.handleConfigChange}>
+          <FormControlLabel value={'0'} control={<Radio />} label="只允许上传单个文件" />
+          <FormControlLabel value={'1'} control={<Radio />} label="允许上传多个文件" />
+        </RadioGroup>
+        <div>
+          <Upload
+            type="manual"
+            acceptType="image/*"
+            upload={this.upload}
+            multiple={multiple == '1'}
+            disabled={false}
+            label={'开始上传'}
+            onChange={this.handleChange}
+          >
+            <Button variant="raised" component="span" color="default" className={classes.button}>
+              上传文件
+              <FileUpload className={classes.rightIcon} />
+            </Button>
+          </Upload>
+        </div>
+        <div className={classes.message}>upload files: {files.map(file => ` ${file.name} `)}</div>
+      </div>
     );
   }
 }

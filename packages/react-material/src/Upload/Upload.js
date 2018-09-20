@@ -238,9 +238,12 @@ class Upload extends Component {
 
   componentDidMount() {
     const { files } = this.props;
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      this.pathHandler(file);
+
+    if(files) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        this.pathHandler(file);
+      }
     }
   }
 
@@ -506,7 +509,7 @@ Upload.propTypes = {
 };
 
 Upload.defaultProps = {
-  acceptType: '*',
+  acceptType: '*/*',
   multiple: true,
   disabled: false,
   beforeDragMention: '',

@@ -7,7 +7,7 @@ function Page() {
   return (
     <React.Fragment>
       <Head
-        title="Checkout page layout example - Material-UI"
+        title="Checkout page layout example - React-Material"
         description="An example layout for creating a checkout page."
       />
       <Checkout />

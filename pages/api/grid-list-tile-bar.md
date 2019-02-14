@@ -42,7 +42,7 @@ This property accepts the following keys:
 | <span class="prop-name">title</span> | Styles applied to the title container element.
 | <span class="prop-name">subtitle</span> | Styles applied to the subtitle container element.
 | <span class="prop-name">actionIcon</span> | Styles applied to the actionIcon if supplied.
-| <span class="prop-name">actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left".
+| <span class="prop-name">actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/6thquake/react-material/tree/develop/packages/material-ui/core/src/GridListTileBar/GridListTileBar.js)

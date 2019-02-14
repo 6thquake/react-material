@@ -17,7 +17,7 @@ function renderFullPage(html, css) {
     <!doctype html>
     <html>
       <head>
-        <title>Material-UI</title>
+        <title>React-Material</title>
       </head>
       <body>
         <script async src="build/bundle.js"></script>

@@ -21,7 +21,3 @@ title: ButtonGroup API
 
 Any other properties supplied will be spread to the root element (native element).
 
-## Demos
-
-- [Locale Provider](/demos/locale-provider)
-

@@ -43,7 +43,7 @@ This property accepts the following keys:
 | <span class="prop-name">wrapper</span> | Styles applied to the `icon` and `label`'s wrapper element.
 | <span class="prop-name">labelContainer</span> | Styles applied to the label container element if `label` is provided.
 | <span class="prop-name">label</span> | Styles applied to the label wrapper element if `label` is provided.
-| <span class="prop-name">labelWrapped</span> | Styles applied to the label wrapper element if `label` is provided and the text is wrapped.
+| <span class="prop-name">labelWrapped</span> | Deprecated, the styles will be removed in v4.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/6thquake/react-material/tree/develop/packages/material-ui/core/src/Tab/Tab.js)

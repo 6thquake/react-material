@@ -7,7 +7,7 @@ function Page() {
   return (
     <React.Fragment>
       <Head
-        title="Album page layout - Material-UI"
+        title="Album page layout - React-Material"
         description="An example layout for creating an albumn or gallery."
       />
       <Album />

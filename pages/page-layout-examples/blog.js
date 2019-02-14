@@ -7,7 +7,7 @@ function Page() {
   return (
     <React.Fragment>
       <Head
-        title="Blog page layout example - Material-UI"
+        title="Blog page layout example - React-Material"
         description="An example layout for creating a blog or newsletter."
       />
       <Blog />

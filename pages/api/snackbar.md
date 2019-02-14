@@ -16,11 +16,12 @@ title: Snackbar API
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">action</span> | <span class="prop-type">node |   | The action to display. |
-| <span class="prop-name">anchorOrigin</span> | <span class="prop-type">{ horizontal: enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'right'<br>, vertical: enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'bottom'<br> } | <span class="prop-default">{  vertical: 'bottom',  horizontal: 'center',}</span> | The anchor of the `Snackbar`. |
+| <span class="prop-name">anchorOrigin</span> | <span class="prop-type">{ horizontal: enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'right'<br>, vertical: enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'bottom'<br> } | <span class="prop-default">{  vertical: 'bottom',  horizontal: 'center',}</span> | The anchor of the `Snackbar`. |
 | <span class="prop-name">autoHideDuration</span> | <span class="prop-type">number |   | The number of milliseconds to wait before automatically calling the `onClose` function. `onClose` should then set the state of the `open` prop to hide the Snackbar. This behavior is disabled by default with the `null` value. |
-| <span class="prop-name">children</span> | <span class="prop-type">element |   | If you wish the take control over the children of the component you can use this property. When used, you replace the `SnackbarContent` component with the children. |
+| <span class="prop-name">children</span> | <span class="prop-type">element |   | Replace the `SnackbarContent` component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">ContentProps</span> | <span class="prop-type">object |   | Properties applied to the [`SnackbarContent`](/api/snackbar-content) element. |
+| <span class="prop-name">ClickAwayListenerProps</span> | <span class="prop-type">object |   | Properties applied to the `ClickAwayListener` element. |
+| <span class="prop-name">ContentProps</span> | <span class="prop-type">object |   | Properties applied to the [`SnackbarContent`](/api/snackbar-content/) element. |
 | <span class="prop-name">disableWindowBlurListener</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the `autoHideDuration` timer will expire even if the window is not focused. |
 | <span class="prop-name">key</span> | <span class="prop-type">any |   | When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/>, add the key property to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
 | <span class="prop-name">message</span> | <span class="prop-type">node |   | The message to display. |
@@ -33,7 +34,7 @@ title: Snackbar API
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func |   | Callback fired when the transition is exiting. |
 | <span class="prop-name">open</span> | <span class="prop-type">bool |   | If true, `Snackbar` is open. |
 | <span class="prop-name">resumeHideDuration</span> | <span class="prop-type">number |   | The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` property isn't specified, it does nothing. If `autoHideDuration` property is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms. |
-| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">Slide</span> | Transition component. |
+| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">componentPropType | <span class="prop-default">Slide</span> | The component used for the transition. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object |   | Properties applied to the `Transition` element. |
 

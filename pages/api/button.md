@@ -34,5 +34,4 @@ Any other properties supplied will be spread to the root element (native element
 ## Demos
 
 - [Buttons](/demos/buttons)
-- [Locale Provider](/demos/locale-provider)
 

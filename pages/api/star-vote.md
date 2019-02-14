@@ -15,7 +15,7 @@ title: StarVote API
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">count</span> | <span class="prop-type">func | <span class="prop-default">5</span> | total count of star |
+| <span class="prop-name">count</span> | <span class="prop-type">number | <span class="prop-default">5</span> | total count of star |
 | <span class="prop-name">value</span> | <span class="prop-type">number |   | current value，controlled value |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">number | <span class="prop-default">0</span> | The default value |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |   | onChange callback function |

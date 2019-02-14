@@ -7,7 +7,7 @@ function Page() {
   return (
     <React.Fragment>
       <Head
-        title="Pricing page layout example - Material-UI"
+        title="Pricing page layout example - React-Material"
         description="An example layout for creating a pricing page."
       />
       <Pricing />

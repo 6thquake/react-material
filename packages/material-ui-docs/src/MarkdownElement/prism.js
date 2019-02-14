@@ -1,3 +1,5 @@
+/* eslint-disable import/no-mutable-exports, global-require */
+
 import prism from 'prismjs';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-diff';
@@ -5,23 +7,24 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-typescript';
-// import lightTheme from 'prismjs/themes/prism.css';
-// import darkTheme from 'prismjs/themes/prism-okaidia.css';
 
-// export { lightTheme, darkTheme };
+let styleNode;
+let lightTheme;
+let darkTheme;
 
-// let styleNode;
+if (process.browser) {
+  lightTheme = require('prismjs/themes/prism.css');
+  darkTheme = require('prismjs/themes/prism-okaidia.css');
 
-// if (process.browser) {
-//   styleNode = document.createElement('style');
-//   styleNode.setAttribute('data-prism', 'true');
-//   if (document.head) {
-//     document.head.appendChild(styleNode);
-//   }
-// }
+  styleNode = document.createElement('style');
+  styleNode.setAttribute('data-prism', 'true');
+  document.head.appendChild(styleNode);
+}
 
-// export function setPrismTheme(theme) {
-//   styleNode.textContent = theme;
-// }
+export { lightTheme, darkTheme };
+
+export function setPrismTheme(theme) {
+  styleNode.textContent = theme;
+}
 
 export default prism;

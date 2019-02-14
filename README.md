@@ -119,7 +119,7 @@ The future plans and high priority features and enhancements can be found in the
 
 [<img src="https://material-ui.com/static/images/material-ui-logo.svg" width="120">](https://material-ui.com/)
 
-Thank you to [Material-UI](https://material-ui.com/) for providing the infrastructure that allows us to 
+Thank you to [React-Material](https://material-ui.com/) for providing the infrastructure that allows us to 
 expand based on it, with standard specifications, and clear path.
 
 [<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)

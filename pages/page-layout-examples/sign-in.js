@@ -7,7 +7,7 @@ function Page() {
   return (
     <React.Fragment>
       <Head
-        title="Sign-in page layout example - Material-UI"
+        title="Sign-in page layout example - React-Material"
         description="An example layout for creating a sign-in page."
       />
       <SignIn />

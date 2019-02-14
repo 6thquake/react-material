@@ -2,8 +2,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { componentPropType } from '@material-ui/utils';
 import NativeSelectInput from './NativeSelectInput';
 import withStyles from '../styles/withStyles';
+import formControlState from '../FormControl/formControlState';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 
@@ -21,31 +24,44 @@ export const styles = theme => ({
     // Native select can't be selected either.
     userSelect: 'none',
     paddingRight: 32,
+    borderRadius: 0, // Reset
+    height: '1.1875em', // Reset (19px), match the native input line-height
     width: 'calc(100% - 32px)',
     minWidth: 16, // So it doesn't collapse.
     cursor: 'pointer',
     '&:focus': {
       // Show that it's not an text input
-      background:
+      backgroundColor:
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
       borderRadius: 0, // Reset Chrome style
     },
-    // Remove Firefox focus border
-    '&:-moz-focusring': {
-      color: 'transparent',
-      textShadow: '0 0 0 #000',
-    },
-    // Remove IE11 arrow
+    // Remove IE 11 arrow
     '&::-ms-expand': {
       display: 'none',
     },
     '&$disabled': {
       cursor: 'default',
     },
+    '&[multiple]': {
+      height: 'auto',
+    },
+    '&:not([multiple]) option, &:not([multiple]) optgroup': {
+      backgroundColor: theme.palette.background.paper,
+    },
+  },
+  /* Styles applied to the `Input` component if `variant="filled"`. */
+  filled: {
+    width: 'calc(100% - 44px)',
+  },
+  /* Styles applied to the `Input` component if `variant="outlined"`. */
+  outlined: {
+    width: 'calc(100% - 46px)',
+    borderRadius: theme.shape.borderRadius,
   },
   /* Styles applied to the `Input` component `selectMenu` class. */
   selectMenu: {
     width: 'auto', // Fix Safari textOverflow
+    height: 'auto', // Reset
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -66,10 +82,24 @@ export const styles = theme => ({
 });
 
 /**
- * An alternative to `<Select native />` with a much smaller dependency graph.
+ * An alternative to `<Select native />` with a much smaller bundle size footprint.
  */
 function NativeSelect(props) {
-  const { children, classes, IconComponent, input, inputProps, ...other } = props;
+  const {
+    children,
+    classes,
+    IconComponent,
+    input,
+    inputProps,
+    muiFormControl,
+    variant,
+    ...other
+  } = props;
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['variant'],
+  });
 
   return React.cloneElement(input, {
     // Most of the logic is implemented in `NativeSelectInput`.
@@ -79,6 +109,7 @@ function NativeSelect(props) {
       children,
       classes,
       IconComponent,
+      variant: fcs.variant,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
       ...inputProps,
       ...(input ? input.props.inputProps : {}),
@@ -101,7 +132,7 @@ NativeSelect.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  IconComponent: componentPropType,
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
@@ -110,6 +141,10 @@ NativeSelect.propTypes = {
    * Attributes applied to the `select` element.
    */
   inputProps: PropTypes.object,
+  /**
+   * @ignore
+   */
+  muiFormControl: PropTypes.object,
   /**
    * Callback function fired when a menu item is selected.
    *
@@ -120,7 +155,16 @@ NativeSelect.propTypes = {
   /**
    * The input value.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+  ]),
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 NativeSelect.defaultProps = {
@@ -128,6 +172,8 @@ NativeSelect.defaultProps = {
   input: <Input />,
 };
 
-NativeSelect.muiName = 'NativeSelect';
+NativeSelect.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiNativeSelect' })(NativeSelect);
+export default withStyles(styles, { name: 'MuiNativeSelect' })(
+  withFormControlContext(NativeSelect),
+);

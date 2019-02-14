@@ -9,7 +9,7 @@ title: Slide API
 
 <p class="description">The API documentation of the Slide React component.</p>
 
-The Slide transition is used by the [Snackbar](/demos/snackbars) component.
+The Slide transition is used by the [Snackbar](/demos/snackbars/) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props

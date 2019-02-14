@@ -198,7 +198,7 @@ class Select extends Component {
               if (multiple) {
                 if (!Array.isArray(value)) {
                   throw new Error(
-                    'Material-UI: the `value` property must be an array ' +
+                    'React-Material: the `value` property must be an array ' +
                       'when using the `Select` component with `multiple`.',
                   );
                 }

@@ -16,6 +16,7 @@ title: MenuList API
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node |   | MenuList contents, normally `MenuItem`s. |
+| <span class="prop-name">disableListWrap</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the menu items will not wrap focus. |
 
 Any other properties supplied will be spread to the root element ([List](/api/list)).
 

@@ -9,7 +9,7 @@ title: ListItemSecondaryAction API
 
 <p class="description">The API documentation of the ListItemSecondaryAction React component.</p>
 
-
+Must be used as the last child of ListItem to function properly.
 
 ## Props
 

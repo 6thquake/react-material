@@ -6,7 +6,7 @@ supportLabel: support
 # Comment to post on issues marked as support requests. Add a link
 # to a support page, or set to `false` to disable
 supportComment: |
-  👋 Thanks for using Material-UI!
+  👋 Thanks for using React-Material!
   
   We use the issue tracker exclusively for bug reports and feature requests, however,
   this issue appears to be a support request or question. Please ask on [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui) where the

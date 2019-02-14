@@ -20,7 +20,7 @@ function About(props) {
   return (
     <div className={classes.root}>
       <Typography variant="display1" gutterBottom>
-        Material-UI
+        React-Material
       </Typography>
       <Typography variant="subheading" gutterBottom>
         about page

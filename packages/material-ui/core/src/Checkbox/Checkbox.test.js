@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
-import { createShallow, getClasses, createMount } from '../test-utils';
+import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Checkbox from './Checkbox';
 
@@ -39,17 +39,6 @@ describe('<Checkbox />', () => {
     it('should render an indeterminate icon', () => {
       const wrapper = mount(<Checkbox indeterminate />);
       assert.strictEqual(wrapper.find(IndeterminateCheckBoxIcon).length, 1);
-    });
-
-    it('should set input indeterminate status', () => {
-      const wrapper = mount(<Checkbox indeterminate />);
-      assert.strictEqual(wrapper.find('input').getDOMNode().indeterminate, true);
-    });
-
-    it('should change input indeterminate status on props change', () => {
-      const wrapper = mount(<Checkbox indeterminate />);
-      wrapper.setProps({ indeterminate: false });
-      assert.strictEqual(wrapper.find('input').getDOMNode().indeterminate, false);
     });
   });
 });

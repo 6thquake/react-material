@@ -1,5 +1,5 @@
 ---
-filename: /packages/react-material/src/Popper/Popper.js
+filename: /packages/material-ui/core/src/Popper/Popper.js
 title: Popper API
 ---
 

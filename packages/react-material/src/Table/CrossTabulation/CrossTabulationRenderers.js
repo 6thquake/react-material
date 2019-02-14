@@ -158,14 +158,13 @@ function makeRenderer(opts = {}) {
             {colAttrs.map(function(c, j) {
               return (
                 <TableRow key={`colAttr${j}`}>
-                  {j === 0 &&
-                    rowAttrs.length !== 0 && (
-                      <TableCell
-                        className={classes.th}
-                        colSpan={rowAttrs.length}
-                        rowSpan={colAttrs.length}
-                      />
-                    )}
+                  {j === 0 && rowAttrs.length !== 0 && (
+                    <TableCell
+                      className={classes.th}
+                      colSpan={rowAttrs.length}
+                      rowSpan={colAttrs.length}
+                    />
+                  )}
                   <TableCell className={classes.th}>{c}</TableCell>
                   {colKeys.map(function(colKey, i) {
                     const x = spanSize(colKeys, i, j);

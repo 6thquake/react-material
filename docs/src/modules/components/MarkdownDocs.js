@@ -61,13 +61,13 @@ function MarkdownDocs(props, context) {
 ## API
 
 ${headers.components
-      .map(
-        component =>
-          `- [&lt;${component} /&gt;](${section === 'lab' ? '/lab/api' : '/api'}/${kebabCase(
-            component,
-          )})`,
-      )
-      .join('\n')}
+  .map(
+    component =>
+      `- [&lt;${component} /&gt;](${section === 'lab' ? '/lab/api' : '/api'}/${kebabCase(
+        component,
+      )})`,
+  )
+  .join('\n')}
         `);
   }
 

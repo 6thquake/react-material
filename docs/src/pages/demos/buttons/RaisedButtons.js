@@ -27,7 +27,7 @@ function RaisedButtons(props) {
       <Button variant="raised" color="secondary" className={classes.button}>
         Secondary
       </Button>
-      <Button variant="raised" color="waring" className={classes.button}>
+      <Button variant="raised" color="warning" className={classes.button}>
         Waring
       </Button>
       <Button variant="raised" color="error" className={classes.button}>

@@ -286,12 +286,12 @@ class Bubble extends React.Component {
     let triResult;
 
     /*
-    * Floated bubble
-    */
+     * Floated bubble
+     */
     if (floated == 'true') {
       /*
-      * Left sided arrow
-      */
+       * Left sided arrow
+       */
       if (direction == 'left') {
         triResult = (
           <div
@@ -328,8 +328,8 @@ class Bubble extends React.Component {
         );
       } else if (direction == 'right') {
         /*
-      * Right sided arrow
-      */
+         * Right sided arrow
+         */
         triResult = (
           <div
             className={triClassNames}
@@ -365,8 +365,8 @@ class Bubble extends React.Component {
         );
       } else if (direction == 'top') {
         /*
-      * Bottom sided arrow
-      */
+         * Bottom sided arrow
+         */
         triResult = (
           <div
             className={triClassNames}
@@ -403,8 +403,8 @@ class Bubble extends React.Component {
         );
       } else if (direction == 'bottom') {
         /*
-      * Top sided arrow
-      */
+         * Top sided arrow
+         */
         triResult = (
           <div
             className={triClassNames}
@@ -441,11 +441,11 @@ class Bubble extends React.Component {
       }
     } else {
       /*
-    * Non-floated bubble
-    */
+       * Non-floated bubble
+       */
       /*
-      * Left sided arrow
-      */
+       * Left sided arrow
+       */
       if (direction == 'left') {
         triResult = (
           <div
@@ -477,8 +477,8 @@ class Bubble extends React.Component {
         );
       } else if (direction == 'right') {
         /*
-      * Right sided arrow
-      */
+         * Right sided arrow
+         */
         triResult = (
           <div
             className={triClassNames}
@@ -509,8 +509,8 @@ class Bubble extends React.Component {
         );
       } else if (direction == 'top') {
         /*
-      * Bottom sided arrow
-      */
+         * Bottom sided arrow
+         */
         triResult = (
           <div
             className={triClassNames}
@@ -550,8 +550,8 @@ class Bubble extends React.Component {
         );
       } else if (direction == 'bottom') {
         /*
-      * Top sided arrow
-      */
+         * Top sided arrow
+         */
         triResult = (
           <div
             className={triClassNames}

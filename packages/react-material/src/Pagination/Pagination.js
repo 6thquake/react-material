@@ -158,36 +158,34 @@ class Pagination extends Component {
       <div className={classes.root} ref={div => (this.div = div)}>
         <div className={classes.toolbar}>
           <div className={classes.spacer} />
-          {rowsPerPageOptions.length > 1 &&
-            showSizeChanger && (
-              <Typography variant="caption" className={classes.caption}>
-                {labelRowsPerPage}
-              </Typography>
-            )}
-          {rowsPerPageOptions.length > 1 &&
-            showSizeChanger && (
-              <Select
-                classes={{
-                  root: classes.selectRoot,
-                  select: classes.select,
-                  icon: classes.selectIcon,
-                }}
-                input={<Input className={classes.input} disableUnderline />}
-                value={rowsPerPage}
-                onChange={onChangeRowsPerPage}
-                {...SelectProps}
-              >
-                {rowsPerPageOptions.map(rowsPerPageOption => (
-                  <MenuItem
-                    className={classes.menuItem}
-                    key={rowsPerPageOption}
-                    value={rowsPerPageOption}
-                  >
-                    {rowsPerPageOption}
-                  </MenuItem>
-                ))}
-              </Select>
-            )}
+          {rowsPerPageOptions.length > 1 && showSizeChanger && (
+            <Typography variant="caption" className={classes.caption}>
+              {labelRowsPerPage}
+            </Typography>
+          )}
+          {rowsPerPageOptions.length > 1 && showSizeChanger && (
+            <Select
+              classes={{
+                root: classes.selectRoot,
+                select: classes.select,
+                icon: classes.selectIcon,
+              }}
+              input={<Input className={classes.input} disableUnderline />}
+              value={rowsPerPage}
+              onChange={onChangeRowsPerPage}
+              {...SelectProps}
+            >
+              {rowsPerPageOptions.map(rowsPerPageOption => (
+                <MenuItem
+                  className={classes.menuItem}
+                  key={rowsPerPageOption}
+                  value={rowsPerPageOption}
+                >
+                  {rowsPerPageOption}
+                </MenuItem>
+              ))}
+            </Select>
+          )}
           <Typography variant="caption" className={classes.caption}>
             {minwidth
               ? labelDisplayedRows({

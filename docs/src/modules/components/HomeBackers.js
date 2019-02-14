@@ -18,7 +18,7 @@ const styles = theme => ({
 
 function HomeBackers(props) {
   const classes = props.classes;
-  let backers = [
+  const backers = [
     [
       {
         name: '刘继超<lico.liu>',
@@ -125,7 +125,7 @@ function HomeBackers(props) {
       ].join('');
     })
     .join('');
-  console.log(backers);
+
   return (
     <div className={classes.root}>
       <NoSsr>

@@ -15,7 +15,7 @@ title: StatusButton API
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'default', 'inherit', 'primary', 'secondary', 'error', 'success', 'waring', 'progress'<br> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'default', 'inherit', 'primary', 'secondary', 'error', 'success', 'warning', 'progress'<br> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">onHandler</span> | <span class="prop-type">func |   | Promise实例，控制StatusButton的状态 |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'text', 'flat', 'outlined', 'contained', 'raised', 'fab'<br> | <span class="prop-default">'flat'</span> | The type of button. |
 

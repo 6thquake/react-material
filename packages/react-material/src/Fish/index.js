@@ -42,7 +42,7 @@ const styles = theme => ({
   },
 });
 
-class FishButton extends Component {
+class Fish extends Component {
   render() {
     const { className: classNamePro, children, size, classes } = this.props;
     const className = classNames(
@@ -57,7 +57,7 @@ class FishButton extends Component {
     return <div className={className}>{children}</div>;
   }
 }
-FishButton.propTypes = {
+Fish.propTypes = {
   /**
    * scale multiple,
    * sm :1.2,
@@ -66,7 +66,7 @@ FishButton.propTypes = {
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
 };
-FishButton.defaultProps = {
+Fish.defaultProps = {
   size: 'sm',
 };
-export default withStyles(styles, { name: 'RMFishButton' })(FishButton);
+export default withStyles(styles, { name: 'RMFish' })(Fish);

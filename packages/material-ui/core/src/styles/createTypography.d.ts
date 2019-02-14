@@ -18,12 +18,12 @@ export type Style = TextStyle | 'button';
 
 export interface FontStyle
   extends Required<{
-      fontFamily: CSSProperties['fontFamily'];
-      fontSize: number;
-      fontWeightLight: CSSProperties['fontWeight'];
-      fontWeightRegular: CSSProperties['fontWeight'];
-      fontWeightMedium: CSSProperties['fontWeight'];
-    }> {}
+    fontFamily: CSSProperties['fontFamily'];
+    fontSize: number;
+    fontWeightLight: CSSProperties['fontWeight'];
+    fontWeightRegular: CSSProperties['fontWeight'];
+    fontWeightMedium: CSSProperties['fontWeight'];
+  }> {}
 
 export interface FontStyleOptions extends Partial<FontStyle> {
   htmlFontSize?: number;

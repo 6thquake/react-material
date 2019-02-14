@@ -221,48 +221,44 @@ class Carousel extends React.Component {
 
 Carousel.propTypes = {
   /**
-  *imageUrl list, eg.[
-      {
-        src: '/static/images/grid-list/bike.jpg',
-        alt: 'images-1',
-      },
-      {
-        src: '/static/images/grid-list/mushroom.jpg',
-        alt: 'images-2',
-      },
-      {
-        src: '/static/images/grid-list/burgers.jpg',
-        alt: 'images-3',
-      },
-      {
-        src: '/static/images/grid-list/morning.jpg',
-        alt: 'images-4',
-      }
-    ]
-  */
+   * item list
+   * eg.
+   *  [{
+   *    src: '/static/images/grid-list/bike.jpg',
+   *    alt: 'images-1',
+   *  },
+   *  {
+   *    src: '/static/images/grid-list/mushroom.jpg',
+   *    alt: 'images-2',
+   *  },
+   *  {
+   *    src: '/static/images/grid-list/burgers.jpg',
+   *    alt: 'images-3',
+   *  }]
+   */
   items: PropTypes.array.isRequired,
   /**
-   *speed of pictrue slide，unit second
+   * speed of pictrue slide，unit second
    */
   speed: PropTypes.number,
   /**
-   *delay of pictrue slide，unit second
+   * delay of pictrue slide，unit second
    */
   delay: PropTypes.number,
   /**
-   *pause when mouseover
+   * pause when mouseover
    */
   pause: PropTypes.bool,
   /**
-   *autoplay
+   * autoplay
    */
   autoplay: PropTypes.bool,
   /**
-   *is dots showed
+   * is dots showed
    */
   dots: PropTypes.bool,
   /**
-   *is arrows showed
+   * is arrows showed
    */
   arrows: PropTypes.bool,
 };

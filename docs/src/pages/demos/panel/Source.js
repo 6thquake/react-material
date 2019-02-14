@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import Panel from '@6thquake/react-material/Panel';
 import { DragSource, DropTarget } from 'react-dnd';
-import { StatusButton } from '@6thquake/react-material/Button';
 
-/*type:
+/* type:
 position 对于panel中已存在的source 拖拽时会重新定位它的位置 当拖出panel以外时会删除
 dragin 从panel外部拖入，源source不变，复制一份
 style
@@ -32,7 +30,7 @@ const _source = {
     */
     const item = {};
     if (props.type == 'POSITION') {
-      //拿到当前node的index
+      // 拿到当前node的index
       const _from = component.decoratedComponentInstance.refs.mytttest.offsetParent.parentNode.getAttribute(
         'datakey',
       );
@@ -47,13 +45,13 @@ const _source = {
 };
 const _target = {
   drop(props, monitor, component) {
-    //console.log('droooooop')
+    // console.log('droooooop')
   },
   hover(props, monitor, component) {
-    //当hover的时候改变原数组的排列顺序
+    // 当hover的时候改变原数组的排列顺序
     const to = component.refs.mytttest.offsetParent.parentNode.getAttribute('datakey');
 
-    //console.log('!!!!!!!!!!')
+    // console.log('!!!!!!!!!!')
   },
 };
 function _dragCollect(connect, monitor) {
@@ -69,7 +67,7 @@ function _dropCollect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver({ shallow: true }),
-    //isOverCurrent: monitor.isOver({ shallow: false }),
+    // isOverCurrent: monitor.isOver({ shallow: false }),
     canDrop: monitor.canDrop(),
     itemType: monitor.getItemType(),
   };

@@ -106,7 +106,7 @@ class ActionButton extends React.Component {
     const { type, children, variant, size, classes } = this.props;
     const loading = this.state.loading;
 
-    //替换为statusbutton
+    // 替换为status button
     const classNameColor = classNames({
       [classes.info]: type === 'info',
       [classes.done]: type === 'done',

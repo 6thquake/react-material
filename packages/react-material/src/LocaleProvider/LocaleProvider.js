@@ -15,11 +15,11 @@ const languages = {
   zh: zh_cn,
   'en-ca': en_us,
   'en-us': en_us,
-  en: en,
+  en,
 };
 
 const getLanguage = (lang, value) => {
-  let _languages = value || languages;
+  const _languages = value || languages;
 
   if (lang) {
     lang = lang.toLowerCase();
@@ -39,13 +39,13 @@ const getLanguage = (lang, value) => {
 };
 
 const getLocaleResource = (lang, value) => {
-  let lang1 = getLanguage(lang);
+  const lang1 = getLanguage(lang);
 
   if (!value) {
     return languages[lang1];
   }
 
-  let lang2 = getLanguage(lang, value);
+  const lang2 = getLanguage(lang, value);
 
   return {
     ...deepmerge(languages[lang1], value[lang2]),
@@ -54,7 +54,7 @@ const getLocaleResource = (lang, value) => {
 
 const getDefaultLocaleResource = () => {
   const wg = global || window;
-  let lang = wg && wg.navigator && wg.navigator.language;
+  const lang = wg && wg.navigator && wg.navigator.language;
 
   return getLocaleResource(lang);
 };
@@ -75,7 +75,7 @@ class LocaleProvider extends React.Component {
 
   changeLocale = locale => () => {
     this.setState({
-      locale: locale,
+      locale,
     });
   };
 
@@ -110,7 +110,7 @@ LocaleProvider.propTypes = {
   /**
    * The International resources
    */
-  value: PropTypes.object,
+  children: PropTypes.node,
   /**
    * Type of locale, such as en, zh, en_us...
    */
@@ -118,7 +118,7 @@ LocaleProvider.propTypes = {
   /**
    * You can wrap a node.
    */
-  children: PropTypes.node,
+  value: PropTypes.object,
 };
 
 export {

@@ -4,7 +4,7 @@ import Chat, { renderStyle } from '@6thquake/react-material/Chat';
 import { withStyles } from '@6thquake/react-material/styles';
 /*
  * Left & Right sided rectangle styles that can be customized.
-*/
+ */
 const styless = {
   customization: {
     fontSize: 15,
@@ -16,7 +16,7 @@ const styless = {
 
 /*
  * Left & right parties' avatar sources.
-*/
+ */
 const avatars = {
   lAvatar: {
     src: '/static/images/cards/live-from-space.jpg',

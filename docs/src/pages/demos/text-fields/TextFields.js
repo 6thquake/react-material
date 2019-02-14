@@ -41,7 +41,7 @@ const currencies = [
 class TextFields extends React.Component {
   state = {
     name: 'Cat in the Hat',
-    age: '',
+    age: '10',
     multiline: 'Controlled',
     currency: 'EUR',
   };
@@ -51,6 +51,22 @@ class TextFields extends React.Component {
       [name]: event.target.value,
     });
   };
+
+  componentWillMount() {
+    setTimeout(() => {
+      this.setState({
+        age: 0,
+      });
+    }, 3000);
+
+    setTimeout(() => {
+      this.setState({
+        age: null,
+      });
+    }, 6000);
+  }
+
+  componentWillUnMount() {}
 
   render() {
     const { classes } = this.props;

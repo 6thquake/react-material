@@ -121,9 +121,7 @@ class Modal extends Component {
             </Grid>
           </Grid>
         </DialogTitle>
-        <DialogContent classes={{ root: classes.contentRoot }}>
-          {this.props.children}
-        </DialogContent>
+        <DialogContent classes={{ root: classes.contentRoot }}>{this.props.children}</DialogContent>
         <DialogActions classes={{ root: classes.actionRoot }}>{this.renderActions()}</DialogActions>
       </Dialog>
     );

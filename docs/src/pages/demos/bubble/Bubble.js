@@ -12,7 +12,7 @@ import { withStyles } from '@6thquake/react-material/styles';
 /*
  * Left & Right sided rectangle styles that can be customized.
  * *
-*/
+ */
 const styles = {
   customization: {
     fontSize: 15,

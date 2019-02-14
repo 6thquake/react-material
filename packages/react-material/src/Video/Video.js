@@ -27,7 +27,12 @@ class Video extends React.Component {
     // instantiate Video.js
     this.player = videojs(
       this.videoNode,
-      { width: '100%', height: '100%', ...this.props },
+      {
+        techOrder: ['html5', 'flash', 'other supported tech'],
+        width: '100%',
+        height: '100%',
+        ...this.props,
+      },
       this.props.onReady,
     );
   }
@@ -145,7 +150,14 @@ Video.propTypes = {
   sources: PropTypes.arrayOf(
     PropTypes.shape({
       src: PropTypes.string,
-      type: PropTypes.oneOf(['video/mp4', 'video/webm', 'video/ogg']),
+      type: PropTypes.oneOf([
+        'video/mp4',
+        'video/webm',
+        'video/ogg',
+        'application/x-mpegURL',
+        'rtmp/mp4',
+        'rtmp/flv',
+      ]),
     }),
   ),
 };

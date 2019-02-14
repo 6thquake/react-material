@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles } from '@6thquake/react-material/styles';
 import { Upload } from '@6thquake/react-material/Upload';
-import Button, { StatusButton } from '@6thquake/react-material/Button';
+import Button from '@6thquake/react-material/Button';
 import FileUpload from '@material-ui/icons/CloudUpload';
-import classNames from 'classnames';
 import RadioGroup from '@6thquake/react-material/RadioGroup';
 import Radio from '@6thquake/react-material/Radio';
 import FormControlLabel from '@6thquake/react-material/FormControlLabel';

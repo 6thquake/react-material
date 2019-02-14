@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
-import { StatusButton } from '../Button';
-import classNames from 'classnames';
+import Button from '../Button';
 import { withStyles } from '../styles';
-
 import Chip from '../Chip';
 import Paper from '../Paper';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend';
 import TargetBox from './TargetBox';
-
 import isString from 'lodash/isString';
 
 const styles = theme => ({
@@ -122,7 +118,7 @@ class Upload extends Component {
   }
 
   handleDelete = (e, item) => {
-    let { data, files } = this.state;
+    const { data, files } = this.state;
 
     let indexToDelete = files.indexOf(item);
     if (indexToDelete !== -1) {
@@ -144,11 +140,11 @@ class Upload extends Component {
       // delete item.preview;
     }
 
-    /*type='drag',防止点击删除时弹出input框*/
+    /* type='drag',防止点击删除时弹出input框 */
     e && e.preventDefault();
   };
 
-  /*通过点击input标签添加图片*/
+  /* 通过点击input标签添加图片 */
   changePath = e => {
     for (let i = 0; i < e.target.files.length; i++) {
       const file = e.target.files[i];
@@ -156,7 +152,7 @@ class Upload extends Component {
     }
   };
 
-  /*通过drag添加图片*/
+  /* 通过drag添加图片 */
   handleFileDrop = (item, monitor) => {
     if (monitor) {
       for (let i = 0; i < monitor.getItem().files.length; i++) {
@@ -215,7 +211,7 @@ class Upload extends Component {
       }));
     } else {
       if (!(file instanceof File)) {
-        let url = file.url || file.name;
+        const url = file.url || file.name;
         if (/blob|http(s)?:\/\//.test(url)) {
           file.preview = React.createElement('img', {
             src: url,
@@ -239,7 +235,7 @@ class Upload extends Component {
   componentDidMount() {
     const { files } = this.props;
 
-    if(files) {
+    if (files) {
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         this.pathHandler(file);
@@ -259,8 +255,11 @@ class Upload extends Component {
     const { FILE } = NativeTypes;
     const { files } = this.state;
 
-    let manual, basic, img, drag;
-    let id = 'RM-UPLOAD-' + new Date().getTime();
+    let manual;
+    let basic;
+    let img;
+    let drag;
+    const id = `RM-UPLOAD-${new Date().getTime()}`;
 
     if (type === 'manual') {
       manual = (
@@ -276,7 +275,7 @@ class Upload extends Component {
               multiple={multiple}
               disabled={disabled}
             />
-            <label for={id}>{this.props.children}</label>
+            <label htmlFor={id}>{this.props.children}</label>
           </div>
           <Paper className={classes.paper}>
             {files.map(item => {
@@ -292,15 +291,15 @@ class Upload extends Component {
             })}
           </Paper>
           <div className={classes.wrap}>
-            <StatusButton
+            <Button
               color="primary"
               variant="raised"
               className={classes.button}
-              onHandler={this.upload}
+              onClick={this.upload}
               disabled={disabled}
             >
               {label}
-            </StatusButton>
+            </Button>
           </div>
         </div>
       );
@@ -320,7 +319,7 @@ class Upload extends Component {
               multiple={multiple}
               disabled={disabled}
             />
-            <label for={id}>{this.props.children}</label>
+            <label htmlFor={id}>{this.props.children}</label>
           </div>
           <div className={classes.array}>
             {files.map(item => {
@@ -352,13 +351,13 @@ class Upload extends Component {
             multiple={multiple}
             disabled={disabled}
           />
-          <label for={id}>
+          <label htmlFor={id}>
             <div className={classes.array}>
               {files.map(item => {
-                let preview = (
+                const preview = (
                   <div
                     className={classes.mediaDrag}
-                    //style={{ backgroundImage: 'url(' + content + ')' }}
+                    // style={{ backgroundImage: 'url(' + content + ')' }}
                   >
                     {item.preview || item.name}
                   </div>
@@ -411,17 +410,17 @@ class Upload extends Component {
               multiple={multiple}
               disabled={disabled}
             />
-            <label for={id}>
+            <label htmlFor={id}>
               <div className={classes.dragToUpload}>
                 <div className={classes.array}>
                   {files.map(item => {
                     {
-                      /*如果是图片就预览，否则显示文件名*/
+                      /* 如果是图片就预览，否则显示文件名 */
                     }
-                    let preview = (
+                    const preview = (
                       <div
                         className={classes.mediaDrag}
-                        //style={{ backgroundImage: 'url(' + content + ')' }}
+                        // style={{ backgroundImage: 'url(' + content + ')' }}
                       >
                         {item.preview || item.name}
                       </div>
@@ -459,29 +458,27 @@ class Upload extends Component {
   }
 }
 
-export default withStyles(styles, { name: 'RMUpload' })(DragDropContext(HTML5Backend)(Upload));
-
 Upload.propTypes = {
   /**
    * 上传方式,'manual','basic','img','drag'可选
    */
-  type: PropTypes.oneOf(['manual', 'basic', 'img', 'drag']).isRequired,
+  acceptType: PropTypes.string,
   /**
    * 接受上传的文件类型
    */
-  acceptType: PropTypes.string,
+  beforeDragMention: PropTypes.string,
   /**
    * 点击status button 触发的函数，返回一个promise实例
    */
-  upload: PropTypes.func,
+  disabled: PropTypes.bool,
   /**
    * 点击上传触发的函数
    */
-  onChange: PropTypes.func,
+  files: PropTypes.array,
   /**
    * 点击删除某个文件时触发的函数
    */
-  onDelete: PropTypes.func,
+  label: PropTypes.string,
   /**
    * 可选参数, 是否允许同时上传多个文件
    */
@@ -489,11 +486,11 @@ Upload.propTypes = {
   /**
    * 可选参数, 是否禁用
    */
-  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
   /**
    * 可选参数, 拖拽上传前的文字提示
    */
-  beforeDragMention: PropTypes.string,
+  onDelete: PropTypes.func,
   /**
    * 可选参数, 拖拽文件至可拖拽区域上方时的文字提示
    */
@@ -501,11 +498,11 @@ Upload.propTypes = {
   /**
    * 可选参数, 组件包含的所有文件
    */
-  files: PropTypes.array,
+  type: PropTypes.oneOf(['manual', 'basic', 'img', 'drag']).isRequired,
   /**
    * 按钮描述文字
    */
-  label: PropTypes.string,
+  upload: PropTypes.func,
 };
 
 Upload.defaultProps = {
@@ -520,3 +517,5 @@ Upload.defaultProps = {
   upload: files => {},
   label: 'upload',
 };
+
+export default withStyles(styles, { name: 'RMUpload' })(DragDropContext(HTML5Backend)(Upload));

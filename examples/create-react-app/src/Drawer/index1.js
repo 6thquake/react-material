@@ -142,12 +142,11 @@ class Item extends React.Component {
           {icon && <ListItemIcon>{icon}</ListItemIcon>}
           <ListItemText primary={name} />
         </MenuItem>
-        {beforeChildren() &&
-          children && (
-            <Collapse in={this.state.open} timeout="auto">
-              <TreeList list={children} />
-            </Collapse>
-          )}
+        {beforeChildren() && children && (
+          <Collapse in={this.state.open} timeout="auto">
+            <TreeList list={children} />
+          </Collapse>
+        )}
       </React.Fragment>
     ) : null;
   }

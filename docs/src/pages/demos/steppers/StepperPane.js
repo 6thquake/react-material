@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import { StatusButton } from '@6thquake/react-material/Button';
+import Button from '@6thquake/react-material/Button';
 import { StepperPane, StepPane } from '@6thquake/react-material/Stepper';
 
 const styles = {
@@ -29,7 +29,7 @@ This example is similar to the regular horizontal stepper, except steps are no l
 
 We've used the StepButton here to demonstrate clickable step labels as well as setting the completed flag however because steps can be accessed in a non-linear fashion it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).;`;
     case 2:
-      return `This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.`;
+      return 'This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.';
     default:
       return 'Unknown step';
   }
@@ -41,11 +41,11 @@ class App extends React.Component {
   };
 
   handle = () => {
-    return new Promise(function(resolve, reject) {
-      setTimeout(function() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
         Math.random() > 0.5 ? reject('err') : resolve('ok');
       }, 1000);
-    }).then(function(r) {
+    }).then(r => {
       return true;
     });
   };
@@ -60,9 +60,9 @@ class App extends React.Component {
         className={classes.pane}
         unmountAfterBack={false}
         finishButton={
-          <StatusButton size="small" color="primary" variant="raised" onHandler={this.handle}>
+          <Button size="small" color="primary" variant="raised" onClick={this.handle}>
             SAVE
-          </StatusButton>
+          </Button>
         }
       >
         {steps.map((label, index) => {

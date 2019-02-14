@@ -29,6 +29,53 @@ class App extends React.Component {
           onEnded={this.ended}
           ref="videopause"
         />
+
+        <Video
+          autoplay={true}
+          sources={[
+            {
+              src: 'http://hls.open.ys7.com/openlive/bc50090321624433bcd8f3625fce725b.m3u8',
+              type: 'application/x-mpegURL',
+            },
+          ]}
+          onEnded={this.ended}
+          ref="videopause"
+        />
+
+        {/*
+          <Video
+            autoplay={true}
+            sources={[{ src: 'http://hls.open.ys7.com/openlive/bc50090321624433bcd8f3625fce725b.hd.m3u8', type: 'application/x-mpegURL' }]}
+            onEnded={this.ended}
+            ref="videopause"
+          />
+          */
+        /*
+          <Video
+            autoplay={true}
+            sources={[{ src: 'rtmp://rtmp.open.ys7.com/openlive/bc50090321624433bcd8f3625fce725b', type: 'rtmp/mp4' }]}
+            onEnded={this.ended}
+            ref="videopause"
+          />
+          <Video
+            autoplay={true}
+            sources={[{ src: 'rtmp://rtmp.open.ys7.com/openlive/bc50090321624433bcd8f3625fce725b.hd', type: 'rtmp/mp4' }]}
+            onEnded={this.ended}
+            ref="videopause"
+          />
+          <Video
+            autoplay={true}
+            sources={[{ src: 'https://flvopen.ys7.com:9188/openlive/bc50090321624433bcd8f3625fce725b.flv', type: 'video/flv' }]}
+            onEnded={this.ended}
+            ref="videopause"
+          />
+          <Video
+            autoplay={true}
+            sources={[{ src: 'https://flvopen.ys7.com:9188/openlive/bc50090321624433bcd8f3625fce725b.hd.flv', type: 'video/flv' }]}
+            onEnded={this.ended}
+            ref="videopause"
+          />
+          */}
       </div>
     );
   }

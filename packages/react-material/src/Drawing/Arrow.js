@@ -48,16 +48,16 @@ export default class Arrow extends Component {
         {arrowStyle === 'compose'
           ? composeArrow
           : arrowStyle === 'aggregate'
-            ? aggregateArrow
-            : arrowStyle === 'realize'
-              ? realizeArrow
-              : arrowStyle === 'default'
-                ? null
-                : arrowStyle === 'generalize'
-                  ? generalizeArrow
-                  : arrowStyle === 'import'
-                    ? importArrow
-                    : null}
+          ? aggregateArrow
+          : arrowStyle === 'realize'
+          ? realizeArrow
+          : arrowStyle === 'default'
+          ? null
+          : arrowStyle === 'generalize'
+          ? generalizeArrow
+          : arrowStyle === 'import'
+          ? importArrow
+          : null}
       </div>
     );
   }

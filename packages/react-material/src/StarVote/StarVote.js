@@ -426,7 +426,7 @@ StarVote.propTypes = {
   /**
    *  total count of star
    */
-  count: PropTypes.func,
+  count: PropTypes.number,
   /**
    *   current value，controlled value
    */

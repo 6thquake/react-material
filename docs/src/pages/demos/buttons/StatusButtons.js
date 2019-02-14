@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import Button, { StatusButton } from '@6thquake/react-material/Button';
+import Button from '@6thquake/react-material/Button';
 import AddIcon from '@material-ui/icons/Add';
 
 function handle(e) {
   console.log(e);
-  return new Promise(function(resolve, reject) {
-    setTimeout(function() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
       Math.random() > 0.5 ? reject('err') : resolve('ok');
     }, 1000);
-  }).then(function(r) {
+  }).then(r => {
     return true;
   });
 }
@@ -27,26 +27,26 @@ function StatusButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <StatusButton
-        color="primary"
-        onClick={onClick}
-        variant="raised"
-        onHandler={handle}
-        className={classes.button}
-      >
-        开始扩容
-      </StatusButton>
-      <StatusButton color="primary" onHandler={handle} className={classes.button}>
-        开始扩容
-      </StatusButton>
-      <Button color="primary" onClick={handle} variant="raised" className={classes.button}>
+      <Button variant="raised" color="primary" onClick={handle} className={classes.button}>
         开始扩容
       </Button>
-      <Button color="primary" onClick={handle} className={classes.button}>
+      <Button variant="raised" color="secondary" onClick={handle} className={classes.button}>
         开始扩容
       </Button>
-      <Button color="primary" onClick={onClick} className={classes.button}>
+      <Button variant="text" color="primary" onClick={handle} className={classes.button}>
+        开始扩容
+      </Button>
+      <Button variant="flat" color="primary" onClick={handle} className={classes.button}>
+        开始扩容
+      </Button>
+      <Button variant="outlined" color="primary" onClick={handle} className={classes.button}>
+        开始扩容
+      </Button>
+      <Button variant="raised" color="primary" onClick={onClick} className={classes.button}>
         only Click
+      </Button>
+      <Button variant="fish" color="primary" onHandler={handle} className={classes.button}>
+        开始扩容
       </Button>
       <Button
         variant="fab"
@@ -56,6 +56,10 @@ function StatusButtons(props) {
         className={classes.button}
       >
         <AddIcon />
+      </Button>
+      <Button variant="extendedFab" color="primary" onClick={handle} className={classes.button}>
+        <AddIcon />
+        开始扩容
       </Button>
     </div>
   );

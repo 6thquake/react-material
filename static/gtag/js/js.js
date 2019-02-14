@@ -358,8 +358,8 @@
           'array' == ta(e)
             ? ('array' != ta(c[d]) && (c[d] = []), (c[d] = y(e, c[d])))
             : va(e)
-              ? (va(c[d]) || (c[d] = {}), (c[d] = y(e, c[d])))
-              : (c[d] = e);
+            ? (va(c[d]) || (c[d] = {}), (c[d] = y(e, c[d])))
+            : (c[d] = e);
         }
       return c;
     };
@@ -2469,8 +2469,8 @@
         h instanceof u
           ? (c.get(f) instanceof u || c.set(f, new u()), ne(h, c.get(f)))
           : h instanceof x
-            ? (c.get(f) instanceof x || c.set(f, new x()), ne(h, c.get(f)))
-            : c.set(f, h);
+          ? (c.get(f) instanceof x || c.set(f, new x()), ne(h, c.get(f)))
+          : c.set(f, h);
       }
     }
     return c;
@@ -3064,8 +3064,8 @@
       2 === d.status
         ? b && b()
         : 3 === d.status
-          ? c && c()
-          : 1 === d.status && (b && d.bc.push(b), c && d.Jb.push(c));
+        ? c && c()
+        : 1 === d.status && (b && d.bc.push(b), c && d.Jb.push(c));
     },
     $f = function() {
       return C.location.href;
@@ -3655,10 +3655,10 @@
             d.hasOwnProperty(H)
               ? h(d[H], H, M, k)
               : c.hasOwnProperty(H)
-                ? h(c[H], H, M, m)
-                : b.hasOwnProperty(H)
-                  ? h(b[H], H, M, n)
-                  : /^(dimension|metric|content_group)\d+$/.test(H) && h(1, H, M, m);
+              ? h(c[H], H, M, m)
+              : b.hasOwnProperty(H)
+              ? h(b[H], H, M, n)
+              : /^(dimension|metric|content_group)\d+$/.test(H) && h(1, H, M, m);
           }
           var G = String(ic);
           l(n, 'cookieDomain', 'auto');
@@ -3679,16 +3679,16 @@
                 ),
                 G,
               )
-              ? (V = 'engagement')
-              : 'exception' == G && (V = 'error');
+            ? (V = 'engagement')
+            : 'exception' == G && (V = 'error');
           l(k, 'eventCategory', V);
           0 <= Fe(['view_item', 'view_item_list', 'view_promotion', 'view_search_results'], G) &&
             l(m, 'nonInteraction', !0);
           'login' == G || 'sign_up' == G || 'share' == G
             ? l(k, 'eventLabel', og('method', a))
             : 'search' == G || 'view_search_results' == G
-              ? l(k, 'eventLabel', og('search_term', a))
-              : 'select_content' == G && l(k, 'eventLabel', og('content_type', a));
+            ? l(k, 'eventLabel', og('search_term', a))
+            : 'select_content' == G && l(k, 'eventLabel', og('content_type', a));
           var aa = k.linker || {};
           if (aa.accept_incoming || (0 != aa.accept_incoming && aa.domains)) n.allowLinker = !0;
           !1 === og('allow_display_features', a) && (m.displayFeaturesTask = null);
@@ -3747,37 +3747,37 @@
           'purchase' == t || 'refund' == t
             ? (q = { action: t, ia: d(), ea: c(f) })
             : 'add_to_cart' == t
-              ? (q = { action: 'add', ea: c(f) })
-              : 'remove_from_cart' == t
-                ? (q = { action: 'remove', ea: c(f) })
-                : 'view_item' == t
-                  ? (q = {
-                      action: 'detail',
-                      ia: d(h),
-                      ea: c(f),
-                    })
-                  : 'view_item_list' == t
-                    ? (q = { action: 'impressions', od: c(f) })
-                    : 'view_promotion' == t
-                      ? (q = { action: 'promo_view', fb: c(G) })
-                      : 'select_content' == t && G && 0 < G.length
-                        ? (q = { action: 'promo_click', fb: c(G) })
-                        : 'select_content' == t
-                          ? (q = { action: 'click', ia: { list: e('list_name') || h }, ea: c(f) })
-                          : 'begin_checkout' == t || 'checkout_progress' == t
-                            ? (q = {
-                                action: 'checkout',
-                                ea: c(f),
-                                ia: {
-                                  step: 'begin_checkout' == t ? 1 : e('checkout_step'),
-                                  option: e('checkout_option'),
-                                },
-                              })
-                            : 'set_checkout_option' == t &&
-                              (q = {
-                                action: 'checkout_option',
-                                ia: { step: e('checkout_step'), option: e('checkout_option') },
-                              });
+            ? (q = { action: 'add', ea: c(f) })
+            : 'remove_from_cart' == t
+            ? (q = { action: 'remove', ea: c(f) })
+            : 'view_item' == t
+            ? (q = {
+                action: 'detail',
+                ia: d(h),
+                ea: c(f),
+              })
+            : 'view_item_list' == t
+            ? (q = { action: 'impressions', od: c(f) })
+            : 'view_promotion' == t
+            ? (q = { action: 'promo_view', fb: c(G) })
+            : 'select_content' == t && G && 0 < G.length
+            ? (q = { action: 'promo_click', fb: c(G) })
+            : 'select_content' == t
+            ? (q = { action: 'click', ia: { list: e('list_name') || h }, ea: c(f) })
+            : 'begin_checkout' == t || 'checkout_progress' == t
+            ? (q = {
+                action: 'checkout',
+                ea: c(f),
+                ia: {
+                  step: 'begin_checkout' == t ? 1 : e('checkout_step'),
+                  option: e('checkout_option'),
+                },
+              })
+            : 'set_checkout_option' == t &&
+              (q = {
+                action: 'checkout_option',
+                ia: { step: e('checkout_step'), option: e('checkout_option') },
+              });
           q && (q.ke = e('currency'));
           return q;
         },
@@ -3860,29 +3860,29 @@
         'page_view' == L
           ? (N(), p('send', 'pageview', D.L))
           : 'gtag.config' == L
-            ? (N(), 0 != D.sendPageView && p('send', 'pageview', D.L))
-            : 'screen_view' == L
-              ? p('send', 'screenview', D.L)
-              : 'timing_complete' == L
-                ? (I('timingCategory', D.eventCategory, !0),
-                  I('timingVar', D.name, !0),
-                  I('timingValue', qc(D.value)),
-                  void 0 !== D.eventLabel && I('timingLabel', D.eventLabel, !0),
-                  p('send', 'timing', D.L))
-                : 'exception' == L
-                  ? p('send', 'exception', D.L)
-                  : (0 <=
-                      Fe(
-                        'view_item_list select_content view_item add_to_cart remove_from_cart begin_checkout set_checkout_option purchase refund view_promotion checkout_progress'.split(
-                          ' ',
-                        ),
-                        L,
-                      ) && (p('require', 'ec', 'ec.js'), t()),
-                    I('eventCategory', D.eventCategory, !0),
-                    I('eventAction', D.eventAction || L, !0),
-                    void 0 !== D.eventLabel && I('eventLabel', D.eventLabel, !0),
-                    void 0 !== D.value && I('eventValue', qc(D.value)),
-                    p('send', 'event', D.L));
+          ? (N(), 0 != D.sendPageView && p('send', 'pageview', D.L))
+          : 'screen_view' == L
+          ? p('send', 'screenview', D.L)
+          : 'timing_complete' == L
+          ? (I('timingCategory', D.eventCategory, !0),
+            I('timingVar', D.name, !0),
+            I('timingValue', qc(D.value)),
+            void 0 !== D.eventLabel && I('timingLabel', D.eventLabel, !0),
+            p('send', 'timing', D.L))
+          : 'exception' == L
+          ? p('send', 'exception', D.L)
+          : (0 <=
+              Fe(
+                'view_item_list select_content view_item add_to_cart remove_from_cart begin_checkout set_checkout_option purchase refund view_promotion checkout_progress'.split(
+                  ' ',
+                ),
+                L,
+              ) && (p('require', 'ec', 'ec.js'), t()),
+            I('eventCategory', D.eventCategory, !0),
+            I('eventAction', D.eventAction || L, !0),
+            void 0 !== D.eventLabel && I('eventLabel', D.eventLabel, !0),
+            void 0 !== D.value && I('eventValue', qc(D.value)),
+            p('send', 'event', D.L));
         a ||
           ((a = !0),
           Xf(

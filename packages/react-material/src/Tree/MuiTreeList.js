@@ -254,8 +254,8 @@ var TreeList = (function(_Component) {
               rightIcon: !listItem.children
                 ? null
                 : expandedListItems.indexOf(i) === -1
-                  ? _react2.default.createElement(_expandMore2.default, null)
-                  : _react2.default.createElement(_expandLess2.default, null),
+                ? _react2.default.createElement(_expandMore2.default, null)
+                : _react2.default.createElement(_expandLess2.default, null),
               onClick: function() {
                 if (listItem.disabled) return;
                 _this2.handleTouchTap(listItem, i);

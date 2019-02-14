@@ -5,6 +5,7 @@ import Typography from '@6thquake/react-material/Typography';
 import StarBorder from '@material-ui/icons/StarBorder';
 import ListItemText from '@6thquake/react-material/ListItemText';
 import ListItemIcon from '@6thquake/react-material/ListItemIcon';
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -13,6 +14,7 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit * 4,
   },
 });
+
 const color = ['green', 'red', 'white', 'orgin'];
 
 class AutoCompleteTest extends Component {

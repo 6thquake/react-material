@@ -25,7 +25,7 @@ function FlatButtons(props) {
       <Button color="secondary" className={classes.button}>
         Secondary
       </Button>
-      <Button color="waring" className={classes.button}>
+      <Button color="warning" className={classes.button}>
         Waring
       </Button>
       <Button color="error" className={classes.button}>

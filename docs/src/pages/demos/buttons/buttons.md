@@ -115,7 +115,7 @@ Button Group 是一组button，可以选中某个button。
 Flat buttons are text-only buttons.
 They may be used in dialogs, toolbars, or inline.
 They do not lift, but fill with color on press.
-增加了waring、error、success、progress几种状态
+we also add some status like warning, error, success, progress.
 
 {{"demo": "pages/demos/buttons/FlatButtons.js"}}
 
@@ -123,7 +123,7 @@ They do not lift, but fill with color on press.
 
 Raised buttons are rectangular-shaped buttons.
 They may be used inline. They lift and display ink reactions on press.
-增加了waring、error、success、progress几种状态
+we also add some status like warning, error, success, progress.
 
 {{"demo": "pages/demos/buttons/RaisedButtons.js"}}
 

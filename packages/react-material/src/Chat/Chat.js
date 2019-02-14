@@ -6,7 +6,7 @@ import { withStyles } from '../styles';
 
 /*
  * To set styles used for render in App.
-*/
+ */
 export const renderStyle = {
   display: 'flex',
   flexDirection: 'column',

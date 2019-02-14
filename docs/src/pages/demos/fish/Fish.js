@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import { FishButton } from '@6thquake/react-material/Button';
+import Fish from '@6thquake/react-material/Fish';
 import Icon from '@6thquake/react-material/Icon';
 import IconButton from '@6thquake/react-material/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -14,42 +14,42 @@ const styles = theme => ({
   },
 });
 
-function FishButtons(props) {
+function Fishs(props) {
   const { classes } = props;
   return (
     <div>
-      <FishButton size="lg">
+      <Fish size="lg">
         <IconButton className={classes.button} aria-label="Delete">
           <DeleteIcon />
         </IconButton>
-      </FishButton>
-      <FishButton size="md">
+      </Fish>
+      <Fish size="md">
         <IconButton className={classes.button} aria-label="Delete" disabled color="primary">
           <DeleteIcon />
         </IconButton>
-      </FishButton>
-      <FishButton>
+      </Fish>
+      <Fish>
         <IconButton color="secondary" className={classes.button} aria-label="Add an alarm">
           <Icon>alarm</Icon>
         </IconButton>
-      </FishButton>
-      <FishButton>
+      </Fish>
+      <Fish>
         <IconButton color="primary" className={classes.button} aria-label="Add to shopping cart">
           <AddShoppingCartIcon />
         </IconButton>
-      </FishButton>
-      <FishButton>
+      </Fish>
+      <Fish>
         <label htmlFor="icon-button-file">
           <IconButton color="primary" className={classes.button} component="span">
             <PhotoCamera />
           </IconButton>
         </label>
-      </FishButton>
+      </Fish>
     </div>
   );
 }
 
-FishButtons.propTypes = {
+Fishs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(FishButtons);
+export default withStyles(styles)(Fishs);

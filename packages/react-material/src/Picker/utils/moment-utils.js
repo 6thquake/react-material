@@ -1,4 +1,4 @@
-import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+import MomentUtils from '@date-io/moment';
 import { getLocaleResource } from '../../LocaleProvider';
 import defaultMoment from 'moment';
 
@@ -10,7 +10,7 @@ class ExMomentUtils extends MomentUtils {
   }
 
   getMeridiemText(ampm) {
-    let text = getLocaleResource(this.locale || this.moment.locale()).MomentUtils;
+    const text = getLocaleResource(this.locale || this.moment.locale()).MomentUtils;
 
     return ampm === 'am' ? text.am || 'AM' : text.pm || 'PM';
   }

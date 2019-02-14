@@ -29,30 +29,29 @@ export const styles = theme => {
 
 class App extends React.Component {
   target = null;
+
+  state = {
+    orientation: 'vertical',
+  };
+
   handleChange = key => (event, value) => {
     this.setState({
       [key]: value,
     });
   };
+
   handleAnchorChange = e => {
     console.log('anchor', e);
   };
-  state = {
-    orientation: 'vertical',
-  };
+
   render() {
     const { classes } = this.props;
     const { orientation } = this.state;
-    let a = {
+    const a = {
       fontSize: 40,
       display: 'block',
     };
-    let p = {
-      margin: 100,
-      padding: 50,
-    };
-
-    let p1 = {
+    const p = {
       margin: 100,
       padding: 50,
     };
@@ -156,7 +155,7 @@ class App extends React.Component {
 
         <Grid container alignItems={'stretch'} direction={'row'} justify={'flex-start'}>
           <Grid item>
-            {orientation == 'horizontal' && (
+            {orientation === 'horizontal' && (
               <Anchor
                 container={'#t-box'}
                 onChange={this.handleAnchorChange}
@@ -176,8 +175,6 @@ class App extends React.Component {
             <Grid item xs>
               <Paper id={'t-box'} className={classes.tBox}>
                 <p style={p}>
-                  <a style={a} />
-                  <a style={a} />
                   The TextField is a convenience wrapper for the most common cases (80%). It cannot
                   be all things to all people, otherwise the API would grow out of control. The
                   TextField is a convenience wrapper for the most common cases (80%). It cannot be
@@ -374,7 +371,7 @@ class App extends React.Component {
               </Paper>
             </Grid>
             <Grid item>
-              {orientation == 'vertical' && (
+              {orientation === 'vertical' && (
                 <Anchor
                   container={'#t-box'}
                   links={links}

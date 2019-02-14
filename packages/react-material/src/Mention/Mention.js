@@ -297,28 +297,24 @@ class Mention extends Component {
             placeholder={placeholder}
             error={showError}
           />
-          {open &&
-            !noItemPatterned && (
-              <Paper className={classes.paper} square>
-                {items.slice(
-                  count == 0 ? count : page * rowsPerPage,
-                  (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
-                )}
-                <Divider />
-                {showPagination && (
-                  <Pagination
-                    {...this.state.pageConfig}
-                    onChangePage={this.pageCallbackFn.bind(this)}
-                  />
-                )}
-              </Paper>
-            )}
-          {open &&
-            noItemPatterned && (
-              <Paper className={classes.notFound}>
-                {'no patterned result, press space to end'}
-              </Paper>
-            )}
+          {open && !noItemPatterned && (
+            <Paper className={classes.paper} square>
+              {items.slice(
+                count == 0 ? count : page * rowsPerPage,
+                (page + 1) * rowsPerPage > count ? count : (page + 1) * rowsPerPage,
+              )}
+              <Divider />
+              {showPagination && (
+                <Pagination
+                  {...this.state.pageConfig}
+                  onChangePage={this.pageCallbackFn.bind(this)}
+                />
+              )}
+            </Paper>
+          )}
+          {open && noItemPatterned && (
+            <Paper className={classes.notFound}>{'no patterned result, press space to end'}</Paper>
+          )}
         </div>
       </div>
     );

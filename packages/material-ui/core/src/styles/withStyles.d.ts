@@ -45,7 +45,11 @@ export type WithStyles<
   classes: ClassNameMap<
     T extends string
       ? T
-      : T extends StyleRulesCallback<infer K> ? K : T extends StyleRules<infer K> ? K : never
+      : T extends StyleRulesCallback<infer K>
+      ? K
+      : T extends StyleRules<infer K>
+      ? K
+      : never
   >;
 };
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 import { withStyles } from '@6thquake/react-material/styles';
 import Panel from '@6thquake/react-material/Panel';
-import { StatusButton } from '@6thquake/react-material/Button';
+import Button from '@6thquake/react-material/Button';
 import { DragSource, withDragAndDrop } from '@6thquake/react-material/DragAndDrop';
 import { Home, Grade, Lock } from '@material-ui/icons';
 
@@ -25,7 +25,7 @@ class MyPanel extends Component {
     const { classes } = this.props;
     const defaultChildren = [
       <div cols={4} rows={2}>
-        <StatusButton color="primary">默认的button</StatusButton>
+        <Button color="primary">默认的button</Button>
       </div>,
       <div cols={5} rows={2}>
         <div>默认的div1</div>
@@ -44,9 +44,9 @@ class MyPanel extends Component {
             style={{ position: 'absolute', width: '120px', height: '100%', left: '0px', top: '0' }}
           >
             <DragSource type={'DRAGIN'} className={classes.source}>
-              <StatusButton color="primary" cols={3} rows={2}>
+              <Button color="primary" cols={3} rows={2}>
                 test button
-              </StatusButton>
+              </Button>
             </DragSource>
             <DragSource type={'DRAGIN'} className={classes.source}>
               <div cols={3} rows={2}>

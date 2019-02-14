@@ -157,12 +157,11 @@ class Item extends React.Component {
             primary={name}
           />
         </ListItem>
-        {beforeChildren() &&
-          children && (
-            <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-              <MenuList list={children} />
-            </Collapse>
-          )}
+        {beforeChildren() && children && (
+          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+            <MenuList list={children} />
+          </Collapse>
+        )}
       </React.Fragment>
     ) : null;
   }

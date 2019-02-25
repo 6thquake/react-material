@@ -25,7 +25,7 @@ attribute to `true` on that region until it has finished loading.
   /* istanbul ignore if */
   if (props.disableShrink && props.variant !== 'indeterminate') {
     return new Error(
-      'React-Material: you have provided the `disableShrink` property ' +
+      'Material-UI: you have provided the `disableShrink` property ' +
         'with a variant other than `indeterminate`. This will have no effect.',
     );
   }

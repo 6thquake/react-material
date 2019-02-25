@@ -22,7 +22,7 @@ title: Divider API
   /* istanbul ignore if */
   if (props.inset) {
     return new Error(
-      'React-Material: you are using the deprecated `inset` property ' +
+      'Material-UI: you are using the deprecated `inset` property ' +
         'that will be removed in the next major release. The property `variant="inset"` ' +
         'is equivalent and should be used instead.',
     );

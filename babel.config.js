@@ -1,6 +1,17 @@
+const bpmr = require('babel-plugin-module-resolver');
+
+function resolvePath(sourcePath, currentFile, opts) {
+  if (sourcePath === 'markdown') {
+    const base = currentFile.substring(__dirname.length).slice(0, -3);
+    return `${__dirname}/docs/src/${base}/`;
+  }
+
+  return bpmr.resolvePath(sourcePath, currentFile, opts);
+}
+
 let defaultPresets;
 
-// We release a ES version of React-Material.
+// We release a ES version of Material-UI.
 // It's something that matches the latest official supported features of JavaScript.
 // Nothing more (stage-1, etc), nothing less (require, etc).
 if (process.env.BABEL_ENV === 'es') {
@@ -10,35 +21,44 @@ if (process.env.BABEL_ENV === 'es') {
     [
       '@babel/preset-env',
       {
-        targets: {
-          ie: 11,
-          edge: 14,
-          firefox: 45,
-          chrome: 49,
-          safari: 10,
-          node: '6.11',
-        },
         modules: ['modules', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
       },
     ],
   ];
 }
 
+const defaultAlias = {
+  '@material-ui/core': './packages/material-ui/core/src',
+  '@material-ui/icons': './packages/material-ui/icons/src',
+  '@material-ui/lab': './packages/material-ui/lab/src',
+  '@material-ui/styles': './packages/material-ui/styles/src',
+  '@material-ui/utils': './packages/material-ui/utils/src',
+  '@material-ui/system': './packages/material-ui/system/src',
+  '@6thquake/react-material': './packages/react-material/src',
+};
+
 module.exports = {
   presets: defaultPresets.concat(['@babel/preset-react']),
   plugins: [
     ['@babel/plugin-proposal-class-properties', { loose: true }],
-    [
-      '@babel/plugin-proposal-object-rest-spread',
-      {
-        // Workaround for https://github.com/babel/babel/issues/8323
-        loose: process.env.BABEL_ENV !== 'es',
-      },
-    ],
+    ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     '@babel/plugin-transform-object-assign',
     '@babel/plugin-transform-runtime',
   ],
+  ignore: [/@babel[\\|/]runtime/],
   env: {
+    test: {
+      sourceMaps: 'both',
+      plugins: [
+        [
+          'babel-plugin-module-resolver',
+          {
+            root: ['./'],
+            alias: defaultAlias,
+          },
+        ],
+      ],
+    },
     coverage: {
       plugins: [
         'babel-plugin-istanbul',
@@ -46,11 +66,7 @@ module.exports = {
           'babel-plugin-module-resolver',
           {
             root: ['./'],
-            alias: {
-              '@6thquake/react-material': './packages/react-material/src',
-              '@material-ui/docs/MarkdownElement':
-                './packages/material-ui-docs/src/MarkdownElement',
-            },
+            alias: defaultAlias,
           },
         ],
       ],
@@ -74,13 +90,14 @@ module.exports = {
           'babel-plugin-module-resolver',
           {
             alias: {
-              '@6thquake/react-material': './packages/react-material/src',
-              '@material-ui/docs/MarkdownElement':
-                './packages/material-ui-docs/src/MarkdownElement',
+              ...defaultAlias,
+              '@material-ui/docs': './packages/material-ui/docs/src',
               docs: './docs',
               modules: './modules',
               pages: './pages',
             },
+            transformFunctions: ['require', 'require.context'],
+            resolvePath,
           },
         ],
       ],
@@ -92,13 +109,14 @@ module.exports = {
           'babel-plugin-module-resolver',
           {
             alias: {
-              '@6thquake/react-material': './packages/react-material/src',
-              '@material-ui/docs/MarkdownElement':
-                './packages/material-ui-docs/src/MarkdownElement',
+              ...defaultAlias,
+              '@material-ui/docs': './packages/material-ui/docs/src',
               docs: './docs',
               modules: './modules',
               pages: './pages',
             },
+            transformFunctions: ['require', 'require.context'],
+            resolvePath,
           },
         ],
         'transform-react-constant-elements',
@@ -115,7 +133,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
+            mode: 'unsafe-wrap',
           },
         ],
       ],
@@ -131,7 +149,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
+            mode: 'unsafe-wrap',
           },
         ],
       ],
@@ -147,23 +165,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
-          },
-        ],
-      ],
-    },
-    test: {
-      sourceMaps: 'both',
-      plugins: [
-        [
-          'babel-plugin-module-resolver',
-          {
-            root: ['./'],
-            alias: {
-              '@6thquake/react-material': './packages/react-material/src',
-              '@material-ui/docs/MarkdownElement':
-                './packages/material-ui-docs/src/MarkdownElement',
-            },
+            mode: 'unsafe-wrap',
           },
         ],
       ],

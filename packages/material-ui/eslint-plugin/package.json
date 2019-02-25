@@ -1,0 +1,15 @@
+{
+  "name": "eslint-plugin-material-ui",
+  "version": "3.0.0",
+  "private": true,
+  "description": "Custom eslint rules for Material-UI.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js' --exclude '**/node_modules/**'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git"
+  },
+  "license": "MIT"
+}

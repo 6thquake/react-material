@@ -46,6 +46,7 @@
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^4.0.0-alpha.0",
     "@material-ui/lab": "^3.0.0-alpha.30",
+    "@material-ui/utils": "^3.0.0-alpha.3",
     "@types/jss": "^9.5.3",
     "@types/react-transition-group": "^2.0.8",
     "brcast": "^3.0.1",

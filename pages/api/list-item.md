@@ -33,7 +33,7 @@ Uses an additional container component if `ListItemSecondaryAction` is the last 
   //  is ListItemSecondaryAction the last child of ListItem
   if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {
     return new Error(
-      'React-Material: you used an element after ListItemSecondaryAction. ' +
+      'Material-UI: you used an element after ListItemSecondaryAction. ' +
         'For ListItem to detect that it has a secondary action ' +
         `you must pass it has the last children to ListItem.${
           process.env.NODE_ENV === 'test' ? Date.now() : ''

@@ -68,7 +68,7 @@ title: Typography API
       deprecatedVariants.indexOf(props.variant) !== -1
     ) {
       return new Error(
-        'React-Material: you are using a deprecated typography variant: ' +
+        'Material-UI: you are using a deprecated typography variant: ' +
           `\`${props.variant}\` that will be removed in the next major release.\n` +
           'Please read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2.',
       );

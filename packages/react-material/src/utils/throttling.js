@@ -3,16 +3,16 @@ const throttling = (fn, wait, maxTimeLong) => {
   maxTimeLong = maxTimeLong || 300;
   let timeout = null;
   let start = new Date();
-  return function(e) {
+  return e => {
     if (timeout) {
       clearTimeout(timeout);
     }
-    let now = new Date();
+    const now = new Date();
     if (now - start >= maxTimeLong) {
       fn(e);
       start = now;
     } else {
-      timeout = setTimeout(i => fn(e), wait);
+      timeout = setTimeout(() => fn(e), wait);
     }
   };
 };

@@ -80,7 +80,7 @@ class FormItem extends Component {
     });
 
     return (
-      <Grid className={className} item xs={12} sm={formItemLayout['label']} key="label">
+      <Grid className={className} item xs={12} sm={formItemLayout.label} key="label">
         <label>{labelChildren}</label>
       </Grid>
     );
@@ -88,7 +88,7 @@ class FormItem extends Component {
 
   renderWrapper() {
     const { classes, children, formItemLayout, label } = this.props;
-    const sm = label ? formItemLayout['content'] : 12;
+    const sm = label ? formItemLayout.content : 12;
 
     return (
       <Grid className={classes['form-item-wrapper']} item xs={12} sm={sm} key="wrapper">
@@ -123,13 +123,13 @@ class FormItem extends Component {
 
 FormItem.propTypes = {
   classes: PropTypes.object.isRequired,
-  required: PropTypes.bool,
   colon: PropTypes.bool,
-  label: PropTypes.any,
   formItemLayout: PropTypes.shape({
-    label: PropTypes.number,
     content: PropTypes.number,
+    label: PropTypes.number,
   }),
+  label: PropTypes.any,
+  required: PropTypes.bool,
 };
 
 FormItem.defaultProps = {

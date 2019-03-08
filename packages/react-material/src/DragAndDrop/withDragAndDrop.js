@@ -44,7 +44,9 @@ function DragDropContext(backendFactory, context) {
 
     class DragDropContextContainer extends React.Component {
       static DecoratedComponent = DecoratedComponent;
+
       static displayName = `DragDropContext(${displayName})`;
+
       static childContextTypes = CHILD_CONTEXT_TYPES;
 
       child = null;

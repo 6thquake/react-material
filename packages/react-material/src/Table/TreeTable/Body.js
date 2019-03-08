@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from '../../Table';
+import Table from '..';
 import TableBody from '../../TableBody';
 import TableCell from './Cell';
 import TableRow from '../../TableRow';
@@ -27,7 +27,7 @@ const styles = theme => ({
     fontSize: '0.8125rem',
   },
   exIconBox: {
-    border: '1px solid ' + theme.palette.divider,
+    border: `1px solid ${theme.palette.divider}`,
     width: 13,
     height: 13,
     display: 'flex',
@@ -81,20 +81,21 @@ class Body extends React.Component {
   };
 
   rowsState = [];
+
   rowStyle = {};
 
   handleExIconChange = res => {
     const { close, data: entry } = res;
     const { rows } = this.state;
     const { syncTableRowHeight } = this.props;
-    let { key } = entry;
+    const { key } = entry;
 
     rows.map((item, index) => {
       if (item.parent && item.parent.key === key) {
         item.show = !close;
       }
     });
-    let length = this.state.rows.filter(item => item.show).length;
+    const length = this.state.rows.filter(item => item.show).length;
     this.setState(
       {
         rows,
@@ -108,7 +109,7 @@ class Body extends React.Component {
   renderRows = (tree, parent) => {
     if (tree && tree.length > 0) {
       for (let index = 0; index < tree.length; index++) {
-        let node = tree[index];
+        const node = tree[index];
         if (parent === undefined) {
           node.show = true;
         }
@@ -127,10 +128,10 @@ class Body extends React.Component {
 
   renderOneRow = (entry, index) => {
     const { classes, columns, TableCellProps, TableRowProps, type, bodyRowHeight } = this.props;
-    let rowStyle = {
+    const rowStyle = {
       height: bodyRowHeight,
     };
-    let indent = (entry.deep || 0) * 50;
+    const indent = (entry.deep || 0) * 50;
     if (!entry.show) {
       return null;
     }
@@ -144,7 +145,7 @@ class Body extends React.Component {
     if (!show) {
       return;
     }
-    let row = (
+    const row = (
       <TableRow
         onClick={this.handleRowClick(entry, index)}
         style={rowStyle}
@@ -152,9 +153,9 @@ class Body extends React.Component {
         {...TableRowProps}
       >
         {columns.map((column, index) => {
-          let hasIcon =
+          const hasIcon =
             type !== 'right' && entry.children && entry.children.length > 0 && index === 0;
-          let indentStyle =
+          const indentStyle =
             type !== 'right' && index === 0
               ? {
                   paddingLeft: indent,
@@ -179,6 +180,7 @@ class Body extends React.Component {
     );
     return row;
   };
+
   render() {
     const {
       classes,
@@ -196,7 +198,7 @@ class Body extends React.Component {
       TableRowProps,
     } = this.props;
     const { rows } = this.state;
-    let mainAndNoData = data.length === 0 && type === 'main';
+    const mainAndNoData = data.length === 0 && type === 'main';
     // this.rowsState = []
     const tableStyle = mainAndNoData
       ? {
@@ -211,7 +213,7 @@ class Body extends React.Component {
       height: bodyRowHeight,
     };
 
-    let Rows = rows.map((item, index) => {
+    const Rows = rows.map((item, index) => {
       return this.renderOneRow(item, index);
     });
     return (
@@ -221,7 +223,7 @@ class Body extends React.Component {
           scroll(e, type);
         }}
         style={{
-          height: height,
+          height,
         }}
         className={classes.root}
       >
@@ -265,8 +267,8 @@ class Body extends React.Component {
 }
 
 Body.propTypes = {
-  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   classes: PropTypes.object.isRequired,
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 Body.defaultProps = {
   height: 'auto',

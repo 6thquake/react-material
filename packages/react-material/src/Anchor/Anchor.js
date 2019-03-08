@@ -92,12 +92,12 @@ export const styles = theme => ({
 const throttling = (fn, wait, maxTimelong) => {
   wait = wait || 100;
   maxTimelong = maxTimelong || 300;
-  var timeout = null;
-  var startTime = Date.now();
+  let timeout = null;
+  let startTime = Date.now();
 
   return function(e) {
     if (timeout !== null) clearTimeout(timeout);
-    var curTime = Date.now();
+    const curTime = Date.now();
     if (curTime - startTime >= maxTimelong) {
       fn(e);
       startTime = curTime;
@@ -111,7 +111,7 @@ const throttling = (fn, wait, maxTimelong) => {
 
 export const scrollToAnchor = anchorName => {
   if (anchorName) {
-    let anchorElement = document.querySelector(anchorName);
+    const anchorElement = document.querySelector(anchorName);
     if (anchorElement) {
       anchorElement.scrollIntoView();
     }
@@ -125,21 +125,27 @@ class Anchor extends React.Component {
     links: {},
     active: '',
   };
+
   level = 0;
+
   container = null;
+
   wrapper = null;
+
   componentDidMount() {
-    let sel = this.props.container;
+    const sel = this.props.container;
     this.container = document.querySelector(sel) || window;
     this.ths = throttling(this.scrollHandle, 5, 20);
     this.container.addEventListener('scroll', this.ths);
     this.setLinks(this.props.links);
   }
+
   componentWillUnmount() {
     this.container.removeEventListener('scroll', this.ths, false);
   }
+
   scrollHandle = e => {
-    let { links } = this.props;
+    const { links } = this.props;
     this.setLinks(links);
   };
 
@@ -149,14 +155,14 @@ class Anchor extends React.Component {
       key: '',
       value: Infinity,
     };
-    for (let link of links) {
+    for (const link of links) {
       let sel = link.value;
-      let ele = document.querySelector(sel);
-      let dh = ele ? this.getOffsetTop(ele, this.container) : Infinity;
+      const ele = document.querySelector(sel);
+      const dh = ele ? this.getOffsetTop(ele, this.container) : Infinity;
       if (dh > 50 && sel === this.props.links[0].value) {
         sel = '';
       }
-      let absDh = Math.abs(dh);
+      const absDh = Math.abs(dh);
       if (absDh < min.value) {
         min = {
           key: sel,
@@ -164,7 +170,7 @@ class Anchor extends React.Component {
         };
       }
       if (link.children) {
-        let m = this.nearestLink(link.children);
+        const m = this.nearestLink(link.children);
         if (m.value < min.value) {
           min = m;
         }
@@ -172,11 +178,12 @@ class Anchor extends React.Component {
     }
     return min;
   };
+
   // 激活高亮选项
   changeActiveLink = sel => {
-    let { onChange } = this.props;
+    const { onChange } = this.props;
     if (this.state.active !== sel) {
-      let dir = this.scrollDirection(this.state.active, sel);
+      const dir = this.scrollDirection(this.state.active, sel);
       onChange &&
         onChange({
           name: sel,
@@ -184,7 +191,7 @@ class Anchor extends React.Component {
         });
       this.state.active = sel;
     }
-    let activeLink = {
+    const activeLink = {
       [sel]: true,
     };
     this.setMask(sel);
@@ -193,6 +200,7 @@ class Anchor extends React.Component {
     });
     return true;
   };
+
   // 计算滚动条的滚动方向
   scrollDirection = (pre, cur) => {
     if (pre === '') {
@@ -201,30 +209,29 @@ class Anchor extends React.Component {
     if (cur === '') {
       return 'up';
     }
-    let preHeight = document.querySelector(pre).getBoundingClientRect().top;
-    let curHeight = document.querySelector(cur).getBoundingClientRect().top;
-    let dh = preHeight - curHeight;
+    const preHeight = document.querySelector(pre).getBoundingClientRect().top;
+    const curHeight = document.querySelector(cur).getBoundingClientRect().top;
+    const dh = preHeight - curHeight;
     if (dh > 0) {
       return 'up';
-    } else {
-      return 'down';
     }
+    return 'down';
   };
 
   // 设置高亮 mask 的高度
   setMask = sel => {
-    let { horizontal } = this.props;
+    const { horizontal } = this.props;
     if (!horizontal) {
-      let links = this.wrapper.querySelectorAll('a');
+      const links = this.wrapper.querySelectorAll('a');
       let target = null;
-      for (let link of links) {
+      for (const link of links) {
         if (link.name === sel) {
           target = link;
           break;
         }
       }
-      let top = target && this.getOffsetTop(target, this.wrapper);
-      let height = target && target.getBoundingClientRect().height;
+      const top = target && this.getOffsetTop(target, this.wrapper);
+      const height = target && target.getBoundingClientRect().height;
       this.setState({
         linkToTop: top,
         linkHeight: height,
@@ -233,25 +240,25 @@ class Anchor extends React.Component {
   };
 
   setLinks(links) {
-    let nearestLink = this.nearestLink(links);
+    const nearestLink = this.nearestLink(links);
     this.changeActiveLink(nearestLink.key);
   }
 
   // 找到子元素在父元素中的相对位置
   getOffsetTop(element, container) {
-    let eleRectTop = element.getBoundingClientRect().top;
+    const eleRectTop = element.getBoundingClientRect().top;
     if (container === window) {
       container = element.ownerDocument.documentElement;
       return eleRectTop - container.clientTop;
     }
-    let containerRectTop = container.getBoundingClientRect().top;
+    const containerRectTop = container.getBoundingClientRect().top;
     return eleRectTop - containerRectTop;
   }
 
   renderItem = (link, index, children) => {
-    let { classes, hash } = this.props;
-    let selected = this.state.links[link.value];
-    let mergeClassName = classNames(classes.link, { [classes.veLinkActive]: selected });
+    const { classes, hash } = this.props;
+    const selected = this.state.links[link.value];
+    const mergeClassName = classNames(classes.link, { [classes.veLinkActive]: selected });
     const prop = {};
     if (!hash) {
       prop.href = link.value;
@@ -276,19 +283,19 @@ class Anchor extends React.Component {
   };
 
   renderLinks = links => {
-    let { classes } = this.props;
-    let result = links.map((link, index) => {
+    const { classes } = this.props;
+    const result = links.map((link, index) => {
       return this.renderLink(link, index);
     });
     return <ul className={classes.ul}>{result}</ul>;
   };
 
   renderHorizontalLinks = links => {
-    let { classes, hash } = this.props;
+    const { classes, hash } = this.props;
 
-    let result = links.map((link, index) => {
-      let selected = this.state.links[link.value];
-      let mergeClassName = classNames(classes.hoLink, {
+    const result = links.map((link, index) => {
+      const selected = this.state.links[link.value];
+      const mergeClassName = classNames(classes.hoLink, {
         [classes.hoLinkActive]: selected,
       });
       const prop = {};
@@ -325,9 +332,11 @@ class Anchor extends React.Component {
     }
     console.log('scrollToAnchor');
   };
+
   setRef = e => {
     this.wrapper = e;
   };
+
   render() {
     const { classes, links, style, horizontal } = this.props;
     const { active, linkToTop, linkHeight } = this.state;

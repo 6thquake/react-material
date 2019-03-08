@@ -34,9 +34,9 @@ class Carousel extends React.Component {
   constructor(props) {
     super(props);
 
-    if (!!props.speed) {
-      styles.scrollwrap.transition = 'all ' + props.speed + 's';
-      styles.scrollwrap.WebkitTransition = 'all ' + props.speed + 's';
+    if (props.speed) {
+      styles.scrollwrap.transition = `all ${props.speed}s`;
+      styles.scrollwrap.WebkitTransition = `all ${props.speed}s`;
     }
 
     this.count = props.items.length;
@@ -48,14 +48,18 @@ class Carousel extends React.Component {
       width: 0,
       height: 0,
     };
-    this.isVedioPlaying = false; //有视频正在播放
-    this.justInit = true; //刚刚进来时候
+    this.isVedioPlaying = false; // 有视频正在播放
+    this.justInit = true; // 刚刚进来时候
   }
 
   componentDidMount() {
-    let carouselEl = ReactDOM.findDOMNode(this.carouselRef.current),
-      carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current),
-      width = carouselEl.offsetWidth;
+    const carouselEl = ReactDOM.findDOMNode(this.carouselRef.current);
+
+
+const carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current);
+
+
+const width = carouselEl.offsetWidth;
     this.mainSize = {
       width: carouselEl.offsetWidth,
       height: carouselEl.offsetHeight,
@@ -63,47 +67,50 @@ class Carousel extends React.Component {
     carouselWarpEl.style.transition = 'none';
     carouselWarpEl.style.WebkitTransition = 'none';
 
-    carouselWarpEl.style.minWidth = (this.count + 2) * width + 'px';
-    carouselWarpEl.style.marginLeft = -1 * width + 'px';
-    /*if (!!this.props.speed) {
+    carouselWarpEl.style.minWidth = `${(this.count + 2) * width}px`;
+    carouselWarpEl.style.marginLeft = `${-1 * width}px`;
+    /* if (!!this.props.speed) {
       carouselWarpEl.style.transition = 'all ' + this.props.speed + 's';
       carouselWarpEl.style.WebkitTransition = 'all ' + this.props.speed + 's';
-    }*/
+    } */
 
-    if (!!this.props.autoplay) {
+    if (this.props.autoplay) {
       this.start();
     }
   }
+
   vedioLeadToClearIntervalFunc = () => {
     this.isVedioPlaying = true;
     this.clearIntervalFunc();
   };
+
   vedioEndLeadToResumeIntervalFunc = () => {
     this.isVedioPlaying = false;
     this.resumeIntervalFunc();
   };
+
   clearIntervalFunc = () => {
-    if (!!this.props.pause) {
+    if (this.props.pause) {
       clearInterval(this.interval);
     }
   };
 
   resumeIntervalFunc = () => {
-    if (!!this.isVedioPlaying) {
+    if (this.isVedioPlaying) {
       return;
     }
     if (!this.props.autoplay) {
       return;
     }
 
-    if (!!this.props.pause) {
+    if (this.props.pause) {
       this.start();
     }
   };
 
   start = () => {
     clearInterval(this.interval);
-    //this.next();
+    // this.next();
     if (this.justInit) {
       this.initPic();
     }
@@ -112,57 +119,73 @@ class Carousel extends React.Component {
       this.next();
     }, this.props.delay * 1000);
   };
+
   initPic = () => {
     this.setActive(this.activeIndex, false);
   };
+
   next = () => {
-    const len = this.count,
-      activeIndex = this.activeIndex,
-      nextActiveIndex = activeIndex < len ? activeIndex + 1 : 0;
+    const len = this.count;
+
+
+const activeIndex = this.activeIndex;
+
+
+const nextActiveIndex = activeIndex < len ? activeIndex + 1 : 0;
     const self = this;
     this.setActive(nextActiveIndex, true);
     if (activeIndex == len - 1) {
-      setTimeout(function() {
+      setTimeout(() => {
         self.setActive(0, false);
       }, (self.props.speed || '0.5') * 1000);
     }
   };
 
   previous = () => {
-    const len = this.count,
-      activeIndex = this.activeIndex,
-      preActiveIndex = activeIndex >= 0 ? activeIndex - 1 : len - 1;
+    const len = this.count;
+
+
+const activeIndex = this.activeIndex;
+
+
+const preActiveIndex = activeIndex >= 0 ? activeIndex - 1 : len - 1;
     const self = this;
     this.setActive(preActiveIndex, true);
     if (activeIndex == 0) {
-      setTimeout(function() {
+      setTimeout(() => {
         self.setActive(self.count - 1, false);
       }, (self.props.speed || '0.5') * 1000);
     }
   };
 
   setActive = (index, withAnimation) => {
-    let carouselEl = ReactDOM.findDOMNode(this.carouselRef.current),
-      carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current),
-      width = carouselEl.offsetWidth;
+    const carouselEl = ReactDOM.findDOMNode(this.carouselRef.current);
+
+
+const carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current);
+
+
+const width = carouselEl.offsetWidth;
     if (!withAnimation) {
       carouselWarpEl.style.transition = 'none';
       carouselWarpEl.style.WebkitTransition = 'none';
     } else {
-      carouselWarpEl.style.transition = 'all ' + (this.props.speed || '0.5') + 's';
-      carouselWarpEl.style.WebkitTransition = 'all ' + (this.props.speed || '0.5') + 's';
+      carouselWarpEl.style.transition = `all ${this.props.speed || '0.5'}s`;
+      carouselWarpEl.style.WebkitTransition = `all ${this.props.speed || '0.5'}s`;
     }
 
-    carouselWarpEl.style.marginLeft = -1 * (index + 1) * width + 'px';
+    carouselWarpEl.style.marginLeft = `${-1 * (index + 1) * width}px`;
     this.activeIndex = index;
     this.setState({
       temp: new Date().getTime(),
     });
   };
+
   chengeActivedByDot = (index, withAnimation) => {
     this.isVedioPlaying = false;
     this.setActive(index, withAnimation);
   };
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -178,7 +201,7 @@ class Carousel extends React.Component {
           onResumeInterval={this.vedioEndLeadToResumeIntervalFunc}
           data={_}
           size={self.mainSize}
-          key={'item' + index}
+          key={`item${index}`}
           index={index}
         />
       );
@@ -192,8 +215,8 @@ class Carousel extends React.Component {
             {_items}
             {<CarouselItem data={items[0]} size={self.mainSize} index={items.length} />}
           </div>
-          {/*<div className={classes.mask} ></div>*/}
-          {!!arrows ? (
+          {/* <div className={classes.mask} ></div> */}
+          {arrows ? (
             <CarouselArrow
               next={() => {
                 this.isVedioPlaying = false;
@@ -205,7 +228,7 @@ class Carousel extends React.Component {
               }}
             />
           ) : null}
-          {!!dots ? (
+          {dots ? (
             <CarouselDots
               count={items.length}
               speed={speed}
@@ -236,11 +259,11 @@ Carousel.propTypes = {
    *    alt: 'images-3',
    *  }]
    */
-  items: PropTypes.array.isRequired,
+  arrows: PropTypes.bool,
   /**
    * speed of pictrue slide，unit second
    */
-  speed: PropTypes.number,
+  autoplay: PropTypes.bool,
   /**
    * delay of pictrue slide，unit second
    */
@@ -248,19 +271,19 @@ Carousel.propTypes = {
   /**
    * pause when mouseover
    */
-  pause: PropTypes.bool,
+  dots: PropTypes.bool,
   /**
    * autoplay
    */
-  autoplay: PropTypes.bool,
+  items: PropTypes.array.isRequired,
   /**
    * is dots showed
    */
-  dots: PropTypes.bool,
+  pause: PropTypes.bool,
   /**
    * is arrows showed
    */
-  arrows: PropTypes.bool,
+  speed: PropTypes.number,
 };
 
 export default withStyles(styles, { name: 'RMCarousel' })(Carousel);

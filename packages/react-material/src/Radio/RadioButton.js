@@ -177,7 +177,7 @@ class RadioButton extends Component {
         [classes.vertical]: !row,
         [classes.horizontal]: row,
         [classes[styles]]: size !== 'medium',
-        [classes[styles + 'Circular']]: circular,
+        [classes[`${styles}Circular`]]: circular,
       },
       classNamePro,
     );
@@ -268,7 +268,7 @@ function getRadio(props) {
   function R(props, context) {
     const { classes } = props;
     let { classes: classesPro } = context;
-    classesPro = classesPro ? classesPro : {};
+    classesPro = classesPro || {};
     return (
       <Radio
         {...radioProps}

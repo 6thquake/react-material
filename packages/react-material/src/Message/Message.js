@@ -31,6 +31,7 @@ class Message extends Component {
         return <Fade {...props} />;
     }
   };
+
   render() {
     const { open, action, onClose, anchorOrigin, classes } = this.props;
     return (
@@ -50,19 +51,19 @@ Message.propTypes = {
   /**
    * This is usually about message open or close
    */
-  open: PropTypes.bool.isRequired,
+  action: PropTypes.element,
   /**
    * This is usually an animation of open or close the message,include slide、collapse、fade、grow、zoom
    */
-  animation: PropTypes.string,
+  anchorOrigin: PropTypes.object,
   /**
    * This is usually about message action
    */
-  action: PropTypes.element,
+  animation: PropTypes.string,
   /**
    * The anchor of the Message.
    */
-  anchorOrigin: PropTypes.object,
+  open: PropTypes.bool.isRequired,
 };
 Message.defaultProps = {
   open: false,

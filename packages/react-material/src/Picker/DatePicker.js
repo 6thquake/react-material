@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import yellow from '../colors/yellow';
 import { DatePicker } from 'material-ui-pickers';
-
 import { withLocale } from '../LocaleProvider';
 
 const style = theme => ({
@@ -50,8 +49,9 @@ class DatePickerWrapper extends Component {
     super(props);
     this.state = {};
   }
+
   render() {
-    let { classes, isDark, ...others } = this.props;
+    const { classes, isDark, ...others } = this.props;
     const inputProps = isDark
       ? {
           InputProps: {

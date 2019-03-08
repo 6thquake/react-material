@@ -5,7 +5,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-
 import { DragSource } from 'react-dnd';
 
 const ItemTypes = {

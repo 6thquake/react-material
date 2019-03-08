@@ -95,7 +95,7 @@ const styles = theme => {
     },
   };
   return {
-    //todo remove
+    // todo remove
     root: {},
     label: {},
     flatPrimary: {},
@@ -152,9 +152,11 @@ const styles = theme => {
 
 class RMButton extends Component {
   firstRender = true;
+
   state = {
     color: this.props.color,
   };
+
   status = {
     status: '',
     text: '',
@@ -168,7 +170,7 @@ class RMButton extends Component {
     });
     switch (this.status.status) {
       case 'progress':
-        //todo button loading styles
+        // todo button loading styles
         return this.renderProgress(className);
       case 'success':
         return <Done className={className} />;
@@ -181,7 +183,7 @@ class RMButton extends Component {
 
   renderProgress(className) {
     const { variant, classes } = this.props;
-    let size = variant === 'fab' ? 24 : 15;
+    const size = variant === 'fab' ? 24 : 15;
     const classesPro = classNames(
       {
         [classes.progress]: variant !== 'flat' && variant !== 'outlined',
@@ -241,8 +243,8 @@ class RMButton extends Component {
   }
 
   render() {
-    let { children, className: classNamePro, classes, onClick, ...props } = this.props;
-    let {
+    const { children, className: classNamePro, classes, onClick, ...props } = this.props;
+    const {
       raisedProgress,
       raisedError,
       raisedSuccess,
@@ -357,13 +359,17 @@ RMButton.propTypes = {
    * The size of the button.
    * `small` is equivalent to the dense button styling.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  onClick: PropTypes.func,
   /**
    * @ignore
    */
-  type: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * The type of button.
+   */
+  type: PropTypes.string,
+  /**
+   * Button 的回掉函数，函数的返回值如果是Promise，Button变为带反馈的样子。
    */
   variant: PropTypes.oneOf([
     'text',
@@ -375,10 +381,6 @@ RMButton.propTypes = {
     'extendedFab',
     'fish',
   ]),
-  /**
-   * Button 的回掉函数，函数的返回值如果是Promise，Button变为带反馈的样子。
-   */
-  onClick: PropTypes.func,
 };
 
 RMButton.defaultProps = {

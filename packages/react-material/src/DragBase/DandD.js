@@ -3,6 +3,7 @@ import { withStyles } from '../styles';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { DragSource as DragSourceBase, DropTarget as DropTargetBase } from 'react-dnd';
+
 const styles = {
   root: {
     display: 'inline-block',
@@ -13,7 +14,7 @@ const _source = {
   beginDrag(props, monitor, component) {
     console.log('111', component);
 
-    let item = component.decoratedComponentInstance.state.comp.beginDrag(props, monitor, component);
+    const item = component.decoratedComponentInstance.state.comp.beginDrag(props, monitor, component);
     // item.sourceType=_DnadD._sourceType;
     return item;
   },
@@ -53,15 +54,15 @@ const _target = {
 
 function drag_collect(connect, monitor) {
   return {
-    connect: connect,
-    monitor: monitor,
+    connect,
+    monitor,
     connectDragSource: connect.dragSource(),
   };
 }
 function drop_collect(connect, monitor) {
   return {
-    connect: connect,
-    monitor: monitor,
+    connect,
+    monitor,
     itemType: monitor.getItemType(),
     connectDropTarget: connect.dropTarget(),
   };
@@ -75,6 +76,7 @@ class _DandD extends PureComponent {
       acceptSource: [],
     };
   }
+
   // static _sourceType='';
   // static _component=null;
   register = c => {
@@ -85,11 +87,14 @@ class _DandD extends PureComponent {
     // console.log(c);
     // _DandD._component=comp;
   };
+
   accept = items => {
     this.setState(preState => ({
       acceptSource: [...preState.acceptSource, ...items],
     }));
-  }; //为了拿到子组件的设置的item值
+  };
+
+ // 为了拿到子组件的设置的item值
   render() {
     const {
       connectDragSource,
@@ -103,8 +108,8 @@ class _DandD extends PureComponent {
       React.cloneElement(child, {
         register: this.register.bind(this),
         accept: this.accept,
-        connect: connect,
-        monitor: monitor,
+        connect,
+        monitor,
       }),
     );
     return connectDropTarget(

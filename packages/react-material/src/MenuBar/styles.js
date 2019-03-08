@@ -40,7 +40,7 @@ const styles = theme => {
       style: 'solid',
       color: '#e8e8e8',
       radius: '4px',
-      colorSplit: '#e8e8e8', //todo @border-color-split;
+      colorSplit: '#e8e8e8', // todo @border-color-split;
     },
     menuItem: {
       height: '40px',
@@ -55,9 +55,13 @@ const styles = theme => {
     ...theme.menu,
   };
 
-  const border = menu.border,
-    menuItem = menu.menuItem,
-    iconStyle = menu.iconStyle;
+  const border = menu.border;
+
+
+const menuItem = menu.menuItem;
+
+
+const iconStyle = menu.iconStyle;
 
   const iconfontCssPrefix = 'material-icons';
 
@@ -144,7 +148,7 @@ const styles = theme => {
         '&-item-divider': {
           height: 1,
           overflow: 'hidden',
-          backgroundColor: '#e8e8e8', //theme.palette.divider,
+          backgroundColor: '#e8e8e8', // theme.palette.divider,
           lineHeight: 0,
         },
         '&-item:hover, &-item-active, &:not(&-inline) &-submenu-open, &-submenu-active': {
@@ -309,7 +313,7 @@ const styles = theme => {
             top: 1,
             float: 'left',
             borderBottom: '2px solid transparent',
-            [`&:hover,&-active,&-open,&-selected`]: {
+            '&:hover,&-active,&-open,&-selected': {
               borderBottom: `2px solid ${menu.menuHighlightColor}`,
               color: menu.menuHighlightColor,
             },

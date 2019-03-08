@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { withStyles } from '../styles';
 import Chip from '../Chip';
 import PropTypes from 'prop-types';
-
 import { emphasize, fade, darken } from '../styles/colorManipulator';
 
-let styles = theme => ({
+const styles = theme => ({
   color: {
     primaryLight: {
       background: theme.palette.primary.light,
@@ -124,9 +123,9 @@ let styles = theme => ({
   mixin: {},
 });
 
-for (let color in styles.color) {
-  for (let size in styles.size) {
-    let _key = color + size;
+for (const color in styles.color) {
+  for (const size in styles.size) {
+    const _key = color + size;
     styles.mixin[_key] = { ...styles.color[color], ...styles.size[size] };
   }
 }
@@ -180,23 +179,23 @@ Tag.propTypes = {
   /**
    * the content of tag
    */
-  label: PropTypes.string,
+  closable: PropTypes.bool,
   /**
    * if close the tag, set true to show close icon button.default value is false.
    */
-  closable: PropTypes.bool,
+  color: PropTypes.string,
   /**
    * size of the tag,support for three sizes:'small，medium, large',defalut value is medium.
    */
-  size: PropTypes.string,
+  label: PropTypes.string,
   /**
    * color of the tag,support for:'primaryLight, primaryMain,primaryDark,secondaryLight,secondaryMain,secondaryDark,errorLight,errorMain,errorDark',defalut is primaryMain.
    */
-  color: PropTypes.string,
+  onClose: PropTypes.func,
   /**
    *  callback function when delete the tag
    */
-  onClose: PropTypes.func,
+  size: PropTypes.string,
 };
 
 Tag.defaultProps = {

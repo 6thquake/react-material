@@ -42,7 +42,7 @@ function generateGrid(globalStyles, theme, breakpoint) {
       position: 'relative',
       float: 'left',
       minHeight: 1,
-      width: width,
+      width,
     };
     styles[`offset-${breakpoint}-${size}`] = {
       marginLeft: width,
@@ -226,52 +226,52 @@ Grid.propTypes = {
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    */
   // sm: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, PropTypes.object]),
-  sm: PropTypes.oneOfType([
-    PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.object,
-  ]),
+  offset: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
 
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-  spacing: PropTypes.oneOf(GUTTERS),
+  pull: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
 
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `xl` breakpoint and wider screens.
    */
-  xl: PropTypes.oneOfType([
-    PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.object,
-  ]),
+  push: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
    */
-  xs: PropTypes.oneOfType([
+  sm: PropTypes.oneOfType([
     PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     PropTypes.object,
   ]),
   /**
    * The number of cells to offset Col from the left
    */
-  offset: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  spacing: PropTypes.oneOf(GUTTERS),
   /**
    * The number of cells that raster is moved to the left
    */
 
-  pull: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  span: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * The number of cells that raster is moved to the right
    */
 
-  push: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  xl: PropTypes.oneOfType([
+    PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.object,
+  ]),
   /**
    * Raster number of cells to occupy
    */
 
-  span: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  xs: PropTypes.oneOfType([
+    PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.object,
+  ]),
 };
 
 Grid.defaultProps = {

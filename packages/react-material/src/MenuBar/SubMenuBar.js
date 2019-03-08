@@ -3,19 +3,24 @@ import PropTypes from 'prop-types';
 import { SubMenu as RcSubMenu } from 'rc-menu';
 import classNames from 'classnames';
 import { withStyles } from '../styles';
+
 const styles = theme => ({});
 
 class SubMenuBar extends React.Component {
   static contextTypes = {
     rMMenuTheme: PropTypes.string,
   };
+
   static subMenu;
+
   onKeyDown = e => {
     this.subMenu.onKeyDown(e);
   };
+
   saveSubMenu = subMenu => {
     this.subMenu = subMenu;
   };
+
   render() {
     const { rootPrefixCls, className } = this.props;
     const { classes, ...props } = this.props;
@@ -41,11 +46,11 @@ SubMenuBar.propTypes = {
   /**
    * 子菜单项值
    */
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  onTitleClick: PropTypes.func,
   /**
    * 点击子菜单标题，参数 ({ key, domEvent })
    */
-  onTitleClick: PropTypes.func,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 SubMenuBar.defaultProps = {
   disabled: false,

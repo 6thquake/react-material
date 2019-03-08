@@ -5,7 +5,6 @@
 import React, { Component } from 'react';
 import ReactDOM, { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
-
 import {
   DragSource,
   DropTarget,
@@ -16,7 +15,6 @@ import {
   DragSourceConnector,
   DragSourceMonitor,
 } from 'react-dnd';
-
 import flow from 'lodash/flow';
 
 const style = {
@@ -25,31 +23,31 @@ const style = {
 
 const listSource = {
   beginDrag(props, monitor, component) {
-    //拖拽开始把水波层置为不显示
-    //console.log(component.refs["listItemDrag"].childNodes[0].childNodes[1].className)
+    // 拖拽开始把水波层置为不显示
+    // console.log(component.refs["listItemDrag"].childNodes[0].childNodes[1].className)
     if (
-      component.refs['listItemDrag'].childNodes[0].childNodes[2] &&
-      component.refs['listItemDrag'].childNodes[0].childNodes[2].className ===
+      component.refs.listItemDrag.childNodes[0].childNodes[2] &&
+      component.refs.listItemDrag.childNodes[0].childNodes[2].className ===
         'MuiTouchRipple-root-61'
     ) {
-      component.refs['listItemDrag'].childNodes[0].childNodes[2].style.display = 'none';
+      component.refs.listItemDrag.childNodes[0].childNodes[2].style.display = 'none';
     } else if (
-      component.refs['listItemDrag'].childNodes[0].firstChild.childNodes[2] &&
-      component.refs['listItemDrag'].childNodes[0].firstChild.childNodes[2].className ===
+      component.refs.listItemDrag.childNodes[0].firstChild.childNodes[2] &&
+      component.refs.listItemDrag.childNodes[0].firstChild.childNodes[2].className ===
         'MuiTouchRipple-root-61'
     ) {
-      component.refs['listItemDrag'].childNodes[0].firstChild.childNodes[2].style.display = 'none';
+      component.refs.listItemDrag.childNodes[0].firstChild.childNodes[2].style.display = 'none';
     } else if (
-      component.refs['listItemDrag'].childNodes[0].childNodes[1] &&
-      component.refs['listItemDrag'].childNodes[0].childNodes[1].className ===
+      component.refs.listItemDrag.childNodes[0].childNodes[1] &&
+      component.refs.listItemDrag.childNodes[0].childNodes[1].className ===
         'MuiTouchRipple-root-61'
     ) {
-      component.refs['listItemDrag'].childNodes[0].childNodes[1].style.display = 'none';
+      component.refs.listItemDrag.childNodes[0].childNodes[1].style.display = 'none';
     } else {
       null;
     }
-    //component.refs["listItemDrag"].childNodes[0].childNodes[2].style.display='none';
-    //component.refs["listItemDrag"].childNodes[0].firstChild.childNodes[2].style.display='none';
+    // component.refs["listItemDrag"].childNodes[0].childNodes[2].style.display='none';
+    // component.refs["listItemDrag"].childNodes[0].firstChild.childNodes[2].style.display='none';
     return {
       id: props.key,
       index: props.index,

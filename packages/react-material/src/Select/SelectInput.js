@@ -73,7 +73,7 @@ class SelectInput extends React.Component {
   }
 
   update = ({ event, open }) => {
-    //if (this.isOpenControlled) {//受控的才會触发onOpen、onClose
+    // if (this.isOpenControlled) {//受控的才會触发onOpen、onClose
     if (open) {
       this.props.onOpen && this.props.onOpen(event);
     } else {

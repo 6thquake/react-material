@@ -24,7 +24,7 @@ const styles = theme => ({
     },
   },
   contentRoot: {
-    padding: `0px 0px`,
+    padding: '0px 0px',
   },
   actionRoot: {
     margin: 0,
@@ -45,6 +45,7 @@ class Modal extends Component {
   handleOK() {
     this.props.onClose;
   }
+
   transition = props => {
     switch (this.props.animation) {
       case 'fade':
@@ -71,25 +72,24 @@ class Modal extends Component {
     const { actions, onClose, classes } = this.props;
 
     if (actions === Modal.defaultProps.actions) {
-      //没传actions
+      // 没传actions
       return actions.map(Button =>
         React.cloneElement(Button, {
           onClick: onClose,
           classes: { root: classes.actionRootBtn },
         }),
       );
-    } else if (actions.indexOf('-') == -1) {
+    } if (actions.indexOf('-') == -1) {
       return actions;
-    } else {
-      return this.renderJustifyActions();
     }
+      return this.renderJustifyActions();
   }
 
   renderJustifyActions() {
     const { actions, classes } = this.props;
-    let index = actions.indexOf('-');
-    let left = actions.slice(0, index);
-    let right = actions.slice(index + 1);
+    const index = actions.indexOf('-');
+    const left = actions.slice(0, index);
+    const right = actions.slice(index + 1);
     return (
       <div className={classes.justifyActions}>
         <div className={classes.left}>{left}</div>
@@ -109,7 +109,7 @@ class Modal extends Component {
         scroll={scroll}
         {...this.props}
       >
-        <DialogTitle className={classes.title} disableTypography={true}>
+        <DialogTitle className={classes.title} disableTypography>
           <Grid container direction="row" justify="space-between" alignItems="center">
             <Grid item>
               <Typography variant="title" color="inherit">
@@ -132,24 +132,24 @@ Modal.propTypes = {
   /**
    * Decide modal open or close,	If true, the modal is open.
    */
-  open: PropTypes.bool.isRequired,
+  actions: PropTypes.array,
   /**
    * @deprecated
    * This is the modal's title, please using title instead.
    */
-  label: PropTypes.string,
+  animation: PropTypes.oneOf(['slide', 'collapse', 'fade', 'grow', 'zoom']),
   /**
    * This is the modal's title
    */
-  title: PropTypes.string,
+  label: PropTypes.string,
   /**
    * This is usually an animation of open or close the modal,include slide、collapse、fade、grow、zoom
    */
-  animation: PropTypes.oneOf(['slide', 'collapse', 'fade', 'grow', 'zoom']),
+  onClose: PropTypes.func.isRequired,
   /**
    * onClose callback function
    */
-  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
   /**
    * scroll type
    */
@@ -157,7 +157,7 @@ Modal.propTypes = {
   /**
    * actions button array
    */
-  actions: PropTypes.array,
+  title: PropTypes.string,
 };
 
 Modal.defaultProps = {

@@ -38,6 +38,7 @@ class CascadeSelect extends React.Component {
     super(props);
     this.series = [];
   }
+
   state = {
     open: false,
     opens: [true, false, false, false, false],
@@ -58,6 +59,7 @@ class CascadeSelect extends React.Component {
       anchorEl: e.currentTarget,
     });
   };
+
   handlePopOverClose = () => {
     this.setState({
       open: false,
@@ -65,7 +67,7 @@ class CascadeSelect extends React.Component {
   };
 
   handelMenuChange = e => {
-    let { level, next } = e;
+    const { level, next } = e;
     this.updateSeries(e);
     this.updateMenuData(next, level);
     this.updateNextMenu(e);
@@ -77,59 +79,60 @@ class CascadeSelect extends React.Component {
 
   updateSeries = e => {
     // 清空当前级之后的数据 并更新当前级数据
-    let { item, level, index } = e;
+    const { item, level, index } = e;
     this.series.splice(level);
     this.series[level] = item[index];
   };
 
   checkChange(e) {
-    let { level, index } = e;
-    let checkes = this.state.checkes;
+    const { level, index } = e;
+    const checkes = this.state.checkes;
     for (let i = level; i < checkes.length - 1; i++) {
       checkes[i + 1] = -1;
     }
     checkes[level] = index;
 
     this.setState({
-      checkes: checkes,
+      checkes,
     });
   }
 
   updateMenuData = (next, level) => {
-    let opens = this.state.opens;
+    const opens = this.state.opens;
     for (let i = level; i < opens.length - 1; i++) {
       opens[i + 1] = false;
     }
     this.setState({
-      opens: opens,
+      opens,
     });
   };
 
   updateNextMenu = e => {
-    let { level, next } = e;
-    let data = next;
+    const { level, next } = e;
+    const data = next;
     if (this.state.opens[level + 1] === false && data.length > 0) {
-      let opens = this.state.opens;
+      const opens = this.state.opens;
       opens[level + 1] = true;
-      let items = this.state.data;
+      const items = this.state.data;
       items[level + 1] = data;
       this.setState({
-        opens: opens,
+        opens,
         data: items,
       });
     }
   };
+
   //
   setTextFieldValue = () => {
     const { mapper } = this.props;
-    let selections = this.series.map((item, index) => {
+    const selections = this.series.map((item, index) => {
       let { label, value } = item;
       if (typeof mapper.label === 'function') {
         label = mapper.label(item, index);
       }
       return { value, label };
     });
-    let node = this.renderSelections(selections);
+    const node = this.renderSelections(selections);
     this.setState({
       textFieldValue: node,
     });
@@ -146,11 +149,12 @@ class CascadeSelect extends React.Component {
       })
       .join(` ${separator} `);
   };
-  renderMenuItems() {
-    let levels = [0, 1, 2, 3, 4];
 
-    let { children, mapper } = this.props;
-    let list = levels.map((item, index) => {
+  renderMenuItems() {
+    const levels = [0, 1, 2, 3, 4];
+
+    const { children, mapper } = this.props;
+    const list = levels.map((item, index) => {
       return (
         <CascadeOption
           children={children}
@@ -166,6 +170,7 @@ class CascadeSelect extends React.Component {
     });
     return list;
   }
+
   render() {
     const { classes, label, options, notFound, width } = this.props;
     const { open, anchorEl } = this.state;
@@ -221,15 +226,18 @@ CascadeSelect.propTypes = {
   /**
    * The separator between different levels
    */
-  separator: PropTypes.string,
+  label: PropTypes.node,
   /**
    * Callback when finishing cascader select
    */
-  onChange: PropTypes.func,
+  mapper: PropTypes.shape({
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  }),
   /**
    * The label content.
    */
-  label: PropTypes.node,
+  onChange: PropTypes.func,
   /**
    * data options of cascade
    */
@@ -237,17 +245,14 @@ CascadeSelect.propTypes = {
   /**
    * render maps,
    */
-  mapper: PropTypes.shape({
-    label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  }),
+  renderValue: PropTypes.func,
   /**
    * Render the selected item.
    *
    * @param {array} list The selected items `array`.
    * @returns {String}
    */
-  renderValue: PropTypes.func,
+  separator: PropTypes.string,
 
   /**
    * The width of cascader

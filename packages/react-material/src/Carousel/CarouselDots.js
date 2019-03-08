@@ -37,32 +37,37 @@ const styles = {
 class CarouselDots extends React.Component {
   constructor(props) {
     super(props);
-    if (!!props.speed) {
-      styles.dot.transition = 'all ' + props.speed + 's';
-      styles.dot.WebkitTransition = 'all ' + props.speed + 's';
+    if (props.speed) {
+      styles.dot.transition = `all ${props.speed}s`;
+      styles.dot.WebkitTransition = `all ${props.speed}s`;
     }
     this.dotRef = React.createRef();
   }
+
   componentDidMount() {
-    if (!!this.props.speed) {
-      let dotEl = ReactDOM.findDOMNode(this.dotRef.current),
-        nodes = dotEl.childNodes,
-        speed = this.props.speed;
+    if (this.props.speed) {
+      const dotEl = ReactDOM.findDOMNode(this.dotRef.current);
+
+
+const nodes = dotEl.childNodes;
+
+
+const speed = this.props.speed;
       for (let i = 0, len = nodes.length; i < len; i++) {
-        nodes[i].style.transition = 'all ' + speed + 's';
-        nodes[i].style.WebkitTransition = 'all ' + speed + 's';
+        nodes[i].style.transition = `all ${speed}s`;
+        nodes[i].style.WebkitTransition = `all ${speed}s`;
       }
     }
-    if (!!this.props.speed) {
-      styles.dot.transition = 'all ' + this.props.speed + 's';
-      styles.dot.WebkitTransition = 'all ' + this.props.speed + 's';
+    if (this.props.speed) {
+      styles.dot.transition = `all ${this.props.speed}s`;
+      styles.dot.WebkitTransition = `all ${this.props.speed}s`;
     }
   }
 
   render() {
     const { onChange, count, activeIndex, classes } = this.props;
     let _activeIndex = activeIndex;
-    //activeIndex 0123
+    // activeIndex 0123
     if (_activeIndex == -1) {
       _activeIndex = count - 1;
     } else if (_activeIndex == count) {
@@ -73,7 +78,7 @@ class CarouselDots extends React.Component {
       _dots.push('dot');
     }
     const dots = _dots.map((_, index) => {
-      const _class = index == _activeIndex ? classes.dot + ' ' + classes.actived : classes.dot;
+      const _class = index == _activeIndex ? `${classes.dot} ${classes.actived}` : classes.dot;
       return (
         <span
           key={index}

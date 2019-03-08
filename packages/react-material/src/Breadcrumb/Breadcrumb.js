@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import BreadcrumbItem from '../BreadcrumbItem';
-import { /*darken,*/ fade } from '../styles/colorManipulator';
+import { /* darken, */ fade } from '../styles/colorManipulator';
 import classNames from 'classnames';
 
 const styles = theme => ({
@@ -108,7 +108,7 @@ Breadcrumb.propTypes = {
   /**
    * Custom separator
    */
-  separator: PropTypes.oneOfType([PropTypes.string /*PropTypes.element*/]),
+  color: PropTypes.oneOf(['default', 'black', 'white']),
   /**
    * Custom item renderer, itemRender(route, params, routes, paths) => ReactNode
    */
@@ -124,7 +124,7 @@ Breadcrumb.propTypes = {
   /**
    * Custom color of each items
    */
-  color: PropTypes.oneOf(['default', 'black', 'white']),
+  separator: PropTypes.oneOfType([PropTypes.string]),
 };
 
 Breadcrumb.defaultProps = {

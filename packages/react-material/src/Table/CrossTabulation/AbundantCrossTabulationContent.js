@@ -5,11 +5,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-
 import update from 'immutability-helper';
-
 import { CrossTabulationData, sortAs } from './CrossTabulationUtilities';
-
 import CrossTabulation from './CrossTabulation';
 import CrossTabulationAttribute from './CrossTabulationAttribute';
 import DropZone from './CrossTabulationDropZone';
@@ -80,7 +77,7 @@ class AbundantCrossTabulationContent extends React.PureComponent {
     const attrValues = {};
     const materializedInput = [];
     let recordsProcessed = 0;
-    CrossTabulationData.forEachRecord(this.data, this.props.derivedAttributes, function(record) {
+    CrossTabulationData.forEachRecord(this.data, this.props.derivedAttributes, (record) => {
       materializedInput.push(record);
       for (const attr of Object.keys(record)) {
         if (!(attr in attrValues)) {
@@ -167,7 +164,7 @@ class AbundantCrossTabulationContent extends React.PureComponent {
   }
 
   render() {
-    let { classes } = this.props;
+    const { classes } = this.props;
 
     const numValsAllowed = this.props.aggregators[this.props.aggregatorName]([])().numInputs || 0;
 

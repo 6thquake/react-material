@@ -5,15 +5,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-
 import Popover from '../../Popover';
 import Chip from '../../Chip';
 import Grid from '../../Grid';
 import Button from '../../Button';
 import TextField from '../../TextField';
-
 import DragSource from './CrossTabulationDragSource';
-
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { withStyles } from '../../styles';
 
@@ -134,7 +131,7 @@ class CrossCrossTabulationColumn extends React.Component {
   }
 
   getFilterBox() {
-    let { classes } = this.props;
+    const { classes } = this.props;
     const showMenu = Object.keys(this.props.attrValues).length < this.props.menuLimit;
 
     const values = Object.keys(this.props.attrValues);
@@ -252,7 +249,7 @@ class CrossCrossTabulationColumn extends React.Component {
   }
 
   render() {
-    let { classes } = this.props;
+    const { classes } = this.props;
 
     const filtered = Object.keys(this.props.valueFilter).length !== 0 ? classes.filtered : null;
 
@@ -279,13 +276,13 @@ CrossCrossTabulationColumn.defaultProps = {
 };
 
 CrossCrossTabulationColumn.propTypes = {
-  name: PropTypes.string.isRequired,
   addValuesToFilter: PropTypes.func.isRequired,
-  removeValuesFromFilter: PropTypes.func.isRequired,
   attrValues: PropTypes.objectOf(PropTypes.number).isRequired,
-  valueFilter: PropTypes.objectOf(PropTypes.bool),
-  sorter: PropTypes.func.isRequired,
   menuLimit: PropTypes.number,
+  name: PropTypes.string.isRequired,
+  removeValuesFromFilter: PropTypes.func.isRequired,
+  sorter: PropTypes.func.isRequired,
+  valueFilter: PropTypes.objectOf(PropTypes.bool),
   zIndex: PropTypes.number,
 };
 

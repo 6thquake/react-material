@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '../../styles';
 import classNames from 'classnames';
-
 import ThCell from './ThCell';
 
 const styles = theme => ({
@@ -23,6 +22,7 @@ class Cell extends React.Component {
       topLeft: false,
     };
   }
+
   handleDoubleClick = e => {
     const { disableClickToFixColumn } = this.props;
     if (disableClickToFixColumn) {

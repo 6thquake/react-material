@@ -8,7 +8,7 @@ import isFunction from 'lodash/isFunction';
 import classNames from 'classnames';
 import { emphasize, fade, darken } from '../styles/colorManipulator';
 
-//颜色需要替换
+// 颜色需要替换
 const style = theme => ({
   root: {
     flexWrap: 'nowrap',
@@ -32,10 +32,10 @@ const style = theme => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.getContrastText(theme.palette.primary.dark),
     '&:hover, &:focus': {
-      backgroundColor: emphasize(theme.palette.primary.dark, 0.08) + ' !important',
+      backgroundColor: `${emphasize(theme.palette.primary.dark, 0.08)} !important`,
     },
     '&:active': {
-      backgroundColor: emphasize(theme.palette.primary.dark, 0.12) + ' !important',
+      backgroundColor: `${emphasize(theme.palette.primary.dark, 0.12)} !important`,
     },
   },
   /* Styles applied to the root element if `color="primary"`. */
@@ -98,13 +98,11 @@ class Filters extends Component {
       } else {
         newVal = [selectVal];
       }
-    } else {
-      if (this.isSelected(selectVal)) {
+    } else if (this.isSelected(selectVal)) {
         newVal = value.filter(v => v !== selectVal);
       } else {
         newVal = [...value, selectVal];
       }
-    }
     onChange(newVal);
   };
 
@@ -157,14 +155,14 @@ class Filters extends Component {
                 key={value}
                 color={isSelected ? color : 'default'}
                 label={label}
-                clickable={true}
+                clickable
                 style={{ margin: `${spacing}px` }}
                 onClick={this.onClick(option)}
                 classes={{
                   root: item,
                   colorPrimary: classes.colorPrimary,
                   colorSecondary: classes.colorSecondary,
-                  clickable: clickable,
+                  clickable,
                   clickableColorPrimary: classes.clickableColorPrimary,
                   clickableColorSecondary: classes.clickableColorSecondary,
                 }}
@@ -186,42 +184,42 @@ Filters.propTypes = {
   /**
    * callback to parent component when select option
    */
-  onChange: PropTypes.func,
+  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
    * data options.
    */
-  options: PropTypes.array,
+  label: PropTypes.string,
   /**
    * singleSelect or multiSelect default is singleSelect.
    */
-  multiple: PropTypes.bool,
+  labelWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * The value of the Filter.
-   */
-  value: PropTypes.array,
-  /**
-   * label name of the Filter
-   */
-  label: PropTypes.string,
-  /**
-   * option item label and value, when assignment option by options
    */
   mapper: PropTypes.shape({
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }),
   /**
+   * label name of the Filter
+   */
+  multiple: PropTypes.bool,
+  /**
+   * option item label and value, when assignment option by options
+   */
+  onChange: PropTypes.func,
+  /**
    * spacing between items
    */
-  spacing: PropTypes.number,
+  options: PropTypes.array,
   /**
    * label width
    */
-  labelWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  spacing: PropTypes.number,
   /**
    * The color of these items.
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  value: PropTypes.array,
 };
 
 Filters.defaultProps = {

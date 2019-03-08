@@ -25,10 +25,11 @@ class Popconfirm extends React.Component {
   };
 
   anchorEl = null;
+
   anchorRef = React.createRef();
 
   componentDidMount() {
-    let el = ReactDOM.findDOMNode(this.anchorRef.current);
+    const el = ReactDOM.findDOMNode(this.anchorRef.current);
     this.setState({
       anchorEl: el,
     });
@@ -52,12 +53,14 @@ class Popconfirm extends React.Component {
       open: false,
     });
   };
+
   cancel = () => {
     this.props.onCancel && this.props.onCancel();
     this.setState({
       open: false,
     });
   };
+
   render() {
     const {
       color,
@@ -114,24 +117,21 @@ Popconfirm.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  anchorOrigin: PropTypes.shape({
+    horizontal: PropTypes.oneOf(['left', 'center', 'right']),
+    vertical: PropTypes.oneOf(['top', 'center', 'bottom']),
+  }),
 
-  children: PropTypes.node,
+  cancelText: PropTypes.string,
   /**
    * This is the point on the popconfirm where the popconfirm's children will attach to.
    */
-  anchorOrigin: PropTypes.shape({
-    vertical: PropTypes.oneOf(['top', 'center', 'bottom']),
-    horizontal: PropTypes.oneOf(['left', 'center', 'right']),
-  }),
+  children: PropTypes.node,
   /**
    * This is the point on the popconfirm which will attach to the children
    */
 
-  transformOrigin: PropTypes.shape({
-    vertical: PropTypes.oneOf(['top', 'center', 'bottom']),
-    horizontal: PropTypes.oneOf(['left', 'center', 'right']),
-  }),
+  classes: PropTypes.object.isRequired,
   /**
    * The color of the confirm button,
    */
@@ -139,9 +139,36 @@ Popconfirm.propTypes = {
   /**
    * The size of buttons
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  content: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   /**
    * The type of the confirm button.
+   */
+  okText: PropTypes.string,
+  /**
+   * @ignore will be spread to the confirm button
+   */
+  onCancel: PropTypes.func,
+  /**
+   * The name of the confirm button
+   */
+  onConfirm: PropTypes.func,
+  /**
+   * The name of the cancel button
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * The content of popconfirm
+   */
+  transformOrigin: PropTypes.shape({
+    horizontal: PropTypes.oneOf(['left', 'center', 'right']),
+    vertical: PropTypes.oneOf(['top', 'center', 'bottom']),
+  }),
+  /**
+   * Callback fired when confirmed
+   */
+  type: PropTypes.string,
+  /**
+   * Callback fired when canceled
    */
   variant: PropTypes.oneOf([
     'text',
@@ -152,30 +179,6 @@ Popconfirm.propTypes = {
     'fab',
     'extendedFab',
   ]),
-  /**
-   * @ignore will be spread to the confirm button
-   */
-  type: PropTypes.string,
-  /**
-   * The name of the confirm button
-   */
-  okText: PropTypes.string,
-  /**
-   * The name of the cancel button
-   */
-  cancelText: PropTypes.string,
-  /**
-   * The content of popconfirm
-   */
-  content: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
-  /**
-   * Callback fired when confirmed
-   */
-  onConfirm: PropTypes.func,
-  /**
-   * Callback fired when canceled
-   */
-  onCancel: PropTypes.func,
 };
 
 Popconfirm.defaultProps = {

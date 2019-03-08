@@ -122,7 +122,7 @@ class ConfirmDialog extends Component {
         aria-describedby="alert-dialog-slide-description"
         {...this.props}
       >
-        <DialogTitle className={classes.title + ' ' + classNameColor} disableTypography={true}>
+        <DialogTitle className={`${classes.title} ${classNameColor}`} disableTypography>
           {title}
           <Clear className={classes.icon} onClick={onClose} />
         </DialogTitle>
@@ -151,27 +151,27 @@ ConfirmDialog.propTypes = {
   /**
    * Decide modal open or close,	If true, the modal is open.
    */
-  open: PropTypes.bool.isRequired,
+  animation: PropTypes.oneOf(['slide', 'collapse', 'fade', 'grow', 'zoom']),
   /**
    * This is  modal title
    */
-  title: PropTypes.string,
+  cancelText: PropTypes.string,
   /**
    * Cancel button text
    */
-  cancelText: PropTypes.string,
+  cancelType: PropTypes.string,
   /**
    * Confirm button text
    */
-  okText: PropTypes.string,
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * This is  modal content
    */
-  content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  okText: PropTypes.string,
   /**
    * This is usually an animation of open or close the modal,include slide、collapse、fade、grow、zoom
    */
-  animation: PropTypes.oneOf(['slide', 'collapse', 'fade', 'grow', 'zoom']),
+  okType: PropTypes.string,
   /**
    * Cancel button callback
    */
@@ -183,19 +183,19 @@ ConfirmDialog.propTypes = {
   /**
    *
    */
-  okType: PropTypes.string,
-  /**
-   *
-   */
-  cancelType: PropTypes.string,
-  /**
-   *
-   */
-  variant: PropTypes.string,
+  open: PropTypes.bool.isRequired,
   /**
    *
    */
   size: PropTypes.string,
+  /**
+   *
+   */
+  title: PropTypes.string,
+  /**
+   *
+   */
+  variant: PropTypes.string,
 };
 ConfirmDialog.defaultProps = {
   open: false,

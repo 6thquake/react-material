@@ -4,7 +4,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import Container from './Container';
 import CustomDragLayer from './CustomDragLayer';
 
-const dacd = class DragAroundCustomDragLayer extends Component {
+class DragAroundCustomDragLayer extends Component {
   constructor(props) {
     super(props);
 
@@ -15,6 +15,20 @@ const dacd = class DragAroundCustomDragLayer extends Component {
       snapToGridAfterDrop: false,
       snapToGridWhileDragging: false,
     };
+  }
+
+  handleSnapToGridAfterDropChange() {
+    const { snapToGridAfterDrop } = this.state;
+    this.setState({
+      snapToGridAfterDrop: !snapToGridAfterDrop,
+    });
+  }
+
+  handleSnapToGridWhileDraggingChange() {
+    const { snapToGridWhileDragging } = this.state;
+    this.setState({
+      snapToGridWhileDragging: !snapToGridWhileDragging,
+    });
   }
 
   render() {
@@ -75,17 +89,5 @@ const dacd = class DragAroundCustomDragLayer extends Component {
       </div>
     );
   }
-
-  handleSnapToGridAfterDropChange() {
-    this.setState({
-      snapToGridAfterDrop: !this.state.snapToGridAfterDrop,
-    });
-  }
-
-  handleSnapToGridWhileDraggingChange() {
-    this.setState({
-      snapToGridWhileDragging: !this.state.snapToGridWhileDragging,
-    });
-  }
-};
-export default DragDropContext(HTML5Backend)(dacd);
+}
+export default DragDropContext(HTML5Backend)(DragAroundCustomDragLayer);

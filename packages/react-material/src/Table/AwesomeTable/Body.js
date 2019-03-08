@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import update from 'immutability-helper';
-import Table from '../../Table';
+import Table from '..';
 import TableBody from '../../TableBody';
 import TableCell from './Cell';
 import TableHead from '../../TableHead';
@@ -34,10 +34,12 @@ class Body extends React.Component {
   }
 
   componentDidMount() {}
+
   handleRowClick = (entry, index) => e => {
     const { onRowClick } = this.props;
     onRowClick && onRowClick(entry, index);
   };
+
   render() {
     const {
       classes,
@@ -54,7 +56,7 @@ class Body extends React.Component {
       TableRowProps,
     } = this.props;
 
-    let mainAndNoData = data.length === 0 && type === 'main';
+    const mainAndNoData = data.length === 0 && type === 'main';
     const tableStyle = mainAndNoData
       ? {
           height: '100%',
@@ -72,7 +74,7 @@ class Body extends React.Component {
           scroll(e, type);
         }}
         style={{
-          height: height,
+          height,
         }}
         className={classes.root}
       >
@@ -137,8 +139,8 @@ class Body extends React.Component {
 }
 
 Body.propTypes = {
-  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   classes: PropTypes.object.isRequired,
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 Body.defaultProps = {
   height: 'auto',

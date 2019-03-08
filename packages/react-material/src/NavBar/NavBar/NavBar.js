@@ -6,14 +6,14 @@ import NavItem from './NavItem';
 import OriginNavBar from './OriginNavBar';
 import EasyNavBar from './EasyNavBar';
 import ItemGroup from './NavItemGroup';
+
 class NavBar extends React.Component {
   render() {
     const { list } = this.props;
     if (list && list.length != 0) {
       return <EasyNavBar {...this.props} />;
-    } else {
-      return <OriginNavBar {...this.props} />;
     }
+      return <OriginNavBar {...this.props} />;
   }
 }
 
@@ -21,15 +21,15 @@ NavBar.propTypes = {
   /**
    * 初始展开的 SubMenu 菜单项 key 数组
    */
-  defaultOpenKeys: PropTypes.arrayOf(PropTypes.string),
+  className: PropTypes.string,
   /**
    * 初始选中的菜单项 key 数组
    */
-  defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
+  defaultOpenKeys: PropTypes.arrayOf(PropTypes.string),
   /**
    * @ignore
    */
-  className: PropTypes.string,
+  defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
   /**
    * inline 时菜单是否收起状态
    */
@@ -38,17 +38,17 @@ NavBar.propTypes = {
    * list里的每一项数据的key值
    */
   itemKeysMap: PropTypes.shape({
-    name: PropTypes.string,
-    icon: PropTypes.string,
-    children: PropTypes.string,
-    beforeChildren: PropTypes.string,
     before: PropTypes.string,
+    beforeChildren: PropTypes.string,
+    children: PropTypes.string,
+    className: PropTypes.string,
+    icon: PropTypes.string,
+    key: PropTypes.string,
+    name: PropTypes.string,
     onClick: PropTypes.string,
     onHandle: PropTypes.string,
-    style: PropTypes.string,
-    className: PropTypes.string,
     open: PropTypes.string,
-    key: PropTypes.string,
+    style: PropTypes.string,
   }),
   /**
    * menu展示的数据，如果直接传入list，不需要自己写children

@@ -2,14 +2,13 @@
  * @ignore - do not document.
  */
 
-'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var _createClass = (function() {
+const _createClass = (function() {
   function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
+    for (let i = 0; i < props.length; i++) {
+      const descriptor = props[i];
       descriptor.enumerable = descriptor.enumerable || false;
       if ('value' in descriptor) descriptor.writable = true;
       Object.defineProperty(target, descriptor.key, descriptor);
@@ -21,21 +20,20 @@ var _createClass = (function() {
     if (staticProps) defineProperties(Constructor, staticProps);
     return Constructor;
   };
-})();
+}());
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _propTypes = require('prop-types');
+const _propTypes = require('prop-types');
 
-var _propTypes2 = _interopRequireDefault(_propTypes);
+const _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactTransitionGroup = require('react-transition-group');
+const _reactTransitionGroup = require('react-transition-group');
+const _listItem = require('./ListItem');
 
-var _listItem = require('./ListItem');
-
-var _listItem2 = _interopRequireDefault(_listItem);
+const _listItem2 = _interopRequireDefault(_listItem);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -55,25 +53,26 @@ function _possibleConstructorReturn(self, call) {
 function _inherits(subClass, superClass) {
   if (typeof superClass !== 'function' && superClass !== null) {
     throw new TypeError(
-      'Super expression must either be null or a function ,not ' + typeof superClass,
+      `Super expression must either be null or a function ,not ${typeof superClass}`,
     );
   }
   subClass.prototype = Object.create(superClass && subClass.prototype, {
     constructor: { value: subClass, enumerable: false, writable: true, configurable: true },
   });
-  if (superClass)
-    Object.setPrototypeOf
+  if (superClass) {
+Object.setPrototypeOf
       ? Object.setPrototypeOf(subClass, superClass)
       : (subClass.__proto__ = superClass);
 }
+}
 
-var TreeList = (function(_Component) {
+const TreeList = (function(_Component) {
   _inherits(TreeList, _Component);
 
   function TreeList(props) {
     _classCallCheck(this, TreeList);
 
-    var _this = _possibleConstructorReturn(
+    const _this = _possibleConstructorReturn(
       this,
       (TreeList.__proto__ || Object.getPrototypeOf(TreeList)).call(this, props),
     );
@@ -95,15 +94,14 @@ var TreeList = (function(_Component) {
           if (!listItem.childen) {
             this.setState({ activeListItem: index });
           }
-        } else {
-          if (listItem.childen) {
-            var indexOfListItemInArray = this.state.expandedListItems.indexOf(index);
+        } else if (listItem.childen) {
+            const indexOfListItemInArray = this.state.expandedListItems.indexOf(index);
             if (indexOfListItemInArray === -1) {
               this.setState({
                 expandedListItems: this.state.expandedListItems.concat([index]),
               });
             } else {
-              var newArray = [].concat(this.state.expandedListItems);
+              const newArray = [].concat(this.state.expandedListItems);
               newArray.splice(indexOfListItemInArray, 1);
               this.setState({
                 expandedListItems: newArray,
@@ -114,37 +112,46 @@ var TreeList = (function(_Component) {
               activeListItem: index,
             });
           }
-        }
-        if (this.searchMode && this.props.handleTouchTapInSearch)
-          this.props.handleTounchInSearchMode(listItem, index);
-        if (!this.searchMode && this.props.handleTouchTap)
-          this.props.handleTouchTap(listItem, index);
+        if (this.searchMode && this.props.handleTouchTapInSearch) this.props.handleTounchInSearchMode(listItem, index);
+        if (!this.searchMode && this.props.handleTouchTap) this.props.handleTouchTap(listItem, index);
       },
     },
     {
       key: 'render',
       value: function render() {
-        var _this2 = this;
-        var _props = this.props,
-          children = _props.children,
-          listItems = _props.listItems,
-          contentKey = _props.contentKey;
+        const _this2 = this;
+        const _props = this.props;
 
-        var style = this.props.styel ? this.props.style : {};
-        var startingDepth = this.props.startingDepth ? this.props.startingDepth : 1;
-        var expandedListItems = this.props.expandedListItems
+
+const children = _props.children;
+
+
+const listItems = _props.listItems;
+
+
+const contentKey = _props.contentKey;
+
+        const style = this.props.styel ? this.props.style : {};
+        const startingDepth = this.props.startingDepth ? this.props.startingDepth : 1;
+        const expandedListItems = this.props.expandedListItems
           ? this.props.expandedListItems
           : this.state.expandedListItems;
-        var activeListItem = this.props.activeListItem
+        const activeListItem = this.props.activeListItem
           ? this.props.activeListItem
           : this.state.activeListItem;
-        var listHeight = this.props.listHeight ? this.props.listHeight : '32px';
-        var _props2 = this.props,
-          haveSearchbar = _props2.haveSearchbar,
-          onSearch = _props.onSearch,
-          icons = _props2.icons;
+        const listHeight = this.props.listHeight ? this.props.listHeight : '32px';
+        const _props2 = this.props;
 
-        var listItemsModifed = listItems.map(function(listItem, i, inputArray) {
+
+const haveSearchbar = _props2.haveSearchbar;
+
+
+const onSearch = _props.onSearch;
+
+
+const icons = _props2.icons;
+
+        let listItemsModifed = listItems.map((listItem, i, inputArray) => {
           listItem._styles = {
             root: {
               paddingLeft:
@@ -163,21 +170,21 @@ var TreeList = (function(_Component) {
           };
           return listItem;
         });
-        var searchTerm = this.props.searchTerm ? this.props.searchTerm : this.state.searchTerm;
+        const searchTerm = this.props.searchTerm ? this.props.searchTerm : this.state.searchTerm;
         if (searchTerm) {
           this.searchMode = true;
           listItemsModifed = listItemsModifed
             .map(tagListItemsWithSearchTerm(searchTerm))
-            .map(function(listItem, i, inputArray) {
+            .map((listItem, i, inputArray) => {
               listItem._shouldRender =
                 listItem.searchMatch || childIsTaggedWithSearch(listItem, inputArray);
               if (listItem.highlight) {
-                var left = listItem[contentKey].substring(0, listItem.highlight[0]);
-                var middle = listItem[contentKey].substring(
+                const left = listItem[contentKey].substring(0, listItem.highlight[0]);
+                const middle = listItem[contentKey].substring(
                   listItem.highlight[0],
                   listItem.highlight[0] + listItem.highlight[1],
                 );
-                var right = listItem[contentKey].substring(
+                const right = listItem[contentKey].substring(
                   listItem.highlight[0] + listItem.highlight[1],
                 );
                 listItem._primaryText = _react2.default.createElement(
@@ -201,7 +208,7 @@ var TreeList = (function(_Component) {
             });
         } else {
           this.searchMode = false;
-          listItemsModifed = listItemsModifed.map(function(listItem, i) {
+          listItemsModifed = listItemsModifed.map((listItem, i) => {
             listItem._shouldRender =
               listItem.depth >= startingDepth && parentsAreExpanded(listItem);
             listItem._primaryText = listItem[contentKey];
@@ -209,24 +216,23 @@ var TreeList = (function(_Component) {
           });
         }
 
-        var listItemsJSX = listItemsModifed.map(function(listItem, i) {
+        const listItemsJSX = listItemsModifed.map((listItem, i) => {
           if (listItem._shouldRender) {
             return _react2.default.createElement(_listItem2.default, {
-              key: 'treeListItem-' + i,
+              key: `treeListItem-${i}`,
               primaryText: listItem._primaryText,
               style: Object.assign({}, listItem._style.root),
               leftIcon: getLeftIcon(listItem, i, expandedListItems),
-              onClick: function() {
+              onClick() {
                 if (listItem.disabled) return;
                 _this2.handleTouchTap(listItem, i);
               },
             });
-          } else {
-            return null;
           }
+            return null;
         });
 
-        var styles = {
+        const styles = {
           root: {
             padding: 0,
             paddingBottom: 8,
@@ -281,9 +287,8 @@ var TreeList = (function(_Component) {
             if (listItem.children) {
               if (expandedListItems.indexOf(index) === -1) {
                 return icons.leftIconCollapsed;
-              } else {
-                return icons.leftIconExpand;
               }
+                return icons.leftIconExpand;
             }
           }
         }
@@ -292,27 +297,27 @@ var TreeList = (function(_Component) {
           if (listItem.depth > startingDepth) {
             if (expandedListItems.indexOf(listItem.parentIndex) === -1) {
               return false;
-            } else {
-              var parent = listItems.filter(function(_listItem, index) {
+            }
+              const parent = listItems.filter((_listItem, index) => {
                 return index === listItem.parentIndex;
               })[0];
               return parentsAreExpanded(parent);
-            }
-          } else {
-            return true;
           }
+            return true;
         }
 
         function tagListItemsWithSearchTerm(searchTerm, listItem) {
-          var f = function f(listItem) {
-            var searchTerms = searchTerm.split(' ');
-            var match = false;
-            var matchIndex = void 0,
-              matchTermLength = void 0;
+          const f = function f(listItem) {
+            const searchTerms = searchTerm.split(' ');
+            let match = false;
+            let matchIndex = void 0;
+
+
+let matchTermLength = void 0;
 
             if (searchTerms[0] !== '') {
-              searchTerms.forEach(function(searchTerm) {
-                var content = listItem[contentKey] ? listItem[contentKey] : '';
+              searchTerms.forEach((searchTerm) => {
+                const content = listItem[contentKey] ? listItem[contentKey] : '';
                 matchIndex = content.toLowerCase().indexOf(searchTerm.toLowerCase());
                 if (matchIndex !== -1) {
                   match = true;
@@ -326,23 +331,20 @@ var TreeList = (function(_Component) {
                 searchMatched: true,
                 highlight: [matchIndex, matchTermLength],
               });
-            } else {
-              return listItem;
             }
+              return listItem;
           };
 
           if (listItem) {
             return f(listItem);
-          } else {
-            return f;
           }
+            return f;
         }
 
         function childIsTaggedWithSearch(listItem, listItems) {
           if (listItem.children) {
-            for (var i = 0; i < listItem.children.length; i++) {
-              for (var j = 0; j < listItems.length; j++)
-                if (listItems[j].searchMatched) return true;
+            for (let i = 0; i < listItem.children.length; i++) {
+              for (let j = 0; j < listItems.length; j++) if (listItems[j].searchMatched) return true;
             }
           }
         }
@@ -350,19 +352,19 @@ var TreeList = (function(_Component) {
     },
   ]);
   return TreeList;
-})(_react.Component);
+}(_react.Component));
 
 TreeList.propTypes = {
-  listItems: _propTypes2.default.array.isRequired,
-  contentKey: _propTypes2.default.string.isRequired,
-  style: _propTypes2.default.object,
-  expandedListItems: _propTypes2.default.array,
   activeListItem: _propTypes2.default.number,
+  contentKey: _propTypes2.default.string.isRequired,
+  expandedListItems: _propTypes2.default.array,
   handleTouchTap: _propTypes2.default.func,
-  listHeight: _propTypes2.default.number,
   haveSearchbar: _propTypes2.default.bool,
-  onSearch: _propTypes2.default.func,
   icons: _propTypes2.default.object,
+  listHeight: _propTypes2.default.number,
+  listItems: _propTypes2.default.array.isRequired,
+  onSearch: _propTypes2.default.func,
+  style: _propTypes2.default.object,
 };
 
 exports.default = TreeList;

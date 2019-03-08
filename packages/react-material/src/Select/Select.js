@@ -9,6 +9,7 @@ import { withStyles } from '../styles';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 import yellow from '../colors/yellow';
+
 const styles = theme => ({
   selectMenu: {
     whiteSpace: 'pre-wrap',
@@ -54,6 +55,7 @@ class Select extends Component {
       optionsArray: [],
     };
   }
+
   onChangePage(i) {
     this.setState(
       {
@@ -63,9 +65,9 @@ class Select extends Component {
         },
       },
       () => {
-        let op = this.menuItems(this.state.text);
-        let start = this.state.paginationProps.page * this.state.paginationProps.rowsPerPage;
-        let end =
+        const op = this.menuItems(this.state.text);
+        const start = this.state.paginationProps.page * this.state.paginationProps.rowsPerPage;
+        const end =
           (this.state.paginationProps.page + 1) * this.state.paginationProps.rowsPerPage > op.length
             ? undefined
             : (this.state.paginationProps.page + 1) * this.state.paginationProps.rowsPerPage;
@@ -75,6 +77,7 @@ class Select extends Component {
       },
     );
   }
+
   onfilter(e) {
     const op = this.menuItems(e.target.value);
     this.setState(
@@ -87,9 +90,9 @@ class Select extends Component {
         },
       },
       () => {
-        let op = this.menuItems(this.state.text);
-        let start = this.state.paginationProps.page * this.state.paginationProps.rowsPerPage;
-        let end =
+        const op = this.menuItems(this.state.text);
+        const start = this.state.paginationProps.page * this.state.paginationProps.rowsPerPage;
+        const end =
           (this.state.paginationProps.page + 1) * this.state.paginationProps.rowsPerPage > op.length
             ? undefined
             : (this.state.paginationProps.page + 1) * this.state.paginationProps.rowsPerPage;
@@ -99,6 +102,7 @@ class Select extends Component {
       },
     );
   }
+
   menuItems(text) {
     const { children } = this.props;
     let filterData = [];
@@ -125,15 +129,15 @@ class Select extends Component {
           },
           preProps: nextProps,
         };
-      } else {
+      }
         return {
           optionsArray: nextProps.children,
           preProps: nextProps,
         };
-      }
     }
     return null;
   }
+
   render() {
     const {
       isDark,
@@ -178,15 +182,15 @@ class Select extends Component {
           icon: isDark && classes.icon,
         }}
         inputProps={{
-          IconComponent: IconComponent,
-          placeholder: placeholder,
+          IconComponent,
+          placeholder,
           id: htmlFor,
         }}
         disabled={disabled}
         renderValue={selected => {
           if (renderValue) {
             return renderValue(selected);
-          } else {
+          }
             let displaySingle = '';
             const displayMultiple = [];
             React.Children.map(children, child => {
@@ -215,13 +219,12 @@ class Select extends Component {
               }
             });
             return multiple ? displayMultiple.join(', ') : displaySingle;
-          }
         }}
       >
         {showFilter ? (
           <AsyncSelectFilter
-            fullWidth={true}
-            autoFocus={true}
+            fullWidth
+            autoFocus
             text={text}
             placeholder={placeholder}
             onChange={this.onfilter.bind(this)}
@@ -257,33 +260,33 @@ Select.propTypes = {
    * If `true`, the selected item is displayed even if its value is empty.
    * You can only use it when the `native` property is `false` (default).
    */
-  displayEmpty: PropTypes.bool,
+  disabled: PropTypes.bool,
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  displayEmpty: PropTypes.bool,
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
-  input: PropTypes.element,
+  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Attributes applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
-  inputProps: PropTypes.object,
+  input: PropTypes.element,
   /**
    * Properties applied to the [`Menu`](/api/menu) element.
    */
-  MenuProps: PropTypes.object,
+  inputProps: PropTypes.object,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
    * You can only use it when the `native` property is `false` (default).
    */
-  multiple: PropTypes.bool,
+  isDark: PropTypes.bool,
   /**
    * If `true`, the component will be using a native `select` element.
    */
-  native: PropTypes.bool,
+  MenuProps: PropTypes.object,
   /**
    * Callback function fired when a menu item is selected.
    *
@@ -291,26 +294,26 @@ Select.propTypes = {
    * You can pull out the new value by accessing `event.target.value`.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
-  onChange: PropTypes.func,
+  multiple: PropTypes.bool,
   /**
    * Callback fired when the component requests to be closed.
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback
    */
-  onClose: PropTypes.func,
+  native: PropTypes.bool,
   /**
    * Callback fired when the component requests to be opened.
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback
    */
-  onOpen: PropTypes.func,
+  onChange: PropTypes.func,
   /**
    * Control `select` open state.
    * You can only use it when the `native` property is `false` (default).
    */
-  open: PropTypes.bool,
+  onClose: PropTypes.func,
   /**
    * Render the selected value.
    * You can only use it when the `native` property is `false` (default).
@@ -318,33 +321,29 @@ Select.propTypes = {
    * @param {*} value The `value` provided to the component.
    * @returns {ReactElement}
    */
-  renderValue: PropTypes.func,
+  onOpen: PropTypes.func,
   /**
    * Properties applied to the clickable div element.
    */
-  SelectDisplayProps: PropTypes.object,
+  open: PropTypes.bool,
   /**
    * The input value.
    * This property is required when the `native` property is `false` (default).
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-  ]),
+  placeholder: PropTypes.string,
   /**
    * page size
    */
-  rowsPerPage: PropTypes.num,
+  renderValue: PropTypes.func,
   /**
    * placeholder
    */
-  placeholder: PropTypes.string,
+  rowsPerPage: PropTypes.num,
 
   /**
    * decided select is disabled
    */
-  disabled: PropTypes.bool,
+  SelectDisplayProps: PropTypes.object,
   /**
    * If true ,show the filter box
    */
@@ -356,7 +355,11 @@ Select.propTypes = {
   /**
    * isDark
    */
-  isDark: PropTypes.bool,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ]),
 };
 
 Select.defaultProps = {

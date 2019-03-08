@@ -9,7 +9,7 @@ import { withStyles } from '../../styles';
 const styles = theme => ({
   // root: {},
   root: {
-    border: '1px solid ' + theme.palette.divider,
+    border: `1px solid ${theme.palette.divider}`,
     width: 13,
     height: 13,
     display: 'flex',
@@ -34,6 +34,7 @@ class ExSwitch extends React.Component {
   state = {
     close: true,
   };
+
   handleClick = e => {
     const { onChange, data } = this.props;
     // const { close }
@@ -47,6 +48,7 @@ class ExSwitch extends React.Component {
       },
     );
   };
+
   render() {
     const { classes } = this.props;
     const { close } = this.state;

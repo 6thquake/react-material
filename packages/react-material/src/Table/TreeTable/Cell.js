@@ -1,6 +1,5 @@
 import React from 'react';
 import TableCell from '../../TableCell';
-
 import { withStyles } from '../../styles';
 
 const styles = theme => ({

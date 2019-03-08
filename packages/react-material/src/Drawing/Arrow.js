@@ -18,7 +18,7 @@ export default class Arrow extends Component {
           width="7px"
           height="7px"
           stroke="#000"
-          stroke-width="1"
+          strokeWidth="1"
           fill="#fff"
           transform="translate(3 7) rotate(-45)"
         />
@@ -26,7 +26,7 @@ export default class Arrow extends Component {
     );
     const realizeArrow = (
       <svg width="10px" height="10px">
-        <polygon points="0 0, 10 5, 0 10" stroke="#000" fill="#fff" stroke-width="1" />
+        <polygon points="0 0, 10 5, 0 10" stroke="#000" fill="#fff" strokeWidth="1" />
       </svg>
     );
     const generalizeArrow = (
@@ -39,7 +39,7 @@ export default class Arrow extends Component {
         <polygon
           points="1.4 11.9 1.2 11.5 10.6 6 1.2 0.6 1.4 0.1 11.6 6 1.4 11.9"
           stroke="#000"
-          stroke-width="0.5"
+          strokeWidth="0.5"
         />
       </svg>
     );

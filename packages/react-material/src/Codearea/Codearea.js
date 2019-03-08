@@ -246,7 +246,7 @@ class Codearea extends React.Component {
     });
 
     return (
-      <pre className={className + ' ' + classes.root}>
+      <pre className={`${className} ${classes.root}`}>
         <code ref={ref => (this.el = ref)}>{this.props.children}</code>
       </pre>
     );

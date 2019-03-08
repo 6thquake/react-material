@@ -5,7 +5,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-
 import Select from '../../Select';
 import FormControl from '../../FormControl';
 import FormHelperText from '../../FormHelperText';
@@ -23,7 +22,7 @@ class CrossTabulationAttribute extends React.PureComponent {
   };
 
   render() {
-    let id = `select-${new Date().getTime()}${Math.floor(Math.random() * 1000)}`;
+    const id = `select-${new Date().getTime()}${Math.floor(Math.random() * 1000)}`;
     return (
       <FormControl>
         <InputLabel htmlFor={id}>{this.props.label}</InputLabel>
@@ -32,7 +31,7 @@ class CrossTabulationAttribute extends React.PureComponent {
           onChange={this.handleChange}
           inputProps={{
             name: id,
-            id: id,
+            id,
           }}
         >
           {this.props.values.map(r => (

@@ -21,7 +21,7 @@ const styles = theme => ({
     top: 0,
     right: 0,
     borderTop: `10px solid ${theme.palette.grey[500]}`,
-    borderLeft: `10px solid transparent`,
+    borderLeft: '10px solid transparent',
     width: 0,
     height: 0,
   },
@@ -30,7 +30,7 @@ const styles = theme => ({
     top: 0,
     left: 0,
     borderTop: `10px solid ${theme.palette.grey[500]}`,
-    borderRight: `10px solid transparent`,
+    borderRight: '10px solid transparent',
     width: 0,
     height: 0,
   },
@@ -78,6 +78,7 @@ class Cell extends React.Component {
       topLeft: false,
     };
   }
+
   handleDoubleClick = e => {
     const { disableClickToFixColumn } = this.props;
 
@@ -85,6 +86,7 @@ class Cell extends React.Component {
       show: true,
     });
   };
+
   handleClick = (index, fixed) => {
     const { onColumnFixChange } = this.props;
     this.setState({
@@ -92,6 +94,7 @@ class Cell extends React.Component {
     });
     onColumnFixChange && onColumnFixChange(index, fixed);
   };
+
   render() {
     const {
       connectDropTarget,

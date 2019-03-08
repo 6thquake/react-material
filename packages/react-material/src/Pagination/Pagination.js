@@ -101,7 +101,7 @@ class Pagination extends Component {
   }
 
   componentDidMount() {
-    //分页的宽度小于200px时，只显示前后页按钮
+    // 分页的宽度小于200px时，只显示前后页按钮
     if (this.div.clientWidth < 250) {
       this.setState({
         minwidth: false,
@@ -233,7 +233,7 @@ class Pagination extends Component {
             </IconButton>
           ) : null}
           {showQuickJumper ? (
-            <Typography variant="caption" className={classes.caption + ' ' + classes.jump}>
+            <Typography variant="caption" className={`${classes.caption} ${classes.jump}`}>
               {jumpTo}
               <Input
                 className={classes.pageinput}
@@ -252,7 +252,7 @@ class Pagination extends Component {
 
   pageClick(page) {
     const getCurrentPage = this.props.onChangePage;
-    //将当前页码返回父组件
+    // 将当前页码返回父组件
     getCurrentPage(page);
   }
 
@@ -272,10 +272,15 @@ class Pagination extends Component {
     }
     this.pageClick(page);
   }
+
   goEnd(param) {
-    const { rowsPerPage, count, onChangePage } = this.props,
-      totalPage = Math.ceil(count / rowsPerPage),
-      getCurrentPage = onChangePage;
+    const { rowsPerPage, count, onChangePage } = this.props;
+
+
+const totalPage = Math.ceil(count / rowsPerPage);
+
+
+const getCurrentPage = onChangePage;
     if (param === 'first') {
       getCurrentPage(0);
     }
@@ -283,10 +288,15 @@ class Pagination extends Component {
       getCurrentPage(totalPage - 1);
     }
   }
+
   jumpTo(e) {
-    const { rowsPerPage, count, onChangePage } = this.props,
-      value = e.target.value,
-      totalPage = Math.ceil(count / rowsPerPage);
+    const { rowsPerPage, count, onChangePage } = this.props;
+
+
+const value = e.target.value;
+
+
+const totalPage = Math.ceil(count / rowsPerPage);
     this.setState(
       {
         value,
@@ -329,23 +339,23 @@ Pagination.propTypes = {
   /**
    * Properties applied to the next arrow `IconButton` element.
    */
-  nextIconButtonProps: PropTypes.object,
+  count: PropTypes.number,
   /**
    * The zero-based index of the current page.
    */
-  page: PropTypes.number,
+  labelDisplayedRows: PropTypes.func,
   /**
    * This is page size of pagination
    */
-  rowsPerPage: PropTypes.number,
+  labelRowsPerPage: PropTypes.node,
   /**
    * Customize the displayed rows label.
    */
-  labelDisplayedRows: PropTypes.func,
+  nextIconButtonProps: PropTypes.object,
   /**
    * This is total count of pagination
    */
-  count: PropTypes.number,
+  noIcon: PropTypes.bool,
   /**
    * This is call current page back to parent component
    */
@@ -357,15 +367,15 @@ Pagination.propTypes = {
   /**
    * 	Useful to customize the rows per page label. Invoked with a { from, to, count, page } object.
    */
-  labelRowsPerPage: PropTypes.node,
+  page: PropTypes.number,
   /**
    * Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed.
    */
-  rowsPerPageOptions: PropTypes.array,
+  rowsPerPage: PropTypes.number,
   /**
    * show page size option.
    */
-  showSizeChanger: PropTypes.bool,
+  rowsPerPageOptions: PropTypes.array,
   /**
    * show quick jumper ,jump to xx page.
    */
@@ -373,11 +383,11 @@ Pagination.propTypes = {
   /**
    * show jump to first and last page button.
    */
-  showTwoEnds: PropTypes.bool,
+  showSizeChanger: PropTypes.bool,
   /**
    * Use text alternative icon for next page、pre page、last page and first page
    */
-  noIcon: PropTypes.bool,
+  showTwoEnds: PropTypes.bool,
 };
 
 Pagination.defaultProps = {

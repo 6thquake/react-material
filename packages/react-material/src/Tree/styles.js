@@ -9,8 +9,10 @@ const treeDocIcon = 'folder_open';
 const borderColorBase = '#d9d9d9';
 function checkboxFn(checkboxPrefixCls, theme) {
   const checkboxSize = 16;
-  const inputDisabledBg = '#f5f5f5',
-    borderColorSplit = fade('#000', 0.91); // split border inside a component
+  const inputDisabledBg = '#f5f5f5';
+
+
+const borderColorSplit = fade('#000', 0.91); // split border inside a component
   const borderWidthBase = '1px'; // width of the border for a component
   const borderStyleBase = 'solid';
   const checkWidth = (checkboxSize / 14) * 5;
@@ -54,8 +56,8 @@ function checkboxFn(checkboxPrefixCls, theme) {
         top: 0,
         left: 0,
         display: 'block',
-        width: checkboxSize + 'px',
-        height: checkboxSize + 'px',
+        width: `${checkboxSize}px`,
+        height: `${checkboxSize}px`,
         border: `${borderWidthBase} ${borderStyleBase} ${borderColorBase}`,
         borderRadius: '2px',
         backgroundColor: '#fff',
@@ -63,11 +65,11 @@ function checkboxFn(checkboxPrefixCls, theme) {
         '&:after': {
           transform: 'rotate(45deg) scale(0)',
           position: 'absolute',
-          left: (checkboxSize - checkWidth) / 2 - 0.5 * (checkboxSize / 14) + 'px',
-          top: (checkboxSize - checkHeight) / 2 - 2 * (checkboxSize / 14) + 'px',
+          left: `${(checkboxSize - checkWidth) / 2 - 0.5 * (checkboxSize / 14)}px`,
+          top: `${(checkboxSize - checkHeight) / 2 - 2 * (checkboxSize / 14)}px`,
           display: 'table',
-          width: checkWidth + 'px',
-          height: checkHeight + 'px',
+          width: `${checkWidth}px`,
+          height: `${checkHeight}px`,
           border: '2px solid #fff',
           borderTop: 0,
           borderLeft: 0,
@@ -183,7 +185,7 @@ function treeSwitcherIcon(type = treeDefaultOpenIcon) {
   return {
     '&:after': {
       fontSize: '20px',
-      transform: `scale(1)  rotate(0deg)`,
+      transform: 'scale(1)  rotate(0deg)',
       // transform: `scale(${7/12}) rotate(0deg)`,
       display: 'inline-block',
       ...iconFont(type),
@@ -208,11 +210,19 @@ function treeShowLineIcon(type) {
 }
 
 const styles = theme => {
-  const highlightColor = '#f5222d',
-    textColor = fade('#000', 0.65),
-    itemHoverBg = fade(theme.palette.primary.main, 0.1),
-    disabledColor = fade('#000', 0.25),
-    treeAhowlineIconColor = fade('#000', 0.45);
+  const highlightColor = '#f5222d';
+
+
+const textColor = fade('#000', 0.65);
+
+
+const itemHoverBg = fade(theme.palette.primary.main, 0.1);
+
+
+const disabledColor = fade('#000', 0.25);
+
+
+const treeAhowlineIconColor = fade('#000', 0.45);
   return {
     '@global': {
       ...checkboxFn(`${treePrefixCls}-checkbox`, theme),
@@ -344,7 +354,7 @@ const styles = theme => {
                 ...treeSwitcherIcon(),
               },
               [`&.${treePrefixCls}-switcher_close`]: (() => {
-                let styles = treeSwitcherIcon();
+                const styles = treeSwitcherIcon();
                 styles['&:after'].transform = 'rotate(270deg) scale(1)';
                 return { ...styles };
               })(),

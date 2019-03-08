@@ -18,7 +18,7 @@ class AsyncSelectFilter extends Component {
     const { text, placeholder, onChange, classes } = this.props;
     return (
       <TextField
-        autoFocus={true}
+        autoFocus
         value={text}
         placeholder={placeholder}
         onChange={onChange}

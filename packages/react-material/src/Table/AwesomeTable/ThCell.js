@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import { withStyles } from '../../styles';
 
 const styles = theme => ({
@@ -12,7 +11,7 @@ const styles = theme => ({
     top: 0,
     right: 0,
     borderTop: `10px solid ${theme.palette.grey[500]}`,
-    borderLeft: `10px solid transparent`,
+    borderLeft: '10px solid transparent',
     width: 0,
     height: 0,
     cursor: 'pointer',
@@ -22,7 +21,7 @@ const styles = theme => ({
     top: 0,
     left: 0,
     borderTop: `10px solid ${theme.palette.grey[500]}`,
-    borderRight: `10px solid transparent`,
+    borderRight: '10px solid transparent',
     width: 0,
     height: 0,
     cursor: 'pointer',
@@ -38,6 +37,7 @@ const styles = theme => ({
 
 class ThCell extends React.Component {
   state = {};
+
   handleClick = value => e => {
     e.stopPropagation();
     let { fixed } = this.props;
@@ -57,6 +57,7 @@ class ThCell extends React.Component {
       },
     );
   };
+
   render() {
     const { show, children, classes, ...other } = this.props;
     const { topRight, topLeft } = this.state;

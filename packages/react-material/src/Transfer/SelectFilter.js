@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '../styles';
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -20,11 +21,12 @@ class SelectFilter extends Component {
     //     e.stopPropagation();
     // });
   }
+
   render() {
     const { placeholder, onChange, classes } = this.props;
     return (
       <TextField
-        autoFocus={true}
+        autoFocus
         placeholder={placeholder}
         onChange={onChange}
         className={classes.root}

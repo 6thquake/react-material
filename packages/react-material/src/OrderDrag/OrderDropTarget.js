@@ -8,9 +8,10 @@ import { withStyles } from '../styles';
 import GridList from '../GridList';
 import GridListTile from '../GridListTile';
 import PropTypes from 'prop-types';
-//import ManualDragTarget from './ManualDragTarget';
+// import ManualDragTarget from './ManualDragTarget';
 import { DandD } from '../DragBase';
 import OrderDragSource from './OrderDragSource';
+
 const styles = {
   root: {
     minheight: '100px',
@@ -23,24 +24,26 @@ class OrderDropTarget extends TargetWrapper {
       childComponents: props.defaultComponents.map((v, i) => {
         return { component: v, size: [v.props.cols, v.props.rows] };
       }),
-      accept: ['DragIcon'], //默认的可以接受的拖动元素
+      accept: ['DragIcon'], // 默认的可以接受的拖动元素
     };
   }
+
   componentDidMount() {
     this.props.register(this);
     if (this.props.acceptItem) {
-      this.props.accept([...this.props.acceptItem, ...this.state.accept]); //传入可接受的拖动元素
+      this.props.accept([...this.props.acceptItem, ...this.state.accept]); // 传入可接受的拖动元素
     } else {
       this.props.accept([...this.state.accept]);
     }
   }
+
   drop = (props, monitor, component) => {
     console.log('droptarget...');
     // debugger;
     const item = monitor.getItem();
     console.log(item);
     if (!item.component) {
-      //内部元素被拖动
+      // 内部元素被拖动
       this.hasDroped = true;
       return;
     }
@@ -63,14 +66,14 @@ class OrderDropTarget extends TargetWrapper {
   };
 
   sequenceComponent = (from, to, callback) => {
-    //from 是指原数组的第from个位置 to 是指原数组的第to个位置
-    let _cc = this.state.childComponents;
+    // from 是指原数组的第from个位置 to 是指原数组的第to个位置
+    const _cc = this.state.childComponents;
     if (!_cc) {
       return;
     }
-    let mycom = _cc.splice(from, 1);
+    const mycom = _cc.splice(from, 1);
     _cc.splice(to, 0, mycom[0]);
-    //this.state();
+    // this.state();
     this.setState({ childComponents: _cc });
     if (!!callback && typeof callback === 'function') {
       callback();
@@ -79,16 +82,17 @@ class OrderDropTarget extends TargetWrapper {
       this.props.sequence(from, to);
     }
   };
+
   removeComponent = index => {
     if (!index && index != 0) {
       return;
     }
     if (this.hasDroped) {
-      //说明drop在了panel内部 不作处理
+      // 说明drop在了panel内部 不作处理
     } else {
-      //说明drop在了panle外部 需要删除指定index
-      console.log('remove' + index);
-      let _cc = this.state.childComponents;
+      // 说明drop在了panle外部 需要删除指定index
+      console.log(`remove${index}`);
+      const _cc = this.state.childComponents;
       if (!_cc) {
         return;
       }
@@ -120,9 +124,8 @@ class OrderDropTarget extends TargetWrapper {
             </DandD>
           </GridListTile>
         );
-      } else {
-        return null;
       }
+        return null;
     });
     return (
       <GridList spacing={0} cellHeight={cellSize} cols={colsCount} className={classes.root}>
@@ -140,23 +143,7 @@ OrderDropTarget.propTypes = {
   /*
    *
    */
-  value: PropTypes.array,
-  /*
-   *
-   */
-  sequence: PropTypes.func,
-  /*
-   *
-   */
-  remove: PropTypes.func,
-  /*
-   *
-   */
   add: PropTypes.func,
-  /*
-   *
-   */
-  defaultComponents: PropTypes.array,
   /*
    *
    */
@@ -165,6 +152,22 @@ OrderDropTarget.propTypes = {
    *
    */
   colsCount: PropTypes.number,
+  /*
+   *
+   */
+  defaultComponents: PropTypes.array,
+  /*
+   *
+   */
+  remove: PropTypes.func,
+  /*
+   *
+   */
+  sequence: PropTypes.func,
+  /*
+   *
+   */
+  value: PropTypes.array,
 };
 // let OrderDragTarget=DropTarget(['ICON','BUTTON','PAPER','LISTITEM'],boxTarget,(connect,monitor)=>{
 //     return {

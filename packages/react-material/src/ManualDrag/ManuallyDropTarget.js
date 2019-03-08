@@ -41,22 +41,23 @@ class TargetBox extends TargetWrapper {
     }
 
     if (!item.component) {
-      //内部元素被拖动
+      // 内部元素被拖动
       this.hasDroped = true;
       this.moveBox(item.sortFrom, left, top);
     }
 
     if (item.component) {
-      //外部元素
+      // 外部元素
       const temp = this.state.childComponents;
       temp.push({
         component: item.component,
-        left: left,
-        top: top,
+        left,
+        top,
       });
       this.setState({ childComponents: temp });
     }
   };
+
   moveBox(sortFrom, left, top) {
     this.state.childComponents.map((currentV, index) => {
       this.setState(
@@ -74,10 +75,10 @@ class TargetBox extends TargetWrapper {
       return;
     }
     if (this.hasDroped) {
-      //说明drop在了panel内部 不作处理
+      // 说明drop在了panel内部 不作处理
     } else {
-      //说明drop在了panle外部 需要删除指定index
-      let _cc = this.state.childComponents;
+      // 说明drop在了panle外部 需要删除指定index
+      const _cc = this.state.childComponents;
       if (!_cc) {
         return;
       }
@@ -86,6 +87,7 @@ class TargetBox extends TargetWrapper {
     }
     this.hasDroped = false;
   };
+
   componentDidMount() {
     this.props.register(this);
     this.setState({
@@ -94,20 +96,21 @@ class TargetBox extends TargetWrapper {
     });
     let acceptSource = ['BoxA'];
     acceptSource = [...acceptSource, ...this.props.acceptItem];
-    this.props.accept(acceptSource); //给DropTartget传递自己的acceptItem
+    this.props.accept(acceptSource); // 给DropTartget传递自己的acceptItem
   }
+
   render() {
     const { childComponents, droptTargetLeft, droptTargetTop } = this.state;
     let _childComponents = null;
     if (childComponents.length > 0) {
-      let tempChild = childComponents.map((o, i) => {
+      const tempChild = childComponents.map((o, i) => {
         return React.cloneElement(o.component, {
           key: Math.random(),
           type: 'INNERITEM',
           left: o.left,
           top: o.top,
-          droptTargetLeft: droptTargetLeft,
-          droptTargetTop: droptTargetTop,
+          droptTargetLeft,
+          droptTargetTop,
         });
       });
 

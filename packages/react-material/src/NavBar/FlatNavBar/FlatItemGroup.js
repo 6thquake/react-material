@@ -25,7 +25,7 @@ const styles = theme => ({
 class FlatItemGroup extends Component {
   renderNavItem(child, i) {
     const { eventKey, keyPath } = this.props;
-    let props = {
+    const props = {
       index: i,
       eventKey: child.key || `${eventKey}-item-${i}`,
       keyPath: [...keyPath, eventKey],

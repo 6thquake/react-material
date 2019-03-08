@@ -58,17 +58,21 @@ class TableToolbar extends Component {
       searchText: '',
     };
   }
+
   componentDidMount() {}
+
   excelRef = React.createRef('excel');
+
   onChange = e => {
-    let { onSearch, SearchProps } = this.props;
-    let text = e.target.value;
+    const { onSearch, SearchProps } = this.props;
+    const text = e.target.value;
     this.setState({
       searchText: text,
     });
     onSearch && onSearch(text);
     SearchProps.onChange && SearchProps.onChange(text);
   };
+
   handleClick = event => {
     this.setState({ anchorEl: event.currentTarget });
   };

@@ -15,9 +15,9 @@ const styles = theme => ({
   },
   nubProgress: {
     marginLeft: theme.spacing.unit * 2,
-    width: 35 + 'px',
+    width: `${35}px`,
     textAlign: 'left',
-    fontSize: 1 + 'em',
+    fontSize: `${1}em`,
     verticalAlign: 'middle',
     fontAamily: 'tahoma',
   },
@@ -40,7 +40,9 @@ class Progress extends Component {
       show: false,
     };
   }
+
   timer = null;
+
   componentDidMount() {
     if (this.props.isPromise) {
       this.timer = setInterval(this.progress, 300);
@@ -75,6 +77,7 @@ class Progress extends Component {
       }
     }
   }
+
   componentWillUnmount() {
     if (this.timer) {
       clearInterval(this.timer);
@@ -110,7 +113,7 @@ class Progress extends Component {
         ) : error ? (
           <HighlightOff className={classes.icon} color="error" />
         ) : (
-          <span className={classes.nubProgress}>{zcomplete + '%'}</span>
+          <span className={classes.nubProgress}>{`${zcomplete}%`}</span>
         );
       return (
         <div className={classes.lineicon}>
@@ -132,15 +135,15 @@ Progress.propTypes = {
   /**
    * If true,progress wrong.
    */
-  error: PropTypes.bool,
+  baseProgress: PropTypes.bool,
   /**
    * If true,simulation progress.
    */
-  isPromise: PropTypes.bool,
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * If true,progress finish when isPromise is true.
    */
-  isFinish: PropTypes.bool,
+  error: PropTypes.bool,
   /**
    * Estimated time of the progress,when isPromise is true,the units is seconds.
    */
@@ -148,27 +151,27 @@ Progress.propTypes = {
   /**
    * If true,it is a normal progress without percentage.
    */
-  baseProgress: PropTypes.bool,
+  isFinish: PropTypes.bool,
   /**
    * 	The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  isPromise: PropTypes.bool,
   /**
    * The value for the buffer variant. Value between 0 and 100.
    */
-  valueBuffer: PropTypes.num,
+  showPercentage: PropTypes.bool,
   /**
    * The variant of progress indicator. Use indeterminate or query when there is no progress value.
    */
-  variant: PropTypes.string,
+  value: PropTypes.num,
   /**
    *  Progress percentage,only when isPromise is false. Value between 0 and 100.
    */
-  value: PropTypes.num,
+  valueBuffer: PropTypes.num,
   /**
    * 	 If true,progress with percentage.
    */
-  showPercentage: PropTypes.bool,
+  variant: PropTypes.string,
 };
 
 Progress.defaultProps = {

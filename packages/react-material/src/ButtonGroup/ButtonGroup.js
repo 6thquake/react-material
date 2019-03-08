@@ -3,6 +3,7 @@ import { withStyles } from '../styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { capitalize } from '../utils/helpers';
+
 const styles = theme => ({
   sizeSmall: {
     '@global button': {

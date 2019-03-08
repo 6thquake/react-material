@@ -25,7 +25,7 @@ class DL extends React.Component {
   }
 }
 
-let C = DropTarget('transfer', boxTarget, connect => {
+const C = DropTarget('transfer', boxTarget, connect => {
   return {
     connectDropTarget: connect.dropTarget(),
   };

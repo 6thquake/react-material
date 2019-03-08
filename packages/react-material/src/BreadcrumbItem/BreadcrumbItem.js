@@ -16,7 +16,7 @@ const styles = {
   },
 };
 
-class BreadcrumbItem extends React.Component {
+class BreadcrumbItem extends React.PureComponent {
   render() {
     const { path, icon, name, notLink, classes, color = 'inherit', children } = this.props;
 
@@ -26,7 +26,7 @@ class BreadcrumbItem extends React.Component {
       if (!notLink) {
         item = (
           <a href={path}>
-            {!!icon ? <i className={classes.icon}>{icon}</i> : null}
+            {icon ? <i className={classes.icon}>{icon}</i> : null}
             <font>{name}</font>
           </a>
         );
@@ -52,19 +52,19 @@ BreadcrumbItem.propTypes = {
   /**
    * The routing path name
    */
-  path: PropTypes.string,
+  icon: PropTypes.element,
   /**
    * The routing icon
    */
-  icon: PropTypes.element,
+  name: PropTypes.string,
   /**
    * The routing name
    */
-  name: PropTypes.string,
+  notLink: PropTypes.bool,
   /**
    * Whether the routing is a link or not
    */
-  notLink: PropTypes.bool,
+  path: PropTypes.string,
 };
 
 BreadcrumbItem.defaultProps = {};

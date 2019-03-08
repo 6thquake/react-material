@@ -14,6 +14,7 @@ import { Select } from '@material-ui/core';
 import Pagination from '../Pagination/Pagination';
 import Divider from '../Divider';
 import throttling from '../utils/throttling.js';
+
 const styles = {
   root: {
     minWidth: '700px',
@@ -72,30 +73,9 @@ const styles = {
 };
 
 class Transfer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dataSourceChecked: [], //左边选中的item
-      targetKeysChecked: [],
-      temp: {
-        dataSource: props.dataSource, //左边渲染的数据
-        targetKeys: props.targetKeys,
-      },
-      pageConfigDataSource: {
-        page: props.pageConfig.page || 0,
-        rowsPerPage: props.pageConfig.rowsPerPage || 5,
-        count: props.pageConfig.count || 5,
-      }, //左边的分页参数
-      pageConfigtargetKeys: {
-        page: props.pageConfig.page || 0,
-        rowsPerPage: props.pageConfig.rowsPerPage || 5,
-        count: props.pageConfig.count || 5,
-      },
-    };
-  }
   static defaultProps = {
     searchPlaceholder: 'please input something',
-    onChange: function() {},
+    onChange() {},
     showSearch: false,
     paginationOption: false,
   };
@@ -104,50 +84,73 @@ class Transfer extends React.Component {
     /**
      * choose to generate filter box
      */
-    showSearch: PropTypes.bool,
+    dataSource: PropTypes.array.isRequired,
     /**
      * placeholder in filter box
      */
-    searchPlaceholder: PropTypes.string,
+    onChange: PropTypes.func,
     /**
      * the data in the source box, Array of Object，in the Object, props 'name' and 'id' is required
      */
-    dataSource: PropTypes.array.isRequired,
+    pageConfig: PropTypes.shape({
+      count: PropTypes.number,
+      page: PropTypes.number,
+      rowsPerPage: PropTypes.number,
+    }),
     /**
      * the data in the target box
      */
-    targetKeys: PropTypes.array.isRequired,
+    paginationOption: PropTypes.bool,
     /**
      * pageConfig should contain total,pageSize,currentPage
      */
-    pageConfig: PropTypes.shape({
-      page: PropTypes.number,
-      rowsPerPage: PropTypes.number,
-      count: PropTypes.number,
-    }),
+    searchPlaceholder: PropTypes.string,
     /**
      * call-back function when data change,parameters are (targetKeys,direction,moveKeys)
-     */
-    onChange: PropTypes.func,
-
-    /**
-     *Array of Object default selected，in the Object, props 'name' and 'id' is required
      */
     selectedKeys: PropTypes.array.isRequired,
 
     /**
+     *Array of Object default selected，in the Object, props 'name' and 'id' is required
+     */
+    showSearch: PropTypes.bool,
+
+    /**
      *
      */
-    paginationOption: PropTypes.bool,
+    targetKeys: PropTypes.array.isRequired,
   };
-  //数组去重
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSourceChecked: [], // 左边选中的item
+      targetKeysChecked: [],
+      temp: {
+        dataSource: props.dataSource, // 左边渲染的数据
+        targetKeys: props.targetKeys,
+      },
+      pageConfigDataSource: {
+        page: props.pageConfig.page || 0,
+        rowsPerPage: props.pageConfig.rowsPerPage || 5,
+        count: props.pageConfig.count || 5,
+      }, // 左边的分页参数
+      pageConfigtargetKeys: {
+        page: props.pageConfig.page || 0,
+        rowsPerPage: props.pageConfig.rowsPerPage || 5,
+        count: props.pageConfig.count || 5,
+      },
+    };
+  }
+
+  // 数组去重
   subSet = (arr1, arr2) => {
-    var set1 = new Set(arr1);
-    var set2 = new Set(arr2);
+    const set1 = new Set(arr1);
+    const set2 = new Set(arr2);
 
-    var subset = [];
+    const subset = [];
 
-    for (let item of set1) {
+    for (const item of set1) {
       if (!set2.has(item)) {
         subset.push(item);
       }
@@ -157,15 +160,15 @@ class Transfer extends React.Component {
   };
 
   transferToggle = position => () => {
-    //左右移动选中部分
+    // 左右移动选中部分
     const { dataSourceChecked, targetKeysChecked } = this.state;
-    let _checked =
+    const _checked =
       position == 'left' ? dataSourceChecked : position == 'right' ? targetKeysChecked : '';
-    let _otherPos = position == 'left' ? 'right' : 'left';
-    let chooseBox = position === 'left' ? 'dataSource' : 'targetKeys';
-    let otherBox = position === 'left' ? 'targetKeys' : 'dataSource';
-    let sub = this.subSet(this.props[chooseBox], _checked);
-    let newData = {};
+    const _otherPos = position == 'left' ? 'right' : 'left';
+    const chooseBox = position === 'left' ? 'dataSource' : 'targetKeys';
+    const otherBox = position === 'left' ? 'targetKeys' : 'dataSource';
+    const sub = this.subSet(this.props[chooseBox], _checked);
+    const newData = {};
     newData[chooseBox] = sub;
     newData[otherBox] = [].concat(this.props[otherBox], _checked);
     this.props.onChange(newData.dataSource, newData.targetKeys);
@@ -173,8 +176,8 @@ class Transfer extends React.Component {
       dataSourceChecked: [],
       targetKeysChecked: [],
       temp: {
-        dataSource: [...newData['dataSource']],
-        targetKeys: [...newData['targetKeys']],
+        dataSource: [...newData.dataSource],
+        targetKeys: [...newData.targetKeys],
       },
       pageConfigDataSource: {
         ...this.props.pageConfig,
@@ -188,14 +191,14 @@ class Transfer extends React.Component {
   };
 
   transferAllToggle = position => () => {
-    //左右移动所有
+    // 左右移动所有
     const { dataSource, targetKeys } = this.props;
-    let _checked = position == 'left' ? dataSource : position == 'right' ? targetKeys : '';
-    let _otherPos = position == 'left' ? 'right' : 'left';
-    let chooseBox = position === 'left' ? 'dataSource' : 'targetKeys';
-    let otherBox = position === 'left' ? 'targetKeys' : 'dataSource';
-    let sub = this.subSet(this.props[chooseBox], _checked);
-    let newData = {};
+    const _checked = position == 'left' ? dataSource : position == 'right' ? targetKeys : '';
+    const _otherPos = position == 'left' ? 'right' : 'left';
+    const chooseBox = position === 'left' ? 'dataSource' : 'targetKeys';
+    const otherBox = position === 'left' ? 'targetKeys' : 'dataSource';
+    const sub = this.subSet(this.props[chooseBox], _checked);
+    const newData = {};
     newData[chooseBox] = sub;
     newData[otherBox] = [].concat(this.props[otherBox], _checked);
     this.props.onChange(newData.dataSource, newData.targetKeys);
@@ -203,23 +206,23 @@ class Transfer extends React.Component {
       dataSourceChecked: [],
       targetKeysChecked: [],
       temp: {
-        dataSource: [...newData['dataSource']],
-        targetKeys: [...newData['targetKeys']],
+        dataSource: [...newData.dataSource],
+        targetKeys: [...newData.targetKeys],
       },
       pageConfigDataSource: {
         ...this.props.pageConfig,
-        count: newData['dataSource'].length,
+        count: newData.dataSource.length,
       },
       pageConfigtargetKeys: {
         ...this.props.pageConfig,
-        count: newData['targetKeys'].length,
+        count: newData.targetKeys.length,
       },
     });
   };
 
   handleToggle = (value, position) => () => {
     const { dataSourceChecked, targetKeysChecked } = this.state;
-    let _checked =
+    const _checked =
       position == 'left' ? dataSourceChecked : position == 'right' ? targetKeysChecked : '';
 
     const currentIndex = _checked.indexOf(value);
@@ -242,15 +245,15 @@ class Transfer extends React.Component {
     }
   };
 
-  //过滤文本改変的函数
+  // 过滤文本改変的函数
   textchange = position => e => {
-    let chooseBox = position == 'left' ? 'dataSource' : 'targetKeys';
-    let otherBox = position == 'left' ? 'targetKeys' : 'dataSource';
+    const chooseBox = position == 'left' ? 'dataSource' : 'targetKeys';
+    const otherBox = position == 'left' ? 'targetKeys' : 'dataSource';
     const filterString = e.target.value;
     const filterData = this.props[chooseBox].filter(item => {
       return !filterString || item.name.toLowerCase().indexOf(filterString.toLowerCase()) !== -1;
     });
-    let newData = {};
+    const newData = {};
     newData[chooseBox] = filterData;
     newData[otherBox] = this.state.temp[otherBox];
     if (chooseBox == 'dataSource') {
@@ -273,8 +276,9 @@ class Transfer extends React.Component {
       });
     }
   };
+
   pageCallbackFndataSource(currentPage1) {
-    //左边的分页参数改变回调
+    // 左边的分页参数改变回调
     this.setState({
       pageConfigDataSource: {
         ...this.state.pageConfigDataSource,
@@ -282,6 +286,7 @@ class Transfer extends React.Component {
       },
     });
   }
+
   pageCallbackFntargetKeys(currentPage1) {
     this.setState({
       pageConfigtargetKeys: {
@@ -290,18 +295,18 @@ class Transfer extends React.Component {
       },
     });
   }
+
   listItem(options, pageConfig) {
-    //只渲染属于该页面的item
+    // 只渲染属于该页面的item
     if (Array.isArray(options)) {
-      let start = pageConfig.page * pageConfig.rowsPerPage;
-      let end =
+      const start = pageConfig.page * pageConfig.rowsPerPage;
+      const end =
         (pageConfig.page + 1) * pageConfig.rowsPerPage > options.length
           ? options.length
           : (pageConfig.page + 1) * pageConfig.rowsPerPage;
       return options.slice(start, end);
-    } else {
-      throw new Error('React-Material: the `options` property must be an array ');
     }
+    throw new Error('React-Material: the `options` property must be an array ');
   }
 
   render() {
@@ -330,12 +335,12 @@ class Transfer extends React.Component {
           </Button>
         </div>
 
-        <div className={classes.lists + ' ' + classes.dataSourceLists}>
+        <div className={`${classes.lists} ${classes.dataSourceLists}`}>
           <List>
             {showSearch && (
               <SelectFilter
-                fullWidth={true}
-                autoFocus={true}
+                fullWidth
+                autoFocus
                 placeholder={searchPlaceholder}
                 onChange={throttling(this.textchange('left')).bind(this)}
               />
@@ -370,12 +375,12 @@ class Transfer extends React.Component {
           </List>
         </div>
 
-        <div className={classes.lists + ' ' + classes.targetKeysLists}>
+        <div className={`${classes.lists} ${classes.targetKeysLists}`}>
           <List>
             {showSearch && (
               <SelectFilter
-                fullWidth={true}
-                autoFocus={true}
+                fullWidth
+                autoFocus
                 placeholder={searchPlaceholder}
                 onChange={throttling(this.textchange('right')).bind(this)}
               />

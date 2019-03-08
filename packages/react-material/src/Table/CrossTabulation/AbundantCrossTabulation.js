@@ -5,7 +5,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-
 import AbundantCrossTabulationContent from './AbundantCrossTabulationContent';
 import CrossTabulationRenderers from './CrossTabulationRenderers';
 import withDragAndDrop from '../../DragAndDrop/withDragAndDrop';

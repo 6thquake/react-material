@@ -32,14 +32,17 @@ class PopOverContent extends Component {
     super(props);
     this.state = {};
   }
+
   handleConfirm = () => {
     this.props.onConfirm && this.props.onConfirm();
   };
+
   handleCancel = () => {
     this.props.onCancel && this.props.onCancel();
   };
+
   render() {
-    let {
+    const {
       classes,
       content,
       cancelText,

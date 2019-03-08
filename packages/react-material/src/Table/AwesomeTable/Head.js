@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import update from 'immutability-helper';
-import Table from '../../Table';
+import Table from '..';
 import TableBody from '../../TableBody';
 import TableCell from './Cell';
 import TableHead from '../../TableHead';
@@ -10,23 +10,21 @@ import HeadCell from './HeadCell';
 import DragHeadCell from './DragHeadCell';
 import withDragAndDrop from '../../DragAndDrop/withDragAndDrop';
 import TableSortLabel from '../../TableSortLabel';
-
 import { DropTarget, DropSource } from 'react-dnd';
 
 // import Resizable from 're-resizable';
 import { Resizable } from 'react-resizable';
-
 import { withStyles } from '../../styles';
 
 const throttling = (fn, wait, maxTimelong) => {
   wait = wait || 100;
   maxTimelong = maxTimelong || 300;
-  var timeout = null;
-  var startTime = Date.now();
+  let timeout = null;
+  let startTime = Date.now();
 
   return function(...arg) {
     if (timeout !== null) clearTimeout(timeout);
-    var curTime = Date.now();
+    const curTime = Date.now();
     if (curTime - startTime >= maxTimelong) {
       fn(...arg);
       startTime = curTime;
@@ -100,6 +98,7 @@ class Head extends React.Component {
       undragable: false,
     });
   };
+
   handleResize = (...args) => (e, { size }) => {
     const { onResize } = this.props;
     onResize && onResize(...args, size);
@@ -115,9 +114,11 @@ class Head extends React.Component {
     const { onSort } = this.props;
     onSort && onSort(sort, column);
   };
+
   handleDoubleClick = e => {
     e.stopPropagation();
   };
+
   renderTableHeadCell = (column, index) => {
     const {
       classes,
@@ -131,14 +132,14 @@ class Head extends React.Component {
       TableCellProps,
     } = this.props;
     const { sorts } = this.props;
-    let { title, key, sortable } = column;
-    let sort = { key: key, order: '', orderList: ['', 'asc', 'desc'], index: 0 };
+    const { title, key, sortable } = column;
+    let sort = { key, order: '', orderList: ['', 'asc', 'desc'], index: 0 };
     sorts.map(item => {
       if (item.key === column.key) {
         sort = item;
       }
     });
-    let content = sortable ? (
+    const content = sortable ? (
       <TableSortLabel
         active={sort.order}
         direction={sort.order}
@@ -151,10 +152,10 @@ class Head extends React.Component {
       title || ''
     );
 
-    let cell = (
+    const cell = (
       <TableCell
         numeric={column.numeric}
-        sortDirection={true}
+        sortDirection
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         index={index + baseLength}
@@ -188,6 +189,7 @@ class Head extends React.Component {
       );
     return C;
   };
+
   render() {
     const {
       classes,

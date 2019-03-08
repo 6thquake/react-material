@@ -66,6 +66,7 @@ class AsyncAutoComplete extends Component {
       page: 0,
     };
   }
+
   handleChange(event) {
     this.setState({
       open: true,
@@ -78,6 +79,7 @@ class AsyncAutoComplete extends Component {
       this.props.onChangeInput(event);
     }
   }
+
   handleDelete = item => event => {
     if (this.props.disabled) {
       return;
@@ -92,6 +94,7 @@ class AsyncAutoComplete extends Component {
     event.target = { ...target, value };
     this.props.onChange(event);
   };
+
   handleItemClick = child => event => {
     this.setState({
       inputValue: '',
@@ -126,6 +129,7 @@ class AsyncAutoComplete extends Component {
       onChange(event, child);
     }
   };
+
   handleBlur = event => {
     if (this.props.onBlur) {
       this.props.onBlur(event);
@@ -160,11 +164,13 @@ class AsyncAutoComplete extends Component {
       }
     }
   };
+
   onFocus(e) {
     if (this.props.select) {
       this.setState({ open: true });
     }
   }
+
   componentDidMount() {
     if (!this.props.multiple) {
       this.setState({
@@ -172,6 +178,7 @@ class AsyncAutoComplete extends Component {
       });
     }
   }
+
   render() {
     const {
       PaginationProps,
@@ -224,27 +231,27 @@ class AsyncAutoComplete extends Component {
                   }
                   selected =
                     value.indexOf(
-                      typeof mapper['value'] === 'function'
-                        ? mapper['value'](item, index)
-                        : item[mapper['value']],
+                      typeof mapper.value === 'function'
+                        ? mapper.value(item, index)
+                        : item[mapper.value],
                     ) !== -1;
                 } else {
                   selected =
                     value ===
-                    (typeof mapper['value'] === 'function'
-                      ? mapper['value'](item, index)
-                      : item[mapper['value']]);
+                    (typeof mapper.value === 'function'
+                      ? mapper.value(item, index)
+                      : item[mapper.value]);
                 }
                 return (
                   <MenuItem
                     key={index}
-                    value={item[mapper['value']]}
+                    value={item[mapper.value]}
                     selected={selected}
                     onClick={this.handleItemClick(null)}
                   >
-                    {typeof mapper['label'] === 'function'
-                      ? mapper['label'](item, index)
-                      : item[mapper['label']]}
+                    {typeof mapper.label === 'function'
+                      ? mapper.label(item, index)
+                      : item[mapper.label]}
                   </MenuItem>
                 );
               default:
@@ -335,67 +342,67 @@ AsyncAutoComplete.propTypes = {
   /**
    * Callback fired when the input value is changed.
    */
-  onChangeInput: PropTypes.func,
+  debounceAble: PropTypes.bool,
   /**
    * Callback fired when the current page of pagination  is changed.
    */
-  onChangePage: PropTypes.func,
+  debounceProps: PropTypes.shape({
+    maxTime: PropTypes.number,
+    wait: PropTypes.number,
+  }),
   /**
    * autocomplete options,
    */
-  options: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
-  ),
+  disabled: PropTypes.bool,
   /**
    * Pagination component config
-   */
-  PaginationProps: PropTypes.object,
-  /**
-   * placeholder
-   */
-  placeholder: PropTypes.string,
-  /**
-   * option item label and value,when assignment option by options
    */
   mapper: PropTypes.shape({
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }),
   /**
-   * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
+   * placeholder
    */
   multiple: PropTypes.bool,
   /**
-   * Callback function fired when a menu item is selected.
+   * option item label and value,when assignment option by options
    */
   onChange: PropTypes.func.isRequired,
   /**
+   * Decided multiple select;If true, value must be an array and the menu will support multiple selections.
+   */
+  onChangeInput: PropTypes.func,
+  /**
+   * Callback function fired when a menu item is selected.
+   */
+  onChangePage: PropTypes.func,
+  /**
    * 	The value of the Input element, required for a controlled component.
+   */
+  options: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
+  ),
+  /**
+   * Decided autocomplete is disabled
+   */
+  PaginationProps: PropTypes.object,
+  /**
+   * If true,autocomplete performance is like a select,when focus,option open.
+   */
+  placeholder: PropTypes.string,
+  /**
+   * If true,autocomplete will add debounce when filter options by input value.
+   */
+  select: PropTypes.bool,
+  /**
+   * If debounceAble true,config debounce wait and max continue time,the unit is milliseconds.
    */
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   ]),
-  /**
-   * Decided autocomplete is disabled
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If true,autocomplete performance is like a select,when focus,option open.
-   */
-  select: PropTypes.bool,
-  /**
-   * If true,autocomplete will add debounce when filter options by input value.
-   */
-  debounceAble: PropTypes.bool,
-  /**
-   * If debounceAble true,config debounce wait and max continue time,the unit is milliseconds.
-   */
-  debounceProps: PropTypes.shape({
-    wait: PropTypes.number,
-    maxTime: PropTypes.number,
-  }),
 };
 AsyncAutoComplete.defaultProps = {
   PaginationProps: {

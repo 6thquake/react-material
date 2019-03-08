@@ -97,7 +97,7 @@ class NavBar extends Component {
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    let initMenu = {
+    const initMenu = {
       index: 0,
       line: {},
     };
@@ -113,9 +113,9 @@ class NavBar extends Component {
           initMenu.index = i;
           initMenu.activeKey = key;
           const ele = prevState.topBar.childNodes[i];
-          initMenu.line.width = ele.offsetWidth; //+ this.left.offsetWidth;
+          initMenu.line.width = ele.offsetWidth; // + this.left.offsetWidth;
           initMenu.line.left = ele.offsetLeft;
-          //todo
+          // todo
           return {
             activeKey: initMenu.activeKey,
             line: {
@@ -158,14 +158,14 @@ class NavBar extends Component {
 
   renderNavItem(child, i) {
     const { selectedKeys } = this.props;
-    let childKey = child.key || `menu-${i}`;
-    let props = {
+    const childKey = child.key || `menu-${i}`;
+    const props = {
       index: i,
       eventKey: childKey,
       hover: this.state.hover === childKey,
       active: this.state.activeKey === childKey,
-      selected: selectedKeys.indexOf(childKey) === -1 ? false : true,
-      selectedKeys: selectedKeys,
+      selected: selectedKeys.indexOf(childKey) !== -1,
+      selectedKeys,
       topNav: this,
     };
     return React.cloneElement(child, props);
@@ -184,9 +184,9 @@ class NavBar extends Component {
         this.state.initMenu.index = i;
         this.state.initMenu.activeKey = key;
         const initMenu = this.state.topBar.childNodes[i];
-        this.state.initMenu.line.width = initMenu.offsetWidth; //+ this.left.offsetWidth;
+        this.state.initMenu.line.width = initMenu.offsetWidth; // + this.left.offsetWidth;
         this.state.initMenu.line.left = initMenu.offsetLeft;
-        //todo
+        // todo
         this.init();
         break;
       }

@@ -39,7 +39,7 @@ function withFormItem(WrappedComponent) {
       if (this.props.required) {
         required = true;
       }
-      if (convertValidationsToObject(this.props.validations)['isRequired']) {
+      if (convertValidationsToObject(this.props.validations).isRequired) {
         required = true;
       }
 

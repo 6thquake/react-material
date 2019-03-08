@@ -101,6 +101,7 @@ class Pagination extends React.Component {
     super(props);
     this.state = {};
   }
+
   render() {
     const { count, rowsPerPage, threshold, classes } = this.props;
     const pageLength = Math.ceil(count / rowsPerPage);

@@ -30,10 +30,10 @@ class Chat extends React.Component {
   }
 
   render() {
-    //const { index, isLeft, triSize, bgColor, avatar, classes } = this.props;
+    // const { index, isLeft, triSize, bgColor, avatar, classes } = this.props;
     const { isLeft, avatar, bubbleProps } = this.props;
 
-    return isLeft ? ( //left dialog chart
+    return isLeft ? ( // left dialog chart
       <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 20 }}>
         <div name="ancestor">
           {avatar}
@@ -49,7 +49,7 @@ class Chat extends React.Component {
         </div>
       </div>
     ) : (
-      //right dialog chart
+      // right dialog chart
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
         <div name="ancestor">
           {avatar}
@@ -72,23 +72,23 @@ Chat.propTypes = {
   /**
    * specifies that the chat component should be placed along the left or right side of its container.
    */
-  isLeft: PropTypes.bool.isRequired,
+  avatar: PropTypes.instanceOf(Avatar).isRequired,
   /**
    * the content of the chat component.
    */
-  content: PropTypes.string.isRequired,
+  bgColor: PropTypes.string,
   /**
    * the avatar of the chat component.
    */
-  avatar: PropTypes.instanceOf(Avatar).isRequired,
+  content: PropTypes.string.isRequired,
   /**
    * the font size of the content.
    */
-  triSize: PropTypes.number,
+  isLeft: PropTypes.bool.isRequired,
   /**
    * the background color of the chat bubble.
    */
-  bgColor: PropTypes.string,
+  triSize: PropTypes.number,
 };
 
 export default withStyles(styles, { name: 'RMChat' })(Chat);

@@ -4,7 +4,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../../styles';
-
 import OriginNavBar from './OriginNavBar';
 
 const SubMenu = OriginNavBar.SubMenu;
@@ -27,8 +26,8 @@ const defaultItemKeysMap = {
 const styles = theme => ({
   '@media (max-width: 600px)': {
     MuiListItemButton: {
-      paddingLeft: theme.spacing.unit * 2 + 'px !important',
-      paddingRight: theme.spacing.unit * 2 + 'px !important',
+      paddingLeft: `${theme.spacing.unit * 2}px !important`,
+      paddingRight: `${theme.spacing.unit * 2}px !important`,
     },
   },
 
@@ -57,9 +56,8 @@ class Item extends React.Component {
           {children ? <MenuList list={children} /> : null}
         </React.Fragment>
       );
-    } else {
-      return null;
     }
+      return null;
   }
 
   render() {
@@ -80,15 +78,15 @@ class Item extends React.Component {
 }
 
 Item.propTypes = {
-  name: PropTypes.node || PropTypes.string,
-  icon: PropTypes.element || PropTypes.string,
-  children: PropTypes.array,
-  beforeChildren: PropTypes.func,
   before: PropTypes.func,
+  beforeChildren: PropTypes.func,
+  children: PropTypes.array,
+  className: PropTypes.object,
+  icon: PropTypes.element || PropTypes.string,
+  name: PropTypes.node || PropTypes.string,
   onClick: PropTypes.func,
   onHandle: PropTypes.func,
   style: PropTypes.object,
-  className: PropTypes.object,
 };
 
 Item.defaultProps = {
@@ -107,13 +105,14 @@ class EasyNavBar extends React.Component {
     inlineIndent: PropTypes.number,
     // root:PropTypes.object
   };
+
   state = {
     itemKeysMap: { ...defaultItemKeysMap, ...this.props.itemKeysMap },
   };
 
   itemKeyToProps(item) {
     const { itemKeysMap } = this.state;
-    let result = {};
+    const result = {};
     for (const key in itemKeysMap) {
       const resultKey = itemKeysMap[key];
       result[key] = item[resultKey];
@@ -138,12 +137,10 @@ class EasyNavBar extends React.Component {
     if (icon) {
       if (typeof icon === 'string') {
         return <i className="material-icons">{icon}</i>;
-      } else {
-        return icon;
       }
-    } else {
-      return null;
+        return icon;
     }
+      return null;
   }
 
   getChildContext() {
@@ -163,10 +160,9 @@ class EasyNavBar extends React.Component {
   isRenderChildren(item) {
     if (item.children && item.children !== 0) {
       if (item.beforeChildren) return item.beforeChildren();
-      else return true;
-    } else {
-      return false;
+      return true;
     }
+      return false;
   }
 
   renderMenu(list, parentKey) {
@@ -196,17 +192,15 @@ class EasyNavBar extends React.Component {
               {this.renderMenu(children, _key)}
             </SubMenu>
           );
-        } else {
+        }
           return (
             <MenuItem key={_key}>
               {this.renderIcon(icon)}
               <span>{name}</span> {this.props.debugger ? _key : null}
             </MenuItem>
           );
-        }
-      } else {
-        return null;
       }
+        return null;
     });
   }
 
@@ -220,28 +214,28 @@ EasyNavBar.propTypes = {
   /**
    * 要展示的menu
    */
-  list: PropTypes.array.isRequired,
+  debugger: PropTypes.bool,
   /**
    * menu的每一项数据的key值
    */
   itemKeysMap: PropTypes.shape({
-    name: PropTypes.string,
-    icon: PropTypes.string,
-    children: PropTypes.string,
-    beforeChildren: PropTypes.string,
     before: PropTypes.string,
+    beforeChildren: PropTypes.string,
+    children: PropTypes.string,
+    className: PropTypes.string,
+    icon: PropTypes.string,
+    key: PropTypes.string,
+    name: PropTypes.string,
     onClick: PropTypes.string,
     onHandle: PropTypes.string,
-    style: PropTypes.string,
-    className: PropTypes.string,
     open: PropTypes.string,
-    key: PropTypes.string,
+    style: PropTypes.string,
   }),
 
   /**
    * @ignore
    */
-  debugger: PropTypes.bool,
+  list: PropTypes.array.isRequired,
 };
 EasyNavBar.defaultProps = {
   debugger: false,

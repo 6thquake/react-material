@@ -25,6 +25,7 @@ class AutoComplete extends Component {
     };
     this.state.optionsArray = this.props.showPagination ? [] : this.menuItems(this.state.text);
   }
+
   onChangePage(i) {
     this.setState(
       {
@@ -34,9 +35,9 @@ class AutoComplete extends Component {
         },
       },
       () => {
-        let op = this.menuItems(this.state.text);
-        let start = this.state.PaginationProps.page * this.state.PaginationProps.rowsPerPage;
-        let end =
+        const op = this.menuItems(this.state.text);
+        const start = this.state.PaginationProps.page * this.state.PaginationProps.rowsPerPage;
+        const end =
           (this.state.PaginationProps.page + 1) * this.state.PaginationProps.rowsPerPage > op.length
             ? undefined
             : (this.state.PaginationProps.page + 1) * this.state.PaginationProps.rowsPerPage;
@@ -46,6 +47,7 @@ class AutoComplete extends Component {
       },
     );
   }
+
   onfilter(e) {
     const op = this.menuItems(e.target.value);
     this.setState(
@@ -58,9 +60,9 @@ class AutoComplete extends Component {
         },
       },
       () => {
-        let op = this.menuItems(this.state.text);
-        let start = this.state.PaginationProps.page * this.state.PaginationProps.rowsPerPage;
-        let end =
+        const op = this.menuItems(this.state.text);
+        const start = this.state.PaginationProps.page * this.state.PaginationProps.rowsPerPage;
+        const end =
           (this.state.PaginationProps.page + 1) * this.state.PaginationProps.rowsPerPage > op.length
             ? undefined
             : (this.state.PaginationProps.page + 1) * this.state.PaginationProps.rowsPerPage;
@@ -70,6 +72,7 @@ class AutoComplete extends Component {
       },
     );
   }
+
   menuItems(text) {
     const { children } = this.props;
     let filterData = [];
@@ -84,6 +87,7 @@ class AutoComplete extends Component {
       return filterData;
     }
   }
+
   componentDidMount() {
     const { children, rowsPerPage } = this.props;
     this.setState({
@@ -94,6 +98,7 @@ class AutoComplete extends Component {
       },
     });
   }
+
   render() {
     const { classes, onChange, value, ...others } = this.props;
     const { optionsArray } = this.state;
@@ -128,35 +133,35 @@ AutoComplete.propTypes = {
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
    */
-  multiple: PropTypes.bool,
+  disabled: PropTypes.bool,
   /**
    * Callback function fired when a menu item is selected.
    *
    * @param {object} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value`.
    */
-  onChange: PropTypes.func,
+  multiple: PropTypes.bool,
   /**
    * The input value.
+   */
+  onChange: PropTypes.func,
+  /**
+   * page size
+   */
+  placeholder: PropTypes.string,
+  /**
+   * placeholder
+   */
+  rowsPerPage: PropTypes.num,
+
+  /**
+   * decided Synchronize autocomplete is disabled
    */
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   ]),
-  /**
-   * page size
-   */
-  rowsPerPage: PropTypes.num,
-  /**
-   * placeholder
-   */
-  placeholder: PropTypes.string,
-
-  /**
-   * decided Synchronize autocomplete is disabled
-   */
-  disabled: PropTypes.bool,
 };
 
 AutoComplete.defaultProps = {

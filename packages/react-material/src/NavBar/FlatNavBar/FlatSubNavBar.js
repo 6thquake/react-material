@@ -44,7 +44,7 @@ const styles = theme => {
 class SubNavBar extends Component {
   renderNavItem(child, i) {
     const { eventKey } = this.props;
-    let props = {
+    const props = {
       index: i,
       eventKey: child.key || `${eventKey}-group-${i}`,
       keyPath: [eventKey],

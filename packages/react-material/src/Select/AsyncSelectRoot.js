@@ -8,6 +8,7 @@ import SelectInput from './SelectInput';
 import { withStyles, mergeClasses } from '../styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Input from '../Input';
+
 function AsyncSelectRoot(props) {
   const {
     autoWidth,

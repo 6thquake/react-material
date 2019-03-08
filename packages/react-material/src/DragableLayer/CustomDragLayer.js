@@ -42,17 +42,17 @@ function getItemStyles(props) {
 
 const cdl = class CustomDragLayer extends Component {
   static propTypes = {
-    item: PropTypes.object,
-    itemType: PropTypes.string,
-    initialOffset: PropTypes.shape({
-      x: PropTypes.number.isRequired,
-      y: PropTypes.number.isRequired,
-    }),
     currentOffset: PropTypes.shape({
       x: PropTypes.number.isRequired,
       y: PropTypes.number.isRequired,
     }),
+    initialOffset: PropTypes.shape({
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+    }),
     isDragging: PropTypes.bool.isRequired,
+    item: PropTypes.object,
+    itemType: PropTypes.string,
     snapToGrid: PropTypes.bool.isRequired,
   };
 

@@ -36,9 +36,9 @@ class CascadeOption extends Component {
   }
 
   toMenuItem = (data, classes) => {
-    let { mapper } = this.props;
+    const { mapper } = this.props;
 
-    let list = data.map((item, index) => {
+    const list = data.map((item, index) => {
       let label = item[mapper.label || 'label'];
       let value = item[mapper.value || 'value'];
       if (typeof mapper.label === 'function') {
@@ -47,8 +47,8 @@ class CascadeOption extends Component {
       if (typeof mapper.value === 'function') {
         value = mapper.value(item, index);
       }
-      let hasSub = item.subItems && item.subItems.length > 0;
-      let checked = this.props.checkedIndex === index;
+      const hasSub = item.subItems && item.subItems.length > 0;
+      const checked = this.props.checkedIndex === index;
       return (
         <MenuItem
           key={value}
@@ -72,14 +72,15 @@ class CascadeOption extends Component {
 
   // Event zoom
   handleItemClick = (item, index) => e => {
-    let info = {
+    const info = {
       level: this.props.level,
-      index: index,
+      index,
       next: this.props.options[index].subItems || [],
       item: this.props.options,
     };
     this.props.onChange(info);
   };
+
   render() {
     const { classes, options, open } = this.props;
     let t = null;

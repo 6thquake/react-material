@@ -5,9 +5,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-
 import { DropTarget } from 'react-dnd';
-
 import CrossTabulationColumn from './CrossTabulationColumn';
 import { getSort } from './CrossTabulationUtilities';
 
@@ -23,10 +21,10 @@ const columnTarget = {
     const item = monitor.getItem();
     // 更新组件状态
 
-    let items = component.state.items;
+    const items = component.state.items;
     items.push(item.name);
     component.setState({
-      items: items,
+      items,
     });
 
     component.props.onDrop(items);
@@ -51,13 +49,13 @@ class DropZone extends React.Component {
 
   dragOut = val => {
     return () => {
-      let items = this.state.items;
-      let index = items.indexOf(val);
+      const items = this.state.items;
+      const index = items.indexOf(val);
 
       if (index > -1) {
         items.splice(index, 1);
         this.setState({
-          items: items,
+          items,
         });
       }
     };

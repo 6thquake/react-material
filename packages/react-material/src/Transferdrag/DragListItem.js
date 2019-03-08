@@ -13,8 +13,8 @@ import Checkbox from '../Checkbox';
 
 const boxSource = {
   beginDrag(props, monitor, component) {
-    //拖拽开始把水波层置为不显示
-    component.refs['listItem'].childNodes[0].childNodes[2].style.display = 'none';
+    // 拖拽开始把水波层置为不显示
+    component.refs.listItem.childNodes[0].childNodes[2].style.display = 'none';
     const { direction, value } = props;
     return { direction, value };
   },
@@ -25,7 +25,9 @@ class DLI extends React.Component {
 
     this.state = {};
   }
+
   handleToggle = () => {};
+
   render() {
     const { connectDragSource, value, isChecked, toggleChecked, direction } = this.props;
 
@@ -50,7 +52,7 @@ class DLI extends React.Component {
   }
 }
 
-let DragListItem = DragSource('just-transfer', boxSource, (connect, monitor) => ({
+const DragListItem = DragSource('just-transfer', boxSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging(),
 }))(DLI);

@@ -11,7 +11,7 @@ const find = (content, value) => {
   if (type === 'object') {
     return findInObject(content, value);
   }
-    return String(content).indexOf(String(value)) !== -1;
+  return String(content).indexOf(String(value)) !== -1;
 };
 
 const filter = (data, value) => {

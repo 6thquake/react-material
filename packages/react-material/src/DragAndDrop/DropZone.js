@@ -7,11 +7,7 @@ import { withStyles } from '../styles';
 
 const styles = {};
 
-class DronZone extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+class DronZone extends React.PureComponent {
   render() {
     return <div>12344</div>;
   }

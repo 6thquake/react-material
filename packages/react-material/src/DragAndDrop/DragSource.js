@@ -8,7 +8,7 @@ import { withStyles } from '../styles';
 import { Home, Grade, Lock } from '@material-ui/icons';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragSource as DragSourceBase, DropTarget as DropTargetBase } from 'react-dnd';
-/*type:
+/* type:
 position 对于panel中已存在的source 拖拽时会重新定位它的位置 当拖出panel以外时会删除
 dragin 从panel外部拖入，源source不变，复制一份
 style
@@ -39,8 +39,8 @@ const _source = {
 	如果type==dragin 就会生成新的position source传给dropTarget
 	如果type == position 就需要传回当前xy定位；
     */
-    //每次begin时 如果有span的class中有MuiTouchRipple 则display none
-    let _ripple = component.decoratedComponentInstance.refs.mytttest.querySelectorAll(
+    // 每次begin时 如果有span的class中有MuiTouchRipple 则display none
+    const _ripple = component.decoratedComponentInstance.refs.mytttest.querySelectorAll(
       'span[class^="MuiTouchRipple"]',
     );
     if (_ripple.length > 0) {
@@ -51,7 +51,7 @@ const _source = {
 
     const item = {};
     if (props.type == 'POSITION') {
-      //拿到当前node的index
+      // 拿到当前node的index
       const _from = props.index || 0;
       item.sortFrom = _from;
     } else if (props.type == 'DRAGIN') {
@@ -62,7 +62,7 @@ const _source = {
   },
   endDrag(props, monitor, component) {
     const item = monitor.getItem();
-    if ((!!item.sortFrom || item.sortFrom == 0) && typeof props.remove == 'function') {
+    if ((!!item.sortFrom || item.sortFrom == 0) && typeof props.remove === 'function') {
       props.remove(item.sortFrom);
     }
     console.log('end drag.......');
@@ -70,11 +70,13 @@ const _source = {
 };
 const _target = {
   hover(props, monitor, component) {
-    //当hover的时候改变原数组的排列顺序
+    // 当hover的时候改变原数组的排列顺序
     //
-    let justComeIn = true;
-    let gi = monitor.getItem(),
-      from;
+    const justComeIn = true;
+    const gi = monitor.getItem();
+
+
+let from;
     if (gi) {
       from = gi.sortFrom;
     }
@@ -82,21 +84,21 @@ const _target = {
       return;
     }
     const to = props.index || 0;
-    if (from != to && typeof props.sequence == 'function') {
-      console.log('################# from ' + from + ' to ' + to + ' #################');
+    if (from != to && typeof props.sequence === 'function') {
+      console.log(`################# from ${from} to ${to} #################`);
 
-      //const hovered = component.refs.dndwrap.parentElement.getBoundingClientRect();
+      // const hovered = component.refs.dndwrap.parentElement.getBoundingClientRect();
       props.sequence(parseInt(from), parseInt(to), () => {
         component.hasChanged = true;
         monitor.getItem().sortFrom = to;
       });
     }
 
-    //console.log('!!!!!!!!!!')
+    // console.log('!!!!!!!!!!')
   },
-  /*drop(props, monitor, component){
+  /* drop(props, monitor, component){
 		component.hasChanged = false;
-	}*/
+	} */
 };
 function _dragCollect(connect, monitor) {
   return {
@@ -111,7 +113,7 @@ function _dropCollect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver({ shallow: true }),
-    //isOverCurrent: monitor.isOver({ shallow: false }),
+    // isOverCurrent: monitor.isOver({ shallow: false }),
     canDrop: monitor.canDrop(),
     itemType: monitor.getItemType(),
   };
@@ -132,17 +134,17 @@ class _DragSouce extends Component {
       classes,
       isOver,
     } = this.props;
-    let _style = {};
+    const _style = {};
     if (type == 'POSITION' && !!isDragging) {
-      //return null;
+      // return null;
     }
     return connectDropTarget(
       connectDragSource(
         <div
           className={
-            (type == 'POSITION' ? classes.position : classes.dragin) +
-            ' ' +
-            (isOver ? classes.isOvered : '')
+            `${type == 'POSITION' ? classes.position : classes.dragin
+            } ${
+            isOver ? classes.isOvered : ''}`
           }
         >
           <div ref={'dndwrap'}>

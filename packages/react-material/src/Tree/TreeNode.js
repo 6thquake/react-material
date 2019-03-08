@@ -7,6 +7,7 @@ class RMTreeNode extends React.Component {
     <TreeNode {...this.props} />;
   }
 }
+
 RMTreeNode.propTypes = {
   /**
    * 禁掉 checkbox

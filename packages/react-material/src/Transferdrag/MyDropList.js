@@ -25,9 +25,10 @@ const boxTarget = {
 };
 class DL extends React.Component {
   toggleCheckedFunc = (value, direction) => {
-    let aa = value;
+    const aa = value;
     console.log(value);
   };
+
   isChecked = value => {
     const _ci = this.props.checkedItem;
     for (let i = 0, len = _ci.length; i < len; i++) {
@@ -37,6 +38,7 @@ class DL extends React.Component {
     }
     return false;
   };
+
   render() {
     const { data, checkedItem, direction, toggleChecked, connectDropTarget, classes } = this.props;
 
@@ -58,7 +60,7 @@ class DL extends React.Component {
   }
 }
 
-let C = DropTarget(['just-transfer'], boxTarget, connect => {
+const C = DropTarget(['just-transfer'], boxTarget, connect => {
   return {
     connectDropTarget: connect.dropTarget(),
   };

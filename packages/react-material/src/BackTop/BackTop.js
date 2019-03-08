@@ -44,7 +44,7 @@ class BackTop extends React.Component {
 
     try {
       if (this.state.customButton) {
-        React.Children.only(this.state.customButton); //如果自定义按钮，验证是否只有唯一的根元素
+        React.Children.only(this.state.customButton); // 如果自定义按钮，验证是否只有唯一的根元素
       }
     } catch (err) {
       console.log(err);
@@ -56,16 +56,15 @@ class BackTop extends React.Component {
       return (
         document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight)
       );
-    } else {
+    }
       return (
         this.container.scrollHeight > this.container.clientHeight ||
         this.container.offsetHeight > this.container.clientHeight
       );
-    }
   }
 
   getScrollTop() {
-    var scrollPos;
+    let scrollPos;
     if (this.container == window) {
       if (window.pageYOffset) {
         scrollPos = window.pageYOffset;
@@ -97,7 +96,7 @@ class BackTop extends React.Component {
 
   componentDidMount() {
     this.showWindowBtn = false;
-    let idSel = this.props.container;
+    const idSel = this.props.container;
     const { customButton } = this.state;
     this.container = document.querySelector(idSel) || window;
     if (this.hasScrollbar()) {
@@ -146,7 +145,7 @@ class BackTop extends React.Component {
       fixLeft = left - 40 - 100;
       fixTop = top - 40 - 50;
     }
-    this.setState({ fixLeft: fixLeft, fixTop: fixTop });
+    this.setState({ fixLeft, fixTop });
   }
 
   componentWillUnmount() {
@@ -168,7 +167,7 @@ class BackTop extends React.Component {
     const { showBackTop, customButton, fixLeft, fixTop } = this.state;
 
     const windowBtnNoCustom = (
-      <div onClick={e => this.returnTop(e)} className={classes.backTop + ' ' + classes.windowBtn}>
+      <div onClick={e => this.returnTop(e)} className={`${classes.backTop} ${classes.windowBtn}`}>
         <div className={classes.rmBackTopContent}>
           <Publish />
         </div>
@@ -179,7 +178,7 @@ class BackTop extends React.Component {
       <div
         style={{ bottom: '100px' }}
         onClick={e => this.returnTop(e)}
-        className={classes.backTop + ' ' + classes.windowBtn}
+        className={`${classes.backTop} ${classes.windowBtn}`}
       >
         {customButton}
       </div>
@@ -215,15 +214,13 @@ class BackTop extends React.Component {
       } else {
         backTopButton = windowBtnNoCustom;
       }
-    } else {
-      if (customButton) {
+    } else if (customButton) {
         backTopButton = containerBtnCustom;
       } else {
         backTopButton = containerBtnNoCustom;
       }
-    }
 
-    //const backTopButton = this.showWindowBtn ? (customButton ? windowBtnCustom : windowBtnNoCustom) :( customButton? containerBtnCustom : containerBtnNoCustom);
+    // const backTopButton = this.showWindowBtn ? (customButton ? windowBtnCustom : windowBtnNoCustom) :( customButton? containerBtnCustom : containerBtnNoCustom);
 
     return showBackTop ? backTopButton : null;
   }
@@ -233,22 +230,22 @@ BackTop.propTypes = {
   /**
    * show BackTop button when scroll to this height
    */
-  visibilityHeight: PropTypes.number,
+  classes: PropTypes.object.isRequired,
 
   /**
    * callback function when click BackTop button
    */
-  onClick: PropTypes.func,
+  container: PropTypes.string,
 
   /**
    * Id selector, element that needs to be listened the scroll event, the default value is window
    */
-  container: PropTypes.string,
+  onClick: PropTypes.func,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  visibilityHeight: PropTypes.number,
 };
 BackTop.defaultProps = {
   visibilityHeight: 300,

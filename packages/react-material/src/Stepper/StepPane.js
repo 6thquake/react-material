@@ -19,7 +19,7 @@ const styles = theme => ({
   },
 });
 
-let negative = direction => {
+const negative = direction => {
   if (direction == 'left') {
     return 'right';
   }
@@ -78,40 +78,40 @@ StepPane.propTypes = {
    * @ignore
    * Set internally by Stepper when it's supplied with the alternativeLabel property.
    */
-  alternativeLabel: PropTypes.bool,
+  allowToNext: PropTypes.func,
   /**
    * Useful to extend the style applied to components.
    */
-  classes: PropTypes.object.isRequired,
+  alternativeLabel: PropTypes.bool,
   /**
    * @ignore
    */
-  className: PropTypes.string,
+  classes: PropTypes.object.isRequired,
   /**
    * Mark the step as completed. Is passed to child components.
    */
-  completed: PropTypes.bool,
+  className: PropTypes.string,
 
   /**
    * Mark the step as disabled, will also disable the button if
    * `StepButton` is a child of `Step`. Is passed to child components.
    */
-  disabled: PropTypes.bool,
+  completed: PropTypes.bool,
   /**
    * @ignore
    * Used internally for numbering.
    */
-  index: PropTypes.number,
+  direction: PropTypes.oneOf(['next', 'prev']),
   /**
    * @ignore
    */
+  disabled: PropTypes.bool,
+
+  index: PropTypes.number,
+
   last: PropTypes.bool,
 
-  direction: PropTypes.oneOf(['next', 'prev']),
-
   unmountAfterBack: PropTypes.bool,
-
-  allowToNext: PropTypes.func,
 };
 
 StepPane.defaultProps = {

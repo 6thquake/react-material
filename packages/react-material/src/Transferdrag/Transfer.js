@@ -58,14 +58,14 @@ class Transfer extends React.Component {
     };
   }
 
-  //数组去重
+  // 数组去重
   subSet = (arr1, arr2) => {
-    var set1 = new Set(arr1);
-    var set2 = new Set(arr2);
+    const set1 = new Set(arr1);
+    const set2 = new Set(arr2);
 
-    var subset = [];
+    const subset = [];
 
-    for (let item of set1) {
+    for (const item of set1) {
       if (!set2.has(item)) {
         subset.push(item);
       }
@@ -73,27 +73,30 @@ class Transfer extends React.Component {
 
     return subset;
   };
+
   dragToggle = (value, position) => () => {
-    let _checked = [];
+    const _checked = [];
     _checked.push(value);
     this.transferData(_checked, position);
   };
+
   transferToggle = position => () => {
     const { leftChecked, rightChecked } = this.state;
-    let _checked = position == 'left' ? leftChecked : position == 'right' ? rightChecked : '';
+    const _checked = position == 'left' ? leftChecked : position == 'right' ? rightChecked : '';
     this.transferData(_checked, position);
   };
 
   transferAllToggle = position => () => {
     const { left, right } = this.props;
-    let _checked = position == 'left' ? left : position == 'right' ? right : '';
+    const _checked = position == 'left' ? left : position == 'right' ? right : '';
 
     this.transferData(_checked, position);
   };
+
   transferData = (_checked, position) => {
-    let _otherPos = position == 'left' ? 'right' : 'left';
-    let aaa = this.subSet(this.props[position], _checked);
-    let newData = {};
+    const _otherPos = position == 'left' ? 'right' : 'left';
+    const aaa = this.subSet(this.props[position], _checked);
+    const newData = {};
     newData[position] = aaa;
     newData[_otherPos] = [].concat(this.props[_otherPos], _checked);
     this.setState({
@@ -105,7 +108,7 @@ class Transfer extends React.Component {
 
   handleToggle = (value, position) => {
     const { leftChecked, rightChecked } = this.state;
-    let _checked = position == 'left' ? leftChecked : position == 'right' ? rightChecked : '';
+    const _checked = position == 'left' ? leftChecked : position == 'right' ? rightChecked : '';
 
     const currentIndex = _checked.indexOf(value);
     const newChecked = [..._checked];
@@ -126,6 +129,7 @@ class Transfer extends React.Component {
       });
     }
   };
+
   render() {
     const { left, right, classes } = this.props;
 
@@ -149,7 +153,7 @@ class Transfer extends React.Component {
           </Button>
         </div>
 
-        <div className={classes.lists + ' ' + classes.leftLists}>
+        <div className={`${classes.lists} ${classes.leftLists}`}>
           <MyDropList
             data={left}
             direction="left"
@@ -159,7 +163,7 @@ class Transfer extends React.Component {
           />
         </div>
 
-        <div className={classes.lists + ' ' + classes.rightLists}>
+        <div className={`${classes.lists} ${classes.rightLists}`}>
           <MyDropList
             data={right}
             direction="right"
@@ -173,6 +177,6 @@ class Transfer extends React.Component {
   }
 }
 
-let C = DragDropContext(HTML5Backend)(Transfer);
+const C = DragDropContext(HTML5Backend)(Transfer);
 
 export default withStyles(styles, { name: 'RMTransferdrag' })(C);

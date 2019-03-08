@@ -192,15 +192,15 @@ OriginNavBar.propTypes = {
   /**
    * 初始展开的 SubMenu 菜单项 key 数组
    */
-  defaultOpenKeys: PropTypes.arrayOf(PropTypes.string),
+  className: PropTypes.string,
   /**
    * 初始选中的菜单项 key 数组
    */
-  defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
+  defaultOpenKeys: PropTypes.arrayOf(PropTypes.string),
   /**
    * @ignore
    */
-  className: PropTypes.string,
+  defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
   /**
    * inline 时菜单是否收起状态
    */

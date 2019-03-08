@@ -5,12 +5,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CrossTabulationData } from './CrossTabulationUtilities';
-import Table from '../../Table';
+import Table from '..';
 import TableBody from '../../TableBody';
 import TableCell from '../../TableCell';
 import TableHead from '../../TableHead';
 import TableRow from '../../TableRow';
-
 import { withStyles } from '../../styles';
 
 const styles = theme => ({
@@ -48,7 +47,8 @@ const styles = theme => ({
 const spanSize = function(arr, i, j) {
   let x;
   if (i !== 0) {
-    let asc, end;
+    let asc; let
+end;
     let noDraw = true;
     for (x = 0, end = j, asc = end >= 0; asc ? x <= end : x >= end; asc ? x++ : x--) {
       if (arr[i - 1][x] !== arr[i][x]) {
@@ -61,7 +61,8 @@ const spanSize = function(arr, i, j) {
   }
   let len = 0;
   while (i + len < arr.length) {
-    let asc1, end1;
+    let asc1; let
+end1;
     let stop = false;
     for (x = 0, end1 = j, asc1 = end1 >= 0; asc1 ? x <= end1 : x >= end1; asc1 ? x++ : x--) {
       if (arr[i][x] !== arr[i + len][x]) {
@@ -77,8 +78,8 @@ const spanSize = function(arr, i, j) {
 };
 
 function redColorScaleGenerator(values) {
-  const min = Math.min.apply(Math, values);
-  const max = Math.max.apply(Math, values);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
   return x => {
     // eslint-disable-next-line no-magic-numbers
     const nonRed = 255 - Math.round((255 * (x - min)) / (max - min));
@@ -89,7 +90,7 @@ function redColorScaleGenerator(values) {
 function makeRenderer(opts = {}) {
   class TableRenderer extends React.PureComponent {
     render() {
-      let { classes } = this.props;
+      const { classes } = this.props;
 
       const crossTableData = new CrossTabulationData(this.props);
       const colAttrs = crossTableData.props.cols;
@@ -155,7 +156,7 @@ function makeRenderer(opts = {}) {
       return (
         <Table className={classes.table}>
           <TableHead>
-            {colAttrs.map(function(c, j) {
+            {colAttrs.map((c, j) => {
               return (
                 <TableRow key={`colAttr${j}`}>
                   {j === 0 && rowAttrs.length !== 0 && (
@@ -166,7 +167,7 @@ function makeRenderer(opts = {}) {
                     />
                   )}
                   <TableCell className={classes.th}>{c}</TableCell>
-                  {colKeys.map(function(colKey, i) {
+                  {colKeys.map((colKey, i) => {
                     const x = spanSize(colKeys, i, j);
                     if (x === -1) {
                       return null;
@@ -197,7 +198,7 @@ function makeRenderer(opts = {}) {
 
             {rowAttrs.length !== 0 && (
               <TableRow>
-                {rowAttrs.map(function(r, i) {
+                {rowAttrs.map((r, i) => {
                   return (
                     <TableCell className={classes.th} key={`rowAttr${i}`}>
                       {r}
@@ -212,11 +213,11 @@ function makeRenderer(opts = {}) {
           </TableHead>
 
           <TableBody>
-            {rowKeys.map(function(rowKey, i) {
+            {rowKeys.map((rowKey, i) => {
               const totalAggregator = crossTableData.getAggregator(rowKey, []);
               return (
                 <TableRow key={`rowKeyRow${i}`}>
-                  {rowKey.map(function(txt, j) {
+                  {rowKey.map((txt, j) => {
                     const x = spanSize(rowKeys, i, j);
                     if (x === -1) {
                       return null;
@@ -232,7 +233,7 @@ function makeRenderer(opts = {}) {
                       </TableCell>
                     );
                   })}
-                  {colKeys.map(function(colKey, j) {
+                  {colKeys.map((colKey, j) => {
                     const aggregator = crossTableData.getAggregator(rowKey, colKey);
                     return (
                       <TableCell
@@ -268,7 +269,7 @@ function makeRenderer(opts = {}) {
                 Totals
               </TableCell>
 
-              {colKeys.map(function(colKey, i) {
+              {colKeys.map((colKey, i) => {
                 const totalAggregator = crossTableData.getAggregator([], colKey);
                 return (
                   <TableCell
@@ -339,7 +340,7 @@ class TSVExportRenderer extends React.PureComponent {
       const row = r.map(x => x);
       colKeys.map(c => {
         const v = crossTableData.getAggregator(r, c).value();
-        row.push(v ? v : '');
+        row.push(v || '');
       });
       return row;
     });
@@ -350,7 +351,7 @@ class TSVExportRenderer extends React.PureComponent {
       <textarea
         value={result.map(r => r.join('\t')).join('\n')}
         style={{ width: window.innerWidth / 2, height: window.innerHeight / 2 }}
-        readOnly={true}
+        readOnly
       />
     );
   }

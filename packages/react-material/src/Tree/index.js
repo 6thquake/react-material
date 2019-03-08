@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import styles from './styles';
 import cssAnimation from 'css-animation';
+
 const STYLE = `
 .collapse {
   overflow: hidden;
@@ -61,14 +62,14 @@ class Tree extends React.Component {
   render() {
     const props = this.props;
     const { prefixCls, className } = props;
-    let checkable = props.checkable;
+    const checkable = props.checkable;
     return (
       <RcTree
         {...props}
         className={className}
         checkable={checkable ? <span className={`${prefixCls}-checkbox-inner`} /> : checkable}
       >
-        {/*<style dangerouslySetInnerHTML={{ __html: STYLE }}/>*/}
+        {/* <style dangerouslySetInnerHTML={{ __html: STYLE }}/> */}
         {this.props.children}
       </RcTree>
     );
@@ -130,7 +131,7 @@ class Tree extends React.Component {
 //   filterTreeNode: (node) => false
 // };
 // console.log(styles)
-//export default withStyles(styles)(Tree);
+// export default withStyles(styles)(Tree);
 
 export { default } from './Tree';
 export { default as TreeNode } from './TreeNode';

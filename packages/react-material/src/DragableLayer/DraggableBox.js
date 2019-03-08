@@ -30,12 +30,12 @@ function getStyles(props) {
 
 const db = class DraggableBox extends Component {
   static propTypes = {
-    connectDragSource: PropTypes.func.isRequired,
     connectDragPreview: PropTypes.func.isRequired,
-    isDragging: PropTypes.bool.isRequired,
+    connectDragSource: PropTypes.func.isRequired,
     id: PropTypes.any.isRequired,
-    title: PropTypes.string.isRequired,
+    isDragging: PropTypes.bool.isRequired,
     left: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
     top: PropTypes.number.isRequired,
   };
 

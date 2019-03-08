@@ -7,6 +7,7 @@ import Pagination from '../Pagination/Pagination';
 import Divider from '../Divider';
 import MenuItem from '../MenuItem';
 import throttling from '../utils/throttling.js';
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -59,49 +60,49 @@ class Mention extends Component {
      * Callback when input @ content changes,parameters are (value,trigger)
      */
     // inputChangeCb: PropTypes.func.isRequired,
-    onSearchChange: PropTypes.func.isRequired,
+    dataSource: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     /**
      * Callback when input content changes
      */
-    onChange: PropTypes.func.isRequired,
+    defaultValue: PropTypes.string,
 
     /**
      * pagination config
      */
-    pageConfig: PropTypes.shape({
-      page: PropTypes.number,
-      rowsPerPage: PropTypes.number,
-      count: PropTypes.number,
-    }),
+    disabled: PropTypes.bool,
     /**
      * text palcehold
      */
-    placeholder: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
     /**
      * callback when select value change
      */
-    onSelect: PropTypes.func.isRequired,
+    onSearchChange: PropTypes.func.isRequired,
     /**
      * default value
      */
-    defaultValue: PropTypes.string,
+    onSelect: PropTypes.func.isRequired,
     /**
      * should component disabled
      */
-    disabled: PropTypes.bool,
+    pageConfig: PropTypes.shape({
+      count: PropTypes.number,
+      page: PropTypes.number,
+      rowsPerPage: PropTypes.number,
+    }),
     /**
      * set char of trigger
      */
-    //triggerOptions: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-    prefix: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    // triggerOptions: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    placeholder: PropTypes.string,
     /**
      * set the option to  be selected
      */
-    dataSource: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    prefix: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     /**
      * show error
      */
-    showError: PropTypes.bool,
+    readOnly: PropTypes.bool,
     /**
      * initial selected value
      */
@@ -109,19 +110,21 @@ class Mention extends Component {
     /**
      * set if the text can only be read
      */
-    readOnly: PropTypes.bool,
+    showError: PropTypes.bool,
   };
+
   static defaultProps = {
-    onSearchChange: function() {},
-    onChange: function() {},
-    onSelect: function() {},
+    onSearchChange() {},
+    onChange() {},
+    onSelect() {},
     disabled: false,
-    prefix: ['@'], //默认的触发符号
+    prefix: ['@'], // 默认的触发符号
     placeholder: 'please input something',
     readOnly: false,
     defaultValue: '',
-    selected: [], //初始化传入的item
+    selected: [], // 初始化传入的item
   };
+
   constructor(props) {
     super();
     this.state = {
@@ -136,24 +139,25 @@ class Mention extends Component {
       },
     };
   }
+
   handleChange = e => {
     let trigger = null;
     if (this.state.open == false) {
-      //可选框未打开时打开可选框
+      // 可选框未打开时打开可选框
       if (
         e.target.value.indexOf(' ') === -1 &&
         this.props.prefix.indexOf(e.target.value.charAt(0)) > -1
       ) {
-        //标志符在开头
+        // 标志符在开头
         trigger = e.target.value[0];
         this.setState({
           open: true,
           triggerOption: trigger,
         });
-        this.props.onSearchChange(e.target.value.slice(1, e.target.value.length), trigger); //让外部传入可选的项目
+        this.props.onSearchChange(e.target.value.slice(1, e.target.value.length), trigger); // 让外部传入可选的项目
       } else if (e.target.value.indexOf(' ') > -1) {
-        //标志符在中间但是前面有空格
-        let stringForComplete = e.target.value.split(' ').pop();
+        // 标志符在中间但是前面有空格
+        const stringForComplete = e.target.value.split(' ').pop();
         if (this.props.prefix.indexOf(stringForComplete[0]) > -1) {
           trigger = stringForComplete[0];
         }
@@ -162,40 +166,43 @@ class Mention extends Component {
             open: true,
             triggerOption: trigger,
           });
-          this.props.onSearchChange(stringForComplete.slice(1, stringForComplete.length), trigger); //让外部传入可选的项目
+          this.props.onSearchChange(stringForComplete.slice(1, stringForComplete.length), trigger); // 让外部传入可选的项目
         }
       }
     } else if (e.target.value) {
-      //可选框打开时是过滤字符串的功能
-      let targetOptionIndex = e.target.value.lastIndexOf(this.state.triggerOption);
-      let searchLength = e.target.value.length;
-      let filterOption = e.target.value.slice(targetOptionIndex + 1, searchLength);
+      // 可选框打开时是过滤字符串的功能
+      const targetOptionIndex = e.target.value.lastIndexOf(this.state.triggerOption);
+      const searchLength = e.target.value.length;
+      const filterOption = e.target.value.slice(targetOptionIndex + 1, searchLength);
       this.props.onSearchChange(filterOption, this.state.triggerOption);
     }
     this.setState({
       inputValue: e.target.value,
     });
-    this.props.onChange(e.target.value); //用来回显
+    this.props.onChange(e.target.value); // 用来回显
   };
+
   handleItemClick = item => e => {
-    let position = this.state.inputValue.lastIndexOf(this.state.triggerOption); //找到触发符号的位置
-    let newValue = this.state.inputValue.slice(0, position + 1) + item; //把选中的item接到后面
-    let newSelectedItem = [...this.state.selectedItem, item]; //所有的选中值
+    const position = this.state.inputValue.lastIndexOf(this.state.triggerOption); // 找到触发符号的位置
+    const newValue = this.state.inputValue.slice(0, position + 1) + item; // 把选中的item接到后面
+    const newSelectedItem = [...this.state.selectedItem, item]; // 所有的选中值
     this.setState({
       open: false,
       inputValue: newValue,
       selectedItem: newSelectedItem,
     });
-    this.props.onSelect(newSelectedItem); //回传选中值
-    this.props.onChange(newValue); //回传输入值
+    this.props.onSelect(newSelectedItem); // 回传选中值
+    this.props.onChange(newValue); // 回传输入值
   };
+
   handleBlur(e) {
     this.setState({
       open: false,
     });
   }
+
   pageCallbackFn(i) {
-    //切换页面的函数
+    // 切换页面的函数
     this.setState({
       pageConfig: {
         ...this.state.pageConfig,
@@ -203,8 +210,9 @@ class Mention extends Component {
       },
     });
   }
+
   static getDerivedStateFromProps(newProps, prevState) {
-    //父组件改変分页参数时state要跟着变
+    // 父组件改変分页参数时state要跟着变
     if (newProps !== prevState.preProps) {
       return {
         pageConfig: { ...prevState.pageConfig, count: newProps.pageConfig.count },
@@ -213,6 +221,7 @@ class Mention extends Component {
     }
     return null;
   }
+
   render() {
     const {
       classes,
@@ -233,7 +242,7 @@ class Mention extends Component {
       showPagination = true;
     }
     if (dataSource) {
-      //通过dataSource传参的情况
+      // 通过dataSource传参的情况
       items = dataSource
         ? dataSource.map(item => {
             let selected = false;
@@ -255,13 +264,12 @@ class Mention extends Component {
                   {item}
                 </MenuItem>
               );
-            } else {
-              throw new Error('AutoComplete[dataSource] only supports type `string[] | Object[]`.');
             }
+              throw new Error('AutoComplete[dataSource] only supports type `string[] | Object[]`.');
           })
         : [];
     } else if (React.Children) {
-      //通过child传参的情况
+      // 通过child传参的情况
       items = React.Children
         ? React.Children.map(children, child => {
             if (!React.isValidElement(child)) {

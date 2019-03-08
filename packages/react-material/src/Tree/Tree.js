@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
 import styles from './styles';
 import cssAnimation from 'css-animation';
+
 const STYLE = `
 .collapse {
   overflow: hidden;
@@ -71,14 +72,14 @@ class Tree extends React.Component {
   render() {
     const props = this.props;
     const { prefixCls, className } = props;
-    let checkable = props.checkable;
+    const checkable = props.checkable;
     return (
       <RcTree
         {...props}
         className={className}
         checkable={checkable ? <span className={`${prefixCls}-checkbox-inner`} /> : checkable}
       >
-        {/*<style dangerouslySetInnerHTML={{ __html: STYLE }}/>*/}
+        {/* <style dangerouslySetInnerHTML={{ __html: STYLE }}/> */}
         {this.props.children}
       </RcTree>
     );
@@ -88,18 +89,13 @@ Tree.propTypes = {
   /**
    * @ignore
    */
-  prefixCls: PropTypes.string,
+  autoExpandParent: PropTypes.bool,
   /**
    * 是否自动展开父节点
    */
-  autoExpandParent: PropTypes.bool,
-  /**
-   * 节点前添加 Checkbox 复选框
-   */
   checkable: PropTypes.bool,
   /**
-   * （受控）选中复选框的树节点
-   * （注意：父子节点有关联，如果传入父节点key，则子节点自动选中；相应当子节点key都传入，父节点也自动选中。当设置checkable和checkStrictly，它是一个有checked和halfChecked属性的对象，并且父子节点的选中与否不再关联
+   * 节点前添加 Checkbox 复选框
    */
   checkedKeys: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.string),
@@ -109,90 +105,95 @@ Tree.propTypes = {
     }),
   ]),
   /**
-   * checkable状态下节点选择完全受控（父子节点选中状态不再关联）
+   * （受控）选中复选框的树节点
+   * （注意：父子节点有关联，如果传入父节点key，则子节点自动选中；相应当子节点key都传入，父节点也自动选中。当设置checkable和checkStrictly，它是一个有checked和halfChecked属性的对象，并且父子节点的选中与否不再关联
    */
   checkStrictly: PropTypes.bool,
   /**
-   * 默认选中复选框的树节点
+   * checkable状态下节点选择完全受控（父子节点选中状态不再关联）
    */
   defaultCheckedKeys: PropTypes.arrayOf(PropTypes.string),
   /**
-   * 默认展开所有树节点
+   * 默认选中复选框的树节点
    */
   defaultExpandAll: PropTypes.bool,
   /**
-   * 默认展开指定的树节点
+   * 默认展开所有树节点
    */
   defaultExpandedKeys: PropTypes.arrayOf(PropTypes.string),
   /**
-   * 默认展开父节点
+   * 默认展开指定的树节点
    */
   defaultExpandParent: PropTypes.bool,
   /**
-   * 默认选中的树节点
+   * 默认展开父节点
    */
   defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
   /**
-   * 将树禁用
+   * 默认选中的树节点
    */
   disabled: PropTypes.bool,
   /**
-   * 设置节点可拖拽（IE>8）
+   * 将树禁用
    */
   draggable: PropTypes.bool,
   /**
-   * （受控）展开指定的树节点
+   * 设置节点可拖拽（IE>8）
    */
   expandedKeys: PropTypes.arrayOf(PropTypes.string),
   /**
-   * 支持点选多个节点（节点本身）
+   * （受控）展开指定的树节点
    */
   multiple: PropTypes.bool,
   /**
-   * （受控）设置选中的树节点
-   */
-  selectedKeys: PropTypes.arrayOf(PropTypes.string),
-  /**
-   * 是否展示 TreeNode title 前的图标，没有默认样式，如设置为 true，需要自行定义图标相关样式
-   */
-  showIcon: PropTypes.bool,
-  /**
-   * 是否展示连接线
-   */
-  showLine: PropTypes.bool,
-  /**
-   * 点击复选框触发
+   * 支持点选多个节点（节点本身）
    */
   onCheck: (checkedKeys, e) => null,
   /**
-   * dragenter 触发时调用
+   * （受控）设置选中的树节点
    */
   onDragEnter: options => null,
   /**
-   * dragleave 触发时调用
+   * 是否展示 TreeNode title 前的图标，没有默认样式，如设置为 true，需要自行定义图标相关样式
    */
   onDragLeave: options => null,
   /**
-   * dragover 触发时调用
+   * 是否展示连接线
    */
   onDragOver: options => null,
   /**
-   * 开始拖拽时调用
+   * 点击复选框触发
    */
   onDragStart: options => null,
-  /** drop 触发时调用 */
+  /**
+   * dragenter 触发时调用
+   */
   onDrop: options => null,
   /**
-   * 展开/收起节点时触发
+   * dragleave 触发时调用
    */
   onExpand: (expandedKeys, info) => null,
   /**
-   * 点击树节点触发
+   * dragover 触发时调用
+   */
+  onRightClick: options => null,
+  /**
+   * 开始拖拽时调用
    */
   onSelect: (selectedKeys, e) => null,
+  /** drop 触发时调用 */
+  prefixCls: PropTypes.string,
+  /**
+   * 展开/收起节点时触发
+   */
+  selectedKeys: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * 点击树节点触发
+   */
+  showIcon: PropTypes.bool,
   /**
    * 响应右键点击
    */
-  onRightClick: options => null,
+  showLine: PropTypes.bool,
 };
 export default withStyles(styles, { name: 'RMTree' })(Tree);

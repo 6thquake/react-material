@@ -24,7 +24,7 @@ class InputLabelWrapper extends Component {
 
   render() {
     const { isDark, classes, ...others } = this.props;
-    let labelClasses = isDark
+    const labelClasses = isDark
       ? {
           root: classes.label,
           focused: classes.labelForcus,

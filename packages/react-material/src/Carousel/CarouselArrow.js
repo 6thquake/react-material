@@ -38,16 +38,17 @@ class CarouselArrow extends React.Component {
   constructor(props) {
     super(props);
   }
+
   componentDidMount() {}
 
   render() {
     const { pre, next, classes } = this.props;
     return (
       <div className={classes.root}>
-        <div className={classes.pre + ' ' + classes.arrow} onClick={pre}>
+        <div className={`${classes.pre} ${classes.arrow}`} onClick={pre}>
           <ChevronLeft />
         </div>
-        <div className={classes.next + ' ' + classes.arrow} onClick={next}>
+        <div className={`${classes.next} ${classes.arrow}`} onClick={next}>
           <ChevronRight />
         </div>
       </div>

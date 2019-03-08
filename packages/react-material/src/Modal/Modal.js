@@ -8,7 +8,7 @@ import Modal from './ModalBase';
 import ConfirmDialog from './Confirm';
 
 function confirm(config) {
-  let div = document.createElement('div');
+  const div = document.createElement('div');
 
   document.body.appendChild(div);
 

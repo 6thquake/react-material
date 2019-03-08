@@ -14,9 +14,10 @@ const styles = {
     position: 'static',
   },
 };
+
 const _source = {
   beginDrag(props, monitor, component) {
-    let item = component.state.comp.beginDrag(props, monitor, component);
+    const item = component.state.comp.beginDrag(props, monitor, component);
     return item;
   },
   endDrag(props, monitor, component) {
@@ -32,8 +33,8 @@ const _source = {
 
 function collect(connect, monitor) {
   return {
-    connect: connect,
-    monitor: monitor,
+    connect,
+    monitor,
   };
 }
 
@@ -45,6 +46,7 @@ class _DragSource extends PureComponent {
       comp: '',
     };
   }
+
   register = comp => {
     this.state.comp = comp;
   };
@@ -54,12 +56,12 @@ class _DragSource extends PureComponent {
     const childrenWithProps = React.Children.map(children, child =>
       React.cloneElement(child, {
         register: this.register.bind(this),
-        connect: connect,
-        monitor: monitor,
+        connect,
+        monitor,
       }),
     );
     return connect.dragSource()(<div className={classes.inner}>{childrenWithProps}</div>);
   }
 }
-let DragSource = DragSourceBase('*', _source, collect)(_DragSource);
+const DragSource = DragSourceBase('*', _source, collect)(_DragSource);
 export default withStyles(styles)(DragSource);

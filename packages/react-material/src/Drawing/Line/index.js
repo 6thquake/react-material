@@ -3,6 +3,7 @@ import React, { Component, PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import PubSub from 'pubsub-js';
 import Arrow from '../Arrow.js';
+
 const defaultAnchor = { x: 0.5, y: 1 };
 const defaultBorderColor = '#000';
 const defaultBorderStyle = 'solid';
@@ -24,9 +25,10 @@ export default class LineTo extends Component {
       toAnchor: 'center middle',
     };
   }
+
   componentWillMount() {
-    //this.fromAnchor = this.parseAnchor(this.props.fromAnchor);
-    //this.toAnchor = this.parseAnchor(this.props.toAnchor);
+    // this.fromAnchor = this.parseAnchor(this.props.fromAnchor);
+    // this.toAnchor = this.parseAnchor(this.props.toAnchor);
     this.delay = this.parseDelay(this.props.delay);
   }
 
@@ -37,21 +39,22 @@ export default class LineTo extends Component {
     }
     this.pubsub_token = PubSub.subscribe(
       'boxMove',
-      function(msg, data) {
+      (msg, data) => {
         this.setState({
           fromAnchor: data[0],
           toAnchor: data[1],
         });
-      }.bind(this),
+      },
     );
   }
+
   componentWillReceiveProps(nextProps) {
     /*  if (nextProps.fromAnchor !== this.props.fromAnchor) {
             this.fromAnchor = this.parseAnchor(this.props.fromAnchor);
         }
         if (nextProps.toAnchor !== this.props.toAnchor) {
             this.toAnchor = this.parseAnchor(this.props.toAnchor);
-        }*/
+        } */
     this.delay = this.parseDelay(nextProps.delay);
     if (typeof this.delay !== 'undefined') {
       this.deferUpdate(this.delay);
@@ -86,7 +89,7 @@ export default class LineTo extends Component {
   parseDelay(value) {
     if (typeof value === 'undefined') {
       return value;
-    } else if (typeof value === 'boolean' && value) {
+    } if (typeof value === 'boolean' && value) {
       return 0;
     }
     const delay = parseInt(value, 10);
@@ -151,8 +154,8 @@ export default class LineTo extends Component {
     const box0 = from.getBoundingClientRect();
     const box1 = to.getBoundingClientRect();
 
-    let offsetX = window.pageXOffset;
-    let offsetY = window.pageYOffset;
+    const offsetX = window.pageXOffset;
+    const offsetY = window.pageYOffset;
 
     const x0 = box0.left + box0.width * anchor0.x + offsetX;
     const x1 = box1.left + box1.width * anchor1.x + offsetX;
@@ -186,8 +189,8 @@ LineTo.propTypes = Object.assign(
     // from: PropTypes.string.isRequired,
     // to: PropTypes.string.isRequired,
     // within: PropTypes.string,
-    //fromAnchor: PropTypes.string,
-    //toAnchor: PropTypes.string,
+    // fromAnchor: PropTypes.string,
+    // toAnchor: PropTypes.string,
     delay: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   },
   optionalStyleProps,
@@ -228,8 +231,8 @@ export class Line extends PureComponent {
       padding: '0',
       margin: '0',
       position: 'absolute',
-      top: y1 - 10 + 'px',
-      left: x1 - 5 + 'px',
+      top: `${y1 - 10}px`,
+      left: `${x1 - 5}px`,
       zIndex: '2',
     };
     const defaultStyle = {
@@ -239,7 +242,7 @@ export class Line extends PureComponent {
     };
 
     const lineprops = {
-      //className: this.props.className,
+      // className: this.props.className,
       style: Object.assign({}, defaultStyle, linePositionStyle),
     };
     // We need a wrapper element to prevent an exception when then

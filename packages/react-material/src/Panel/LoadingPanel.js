@@ -75,6 +75,7 @@ class LoadingPanel extends Component {
   constructor(props) {
     super(props);
   }
+
   loading() {
     const { classes } = this.props;
     return (
@@ -89,6 +90,7 @@ class LoadingPanel extends Component {
       </div>
     );
   }
+
   render() {
     const { children, type, loaded, estimatedTime, ...others } = this.props;
     const { classes } = this.props;
@@ -109,7 +111,7 @@ LoadingPanel.propTypes = {
   /**
    * Loading type;if progress,loading without mask，if mask,loading with mask
    */
-  type: PropTypes.string,
+  estimatedTime: PropTypes.number,
   /**
    * If true,loading is finish.
    */
@@ -117,7 +119,7 @@ LoadingPanel.propTypes = {
   /**
    * Loading estimated time
    */
-  estimatedTime: PropTypes.number,
+  type: PropTypes.string,
 };
 
 LoadingPanel.defaultProps = {

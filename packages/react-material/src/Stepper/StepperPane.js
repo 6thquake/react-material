@@ -84,8 +84,8 @@ class StepperPane extends React.Component {
         disabled: false,
         last: index + 1 === childrenArray.length,
         alternativeLabel,
-        direction: direction,
-        unmountAfterBack: unmountAfterBack,
+        direction,
+        unmountAfterBack,
         allowToNext: this.allowToNext.bind(this),
       };
 
@@ -111,9 +111,7 @@ class StepperPane extends React.Component {
           className={classes.mobileStepper}
           nextButton={
             this.state.activeStep === steps.length - 1 ? (
-              finishButton ? (
-                finishButton
-              ) : (
+              finishButton || (
                 <Button size="small" disabled={this.state.allowToNext} onClick={this.props.finish}>
                   {finish}
                   {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}

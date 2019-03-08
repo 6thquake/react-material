@@ -138,7 +138,7 @@ class C extends Component {
 
   render() {
     let { circular, size, classes, ...props } = this.props;
-    classes = classes ? classes : {};
+    classes = classes || {};
     const { checked, ...classesPro } = classes;
     return <RadioGroupStandalone {...props} classes={classesPro} />;
   }
@@ -155,7 +155,7 @@ C.propTypes = {
   /**
    *  大小，只对按钮样式生效
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  children: PropTypes.node,
   /**
    *  是否圆角，只对按钮样式生效
    */
@@ -163,15 +163,15 @@ C.propTypes = {
   /**
    * The content of the component.
    */
-  children: PropTypes.node,
+  name: PropTypes.string,
   /**
    * The name used to reference the value of the control.
    */
-  name: PropTypes.string,
+  onBlur: PropTypes.func,
   /**
    * @ignore
    */
-  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
   /**
    * Callback fired when a radio button is selected.
    *
@@ -179,11 +179,11 @@ C.propTypes = {
    * You can pull out the new value by accessing `event.target.value`.
    * @param {string} value The `value` of the selected radio button
    */
-  onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
   /**
    * @ignore
    */
-  onKeyDown: PropTypes.func,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * Value of the selected radio button.
    */

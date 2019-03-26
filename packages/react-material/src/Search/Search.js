@@ -2,28 +2,33 @@ import React, { Component } from 'react';
 import { withStyles } from '../styles';
 import PropTypes from 'prop-types';
 import SearchIcon from '@material-ui/icons/Search';
-import Button from '../Button';
+import classNames from 'classnames';
 
 const styles = theme => ({
   root: {
-    position: 'relative',
-    fontSize: '13px',
-    overflow: 'hidden',
+    width: '100%',
+    display: 'flex',
   },
-  right: {
-    textAlign: 'right',
-  },
-  input: {
-    padding: '0.3em 1.5em',
-    border: 'none',
+  box: {
+    display: 'flex',
+    alignItems: 'center',
     background: 'rgba(0,0,0,0.1)',
     borderRadius: '1.3em',
+    transition: 'all 0.5s',
+  },
+
+  alignRight: {
+    justifyContent: 'flex-end',
+  },
+
+  input: {
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    flex: 1,
+    border: 'none',
+    background: 'transparent',
     lineHeight: '2em',
     color: 'rgba(255,255,255,0.8)',
     outline: 'none',
-    width: '50%',
-    transition: 'all 0.5s',
-    minWidth: '20em',
     '&::-webkit-input-placeholder': {
       color: 'rgba(255,255,255,0.3)',
     },
@@ -36,9 +41,7 @@ const styles = theme => ({
     '&:-ms-input-placeholder': {
       color: 'rgba(255,255,255,0.3)',
     },
-    '&:focus': {
-      width: '100%',
-    },
+    ...theme.typography.body1,
   },
   hasValue: {
     width: '100%',
@@ -59,18 +62,13 @@ const styles = theme => ({
     },
   },
 
-  burron: {},
   iconWrap: {
-    width: '0px',
-    position: 'relative',
-    display: 'inline',
+    marginRight: theme.spacing.unit * 2,
+    display: 'flex',
+    alignItems: 'center',
   },
   icon: {
     color: 'rgba(255,255,255,0.3)',
-    position: 'absolute',
-    right: '0.5em',
-    top: '0em',
-    fontSize: '1.5em',
   },
   darkIcon: {
     color: 'rgba(0,0,0,0.3)',
@@ -78,100 +76,57 @@ const styles = theme => ({
 });
 
 class Search extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    focus: this.props.autoFocus,
+  };
 
-    this.state = {
-      search: this.props.defaultValue || '',
-      options: [],
-      pageConfig: {
-        currentPage: 1,
-        pageSize: 5,
-        total: 34,
-      },
-    };
-  }
-
-  handleChangeSingle(event, child) {
-    const { onChange, value } = this.props;
-    let text = event.target.value;
-    let self = this;
-    this.typeIn = true;
-    if (value !== undefined) {
-      onChange && onChange(event);
-    } else {
-      this.setState({ search: text }, () => {
-        self.ok();
-      });
-    }
-  }
-
-  // autoCb(i) {
-  //   console.log('item', i);
-  //   this.setState({
-  //     pageConfig: {
-  //       ...this.state.pageConfig,
-  //       currentPage: i,
-  //     },
-  //   });
-  // }
-
-  // inputChangeCb(event) {
-  //   console.log('item', event);
-  //   this.setState({ inputText: event.target.value });
-  // }
-
-  ok() {
-    const { search } = this.state;
+  handleChange = e => {
     const { onChange } = this.props;
-    onChange && typeof onChange === 'function' && onChange(search);
-  }
+    onChange(e);
+  };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.value !== undefined) {
-      return null;
-    }
+  handleBlur = e => {
+    this.setState({
+      focus: false,
+    });
+    this.props.onBlur(e);
+  };
 
-    if (nextProps !== prevState.preProps) {
-      //说明是props变化了
-      return {
-        preProps: nextProps,
-      };
-    }
-    return null;
-  }
-  componentDidUpdate() {
-    this.typeIn = false;
-  }
+  handleFocus = e => {
+    this.setState({
+      focus: true,
+    });
+    this.props.onFocus(e);
+  };
 
   render() {
-    const { classes, isDark, floatRight, defaultValue, placeholder, value } = this.props;
-    let search = '';
-    if (value !== undefined) {
-      search = value;
-    } else {
-      search = this.state.preProps.defaultValue;
-      if (this.typeIn) {
-        search = this.state.search;
-      }
-    }
-    // const { currentPage, pageSize, total } = this.state.pageConfig;
+    const { classes, isDark, floatRight, placeholder, value, autoFocus, scale, width } = this.props;
+    const { focus } = this.state;
+    const boxWidth = focus ? '100%' : `${String(100 * scale)}%`;
+    const rootStyle = {
+      width,
+    };
+    const boxStyle = {
+      width: boxWidth,
+    };
     return (
-      <div className={classes.root + ' ' + (!!floatRight ? classes.right : '')}>
-        <input
-          className={
-            classes.input +
-            ' ' +
-            (!!isDark ? classes.darkFont : '') +
-            ' ' +
-            (!!search ? classes.hasValue : '')
-          }
-          value={search}
-          onChange={this.handleChangeSingle.bind(this)}
-          placeholder={placeholder}
-        />
-        <div className={classes.iconWrap}>
-          <SearchIcon className={classes.icon + ' ' + (!!isDark ? classes.darkIcon : '')} />
+      <div
+        style={rootStyle}
+        className={classNames(classes.root, { [classes.alignRight]: floatRight })}
+      >
+        <div style={boxStyle} className={classes.box}>
+          <input
+            autoFocus={autoFocus}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
+            className={classNames(classes.input, { [classes.darkFont]: isDark })}
+            value={value}
+            onChange={this.handleChange}
+            placeholder={placeholder}
+          />
+          <div className={classes.iconWrap}>
+            <SearchIcon className={classNames(classes.icon, { [classes.darkIcon]: isDark })} />
+          </div>
         </div>
       </div>
     );
@@ -179,10 +134,11 @@ class Search extends Component {
 }
 
 Search.propTypes = {
+  autoFocus: PropTypes.bool,
   /**
-   * If this property is passed, Search will be Controlled
+   * value for search
    */
-  value: PropTypes.string,
+  classes: PropTypes.object,
   /**
    * float to right
    */
@@ -190,25 +146,33 @@ Search.propTypes = {
   /**
    * placeholder
    */
-  placeholder: PropTypes.string,
-  /**
-   * defaultValue for search
-   */
-  defaultValue: PropTypes.string,
+  isDark: PropTypes.bool,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
   /**
    * callback function for search value changed;
    */
-  onChange: PropTypes.function,
+  onFocus: PropTypes.func,
   /**
    * dark theme for light background
    */
-  isDark: PropTypes.bool, //'dark'
+  placeholder: PropTypes.string, // 'dark'
+
+  scale: PropTypes.number,
+
+  value: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 Search.defaultProps = {
-  defaultValue: '',
   floatRight: false,
   isDark: false,
+  onChange: () => {},
+  onBlur: () => {},
+  onFocus: () => {},
+  autoFocus: false,
+  scale: 0.5,
+  width: '100%',
 };
 
 export default withStyles(styles, { name: 'RMSearch' })(Search);

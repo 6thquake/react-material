@@ -7,34 +7,33 @@ import Icon from '@6thquake/react-material/Icon';
 import IconButton from '@6thquake/react-material/IconButton';
 
 const style = theme => {
-  conttolledSearch: {
-    marginBottom: theme.spacing.unit * 3;
+  {
+    theme.spacing.unit * 3;
   }
 };
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      values: 'test word',
       text: '',
     };
   }
-  onChange = data => {
-    console.log(data);
-  };
-  clearValue() {
-    this.setState({ values: '' });
-    console.log('clean values');
-  }
+
   handleChange = e => {
     this.setState({
       text: e.target.value,
     });
   };
+
+  clearValue = () => {
+    this.setState({
+      text: '',
+    });
+  };
+
   render() {
     const { classes } = this.props;
-    const { clearValue } = this;
-    const { values, text } = this.state;
+    const { text } = this.state;
     return (
       <div style={{ width: '100%' }}>
         {/* Controlled Search */}
@@ -54,16 +53,29 @@ class App extends React.Component {
         <br />
         <div style={{ overflow: 'hidden' }}>
           <div style={{ width: '50%', float: 'right' }}>
-            <Search floatRight placeholder={'全局搜索'} onChange={this.onChange} isDark />
+            <Search floatRight placeholder={'全局搜索'} onChange={this.handleChange} isDark />
             {/**/}
           </div>
         </div>
         <br />
+        <Search
+          placeholder={'search'}
+          floatRight
+          value={text}
+          onChange={this.handleChange}
+          isDark
+        />
+        <br />
         <div style={{ overflow: 'hidden', background: '#2196f3', padding: '2em' }}>
-          <div style={{ width: '50%', float: 'left' }}>
-            <Search placeholder={'全局搜索'} defaultValue={values} onChange={this.onChange} />
-          </div>
-          <IconButton color="secondary" onClick={clearValue.bind(this)}>
+          <Search
+            placeholder={'search'}
+            value={text}
+            width={400}
+            scale={0.8}
+            onChange={this.handleChange}
+          />
+
+          <IconButton color="secondary" onClick={this.clearValue}>
             <Icon>delete</Icon>
           </IconButton>
         </div>

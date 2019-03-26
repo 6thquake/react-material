@@ -125,7 +125,7 @@ class OrderDropTarget extends TargetWrapper {
           </GridListTile>
         );
       }
-        return null;
+      return null;
     });
     return (
       <GridList spacing={0} cellHeight={cellSize} cols={colsCount} className={classes.root}>

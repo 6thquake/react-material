@@ -99,10 +99,10 @@ class Filters extends Component {
         newVal = [selectVal];
       }
     } else if (this.isSelected(selectVal)) {
-        newVal = value.filter(v => v !== selectVal);
-      } else {
-        newVal = [...value, selectVal];
-      }
+      newVal = value.filter(v => v !== selectVal);
+    } else {
+      newVal = [...value, selectVal];
+    }
     onChange(newVal);
   };
 

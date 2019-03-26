@@ -70,8 +70,7 @@ class OrderDragSource extends DandDWrapper {
     // console.log('hoverprops',props);
     const gi = monitor.getItem();
 
-
-let from;
+    let from;
     if (gi) {
       from = gi.sortFrom;
     }

@@ -125,7 +125,6 @@ class Search extends Component {
           <div className={classes.iconWrap}>
             <SearchIcon className={classNames(classes.icon, { [classes.darkIcon]: isDark })} />
           </div>
-
         </div>
       </div>
     );

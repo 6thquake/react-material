@@ -2,7 +2,6 @@
  * @ignore - do not document.
  */
 
-
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const _createClass = (function() {
@@ -20,7 +19,7 @@ const _createClass = (function() {
     if (staticProps) defineProperties(Constructor, staticProps);
     return Constructor;
   };
-}());
+})();
 
 const _react = require('react');
 
@@ -60,10 +59,10 @@ function _inherits(subClass, superClass) {
     constructor: { value: subClass, enumerable: false, writable: true, configurable: true },
   });
   if (superClass) {
-Object.setPrototypeOf
+    Object.setPrototypeOf
       ? Object.setPrototypeOf(subClass, superClass)
       : (subClass.__proto__ = superClass);
-}
+  }
 }
 
 const TreeList = (function(_Component) {
@@ -95,25 +94,27 @@ const TreeList = (function(_Component) {
             this.setState({ activeListItem: index });
           }
         } else if (listItem.childen) {
-            const indexOfListItemInArray = this.state.expandedListItems.indexOf(index);
-            if (indexOfListItemInArray === -1) {
-              this.setState({
-                expandedListItems: this.state.expandedListItems.concat([index]),
-              });
-            } else {
-              const newArray = [].concat(this.state.expandedListItems);
-              newArray.splice(indexOfListItemInArray, 1);
-              this.setState({
-                expandedListItems: newArray,
-              });
-            }
-          } else {
+          const indexOfListItemInArray = this.state.expandedListItems.indexOf(index);
+          if (indexOfListItemInArray === -1) {
             this.setState({
-              activeListItem: index,
+              expandedListItems: this.state.expandedListItems.concat([index]),
+            });
+          } else {
+            const newArray = [].concat(this.state.expandedListItems);
+            newArray.splice(indexOfListItemInArray, 1);
+            this.setState({
+              expandedListItems: newArray,
             });
           }
-        if (this.searchMode && this.props.handleTouchTapInSearch) this.props.handleTounchInSearchMode(listItem, index);
-        if (!this.searchMode && this.props.handleTouchTap) this.props.handleTouchTap(listItem, index);
+        } else {
+          this.setState({
+            activeListItem: index,
+          });
+        }
+        if (this.searchMode && this.props.handleTouchTapInSearch)
+          this.props.handleTounchInSearchMode(listItem, index);
+        if (!this.searchMode && this.props.handleTouchTap)
+          this.props.handleTouchTap(listItem, index);
       },
     },
     {
@@ -122,14 +123,11 @@ const TreeList = (function(_Component) {
         const _this2 = this;
         const _props = this.props;
 
+        const children = _props.children;
 
-const children = _props.children;
+        const listItems = _props.listItems;
 
-
-const listItems = _props.listItems;
-
-
-const contentKey = _props.contentKey;
+        const contentKey = _props.contentKey;
 
         const style = this.props.styel ? this.props.style : {};
         const startingDepth = this.props.startingDepth ? this.props.startingDepth : 1;
@@ -142,14 +140,11 @@ const contentKey = _props.contentKey;
         const listHeight = this.props.listHeight ? this.props.listHeight : '32px';
         const _props2 = this.props;
 
+        const haveSearchbar = _props2.haveSearchbar;
 
-const haveSearchbar = _props2.haveSearchbar;
+        const onSearch = _props.onSearch;
 
-
-const onSearch = _props.onSearch;
-
-
-const icons = _props2.icons;
+        const icons = _props2.icons;
 
         let listItemsModifed = listItems.map((listItem, i, inputArray) => {
           listItem._styles = {
@@ -229,7 +224,7 @@ const icons = _props2.icons;
               },
             });
           }
-            return null;
+          return null;
         });
 
         const styles = {
@@ -288,7 +283,7 @@ const icons = _props2.icons;
               if (expandedListItems.indexOf(index) === -1) {
                 return icons.leftIconCollapsed;
               }
-                return icons.leftIconExpand;
+              return icons.leftIconExpand;
             }
           }
         }
@@ -298,12 +293,12 @@ const icons = _props2.icons;
             if (expandedListItems.indexOf(listItem.parentIndex) === -1) {
               return false;
             }
-              const parent = listItems.filter((_listItem, index) => {
-                return index === listItem.parentIndex;
-              })[0];
-              return parentsAreExpanded(parent);
+            const parent = listItems.filter((_listItem, index) => {
+              return index === listItem.parentIndex;
+            })[0];
+            return parentsAreExpanded(parent);
           }
-            return true;
+          return true;
         }
 
         function tagListItemsWithSearchTerm(searchTerm, listItem) {
@@ -312,11 +307,10 @@ const icons = _props2.icons;
             let match = false;
             let matchIndex = void 0;
 
-
-let matchTermLength = void 0;
+            let matchTermLength = void 0;
 
             if (searchTerms[0] !== '') {
-              searchTerms.forEach((searchTerm) => {
+              searchTerms.forEach(searchTerm => {
                 const content = listItem[contentKey] ? listItem[contentKey] : '';
                 matchIndex = content.toLowerCase().indexOf(searchTerm.toLowerCase());
                 if (matchIndex !== -1) {
@@ -332,19 +326,20 @@ let matchTermLength = void 0;
                 highlight: [matchIndex, matchTermLength],
               });
             }
-              return listItem;
+            return listItem;
           };
 
           if (listItem) {
             return f(listItem);
           }
-            return f;
+          return f;
         }
 
         function childIsTaggedWithSearch(listItem, listItems) {
           if (listItem.children) {
             for (let i = 0; i < listItem.children.length; i++) {
-              for (let j = 0; j < listItems.length; j++) if (listItems[j].searchMatched) return true;
+              for (let j = 0; j < listItems.length; j++)
+                if (listItems[j].searchMatched) return true;
             }
           }
         }
@@ -352,7 +347,7 @@ let matchTermLength = void 0;
     },
   ]);
   return TreeList;
-}(_react.Component));
+})(_react.Component);
 
 TreeList.propTypes = {
   activeListItem: _propTypes2.default.number,

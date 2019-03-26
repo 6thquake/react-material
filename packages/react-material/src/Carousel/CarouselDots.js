@@ -48,11 +48,9 @@ class CarouselDots extends React.Component {
     if (this.props.speed) {
       const dotEl = ReactDOM.findDOMNode(this.dotRef.current);
 
+      const nodes = dotEl.childNodes;
 
-const nodes = dotEl.childNodes;
-
-
-const speed = this.props.speed;
+      const speed = this.props.speed;
       for (let i = 0, len = nodes.length; i < len; i++) {
         nodes[i].style.transition = `all ${speed}s`;
         nodes[i].style.WebkitTransition = `all ${speed}s`;

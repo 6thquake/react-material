@@ -130,10 +130,10 @@ class Select extends Component {
           preProps: nextProps,
         };
       }
-        return {
-          optionsArray: nextProps.children,
-          preProps: nextProps,
-        };
+      return {
+        optionsArray: nextProps.children,
+        preProps: nextProps,
+      };
     }
     return null;
   }
@@ -191,34 +191,34 @@ class Select extends Component {
           if (renderValue) {
             return renderValue(selected);
           }
-            let displaySingle = '';
-            const displayMultiple = [];
-            React.Children.map(children, child => {
-              if (!React.isValidElement(child)) {
-                return null;
-              }
-              let selected;
+          let displaySingle = '';
+          const displayMultiple = [];
+          React.Children.map(children, child => {
+            if (!React.isValidElement(child)) {
+              return null;
+            }
+            let selected;
 
-              if (multiple) {
-                if (!Array.isArray(value)) {
-                  throw new Error(
-                    'React-Material: the `value` property must be an array ' +
-                      'when using the `Select` component with `multiple`.',
-                  );
-                }
-
-                selected = value.indexOf(child.props.value) !== -1;
-                if (selected) {
-                  displayMultiple.push(child.props.children);
-                }
-              } else {
-                selected = value === child.props.value;
-                if (selected) {
-                  displaySingle = child.props.children;
-                }
+            if (multiple) {
+              if (!Array.isArray(value)) {
+                throw new Error(
+                  'React-Material: the `value` property must be an array ' +
+                    'when using the `Select` component with `multiple`.',
+                );
               }
-            });
-            return multiple ? displayMultiple.join(', ') : displaySingle;
+
+              selected = value.indexOf(child.props.value) !== -1;
+              if (selected) {
+                displayMultiple.push(child.props.children);
+              }
+            } else {
+              selected = value === child.props.value;
+              if (selected) {
+                displaySingle = child.props.children;
+              }
+            }
+          });
+          return multiple ? displayMultiple.join(', ') : displaySingle;
         }}
       >
         {showFilter ? (

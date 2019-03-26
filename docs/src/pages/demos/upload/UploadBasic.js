@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@6thquake/react-material/styles';
-import { Upload } from '@6thquake/react-material/Upload';
+import Upload from '@6thquake/react-material/Upload';
 import Button from '@6thquake/react-material/Button';
 import FileUpload from '@material-ui/icons/CloudUpload';
 import classNames from 'classnames';
@@ -32,7 +32,7 @@ class UploadBasic extends React.Component {
 
   handleChange = files => {
     this.setState({
-      files: files,
+      files,
     });
   };
 

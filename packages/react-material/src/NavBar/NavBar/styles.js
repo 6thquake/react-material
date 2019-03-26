@@ -57,11 +57,9 @@ const styles = theme => {
 
   const border = menu.border;
 
+  const menuItem = menu.menuItem;
 
-const menuItem = menu.menuItem;
-
-
-const iconStyle = menu.iconStyle;
+  const iconStyle = menu.iconStyle;
 
   const iconfontCssPrefix = 'material-icons';
 

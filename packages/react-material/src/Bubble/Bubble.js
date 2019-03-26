@@ -32,7 +32,6 @@ const styles = theme => ({
 });
 
 class Bubble extends React.Component {
-  
   static getDerivedStateFromProps(nextProps, prevState) {
     let self = nextProps.self;
     let index = nextProps.index;

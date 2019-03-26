@@ -117,6 +117,32 @@ class Upload extends Component {
     };
   }
 
+  componentDidMount() {
+    const { files } = this.props;
+
+    if (files) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        this.pathHandler(file);
+      }
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { onChange } = this.props;
+    if (prevState.data !== this.state.data) {
+      onChange(this.state.data);
+    }
+  }
+
+  /* 通过点击input标签添加图片 */
+  handleChangePath = e => {
+    for (let i = 0; i < e.target.files.length; i++) {
+      const file = e.target.files[i];
+      this.pathHandler(file);
+    }
+  };
+
   handleDelete = (e, item) => {
     const { data, files } = this.state;
 
@@ -144,14 +170,6 @@ class Upload extends Component {
     e && e.preventDefault();
   };
 
-  /* 通过点击input标签添加图片 */
-  changePath = e => {
-    for (let i = 0; i < e.target.files.length; i++) {
-      const file = e.target.files[i];
-      this.pathHandler(file);
-    }
-  };
-
   /* 通过drag添加图片 */
   handleFileDrop = (item, monitor) => {
     if (monitor) {
@@ -160,6 +178,11 @@ class Upload extends Component {
         this.pathHandler(file);
       }
     }
+  };
+
+  handleUpload = () => {
+    const { data } = this.state;
+    return this.props.upload(data);
   };
 
   pathHandler(file) {
@@ -184,8 +207,7 @@ class Upload extends Component {
       const { files } = this.state;
       if (files.length > 0) {
         for (let i = 0; i < files.length; i++) {
-          const file = files[i];
-          this.handleDelete(null, file);
+          this.handleDelete(null, files[i]);
         }
       }
     }
@@ -227,29 +249,6 @@ class Upload extends Component {
     }
   }
 
-  upload = () => {
-    const { data } = this.state;
-    return this.props.upload(data);
-  };
-
-  componentDidMount() {
-    const { files } = this.props;
-
-    if (files) {
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        this.pathHandler(file);
-      }
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { onChange } = this.props;
-    if (prevState.data != this.state.data) {
-      onChange(this.state.data);
-    }
-  }
-
   render() {
     const { classes, type, multiple, disabled, label } = this.props;
     const { FILE } = NativeTypes;
@@ -270,7 +269,7 @@ class Upload extends Component {
               ref={input => (this.selectInput = input)}
               className={classes.input}
               id={id}
-              onChange={this.changePath}
+              onChange={this.handleChangePath}
               type="file"
               multiple={multiple}
               disabled={disabled}
@@ -295,7 +294,7 @@ class Upload extends Component {
               color="primary"
               variant="raised"
               className={classes.button}
-              onClick={this.upload}
+              onClick={this.handleUpload}
               disabled={disabled}
             >
               {label}
@@ -314,7 +313,7 @@ class Upload extends Component {
               ref={input => (this.selectInput = input)}
               className={classes.input}
               id={id}
-              onChange={this.changePath}
+              onChange={this.handleChangePath}
               type="file"
               multiple={multiple}
               disabled={disabled}
@@ -345,7 +344,7 @@ class Upload extends Component {
             accept="image/*"
             id={id}
             ref={input => (this.selectInput = input)}
-            onChange={this.changePath}
+            onChange={this.handleChangePath}
             type="file"
             className={classes.inputImg}
             multiple={multiple}
@@ -405,7 +404,7 @@ class Upload extends Component {
               ref={input => (this.selectInput = input)}
               className={classes.input}
               id={id}
-              onChange={this.changePath}
+              onChange={this.handleChangePath}
               type="file"
               multiple={multiple}
               disabled={disabled}
@@ -444,17 +443,17 @@ class Upload extends Component {
       );
     }
 
-    return type === 'manual' ? (
-      manual
-    ) : type === 'basic' ? (
-      basic
-    ) : type === 'img' ? (
-      img
-    ) : type === 'drag' ? (
-      drag
-    ) : (
-      <div>type is not correct</div>
-    );
+    if (type === 'manual') {
+      return manual;
+    } else if (type === 'basic') {
+      return basic;
+    } else if (type === 'img') {
+      return img;
+    } else if (type === 'drag') {
+      return drag;
+    } else {
+      return <div>type is not correct</div>;
+    }
   }
 }
 

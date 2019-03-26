@@ -55,11 +55,9 @@ class Carousel extends React.Component {
   componentDidMount() {
     const carouselEl = ReactDOM.findDOMNode(this.carouselRef.current);
 
+    const carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current);
 
-const carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current);
-
-
-const width = carouselEl.offsetWidth;
+    const width = carouselEl.offsetWidth;
     this.mainSize = {
       width: carouselEl.offsetWidth,
       height: carouselEl.offsetHeight,
@@ -127,11 +125,9 @@ const width = carouselEl.offsetWidth;
   next = () => {
     const len = this.count;
 
+    const activeIndex = this.activeIndex;
 
-const activeIndex = this.activeIndex;
-
-
-const nextActiveIndex = activeIndex < len ? activeIndex + 1 : 0;
+    const nextActiveIndex = activeIndex < len ? activeIndex + 1 : 0;
     const self = this;
     this.setActive(nextActiveIndex, true);
     if (activeIndex == len - 1) {
@@ -144,11 +140,9 @@ const nextActiveIndex = activeIndex < len ? activeIndex + 1 : 0;
   previous = () => {
     const len = this.count;
 
+    const activeIndex = this.activeIndex;
 
-const activeIndex = this.activeIndex;
-
-
-const preActiveIndex = activeIndex >= 0 ? activeIndex - 1 : len - 1;
+    const preActiveIndex = activeIndex >= 0 ? activeIndex - 1 : len - 1;
     const self = this;
     this.setActive(preActiveIndex, true);
     if (activeIndex == 0) {
@@ -161,11 +155,9 @@ const preActiveIndex = activeIndex >= 0 ? activeIndex - 1 : len - 1;
   setActive = (index, withAnimation) => {
     const carouselEl = ReactDOM.findDOMNode(this.carouselRef.current);
 
+    const carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current);
 
-const carouselWarpEl = ReactDOM.findDOMNode(this.carouselWarpRef.current);
-
-
-const width = carouselEl.offsetWidth;
+    const width = carouselEl.offsetWidth;
     if (!withAnimation) {
       carouselWarpEl.style.transition = 'none';
       carouselWarpEl.style.WebkitTransition = 'none';

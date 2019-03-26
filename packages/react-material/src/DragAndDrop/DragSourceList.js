@@ -27,8 +27,7 @@ const listSource = {
     // console.log(component.refs["listItemDrag"].childNodes[0].childNodes[1].className)
     if (
       component.refs.listItemDrag.childNodes[0].childNodes[2] &&
-      component.refs.listItemDrag.childNodes[0].childNodes[2].className ===
-        'MuiTouchRipple-root-61'
+      component.refs.listItemDrag.childNodes[0].childNodes[2].className === 'MuiTouchRipple-root-61'
     ) {
       component.refs.listItemDrag.childNodes[0].childNodes[2].style.display = 'none';
     } else if (
@@ -39,8 +38,7 @@ const listSource = {
       component.refs.listItemDrag.childNodes[0].firstChild.childNodes[2].style.display = 'none';
     } else if (
       component.refs.listItemDrag.childNodes[0].childNodes[1] &&
-      component.refs.listItemDrag.childNodes[0].childNodes[1].className ===
-        'MuiTouchRipple-root-61'
+      component.refs.listItemDrag.childNodes[0].childNodes[1].className === 'MuiTouchRipple-root-61'
     ) {
       component.refs.listItemDrag.childNodes[0].childNodes[1].style.display = 'none';
     } else {

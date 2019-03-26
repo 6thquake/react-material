@@ -75,8 +75,7 @@ const _target = {
     const justComeIn = true;
     const gi = monitor.getItem();
 
-
-let from;
+    let from;
     if (gi) {
       from = gi.sortFrom;
     }
@@ -141,11 +140,9 @@ class _DragSouce extends Component {
     return connectDropTarget(
       connectDragSource(
         <div
-          className={
-            `${type == 'POSITION' ? classes.position : classes.dragin
-            } ${
-            isOver ? classes.isOvered : ''}`
-          }
+          className={`${type == 'POSITION' ? classes.position : classes.dragin} ${
+            isOver ? classes.isOvered : ''
+          }`}
         >
           <div ref={'dndwrap'}>
             <div ref={'mytttest'}>{children}</div>

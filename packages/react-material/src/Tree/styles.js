@@ -11,8 +11,7 @@ function checkboxFn(checkboxPrefixCls, theme) {
   const checkboxSize = 16;
   const inputDisabledBg = '#f5f5f5';
 
-
-const borderColorSplit = fade('#000', 0.91); // split border inside a component
+  const borderColorSplit = fade('#000', 0.91); // split border inside a component
   const borderWidthBase = '1px'; // width of the border for a component
   const borderStyleBase = 'solid';
   const checkWidth = (checkboxSize / 14) * 5;
@@ -212,17 +211,13 @@ function treeShowLineIcon(type) {
 const styles = theme => {
   const highlightColor = '#f5222d';
 
+  const textColor = fade('#000', 0.65);
 
-const textColor = fade('#000', 0.65);
+  const itemHoverBg = fade(theme.palette.primary.main, 0.1);
 
+  const disabledColor = fade('#000', 0.25);
 
-const itemHoverBg = fade(theme.palette.primary.main, 0.1);
-
-
-const disabledColor = fade('#000', 0.25);
-
-
-const treeAhowlineIconColor = fade('#000', 0.45);
+  const treeAhowlineIconColor = fade('#000', 0.45);
   return {
     '@global': {
       ...checkboxFn(`${treePrefixCls}-checkbox`, theme),

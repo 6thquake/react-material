@@ -57,10 +57,10 @@ class BackTop extends React.Component {
         document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight)
       );
     }
-      return (
-        this.container.scrollHeight > this.container.clientHeight ||
-        this.container.offsetHeight > this.container.clientHeight
-      );
+    return (
+      this.container.scrollHeight > this.container.clientHeight ||
+      this.container.offsetHeight > this.container.clientHeight
+    );
   }
 
   getScrollTop() {
@@ -215,10 +215,10 @@ class BackTop extends React.Component {
         backTopButton = windowBtnNoCustom;
       }
     } else if (customButton) {
-        backTopButton = containerBtnCustom;
-      } else {
-        backTopButton = containerBtnNoCustom;
-      }
+      backTopButton = containerBtnCustom;
+    } else {
+      backTopButton = containerBtnNoCustom;
+    }
 
     // const backTopButton = this.showWindowBtn ? (customButton ? windowBtnCustom : windowBtnNoCustom) :( customButton? containerBtnCustom : containerBtnNoCustom);
 

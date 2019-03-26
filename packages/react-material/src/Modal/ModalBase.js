@@ -79,10 +79,11 @@ class Modal extends Component {
           classes: { root: classes.actionRootBtn },
         }),
       );
-    } if (actions.indexOf('-') == -1) {
+    }
+    if (actions.indexOf('-') == -1) {
       return actions;
     }
-      return this.renderJustifyActions();
+    return this.renderJustifyActions();
   }
 
   renderJustifyActions() {

@@ -13,7 +13,7 @@ class NavBar extends React.Component {
     if (list && list.length != 0) {
       return <EasyMenuBar {...this.props} />;
     }
-      return <OriginMenuBar {...this.props} />;
+    return <OriginMenuBar {...this.props} />;
   }
 }
 

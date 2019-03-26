@@ -77,7 +77,7 @@ class AbundantCrossTabulationContent extends React.PureComponent {
     const attrValues = {};
     const materializedInput = [];
     let recordsProcessed = 0;
-    CrossTabulationData.forEachRecord(this.data, this.props.derivedAttributes, (record) => {
+    CrossTabulationData.forEachRecord(this.data, this.props.derivedAttributes, record => {
       materializedInput.push(record);
       for (const attr of Object.keys(record)) {
         if (!(attr in attrValues)) {

@@ -276,11 +276,9 @@ class Pagination extends Component {
   goEnd(param) {
     const { rowsPerPage, count, onChangePage } = this.props;
 
+    const totalPage = Math.ceil(count / rowsPerPage);
 
-const totalPage = Math.ceil(count / rowsPerPage);
-
-
-const getCurrentPage = onChangePage;
+    const getCurrentPage = onChangePage;
     if (param === 'first') {
       getCurrentPage(0);
     }
@@ -292,11 +290,9 @@ const getCurrentPage = onChangePage;
   jumpTo(e) {
     const { rowsPerPage, count, onChangePage } = this.props;
 
+    const value = e.target.value;
 
-const value = e.target.value;
-
-
-const totalPage = Math.ceil(count / rowsPerPage);
+    const totalPage = Math.ceil(count / rowsPerPage);
     this.setState(
       {
         value,

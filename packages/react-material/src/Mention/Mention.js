@@ -265,7 +265,7 @@ class Mention extends Component {
                 </MenuItem>
               );
             }
-              throw new Error('AutoComplete[dataSource] only supports type `string[] | Object[]`.');
+            throw new Error('AutoComplete[dataSource] only supports type `string[] | Object[]`.');
           })
         : [];
     } else if (React.Children) {

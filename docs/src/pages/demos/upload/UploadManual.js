@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@6thquake/react-material/styles';
-import { Upload } from '@6thquake/react-material/Upload';
+import Upload from '@6thquake/react-material/Upload';
 import Button from '@6thquake/react-material/Button';
 import FileUpload from '@material-ui/icons/CloudUpload';
 import RadioGroup from '@6thquake/react-material/RadioGroup';
@@ -36,25 +36,24 @@ class UploadManual extends React.Component {
 
   handleChange = files => {
     this.setState({
-      files: files,
+      files,
     });
   };
 
   upload = data => {
-    let _promise = new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       fetch('//jsonplaceholder.typicode.com/posts/', {
         method: 'POST',
         body: data,
       }).then(
-        function(res) {
+        res => {
           resolve('success');
         },
-        function(err) {
+        err => {
           reject('error');
         },
       );
     });
-    return _promise;
   };
 
   render() {

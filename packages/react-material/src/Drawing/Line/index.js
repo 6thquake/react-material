@@ -37,15 +37,12 @@ export default class LineTo extends Component {
     if (typeof this.delay !== 'undefined') {
       this.deferUpdate(this.delay);
     }
-    this.pubsub_token = PubSub.subscribe(
-      'boxMove',
-      (msg, data) => {
-        this.setState({
-          fromAnchor: data[0],
-          toAnchor: data[1],
-        });
-      },
-    );
+    this.pubsub_token = PubSub.subscribe('boxMove', (msg, data) => {
+      this.setState({
+        fromAnchor: data[0],
+        toAnchor: data[1],
+      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -89,7 +86,8 @@ export default class LineTo extends Component {
   parseDelay(value) {
     if (typeof value === 'undefined') {
       return value;
-    } if (typeof value === 'boolean' && value) {
+    }
+    if (typeof value === 'boolean' && value) {
       return 0;
     }
     const delay = parseInt(value, 10);

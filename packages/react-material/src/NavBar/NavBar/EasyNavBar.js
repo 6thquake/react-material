@@ -57,7 +57,7 @@ class Item extends React.Component {
         </React.Fragment>
       );
     }
-      return null;
+    return null;
   }
 
   render() {
@@ -138,9 +138,9 @@ class EasyNavBar extends React.Component {
       if (typeof icon === 'string') {
         return <i className="material-icons">{icon}</i>;
       }
-        return icon;
+      return icon;
     }
-      return null;
+    return null;
   }
 
   getChildContext() {
@@ -162,7 +162,7 @@ class EasyNavBar extends React.Component {
       if (item.beforeChildren) return item.beforeChildren();
       return true;
     }
-      return false;
+    return false;
   }
 
   renderMenu(list, parentKey) {
@@ -193,14 +193,14 @@ class EasyNavBar extends React.Component {
             </SubMenu>
           );
         }
-          return (
-            <MenuItem key={_key}>
-              {this.renderIcon(icon)}
-              <span>{name}</span> {this.props.debugger ? _key : null}
-            </MenuItem>
-          );
+        return (
+          <MenuItem key={_key}>
+            {this.renderIcon(icon)}
+            <span>{name}</span> {this.props.debugger ? _key : null}
+          </MenuItem>
+        );
       }
-        return null;
+      return null;
     });
   }
 

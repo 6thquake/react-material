@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@6thquake/react-material/styles';
-import { Upload } from '@6thquake/react-material/Upload';
+import Upload from '@6thquake/react-material/Upload';
 import RadioGroup from '@6thquake/react-material/RadioGroup';
 import Radio from '@6thquake/react-material/Radio';
 import FormControlLabel from '@6thquake/react-material/FormControlLabel';
@@ -26,7 +26,7 @@ class UploadDrag extends React.Component {
 
   handleChange = files => {
     this.setState({
-      files: files,
+      files,
     });
   };
 

@@ -14,7 +14,11 @@ const _source = {
   beginDrag(props, monitor, component) {
     console.log('111', component);
 
-    const item = component.decoratedComponentInstance.state.comp.beginDrag(props, monitor, component);
+    const item = component.decoratedComponentInstance.state.comp.beginDrag(
+      props,
+      monitor,
+      component,
+    );
     // item.sourceType=_DnadD._sourceType;
     return item;
   },
@@ -94,7 +98,7 @@ class _DandD extends PureComponent {
     }));
   };
 
- // 为了拿到子组件的设置的item值
+  // 为了拿到子组件的设置的item值
   render() {
     const {
       connectDragSource,

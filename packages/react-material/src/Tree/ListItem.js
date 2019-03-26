@@ -2,7 +2,6 @@
  * @ignore - do not document.
  */
 
-
 Object.defineProperty(exports, '__esModule', {
   value: true,
 });
@@ -23,7 +22,7 @@ const _createClass = (function() {
     if (staticProps) defineProperties(Constructor, staticProps);
     return Constructor;
   };
-}());
+})();
 
 const _react = require('react');
 
@@ -65,10 +64,10 @@ function _inherits(subClass, superClass) {
     },
   });
   if (superClass) {
- Object.setPrototypeOf
+    Object.setPrototypeOf
       ? Object.setPrototypeOf(subClass, superClass)
       : (subClass.__proto__ = superClass);
-}
+  }
 }
 
 const ListItem = (function(_Component) {
@@ -89,18 +88,14 @@ const ListItem = (function(_Component) {
       value: function render() {
         const _props = this.props;
 
+        const primaryText = _props.primaryText;
 
-const primaryText = _props.primaryText;
-
-
-const style = _props.style;
+        const style = _props.style;
         const _props2 = this.props;
 
+        const onTouchTap = _props2.onTouchTap;
 
-const onTouchTap = _props2.onTouchTap;
-
-
-const leftIcon = _props2.leftIcon;
+        const leftIcon = _props2.leftIcon;
 
         const styles = {
           root: {
@@ -133,7 +128,7 @@ const leftIcon = _props2.leftIcon;
   ]);
 
   return ListItem;
-}(_react.Component));
+})(_react.Component);
 
 ListItem.propTypes = {
   leftIcon: _propTypes2.default.element,

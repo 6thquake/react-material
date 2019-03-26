@@ -43,9 +43,7 @@ const styles = theme => ({
     },
     ...theme.typography.body1,
   },
-  hasValue: {
-    width: '100%',
-  },
+
   darkFont: {
     color: 'rgba(0,0,0,0.8)',
     '&::-webkit-input-placeholder': {
@@ -157,10 +155,15 @@ Search.propTypes = {
    * dark theme for light background
    */
   placeholder: PropTypes.string, // 'dark'
-
+  /**
+   * the scale of input box
+   */
   scale: PropTypes.number,
 
   value: PropTypes.string,
+  /**
+   * the width of search, default is 100%
+   */
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 

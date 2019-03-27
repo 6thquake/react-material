@@ -144,6 +144,7 @@ export { default as Tooltip } from './Tooltip';
 export { default as Transfer } from './Transfer';
 export { default as Typography } from './Typography';
 export { default as Upload } from './Upload';
+export { default as Watermark } from './Watermark';
 export { default as withMobileDialog } from './withMobileDialog';
 export { default as withWidth } from './withWidth';
 export { default as Zoom } from './Zoom';

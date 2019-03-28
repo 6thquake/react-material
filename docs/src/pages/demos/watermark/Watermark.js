@@ -30,12 +30,12 @@ function WatermarkDemo(props) {
           <Button variant="contained" color="primary" className={classes.button}>
             Primary
           </Button>
-          <Watermark fontColor="#996699" />
+          <Watermark container={'parent'} fontColor="#996699" text={'Material'} />
         </Paper>
         <Typography component="p">
           Paper can be used to build surface or other elements for your application.
         </Typography>
-        <Watermark fontSize={20} />
+        <Watermark fontSize={20} text={'来日方长'} />
       </div>
     </div>
   );

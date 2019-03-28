@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
-import { withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 
 const styles = theme => ({
@@ -118,4 +117,4 @@ Watermark.propTypes = {
   type: PropTypes.oneOf(['stretch', 'rightBottom']),
 };
 
-export default withStyles(styles, { withTheme: true })(withRouter(Watermark));
+export default withStyles(styles, { withTheme: true })(Watermark);

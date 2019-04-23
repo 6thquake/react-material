@@ -83,7 +83,7 @@ class AwesomeTable extends React.Component {
     this.state = {
       hasLeft: false,
       hasRight: true,
-      columns: columns,
+      columns,
       search: '',
       page: props.TablePaginationProps.page,
       rowsPerPage: props.TablePaginationProps.rowsPerPage,
@@ -91,6 +91,7 @@ class AwesomeTable extends React.Component {
       sorts: this.getSortConfig(props).sorts,
     };
   }
+
   searchedData = {
     data: this.props.data,
   };
@@ -98,7 +99,7 @@ class AwesomeTable extends React.Component {
   getSortConfig = props => {
     const { columns } = props;
     // this.sortsBy = new Set()
-    let sorts = [];
+    const sorts = [];
     columns.map(col => {
       if (col.sortable && col.order !== undefined) {
         if (col.order === 'asc') {
@@ -145,11 +146,14 @@ class AwesomeTable extends React.Component {
     toolbar: React.createRef('toolbar'),
     pagination: React.createRef('pagination'),
   };
+
   dragIndex = {
     targetIndex: '',
     sourceIndex: '',
   };
+
   propsCached = {};
+
   componentDidMount() {
     this.setTableShadow();
     this.syncTableRowHeight();
@@ -183,18 +187,18 @@ class AwesomeTable extends React.Component {
   };
 
   syncTableRowHeight = isResize => {
-    let head = this.tableRefs.head.current;
-    let body = this.tableRefs.body.current;
+    const head = this.tableRefs.head.current;
+    const body = this.tableRefs.body.current;
 
     if (!head || !body) {
       return;
     }
 
-    let headDom = ReactDOM.findDOMNode(head);
-    let headHeight = headDom.getBoundingClientRect().height;
+    const headDom = ReactDOM.findDOMNode(head);
+    const headHeight = headDom.getBoundingClientRect().height;
 
-    let bodyDom = ReactDOM.findDOMNode(body);
-    let bodyHeight = bodyDom.getBoundingClientRect().height;
+    const bodyDom = ReactDOM.findDOMNode(body);
+    const bodyHeight = bodyDom.getBoundingClientRect().height;
     if (isResize) {
       // todo : Resizable only axis=x
       this.setState({
@@ -209,11 +213,11 @@ class AwesomeTable extends React.Component {
   };
 
   handleColDrag = config => {
-    let { targetIndex, sourceIndex } = config;
-    let { columns } = this.state;
-    let sourceColumn = columns[sourceIndex];
-    let targetColumn = columns[targetIndex];
-    let fixed = targetColumn.fixed;
+    const { targetIndex, sourceIndex } = config;
+    const { columns } = this.state;
+    const sourceColumn = columns[sourceIndex];
+    const targetColumn = columns[targetIndex];
+    const fixed = targetColumn.fixed;
     sourceColumn.fixed = fixed;
     this.setState(
       update(this.state, {
@@ -233,7 +237,7 @@ class AwesomeTable extends React.Component {
     order = sort.orderList[index];
     let flag = true;
     if (multiple) {
-      for (let s of sorts) {
+      for (const s of sorts) {
         if (s.key === key) {
           s.order = order;
           s.index = index;
@@ -261,7 +265,7 @@ class AwesomeTable extends React.Component {
     this.setState({
       sorts,
     });
-    let data = sorts.map(item => {
+    const data = sorts.map(item => {
       return {
         key: item.key,
         order: item.order,
@@ -296,6 +300,7 @@ class AwesomeTable extends React.Component {
       },
     );
   };
+
   dragSatrt = index => {
     this.dragIndex.sourceIndex = index;
   };
@@ -311,6 +316,7 @@ class AwesomeTable extends React.Component {
     onColDrag && onColDrag(this.dragIndex);
     this.handleColDrag(this.dragIndex);
   };
+
   filteredData = () => {
     const { data, sync } = this.props;
     const { search } = this.state;
@@ -323,6 +329,7 @@ class AwesomeTable extends React.Component {
     const result = this.handlePaginteData();
     return result;
   };
+
   handlePaginteData = () => {
     let data = this.searchedData.data;
     const { paginatable, sync } = this.props;
@@ -344,62 +351,70 @@ class AwesomeTable extends React.Component {
   };
 
   createCsv = () => {
-    let head = this.state.columns.reduce((pre, cur) => {
-      if (cur.render || !cur.title) {
-        return pre;
-      } else {
-        return pre + ',' + cur.title;
-      }
+    const head = this.state.columns.reduce((pre, cur) => {
+      const text = cur.title;
+      return `${pre},${text}`;
     }, '');
-    let csv = head.slice(1) + '\r\n';
-    let columns = this.state.columns;
-    let data = this.searchedData.data;
+    let csv = `${head.slice(1)}\r\n`;
+    const columns = this.state.columns;
+    const data = this.searchedData.data;
     data.map(entry => {
       let row = '';
       columns.map(column => {
-        row += (entry[column.dataIndex] || ' ') + ',';
+        if (typeof column.render === 'function') {
+          const c = column.render(entry);
+          if (typeof c === 'number' || typeof c === 'string') {
+            row += `${c},`;
+          } else {
+            row += ' ';
+          }
+        } else {
+          row += `${entry[column.dataIndex] || ' '},`;
+        }
       });
-      csv += row + '\r\n';
+      csv += `${row}\r\n`;
     });
     return csv;
   };
 
   download = (fileName = 'table') => {
-    let CSV = this.createCsv();
-    let link = document.createElement('a');
-    let csvData = new Blob(['\uFEFF' + CSV], {
+    const CSV = this.createCsv();
+    const link = document.createElement('a');
+    const csvData = new Blob([`\uFEFF${CSV}`], {
       type: 'text/csv',
     });
-    let csvUrl = URL.createObjectURL(csvData);
+    const csvUrl = URL.createObjectURL(csvData);
     link.href = csvUrl;
     link.style = 'visibility:hidden';
-    link.download = fileName + '.csv';
+    link.download = `${fileName}.csv`;
 
-    //this part will append the anchor tag and remove it after automatic click
+    // this part will append the anchor tag and remove it after automatic click
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   renderMainTable = () => {
-    let { columns } = this.state;
-    let result = this.renderTable(columns, 'main');
+    const { columns } = this.state;
+    const result = this.renderTable(columns, 'main');
     return result;
   };
 
   renderLeftTable = () => {
-    let columns = this.state.columns.filter(column => {
+    const columns = this.state.columns.filter(column => {
       return column.fixed === 'left';
     });
     return this.renderTable(columns, 'left');
   };
+
   renderRightTable = () => {
-    let columns = this.state.columns.filter(column => {
+    const columns = this.state.columns.filter(column => {
       return column.fixed === 'right';
     });
-    let baseLength = this.state.columns.length - columns.length;
+    const baseLength = this.state.columns.length - columns.length;
     return this.renderTable(columns, 'right', baseLength);
   };
+
   renderTable = (columns, type, baseLength = 0) => {
     const {
       classes,
@@ -413,13 +428,13 @@ class AwesomeTable extends React.Component {
       TableRowProps,
     } = this.props;
     const { bodyRowHeight, headRowHeight, hasLeft, hasRight, data: bodyData, sorts } = this.state;
-    let width =
+    const width =
       type === 'main'
         ? ''
         : columns.reduce((pre, cur) => {
             return pre + cur.width;
           }, 0);
-    let style = {
+    const style = {
       height: '100%',
       overflowY: 'hidden',
       width,
@@ -473,27 +488,30 @@ class AwesomeTable extends React.Component {
     );
     return result;
   };
+
   handleColumnFixSwitch = (index, fixed) => {
-    let { columns } = this.state;
+    const { columns } = this.state;
     columns[index].fixed = fixed;
     this.setState({
       columns: this.normalizeColumns(columns),
     });
   };
+
   handlScrollY = (e, t) => {
-    let scrollTop = e.target.scrollTop;
+    const scrollTop = e.target.scrollTop;
     t !== 'left' && (this.tableRefs.left.current.scrollTop = scrollTop);
     t !== 'right' && (this.tableRefs.right.current.scrollTop = scrollTop);
     t !== 'main' && (this.tableRefs.main.current.scrollTop = scrollTop);
   };
 
   handleScrollX = e => {
-    let scrollLeft = e.target.scrollLeft;
+    const scrollLeft = e.target.scrollLeft;
     if (e.target !== this.tableRefs.root.current) {
       return;
     }
     this.setTableShadow(scrollLeft);
   };
+
   handleChangePage = (event, page) => {
     const { TablePaginationProps } = this.props;
     const onChangePage = TablePaginationProps.onChangePage;
@@ -525,13 +543,14 @@ class AwesomeTable extends React.Component {
   setTableShadow = left => {
     let { scrollLeft, clientWidth } = this.tableRefs.root.current;
     scrollLeft = left || scrollLeft;
-    let hasLeft = scrollLeft > 0;
-    let hasRight = this.tableRefs.main.current.clientWidth - clientWidth - scrollLeft > 0;
+    const hasLeft = scrollLeft > 0;
+    const hasRight = this.tableRefs.main.current.clientWidth - clientWidth - scrollLeft > 0;
     this.setState({
       hasLeft,
       hasRight,
     });
   };
+
   render() {
     const {
       classes,
@@ -547,10 +566,10 @@ class AwesomeTable extends React.Component {
     const { page, rowsPerPage } = this.state;
     let h = 0;
     if (this.tableRefs.toolbar.current) {
-      h = h + this.tableRefs.toolbar.current.clientHeight;
+      h += this.tableRefs.toolbar.current.clientHeight;
     }
     if (this.tableRefs.pagination.current) {
-      h = h + this.tableRefs.pagination.current.clientHeight;
+      h += this.tableRefs.pagination.current.clientHeight;
     }
     const tbodyStyle = {
       height: `calc(100% - ${h}px)`,
@@ -609,15 +628,15 @@ AwesomeTable.propTypes = {
    * Columns of table
    */
   columns: PropTypes.shape({
+    dataIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    fixed: PropTypes.oneOf(['left', 'right']),
+    key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    order: PropTypes.string,
+    render: PropTypes.func,
+    resizable: PropTypes.bool,
+    sortable: PropTypes.bool,
     title: PropTypes.node,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    dataIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    fixed: PropTypes.oneOf(['left', 'right']),
-    sortable: PropTypes.bool,
-    order: PropTypes.string,
-    resizable: PropTypes.bool,
-    render: PropTypes.func,
   }),
   /**
    * Data record array to be displayed
@@ -626,90 +645,90 @@ AwesomeTable.propTypes = {
   /**
    * Properties applied to the TablePagination Component
    */
-  TablePaginationProps: PropTypes.object,
+  disableClickToFixColumn: PropTypes.bool,
   /**
    * export config
+   */
+  dragable: PropTypes.bool,
+  /**
+   * Properties applied to the Search Component
    */
   exportProps: PropTypes.shape({
     type: PropTypes.oneOf(['csv']),
   }),
   /**
-   * Properties applied to the Search Component
-   */
-  SearchProps: PropTypes.object,
-  /**
    *  if true, it will be a paginatable table
    */
-  paginatable: PropTypes.bool,
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.number]),
   /**
    *  if true, it will be a searchable table
    */
-  searchable: PropTypes.bool,
+  noData: PropTypes.element,
   /**
    *  if true, all the columns is resizable
    */
-  resizable: PropTypes.bool,
+  onColDrag: PropTypes.func,
   /**
    *  if true, all the columns is dragable
    */
-  dragable: PropTypes.bool,
+  onRowClick: PropTypes.func,
   /**
    * table width
    * @ignore
    */
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.number]),
+  OrderProps: PropTypes.shape({
+    multiple: PropTypes.bool,
+    onChangeOrder: PropTypes.func,
+  }),
   /**
    * table height
    * @ignore
    */
 
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.number]),
+  paginatable: PropTypes.bool,
 
   /**
    * Callback fired when you drag the column
    */
-  onColDrag: PropTypes.func,
+  resizable: PropTypes.bool,
   /**
    * Callback fired when you click the table row
    */
-  onRowClick: PropTypes.func,
+  searchable: PropTypes.bool,
   /**
    * if sync is true, pagination and search will be automatical.
    * you needn't to do these things by yourself
    */
-  sync: PropTypes.bool,
+  SearchProps: PropTypes.object,
   /**
    * The title of table
    */
-  title: PropTypes.node,
+  sync: PropTypes.bool,
   /**
    * render when data length is 0
    */
-  noData: PropTypes.element,
+  TableCellProps: PropTypes.object,
   /**
    *  @ignore
    */
-  disableClickToFixColumn: PropTypes.bool,
+  TablePaginationProps: PropTypes.object,
   /**
    * Properties applied to the Order
    */
-  OrderProps: PropTypes.shape({
-    onChangeOrder: PropTypes.func,
-    multiple: PropTypes.bool,
-  }),
+  TableRowProps: PropTypes.object,
   /**
    * total
    */
 
-  total: PropTypes.element,
+  title: PropTypes.node,
   /**
    * Properties applied to the TableCell element.
    */
-  TableCellProps: PropTypes.object,
+  total: PropTypes.element,
   /**
    * Properties applied to the TableRow element.
    */
-  TableRowProps: PropTypes.object,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.number]),
 };
 AwesomeTable.defaultProps = {
   TablePaginationProps: {

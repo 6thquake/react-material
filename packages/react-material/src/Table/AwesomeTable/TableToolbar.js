@@ -84,6 +84,9 @@ class TableToolbar extends Component {
   handleItemClick = e => {
     const { download } = this.props;
     download && download();
+    this.setState({
+      anchorEl: null,
+    });
   };
 
   render() {

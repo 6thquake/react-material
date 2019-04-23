@@ -5,7 +5,6 @@ import { RadioButton } from '@6thquake/react-material/Radio';
 import RadioGroup from '@6thquake/react-material/RadioGroup';
 import Paper from '@6thquake/react-material/Paper';
 import AwesomeTable from '@6thquake/react-material/Table/AwesomeTable';
-
 import filter from '@6thquake/react-material/utils/filter';
 
 const styles = theme => ({
@@ -36,6 +35,7 @@ const styles = theme => ({
   },
 });
 
+const preFix = 'No-';
 const columns = [
   { title: 'Name', width: 100, dataIndex: 'name', key: 'name' },
   {
@@ -51,10 +51,13 @@ const columns = [
   {
     title: 'Column 1',
     dataIndex: 'address',
-    key: '1',
+    key: 'address',
     width: 150,
     // resizable: true,
     sortable: true,
+    render: item => {
+      return `${preFix}${item.address}`;
+    },
   },
   {
     title: 'Column 2',
@@ -66,7 +69,7 @@ const columns = [
     resizable: true,
     order: 'desc',
   },
-  { title: 'Column 3', dataIndex: 'address', key: '3', width: 150 },
+  { title: 'Column 3', dataIndex: 'age', key: '3', width: 150 },
   {
     title: 'Gender',
     dataIndex: 'gender',
@@ -79,6 +82,14 @@ const columns = [
   { title: 'Column 6', dataIndex: 'address', key: '6', width: 150 },
   { title: 'Column 7', dataIndex: 'address', key: '7', width: 150 },
   { title: 'Column 8', dataIndex: 'address', key: '8', width: 150 },
+  {
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: '4',
+    width: 150,
+    sortable: true,
+    // sortActive: true
+  },
   {
     title: 'Action',
     key: 'operation',
@@ -110,8 +121,8 @@ class AwesomeTableEXample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      columns: columns,
-      data: data,
+      columns,
+      data,
       value: 'scroll',
       TablePaginationProps: {
         rowsPerPage: 5,
@@ -120,67 +131,75 @@ class AwesomeTableEXample extends React.Component {
       },
     };
   }
+
   componentDidMount = () => {
     this.handleChangePage(0, 0);
   };
+
   handleChange = e => {
-    let value = e.target.value;
+    const value = e.target.value;
     this.setState({
       value,
     });
   };
+
   handleSearch = value => {
     console.log('search value', value);
     this.setState({
       data: filter(data, value),
     });
   };
+
   handleChangePage = (e, page) => {
     console.log('page', page);
-    let { TablePaginationProps } = this.state;
-    let { rowsPerPage } = TablePaginationProps;
+    const { TablePaginationProps } = this.state;
+    const { rowsPerPage } = TablePaginationProps;
     TablePaginationProps.page = page;
-    let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    const paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
     console.log('paginateData', paginateData);
     this.setState({
       TablePaginationProps,
       data: paginateData,
     });
   };
+
   handleChangeRowsPerPage = e => {
     console.log('rowperoage', e.target.value);
-    let { TablePaginationProps } = this.state;
-    let { page } = TablePaginationProps;
-    let rowsPerPage = e.target.value;
+    const { TablePaginationProps } = this.state;
+    const { page } = TablePaginationProps;
+    const rowsPerPage = e.target.value;
     TablePaginationProps.rowsPerPage = rowsPerPage;
-    let paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    const paginateData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
     this.setState({
       TablePaginationProps,
       data: paginateData,
     });
   };
+
   handleRowClick = (e, i) => {
     console.log('row item', e, i);
   };
 
   handleSort = data => {
     console.log('sort===:', data);
-    let item = data[0];
+    const item = data[0];
     const { columns } = this.state;
     const { key, order } = item;
     this.sortData(order);
   };
 
   sortData = order => {
-    let { data } = this.state;
+    const { data } = this.state;
     data.sort((a, b) => {
       if (order == 'asc') {
         return a.age - b.age;
-      } else if (order == 'desc') {
+      }
+      if (order == 'desc') {
         return b.age - a.age;
       }
     });
   };
+
   render() {
     const { classes } = this.props;
     const { data, columns, value } = this.state;

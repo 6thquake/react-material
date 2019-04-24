@@ -1,8 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import update from 'immutability-helper';
 import Table from '..';
-import TableBody from '../../TableBody';
 import TableCell from './Cell';
 import TableHead from '../../TableHead';
 import TableRow from '../../TableRow';
@@ -10,7 +7,6 @@ import HeadCell from './HeadCell';
 import DragHeadCell from './DragHeadCell';
 import withDragAndDrop from '../../DragAndDrop/withDragAndDrop';
 import TableSortLabel from '../../TableSortLabel';
-import { DropTarget, DropSource } from 'react-dnd';
 
 // import Resizable from 're-resizable';
 import { Resizable } from 'react-resizable';

@@ -106,7 +106,7 @@ class Breadcrumb extends React.Component {
 
 Breadcrumb.propTypes = {
   /**
-   * Custom separator
+   * Custom color of each items
    */
   color: PropTypes.oneOf(['default', 'black', 'white']),
   /**
@@ -122,9 +122,9 @@ Breadcrumb.propTypes = {
    */
   routes: PropTypes.array,
   /**
-   * Custom color of each items
+   * Custom separator
    */
-  separator: PropTypes.oneOfType([PropTypes.string]),
+  separator: PropTypes.string,
 };
 
 Breadcrumb.defaultProps = {

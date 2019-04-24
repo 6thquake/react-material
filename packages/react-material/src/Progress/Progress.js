@@ -147,7 +147,7 @@ Progress.propTypes = {
   /**
    * Estimated time of the progress,when isPromise is true,the units is seconds.
    */
-  estimatedTime: PropTypes.num,
+  estimatedTime: PropTypes.number,
   /**
    * If true,it is a normal progress without percentage.
    */
@@ -163,11 +163,11 @@ Progress.propTypes = {
   /**
    * The variant of progress indicator. Use indeterminate or query when there is no progress value.
    */
-  value: PropTypes.num,
+  value: PropTypes.number,
   /**
    *  Progress percentage,only when isPromise is false. Value between 0 and 100.
    */
-  valueBuffer: PropTypes.num,
+  valueBuffer: PropTypes.number,
   /**
    * 	 If true,progress with percentage.
    */

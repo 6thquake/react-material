@@ -3,18 +3,8 @@
  */
 
 import React, { Component } from 'react';
-import ReactDOM, { findDOMNode } from 'react-dom';
-import PropTypes from 'prop-types';
-import {
-  DragSource,
-  DropTarget,
-  ConnectDropTarget,
-  ConnectDragSource,
-  DropTargetMonitor,
-  DropTargetConnector,
-  DragSourceConnector,
-  DragSourceMonitor,
-} from 'react-dnd';
+import { findDOMNode } from 'react-dom';
+import { DragSource, DropTarget } from 'react-dnd';
 import flow from 'lodash/flow';
 
 const style = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
-import Snackbar, { SnackbarContent } from '../Snackbar';
+import Snackbar from '../Snackbar';
 import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
 
 const styles = theme => ({

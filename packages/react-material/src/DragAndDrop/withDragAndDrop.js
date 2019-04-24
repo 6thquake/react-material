@@ -1,6 +1,6 @@
-import React, { Component, ComponentClass } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { DragDropManager, IBackend, BackendFactory } from 'dnd-core';
+import createDragDropManager from 'dnd-core';
 import invariant from 'invariant';
 import hoistStatics from 'hoist-non-react-statics';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -28,7 +28,7 @@ const CHILD_CONTEXT_TYPES = {
 let defaultManager;
 function createChildContext(backend, context) {
   if (!defaultManager) {
-    defaultManager = new DragDropManager(HTML5Backend);
+    defaultManager = createDragDropManager(backend || HTML5Backend, context);
   }
   return {
     dragDropManager: defaultManager,

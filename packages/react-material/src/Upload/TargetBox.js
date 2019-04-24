@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { DropTarget, DropTargetConnector, ConnectDropTarget, DropTargetMonitor } from 'react-dnd';
+import { DropTarget } from 'react-dnd';
 
 const activeStyle = {
   height: '30px',

@@ -52,9 +52,15 @@ const getLocaleResource = (lang, value) => {
   };
 };
 
-const getDefaultLocaleResource = () => {
+const getDefaultLocale = () => {
   const wg = global || window;
   const lang = wg && wg.navigator && wg.navigator.language;
+
+  return getLanguage(lang);
+};
+
+const getDefaultLocaleResource = () => {
+  const lang = getDefaultLocale();
 
   return getLocaleResource(lang);
 };
@@ -129,4 +135,5 @@ export {
   getLocaleResource,
   getDefaultLocaleResource,
   getLanguage as getLocale,
+  getDefaultLocale,
 };

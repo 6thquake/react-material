@@ -129,6 +129,7 @@ FormItem.propTypes = {
     label: PropTypes.number,
   }),
   label: PropTypes.any,
+  labelDirection: PropTypes.oneOf(['row', 'column']),
   required: PropTypes.bool,
 };
 

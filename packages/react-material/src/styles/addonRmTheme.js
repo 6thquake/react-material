@@ -1,5 +1,8 @@
 import deepmerge from 'deepmerge';
-import { orange, green, common } from '@material-ui/core/colors';
+import orange from '../colors/orange';
+import green from '../colors/green';
+import yellow from '../colors/yellow';
+import common from '../colors/common';
 
 const addonRmTheme = theme => {
   const addonTheme = {
@@ -17,10 +20,9 @@ const addonRmTheme = theme => {
         contrastText: common.white,
       },
       progress: {
-        // todo change progress styles
-        light: orange['300'],
-        main: orange['500'],
-        dark: orange['700'],
+        light: yellow['300'],
+        main: yellow['500'],
+        dark: yellow['700'],
         contrastText: common.white,
       },
     },

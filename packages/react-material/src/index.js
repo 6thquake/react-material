@@ -87,7 +87,7 @@ export { default as ListItemSecondaryAction } from './ListItemSecondaryAction';
 export { default as ListItemText } from './ListItemText';
 export { default as ListSubheader } from './ListSubheader';
 export { default as Mention } from './Mention';
-export { default as Menu, TreeMenu } from './Menu';
+export { default as Menu } from './Menu';
 export { default as MenuItem } from './MenuItem';
 export { default as MenuList } from './MenuList';
 export { default as Message } from './Message';

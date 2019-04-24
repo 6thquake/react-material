@@ -7,7 +7,7 @@ import { uglify } from 'rollup-plugin-uglify';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
 const input = './src/index.js';
-const name = 'material-ui';
+const name = 'react-material';
 const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
@@ -21,6 +21,43 @@ const babelOptions = {
 const commonjsOptions = {
   ignoreGlobal: true,
   include: /node_modules/,
+  exclude: ['../../node_modules/process-es6/**'],
+  namedExports: {
+    '../../node_modules/react/react.js': [
+      'Children',
+      'Component',
+      'PureComponent',
+      'Fragment',
+      'PropTypes',
+      'createElement',
+    ],
+    '../../node_modules/react-dom/index.js': ['render'],
+    '../../node_modules/prop-types/index.js': [
+      'oneOfType',
+      'object',
+      'string',
+      'number',
+      'instanceOf',
+      'oneOf',
+      'func',
+      'element',
+      'arrayOf',
+      'bool',
+      'any',
+      'shape',
+      'node',
+    ],
+    '../../node_modules/@material-ui/core/styles/index.js': [
+      'createGenerateClassName',
+      'createMuiTheme',
+      'createStyles',
+      'jssPreset',
+      'MuiThemeProvider',
+      'withStyles',
+      'withTheme',
+    ],
+    '../../node_modules/@material-ui/core/Modal/index.js': ['ModalManager'],
+  },
 };
 
 export default [

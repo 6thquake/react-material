@@ -1,9 +1,14 @@
 {
   "name": "@6thquake/react-material-workspace",
+  "version": "0.4.5",
   "private": true,
-  "author": "6thquake Team",
-  "version": "0.4.4",
   "description": "React-Material's workspace package",
+  "author": "6thquake Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/6thquake/react-material.git"
+  },
   "keywords": [
     "react",
     "react components",
@@ -11,18 +16,13 @@
     "material design",
     "material ui"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/6thquake/react-material.git"
-  },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/6thquake/react-material/issues"
   },
   "homepage": "https://github.com/6thquake/react-material",
   "scripts": {
     "start": "yarn docs:dev",
-    "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev --inspect",
+    "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev",
     "docs:api": "rimraf ./pages/api && yarn docs:api:base:lab && yarn docs:api:base && yarn docs:api:core",
     "docs:api:core": "cross-env BABEL_ENV=docs-development && babel-node ./docs/scripts/buildApi.js ./packages/react-material/src ./pages/api",
     "docs:api:base": "cross-env BABEL_ENV=docs-development babel-node ./docs/scripts/buildApi.js ./packages/material-ui/core/src ./pages/api",

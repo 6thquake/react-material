@@ -57,6 +57,7 @@ const commonjsOptions = {
       'withTheme',
     ],
     '../../node_modules/@material-ui/core/Modal/index.js': ['ModalManager'],
+    '../../node_modules/dnd-core/lib/cjs/index.js': ['createDragDropManager'],
   },
 };
 

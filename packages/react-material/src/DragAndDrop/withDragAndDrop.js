@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import createDragDropManager from 'dnd-core';
+import { createDragDropManager } from 'dnd-core';
 import invariant from 'invariant';
 import hoistStatics from 'hoist-non-react-statics';
 import HTML5Backend from 'react-dnd-html5-backend';

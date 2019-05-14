@@ -22,6 +22,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/filters/CustomFilters'), 'utf8')
 `,
         },
+        'pages/demos/filters/ExpansionFilters.js': {
+          js: require('docs/src/pages/demos/filters/ExpansionFilters').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/filters/ExpansionFilters'), 'utf8')
+`,
+        },
       }}
     />
   );

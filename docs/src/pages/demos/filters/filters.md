@@ -16,3 +16,7 @@ components: Filters
 
 {{"demo": "pages/demos/filters/CustomFilters.js"}}
 
+## Expansion Filters
+
+{{"demo": "pages/demos/filters/ExpansionFilters.js"}}
+

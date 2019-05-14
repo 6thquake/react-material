@@ -310,7 +310,7 @@ class Chip extends React.Component {
       },
       classNameProp,
     );
-
+    debugger;
     let deleteIcon = null;
     if (onDelete) {
       const customClasses = {

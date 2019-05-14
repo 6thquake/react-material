@@ -87,4 +87,8 @@ export default {
     okText: '确认',
     closeText: '关闭',
   },
+  Filters: {
+    more: '更多',
+    less: '收起',
+  },
 };

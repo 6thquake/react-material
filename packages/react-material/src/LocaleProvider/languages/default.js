@@ -87,4 +87,8 @@ export default {
     cancelText: 'cancel',
     okText: 'ok',
   },
+  Filters: {
+    more: 'more',
+    less: 'collapse',
+  },
 };

@@ -27,20 +27,26 @@ function WatermarkDemo(props) {
         <Paper className={classes.box}>
           <Watermark
             container={'parent'}
-            text={'container=parent.'}
+            text={'00000000000.'}
             fontSize={16}
             fontColor="rgba(255, 0, 0, 0.34)"
+            degree={0}
           />
           <Watermark
             container={'parent'}
-            text={'fontSize=20, size=512, degree=90, fontColor=rgba(0, 0, 255, 0.34)'}
-            size={512}
-            fontSize={12}
+            text={'454545454545.'}
+            fontSize={16}
+            fontColor="rgba(0, 255, 0, 0.34)"
+            degree={45}
+          />
+          <Watermark
+            container={'parent'}
+            text={'909090909090.'}
+            fontSize={16}
             fontColor="rgba(0, 0, 255, 0.34)"
             degree={90}
           />
         </Paper>
-        <Watermark text={'container=window.'} fontColor="rgba(0, 0, 0, 0.14)" />
       </div>
     </div>
   );

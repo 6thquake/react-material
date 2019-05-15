@@ -1,6 +1,6 @@
 {
   "name": "@6thquake/react-material-workspace",
-  "version": "0.4.5",
+  "version": "0.5.0-1",
   "private": true,
   "description": "React-Material's workspace package",
   "author": "6thquake Team",
@@ -55,7 +55,14 @@
     "flow": "flow --show-all-errors",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true",
     "monorepo:release": "yarn lerna exec yarn build && ./node_modules/.bin/lerna publish --skip-npm",
-    "fix-memory-limit": "cross-env LIMIT=2048 increase-memory-limit"
+    "fix-memory-limit": "cross-env LIMIT=2048 increase-memory-limit",
+    "precommit": "lint-staged",
+    "commit": "git-cz",
+    "release:first": "standard-version --first-release",
+    "release:alpha": "standard-version --prerelease alpha --skip.tag=true",
+    "release:beta": "standard-version --prerelease beta --skip.tag=true",
+    "release": "standard-version --skip.tag=true",
+    "tag": "standard-version"
   },
   "peerDependencies": {
     "react": "*",
@@ -78,14 +85,16 @@
     "@babel/cli": "7.0.0",
     "@babel/core": "7.0.0",
     "@babel/node": "7.0.0",
-    "@babel/polyfill": "7.0.0",
     "@babel/plugin-proposal-class-properties": "7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "7.0.0",
     "@babel/plugin-transform-object-assign": "7.0.0",
     "@babel/plugin-transform-runtime": "7.0.0",
+    "@babel/polyfill": "7.0.0",
     "@babel/preset-env": "7.0.0",
     "@babel/preset-react": "7.0.0",
     "@babel/register": "7.0.0",
+    "@commitlint/cli": "^7.6.1",
+    "@commitlint/config-conventional": "^7.6.0",
     "@material-ui/codemod": "^1.1.0",
     "@material-ui/core": "^3.9.2",
     "@material-ui/docs": "^3.0.0-alpha.9",
@@ -109,8 +118,11 @@
     "chai": "^4.1.2",
     "clean-css": "^4.1.11",
     "clipboard-copy": "^2.0.0",
-    "cross-env": "^5.1.1",
+    "commitizen": "^3.0.7",
+    "commitlint": "^7.2.1",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
+    "cz-conventional-changelog": "^2.1.0",
     "doctrine": "^2.0.0",
     "downshift": "^2.0.0",
     "dtslint": "^0.4.2",
@@ -131,6 +143,7 @@
     "fs-extra": "^7.0.0",
     "glob": "^7.1.2",
     "gm": "^1.23.0",
+    "husky": "^1.2.0",
     "isomorphic-fetch": "^2.2.1",
     "jsdom": "^12.0.0",
     "jss-rtl": "^0.2.1",
@@ -141,6 +154,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^3.0.5",
+    "lint-staged": "^8.1.0",
     "lz-string": "^1.4.4",
     "mocha": "^5.2.0",
     "next": "^8.0.1",
@@ -177,6 +191,7 @@
     "rollup-plugin-uglify": "^4.0.0",
     "sinon": "^7.2.3",
     "size-limit": "^0.21.1",
+    "standard-version": "^6.0.1",
     "style-loader": "^0.21.0",
     "tslint": "^5.11.0",
     "typescript": "^3.0.0",
@@ -186,9 +201,7 @@
     "webpack": "^4.29.5",
     "webpack-bundle-analyzer": "^3.0.4",
     "webpack-cli": "^3.2.3",
-    "workbox-build": "^3.0.1",
-    "husky": "^1.2.0",
-    "lint-staged": "^8.1.0"
+    "workbox-build": "^3.0.1"
   },
   "optionalDependencies": {
     "fsevents": "*"
@@ -216,10 +229,25 @@
       "limit": "800 KB"
     }
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "standard-version --prerelease --commit-all --skip.changelog=true --skip.commit=true --skip.tag=true && git add package.json && lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "lint-staged": {
-    "*.{js,json,css,scss,sass}": [
+    "*.{js,css,scss,sass}": [
       "prettier --write",
       "git add"
+    ],
+    "*.{json}": [
+      "prettier --loglevel=warn --write",
+      "git add"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   }
 }

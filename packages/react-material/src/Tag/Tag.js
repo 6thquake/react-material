@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import Chip from '../Chip';
 import PropTypes from 'prop-types';
 import { emphasize, fade, darken } from '../styles/colorManipulator';

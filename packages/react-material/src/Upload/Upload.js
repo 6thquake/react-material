@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import Chip from '../Chip';
 import Paper from '../Paper';
 import CancelIcon from '@material-ui/icons/Cancel';

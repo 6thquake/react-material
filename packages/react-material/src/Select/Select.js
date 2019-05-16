@@ -5,7 +5,7 @@ import SelectRoot from './SyncSelect';
 import Pagination from '../Pagination/Pagination';
 import AsyncSelectFilter from './AsyncSelectFilter';
 import Divider from '../Divider';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 import yellow from '../colors/yellow';

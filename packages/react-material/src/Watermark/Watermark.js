@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import classNames from 'classnames';
 
 const styles = theme => ({

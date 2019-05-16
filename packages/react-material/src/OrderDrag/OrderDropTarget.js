@@ -4,7 +4,7 @@
 
 import { TargetWrapper } from '../DragBase';
 import React from 'react';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import GridList from '../GridList';
 import GridListTile from '../GridListTile';
 import PropTypes from 'prop-types';

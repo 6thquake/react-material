@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Popover from '../Popover';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import TextField from '../TextField';
 import CascadeOption from './CascadeOption';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';

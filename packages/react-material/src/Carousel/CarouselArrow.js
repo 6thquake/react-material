@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import { ChevronRight, ChevronLeft } from '@material-ui/icons';
 
 const styles = {

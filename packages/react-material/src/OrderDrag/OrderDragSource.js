@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import { DandDWrapper } from '../DragBase';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 
 const styles = {
   inner: {

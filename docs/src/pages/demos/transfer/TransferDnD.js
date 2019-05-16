@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@6thquake/react-material/styles';
-import Transferdrag from '@6thquake/react-material/Transferdrag';
+import TransferDnD from '@6thquake/react-material/TransferDnD';
 
 class App extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Transferdrag
+        <TransferDnD
           left={this.state.left}
           right={this.state.right}
           onChange={this.changeListTest.bind(this)}

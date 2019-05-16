@@ -22,10 +22,10 @@ const style = theme => ({
   colorPrimary: {
     backgroundColor: '#b23c17 !important',
     '&:hover, &:focus': {
-      backgroundColor: emphasize('#b23c17', 0.08) + ' !important',
+      backgroundColor: `${emphasize('#b23c17', 0.08)} !important`,
     },
     '&:active': {
-      backgroundColor: emphasize('#b23c17', 0.12) + ' !important',
+      backgroundColor: `${emphasize('#b23c17', 0.12)} !important`,
     },
   },
 });
@@ -37,7 +37,7 @@ function createData(label, value) {
   };
 }
 
-class CustomFiltersDemo extends Component {
+class CustomizedFiltersDemo extends Component {
   state = {
     options: [
       createData('红色', '1'),
@@ -95,10 +95,10 @@ class CustomFiltersDemo extends Component {
   }
 }
 
-CustomFiltersDemo.propTypes = {
+CustomizedFiltersDemo.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-CustomFiltersDemo.defaultProps = {};
+CustomizedFiltersDemo.defaultProps = {};
 
-export default withStyles(style)(CustomFiltersDemo);
+export default withStyles(style)(CustomizedFiltersDemo);

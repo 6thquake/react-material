@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 
 const styles = theme => ({
   root: {

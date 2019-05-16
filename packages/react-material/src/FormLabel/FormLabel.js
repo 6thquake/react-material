@@ -3,7 +3,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import yellow from '../colors/yellow';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 
 const style = theme => ({
   root: {},

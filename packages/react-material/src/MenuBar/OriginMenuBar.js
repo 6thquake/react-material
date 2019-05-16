@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import { findDOMNode } from 'react-dom';
 import RcMenu, { Divider } from 'rc-menu';
 import classNames from 'classnames';

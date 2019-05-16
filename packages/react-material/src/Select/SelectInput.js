@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import Menu from '../Menu';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 /**
  * @ignore - internal component.
  */

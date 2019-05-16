@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from '../Avatar';
 import Bubble from '../Bubble';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 
 /*
  * To set styles used for render in App.

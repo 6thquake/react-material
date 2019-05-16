@@ -1,7 +1,7 @@
 import * as React from 'react';
 import RcTree, { TreeNode } from 'rc-tree';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import styles from './styles';
 import cssAnimation from 'css-animation';
 

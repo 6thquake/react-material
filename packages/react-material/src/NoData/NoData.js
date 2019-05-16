@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 
 const style = theme => ({
   root: {

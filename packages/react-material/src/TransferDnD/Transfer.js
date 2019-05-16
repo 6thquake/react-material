@@ -4,7 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import DropList from './DropList';
 import MyDropList from './MyDropList';
 import { DragListItem as ListItem, ListItemText } from './DragListItem';
@@ -179,4 +179,4 @@ class Transfer extends React.Component {
 
 const C = DragDropContext(HTML5Backend)(Transfer);
 
-export default withStyles(styles, { name: 'RMTransferdrag' })(C);
+export default withStyles(styles, { name: 'RMTransferDnD' })(C);

@@ -15,11 +15,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/transfer/Transfer'), 'utf8')
 `,
         },
-        'pages/demos/transfer/Transferdrag.js': {
-          js: require('docs/src/pages/demos/transfer/Transferdrag').default,
+        'pages/demos/transfer/TransferDnD.js': {
+          js: require('docs/src/pages/demos/transfer/TransferDnD').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/transfer/Transferdrag'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/transfer/TransferDnD'), 'utf8')
 `,
         },
       }}

@@ -4,7 +4,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import { DropTarget as DropTargetBase } from 'react-dnd';
 import update from 'immutability-helper';
 import PropTypes from 'prop-types';

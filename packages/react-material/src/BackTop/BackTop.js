@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import { Publish } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 

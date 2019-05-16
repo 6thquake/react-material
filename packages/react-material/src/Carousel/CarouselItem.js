@@ -4,7 +4,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import Video from '../Video';
 
 const styles = {

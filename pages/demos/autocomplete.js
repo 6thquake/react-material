@@ -15,11 +15,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/autocomplete/AutoComplete'), 'utf8')
 `,
         },
-        'pages/demos/autocomplete/AutoCompletetem.js': {
-          js: require('docs/src/pages/demos/autocomplete/AutoCompletetem').default,
+        'pages/demos/autocomplete/CustomizedAutoComplete.js': {
+          js: require('docs/src/pages/demos/autocomplete/CustomizedAutoComplete').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/autocomplete/AutoCompletetem'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/autocomplete/CustomizedAutoComplete'), 'utf8')
 `,
         },
         'pages/demos/autocomplete/SynchronizeAutoComplete.js': {

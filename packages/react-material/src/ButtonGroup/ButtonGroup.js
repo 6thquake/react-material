@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { capitalize } from '../utils/helpers';

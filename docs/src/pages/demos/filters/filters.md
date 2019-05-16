@@ -14,7 +14,7 @@ components: Filters
 
 ## Custom Filters
 
-{{"demo": "pages/demos/filters/CustomFilters.js"}}
+{{"demo": "pages/demos/filters/CustomizedFilters.js"}}
 
 ## Expansion Filters
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import Button from '@material-ui/core/Button/Button';
 import classNames from 'classnames';

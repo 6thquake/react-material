@@ -15,11 +15,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/filters/Filters'), 'utf8')
 `,
         },
-        'pages/demos/filters/CustomFilters.js': {
-          js: require('docs/src/pages/demos/filters/CustomFilters').default,
+        'pages/demos/filters/CustomizedFilters.js': {
+          js: require('docs/src/pages/demos/filters/CustomizedFilters').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/filters/CustomFilters'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/filters/CustomizedFilters'), 'utf8')
 `,
         },
         'pages/demos/filters/ExpansionFilters.js': {

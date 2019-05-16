@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MenuList from '../MenuList';
 import MenuItem from '../MenuItem';
 import Paper from '../Paper';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import ListItemIcon from '../ListItemIcon';
 import ListItemText from '../ListItemText';
 import PlayArrow from '@material-ui/icons/PlayArrow';

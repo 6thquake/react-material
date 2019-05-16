@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 
 const styles = theme => {
   return {};

@@ -3,7 +3,7 @@
  */
 
 import React, { PureComponent } from 'react';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import { DragSource as DragSourceBase } from 'react-dnd';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';

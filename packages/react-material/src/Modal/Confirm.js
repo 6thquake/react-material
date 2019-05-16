@@ -5,7 +5,7 @@ import ActionButton from './ActionButton';
 import DialogActions from '../DialogActions';
 import DialogTitle from '../DialogTitle';
 import DialogContent from '../DialogContent';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import classNames from 'classnames';
 import { Fade, Slide, Collapse, Grow, Zoom } from '../transitions';
 import { withLocale } from '../LocaleProvider';

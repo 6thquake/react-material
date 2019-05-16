@@ -42,9 +42,9 @@ In the following example, we demonstrate how to use [react-select](https://githu
 
 {{"demo": "pages/demos/autocomplete/AutoComplete.js"}}
 
-## AutoComplete of option with customer templete
+## AutoComplete with customized templete option
 
-{{"demo": "pages/demos/autocomplete/AutoCompletetem.js"}}
+{{"demo": "pages/demos/autocomplete/CustomizedAutoComplete.js"}}
 
 ## Synchronize AutoComplete
 

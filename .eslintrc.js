@@ -12,7 +12,7 @@ module.exports = {
     node: true,
     mocha: true,
   },
-  extends: ['plugin:import/recommended', 'airbnb'],
+  extends: ['plugin:import/recommended', 'airbnb', 'prettier', 'prettier/react'],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 7,

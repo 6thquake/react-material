@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { DragSource as DragSourceBase, DropTarget as DropTargetBase } from 'react-dnd';

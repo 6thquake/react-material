@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import Input from '../Input';
 import MenuItem from '../MenuItem';
 import Select from '../Select';

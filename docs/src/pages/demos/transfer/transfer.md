@@ -14,7 +14,7 @@ One or more elements can be selected from either column, one click on the proper
 
 ## Transfer is used for exchange data between two array by dragging and dropping.
 
-{{"demo": "pages/demos/transfer/Transferdrag.js"}}
+{{"demo": "pages/demos/transfer/TransferDnD.js"}}
 
 ## Transfer is used for exchange data between two array.
 

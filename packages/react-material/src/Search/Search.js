@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import PropTypes from 'prop-types';
 import SearchIcon from '@material-ui/icons/Search';
 import classNames from 'classnames';

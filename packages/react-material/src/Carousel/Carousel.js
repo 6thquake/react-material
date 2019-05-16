@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import CarouselItem from './CarouselItem';
 import CarouselDots from './CarouselDots';
 import CarouselArrow from './CarouselArrow';

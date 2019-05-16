@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AsyncAutoComplete from './AsyncAutoComplete';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 
 const styles = theme => ({
   root: {

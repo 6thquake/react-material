@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import PropTypes from 'prop-types';
 import yellow from '../colors/yellow';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 
 const style = theme => ({
   root: {},

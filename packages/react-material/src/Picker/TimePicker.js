@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import compose from 'recompose/compose';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import yellow from '../colors/yellow';
 import { TimePicker } from 'material-ui-pickers';
 import { withLocale } from '../LocaleProvider';

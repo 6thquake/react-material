@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import BreadcrumbItem from '../BreadcrumbItem';
 import { /* darken, */ fade } from '../styles/colorManipulator';
 import classNames from 'classnames';

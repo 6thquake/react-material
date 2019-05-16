@@ -4,7 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import { ChevronRight, ChevronLeft, LastPage, FirstPage } from '@material-ui/icons';
 import { DropTarget } from 'react-dnd';
 import GridList from '../GridList';

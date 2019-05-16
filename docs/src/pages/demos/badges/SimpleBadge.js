@@ -9,6 +9,7 @@ import Tabs from '@6thquake/react-material/Tabs';
 import Tab from '@6thquake/react-material/Tab';
 import Typography from '@6thquake/react-material/Typography';
 import Button from '@6thquake/react-material/Button';
+import Paper from '@6thquake/react-material/Paper';
 
 const styles = theme => ({
   margin: {
@@ -17,6 +18,11 @@ const styles = theme => ({
   padding: {
     padding: `0 ${theme.spacing.unit * 2}px`,
   },
+  paper: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+  },
 });
 
 function SimpleBadge(props) {
@@ -24,6 +30,9 @@ function SimpleBadge(props) {
   return (
     <div>
       <div>
+        <Badge className={classes.margin} badgeContent={4}>
+          <MailIcon />
+        </Badge>
         <Badge className={classes.margin} badgeContent={4} color="primary">
           <MailIcon />
         </Badge>
@@ -31,7 +40,7 @@ function SimpleBadge(props) {
           <MailIcon />
         </Badge>
         <IconButton aria-label="4 pending messages" className={classes.margin}>
-          <Badge badgeContent={4} color="primary">
+          <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -49,12 +58,90 @@ function SimpleBadge(props) {
           <Tab label="Item Three" />
         </Tabs>
       </AppBar>
-      <Badge color="primary" badgeContent={4} className={classes.margin}>
+      <Badge color="primary" badgeContent={400} className={classes.margin} max={99}>
         <Typography className={classes.padding}>Typography</Typography>
       </Badge>
       <Badge color="primary" badgeContent={4} className={classes.margin}>
         <Button variant="contained">Button</Button>
       </Badge>
+      <div>
+        <Badge variant="standard" color="primary" badgeContent={4} className={classes.margin}>
+          <Typography className={classes.padding}>Typography</Typography>
+        </Badge>
+        <Badge variant="dot" color="primary" badgeContent={4} className={classes.margin}>
+          <Typography className={classes.padding}>Typography</Typography>
+        </Badge>
+        <Badge
+          variant="text"
+          color="primary"
+          badgeContent={'text text text'}
+          className={classes.margin}
+        >
+          <Typography className={classes.padding}>Typography</Typography>
+        </Badge>
+        <Badge variant="ribbon" color="primary" badgeContent={'新'} className={classes.margin}>
+          <Typography className={classes.padding}>Typography</Typography>
+        </Badge>
+        <Badge variant="mark" color="primary" badgeContent={'热'} className={classes.margin}>
+          <Typography className={classes.padding}>Typography</Typography>
+        </Badge>
+      </div>
+      <div>
+        <Badge variant="standard" color="primary" badgeContent={4} className={classes.margin}>
+          <Button variant="contained">Button</Button>
+        </Badge>
+        <Badge variant="dot" color="primary" badgeContent={4} className={classes.margin}>
+          <Button variant="contained">Button</Button>
+        </Badge>
+        <Badge
+          variant="text"
+          color="primary"
+          badgeContent={'text text text'}
+          className={classes.margin}
+        >
+          <Button variant="contained">Button</Button>
+        </Badge>
+        <Badge variant="ribbon" color="primary" badgeContent={'新'} className={classes.margin}>
+          <Button variant="contained">Button</Button>
+        </Badge>
+        <Badge variant="mark" color="primary" badgeContent={'热'} className={classes.margin}>
+          <Button variant="contained">Button</Button>
+        </Badge>
+      </div>
+      <div>
+        <Badge
+          variant="ribbon"
+          color="primary"
+          badgeContent={'新'}
+          className={classes.margin}
+          color="error"
+        >
+          <Paper className={classes.paper} elevation={1}>
+            <Typography variant="headline" component="h3">
+              This is a sheet of paper.
+            </Typography>
+            <Typography component="p">
+              Paper can be used to build surface or other elements for your application.
+            </Typography>
+          </Paper>
+        </Badge>
+        <Badge
+          variant="mark"
+          color="primary"
+          badgeContent={'热'}
+          className={classes.margin}
+          color="error"
+        >
+          <Paper className={classes.paper} elevation={1}>
+            <Typography variant="headline" component="h3">
+              This is a sheet of paper.
+            </Typography>
+            <Typography component="p">
+              Paper can be used to build surface or other elements for your application.
+            </Typography>
+          </Paper>
+        </Badge>
+      </div>
     </div>
   );
 }

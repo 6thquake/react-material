@@ -22,11 +22,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/breadcrumb/BreadcrumbItems'), 'utf8')
 `,
         },
-        'pages/demos/breadcrumb/Breadcrumb2.js': {
-          js: require('docs/src/pages/demos/breadcrumb/Breadcrumb2').default,
+        'pages/demos/breadcrumb/CustomizedBreadcrumb.js': {
+          js: require('docs/src/pages/demos/breadcrumb/CustomizedBreadcrumb').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/breadcrumb/Breadcrumb2'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/breadcrumb/CustomizedBreadcrumb'), 'utf8')
 `,
         },
       }}

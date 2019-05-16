@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Item } from 'rc-menu';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import PropTypes from 'prop-types';
 import Tooltip from '../Tooltip';
 

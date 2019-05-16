@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Button from '../Button';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import classNames from 'classnames';
 
 const styles = theme => ({

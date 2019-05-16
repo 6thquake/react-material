@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import Button from '../Button';
 import { withLocale } from '../LocaleProvider';
 

@@ -4,7 +4,7 @@ import MenuItem from '../MenuItem';
 import Pagination from '../Pagination/Pagination';
 import AsyncSelectFilter from './AsyncSelectFilter';
 import Divider from '../Divider';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
 import AsyncSelectRoot from './AsyncSelectRoot';
 import throttling from '../utils/throttling';
 import yellow from '../colors/yellow';
